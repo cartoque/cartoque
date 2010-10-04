@@ -28,3 +28,9 @@ gem 'mysql2'
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+gem 'nifty-generators'
+gem 'inherited_resources'
+gem 'simple_form'
+gem 'show_for'
+gem 'has_scope'
