@@ -1,0 +1,41 @@
+<% title "Applications" %>
+
+<table>
+  <tr>
+    <th>Appli Nom</th>
+    <th>Appli Criticite</th>
+    <th>Appli Info</th>
+    <th>Appli Iaw</th>
+    <th>Appli Pe</th>
+    <th>Appli Moa</th>
+    <th>Appli Amoa</th>
+    <th>Appli Moa Note</th>
+    <th>Appli Contact</th>
+    <th>Appli Pnd</th>
+    <th>Appli Ams</th>
+    <th>Appli Cerbere</th>
+    <th>Appli Fiche</th>
+  </tr>
+  <% for application in @applications %>
+    <tr>
+      <td><%= application.appli_nom %></td>
+      <td><%= application.appli_criticite %></td>
+      <td><%= application.appli_info %></td>
+      <td><%= application.appli_iaw %></td>
+      <td><%= application.appli_pe %></td>
+      <td><%= application.appli_moa %></td>
+      <td><%= application.appli_amoa %></td>
+      <td><%= application.appli_moa_note %></td>
+      <td><%= application.appli_contact %></td>
+      <td><%= application.appli_pnd %></td>
+      <td><%= application.appli_ams %></td>
+      <td><%= application.appli_cerbere %></td>
+      <td><%= application.appli_fiche %></td>
+      <td><%= link_to "Show", application %></td>
+      <td><%= link_to "Edit", edit_application_path(application) %></td>
+      <td><%= link_to "Destroy", application, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Application", new_application_path %></p>

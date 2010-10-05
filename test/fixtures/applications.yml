@@ -1,0 +1,29 @@
+one:
+  appli_nom: MyString
+  appli_criticite: 1
+  appli_info: MyText
+  appli_iaw: MyString
+  appli_pe: MyString
+  appli_moa: MyString
+  appli_amoa: MyString
+  appli_moa_note: MyString
+  appli_contact: MyString
+  appli_pnd: MyString
+  appli_ams: MyString
+  appli_cerbere: 1
+  appli_fiche: MyString
+
+two:
+  appli_nom: MyString
+  appli_criticite: 1
+  appli_info: MyText
+  appli_iaw: MyString
+  appli_pe: MyString
+  appli_moa: MyString
+  appli_amoa: MyString
+  appli_moa_note: MyString
+  appli_contact: MyString
+  appli_pnd: MyString
+  appli_ams: MyString
+  appli_cerbere: 1
+  appli_fiche: MyString
