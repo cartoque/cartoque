@@ -1,54 +1,49 @@
 require 'test_helper'
 
 class MachinesControllerTest < ActionController::TestCase
-  def test_index
+  setup do
+    @machine = machines(:one)
+  end
+
+  test "should get index" do
     get :index
-    assert_template 'index'
+    assert_response :success
+    assert_not_nil assigns(:machines)
   end
-  
-  def test_show
-    get :show, :id => Machine.first
-    assert_template 'show'
-  end
-  
-  def test_new
+
+  test "should get new" do
     get :new
-    assert_template 'new'
-  end
-  
-  def test_create_invalid
-    Machine.any_instance.stubs(:valid?).returns(false)
-    post :create
-    assert_template 'new'
+    assert_response :success
   end
 
-  def test_create_valid
-    Machine.any_instance.stubs(:valid?).returns(true)
-    post :create
-    assert_redirected_to machine_url(assigns(:machine))
-  end
-  
-  def test_edit
-    get :edit, :id => Machine.first
-    assert_template 'edit'
-  end
-  
-  def test_update_invalid
-    Machine.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => Machine.first
-    assert_template 'edit'
+  test "should create machine" do
+    assert_difference('Machine.count') do
+      post :create, :machine => @machine.attributes
+    end
+
+    assert_redirected_to machine_path(assigns(:machine))
   end
 
-  def test_update_valid
-    Machine.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => Machine.first
-    assert_redirected_to machine_url(assigns(:machine))
+  test "should show machine" do
+    get :show, :id => @machine.to_param
+    assert_response :success
   end
-  
-  def test_destroy
-    machine = Machine.first
-    delete :destroy, :id => machine
-    assert_redirected_to machines_url
-    assert !Machine.exists?(machine.id)
+
+  test "should get edit" do
+    get :edit, :id => @machine.to_param
+    assert_response :success
+  end
+
+  test "should update machine" do
+    put :update, :id => @machine.to_param, :machine => @machine.attributes
+    assert_redirected_to machine_path(assigns(:machine))
+  end
+
+  test "should destroy machine" do
+    assert_difference('Machine.count', -1) do
+      delete :destroy, :id => @machine.to_param
+    end
+
+    assert_redirected_to machines_path
   end
 end

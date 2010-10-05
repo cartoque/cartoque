@@ -1,54 +1,49 @@
 require 'test_helper'
 
 class ApplicationsControllerTest < ActionController::TestCase
-  def test_index
+  setup do
+    @application = applications(:one)
+  end
+
+  test "should get index" do
     get :index
-    assert_template 'index'
+    assert_response :success
+    assert_not_nil assigns(:applications)
   end
-  
-  def test_show
-    get :show, :id => Application.first
-    assert_template 'show'
-  end
-  
-  def test_new
+
+  test "should get new" do
     get :new
-    assert_template 'new'
-  end
-  
-  def test_create_invalid
-    Application.any_instance.stubs(:valid?).returns(false)
-    post :create
-    assert_template 'new'
+    assert_response :success
   end
 
-  def test_create_valid
-    Application.any_instance.stubs(:valid?).returns(true)
-    post :create
-    assert_redirected_to application_url(assigns(:application))
-  end
-  
-  def test_edit
-    get :edit, :id => Application.first
-    assert_template 'edit'
-  end
-  
-  def test_update_invalid
-    Application.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => Application.first
-    assert_template 'edit'
+  test "should create application" do
+    assert_difference('Application.count') do
+      post :create, :application => @application.attributes
+    end
+
+    assert_redirected_to application_path(assigns(:application))
   end
 
-  def test_update_valid
-    Application.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => Application.first
-    assert_redirected_to application_url(assigns(:application))
+  test "should show application" do
+    get :show, :id => @application.to_param
+    assert_response :success
   end
-  
-  def test_destroy
-    application = Application.first
-    delete :destroy, :id => application
-    assert_redirected_to applications_url
-    assert !Application.exists?(application.id)
+
+  test "should get edit" do
+    get :edit, :id => @application.to_param
+    assert_response :success
+  end
+
+  test "should update application" do
+    put :update, :id => @application.to_param, :application => @application.attributes
+    assert_redirected_to application_path(assigns(:application))
+  end
+
+  test "should destroy application" do
+    assert_difference('Application.count', -1) do
+      delete :destroy, :id => @application.to_param
+    end
+
+    assert_redirected_to applications_path
   end
 end
