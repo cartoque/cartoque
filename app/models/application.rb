@@ -1,3 +1,3 @@
 class Application < ActiveRecord::Base
-  attr_accessible :appli_nom, :appli_criticite, :appli_info, :appli_iaw, :appli_pe, :appli_moa, :appli_amoa, :appli_moa_note, :appli_contact, :appli_pnd, :appli_ams, :appli_cerbere, :appli_fiche
+  attr_accessible :nom, :criticite, :info, :iaw, :pe, :moa, :amoa, :moa_note, :contact, :pnd, :ams, :cerbere, :fiche
 end

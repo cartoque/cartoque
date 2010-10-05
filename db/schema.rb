@@ -10,22 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101004202144) do
+ActiveRecord::Schema.define(:version => 20101005100755) do
 
   create_table "applications", :force => true do |t|
-    t.string  "appli_nom",                     :default => "", :null => false
-    t.integer "appli_criticite", :limit => 1,  :default => 0,  :null => false
-    t.text    "appli_info",                                    :null => false
-    t.string  "appli_iaw",       :limit => 55, :default => "", :null => false
-    t.string  "appli_pe",        :limit => 55, :default => "", :null => false
-    t.string  "appli_moa",                     :default => "", :null => false
-    t.string  "appli_amoa",                    :default => "", :null => false
-    t.string  "appli_moa_note",                :default => "", :null => false
-    t.string  "appli_contact",                 :default => "", :null => false
-    t.string  "appli_pnd",                     :default => "", :null => false
-    t.string  "appli_ams",       :limit => 55, :default => "", :null => false
-    t.integer "appli_cerbere",   :limit => 1,  :default => 0,  :null => false
-    t.string  "appli_fiche",                   :default => "", :null => false
+    t.string  "nom",                     :default => "", :null => false
+    t.integer "criticite", :limit => 1,  :default => 0,  :null => false
+    t.text    "info",                                    :null => false
+    t.string  "iaw",       :limit => 55, :default => "", :null => false
+    t.string  "pe",        :limit => 55, :default => "", :null => false
+    t.string  "moa",                     :default => "", :null => false
+    t.string  "amoa",                    :default => "", :null => false
+    t.string  "moa_note",                :default => "", :null => false
+    t.string  "contact",                 :default => "", :null => false
+    t.string  "pnd",                     :default => "", :null => false
+    t.string  "ams",       :limit => 55, :default => "", :null => false
+    t.integer "cerbere",   :limit => 1,  :default => 0,  :null => false
+    t.string  "fiche",                   :default => "", :null => false
   end
 
   create_table "bureaux", :force => true do |t|

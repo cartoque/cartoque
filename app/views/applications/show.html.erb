@@ -1,20 +1,20 @@
 <% title "Application" %>
 
 <%= show_for @application do |a| %>
-  <%= a.attribute :appli_nom %>
-  <%= a.attribute :appli_criticite %>
-  <%= a.attribute :appli_info %>
-  <%= a.attribute :appli_info %>
-  <%= a.attribute :appli_iaw %>
-  <%= a.attribute :appli_pe %>
-  <%= a.attribute :appli_moa %>
-  <%= a.attribute :appli_amoa %>
-  <%= a.attribute :appli_moa_note %>
-  <%= a.attribute :appli_contact %>
-  <%= a.attribute :appli_pnd %>
-  <%= a.attribute :appli_ams %>
-  <%= a.attribute :appli_cerbere %>
-  <%= a.attribute :appli_fiche %>
+  <%= a.attribute :nom %>
+  <%= a.attribute :criticite %>
+  <%= a.attribute :info %>
+  <%= a.attribute :info %>
+  <%= a.attribute :iaw %>
+  <%= a.attribute :pe %>
+  <%= a.attribute :moa %>
+  <%= a.attribute :amoa %>
+  <%= a.attribute :moa_note %>
+  <%= a.attribute :contact %>
+  <%= a.attribute :pnd %>
+  <%= a.attribute :ams %>
+  <%= a.attribute :cerbere %>
+  <%= a.attribute :fiche %>
 <% end %>
 <p>
   <%= link_to "Edit", edit_application_path(@application) %> |
