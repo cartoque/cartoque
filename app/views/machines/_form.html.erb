@@ -1,0 +1,54 @@
+<%= simple_form_for(@machine) do |f| %>
+  <% if @machine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@machine.errors.count, "error") %> prohibited this machine from being saved:</h2>
+
+      <ul>
+      <% @machine.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="inputs">
+    <%= f.input :theme_id %>
+    <%= f.input :service_id %>
+    <%= f.input :os_id %>
+    <%= f.input :site_id %>
+    <%= f.input :rack_id %>
+    <%= f.input :cddvd_id %>
+    <%= f.input :mainteneur_id %>
+    <%= f.input :machine_nom %>
+    <%= f.input :machine_ancien_nom %>
+    <%= f.input :sousreseau_ip %>
+    <%= f.input :quatr_octet %>
+    <%= f.input :numero_serie %>
+    <%= f.input :virtuelle %>
+    <%= f.input :machine_description %>
+    <%= f.input :modele %>
+    <%= f.input :memoire %>
+    <%= f.input :frequence %>
+    <%= f.input :date_mes %>
+    <%= f.input :fin_garantie %>
+    <%= f.input :type_contrat %>
+    <%= f.input :type_hd %>
+    <%= f.input :disque_dur %>
+    <%= f.input :marque %>
+    <%= f.input :ref_proc %>
+    <%= f.input :type_serveur %>
+    <%= f.input :nb_proc %>
+    <%= f.input :nb_coeur %>
+    <%= f.input :nb_rj45 %>
+    <%= f.input :fc %>
+    <%= f.input :iscsi %>
+    <%= f.input :type_hd1 %>
+    <%= f.input :disque_dur1 %>
+    <%= f.input :nb_disque %>
+    <%= f.input :nb_disque1 %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

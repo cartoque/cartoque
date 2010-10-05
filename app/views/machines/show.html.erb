@@ -1,0 +1,44 @@
+<% title "Machine" %>
+
+<%= show_for @machine do |s| %>
+  <%= s.attribute :theme_id %>
+  <%= s.attribute :service_id %>
+  <%= s.attribute :os_id %>
+  <%= s.attribute :site_id %>
+  <%= s.attribute :rack_id %>
+  <%= s.attribute :cddvd_id %>
+  <%= s.attribute :mainteneur_id %>
+  <%= s.attribute :machine_nom %>
+  <%= s.attribute :machine_ancien_nom %>
+  <%= s.attribute :sousreseau_ip %>
+  <%= s.attribute :quatr_octet %>
+  <%= s.attribute :numero_serie %>
+  <%= s.attribute :virtuelle %>
+  <%= s.attribute :machine_description %>
+  <%= s.attribute :modele %>
+  <%= s.attribute :memoire %>
+  <%= s.attribute :frequence %>
+  <%= s.attribute :date_mes %>
+  <%= s.attribute :fin_garantie %>
+  <%= s.attribute :type_contrat %>
+  <%= s.attribute :type_hd %>
+  <%= s.attribute :disque_dur %>
+  <%= s.attribute :marque %>
+  <%= s.attribute :ref_proc %>
+  <%= s.attribute :type_serveur %>
+  <%= s.attribute :nb_proc %>
+  <%= s.attribute :nb_coeur %>
+  <%= s.attribute :nb_rj45 %>
+  <%= s.attribute :fc %>
+  <%= s.attribute :iscsi %>
+  <%= s.attribute :type_hd1 %>
+  <%= s.attribute :disque_dur1 %>
+  <%= s.attribute :nb_disque %>
+  <%= s.attribute :nb_disque1 %>
+<% end %>
+
+<p>
+  <%= link_to 'Edit', edit_machine_path(@machine) %> |
+  <%= link_to 'Destroy', @machine, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to 'View All', machines_path %>
+</p>
