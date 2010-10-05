@@ -1,6 +1,15 @@
-<% title "Welcome to Cartoque!" %>
+<% title "Welcome to Cartoque!", false %>
 
-<ul>
-  <li><%= link_to "Applications", applications_path %></li>
-  <li><%= link_to "Machines", machines_path %></li>
-</ul>
+<table>
+  <tr>
+    <th class="center" colspan="2">Welcome</th>
+  </tr>
+  <tr>
+    <td><%= link_to "Applications", applications_path %></td>
+    <td><%= Application.count %></td>
+  </tr>
+  <tr>
+    <td><%= link_to "Machines", machines_path %></td>
+    <td><%= Machine.count %></td>
+  </tr>
+</table>

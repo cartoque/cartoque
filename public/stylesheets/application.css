@@ -74,6 +74,10 @@ a {
   margin: 0;
 }
 
+.center {
+  text-align:center;
+}
+
 .simple_form label {
   float: left;
   width: 120px;
