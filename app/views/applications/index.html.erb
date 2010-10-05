@@ -1,41 +1,27 @@
 <% title "Applications" %>
 
-<table>
+<p><%= link_to "Ajouter une application", new_application_path %></p>
+
+<table class="center">
   <tr>
-    <th>Appli Nom</th>
-    <th>Appli Criticite</th>
-    <th>Appli Info</th>
-    <th>Appli Iaw</th>
-    <th>Appli Pe</th>
-    <th>Appli Moa</th>
-    <th>Appli Amoa</th>
-    <th>Appli Moa Note</th>
-    <th>Appli Contact</th>
-    <th>Appli Pnd</th>
-    <th>Appli Ams</th>
-    <th>Appli Cerbere</th>
-    <th>Appli Fiche</th>
+    <th>Cerbere</th>
+    <th>Criticité</th>
+    <th>Nom Hébergement</th>
+    <th>Description</th>
+    <th>I2 Ader Web</th>
+    <th>ACAI Messagerie Spécifique</th>
+    <th colspan="2">Actions</th>
   </tr>
   <% for application in @applications %>
     <tr>
-      <td><%= application.nom %></td>
+      <td><%= cerbere_image(application.cerbere) %></td>
       <td><%= application.criticite %></td>
+      <td><%= link_to application.nom, application %></td>
       <td><%= application.info %></td>
       <td><%= application.iaw %></td>
-      <td><%= application.pe %></td>
-      <td><%= application.moa %></td>
-      <td><%= application.amoa %></td>
-      <td><%= application.moa_note %></td>
-      <td><%= application.contact %></td>
-      <td><%= application.pnd %></td>
       <td><%= application.ams %></td>
-      <td><%= application.cerbere %></td>
-      <td><%= application.fiche %></td>
-      <td><%= link_to "Show", application %></td>
-      <td><%= link_to "Edit", edit_application_path(application) %></td>
-      <td><%= link_to "Destroy", application, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Editer", edit_application_path(application) %></td>
+      <td><%= link_to "Supprimer", application, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
-
-<p><%= link_to "New Application", new_application_path %></p>

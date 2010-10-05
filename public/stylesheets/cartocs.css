@@ -146,7 +146,7 @@ td a {
 }
 td img {
   margin:0 auto;
-  border:3px solid #ddd;
+  /*border:3px solid #ddd;*/
 }
 td a:hover {
   color:#a84444;
