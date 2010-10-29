@@ -1,23 +1,35 @@
 <% title "Application" %>
 
-<%= show_for @application do |a| %>
-  <%= a.attribute :nom %>
-  <%= a.attribute :criticite %>
-  <%= a.attribute :info %>
-  <%= a.attribute :info %>
-  <%= a.attribute :iaw %>
-  <%= a.attribute :pe %>
-  <%= a.attribute :moa %>
-  <%= a.attribute :amoa %>
-  <%= a.attribute :moa_note %>
-  <%= a.attribute :contact %>
-  <%= a.attribute :pnd %>
-  <%= a.attribute :ams %>
-  <%= a.attribute :cerbere %>
-  <%= a.attribute :fiche %>
-<% end %>
-<p>
-  <%= link_to "Edit", edit_application_path(@application) %> |
-  <%= link_to "Destroy", @application, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", applications_path %>
+<table class="show_item">
+  <thead>
+    <tr>
+      <th colspan="2"><%= @application.nom %></th>
+    </tr>
+  </thead>
+  <%= show_for @application do |a| %>
+    <%= a.attribute :criticite %>
+    <%= a.attribute :iaw, :label => "I2/Ader/Web" %>
+    <%= a.attribute :pe,  :label => "Prod/Ecole" %>
+    <%= a.attribute :moa, :label => "MOA" %>
+    <%= a.attribute :amoa, :label => "Assistance MOA" %>
+    <%= a.attribute :moa_note, :label => "Note MOA" %>
+    <%= a.attribute :contact %>
+    <%= a.attribute :pnd, :label => "PND" %>
+    <%= a.attribute :ams, :label => "ACAI/Messagerie/Spécifique" %>
+    <% a.attribute :cerbere do %>
+      <%= cerbere_image(@application.cerbere, true) %>
+    <% end %>
+    <%= a.attribute :fiche, :label => "Fiche ACAI" %>
+    <tr class="wrapper application_info">
+      <td colspan="2">
+        Information:<br />
+        <%= @application.info %>
+      </td></tr> 
+  <% end %>
+</table>
+
+<p class="actions">
+  <%= link_to "Editer", edit_application_path(@application) %> |
+  <%= link_to "Supprimer", @application, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "Retourner à la liste", applications_path %>
 </p>

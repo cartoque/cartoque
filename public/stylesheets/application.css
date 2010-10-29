@@ -119,3 +119,22 @@ a {
   display: block;
   font-style: italic;
 }
+
+table.show_item {
+  width: 300px;
+}
+
+table.show_item th {
+  text-align:center;
+}
+
+table.show_item td.content {
+  text-align:center;
+  font-weight:bold;
+  width:50%;
+}
+
+p.actions {
+  text-align:center;
+  font-size:11px;
+}
