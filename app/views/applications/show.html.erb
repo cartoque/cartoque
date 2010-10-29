@@ -16,7 +16,7 @@
     <%= a.attribute :contact %>
     <%= a.attribute :pnd, :label => "PND" %>
     <%= a.attribute :ams, :label => "ACAI/Messagerie/Spécifique" %>
-    <% a.attribute :cerbere do %>
+    <%= a.attribute :cerbere do %>
       <%= cerbere_image(@application.cerbere, true) %>
     <% end %>
     <%= a.attribute :fiche, :label => "Fiche ACAI" %>
