@@ -1,5 +1,7 @@
 <% title "Machines" %>
 
+<p><%= link_to "Ajouter une machine", new_machine_path %></p>
+
 <table>
   <tr>
     <th>Theme</th>
@@ -36,6 +38,7 @@
     <th>Disque Dur1</th>
     <th>Nb Disque</th>
     <th>Nb Disque1</th>
+    <th colspan="2">Actions</th>
   </tr>
   <% for machine in @machines %>
     <tr>
@@ -73,11 +76,8 @@
       <td><%= machine.disque_dur1 %></td>
       <td><%= machine.nb_disque %></td>
       <td><%= machine.nb_disque1 %></td>
-      <td><%= link_to "Show", machine %></td>
-      <td><%= link_to "Edit", edit_machine_path(machine) %></td>
-      <td><%= link_to "Destroy", machine, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Editer", edit_machine_path(machine) %></td>
+      <td><%= link_to "Supprimer", machine, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
-
-<p><%= link_to "New Machine", new_machine_path %></p>
