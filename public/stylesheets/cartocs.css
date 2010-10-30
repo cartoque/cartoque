@@ -183,7 +183,7 @@ tbody tr.alt td:first-child {
   font-weight:none;
 }
 tbody tr td:first-child {
-  background: #fff url(../images/bullet1.gif) no-repeat;
+  /*background: #fff url(../images/bullet1.gif) no-repeat;*/
   font-weight:none;
 }
 /* Image free rules for Internet Explorer < 7 */
