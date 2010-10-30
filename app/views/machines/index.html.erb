@@ -4,78 +4,20 @@
 
 <table>
   <tr>
+    <th>Nom</th>
+    <th>IP</th>
     <th>Theme</th>
     <th>Service</th>
-    <th>Os</th>
-    <th>Site</th>
-    <th>Rack</th>
-    <th>Cddvd</th>
-    <th>Mainteneur</th>
-    <th>Machine Nom</th>
-    <th>Machine Ancien Nom</th>
-    <th>Sousreseau Ip</th>
-    <th>Quatr Octet</th>
-    <th>Numero Serie</th>
-    <th>Virtuelle</th>
-    <th>Machine Description</th>
-    <th>Modele</th>
-    <th>Memoire</th>
-    <th>Frequence</th>
-    <th>Date Mes</th>
-    <th>Fin Garantie</th>
-    <th>Type Contrat</th>
-    <th>Type Hd</th>
-    <th>Disque Dur</th>
-    <th>Marque</th>
-    <th>Ref Proc</th>
-    <th>Type Serveur</th>
-    <th>Nb Proc</th>
-    <th>Nb Coeur</th>
-    <th>Nb Rj45</th>
-    <th>Fc</th>
-    <th>Iscsi</th>
-    <th>Type Hd1</th>
-    <th>Disque Dur1</th>
-    <th>Nb Disque</th>
-    <th>Nb Disque1</th>
+    <th>OS</th>
     <th colspan="2">Actions</th>
   </tr>
   <% for machine in @machines %>
     <tr>
+      <td><%= link_to machine.machine_nom, machine %></td>
+      <td><%= machine.ip %></td>
       <td><%= machine.theme_id %></td>
       <td><%= machine.service_id %></td>
       <td><%= machine.os_id %></td>
-      <td><%= machine.site_id %></td>
-      <td><%= machine.rack_id %></td>
-      <td><%= machine.cddvd_id %></td>
-      <td><%= machine.mainteneur_id %></td>
-      <td><%= machine.machine_nom %></td>
-      <td><%= machine.machine_ancien_nom %></td>
-      <td><%= machine.sousreseau_ip %></td>
-      <td><%= machine.quatr_octet %></td>
-      <td><%= machine.numero_serie %></td>
-      <td><%= machine.virtuelle %></td>
-      <td><%= machine.machine_description %></td>
-      <td><%= machine.modele %></td>
-      <td><%= machine.memoire %></td>
-      <td><%= machine.frequence %></td>
-      <td><%= machine.date_mes %></td>
-      <td><%= machine.fin_garantie %></td>
-      <td><%= machine.type_contrat %></td>
-      <td><%= machine.type_hd %></td>
-      <td><%= machine.disque_dur %></td>
-      <td><%= machine.marque %></td>
-      <td><%= machine.ref_proc %></td>
-      <td><%= machine.type_serveur %></td>
-      <td><%= machine.nb_proc %></td>
-      <td><%= machine.nb_coeur %></td>
-      <td><%= machine.nb_rj45 %></td>
-      <td><%= machine.fc %></td>
-      <td><%= machine.iscsi %></td>
-      <td><%= machine.type_hd1 %></td>
-      <td><%= machine.disque_dur1 %></td>
-      <td><%= machine.nb_disque %></td>
-      <td><%= machine.nb_disque1 %></td>
       <td><%= link_to "Editer", edit_machine_path(machine) %></td>
       <td><%= link_to "Supprimer", machine, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>

@@ -8,8 +8,8 @@ one:
   mainteneur_id: 1
   machine_nom: MyString
   machine_ancien_nom: MyString
-  sousreseau_ip: MyString
-  quatr_octet: MyString
+  sousreseau_ip: 192.168.0
+  quatr_octet: .1
   numero_serie: MyString
   virtuelle: 1
   machine_description: MyText
