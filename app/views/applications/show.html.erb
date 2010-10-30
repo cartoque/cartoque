@@ -8,18 +8,18 @@
   </thead>
   <%= show_for @application do |a| %>
     <%= a.attribute :criticite %>
-    <%= a.attribute :iaw, :label => "I2/Ader/Web" %>
-    <%= a.attribute :pe,  :label => "Prod/Ecole" %>
-    <%= a.attribute :moa, :label => "MOA" %>
-    <%= a.attribute :amoa, :label => "Assistance MOA" %>
-    <%= a.attribute :moa_note, :label => "Note MOA" %>
+    <%= a.attribute :iaw %>
+    <%= a.attribute :pe %>
+    <%= a.attribute :moa %>
+    <%= a.attribute :amoa %>
+    <%= a.attribute :moa_note %>
     <%= a.attribute :contact %>
-    <%= a.attribute :pnd, :label => "PND" %>
-    <%= a.attribute :ams, :label => "ACAI/Messagerie/Spécifique" %>
+    <%= a.attribute :pnd %>
+    <%= a.attribute :ams %>
     <%= a.attribute :cerbere do %>
       <%= cerbere_image(@application.cerbere, true) %>
     <% end %>
-    <%= a.attribute :fiche, :label => "Fiche ACAI" %>
+    <%= a.attribute :fiche %>
     <tr class="wrapper application_info">
       <td colspan="2">
         Information:<br />
