@@ -18,6 +18,20 @@
         <strong><%= @machine.description %></strong>
       </td>
     </tr> 
+    <tr class="wrapper machine_applications">
+      <td colspan="2">
+        Applications liées:<br />
+        <% if @machine.applications.any? %>
+          <ul>
+          <% @machine.applications.each do |application| %>
+            <li><%= link_to application.nom, application %></li>
+          <% end %>
+          </ul>
+        <% else %>
+          <p>Aucune application liée.</p>
+        <% end %>
+      </td>
+    </tr> 
   <% end %>
 </table>
 

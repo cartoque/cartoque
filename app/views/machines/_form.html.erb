@@ -46,6 +46,10 @@
     <%= f.input :taille_disque_alt %>
     <%= f.input :nb_disque %>
     <%= f.input :nb_disque_alt %>
+    <% Application.all.each do |application| %>
+      <%= check_box_tag 'machine[application_ids][]', application.id, @machine.applications.include?(application) %>
+      <%= application.nom %>
+    <% end %>
   </div>
 
   <div class="actions">

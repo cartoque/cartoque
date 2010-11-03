@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101030202407) do
+ActiveRecord::Schema.define(:version => 20101030210300) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                     :default => "", :null => false
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(:version => 20101030202407) do
     t.string  "ams",       :limit => 55, :default => "", :null => false
     t.integer "cerbere",   :limit => 1,  :default => 0,  :null => false
     t.string  "fiche",                   :default => "", :null => false
+  end
+
+  create_table "applications_machines", :id => false, :force => true do |t|
+    t.integer "machine_id",     :default => 0, :null => false
+    t.integer "application_id", :default => 0, :null => false
   end
 
   create_table "bureaux", :force => true do |t|
@@ -87,11 +92,6 @@ ActiveRecord::Schema.define(:version => 20101030202407) do
     t.integer "taille_disque_alt",                :default => 0,   :null => false
     t.integer "nb_disque",                        :default => 0,   :null => false
     t.integer "nb_disque_alt",                    :default => 0,   :null => false
-  end
-
-  create_table "machines_applications", :force => true do |t|
-    t.integer "machine_id",     :default => 0, :null => false
-    t.integer "application_id", :default => 0, :null => false
   end
 
   create_table "machines_sousreseaux", :force => true do |t|

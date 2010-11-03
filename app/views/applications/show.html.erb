@@ -24,7 +24,22 @@
       <td colspan="2">
         Information:<br />
         <%= @application.info %>
-      </td></tr> 
+      </td>
+    </tr> 
+    <tr class="wrapper machine_machines">
+      <td colspan="2">
+        Machines impliquées:<br />
+        <% if @application.machines.any? %>
+          <ul>
+          <% @application.machines.each do |machine| %>
+            <li><%= link_to machine.nom, machine %></li>
+          <% end %>
+          </ul>
+        <% else %>
+          <p>Aucune machine impliquée.</p>
+        <% end %>
+      </td>
+    </tr> 
   <% end %>
 </table>
 
