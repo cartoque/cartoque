@@ -1,3 +1,5 @@
+require 'simple_form_label_input_patch'
+
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
 
@@ -49,4 +51,9 @@ SimpleForm.setup do |config|
 
   # Default size for text inputs.
   # config.default_input_size = 50
+
+  # Specific addition (see: lib/simple_form_label_input_patch)
+  config.label_input_builder = Proc.new do |label,input|
+    %(<tr class="wrapper"><td class="label">#{label}</td><td class="content">#{input}</td></tr>)
+  end
 end

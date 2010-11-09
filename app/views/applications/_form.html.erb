@@ -11,23 +11,32 @@
     </div>
   <% end %>
 
-  <div class="inputs">
-    <%= f.input :nom %>
-    <%= f.input :criticite %>
-    <%= f.input :info %>
-    <%= f.input :iaw %>
-    <%= f.input :pe %>
-    <%= f.input :moa %>
-    <%= f.input :amoa %>
-    <%= f.input :moa_note %>
-    <%= f.input :contact %>
-    <%= f.input :pnd %>
-    <%= f.input :ams %>
-    <%= f.input :cerbere %>
-    <%= f.input :fiche %>
-  </div>
+  <table class="show_item">
+    <thead>
+      <tr><th colspan="2"><%= @application.nom.present? ? @application.nom : "Nouvelle application" %></th></tr>
+    </thead>
+    <tbody>
+      <%= f.input :nom %>
+      <%= f.input :criticite %>
+      <%= f.input :info %>
+      <%= f.input :iaw %>
+      <%= f.input :pe %>
+      <%= f.input :moa %>
+      <%= f.input :amoa %>
+      <%= f.input :moa_note %>
+      <%= f.input :contact %>
+      <%= f.input :pnd %>
+      <%= f.input :ams %>
+      <%= f.input :cerbere %>
+      <%= f.input :fiche %>
+    </tbody>
+  </table>
 
-  <div class="actions">
+  <p class="actions">
     <%= f.button :submit %>
-  </div>
+    ou <%= link_to "Retourner à la liste", applications_path %> 
+    <% unless @application.new_record? %>
+      | <%= link_to "Voir", @application %>
+    <% end %>
+  </p>
 <% end %>

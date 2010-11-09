@@ -134,7 +134,7 @@ table.show_item td.content {
   width:50%;
 }
 
-p.actions {
+.actions {
   text-align:center;
   font-size:11px;
 }
