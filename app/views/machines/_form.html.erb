@@ -11,48 +11,73 @@
     </div>
   <% end %>
 
-  <div class="inputs">
-    <%= f.input :theme_id %>
-    <%= f.input :service_id %>
-    <%= f.input :os_id %>
-    <%= f.input :site_id %>
-    <%= f.input :rack_id %>
-    <%= f.input :cddvd_id %>
-    <%= f.input :mainteneur_id %>
-    <%= f.input :nom %>
-    <%= f.input :ancien_nom %>
-    <%= f.input :sousreseau_ip %>
-    <%= f.input :quatr_octet %>
-    <%= f.input :numero_serie %>
-    <%= f.input :virtuelle %>
-    <%= f.input :description %>
-    <%= f.input :modele %>
-    <%= f.input :memoire %>
-    <%= f.input :frequence %>
-    <%= f.input :date_mes %>
-    <%= f.input :fin_garantie %>
-    <%= f.input :type_contrat %>
-    <%= f.input :type_hd %>
-    <%= f.input :taille_disque %>
-    <%= f.input :marque %>
-    <%= f.input :ref_proc %>
-    <%= f.input :type_serveur %>
-    <%= f.input :nb_proc %>
-    <%= f.input :nb_coeur %>
-    <%= f.input :nb_rj45 %>
-    <%= f.input :nb_fc %>
-    <%= f.input :nb_iscsi %>
-    <%= f.input :type_disque_alt %>
-    <%= f.input :taille_disque_alt %>
-    <%= f.input :nb_disque %>
-    <%= f.input :nb_disque_alt %>
-    <% Application.all.each do |application| %>
-      <%= check_box_tag 'machine[application_ids][]', application.id, @machine.applications.include?(application) %>
-      <%= application.nom %>
-    <% end %>
-  </div>
+  <table class="inputs">
+    <thead>
+      <tr><th colspan="2"><%= @machine.nom.present? ? @machine.nom : "Nouvelle machine" %></th></tr>
+    </thead>
+    <tbody>
+      <%= f.input :nom %>
+      <%= f.input :ancien_nom %>
+      <%= f.input :ip %>
+      <%= f.input :virtuelle %>
+      <%= f.input :os_id %>
+      <%= f.input :theme_id %>
+      <%= f.input :service_id %>
+      <%= f.input :description %>
+    </tbody>
+  </table>
 
-  <div class="actions">
+  <table class="inputs">
+    <thead>
+      <tr><th colspan="2">DETAILS MATERIELS</th></tr>
+    </thead>
+    <tbody>
+      <%= f.input :site_id %>
+      <%= f.input :rack_id %>
+      <%= f.input :type_serveur %>
+      <%= f.input :numero_serie %>
+      <%= f.input :modele %>
+      <%= f.input :marque %>
+      <%= f.input :nb_proc %>
+      <%= f.input :ref_proc %>
+      <%= f.input :frequence %>
+      <%= f.input :nb_coeur %>
+      <%= f.input :memoire %>
+      <%= f.input :type_disque %>
+      <%= f.input :nb_disque %>
+      <%= f.input :taille_disque %>
+      <%= f.input :type_disque_alt %>
+      <%= f.input :nb_disque_alt %>
+      <%= f.input :taille_disque_alt %>
+
+      <%= f.input :cddvd_id %>
+      <%= f.input :mainteneur_id %>
+      <%= f.input :date_mes %>
+      <%= f.input :fin_garantie %>
+      <%= f.input :type_contrat %>
+      <%= f.input :nb_rj45 %>
+      <%= f.input :nb_fc %>
+      <%= f.input :nb_iscsi %>
+      <tr class="wrapper machine_applications">
+        <td colspan="2">
+          Applications liées:<br />
+          <% Application.all(:order => :nom).group_by{|a|a.nom.first.downcase}.each do |letter,applications| %>
+            <% applications.each do |application| %>
+              <%= check_box_tag 'machine[application_ids][]', application.id, @machine.applications.include?(application) %>
+              <%= application.nom %>
+            <% end %>
+            <br />
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="actions">
     <%= f.button :submit %>
-  </div>
+    ou <%= link_to "Retourner à la liste", applications_path %> 
+    <% unless @machine.new_record? %>
+      | <%= link_to "Voir", @machine %>
+    <% end %>
+  </p>
 <% end %>
