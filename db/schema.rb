@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101110134651) do
+ActiveRecord::Schema.define(:version => 20101110183808) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                     :default => "", :null => false
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(:version => 20101110134651) do
   add_index "sousreseaux", ["sousreseau_ip"], :name => "sousreseau_ip"
 
   create_table "themes", :force => true do |t|
-    t.string "theme_titre", :default => "", :null => false
+    t.string "titre", :default => "", :null => false
   end
 
   create_table "type", :force => true do |t|
