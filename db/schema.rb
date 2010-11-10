@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101110055639) do
+ActiveRecord::Schema.define(:version => 20101110134651) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                     :default => "", :null => false
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20101110055639) do
     t.string  "date_mes",          :limit => 100, :default => "",  :null => false
     t.string  "fin_garantie",      :limit => 100, :default => "",  :null => false
     t.string  "type_contrat",      :limit => 100, :default => "",  :null => false
-    t.string  "type_hd",           :limit => 50,  :default => "",  :null => false
+    t.string  "type_disque",       :limit => 50,  :default => "",  :null => false
     t.integer "taille_disque",                    :default => 0,   :null => false
     t.string  "marque",            :limit => 50,  :default => "",  :null => false
     t.string  "ref_proc",          :limit => 100, :default => "",  :null => false
