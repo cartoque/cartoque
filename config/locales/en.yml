@@ -45,3 +45,4 @@ en:
   type_disque_alt: "Type disque 2"
   type_serveur: "Type de serveur"
   memoire_virtuelle: "Mémoire memoire_virtuelle"
+  physical_rack: "Rack"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101110183808) do
+ActiveRecord::Schema.define(:version => 20101112070934) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                     :default => "", :null => false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20101110183808) do
     t.integer "service_id",                       :default => 1,   :null => false
     t.integer "os_id",                            :default => 12,  :null => false
     t.integer "site_id",                          :default => 3,   :null => false
-    t.integer "rack_id",                          :default => 5,   :null => false
+    t.integer "physical_rack_id",                 :default => 5,   :null => false
     t.integer "cddvd_id",                         :default => 5,   :null => false
     t.integer "mainteneur_id",                    :default => 1,   :null => false
     t.string  "nom",               :limit => 150, :default => "",  :null => false
@@ -116,8 +116,8 @@ ActiveRecord::Schema.define(:version => 20101110183808) do
     t.string "os_img_url",               :default => "", :null => false
   end
 
-  create_table "rack", :force => true do |t|
-    t.string "nom_rack", :limit => 50, :default => "", :null => false
+  create_table "physical_racks", :force => true do |t|
+    t.string "nom", :limit => 50, :default => "", :null => false
   end
 
   create_table "ref_proc", :force => true do |t|
