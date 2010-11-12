@@ -14,8 +14,8 @@ class Machine < ActiveRecord::Base
   end
 
   def ip=(value)
-    if value.scan(/^((?:\d+\.){3})\.(\d+)/)
-      self.sousreseau_ip = $1
+    if value.scan(/^((?:\d+\.){3})(\d+)/)
+      self.sousreseau_ip = $1.first(-1)
       self.quatr_octet = $2
     end
   end
