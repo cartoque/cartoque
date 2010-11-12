@@ -8,8 +8,8 @@ class Machine < ActiveRecord::Base
   default_scope :include => :applications
 
   def ip
-    i = sousreseau_ip.split(".")
-    i << quatr_octet.gsub(".","")
+    i = sousreseau_ip.to_s.split(".")
+    i << quatr_octet.to_s.gsub(".","")
     i.compact.join(".")
   end
 
