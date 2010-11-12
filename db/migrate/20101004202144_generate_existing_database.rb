@@ -141,5 +141,24 @@ class GenerateExistingDatabase < ActiveRecord::Migration
   end
 
   def self.down
+    drop_table :applications
+    drop_table :bureaux
+    drop_table :cddvd
+    drop_table :frequence
+    drop_table :interfaces
+    drop_table :iscsi
+    drop_table :machines
+    drop_table :machines_applications
+    drop_table :machines_sousreseaux
+    drop_table :mainteneur
+    drop_table :marque
+    drop_table :os
+    drop_table :rack
+    drop_table :ref_proc
+    drop_table :services
+    drop_table :site
+    drop_table :sousreseaux
+    drop_table :themes
+    drop_table :type
   end
 end

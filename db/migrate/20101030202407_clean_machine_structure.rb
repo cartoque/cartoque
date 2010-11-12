@@ -19,8 +19,8 @@ class CleanMachineStructure < ActiveRecord::Migration
     rename_column :machines, :description, :machine_description
     rename_column :machines, :nb_fc, :fc
     rename_column :machines, :nb_iscsi, :iscsi
-    rename_column :machines, :type_hd_alt, :type_hd1
-    rename_column :machines, :disque_dur_alt, :disque_dur1
+    rename_column :machines, :type_disque_alt, :type_hd1
+    rename_column :machines, :taille_disque_alt, :disque_dur1
     rename_column :machines, :nb_disque_alt, :nb_disque1
   end
 end
