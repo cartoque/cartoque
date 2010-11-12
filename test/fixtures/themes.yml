@@ -1,7 +1,13 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  titre: Application server
-
-two:
-  titre: Database server
+--- 
+themes_001: 
+  id: 1
+  titre: Web Server
+themes_002: 
+  id: 2
+  titre: Mail Server
+themes_003: 
+  id: 3
+  titre: Database Server
+themes_004: 
+  id: 4
+  titre: Network appliance

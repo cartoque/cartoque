@@ -1,29 +1,31 @@
-one:
-  nom: MyString
-  criticite: 1
-  info: MyText
-  iaw: MyString
-  pe: MyString
-  moa: MyString
-  amoa: MyString
-  moa_note: MyString
-  contact: MyString
-  pnd: MyString
-  ams: MyString
-  cerbere: 1
-  fiche: MyString
-
-two:
-  nom: MyString
-  criticite: 1
-  info: MyText
-  iaw: MyString
-  pe: MyString
-  moa: MyString
-  amoa: MyString
-  moa_note: MyString
-  contact: MyString
-  pnd: MyString
-  ams: MyString
-  cerbere: 1
-  fiche: MyString
+--- 
+applications_001: 
+  id: 1
+  nom: Webmail Application
+  criticite: 3
+  info: This is the webmail app.
+  iaw: ""
+  pe: ""
+  moa: ""
+  amoa: ""
+  moa_note: ""
+  contact: ""
+  pnd: ""
+  ams: ""
+  cerbere: 0
+  fiche: ""
+applications_002: 
+  id: 2
+  nom: Website
+  criticite: 2
+  info: Institutional website
+  iaw: ""
+  pe: ""
+  moa: ""
+  amoa: ""
+  moa_note: ""
+  contact: ""
+  pnd: ""
+  ams: ""
+  cerbere: 0
+  fiche: ""

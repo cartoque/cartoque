@@ -1,0 +1,17 @@
+--- 
+schema_migrations_001: 
+  version: "20101004202144"
+schema_migrations_002: 
+  version: "20101005100755"
+schema_migrations_003: 
+  version: "20101030202407"
+schema_migrations_004: 
+  version: "20101030210300"
+schema_migrations_005: 
+  version: "20101110055639"
+schema_migrations_006: 
+  version: "20101110134651"
+schema_migrations_007: 
+  version: "20101110183808"
+schema_migrations_008: 
+  version: "20101112070934"

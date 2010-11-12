@@ -1,7 +1,10 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  nom: Rack1
-
-two:
-  nom: Rack2
+--- 
+physical_racks_001: 
+  id: 1
+  nom: RACK-01
+physical_racks_002: 
+  id: 2
+  nom: RACK-02
+physical_racks_003: 
+  id: 3
+  nom: RACK-03
