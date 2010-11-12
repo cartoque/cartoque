@@ -3,7 +3,7 @@ class Machine < ActiveRecord::Base
   belongs_to :theme
   belongs_to :physical_rack
 
-  attr_accessible :theme_id, :service_id, :os_id, :site_id, :rack_id, :cddvd_id, :mainteneur_id, :nom, :ancien_nom, :sousreseau_ip, :quatr_octet, :numero_serie, :virtuelle, :description, :modele, :memoire, :frequence, :date_mes, :fin_garantie, :type_contrat, :type_disque, :taille_disque, :marque, :ref_proc, :type_serveur, :nb_proc, :nb_coeur, :nb_rj45, :fc, :iscsi, :type_disque_alt, :taille_disque_alt, :nb_disque, :nb_disque_alt
+  attr_accessible :theme_id, :service_id, :os_id, :site_id, :physical_rack_id, :cddvd_id, :mainteneur_id, :nom, :ancien_nom, :sousreseau_ip, :quatr_octet, :numero_serie, :virtuelle, :description, :modele, :memoire, :frequence, :date_mes, :fin_garantie, :type_contrat, :type_disque, :taille_disque, :marque, :ref_proc, :type_serveur, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :type_disque_alt, :taille_disque_alt, :nb_disque, :nb_disque_alt, :ip, :application_ids
 
   default_scope :include => :applications
 
