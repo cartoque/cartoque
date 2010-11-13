@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101113191129) do
+ActiveRecord::Schema.define(:version => 20101113192232) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                     :default => "",    :null => false
@@ -95,12 +95,12 @@ ActiveRecord::Schema.define(:version => 20101113191129) do
     t.integer "id_sousreseaux", :default => 0, :null => false
   end
 
-  create_table "mainteneur", :force => true do |t|
-    t.string "mainteneur",   :limit => 50,  :default => "", :null => false
-    t.string "tel",          :limit => 100, :default => "", :null => false
-    t.string "mail",         :limit => 200, :default => "", :null => false
-    t.string "adresse_post", :limit => 200, :default => "", :null => false
-    t.string "ref_client",   :limit => 50,  :default => "", :null => false
+  create_table "mainteneurs", :force => true do |t|
+    t.string "nom",        :limit => 50,  :default => "", :null => false
+    t.string "telephone",  :limit => 100, :default => "", :null => false
+    t.string "mail",       :limit => 200, :default => "", :null => false
+    t.string "adresse",    :limit => 200, :default => "", :null => false
+    t.string "ref_client", :limit => 50,  :default => "", :null => false
   end
 
   create_table "marque", :force => true do |t|
