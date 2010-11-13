@@ -20,7 +20,7 @@ SimpleForm.setup do |config|
   # config.error_notification_tag = :p
 
   # You can wrap all inputs in a pre-defined tag.
-  # config.wrapper_tag = :div
+  config.wrapper_tag = :tr
 
   # CSS class to add to all wrapper tags.
   # config.wrapper_class = :input
@@ -54,6 +54,6 @@ SimpleForm.setup do |config|
 
   # Specific addition (see: lib/simple_form_label_input_patch)
   config.label_input_builder = Proc.new do |label,input|
-    %(<tr class="wrapper"><td class="label">#{label}</td><td class="content">#{input}</td></tr>)
+    %(<td class="label">#{label}</td><td class="content">#{input}</td>)
   end
 end
