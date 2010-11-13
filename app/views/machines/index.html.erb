@@ -15,8 +15,8 @@
     <tr>
       <td><%= link_to machine.nom, machine %></td>
       <td><%= machine.ip %></td>
-      <td><%= machine.theme_id %></td>
-      <td><%= machine.service_id %></td>
+      <td><%= machine.theme %></td>
+      <td><%= machine.service %></td>
       <td><%= machine.os_id %></td>
       <td><%= link_to "Editer", edit_machine_path(machine) %></td>
       <td><%= link_to "Supprimer", machine, :confirm => 'Are you sure?', :method => :delete %></td>

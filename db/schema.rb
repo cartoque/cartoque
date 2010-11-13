@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101113153539) do
+ActiveRecord::Schema.define(:version => 20101113165607) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                     :default => "",    :null => false
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(:version => 20101113153539) do
   end
 
   create_table "services", :force => true do |t|
-    t.string "service_titre", :default => "", :null => false
+    t.string "nom", :default => "", :null => false
   end
 
   create_table "site", :force => true do |t|
