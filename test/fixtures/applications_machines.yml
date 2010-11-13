@@ -1,7 +1,7 @@
 --- 
-applications_machines_001: 
+one: 
   machine_id: 2
   application_id: 1
-applications_machines_002: 
+two: 
   machine_id: 1
   application_id: 1

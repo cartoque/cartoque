@@ -1,13 +1,13 @@
 --- 
-themes_001: 
+one: 
   id: 1
   titre: Web Server
-themes_002: 
+two: 
   id: 2
   titre: Mail Server
-themes_003: 
+three: 
   id: 3
   titre: Database Server
-themes_004: 
+four: 
   id: 4
   titre: Network appliance

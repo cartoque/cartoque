@@ -1,10 +1,10 @@
 --- 
-physical_racks_001: 
+one: 
   id: 1
   nom: RACK-01
-physical_racks_002: 
+two: 
   id: 2
   nom: RACK-02
-physical_racks_003: 
+three: 
   id: 3
   nom: RACK-03

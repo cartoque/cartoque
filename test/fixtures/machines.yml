@@ -1,5 +1,5 @@
 --- 
-machines_001: 
+one: 
   id: 1
   theme_id: 2
   service_id: 1
@@ -35,7 +35,7 @@ machines_001:
   taille_disque_alt: 0
   nb_disque: 0
   nb_disque_alt: 0
-machines_002: 
+two: 
   id: 2
   theme_id: 2
   service_id: 1

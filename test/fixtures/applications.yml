@@ -1,5 +1,5 @@
 --- 
-applications_001: 
+one: 
   id: 1
   nom: Webmail Application
   criticite: 3
@@ -14,7 +14,7 @@ applications_001:
   ams: ""
   cerbere: 0
   fiche: ""
-applications_002: 
+two: 
   id: 2
   nom: Website
   criticite: 2
