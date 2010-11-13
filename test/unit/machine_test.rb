@@ -6,6 +6,6 @@ class MachineTest < ActiveSupport::TestCase
   end
 
   def test_ip
-    assert_equal "192.168.0.1", machines(:one).ip
+    assert_equal "192.168.0.10", machines(:one).ip
   end
 end
