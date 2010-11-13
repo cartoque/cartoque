@@ -85,7 +85,7 @@ caption {
   font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   text-align: right;
 }
-th {
+th, tr.th td {
   font: bold 10px/18px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #4f6b72;
   border-right: 1px solid #C1DAD7;
@@ -214,8 +214,4 @@ a.infoBulle:hover span {border: 1px solid; top:15px;left:45px;display: inline; p
 
 .tableau_voir_droite {
   font-weight: bold;
-}
-
-.champ_obligatoire {
-  color: red;
 }

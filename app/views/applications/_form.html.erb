@@ -12,13 +12,9 @@
   <% end %>
 
   <table class="show_item">
-    <thead>
-      <tr><th colspan="2"><%= @application.nom.present? ? @application.nom : "Nouvelle application" %></th></tr>
-    </thead>
     <tbody>
-      <%= f.input :nom %>
-      <%= f.input :criticite %>
-      <%= f.input :info %>
+      <%= f.input :nom, :required => true, :wrapper_class => "th" %>
+      <%= f.input :criticite, :as => :radio, :collection => 1..3 %>
       <%= f.input :iaw %>
       <%= f.input :pe %>
       <%= f.input :moa %>
@@ -27,8 +23,9 @@
       <%= f.input :contact %>
       <%= f.input :pnd %>
       <%= f.input :ams %>
-      <%= f.input :cerbere %>
+      <%= f.input :cerbere, :as => :radio %>
       <%= f.input :fiche %>
+      <%= f.input :info, :input_html => { :size => "40x3" } %>
     </tbody>
   </table>
 
