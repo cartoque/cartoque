@@ -8,6 +8,14 @@
     <%= yield(:head) %>
   </head>
   <body>
+    <div id="top-menu">
+      <div class="contextual">
+        <i>Welcome to Cartoque</i>
+      </div>
+      <%= link_to "Accueil", root_path %>
+      <%= link_to "Applications", applications_path %>
+      <%= link_to "Machines", machines_path %>
+    </div>
     <div id="container">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>

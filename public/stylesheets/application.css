@@ -1,7 +1,8 @@
 body {
   /*background-color: #4B7399;*/
   font-family: Verdana, Helvetica, Arial;
-  font-size: 14px;
+  font-size: 11px;
+  margin:0;
 }
 
 a img {
@@ -9,7 +10,7 @@ a img {
 }
 
 a {
-  color: #0000FF;
+  color: #000;
 }
 
 .clear {
@@ -18,11 +19,18 @@ a {
   overflow: hidden;
 }
 
+#top-menu {
+  padding:5px 8px 8px;
+  margin:0 0 5px;
+  background-color:#edf3f3;
+}
+
 #container {
   /*width: 75%;*/
   margin: 0 auto;
   background-color: #FFF;
-  /*padding: 20px 40px;*/
+  padding: 8px;
+  text-align: left;
   /*border: solid 1px black;*/
   /*margin-top: 20px;*/
 }
@@ -76,6 +84,10 @@ a {
 
 .center {
   text-align:center;
+}
+
+.contextual {
+  float: right;
 }
 
 .simple_form label {
