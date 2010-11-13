@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101113181332) do
+ActiveRecord::Schema.define(:version => 20101113191129) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                     :default => "",    :null => false
@@ -38,10 +38,6 @@ ActiveRecord::Schema.define(:version => 20101113181332) do
     t.string "bureau_long",  :default => "", :null => false
   end
 
-  create_table "cddvd", :force => true do |t|
-    t.string "cd_dvd", :limit => 50, :default => "", :null => false
-  end
-
   create_table "frequence", :force => true do |t|
     t.decimal "frequence", :precision => 50, :scale => 0, :default => 0, :null => false
   end
@@ -63,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20101113181332) do
     t.integer "operating_system_id",                :default => 12,    :null => false
     t.integer "site_id",                            :default => 3,     :null => false
     t.integer "physical_rack_id",                   :default => 5,     :null => false
-    t.integer "cddvd_id",                           :default => 5,     :null => false
+    t.integer "media_drive_id",                     :default => 5,     :null => false
     t.integer "mainteneur_id",                      :default => 1,     :null => false
     t.string  "nom",                 :limit => 150, :default => "",    :null => false
     t.string  "ancien_nom",                         :default => "",    :null => false
@@ -109,6 +105,10 @@ ActiveRecord::Schema.define(:version => 20101113181332) do
 
   create_table "marque", :force => true do |t|
     t.string "marque", :limit => 100, :default => "", :null => false
+  end
+
+  create_table "media_drives", :force => true do |t|
+    t.string "nom", :limit => 50, :default => "", :null => false
   end
 
   create_table "operating_systems", :force => true do |t|
