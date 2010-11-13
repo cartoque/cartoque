@@ -1,5 +1,5 @@
 class Service < ActiveRecord::Base
-  belongs_to :machine
+  has_many :machines
 
   def to_s
     nom
