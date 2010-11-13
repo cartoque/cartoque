@@ -1,5 +1,6 @@
 require 'simple_form'
 require 'simple_form/components/label_input'
+require 'simple_form/inputs/boolean_input'
 
 module SimpleForm
   mattr_accessor :label_input_builder
@@ -21,6 +22,16 @@ module SimpleForm
       
       def label_input_builder
         options[:label_input_builder] || SimpleForm.label_input_builder
+      end
+    end
+  end
+end
+
+module SimpleForm
+  module Inputs
+    class BooleanInput
+      def label_input
+        super
       end
     end
   end
