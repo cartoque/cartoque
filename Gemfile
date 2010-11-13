@@ -36,3 +36,8 @@ gem 'show_for'
 gem 'has_scope'
 gem 'jquery-rails'
 gem 'yaml_db'
+
+group :test do
+  gem 'shoulda'
+  gem 'factory_girl_rails'
+end
