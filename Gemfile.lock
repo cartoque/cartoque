@@ -74,6 +74,7 @@ GEM
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
+    yaml_db (0.2.0)
 
 PLATFORMS
   ruby
@@ -87,3 +88,4 @@ DEPENDENCIES
   rails (= 3.0.0)
   show_for
   simple_form
+  yaml_db
