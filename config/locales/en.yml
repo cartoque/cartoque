@@ -32,7 +32,7 @@ en:
   nb_proc: "Nb. Processeurs"
   nb_rj45: "Nb. RJ45"
   numero_serie: "Num. de série"
-  os: "OS"
+  operating_system: "OS"
   pe: "Prod/Ecole"
   pnd: "PND"
   rack: "Rack"

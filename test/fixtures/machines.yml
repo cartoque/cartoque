@@ -3,7 +3,7 @@ one:
   id: 1
   theme_id: 2
   service_id: 1
-  os_id: 12
+  operating_system_id: 12
   site_id: 3
   physical_rack_id: 1
   cddvd_id: 5
@@ -39,7 +39,7 @@ two:
   id: 2
   theme_id: 2
   service_id: 1
-  os_id: 12
+  operating_system_id: 12
   site_id: 1
   physical_rack_id: 1
   cddvd_id: 5
