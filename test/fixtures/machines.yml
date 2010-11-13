@@ -6,7 +6,7 @@ one:
   operating_system_id: 12
   site_id: 3
   physical_rack_id: 1
-  cddvd_id: 5
+  media_drive_id: 5
   mainteneur_id: 1
   nom: mail-01
   ancien_nom: ""
@@ -42,7 +42,7 @@ two:
   operating_system_id: 12
   site_id: 1
   physical_rack_id: 1
-  cddvd_id: 5
+  media_drive_id: 5
   mainteneur_id: 1
   nom: mail-02
   ancien_nom: ""

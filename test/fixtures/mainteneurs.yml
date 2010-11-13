@@ -3,13 +3,13 @@
 one:
   nom: MyString
   telephone: MyString
-  email: MyString
+  mail: MyString
   adresse: MyText
   ref_client: MyString
 
 two:
   nom: MyString
   telephone: MyString
-  email: MyString
+  mail: MyString
   adresse: MyText
   ref_client: MyString
