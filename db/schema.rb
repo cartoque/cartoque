@@ -10,22 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101112070934) do
+ActiveRecord::Schema.define(:version => 20101113153539) do
 
   create_table "applications", :force => true do |t|
-    t.string  "nom",                     :default => "", :null => false
-    t.integer "criticite", :limit => 1,  :default => 0,  :null => false
-    t.text    "info",                                    :null => false
-    t.string  "iaw",       :limit => 55, :default => "", :null => false
-    t.string  "pe",        :limit => 55, :default => "", :null => false
-    t.string  "moa",                     :default => "", :null => false
-    t.string  "amoa",                    :default => "", :null => false
-    t.string  "moa_note",                :default => "", :null => false
-    t.string  "contact",                 :default => "", :null => false
-    t.string  "pnd",                     :default => "", :null => false
-    t.string  "ams",       :limit => 55, :default => "", :null => false
-    t.integer "cerbere",   :limit => 1,  :default => 0,  :null => false
-    t.string  "fiche",                   :default => "", :null => false
+    t.string  "nom",                     :default => "",    :null => false
+    t.integer "criticite", :limit => 1,  :default => 0,     :null => false
+    t.text    "info",                                       :null => false
+    t.string  "iaw",       :limit => 55, :default => "",    :null => false
+    t.string  "pe",        :limit => 55, :default => "",    :null => false
+    t.string  "moa",                     :default => "",    :null => false
+    t.string  "amoa",                    :default => "",    :null => false
+    t.string  "moa_note",                :default => "",    :null => false
+    t.string  "contact",                 :default => "",    :null => false
+    t.string  "pnd",                     :default => "",    :null => false
+    t.string  "ams",       :limit => 55, :default => "",    :null => false
+    t.boolean "cerbere",                 :default => false, :null => false
+    t.string  "fiche",                   :default => "",    :null => false
   end
 
   create_table "applications_machines", :id => false, :force => true do |t|
@@ -58,40 +58,40 @@ ActiveRecord::Schema.define(:version => 20101112070934) do
   end
 
   create_table "machines", :force => true do |t|
-    t.integer "theme_id",                         :default => 6,   :null => false
-    t.integer "service_id",                       :default => 1,   :null => false
-    t.integer "os_id",                            :default => 12,  :null => false
-    t.integer "site_id",                          :default => 3,   :null => false
-    t.integer "physical_rack_id",                 :default => 5,   :null => false
-    t.integer "cddvd_id",                         :default => 5,   :null => false
-    t.integer "mainteneur_id",                    :default => 1,   :null => false
-    t.string  "nom",               :limit => 150, :default => "",  :null => false
-    t.string  "ancien_nom",                       :default => "",  :null => false
-    t.string  "sousreseau_ip",     :limit => 23,  :default => "",  :null => false
-    t.string  "quatr_octet",       :limit => 9,   :default => "",  :null => false
-    t.string  "numero_serie",      :limit => 100, :default => "",  :null => false
-    t.integer "virtuelle",         :limit => 1,   :default => 0,   :null => false
-    t.text    "description",                                       :null => false
-    t.string  "modele",            :limit => 100, :default => "",  :null => false
-    t.string  "memoire",           :limit => 50,  :default => "",  :null => false
-    t.float   "frequence",                        :default => 0.0, :null => false
-    t.string  "date_mes",          :limit => 100, :default => "",  :null => false
-    t.string  "fin_garantie",      :limit => 100, :default => "",  :null => false
-    t.string  "type_contrat",      :limit => 100, :default => "",  :null => false
-    t.string  "type_disque",       :limit => 50,  :default => "",  :null => false
-    t.integer "taille_disque",                    :default => 0,   :null => false
-    t.string  "marque",            :limit => 50,  :default => "",  :null => false
-    t.string  "ref_proc",          :limit => 100, :default => "",  :null => false
-    t.string  "type_serveur",      :limit => 50,  :default => "",  :null => false
-    t.integer "nb_proc",                          :default => 0,   :null => false
-    t.integer "nb_coeur",                         :default => 0,   :null => false
-    t.integer "nb_rj45",                          :default => 0,   :null => false
-    t.integer "nb_fc",                            :default => 0,   :null => false
-    t.integer "nb_iscsi",                         :default => 0,   :null => false
-    t.string  "type_disque_alt",   :limit => 50,  :default => "",  :null => false
-    t.integer "taille_disque_alt",                :default => 0,   :null => false
-    t.integer "nb_disque",                        :default => 0,   :null => false
-    t.integer "nb_disque_alt",                    :default => 0,   :null => false
+    t.integer "theme_id",                         :default => 6,     :null => false
+    t.integer "service_id",                       :default => 1,     :null => false
+    t.integer "os_id",                            :default => 12,    :null => false
+    t.integer "site_id",                          :default => 3,     :null => false
+    t.integer "physical_rack_id",                 :default => 5,     :null => false
+    t.integer "cddvd_id",                         :default => 5,     :null => false
+    t.integer "mainteneur_id",                    :default => 1,     :null => false
+    t.string  "nom",               :limit => 150, :default => "",    :null => false
+    t.string  "ancien_nom",                       :default => "",    :null => false
+    t.string  "sousreseau_ip",     :limit => 23,  :default => "",    :null => false
+    t.string  "quatr_octet",       :limit => 9,   :default => "",    :null => false
+    t.string  "numero_serie",      :limit => 100, :default => "",    :null => false
+    t.boolean "virtuelle",                        :default => false, :null => false
+    t.text    "description",                                         :null => false
+    t.string  "modele",            :limit => 100, :default => "",    :null => false
+    t.string  "memoire",           :limit => 50,  :default => "",    :null => false
+    t.float   "frequence",                        :default => 0.0,   :null => false
+    t.string  "date_mes",          :limit => 100, :default => "",    :null => false
+    t.string  "fin_garantie",      :limit => 100, :default => "",    :null => false
+    t.string  "type_contrat",      :limit => 100, :default => "",    :null => false
+    t.string  "type_disque",       :limit => 50,  :default => "",    :null => false
+    t.integer "taille_disque",                    :default => 0,     :null => false
+    t.string  "marque",            :limit => 50,  :default => "",    :null => false
+    t.string  "ref_proc",          :limit => 100, :default => "",    :null => false
+    t.string  "type_serveur",      :limit => 50,  :default => "",    :null => false
+    t.integer "nb_proc",                          :default => 0,     :null => false
+    t.integer "nb_coeur",                         :default => 0,     :null => false
+    t.integer "nb_rj45",                          :default => 0,     :null => false
+    t.integer "nb_fc",                            :default => 0,     :null => false
+    t.integer "nb_iscsi",                         :default => 0,     :null => false
+    t.string  "type_disque_alt",   :limit => 50,  :default => "",    :null => false
+    t.integer "taille_disque_alt",                :default => 0,     :null => false
+    t.integer "nb_disque",                        :default => 0,     :null => false
+    t.integer "nb_disque_alt",                    :default => 0,     :null => false
   end
 
   create_table "machines_sousreseaux", :force => true do |t|

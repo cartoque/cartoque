@@ -12,7 +12,7 @@ one:
   contact: ""
   pnd: ""
   ams: ""
-  cerbere: 0
+  cerbere: false
   fiche: ""
 two: 
   id: 2
@@ -27,5 +27,5 @@ two:
   contact: ""
   pnd: ""
   ams: ""
-  cerbere: 0
+  cerbere: false
   fiche: ""

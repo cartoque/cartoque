@@ -13,7 +13,7 @@ one:
   sousreseau_ip: 192.168.0
   quatr_octet: "10"
   numero_serie: ""
-  virtuelle: 0
+  virtuelle: false
   description: First mail server
   modele: ""
   memoire: ""
@@ -49,7 +49,7 @@ two:
   sousreseau_ip: 192.168.0
   quatr_octet: "11"
   numero_serie: ""
-  virtuelle: 0
+  virtuelle: false
   description: ""
   modele: ""
   memoire: ""
