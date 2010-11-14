@@ -2,14 +2,14 @@
   <table class="show_item">
     <tbody>
       <% if @application.errors.any? %>
-      <tr id="error_explanation">
+      <tr id="error_explanation"><td colspan="2">
         <h2><%= pluralize(@application.errors.count, "erreur") %> :</h2>
         <ul>
         <% @application.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
         </ul>
-      </tr>
+      </td></tr>
       <% end %>
       <%= f.input :nom, :required => true, :wrapper_class => "th" %>
       <%= f.input :criticite, :as => :radio, :collection => 1..3 %>
