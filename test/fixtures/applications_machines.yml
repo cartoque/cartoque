@@ -1,7 +1,0 @@
---- 
-one: 
-  machine_id: 2
-  application_id: 1
-two: 
-  machine_id: 1
-  application_id: 1

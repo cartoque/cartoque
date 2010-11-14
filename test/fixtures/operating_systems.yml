@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  nom: Debian GNU/Linux
-  icon_path: images/debian.gif
-
-two:
-  nom: Redhat Enterprise Linux
-  icon_path: images/redhat.gif
