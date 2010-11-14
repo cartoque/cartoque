@@ -6,18 +6,22 @@ class MachineTest < ActiveSupport::TestCase
   end
 
   context "#ip" do
+    setup do
+      @machine = Factory(:machine)
+    end
+
     should "return sousreseau and quatr_octet" do
-      assert_equal "192.168.0.10", machines(:one).ip
+      assert_equal "192.168.0.10", @machine.ip
     end
 
     should "update correctly" do
-      machines(:one).ip = "192.168.0.11"
-      assert_equal "192.168.0.11", machines(:one).ip
+      @machine.ip = "192.168.0.11"
+      assert_equal "192.168.0.11", @machine.ip
     end
 
     should "not update if IP is invalid" do
-      machines(:one).ip = "192.168.0AAA.11"
-      assert_equal "192.168.0.10", machines(:one).ip
+      @machine.ip = "192.168.0AAA.11"
+      assert_equal "192.168.0.10", @machine.ip
     end
   end
 end
