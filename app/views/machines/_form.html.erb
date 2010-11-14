@@ -1,18 +1,16 @@
 <%= simple_form_for(@machine) do |f| %>
-  <% if @machine.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@machine.errors.count, "error") %> prohibited this machine from being saved:</h2>
-
-      <ul>
-      <% @machine.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <table class="inputs">
     <tbody>
+      <% if @machine.errors.any? %>
+      <tr id="error_explanation"><td colspan="2">
+        <h2><%= pluralize(@machine.errors.count, "erreur") %> :</h2>
+        <ul>
+        <% @machine.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </td></tr>
+      <% end %>
       <%= f.input :nom, :required => true, :wrapper_class => 'th' %>
       <%= f.input :ancien_nom %>
       <%= f.input :ip %>

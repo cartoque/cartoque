@@ -1,18 +1,16 @@
 <%= simple_form_for(@application) do |f| %>
-  <% if @application.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@application.errors.count, "error") %> prohibited this application from being saved:</h2>
-
-      <ul>
-      <% @application.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <table class="show_item">
     <tbody>
+      <% if @application.errors.any? %>
+      <tr id="error_explanation">
+        <h2><%= pluralize(@application.errors.count, "erreur") %> :</h2>
+        <ul>
+        <% @application.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </tr>
+      <% end %>
       <%= f.input :nom, :required => true, :wrapper_class => "th" %>
       <%= f.input :criticite, :as => :radio, :collection => 1..3 %>
       <%= f.input :iaw %>

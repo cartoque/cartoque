@@ -50,8 +50,17 @@ a {
   border: solid 1px #C66;
 }
 
-.fieldWithErrors {
-  display: inline;
+.field_with_errors *, #error_explanation * {
+  color: #f00;
+}
+
+.field_with_errors input, #error_explanation td {
+  border: 2px solid #f00;
+}
+
+#error_explanation td {
+  font-weight: bold;
+  padding:0;
 }
 
 .error_messages {
