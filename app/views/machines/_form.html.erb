@@ -38,26 +38,25 @@
       <%= f.input :numero_serie %>
       <%= f.input :modele %>
       <%= f.input :marque %>
-      <%= f.input :nb_proc %>
+      <%= f.input :nb_proc, :collection => [1,2,4,6,8,10,12,16,24,32] %>
       <%= f.input :ref_proc %>
-      <%= f.input :frequence %>
-      <%= f.input :nb_coeur %>
+      <%= f.input :frequence, :as => :string %>
+      <%= f.input :nb_coeur, :collection => [1,2,4,6,8] %>
       <%= f.input :memoire %>
       <%= f.input :type_disque %>
-      <%= f.input :nb_disque %>
-      <%= f.input :taille_disque %>
+      <%= f.input :nb_disque, :as => :string %>
+      <%= f.input :taille_disque, :as => :string %>
       <%= f.input :type_disque_alt %>
-      <%= f.input :nb_disque_alt %>
-      <%= f.input :taille_disque_alt %>
-
+      <%= f.input :nb_disque_alt, :as => :string %>
+      <%= f.input :taille_disque_alt, :as => :string %>
       <%= f.association :media_drive %>
       <%= f.association :mainteneur %>
       <%= f.input :date_mes %>
       <%= f.input :fin_garantie %>
       <%= f.input :type_contrat %>
-      <%= f.input :nb_rj45 %>
-      <%= f.input :nb_fc %>
-      <%= f.input :nb_iscsi %>
+      <%= f.input :nb_rj45, :collection => 0..32 %>
+      <%= f.input :nb_fc, :collection => 0..12 %>
+      <%= f.input :nb_iscsi, :collection => 0..12 %>
       <tr class="wrapper machine_applications">
         <td colspan="2">
           Applications liées:<br />
