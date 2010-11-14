@@ -12,6 +12,8 @@ class Machine < ActiveRecord::Base
 
   default_scope :include => [:applications, :site]
 
+  validates_presence_of :nom
+
   def ip
     i = sousreseau_ip.to_s.split(".")
     i << quatr_octet.to_s.gsub(".","")

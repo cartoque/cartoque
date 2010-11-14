@@ -12,11 +12,8 @@
   <% end %>
 
   <table class="inputs">
-    <thead>
-      <tr><th colspan="2"><%= @machine.nom.present? ? @machine.nom : "Nouvelle machine" %></th></tr>
-    </thead>
     <tbody>
-      <%= f.input :nom %>
+      <%= f.input :nom, :required => true, :wrapper_class => 'th' %>
       <%= f.input :ancien_nom %>
       <%= f.input :ip %>
       <%= f.input :virtuelle %>
