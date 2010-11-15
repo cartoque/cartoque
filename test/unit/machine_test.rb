@@ -2,7 +2,8 @@ require 'test_helper'
 
 class MachineTest < ActiveSupport::TestCase
   should "be valid" do
-    assert Machine.new.valid?
+    assert ! Machine.new.valid?
+    assert Machine.new(:nom => "my-server").valid?
   end
 
   context "#ip" do
