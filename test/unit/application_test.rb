@@ -16,7 +16,6 @@ class ApplicationTest < ActiveSupport::TestCase
       assert_not_equal 0, Application.count
       assert_equal Application.count, Application.search(nil).length
       assert_equal Application.count, Application.search("").length
-      assert_equal Application.count, Application.search([]).length
     end
   end
 end
