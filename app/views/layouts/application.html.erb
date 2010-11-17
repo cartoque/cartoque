@@ -10,7 +10,7 @@
   <body>
     <div id="top-menu">
       <div class="contextual">
-        <i>Welcome to Cartoque</i>
+        <%= render("#{controller.controller_name}/search") rescue "<i>Welcome to Cartoque</i>".html_safe %>
       </div>
       <%= link_to "Accueil", root_path %>
       <%= link_to "Applications", applications_path %>

@@ -99,6 +99,11 @@ a {
   float: right;
 }
 
+.contextual * {
+  padding:0;
+  margin:0;
+}
+
 .simple_form label {
   float: left;
   width: 120px;
