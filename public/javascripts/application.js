@@ -3,7 +3,7 @@ $(function() {
     $.getScript(this.href);
     return false;
   });
-  $("#applications_search").submit(function() {
+  $("#applications_search").keyup(function() {
     $.get(this.action, $(this).serialize(), null, "script");
     return false;
   });
