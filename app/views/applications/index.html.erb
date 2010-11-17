@@ -2,26 +2,4 @@
 
 <p class="actions"><%= link_to "Ajouter une application", new_application_path %></p>
 
-<table class="pretty center">
-  <tr>
-    <th>Cerbere</th>
-    <th class="<%= sortable_css_class("criticite") %>"><%= sortable "criticite", "Criticité" %></th>
-    <th class="<%= sortable_css_class("nom") %>"><%= sortable "nom", "Nom Hébergement" %></th>
-    <th>Description</th>
-    <th>I2 Ader Web</th>
-    <th>ACAI Messagerie Spécifique</th>
-    <th colspan="2">Actions</th>
-  </tr>
-  <% for application in @applications %>
-    <tr>
-      <td><%= cerbere_image(application.cerbere) %></td>
-      <td><%= application.criticite %></td>
-      <td><%= link_to application.nom, application %></td>
-      <td><%= application.info %></td>
-      <td><%= application.iaw %></td>
-      <td><%= application.ams %></td>
-      <td><%= link_to "Editer", edit_application_path(application) %></td>
-      <td><%= link_to "Supprimer", application, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<div id="applications"><%= render 'list' %></div>
