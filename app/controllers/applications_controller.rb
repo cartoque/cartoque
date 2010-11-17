@@ -2,7 +2,7 @@ class ApplicationsController < InheritedResources::Base
   helper_method :sort_column, :sort_direction
 
   def collection
-    @applications ||= end_of_association_chain.order(sort_column + " " + sort_direction)
+    @applications ||= end_of_association_chain.search(params[:search]).order(sort_column + " " + sort_direction)
   end
 
   private

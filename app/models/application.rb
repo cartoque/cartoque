@@ -4,4 +4,12 @@ class Application < ActiveRecord::Base
   attr_accessible :nom, :criticite, :info, :iaw, :pe, :moa, :amoa, :moa_note, :contact, :pnd, :ams, :cerbere, :fiche
 
   validates_presence_of :nom
+
+  def self.search(search)
+    if search
+      where("nom LIKE ?", "%#{search}%")
+    else
+      scoped
+    end
+  end
 end
