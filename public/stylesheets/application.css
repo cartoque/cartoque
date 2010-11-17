@@ -163,3 +163,15 @@ table.show_item td.content {
 label.required abbr {
   color: red;
 }
+
+.pretty th.sortable {
+  background-image: url(/images/bg_header_sortable.jpg);
+}
+
+.pretty th.asc {
+  background-image: url(/images/bg_header_up.jpg);
+}
+
+.pretty th.desc {
+  background-image: url(/images/bg_header_down.jpg);
+}

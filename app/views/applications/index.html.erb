@@ -2,11 +2,11 @@
 
 <p class="actions"><%= link_to "Ajouter une application", new_application_path %></p>
 
-<table class="center">
+<table class="pretty center">
   <tr>
     <th>Cerbere</th>
-    <th>Criticité</th>
-    <th>Nom Hébergement</th>
+    <th class="<%= sortable_css_class("criticite") %>"><%= sortable "criticite", "Criticité" %></th>
+    <th class="<%= sortable_css_class("nom") %>"><%= sortable "nom", "Nom Hébergement" %></th>
     <th>Description</th>
     <th>I2 Ader Web</th>
     <th>ACAI Messagerie Spécifique</th>
