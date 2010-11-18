@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ApplicationsControllerTest < ActionController::TestCase
   setup do
-    @application = applications(:one)
+    @application = Factory(:application)
   end
 
   test "should get index" do

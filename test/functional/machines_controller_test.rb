@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MachinesControllerTest < ActionController::TestCase
   setup do
-    @machine = machines(:one)
+    @machine = Factory(:machine)
   end
 
   test "should get index" do
