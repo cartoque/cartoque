@@ -47,5 +47,8 @@ module Cartocs
       g.fallbacks[:shoulda] = :test_unit
       g.fixture_replacement :factory_girl, :dir => 'test/factories'
     end
+
+    # Middlewares
+    config.middleware.use "PDFKit::Middleware"
   end
 end
