@@ -2,24 +2,4 @@
 
 <p class="actions"><%= link_to "Ajouter une machine", new_machine_path %></p>
 
-<table>
-  <tr>
-    <th>Nom</th>
-    <th>IP</th>
-    <th>Theme</th>
-    <th>Service</th>
-    <th>OS</th>
-    <th colspan="2">Actions</th>
-  </tr>
-  <% for machine in @machines %>
-    <tr>
-      <td><%= link_to machine.nom, machine %></td>
-      <td><%= machine.ip %></td>
-      <td><%= machine.theme %></td>
-      <td><%= machine.service %></td>
-      <td><%= machine.operating_system %></td>
-      <td><%= link_to "Editer", edit_machine_path(machine) %></td>
-      <td><%= link_to "Supprimer", machine, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<div id="machines"><%= render 'list' %></div>

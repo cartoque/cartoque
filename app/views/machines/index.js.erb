@@ -1,0 +1,3 @@
+$("#machines_search #sort").attr("value","<%= escape_javascript(sort_column) %>");
+$("#machines_search #direction").attr("value","<%= escape_javascript(sort_direction) %>");
+$("#machines").html("<%= escape_javascript(render("list")) %>");

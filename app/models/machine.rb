@@ -26,4 +26,12 @@ class Machine < ActiveRecord::Base
       self.quatr_octet = $2
     end
   end
+
+  def self.search(search)
+    if search
+      where("nom LIKE ?", "%#{search}%")
+    else
+      scoped
+    end
+  end
 end
