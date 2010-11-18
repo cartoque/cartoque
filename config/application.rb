@@ -49,6 +49,6 @@ module Cartocs
     end
 
     # Middlewares
-    config.middleware.use "PDFKit::Middleware"
+    config.middleware.use "PDFKit::Middleware", :print_media_type => true
   end
 end

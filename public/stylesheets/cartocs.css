@@ -215,3 +215,17 @@ a.infoBulle:hover span {border: 1px solid; top:15px;left:45px;display: inline; p
 .tableau_voir_droite {
   font-weight: bold;
 }
+
+/* ADDITIONS */
+.pretty th.sortable {
+  background-image: url(/images/bg_header_sortable.jpg);
+}
+
+.pretty th.asc {
+  background-image: url(/images/bg_header_up.jpg);
+}
+
+.pretty th.desc {
+  background-image: url(/images/bg_header_down.jpg);
+}
+

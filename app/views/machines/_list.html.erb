@@ -5,7 +5,7 @@
     <th>Theme</th>
     <th>Service</th>
     <th>OS</th>
-    <th colspan="2">Actions</th>
+    <th colspan="2" class="actions">Actions</th>
   </tr>
   <% for machine in @machines %>
     <tr>
@@ -14,8 +14,8 @@
       <td><%= machine.theme %></td>
       <td><%= machine.service %></td>
       <td><%= machine.operating_system %></td>
-      <td><%= link_to "Editer", edit_machine_path(machine) %></td>
-      <td><%= link_to "Supprimer", machine, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td class="actions"><%= link_to "Editer", edit_machine_path(machine) %></td>
+      <td class="actions"><%= link_to "Supprimer", machine, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>

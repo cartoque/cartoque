@@ -169,14 +169,43 @@ label.required abbr {
   color: red;
 }
 
-.pretty th.sortable {
-  background-image: url(/images/bg_header_sortable.jpg);
-}
+@media print {
+  body {
+    background-color: #FFF;
+  }
 
-.pretty th.asc {
-  background-image: url(/images/bg_header_up.jpg);
-}
+  #container {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
 
-.pretty th.desc {
-  background-image: url(/images/bg_header_down.jpg);
+  table {
+    border-collapse:collapse;
+  }
+
+  th {
+    color:#fff;
+    background-color:#000;
+    background-image:none;
+    font-weight:bold;
+    text-transform:uppercase;
+  }
+  th, td {
+    border:1px solid #666;
+  }
+  
+  #line_items {
+    page-break-before: always;
+  }
+  
+  .actions, .hide-when-print {
+    display: none;
+  }
+
+  a, a:link, a:visited, a:hover {
+    text-decoration:none;
+    color:#000;
+  }
 }
