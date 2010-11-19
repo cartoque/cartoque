@@ -186,9 +186,9 @@ label.required abbr {
   }
 
   th {
-    color:#fff;
     background-color:#000;
     background-image:none;
+    color:#fff;
     font-weight:bold;
     text-transform:uppercase;
   }
@@ -207,5 +207,10 @@ label.required abbr {
   a, a:link, a:visited, a:hover {
     text-decoration:none;
     color:#000;
+  }
+
+  th a, th a:link, th a:visited {
+    color:#fff;
+    font-weight:bold;
   }
 }
