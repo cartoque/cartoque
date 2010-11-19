@@ -1,3 +1,8 @@
+<p class="actions">
+  <%= link_to "Ajouter une machine", new_machine_path %> | 
+  <%= link_to "Export PDF", machines_path(params.merge(:format => "pdf")) %>
+</p>
+
 <table class="pretty">
   <tr>
     <th class="<%= sortable_css_class("nom") %>"><%= sortable "nom" %></th>
