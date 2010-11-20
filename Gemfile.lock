@@ -50,6 +50,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mocha (0.9.9)
+      rake
     mysql2 (0.2.6)
     nifty-generators (0.4.2)
     pdfkit (0.4.6)
@@ -91,6 +93,7 @@ DEPENDENCIES
   has_scope
   inherited_resources
   jquery-rails
+  mocha
   mysql2
   nifty-generators
   pdfkit
