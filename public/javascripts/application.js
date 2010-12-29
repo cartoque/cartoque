@@ -1,23 +1,42 @@
+if (history && history.pushState) { history_api = true }
+else { history_api = false }
+
 // application events
 $(function() {
   //applications
   $("#applications th a").live("click", function() {
     $.getScript(this.href);
+    if (history_api) {
+      history.pushState(null, document.title, this.href);
+    }
     return false;
   });
   $("#applications_search").bindWithDelay("keyup", function() {
     $.get(this.action, $(this).serialize(), null, "script");
+    if (history_api) {
+      history.replaceState(null, document.title, this.action + "?" + this.serialize());
+    }
     return false;
   }, 300);
   //machines
   $("#machines th a").live("click", function() {
     $.getScript(this.href);
+    if (history_api) {
+      history.pushState(null, document.title, this.href);
+    }
     return false;
   });
   $("#machines_search").bindWithDelay("keyup", function() {
     $.get(this.action, $(this).serialize(), null, "script");
+    if (history_api) {
+      history.replaceState(null, document.title, this.action + "?" + this.serialize());
+    }
     return false;
   }, 300);
+  //back button
+  $(window).bind("popstate", function() {
+    $.getScript(location.href);
+  });
 });
 
 // utility
