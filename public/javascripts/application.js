@@ -11,10 +11,10 @@ $(function() {
     }
     return false;
   });
-  $("#applications_search").bindWithDelay("keyup", function() {
-    $.get(this.action, $(this).serialize(), null, "script");
+  $("#applications_search input").bindWithDelay("keyup", function() {
+    $.get($("#applications_search").attr("action"), $("#applications_search").serialize(), null, "script");
     if (history_api) {
-      history.replaceState(null, document.title, this.action + "?" + this.serialize());
+      history.replaceState(null, document.title, $("#applications_search").attr("action") + "?" + $("#applications_search").serialize());
     }
     return false;
   }, 300);
@@ -27,9 +27,9 @@ $(function() {
     return false;
   });
   $("#machines_search").bindWithDelay("keyup", function() {
-    $.get(this.action, $(this).serialize(), null, "script");
+    $.get($("#machines_search").attr("action"), $("#machines_search").serialize(), null, "script");
     if (history_api) {
-      history.replaceState(null, document.title, this.action + "?" + this.serialize());
+      history.replaceState(null, document.title, $("#machines_search").attr("action") + "?" + $("#machines_search").serialize());
     }
     return false;
   }, 300);
