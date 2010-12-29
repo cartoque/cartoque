@@ -3,8 +3,7 @@ else { history_api = false }
 
 // application events
 $(function() {
-  //applications
-  $("#applications th a").live("click", function() {
+  $("items_list th a").live("click", function() {
     $.getScript(this.href);
     if (history_api) {
       history.pushState(null, document.title, this.href);
@@ -18,14 +17,6 @@ $(function() {
     }
     return false;
   }, 300);
-  //machines
-  $("#machines th a").live("click", function() {
-    $.getScript(this.href);
-    if (history_api) {
-      history.pushState(null, document.title, this.href);
-    }
-    return false;
-  });
   $("#machines_search").bindWithDelay("keyup", function() {
     $.get($("#machines_search").attr("action"), $("#machines_search").serialize(), null, "script");
     if (history_api) {
