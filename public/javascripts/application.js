@@ -1,15 +1,19 @@
-if (history && history.pushState) { history_api = true }
-else { history_api = false }
-
 // application events
 $(function() {
-  $("items_list th a").live("click", function() {
+  //table sorting
+  $("items_list th a").live("click", function(e) {
     $.getScript(this.href);
-    if (history_api) {
-      history.pushState(null, document.title, this.href);
+    //fallback for old browsers
+    if (!('pushState' in window.history)) return true
+    //ensure middle, control and command clicks act normally
+    if (e.which == 2 || e.metaKey || e.ctrlKey) {
+      return true
     }
-    return false;
+    //push history!
+    history.pushState(null, document.title, this.href);
+    return false
   });
+
   $("#applications_search input").bindWithDelay("keyup", function() {
     $.get($("#applications_search").attr("action"), $("#applications_search").serialize(), null, "script");
     if (history_api) {
@@ -17,6 +21,7 @@ $(function() {
     }
     return false;
   }, 300);
+
   $("#machines_search").bindWithDelay("keyup", function() {
     $.get($("#machines_search").attr("action"), $("#machines_search").serialize(), null, "script");
     if (history_api) {
@@ -24,6 +29,7 @@ $(function() {
     }
     return false;
   }, 300);
+
   //back button
   $(window).bind("popstate", function() {
     $.getScript(location.href);
