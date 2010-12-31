@@ -16,17 +16,19 @@ $(function() {
 
   $("#applications_search input").bindWithDelay("keyup", function() {
     $.get($("#applications_search").attr("action"), $("#applications_search").serialize(), null, "script");
-    if (history_api) {
-      history.replaceState(null, document.title, $("#applications_search").attr("action") + "?" + $("#applications_search").serialize());
-    }
+    //fallback for old browsers
+    if (!('replaceState' in window.history)) return true
+    //push our search to history
+    history.replaceState(null, document.title, $("#applications_search").attr("action") + "?" + $("#applications_search").serialize());
     return false;
   }, 300);
 
   $("#machines_search").bindWithDelay("keyup", function() {
     $.get($("#machines_search").attr("action"), $("#machines_search").serialize(), null, "script");
-    if (history_api) {
-      history.replaceState(null, document.title, $("#machines_search").attr("action") + "?" + $("#machines_search").serialize());
-    }
+    //fallback for old browsers
+    if (!('replaceState' in window.history)) return true
+    //push our search to history
+    history.replaceState(null, document.title, $("#machines_search").attr("action") + "?" + $("#machines_search").serialize());
     return false;
   }, 300);
 
