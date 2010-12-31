@@ -1,0 +1,21 @@
+<p class="actions">
+  <%= link_to "Ajouter une baie", new_storage_path %>
+</p>
+
+<table class="pretty center">
+  <tr>
+    <th>Nom</th>
+    <th>Constructor</th>
+    <th>Details</th>
+    <th colspan="2" class="actions">Actions</th>
+  </tr>
+  <% @storages.each do |storage| %>
+    <tr>
+      <td><%= link_to storage.machine.nom, storage %></td>
+      <td><%= storage.constructor %></td>
+      <td><%= storage.details %></td>
+      <td class="actions"><%= link_to "Editer", edit_storage_path(storage) %></td>
+      <td class="actions"><%= link_to "Supprimer", storage, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>

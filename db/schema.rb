@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101113192232) do
+ActiveRecord::Schema.define(:version => 20101231134631) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                     :default => "",    :null => false
@@ -140,6 +140,15 @@ ActiveRecord::Schema.define(:version => 20101113192232) do
   end
 
   add_index "sousreseaux", ["sousreseau_ip"], :name => "sousreseau_ip"
+
+  create_table "storages", :force => true do |t|
+    t.integer  "machine_id"
+    t.string   "file"
+    t.string   "constructor"
+    t.text     "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "themes", :force => true do |t|
     t.string "titre", :default => "", :null => false

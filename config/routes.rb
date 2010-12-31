@@ -1,6 +1,7 @@
 Cartocs::Application.routes.draw do
-  resources :machines
 
+  resources :storages
+  resources :machines
   resources :applications
 
   #get "welcome/index"

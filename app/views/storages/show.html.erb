@@ -1,0 +1,9 @@
+<%= show_for @storage do |s| %>
+  <%= s.attribute :machine_id %>
+  <%= s.attribute :file %>
+  <%= s.attribute :constructor %>
+  <%= s.attribute :details %>
+<% end %>
+
+<%= link_to 'Edit', edit_storage_path(@storage) %> |
+<%= link_to 'Back', storages_path %>
