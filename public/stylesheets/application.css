@@ -218,3 +218,24 @@ label.required abbr {
     font-weight:bold;
   }
 }
+
+
+/* welcome page */
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Lobster1.4'), local('Lobster'), url('http://themes.googleusercontent.com/font?kit=TSDaXhyJuDJ-NBU0popSWA') format('truetype');
+}
+h1.welcome {
+  font-family: 'Lobster', serif;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  text-shadow: 2px 2px 2px #aaa;
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: 0em;
+  word-spacing: 0em;
+  line-height: 1em;
+}
