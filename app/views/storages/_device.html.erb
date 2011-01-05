@@ -2,10 +2,9 @@
   <%= device %>
 <% else %>
 <p class="infos">
-  Size:<%= pretty_size(device.size) %>, 
-  Free:<%= pretty_size(device.free) %>, 
-  Used:<%= pretty_size(device.used) %>,
-  <%= "#{device.children.length} children" %>
+  <strong><%= pretty_size(device.size) %></strong>:
+  <%= pretty_size(device.used) %> occupés, 
+  <%= pretty_size(device.free) %> disponibles
 </p>
 <%= progress_bar(device.percent_used,
                  :width => '20em',

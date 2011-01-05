@@ -1,26 +1,26 @@
 html {
-  overflow-y: scroll;
+  overflow-y:scroll;
 }
 
 body {
-  /*background-color: #4B7399;*/
-  font-family: Verdana, Helvetica, Arial;
-  font-size: 11px;
+  /*background-color:#4B7399;*/
+  font-family:Verdana, Helvetica, Arial;
+  font-size:11px;
   margin:0;
 }
 
 a img {
-  border: none;
+  border:none;
 }
 
 a {
-  color: #000;
+  color:#000;
 }
 
 .clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
+  clear:both;
+  height:0;
+  overflow:hidden;
 }
 
 #top-menu {
@@ -30,69 +30,69 @@ a {
 }
 
 #container {
-  /*width: 75%;*/
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 8px;
-  text-align: left;
-  /*border: solid 1px black;*/
-  /*margin-top: 20px;*/
+  /*width:75%;*/
+  margin:0 auto;
+  background-color:#FFF;
+  padding:8px;
+  text-align:left;
+  /*border:solid 1px black;*/
+  /*margin-top:20px;*/
 }
 
 #flash_notice, #flash_error, #flash_alert {
-  padding: 5px 8px;
-  margin: 10px 0;
+  padding:5px 8px;
+  margin:10px 0;
 }
 
 #flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
+  background-color:#CFC;
+  border:solid 1px #6C6;
 }
 
 #flash_error, #flash_alert {
-  background-color: #FCC;
-  border: solid 1px #C66;
+  background-color:#FCC;
+  border:solid 1px #C66;
 }
 
 .field_with_errors *, #error_explanation * {
-  color: #f00;
+  color:#f00;
 }
 
 .field_with_errors input, #error_explanation td {
-  border: 2px solid #f00;
+  border:2px solid #f00;
 }
 
 #error_explanation td {
-  font-weight: bold;
+  font-weight:bold;
   padding:0;
 }
 
 .error_messages {
-  width: 400px;
-  border: 2px solid #CF0000;
-  padding: 0px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  font-size: 12px;
+  width:400px;
+  border:2px solid #CF0000;
+  padding:0px;
+  padding-bottom:12px;
+  margin-bottom:20px;
+  background-color:#f0f0f0;
+  font-size:12px;
 }
 
 .error_messages h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 10px;
-  font-size: 12px;
-  margin: 0;
-  background-color: #c00;
-  color: #fff;
+  text-align:left;
+  font-weight:bold;
+  padding:5px 10px;
+  font-size:12px;
+  margin:0;
+  background-color:#c00;
+  color:#fff;
 }
 
 .error_messages p {
-  margin: 8px 10px;
+  margin:8px 10px;
 }
 
 .error_messages ul {
-  margin: 0;
+  margin:0;
 }
 
 .center {
@@ -100,7 +100,7 @@ a {
 }
 
 .contextual {
-  float: right;
+  float:right;
 }
 
 .contextual * {
@@ -109,49 +109,49 @@ a {
 }
 
 .simple_form label {
-  float: left;
-  width: 120px;
-  text-align: right;
-  margin: 2px 10px;
+  float:left;
+  width:120px;
+  text-align:right;
+  margin:2px 10px;
 }
 
 .simple_form div.input {
-  margin-bottom: 10px;
+  margin-bottom:10px;
 }
 
 .simple_form div.boolean, .simple_form input[type='submit'] {
-  /*margin-left: 120px;*/
+  /*margin-left:120px;*/
 }
 
 .simple_form div.boolean label, .simple_form label.collection_radio {
-  float: none;
-  margin: 0;
+  float:none;
+  margin:0;
 }
 
 .simple_form label.collection_radio {
-  margin-right: 10px;
-  margin-left: 2px;
+  margin-right:10px;
+  margin-left:2px;
 }
 
 .simple_form .error {
-  clear: left;
-  margin-left: 120px;
-  font-size: 12px;
-  color: #D00;
-  display: block;
+  clear:left;
+  margin-left:120px;
+  font-size:12px;
+  color:#D00;
+  display:block;
 }
 
 .simple_form .hint {
-  clear: left;
-  margin-left: 120px;
-  font-size: 12px;
-  color: #555;
-  display: block;
-  font-style: italic;
+  clear:left;
+  margin-left:120px;
+  font-size:12px;
+  color:#555;
+  display:block;
+  font-style:italic;
 }
 
 table.show_item {
-  width: 300px;
+  width:300px;
 }
 
 table.show_item th {
@@ -170,19 +170,19 @@ table.show_item td.content {
 }
 
 label.required abbr {
-  color: red;
+  color:red;
 }
 
 @media print {
   body {
-    background-color: #FFF;
+    background-color:#FFF;
   }
 
   #container {
-    width: auto;
-    margin: 0;
-    padding: 0;
-    border: none;
+    width:auto;
+    margin:0;
+    padding:0;
+    border:none;
   }
 
   table {
@@ -201,11 +201,11 @@ label.required abbr {
   }
   
   #line_items {
-    page-break-before: always;
+    page-break-before:always;
   }
   
   .actions, .hide-when-print {
-    display: none;
+    display:none;
   }
 
   a, a:link, a:visited, a:hover {
@@ -222,50 +222,48 @@ label.required abbr {
 
 /* welcome page */
 @font-face {
-  font-family: 'Lobster';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Lobster1.4'), local('Lobster'), url('http://themes.googleusercontent.com/font?kit=TSDaXhyJuDJ-NBU0popSWA') format('truetype');
+  font-family:'Lobster';
+  font-style:normal;
+  font-weight:normal;
+  src:local('Lobster1.4'), local('Lobster'), url('http://themes.googleusercontent.com/font?kit=TSDaXhyJuDJ-NBU0popSWA') format('truetype');
 }
 h1.welcome {
-  font-family: 'Lobster', serif;
-  font-size: 50px;
-  font-style: normal;
-  font-weight: 400;
-  text-shadow: 2px 2px 2px #aaa;
-  text-decoration: none;
-  text-transform: none;
-  letter-spacing: 0em;
-  word-spacing: 0em;
-  line-height: 1em;
+  font-family:'Lobster', serif;
+  font-size:50px;
+  font-style:normal;
+  font-weight:400;
+  text-shadow:2px 2px 2px #aaa;
+  text-decoration:none;
+  text-transform:none;
+  letter-spacing:0em;
+  word-spacing:0em;
+  line-height:1em;
 }
 
 /* progress bar */ 
 /***** Progress bar *****/
 table.progress {
-    border: 1px solid #D7D7D7;
-    border-collapse: collapse;
-    border-spacing: 0pt;
-    empty-cells: show;
-    text-align: center;
+    border:1px solid #D7D7D7;
+    border-collapse:collapse;
+    border-spacing:0pt;
+    empty-cells:show;
+    text-align:center;
     float:left;
-    margin: 1px 6px 1px 0px;
+    margin:1px 6px 1px 0px;
 }
-table.progress td { height: 0.9em; }
-table.progress td.closed { background: #BAE0BA none repeat scroll 0%; }
-table.progress td.done { background: #DEF0DE none repeat scroll 0%; }
-table.progress td.open { background: #FFF none repeat scroll 0%; }
-p.pourcent {font-size: 80%;}
-p.progress-info {clear: left; font-style: italic; font-size: 80%;}
+table.progress td { height:0.9em; padding:2px; }
+table.progress td.closed { background:#BAE0BA none repeat scroll 0%; }
+table.progress td.done { background:#DEF0DE none repeat scroll 0%; }
+table.progress td.open { background:#FFF none repeat scroll 0%; }
+p.pourcent { margin-right:2px;}
+p.progress-info { clear:left; font-style:italic; font-size:80%; }
 
 /* storage */
-#storage { margin-bottom:15px; }
-#storage .device { padding-left:5px; margin-bottom:2px; background-color:#eee; }
-#storage .infos { color:#777; }
-#storage td.details { width:300px; }
-#storage table.progress td { height: 0.8em; }
-#storage table.progress td.closed { background: #777 none repeat scroll 0%; }
+#storage .device { padding-left:2px; margin-bottom:2px; background-color:#eee; }
+#storage .infos { text-align:left; margin-bottom:2px; font-size:100%; }
+#storage td.details { white-space:nowrap; padding-right:3em; }
+#storage td.details * { margin-bottom:0; }
+#storage table.progress td.closed { background:#777 none repeat scroll 0%; }
 #storage table.storage-array { border-collapse:collapse; }
 #storage table.storage-array td { border:1px solid #aaa; white-space:nowrap; }
-#storage table.storage-array td.closed { background: #999 none repeat scroll 0%; }
-
+#storage table.storage-array td.closed { background:#999 none repeat scroll 0%; }

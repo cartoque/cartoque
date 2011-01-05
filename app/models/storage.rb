@@ -24,7 +24,7 @@ class Storage < ActiveRecord::Base
                   Storcs::Parsers::Equalogic.new(machine.nom, file).device
                 end
     rescue Errno::ENOENT
-      @device = "Pas de fichier #{file}"
+      @device = "Pas de fichier .#{file.gsub(Rails.root.to_s,"")}"
     end
     @device
   end
