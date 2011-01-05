@@ -7,4 +7,25 @@ class Storage < ActiveRecord::Base
   def self.supported_types
     ["IBM", "NetApp", "Equalogic"]
   end
+
+  def file
+    File.expand_path("data/storage/#{machine.nom.downcase}.txt", Rails.root)
+  end
+
+  def device
+    return @device if @device
+    begin
+      @device = case constructor
+                when "IBM"
+                  Storcs::Parsers::Ibm.new(machine.nom, file).device
+                when "NetApp"
+                  Storcs::Parsers::DfNas.new(machine.nom, file).device
+                when "Equalogic"
+                  Storcs::Parsers::Equalogic.new(machine.nom, file).device
+                end
+    rescue Errno::ENOENT
+      @device = "Pas de fichier #{file}"
+    end
+    @device
+  end
 end

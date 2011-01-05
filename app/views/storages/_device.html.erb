@@ -1,0 +1,34 @@
+<% if device.is_a?(String) %>
+  <%= device %>
+<% else %>
+<p class="infos">
+  Size:<%= pretty_size(device.size) %>, 
+  Free:<%= pretty_size(device.free) %>, 
+  Used:<%= pretty_size(device.used) %>,
+  <%= "#{device.children.length} children" %>
+</p>
+<%= progress_bar(device.percent_used,
+                 :width => '20em',
+                 :legend => ('%0.0f%' % device.percent_used)) %>
+  
+<% devid = "device-#{device.name.parameterize}" %>
+<small>
+  <% link_to "Plus", {},
+                :onclick => %Q(Effect.toggle("#{devid}", "blind", {duration:0.3}); return false;) %>
+</small>
+<table id="<%= devid %>" class="storage-array" style="display:none">
+<% device.children.each do |array| %>
+  <tr>
+    <td class="center">
+      Array <%= array.name %><br />
+      <%= pretty_size(array.size) %>
+    </td>
+    <td class="center">
+      RAID <%= array.raid %>
+    </td>
+    <td style="width:100%"><%= progress_bar(array.percent_used, :width => '10em',
+                         :legend => "#{pretty_size(array.free)} free") %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>

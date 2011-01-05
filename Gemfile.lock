@@ -79,6 +79,7 @@ GEM
     shoulda (2.11.3)
     show_for (0.2.3)
     simple_form (1.2.2)
+    storcs (0.0.1)
     thor (0.14.4)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
@@ -101,4 +102,5 @@ DEPENDENCIES
   shoulda
   show_for
   simple_form
+  storcs
   yaml_db

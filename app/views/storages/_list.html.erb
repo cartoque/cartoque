@@ -2,18 +2,18 @@
   <%= link_to "Ajouter une baie", new_storage_path %>
 </p>
 
-<table class="pretty center">
+<table class="pretty center" id="storage">
   <tr>
     <th>Nom</th>
     <th>Constructor</th>
     <th>Details</th>
     <th colspan="2" class="actions">Actions</th>
   </tr>
-  <% @storages.each do |storage| %>
+  <% @storages.sort_by{|s| [s.constructor, s.machine.nom.downcase]}.each do |storage| %>
     <tr>
-      <td><%= link_to storage.machine.nom, storage %></td>
+      <td><%= storage.machine.nom %></td>
       <td><%= storage.constructor %></td>
-      <td><%= storage.details %></td>
+      <td class="details"><%= render('device', :device => storage.device) if storage.device %></td>
       <td class="actions"><%= link_to "Editer", edit_storage_path(storage) %></td>
       <td class="actions"><%= link_to "Supprimer", storage, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>

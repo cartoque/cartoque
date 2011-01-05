@@ -37,6 +37,7 @@ gem 'has_scope'
 gem 'jquery-rails'
 gem 'yaml_db'
 gem 'pdfkit'
+gem 'storcs'
 
 group :test do
   gem 'shoulda'

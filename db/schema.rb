@@ -143,7 +143,6 @@ ActiveRecord::Schema.define(:version => 20101231134631) do
 
   create_table "storages", :force => true do |t|
     t.integer  "machine_id"
-    t.string   "file"
     t.string   "constructor"
     t.text     "details"
     t.datetime "created_at"
