@@ -261,6 +261,7 @@ p.progress-info { clear:left; font-style:italic; font-size:80%; }
 /* storage */
 #storage .device { padding-left:2px; margin-bottom:2px; background-color:#eee; }
 #storage .infos { text-align:left; margin-bottom:2px; font-size:100%; }
+#storage td.global { font-size:110%; }
 #storage td.details { white-space:nowrap; padding-right:3em; }
 #storage td.details * { margin-bottom:0; }
 #storage table.progress td.closed { background:#777 none repeat scroll 0%; }
