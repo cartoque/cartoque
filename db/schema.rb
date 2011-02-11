@@ -10,11 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101231134631) do
+ActiveRecord::Schema.define(:version => 20110211080125) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                     :default => "",    :null => false
-    t.integer "criticite", :limit => 1,  :default => 0,     :null => false
+    t.integer "criticite", :limit => 1,  :default => 3
     t.text    "info",                                       :null => false
     t.string  "iaw",       :limit => 55, :default => "",    :null => false
     t.string  "pe",        :limit => 55, :default => "",    :null => false
@@ -54,13 +54,13 @@ ActiveRecord::Schema.define(:version => 20101231134631) do
   end
 
   create_table "machines", :force => true do |t|
-    t.integer "theme_id",                           :default => 6,     :null => false
-    t.integer "service_id",                         :default => 1,     :null => false
-    t.integer "operating_system_id",                :default => 12,    :null => false
-    t.integer "site_id",                            :default => 3,     :null => false
-    t.integer "physical_rack_id",                   :default => 5,     :null => false
-    t.integer "media_drive_id",                     :default => 5,     :null => false
-    t.integer "mainteneur_id",                      :default => 1,     :null => false
+    t.integer "theme_id",                           :default => 0
+    t.integer "service_id",                         :default => 0
+    t.integer "operating_system_id",                :default => 0
+    t.integer "site_id",                            :default => 0
+    t.integer "physical_rack_id",                   :default => 0
+    t.integer "media_drive_id",                     :default => 0
+    t.integer "mainteneur_id",                      :default => 0
     t.string  "nom",                 :limit => 150, :default => "",    :null => false
     t.string  "ancien_nom",                         :default => "",    :null => false
     t.string  "sousreseau_ip",       :limit => 23,  :default => "",    :null => false
@@ -75,19 +75,19 @@ ActiveRecord::Schema.define(:version => 20101231134631) do
     t.string  "fin_garantie",        :limit => 100, :default => "",    :null => false
     t.string  "type_contrat",        :limit => 100, :default => "",    :null => false
     t.string  "type_disque",         :limit => 50,  :default => "",    :null => false
-    t.integer "taille_disque",                      :default => 0,     :null => false
+    t.integer "taille_disque",                      :default => 0
     t.string  "marque",              :limit => 50,  :default => "",    :null => false
     t.string  "ref_proc",            :limit => 100, :default => "",    :null => false
     t.string  "type_serveur",        :limit => 50,  :default => "",    :null => false
-    t.integer "nb_proc",                            :default => 0,     :null => false
-    t.integer "nb_coeur",                           :default => 0,     :null => false
-    t.integer "nb_rj45",                            :default => 0,     :null => false
-    t.integer "nb_fc",                              :default => 0,     :null => false
-    t.integer "nb_iscsi",                           :default => 0,     :null => false
+    t.integer "nb_proc",                            :default => 0
+    t.integer "nb_coeur",                           :default => 0
+    t.integer "nb_rj45",                            :default => 0
+    t.integer "nb_fc",                              :default => 0
+    t.integer "nb_iscsi",                           :default => 0
     t.string  "type_disque_alt",     :limit => 50,  :default => "",    :null => false
-    t.integer "taille_disque_alt",                  :default => 0,     :null => false
-    t.integer "nb_disque",                          :default => 0,     :null => false
-    t.integer "nb_disque_alt",                      :default => 0,     :null => false
+    t.integer "taille_disque_alt",                  :default => 0
+    t.integer "nb_disque",                          :default => 0
+    t.integer "nb_disque_alt",                      :default => 0
   end
 
   create_table "machines_sousreseaux", :force => true do |t|
