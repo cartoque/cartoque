@@ -1,5 +1,5 @@
 class MachinesController < InheritedResources::Base
-  respond_to :html, :js
+  respond_to :html, :js, :xml
 
   helper_method :sort_column, :sort_direction
 
