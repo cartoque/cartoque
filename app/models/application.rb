@@ -13,6 +13,16 @@ class Application < ActiveRecord::Base
     end
   end
 
+  def self.find(*args)
+    if args.first && args.first.is_a?(String) && !args.first.match(/^\d*$/)
+      application = find_by_nom(*args)
+      raise ActiveRecord::RecordNotFound, "Couldn't find Application with identifier=#{args.first}" if application.nil?
+      application
+    else
+      super
+    end
+  end
+
   def to_xml(*args)
     super(args.first.reverse_merge(:include => :machines))
   end
