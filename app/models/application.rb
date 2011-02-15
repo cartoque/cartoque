@@ -12,4 +12,8 @@ class Application < ActiveRecord::Base
       scoped
     end
   end
+
+  def to_xml(*args)
+    super(args.first.reverse_merge(:include => :machines))
+  end
 end
