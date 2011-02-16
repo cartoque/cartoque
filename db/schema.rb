@@ -13,19 +13,20 @@
 ActiveRecord::Schema.define(:version => 20110211080125) do
 
   create_table "applications", :force => true do |t|
-    t.string  "nom",                     :default => "",    :null => false
-    t.integer "criticite", :limit => 1,  :default => 3
-    t.text    "info",                                       :null => false
-    t.string  "iaw",       :limit => 55, :default => "",    :null => false
-    t.string  "pe",        :limit => 55, :default => "",    :null => false
-    t.string  "moa",                     :default => "",    :null => false
-    t.string  "amoa",                    :default => "",    :null => false
-    t.string  "moa_note",                :default => "",    :null => false
-    t.string  "contact",                 :default => "",    :null => false
-    t.string  "pnd",                     :default => "",    :null => false
-    t.string  "ams",       :limit => 55, :default => "",    :null => false
-    t.boolean "cerbere",                 :default => false, :null => false
-    t.string  "fiche",                   :default => "",    :null => false
+    t.string  "nom",                      :default => "",    :null => false
+    t.integer "criticite",  :limit => 1,  :default => 3
+    t.text    "info",                                        :null => false
+    t.string  "iaw",        :limit => 55, :default => "",    :null => false
+    t.string  "pe",         :limit => 55, :default => "",    :null => false
+    t.string  "moa",                      :default => "",    :null => false
+    t.string  "amoa",                     :default => "",    :null => false
+    t.string  "moa_note",                 :default => "",    :null => false
+    t.string  "contact",                  :default => "",    :null => false
+    t.string  "pnd",                      :default => "",    :null => false
+    t.string  "ams",        :limit => 55, :default => "",    :null => false
+    t.boolean "cerbere",                  :default => false, :null => false
+    t.string  "fiche",                    :default => "",    :null => false
+    t.string  "identifier"
   end
 
   create_table "applications_machines", :id => false, :force => true do |t|
