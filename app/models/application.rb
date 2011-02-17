@@ -15,7 +15,7 @@ class Application < ActiveRecord::Base
 
   def self.find(*args)
     if args.first && args.first.is_a?(String) && !args.first.match(/^\d*$/)
-      application = find_by_nom(*args)
+      application = find_by_identifier(*args)
       raise ActiveRecord::RecordNotFound, "Couldn't find Application with identifier=#{args.first}" if application.nil?
       application
     else
