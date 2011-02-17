@@ -25,6 +25,8 @@ class Storage < ActiveRecord::Base
                 end
     rescue Errno::ENOENT
       @device = "Pas de fichier .#{file.gsub(Rails.root.to_s,"")}"
+    rescue
+      @device = "Erreur: #{$!}"
     end
     @device
   end
