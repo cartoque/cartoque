@@ -35,4 +35,42 @@ class Machine < ActiveRecord::Base
       scoped
     end
   end
+
+  def cpu
+    html = ""
+    if nb_proc.present? && nb_proc > 0
+      html << "#{nb_proc} * " unless nb_proc == 1
+      html << "#{nb_coeur} cores, #{frequence} GHz"
+      html << "<br />(#{ref_proc})" if ref_proc.present?
+    else
+      html << "?"
+    end
+    html.html_safe
+  end
+
+  def disks
+    html = ""
+    if taille_disque.present? && taille_disque > 0
+      html << "#{nb_disque} * " unless nb_disque.blank? || nb_disque == 1
+      html << "#{taille_disque}G"
+      html << " (#{type_disque})" unless type_disque.blank?
+      if taille_disque_alt.present? && taille_disque_alt > 0
+        html << "<br />"
+        html << "#{nb_disque_alt} * " unless nb_disque_alt.blank? || nb_disque_alt == 1
+        html << "#{taille_disque_alt}G"
+        html << " (#{type_disque_alt})" unless type_disque_alt.blank?
+      end
+    else
+      html << "?"
+    end
+    html.html_safe
+  end
+
+  def localization
+    [site, physical_rack].join(" - ")
+  end
+
+  def fullmodel
+    [marque, modele].join(" ")
+  end
 end
