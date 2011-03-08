@@ -14,32 +14,29 @@
     </tr>
   </thead>
   <%= show_for @machine do |s| %>
+    <% if @machine.description.present? %>
+    <tr class="wrapper machine_description">
+      <td colspan="2">
+        Description: <strong><%= @machine.description %></strong>
+      </td>
+    </tr> 
+    <% end %>
     <%= s.attribute :ip %>
-    <%= s.attribute :type_serveur %>
+    <!--<%= s.attribute :type_serveur %>-->
     <%= s.attribute :operating_system %>
     <%= s.attribute :service %>
     <%= s.attribute :theme %>
-    <%= s.attribute :ancien_nom %>
-    <tr class="wrapper machine_description">
-      <td colspan="2">
-        Description:<br />
-        <strong><%= @machine.description %></strong>
-      </td>
-    </tr> 
-    <tr class="wrapper machine_applications">
-      <td colspan="2">
-        Applications liées:<br />
-        <% if @machine.applications.any? %>
-          <ul>
-          <% @machine.applications.each do |application| %>
-            <li><%= link_to application.nom, application %></li>
-          <% end %>
-          </ul>
-        <% else %>
-          <p>Aucune application liée.</p>
-        <% end %>
-      </td>
-    </tr> 
+    <!--<%= s.attribute :ancien_nom %>-->
+  <% end %>
+  <thead>
+    <tr><th colspan="2">Maintenance</th></tr>
+  </thead>
+  <%= show_for @machine do |s| %>
+    <%= s.attribute :mainteneur %>
+    <%= s.attribute :date_mes %>
+    <%= s.attribute :fin_garantie %>
+    <%= s.attribute :type_contrat %>
+    <%= s.attribute :numero_serie %>
   <% end %>
 </table>
 </div>
@@ -66,19 +63,25 @@
 </table>
 </div>
 
-<div id="machine_support" style="padding:0 10px; float:left">
+<div id="machine_relations" style="padding:0 10px; float:left">
 <table class="show_item">
   <thead>
-    <tr>
-      <th colspan="2">Maintenance</th>
-    </tr>
+    <tr><th colspan="2">Applications liées</th></tr>
   </thead>
   <%= show_for @machine do |s| %>
-    <%= s.attribute :mainteneur %>
-    <%= s.attribute :date_mes %>
-    <%= s.attribute :fin_garantie %>
-    <%= s.attribute :type_contrat %>
-    <%= s.attribute :numero_serie %>
+    <tr class="wrapper machine_applications">
+      <td colspan="2">
+        <% if @machine.applications.any? %>
+          <ul>
+          <% @machine.applications.each do |application| %>
+            <li><%= link_to application.nom, application %></li>
+          <% end %>
+          </ul>
+        <% else %>
+          <p>Aucune application liée.</p>
+        <% end %>
+      </td>
+    </tr> 
   <% end %>
 </table>
 </div>

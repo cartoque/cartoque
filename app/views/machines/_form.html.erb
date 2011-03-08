@@ -21,18 +21,21 @@
       </td></tr>
       <% end %>
       <%= f.input :nom, :required => true, :wrapper_class => 'th' %>
+      <tr class="wrapper machine_applications">
+        <td colspan="2">Description:<br/><%= f.text_area :description, :size => "33x6" %></td>
+      </tr>
       <%= f.input :ip %>
-      <%= f.input :type_serveur %>
+      <!--<%= f.input :type_serveur %>-->
       <%= f.association :operating_system %>
       <%= f.association :service %>
       <%= f.association :theme %>
-      <%= f.input :ancien_nom %>
-      <tr class="wrapper machine_applications">
-        <td colspan="2">
-          Description:<br/>
-          <%= f.text_area :description, :size => "33x6" %>
-        </td>
-      </tr>
+      <!--<%= f.input :ancien_nom %>-->
+      <tr><th colspan="2">Maintenance</th></tr>
+      <%= f.association :mainteneur %>
+      <%= f.input :date_mes %>
+      <%= f.input :fin_garantie %>
+      <%= f.input :type_contrat %>
+      <%= f.input :numero_serie %>
     </tbody>
   </table>
   </div>
@@ -45,7 +48,6 @@
     <tbody>
       <%= f.association :site %>
       <%= f.association :physical_rack %>
-      <%= f.input :numero_serie %>
       <%= f.input :modele %>
       <%= f.input :marque %>
       <%= f.input :virtuelle %>
@@ -61,10 +63,6 @@
       <%= f.input :nb_disque_alt, :as => :string %>
       <%= f.input :taille_disque_alt, :as => :string %>
       <%= f.association :media_drive %>
-      <%= f.association :mainteneur %>
-      <%= f.input :date_mes %>
-      <%= f.input :fin_garantie %>
-      <%= f.input :type_contrat %>
       <%= f.input :nb_rj45, :collection => 0..32 %>
       <%= f.input :nb_fc, :collection => 0..12 %>
       <%= f.input :nb_iscsi, :collection => 0..12 %>
