@@ -1,4 +1,13 @@
 <%= simple_form_for(@machine) do |f| %>
+  <p class="actions">
+    <%= f.button :submit %>
+    ou <%= link_to "Retourner à la liste", applications_path %> 
+    <% unless @machine.new_record? %>
+      | <%= link_to "Voir", @machine %>
+    <% end %>
+  </p>
+
+  <div id="machine_general" style="padding-left:10px; float:left">
   <table class="inputs">
     <tbody>
       <% if @machine.errors.any? %>
@@ -12,27 +21,34 @@
       </td></tr>
       <% end %>
       <%= f.input :nom, :required => true, :wrapper_class => 'th' %>
-      <%= f.input :ancien_nom %>
       <%= f.input :ip %>
-      <%= f.input :virtuelle %>
+      <%= f.input :type_serveur %>
       <%= f.association :operating_system %>
-      <%= f.association :theme %>
       <%= f.association :service %>
-      <%= f.input :description %>
+      <%= f.association :theme %>
+      <%= f.input :ancien_nom %>
+      <tr class="wrapper machine_applications">
+        <td colspan="2">
+          Description:<br/>
+          <%= f.text_area :description, :size => "33x6" %>
+        </td>
+      </tr>
     </tbody>
   </table>
+  </div>
 
+  <div id="machine_hardware" style="padding-left:10px; float:left">
   <table class="inputs">
     <thead>
-      <tr><th colspan="2">DETAILS MATERIELS</th></tr>
+      <tr><th colspan="2">Matériel</th></tr>
     </thead>
     <tbody>
       <%= f.association :site %>
       <%= f.association :physical_rack %>
-      <%= f.input :type_serveur %>
       <%= f.input :numero_serie %>
       <%= f.input :modele %>
       <%= f.input :marque %>
+      <%= f.input :virtuelle %>
       <%= f.input :nb_proc, :collection => [1,2,4,6,8,10,12,16,24,32] %>
       <%= f.input :ref_proc %>
       <%= f.input :frequence, :as => :string %>
@@ -52,26 +68,27 @@
       <%= f.input :nb_rj45, :collection => 0..32 %>
       <%= f.input :nb_fc, :collection => 0..12 %>
       <%= f.input :nb_iscsi, :collection => 0..12 %>
+    </tbody>
+  </table>
+  </div>
+
+  <div id="machine_applications" style="padding-left:10px; float:left">
+  <table class="inputs">
+    <thead>
+      <tr><th colspan="2">Applications</th></tr>
+    </thead>
+    <tbody>
       <tr class="wrapper machine_applications">
         <td colspan="2">
-          Applications liées:<br />
-          <% Application.all(:order => :nom).group_by{|a|a.nom.first.downcase}.each do |letter,applications| %>
-            <% applications.each do |application| %>
-              <%= check_box_tag 'machine[application_ids][]', application.id, @machine.applications.include?(application) %>
-              <%= application.nom %>
-            <% end %>
+          <% Application.all(:order => :nom).each do |application| %>
+            <%= check_box_tag 'machine[application_ids][]', application.id, @machine.applications.include?(application) %>
+            <%= application.nom %>
             <br />
           <% end %>
         </td>
       </tr>
     </tbody>
   </table>
+  </div>
 
-  <p class="actions">
-    <%= f.button :submit %>
-    ou <%= link_to "Retourner à la liste", applications_path %> 
-    <% unless @machine.new_record? %>
-      | <%= link_to "Voir", @machine %>
-    <% end %>
-  </p>
 <% end %>

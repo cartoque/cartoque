@@ -110,9 +110,9 @@ a {
 
 .simple_form label {
   float:left;
-  width:120px;
+  width:50px;
   text-align:right;
-  margin:2px 10px;
+  margin:3px;
 }
 
 .simple_form div.input {
@@ -154,8 +154,9 @@ table.show_item {
   width:300px;
 }
 
-table.show_item th {
+table.show_item th, .simple_form th {
   text-align:center;
+  text-transform:uppercase;
 }
 
 table.show_item td.content {
