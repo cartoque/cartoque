@@ -108,6 +108,11 @@ a {
   margin:0;
 }
 
+td.label {
+  text-align:left;
+  width: 50px;
+}
+
 .simple_form label {
   float:left;
   width:50px;
@@ -148,6 +153,11 @@ a {
   color:#555;
   display:block;
   font-style:italic;
+}
+
+div.column_wrapper {
+  float:left;
+  margin:0 15px 0 5px;
 }
 
 table.show_item {

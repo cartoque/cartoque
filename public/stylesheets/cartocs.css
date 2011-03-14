@@ -94,7 +94,7 @@ th, tr.th td {
   letter-spacing: 1px;
   text-transform: uppercase;
   text-align: left;
-  padding: 8px 12px 4px 12px;
+  padding: 4px;
   background: #CAE8EA url(../images/bg_header.jpg) no-repeat;
   vertical-align:middle;
 }
@@ -157,7 +157,7 @@ td {
   font: normal 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   border-right: 1px solid #C1DAD7;
   border-bottom: 1px solid #C1DAD7;
-  padding: 6px 12px 6px 12px;
+  padding: 6px;
   color: #4f6b72;
 }
 td.lft {
