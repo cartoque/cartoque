@@ -1,0 +1,17 @@
+<p class="actions">
+  <%= link_to "Déclarer un serveur de bases de données", new_database_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Serveurs</th>
+    <th colspan="2" class="actions">Actions</th>
+  </tr>
+  <% for database in @databases %>
+    <tr>
+      <td><%= database.name %></td>
+      <td><%= link_to "Editer", edit_database_path(database) %></td>
+      <td><%= link_to "Supprimer", database, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>

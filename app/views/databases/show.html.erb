@@ -1,0 +1,17 @@
+<% title "Base de données" %>
+
+<table class="show_item">
+  <thead>
+    <tr>
+      <th colspan="2">Base <%= @database.name %></th>
+    </tr>
+  </thead>
+  <%= show_for @database do |a| %>
+  <% end %>
+</table>
+
+<p class="actions">
+  <%= link_to "Editer", edit_database_path(@database) %> |
+  <%= link_to "Supprimer", @database, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "Retourner à la liste", database_path %>
+</p>

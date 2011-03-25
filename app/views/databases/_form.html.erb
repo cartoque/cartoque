@@ -1,0 +1,25 @@
+<%= simple_form_for(@database) do |f| %>
+  <table class="show_item">
+    <tbody>
+      <% if @database.errors.any? %>
+      <tr id="error_explanation"><td colspan="2">
+        <h2><%= pluralize(@database.errors.count, "erreur") %> :</h2>
+        <ul>
+        <% @database.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </td></tr>
+      <% end %>
+      <%= f.input :name, :wrapper_class => "th" %>
+    </tbody>
+  </table>
+
+  <p class="actions">
+    <%= f.button :submit %>
+    ou <%= link_to "Retourner à la liste", databases_path %> 
+    <% unless @database.new_record? %>
+      | <%= link_to "Voir", @database %>
+    <% end %>
+  </p>
+<% end %>

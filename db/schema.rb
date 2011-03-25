@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110308100406) do
+ActiveRecord::Schema.define(:version => 20110314074637) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                      :default => "",    :null => false
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(:version => 20110308100406) do
   create_table "bureaux", :force => true do |t|
     t.string "bureau_court", :default => "", :null => false
     t.string "bureau_long",  :default => "", :null => false
+  end
+
+  create_table "databases", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "frequence", :force => true do |t|
@@ -89,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20110308100406) do
     t.integer "taille_disque_alt",                  :default => 0
     t.integer "nb_disque",                          :default => 0
     t.integer "nb_disque_alt",                      :default => 0
+    t.integer "database_id"
   end
 
   create_table "machines_sousreseaux", :force => true do |t|
