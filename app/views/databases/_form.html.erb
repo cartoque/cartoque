@@ -12,6 +12,16 @@
       </td></tr>
       <% end %>
       <%= f.input :name, :wrapper_class => "th" %>
+      <tr class="select optional">
+        <td class="label">
+          <label class="select optional" for="server_ids">Serveurs</label>
+        </td>
+        <td class="content">
+          <%= collection_select(:database, :machine_ids, Machine.order(:nom), :id, :nom,
+                                { :prompt => "Sélectionnez..." }, { :multiple => "multiple" }) %>
+          <%= hidden_field_tag "database[machine_ids][]", "" %>
+        </td>
+      </tr>
     </tbody>
   </table>
 

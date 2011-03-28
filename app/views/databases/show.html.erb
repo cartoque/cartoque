@@ -7,6 +7,19 @@
     </tr>
   </thead>
   <%= show_for @database do |a| %>
+    <tr class="wrapper database_machines">
+      <td colspan="2">
+        <% if @database.machines.any? %>
+          <ul>
+          <% @database.machines.each do |machine| %>
+            <li><%= link_to machine.nom, machine %></li>
+          <% end %>
+          </ul>
+        <% else %>
+          <p>Aucune machine liée.</p>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
 </table>
 
