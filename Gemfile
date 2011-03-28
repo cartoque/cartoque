@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -34,7 +34,7 @@ gem 'inherited_resources'
 gem 'simple_form'
 gem 'show_for'
 gem 'has_scope'
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 0.2.7'
 gem 'yaml_db'
 gem 'pdfkit'
 gem 'storcs'
