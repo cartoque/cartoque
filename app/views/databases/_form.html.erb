@@ -21,7 +21,7 @@
 
   });
  
-//]]></script> 
+//]]></script>
 
 <%= simple_form_for(@database) do |f| %>
   <table class="show_item">
@@ -52,7 +52,7 @@
 
   <p class="actions">
     <%= f.button :submit %>
-    ou <%= link_to "Retourner à la liste", databases_path %> 
+    ou <%= link_to "Retourner à la liste", databases_path %>
     <% unless @database.new_record? %>
       | <%= link_to "Voir", @database %>
     <% end %>
