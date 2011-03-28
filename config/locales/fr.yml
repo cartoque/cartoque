@@ -82,3 +82,4 @@ fr:
   type_serveur: "Type de serveur"
   memoire_virtuelle: "Mémoire memoire_virtuelle"
   physical_rack: "Rack"
+  name: "Nom"
