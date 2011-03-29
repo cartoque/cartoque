@@ -279,3 +279,6 @@ p.progress-info { clear:left; font-style:italic; font-size:80%; }
 #storage table.storage-array { border-collapse:collapse; }
 #storage table.storage-array td { border:1px solid #aaa; white-space:nowrap; }
 #storage table.storage-array td.closed { background:#999 none repeat scroll 0%; }
+
+/* databases */
+.database_nodes { margin:0; position:relative; display:block; padding-left:1em; list-style-type:none; color:#666; font-size:90%; }

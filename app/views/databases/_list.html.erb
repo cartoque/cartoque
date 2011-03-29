@@ -9,7 +9,7 @@
   </tr>
   <% for database in @databases %>
     <tr>
-      <td><%= database.name %></td>
+      <td><%= database_nodes database %></td>
       <td><%= link_to "Editer", edit_database_path(database) %></td>
       <td><%= link_to "Supprimer", database, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
