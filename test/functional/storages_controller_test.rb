@@ -2,7 +2,7 @@ require 'test_helper'
 
 class StoragesControllerTest < ActionController::TestCase
   setup do
-    @storage = storages(:one)
+    @storage = Factory(:storage)
   end
 
   test "should get index" do
@@ -20,8 +20,7 @@ class StoragesControllerTest < ActionController::TestCase
     assert_difference('Storage.count') do
       post :create, :storage => @storage.attributes
     end
-
-    assert_redirected_to storage_path(assigns(:storage))
+    assert_redirected_to storages_path
   end
 
   test "should show storage" do
@@ -36,14 +35,13 @@ class StoragesControllerTest < ActionController::TestCase
 
   test "should update storage" do
     put :update, :id => @storage.to_param, :storage => @storage.attributes
-    assert_redirected_to storage_path(assigns(:storage))
+    assert_redirected_to storages_path
   end
 
   test "should destroy storage" do
     assert_difference('Storage.count', -1) do
       delete :destroy, :id => @storage.to_param
     end
-
     assert_redirected_to storages_path
   end
 end
