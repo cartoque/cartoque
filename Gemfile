@@ -37,7 +37,7 @@ gem 'has_scope'
 gem 'jquery-rails', '>= 0.2.7'
 gem 'yaml_db'
 gem 'pdfkit'
-gem 'storcs'
+gem 'storcs', '>= 0.0.2'
 
 group :test do
   gem 'shoulda'
