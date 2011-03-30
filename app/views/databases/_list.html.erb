@@ -5,13 +5,25 @@
 <table>
   <tr>
     <th>Serveurs</th>
-    <th colspan="2" class="actions">Actions</th>
+    <th>IP:Port (nom)</th>
+    <th>Bases</th>
   </tr>
   <% for database in @databases %>
+    <% height = database.postgres_report.size %>
+    <% height = 1 if height == 0 %>
     <tr>
-      <td><%= database_nodes database %></td>
-      <td><%= link_to "Editer", edit_database_path(database) %></td>
-      <td><%= link_to "Supprimer", database, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td rowspan="<%= height %>">
+        <%= database_nodes database %><br />
+        <span class="offset">
+          <%= link_to "edit", edit_database_path(database) %>
+          | <%= link_to "suppr", database, :confirm => 'Are you sure?', :method => :delete %>
+        </span>
+      </td>
+      <% if database.postgres_report.present? %>
+        <%= render :partial => 'postgres_report', :collection => database.postgres_report %>
+      <% else %>
+        <td></td><td></td>
+      <% end %>
     </tr>
   <% end %>
 </table>

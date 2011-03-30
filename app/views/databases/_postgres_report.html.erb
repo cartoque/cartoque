@@ -1,0 +1,20 @@
+<% if postgres_report_counter != 0 %><tr><% end %>
+<td>
+  Instance <strong><%= postgres_report["pg_cluster"] %> (<%= postgres_report["port"] %>)</strong>
+  <%= "<br />Ecoute: ".html_safe + postgres_report["ip"] %>
+  <%= "<br />DNS: ".html_safe + postgres_report["host"] if postgres_report["host"].present? %>
+</td>
+<td>
+  <% if postgres_report["databases"].present? %>
+  <ul class="databases">
+  <% postgres_report["databases"].keys.sort.each do |db| %>
+    <% size = postgres_report["databases"][db] %>
+    <li><%= db %><span style="float:right; padding-left:1em"><%= pretty_size(size).gsub(/b$/,"") %></span></li>
+  <% end %>
+    <li style="font-weight:bold;">
+      Total <span style="float:right; padding-left:1em"><%= pretty_size(postgres_report["databases"].values.sum).gsub(/b$/,"") %></span>
+    </li>
+  </ul>
+  <% end %>
+</td>
+<% if postgres_report_counter != 0 %></tr><% end %>

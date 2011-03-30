@@ -74,4 +74,12 @@ class Machine < ActiveRecord::Base
   def fullmodel
     [marque, modele].join(" ")
   end
+
+  def postgres_file
+    File.expand_path("data/postgres/#{nom.downcase}.txt", Rails.root)
+  end
+
+  def postgres_report
+    File.exists?(postgres_file) ? JSON.parse(File.read(postgres_file)) : []
+  end
 end

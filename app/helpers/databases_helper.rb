@@ -1,4 +1,6 @@
 module DatabasesHelper
+  include Storcs::Formatter
+
   def database_nodes(database)
     html = "<strong>#{database.name}</strong>"
     if database.machines.any? && database.machines.map(&:nom) != [database.name]

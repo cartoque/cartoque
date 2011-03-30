@@ -282,3 +282,5 @@ p.progress-info { clear:left; font-style:italic; font-size:80%; }
 
 /* databases */
 .database_nodes { margin:0; position:relative; display:block; padding-left:1em; list-style-type:none; color:#666; font-size:90%; }
+ul.databases { margin:0; position:relative; display:block; padding:0; list-style-type:none; }
+span.offset { padding-left:1em; }
