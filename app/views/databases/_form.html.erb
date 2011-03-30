@@ -37,7 +37,9 @@
       </td></tr>
       <% end %>
       <%= f.input :name, :required => true, :wrapper_class => "th" %>
-      <tr class="select optional">
+      <%= f.input :database_type, :collection => %w(postgres oracle),
+                  :required => true, :include_blank => false %>
+      <tr class="input select optional">
         <td class="label">
           <label class="select optional" for="server_ids">Serveurs</label>
         </td>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110314074637) do
+ActiveRecord::Schema.define(:version => 20110330143239) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                      :default => "",    :null => false
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20110314074637) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "database_type"
   end
 
   create_table "frequence", :force => true do |t|

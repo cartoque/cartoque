@@ -1,7 +1,8 @@
 class Database < ActiveRecord::Base
-  attr_accessible :name, :machine_ids
+  attr_accessible :name, :database_type, :machine_ids
   has_many :machines
   validates_presence_of :name
+  validates_inclusion_of :database_type, :in => %w(postgres oracle)
 
   def postgres_report
     machines.inject([]) do |memo,machine|

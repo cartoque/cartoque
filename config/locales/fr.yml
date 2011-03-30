@@ -83,3 +83,4 @@ fr:
   memoire_virtuelle: "Mémoire memoire_virtuelle"
   physical_rack: "Rack"
   name: "Nom"
+  database_type: "Type"
