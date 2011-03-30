@@ -1,8 +1,13 @@
 <% if postgres_report_counter != 0 %><tr><% end %>
-<td>
-  Instance <strong><%= postgres_report["pg_cluster"] %> (<%= postgres_report["port"] %>)</strong>
-  <%= "<br />Ecoute: ".html_safe + postgres_report["ip"] %>
-  <%= "<br />DNS: ".html_safe + postgres_report["host"] if postgres_report["host"].present? %>
+<td class="center">
+  <% if postgres_report["host"].present? %>
+    <%= postgres_report["host"] %><br/>
+  <% end %>
+  <strong><%= postgres_report["pg_cluster"] %></strong>
+</td>
+<td class="center">
+  <%= postgres_report["ip"] %><br />
+  <strong><%= postgres_report["port"] %></strong>
 </td>
 <td>
   <% if postgres_report["databases"].present? %>

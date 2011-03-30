@@ -5,8 +5,9 @@
 <table>
   <tr>
     <th>Serveurs</th>
-    <th>IP:Port (nom)</th>
-    <th>Bases</th>
+    <th>Instance</th>
+    <th>IP:Port</th>
+    <th>Bases ou Schemas</th>
   </tr>
   <% for database in @databases %>
     <% height = database.postgres_report.size %>
