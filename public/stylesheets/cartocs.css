@@ -76,6 +76,7 @@ caption {
 }
 th, tr.th td {
   color: #4f6b72;
+  background-color:#cae8ea;
   border-right: 1px solid #C1DAD7;
   border-bottom: 1px solid #C1DAD7;
   border-top: 1px solid #C1DAD7;
@@ -83,9 +84,6 @@ th, tr.th td {
   text-align: center;
   padding: 4px;
   vertical-align:middle;
-}
-th {
-  background-color:#cae8ea;
 }
 table thead th.forwardSort a, table thead th.reverseSort a {
   color:#000;
