@@ -53,7 +53,7 @@
   <p class="actions">
     <%= f.button :submit %>
     ou <%= link_to "Retourner à la liste", databases_path %>
-    <% unless @database.new_record? %>
+    <% unless true || @database.new_record? %>
       | <%= link_to "Voir", @database %>
     <% end %>
   </p>
