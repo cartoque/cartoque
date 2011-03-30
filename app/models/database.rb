@@ -11,4 +11,12 @@ class Database < ActiveRecord::Base
       [report["port"].to_i, report["pg_cluster"]]
     end
   end
+
+  def oracle_report
+    machines.inject([]) do |memo,machine|
+      memo.concat(machine.oracle_report)
+    end.sort_by do |report|
+      report["ora_instance"]
+    end
+  end
 end

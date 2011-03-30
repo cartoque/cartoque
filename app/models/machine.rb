@@ -82,4 +82,12 @@ class Machine < ActiveRecord::Base
   def postgres_report
     File.exists?(postgres_file) ? JSON.parse(File.read(postgres_file)) : []
   end
+
+  def oracle_file
+    File.expand_path("data/oracle/#{nom.downcase}.txt", Rails.root)
+  end
+
+  def oracle_report
+    File.exists?(oracle_file) ? JSON.parse(File.read(oracle_file)) : []
+  end
 end

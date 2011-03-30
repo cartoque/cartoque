@@ -46,5 +46,23 @@
     <th>Schémas</th>
     <th>Stockage</th>
   </tr>
+  <% for database in oracle_databases %>
+    <% height = database.oracle_report.size %>
+    <% height = 1 if height == 0 %>
+    <tr>
+      <td rowspan="<%= height %>">
+        <%= database_nodes database %>
+        <p class="actions">
+          <%= link_to "edit", edit_database_path(database) %>
+          | <%= link_to "suppr", database, :confirm => 'Are you sure?', :method => :delete %>
+        </p>
+      </td>
+      <% if database.oracle_report.present? %>
+        <%= render :partial => 'oracle_report', :collection => database.oracle_report %>
+      <% else %>
+        <td colspan="4" class="center">Information non disponible.</td>
+      <% end %>
+    </tr>
+  <% end %>
 </table>
 </div>
