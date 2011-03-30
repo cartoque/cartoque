@@ -1,9 +1,8 @@
 <% if postgres_report_counter != 0 %><tr><% end %>
 <td class="center">
-  <% if postgres_report["host"].present? %>
-    <%= postgres_report["host"] %><br/>
-  <% end %>
-  <strong><%= postgres_report["pg_cluster"] %></strong>
+  <strong>
+    <abbr title="<%= postgres_report["host"] %>"><%= postgres_report["pg_cluster"] %></abbr>
+  </strong>
 </td>
 <td class="center">
   <%= postgres_report["ip"] %><br />
@@ -22,4 +21,5 @@
   </ul>
   <% end %>
 </td>
+<td></td>
 <% if postgres_report_counter != 0 %></tr><% end %>

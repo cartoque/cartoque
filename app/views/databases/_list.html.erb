@@ -5,9 +5,10 @@
 <table>
   <tr>
     <th>Serveurs</th>
-    <th>Instance</th>
+    <th>PgCluster</th>
     <th>IP:Port</th>
-    <th>Bases ou Schemas</th>
+    <th>Bases</th>
+    <th>Stockage</th>
   </tr>
   <% for database in @databases %>
     <% height = database.postgres_report.size %>
@@ -23,7 +24,7 @@
       <% if database.postgres_report.present? %>
         <%= render :partial => 'postgres_report', :collection => database.postgres_report %>
       <% else %>
-        <td colspan="3" class="center">Information non disponible.</td>
+        <td colspan="4" class="center">Information non disponible.</td>
       <% end %>
     </tr>
   <% end %>
