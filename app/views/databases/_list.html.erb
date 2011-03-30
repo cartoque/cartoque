@@ -23,7 +23,7 @@
       <% if database.postgres_report.present? %>
         <%= render :partial => 'postgres_report', :collection => database.postgres_report %>
       <% else %>
-        <td></td><td></td>
+        <td colspan="3" class="center">Information non disponible.</td>
       <% end %>
     </tr>
   <% end %>
