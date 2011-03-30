@@ -5,7 +5,7 @@ html {
 body {
   /*background-color:#4B7399;*/
   font-family:Verdana, Helvetica, Arial;
-  font-size:11px;
+  font-size:12px;
   margin:0;
 }
 
@@ -177,7 +177,7 @@ table.show_item td.content {
 
 .actions {
   text-align:center;
-  font-size:11px;
+  font-size: 90%;
 }
 
 label.required abbr {

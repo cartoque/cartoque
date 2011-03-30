@@ -14,7 +14,7 @@
     <tr>
       <td rowspan="<%= height %>">
         <%= database_nodes database %><br />
-        <span class="offset">
+        <span class="offset actions">
           <%= link_to "edit", edit_database_path(database) %>
           | <%= link_to "suppr", database, :confirm => 'Are you sure?', :method => :delete %>
         </span>
