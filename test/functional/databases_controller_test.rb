@@ -29,7 +29,7 @@ class DatabasesControllerTest < ActionController::TestCase
   def test_create_valid
     Database.any_instance.stubs(:valid?).returns(true)
     post :create
-    assert_redirected_to database_url(assigns(:database))
+    assert_redirected_to databases_url #database_url(assigns(:database))
   end
   
   def test_edit
@@ -46,7 +46,7 @@ class DatabasesControllerTest < ActionController::TestCase
   def test_update_valid
     Database.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @database
-    assert_redirected_to database_url(assigns(:database))
+    assert_redirected_to databases_url #database_url(assigns(:database))
   end
   
   def test_destroy
