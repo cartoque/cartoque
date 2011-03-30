@@ -14,11 +14,11 @@
     <% height = 1 if height == 0 %>
     <tr>
       <td rowspan="<%= height %>">
-        <%= database_nodes database %><br />
-        <span class="offset actions">
+        <%= database_nodes database %>
+        <p class="actions">
           <%= link_to "edit", edit_database_path(database) %>
           | <%= link_to "suppr", database, :confirm => 'Are you sure?', :method => :delete %>
-        </span>
+        </p>
       </td>
       <% if database.postgres_report.present? %>
         <%= render :partial => 'postgres_report', :collection => database.postgres_report %>
