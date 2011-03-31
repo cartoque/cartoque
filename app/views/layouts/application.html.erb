@@ -3,7 +3,6 @@
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
     <meta charset="UTF-8">
-    <%= stylesheet_link_tag "cartocs" %>
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
