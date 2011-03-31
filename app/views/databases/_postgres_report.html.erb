@@ -13,10 +13,10 @@
   <ul class="databases">
   <% postgres_report["databases"].keys.sort.each do |db| %>
     <% size = postgres_report["databases"][db] %>
-    <li><%= db %><span style="float:right; padding-left:1em"><%= pretty_size(size) %></span></li>
+    <li><%= db %><span style="float:right; padding-left:1em"><%= display_size(size) %></span></li>
   <% end %>
     <li style="font-weight:bold;">
-      Total <span style="float:right; padding-left:1em"><%= pretty_size(postgres_report["databases"].values.sum) %></span>
+      Total <span style="float:right; padding-left:1em"><%= display_size(postgres_report["databases"].values.sum) %></span>
     </li>
   </ul>
   <% end %>

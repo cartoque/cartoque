@@ -9,7 +9,7 @@ module DatabasesHelper
     html.html_safe
   end
 
-  def pretty_size(size)
+  def display_size(size)
     html = size_in_Go(size)
     if html.to_f <= 1
       html = %(<abbr title="#{size_in_Mo(size)}Mo">#{html}</abbr>)
