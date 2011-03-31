@@ -164,11 +164,6 @@ table.show_item {
   width:300px;
 }
 
-table.show_item th, .simple_form th {
-  text-align:center;
-  text-transform:uppercase;
-}
-
 table.show_item td.content {
   text-align:center;
   font-weight:bold;
