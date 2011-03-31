@@ -13,10 +13,10 @@
   <ul class="databases">
   <% oracle_report["schemas"].keys.sort.each do |schema| %>
     <% size = oracle_report["schemas"][schema] %>
-    <li><%= schema %><span style="float:right; padding-left:1em"><%= pretty_size(size).gsub(/b$/,"") %></span></li>
+    <li><%= schema %><span style="float:right; padding-left:1em"><%= pretty_size(size) %></span></li>
   <% end %>
     <li style="font-weight:bold;">
-      Total <span style="float:right; padding-left:1em"><%= pretty_size(oracle_report["schemas"].values.sum).gsub(/b$/,"") %></span>
+      Total <span style="float:right; padding-left:1em"><%= pretty_size(oracle_report["schemas"].values.sum) %></span>
     </li>
   </ul>
   <% end %>

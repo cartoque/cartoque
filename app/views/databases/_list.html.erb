@@ -12,7 +12,7 @@
     <th>Serveurs</th>
     <th>PgCluster</th>
     <th>IP:Port</th>
-    <th>Bases</th>
+    <th style="text-align:left;">Bases<span style="float:right;padding-left:1em">Taille(Go)</span></th>
     <th>Stockage</th>
   </tr>
   <% for database in postgres_databases %>
@@ -43,7 +43,7 @@
     <th>Serveurs</th>
     <th>Instance</th>
     <th>IP:Port</th>
-    <th>Schémas</th>
+    <th style="text-align:left;">Schémas<span style="float:right;padding-left:1em">Taille(Go)</span></th>
     <th>Stockage</th>
   </tr>
   <% for database in oracle_databases %>

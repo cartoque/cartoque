@@ -15,4 +15,9 @@ class DatabasesHelperTest < ActionView::TestCase
       assert_select 'li', @database.machines.first.nom
     end
   end
+
+  should "display pretty size" do
+    assert_equal "<abbr title=\"1.0Mo\">0.0</abbr>", pretty_size(1024**2)
+    assert_equal "2.5", pretty_size(2.5*1024**3)
+  end
 end
