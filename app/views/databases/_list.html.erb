@@ -10,10 +10,7 @@
 <table>
   <tr>
     <th>Serveurs</th>
-    <th>PgCluster</th>
-    <th>IP:Port</th>
-    <th style="text-align:left;">Bases<span style="float:right;padding-left:1em">Taille(Go)</span></th>
-    <th>Stockage</th>
+    <%= database_headers_for("postgres") %>
   </tr>
   <% for database in postgres_databases %>
     <% height = database.postgres_report.size %>
@@ -41,10 +38,7 @@
 <table>
   <tr>
     <th>Serveurs</th>
-    <th>Instance</th>
-    <th>IP:Port</th>
-    <th style="text-align:left;">Schémas<span style="float:right;padding-left:1em">Taille(Go)</span></th>
-    <th>Stockage</th>
+    <%= database_headers_for("oracle") %>
   </tr>
   <% for database in oracle_databases %>
     <% height = database.oracle_report.size %>

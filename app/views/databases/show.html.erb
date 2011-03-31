@@ -1,14 +1,20 @@
 <% title "Base de données" %>
 
+<p class="actions">
+  <%= link_to "Editer", edit_database_path(@database) %> |
+  <%= link_to "Supprimer", @database, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "Retourner à la liste", databases_path %>
+</p>
+
 <table class="show_item">
   <thead>
     <tr>
-      <th colspan="2">Base <%= @database.name %></th>
+      <th colspan="4">Base <%= @database.name %></th>
     </tr>
   </thead>
   <%= show_for @database do |a| %>
     <tr class="wrapper database_machines">
-      <td colspan="2">
+      <td colspan="4">
         <% if @database.machines.any? %>
           <ul>
           <% @database.machines.each do |machine| %>
@@ -21,10 +27,15 @@
       </td>
     </tr>
   <% end %>
+  <% if @database.postgres_report.present? or @database.oracle_report.present? %>
+  <thead>
+    <tr>
+      <%= database_headers_for(@database.database_type) %>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => "#{@database.database_type}_report",
+               :collection => @database.send(:"#{@database.database_type}_report") %>
+  </tbody>
+  <% end %>
 </table>
-
-<p class="actions">
-  <%= link_to "Editer", edit_database_path(@database) %> |
-  <%= link_to "Supprimer", @database, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "Retourner à la liste", databases_path %>
-</p>
