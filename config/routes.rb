@@ -1,7 +1,7 @@
 Cartocs::Application.routes.draw do
 
+  resources :tomcats, :only => :index
   resources :databases
-
   resources :storages
   resources :machines
   resources :applications

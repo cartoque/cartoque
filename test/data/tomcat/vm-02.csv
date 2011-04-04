@@ -1,0 +1,2 @@
+site;vm-02;app01.example.com;;vip-00.example.com;TC60_01;/apps/j2ee/app01;jndi01:jdbc:postgresql://app01.db:5433/db01:app01
+instance;vm-02;TC60_01;jdbc9;Java160;128;512
