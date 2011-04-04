@@ -1,5 +1,6 @@
 <p class="actions">
   <%= link_to "Déclarer un serveur de bases de données", new_database_path %>
+  | <%= link_to_function "Changer de vue", "$('.databases-details,.databases-summary').toggle();" %>
 </p>
 
 <% postgres_databases = @databases.select{|db| db.database_type == 'postgres'} %>

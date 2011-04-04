@@ -94,7 +94,7 @@ h1.welcome { font-family:'Lobster', serif; font-size:50px; font-style:normal; fo
 
 /* databases */
 .database_nodes { margin:0; position:relative; display:block; padding:0 0 0 1em; list-style-type:none; color:#666; font-size:90%; }
-ul.databases { margin:0; position:relative; display:block; padding:0; list-style-type:none; }
+ul.databases-details { margin:0; position:relative; display:block; padding:0; list-style-type:none; }
 .offset { padding-left:1em; }
 .database_type { float:left; width:50%; margin:0; padding:0 auto; }
 .database_type > table { width:96%; }

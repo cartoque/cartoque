@@ -10,7 +10,10 @@
 </td>
 <td>
   <% if postgres_report["databases"].present? %>
-  <ul class="databases">
+  <span class="databases-summary" style="display:none;">
+    <%= databases_summary(postgres_report["databases"]) %>
+  </span>
+  <ul class="databases-details">
   <% postgres_report["databases"].keys.sort.each do |db| %>
     <% size = postgres_report["databases"][db] %>
     <li><%= db %><span style="float:right; padding-left:1em"><%= display_size(size) %></span></li>
