@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110330143239) do
+ActiveRecord::Schema.define(:version => 20110405084643) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                      :default => "",    :null => false
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(:version => 20110330143239) do
     t.string  "sousreseau_ip",       :limit => 23,  :default => "",    :null => false
     t.string  "quatr_octet",         :limit => 9,   :default => "",    :null => false
     t.string  "numero_serie",        :limit => 100, :default => "",    :null => false
-    t.boolean "virtuelle",                          :default => false, :null => false
     t.text    "description",                                           :null => false
     t.string  "modele",              :limit => 100, :default => "",    :null => false
     t.string  "memoire",             :limit => 50,  :default => "",    :null => false
@@ -97,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20110330143239) do
     t.integer "nb_disque",                          :default => 0
     t.integer "nb_disque_alt",                      :default => 0
     t.integer "database_id"
+    t.boolean "virtuelle",                          :default => false
   end
 
   create_table "machines_sousreseaux", :force => true do |t|

@@ -42,6 +42,7 @@ table.show_item td.content { text-align:center; font-weight:bold; width:50%; }
 .contextual { float:right; }
 .contextual * { padding:0; margin:0; }
 .actions { text-align:center; font-size: 90%; }
+.hidden { display:none; }
 
 /* wrappers */
 #top-menu { padding:5px 8px 8px; margin:0 0 5px; background-color:#edf3f3; }
@@ -101,6 +102,9 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .offset { padding-left:1em; }
 .database_type { float:left; width:50%; margin:0; padding:0 auto; }
 .database_type > table { width:96%; }
+
+/* machines */
+.virtual-machine { float:right; text-transform:uppercase; font-weight:bolder; color:#3a3; }
 
 /* media=print */
 @media print {

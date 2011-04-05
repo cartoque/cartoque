@@ -1,3 +1,4 @@
+<% hidden_if_virtual = @machine.virtuelle? ? 'display:none;' : '' %>
 <%= simple_form_for(@machine) do |f| %>
   <p class="actions">
     <%= f.button :submit %>
@@ -27,9 +28,12 @@
       <%= f.input :ip %>
       <!--<%= f.input :type_serveur %>-->
       <%= f.association :operating_system %>
+      <%= f.input :virtuelle %>
       <%= f.association :service %>
       <%= f.association :theme %>
       <!--<%= f.input :ancien_nom %>-->
+    </tbody>
+    <tbody id="machine-maintenance" style="<%= hidden_if_virtual %>">
       <tr><th colspan="2">Maintenance</th></tr>
       <%= f.association :mainteneur %>
       <%= f.input :date_mes %>
@@ -43,14 +47,15 @@
   <div id="machine_hardware" class="column_wrapper">
   <table class="inputs">
     <thead>
-      <tr><th colspan="2">Matériel</th></tr>
+      <tr><th colspan="2" id="machine-hardware-title"><%= @machine.virtuelle? ? "Ressources" : "Matériel" %></th></tr>
     </thead>
-    <tbody>
+    <tbody id="machine-physical-hardware" style="<%= hidden_if_virtual %>">
       <%= f.association :site %>
       <%= f.association :physical_rack %>
       <%= f.input :modele %>
       <%= f.input :marque %>
-      <%= f.input :virtuelle %>
+    </tbody>
+    <tbody>
       <%= f.input :nb_proc, :collection => [1,2,4,6,8,10,12,16,24,32] %>
       <%= f.input :ref_proc %>
       <%= f.input :frequence, :as => :string %>

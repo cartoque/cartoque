@@ -36,6 +36,17 @@ $(function() {
   $(window).bind("popstate", function() {
     //$.getScript(location.href);
   });
+
+
+  //machine 'virtuelle' toggling
+  $('input#machine_virtuelle').live('change', function(e) {
+    $('#machine-maintenance, #machine-physical-hardware').toggle();
+    if ($('input#machine_virtuelle').attr('checked') == true) {
+      $('#machine-hardware-title').html("Ressources");
+    } else {
+      $('#machine-hardware-title').html("Matériel");
+    }
+  });
 });
 
 // utility
