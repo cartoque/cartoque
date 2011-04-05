@@ -11,6 +11,9 @@
                  :legend => ('%0.0f%' % device.percent_used)) %>
   
 <% devid = "device-#{device.name.parameterize}" %>
+<% if device.unassigned > 0 %>
+  <span class="unassigned">+ <%= pretty_size(device.unassigned) %> unassigned</span>
+<% end %>
 <small>
   <% link_to "Plus", {},
                 :onclick => %Q(Effect.toggle("#{devid}", "blind", {duration:0.3}); return false;) %>

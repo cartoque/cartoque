@@ -97,6 +97,7 @@ h1.welcome { font-family:'Lobster', serif; font-size:50px; font-style:normal; fo
 #storage table.storage-array { border-collapse:collapse; }
 #storage table.storage-array td { border:1px solid #aaa; white-space:nowrap; }
 #storage table.storage-array td.closed { background:#999 none repeat scroll 0%; }
+#storage .unassigned { font-size:90%; color:#cb2; font-style:italic; font-weight:bold; float:right; }
 
 /* databases */
 .database_nodes { margin:0; position:relative; display:block; padding:0 0 0 1em; list-style-type:none; color:#666; font-size:90%; }
