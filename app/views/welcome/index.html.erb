@@ -1,8 +1,8 @@
 <% title "Welcome to Cartoque!", true %>
 
-<table>
+<table class="welcome">
   <tr>
-    <th class="center" colspan="2">Welcome</th>
+    <th class="center" colspan="2">Statistiques</th>
   </tr>
   <tr>
     <td><%= link_to "Applications", applications_path %></td>
@@ -10,6 +10,11 @@
   </tr>
   <tr>
     <td><%= link_to "Machines", machines_path %></td>
-    <td><%= Machine.count %></td>
+    <td>
+      <%= Machine.count %> serveurs
+      <ul class="details">
+        <li><%= Machine.where(:virtuelle => true).count %> VMs</li>
+        <li><%= Machine.where(:virtuelle => false).count %> physiques</li>
+      </ul>
   </tr>
 </table>
