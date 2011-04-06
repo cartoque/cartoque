@@ -90,6 +90,7 @@ h1.welcome { font-family:'Lobster', serif; font-size:50px; font-style:normal; fo
 #storage table.storage-array { font-size:90%; border-collapse:collapse; border-left:none; margin-right:0; }
 #storage tr.storage-array > td { padding:3px; white-space:nowrap; text-align:left; border-right:none; border-left:none; }
 #storage tr.storage-array:last-child > td { border-bottom:none; }
+#storage tr.storage-array > td:first-child { font-size:95%; }
 #storage table.storage-array td.closed { background:#999 none repeat scroll 0%; }
 #storage .unassigned { font-size:90%; color:#cb2; font-style:italic; font-weight:bold; float:right; padding-right:2px; }
 
