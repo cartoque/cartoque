@@ -7,6 +7,10 @@ class MachinesController < InheritedResources::Base
     @machines ||= end_of_association_chain.search(params[:search]).order(sort_column + " " + sort_direction)
   end
 
+  def maintenance
+    @machines = Machine.where(:virtuelle => false).all(:order => "nom")
+  end
+
   private
   def sort_column
     Machine.column_names.include?(params[:sort]) ? params[:sort] : "nom"

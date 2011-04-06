@@ -1,0 +1,26 @@
+<% title "Machines" %>
+
+<div id="machines" class="items_list">
+<table class="pretty">
+  <tr>
+    <th>Nom</th>
+    <th>Modèle</th>
+    <th>N° de série</th>
+    <th>Mise en service</th>
+    <th>Mainteneur</th>
+    <th>Type de contrat</th>
+    <th>Fin de garantie</th>
+  </tr>
+  <% for machine in @machines %>
+  <tr>
+    <td><%= link_to machine.nom, machine %></td>
+    <td><%= machine.fullmodel %></td>
+    <td class="center"><%= machine.numero_serie %></td>
+    <td class="center"><%= machine.date_mes %></td>
+    <td><%= machine.mainteneur %></td>
+    <td><%= machine.type_contrat %></td>
+    <td class="center"><%= machine.fin_garantie %></td>
+  </tr>
+  <% end %>
+</table>
+</div>

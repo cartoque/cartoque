@@ -1,6 +1,7 @@
 <p class="actions">
   <%= link_to "Ajouter une machine", new_machine_path %> | 
-  <%= link_to "Export PDF", machines_path(params.merge(:format => "pdf")) %>
+  <%= link_to "Export PDF", machines_path(params.merge(:format => "pdf")) %> | 
+  <%= link_to "Maintenance", maintenance_machines_path %>
 </p>
 
 <table class="pretty">
