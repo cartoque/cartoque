@@ -1,7 +1,7 @@
 class SetMachinesVirtualAttribute < ActiveRecord::Migration
   def self.up
     Machine.all.each do |m|
-      if m.nom.match(/^(ar-|kr-|vm-)/)
+      if m.nom.match(/^(ar-|kr-|vm-|xe-)/)
         m.virtuelle = true
         m.save
       end
