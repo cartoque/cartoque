@@ -31,7 +31,7 @@ gem 'mysql2'
 
 gem 'nifty-generators'
 gem 'inherited_resources'
-gem 'simple_form'
+gem 'simple_form', '>= 1.3.1'
 gem 'show_for'
 gem 'has_scope'
 gem 'jquery-rails', '>= 0.2.7'
