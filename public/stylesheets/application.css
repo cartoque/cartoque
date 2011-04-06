@@ -85,6 +85,7 @@ h1.welcome { font-family:'Lobster', serif; font-size:50px; font-style:normal; fo
 #storage td.global { font-size:110%; }
 #storage td.details { white-space:nowrap; }
 #storage td.details * { margin-bottom:0; }
+#storage td.top { vertical-align:top; padding-top:2.5em; }
 #storage table.progress td.closed { background:#777 none repeat scroll 0%; }
 #storage table.storage-array { font-size:90%; border-collapse:collapse; border-left:none; margin-right:0; }
 #storage tr.storage-array > td { padding:3px; white-space:nowrap; text-align:left; border-right:none; border-left:none; }
