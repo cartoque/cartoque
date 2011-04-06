@@ -7,7 +7,7 @@
   <%= pretty_size(device.free) %> disponibles
 </p>
 <%= progress_bar(device.percent_used,
-                 :width => '20em',
+                 :width => '23em',
                  :legend => ('%0.0f%' % device.percent_used)) %>
   
 <% devid = "device-#{device.name.parameterize}" %>
