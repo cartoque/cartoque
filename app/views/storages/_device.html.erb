@@ -14,22 +14,26 @@
 <% if device.unassigned > 0 %>
   <span class="unassigned">+ <%= pretty_size(device.unassigned) %> unassigned</span>
 <% end %>
-<small>
-  <% link_to "Plus", {},
-                :onclick => %Q(Effect.toggle("#{devid}", "blind", {duration:0.3}); return false;) %>
-</small>
+
+<% if device.children.any? %>
+<p class="more">
+  <%= link_to "Plus", {},
+              :onclick => %($("##{devid}").toggle(); return false;) %>
+</p>
+<% end %>
+
 <table id="<%= devid %>" class="storage-array" style="display:none">
 <% device.children.each do |array| %>
-  <tr>
-    <td class="center">
-      Array <%= array.name %><br />
+  <tr class="storage-array">
+    <td>
+      <%= array.name %><%= " (RAID #{array.raid})" if array.raid %><br />
       <%= pretty_size(array.size) %>
+      <%= " / #{pretty_size(array.free)} free" unless array.free == 0 %>
     </td>
-    <td class="center">
-      RAID <%= array.raid %>
+    <td style="width:100%">
+      <%= progress_bar(array.percent_used, :width => '10em',
+                       :legend => "#{array.percent_used}%") %>
     </td>
-    <td style="width:100%"><%= progress_bar(array.percent_used, :width => '10em',
-                         :legend => "#{pretty_size(array.free)} free") %></td>
   </tr>
 <% end %>
 </table>
