@@ -14,14 +14,14 @@ module ApplicationHelper
     pcts = pcts.collect(&:round)
     pcts[1] = pcts[1] - pcts[0]
     pcts << (100 - pcts[1] - pcts[0])
-    width = options[:width] || '100px;'
+    width = options[:width] || '120px;'
     legend = options[:legend] || ''
     o = %(<table class="progress" style="width:#{width};"><tr>)
     o << %(<td class="closed" style="width:#{pcts[0]}%;"></td>) if pcts[0] > 0
     o << %(<td class="done" style="width:#{pcts[1]}%;"></td>) if pcts[1] > 0
     o << %(<td class="todo" style="width:#{pcts[2]}%;"></td>) if pcts[2] > 0
+    o << %(<td class="legend">#{legend}</td>)
     o << %(</tr></table>)
-    o << %(<p class="pourcent">#{legend}</p>)
     o.html_safe
   end
 end

@@ -71,12 +71,12 @@ table.show_item td.content { text-align:center; font-weight:bold; width:50%; }
 label.required abbr { color:red; }
 
 /* progress bars */
-table.progress { border:1px solid #D7D7D7; border-collapse:collapse; border-spacing:0pt; empty-cells:show; text-align:center; float:left; margin:1px 6px 1px 0px; }
-table.progress td { height:0.9em; padding:2px; }
+table.progress { border-collapse:collapse; border-spacing:0; empty-cells:show; text-align:center; margin:2px 0 5px; }
+table.progress td { border:1px solid #d7d7d7; height:0.9em; font-size:90%; padding:2px; }
 table.progress td.closed { background:#BAE0BA none repeat scroll 0%; }
 table.progress td.done { background:#DEF0DE none repeat scroll 0%; }
 table.progress td.open { background:#FFF none repeat scroll 0%; }
-p.pourcent { margin-right:2px;}
+table.progress td.legend { border:none; padding-left:6px; }
 p.progress-info { clear:left; font-style:italic; font-size:80%; }
 
 /* generic items */
@@ -91,13 +91,13 @@ h1.welcome { font-family:'Lobster', serif; font-size:50px; font-style:normal; fo
 #storage .infos { text-align:left; margin-bottom:2px; font-size:100%; }
 #storage .infos strong { font-size:110%; }
 #storage td.global { font-size:110%; }
-#storage td.details { white-space:nowrap; padding-right:3em; }
+#storage td.details { white-space:nowrap; }
 #storage td.details * { margin-bottom:0; }
 #storage table.progress td.closed { background:#777 none repeat scroll 0%; }
 #storage table.storage-array { border-collapse:collapse; }
 #storage table.storage-array td { border:1px solid #aaa; white-space:nowrap; }
 #storage table.storage-array td.closed { background:#999 none repeat scroll 0%; }
-#storage .unassigned { font-size:90%; color:#cb2; font-style:italic; font-weight:bold; float:right; }
+#storage .unassigned { font-size:90%; color:#cb2; font-style:italic; font-weight:bold; float:right; padding-right:2px; }
 
 /* databases */
 .database_nodes { margin:0; position:relative; display:block; padding:0 0 0 1em; list-style-type:none; color:#666; font-size:90%; }
