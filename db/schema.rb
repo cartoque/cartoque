@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110405084643) do
+ActiveRecord::Schema.define(:version => 20110406103853) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                      :default => "",    :null => false
@@ -74,12 +74,11 @@ ActiveRecord::Schema.define(:version => 20110405084643) do
     t.string  "sousreseau_ip",       :limit => 23,  :default => "",    :null => false
     t.string  "quatr_octet",         :limit => 9,   :default => "",    :null => false
     t.string  "numero_serie",        :limit => 100, :default => "",    :null => false
+    t.boolean "virtuelle",                          :default => false, :null => false
     t.text    "description",                                           :null => false
     t.string  "modele",              :limit => 100, :default => "",    :null => false
     t.string  "memoire",             :limit => 50,  :default => "",    :null => false
     t.float   "frequence",                          :default => 0.0,   :null => false
-    t.string  "date_mes",            :limit => 100, :default => "",    :null => false
-    t.string  "fin_garantie",        :limit => 100, :default => "",    :null => false
     t.string  "type_contrat",        :limit => 100, :default => "",    :null => false
     t.string  "type_disque",         :limit => 50,  :default => "",    :null => false
     t.integer "taille_disque",                      :default => 0
@@ -96,7 +95,8 @@ ActiveRecord::Schema.define(:version => 20110405084643) do
     t.integer "nb_disque",                          :default => 0
     t.integer "nb_disque_alt",                      :default => 0
     t.integer "database_id"
-    t.boolean "virtuelle",                          :default => false
+    t.date    "delivered_on"
+    t.date    "maintained_until"
   end
 
   create_table "machines_sousreseaux", :force => true do |t|

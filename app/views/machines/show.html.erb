@@ -39,8 +39,8 @@
   </thead>
   <%= show_for @machine do |s| %>
     <%= s.attribute :mainteneur %>
-    <%= s.attribute :date_mes %>
-    <%= s.attribute :fin_garantie %>
+    <%= s.attribute :delivered_on %>
+    <%= s.attribute :maintained_until %>
     <%= s.attribute :type_contrat %>
     <%= s.attribute :numero_serie %>
   <% end %>

@@ -10,6 +10,15 @@ class MachinesControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:machines)
   end
+  
+  test "should get physical nodes for maintenance" do
+    get :maintenance
+    assert_response :success
+    assert_template 'maintenance'
+    assert_not_nil assigns(:machines)
+    assert_nil assigns(:machines).detect{|m| m.virtuelle?}
+  end
+  
 
   test "should get new" do
     get :new

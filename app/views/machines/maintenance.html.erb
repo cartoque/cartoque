@@ -16,10 +16,10 @@
     <td><%= link_to machine.nom, machine %></td>
     <td><%= machine.fullmodel %></td>
     <td class="center"><%= machine.numero_serie %></td>
-    <td class="center"><%= machine.date_mes %></td>
+    <td class="center"><%= l(machine.delivered_on) if machine.delivered_on.present? %></td>
     <td><%= machine.mainteneur %></td>
     <td><%= machine.type_contrat %></td>
-    <td class="center"><%= machine.fin_garantie %></td>
+    <td class="center"><%= l(machine.maintained_until) if machine.maintained_until.present? %></td>
   </tr>
   <% end %>
 </table>
