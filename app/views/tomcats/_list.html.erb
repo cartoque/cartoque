@@ -1,23 +1,30 @@
 <h1>Tomcats</h1>
 <table>
   <tr>
-    <th>Ferme</th>
     <th>Application</th>
-    <th>Serveur</th>
-    <th>Instance</th>
+    <th>Serveurs</th>
+    <th>Instance(s)</th>
     <th>Base</th>
+    <th>Liens</th>
   </tr>
   <% @tomcats.sort_by do |t|
-       [ t[:server].split("-").last.to_i,
-         t[:tomcat].split("_").last.to_i ]
-     end.each do |tomcat|%>
+       [ t[:dns], t[:server].split("-").last.to_i, t[:tomcat].split("_").last.to_i ]
+     end.group_by do |t|
+       t[:dns]
+     end.each do |dns,tomcats|%>
   <tr>
-    <td><%= tomcat[:vip] %></td>
+    <% tomcat = tomcats.first %>
     <td><%= tomcat[:dns] %></td>
-    <td><%= tomcat[:server] %></td>
-    <td><%= tomcat[:tomcat] %><br />Xms:<%= tomcat[:java_xms] %>, Xmx:<%= tomcat[:java_xmx] %></td>
-    <td><%= tomcat[:jdbc_server] %> (driver=<%= tomcat[:jdbc_driver] %>)<br />
+    <td><%= tomcats.map{|t| t[:server]}.sort.uniq.join("<br/>").html_safe %></td>
+    <td><%= tomcats.map{|t| t[:tomcat]}.sort.uniq.join("<br/>").html_safe %></td>
+    <td><%= tomcat[:jdbc_server] %><br />
         <%= tomcat[:jdbc_user] %> @ <%= tomcat[:jdbc_db] %></td>
+    <td>
+      Supervision (nagios)<br/>
+      Graphes (munin)<br/>
+      Projet (redmine)<br/>
+      Doc (dokuwiki)<br/>
+    </td>
   </tr>
   <% end %>
 </table>
