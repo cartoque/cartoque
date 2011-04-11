@@ -11,7 +11,11 @@
   <body>
     <div id="top-menu" class="hide-when-print">
       <div class="contextual">
-        <%= render("#{controller.controller_name}/search") rescue "<i>Cartoque v#{Cartocs::VERSION}</i>".html_safe %>
+      <% if %w(index show).include?(controller.action_name) %>
+        <%= render("#{controller.controller_name}/search") rescue show_version %>
+      <% else %>
+        <%= show_version %>
+      <% end %>
       </div>
       <%= link_to "Accueil", root_path %>
       <%= link_to "Applications", applications_path %>

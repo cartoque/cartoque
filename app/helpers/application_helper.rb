@@ -24,4 +24,8 @@ module ApplicationHelper
     o << %(</tr></table>)
     o.html_safe
   end
+
+  def show_version
+    "<i>Cartoque v#{Cartocs::VERSION}</i>".html_safe
+  end
 end
