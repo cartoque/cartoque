@@ -103,6 +103,8 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 
 /* machines */
 .virtual-machine { float:right; text-transform:uppercase; font-weight:bolder; color:#3a3; }
+.maintenance-warning { color:#f80; }
+.maintenance-critical { font-weight:bold; color:#d00; }
 
 /* progress bars */
 table.progress { border-collapse:collapse; border-spacing:0; empty-cells:show; text-align:center; margin:2px 0 5px; }
