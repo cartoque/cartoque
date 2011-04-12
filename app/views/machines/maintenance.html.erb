@@ -3,13 +3,13 @@
 <div id="machines" class="items_list">
 <table class="pretty">
   <tr>
-    <th>Nom</th>
-    <th>Modèle</th>
+    <th class="<%= sortable_css_class("nom") %>"><%= sortable "nom" %></th>
+    <th class="<%= sortable_css_class("fullmodel") %>"><%= sortable "marque", t(:fullmodel) %></th>
     <th>N° de série</th>
-    <th>Mise en service</th>
+    <th class="<%= sortable_css_class("delivered_on") %>"><%= sortable "delivered_on", t(:delivered_on) %></th>
     <th>Mainteneur</th>
     <th>Type de contrat</th>
-    <th>Fin de garantie</th>
+    <th class="<%= sortable_css_class("maintained_until") %>"><%= sortable "maintained_until", t(:maintained_until) %></th>
   </tr>
   <% for machine in @machines %>
   <tr>

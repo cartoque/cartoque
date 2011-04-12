@@ -3,12 +3,16 @@ class MachinesController < InheritedResources::Base
 
   helper_method :sort_column, :sort_direction
 
+  alias :maintenance :index
+
   def collection
     @machines ||= end_of_association_chain.search(params[:search]).order(sort_column + " " + sort_direction)
-  end
-
-  def maintenance
-    @machines = Machine.where(:virtuelle => false).all(:order => "nom")
+    if self.action_name == "maintenance"
+      @machines = @machines.where(:virtuelle => false)
+      if params[:sort] == "maintained_until"
+        @machines = @machines.select{|m| m.maintained_until.present? } + @machines.select{|m| m.maintained_until.blank? }
+      end
+    end
   end
 
   private
