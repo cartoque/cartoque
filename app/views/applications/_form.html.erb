@@ -1,4 +1,12 @@
 <%= simple_form_for(@application) do |f| %>
+  <p class="actions">
+    <%= f.button :submit %>
+    ou <%= link_to "Retourner à la liste", applications_path %>
+    <% unless @application.new_record? %>
+      | <%= link_to "Voir", @application %>
+    <% end %>
+  </p>
+
   <table class="show_item">
     <tbody>
       <% if @application.errors.any? %>
@@ -26,12 +34,4 @@
       <%= f.input :info, :input_html => { :size => "40x3" } %>
     </tbody>
   </table>
-
-  <p class="actions">
-    <%= f.button :submit %>
-    ou <%= link_to "Retourner à la liste", applications_path %>
-    <% unless @application.new_record? %>
-      | <%= link_to "Voir", @application %>
-    <% end %>
-  </p>
 <% end %>

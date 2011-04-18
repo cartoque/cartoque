@@ -1,5 +1,11 @@
 <% title "Application" %>
 
+<p class="actions">
+  <%= link_to "Editer", edit_application_path(@application) %> |
+  <%= link_to "Supprimer", @application, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "Retourner à la liste", applications_path %>
+</p>
+
 <table class="show_item">
   <thead>
     <tr>
@@ -42,9 +48,3 @@
     </tr>
   <% end %>
 </table>
-
-<p class="actions">
-  <%= link_to "Editer", edit_application_path(@application) %> |
-  <%= link_to "Supprimer", @application, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "Retourner à la liste", applications_path %>
-</p>
