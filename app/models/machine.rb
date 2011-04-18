@@ -68,7 +68,7 @@ class Machine < ActiveRecord::Base
   end
 
   def localization
-    [site, physical_rack].join(" - ")
+    [site, physical_rack].compact.join(" - ")
   end
 
   def fullmodel
