@@ -1,3 +1,4 @@
+# encoding: utf-8
 module MachinesHelper
   def maintenance_limit(date)
     return content_tag(:span, "non", :class => "maintenance-critical") if date.blank?
@@ -9,5 +10,20 @@ module MachinesHelper
     else
       l(date)
     end
+  end
+
+  def render_mainteneur(machine)
+    return "" unless machine.mainteneur
+    html = "#{machine.mainteneur} "
+    html << link_to_function("[infos]", %[$("#maintenance-#{machine.id}").slideToggle(); return false;], :class => "mainteneur-infos")
+    html << " "
+    html << " - #{machine.type_contrat}" if machine.type_contrat.present?
+    html << %(<ul style="display:none" class="machine-mainteneur" id="maintenance-#{machine.id}">)
+    html << %(<li>Référence client: #{machine.mainteneur.ref_client}</li>)
+    html << %(<li>Téléphone: #{machine.mainteneur.telephone}</li>)
+    html << %(<li>Mail: #{mail_to machine.mainteneur.mail}</li>)
+    html << %(<li>Adresse: #{machine.mainteneur.adresse}</li>)
+    html << "</ul>"
+    html.html_safe
   end
 end
