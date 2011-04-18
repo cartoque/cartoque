@@ -6,9 +6,9 @@
     <th class="<%= sortable_css_class("nom") %>"><%= sortable "nom" %></th>
     <th class="<%= sortable_css_class("fullmodel") %>"><%= sortable "marque", t(:fullmodel) %></th>
     <th>N° de série</th>
-    <th class="<%= sortable_css_class("delivered_on") %>"><%= sortable "delivered_on", t(:delivered_on) %></th>
     <th>Mainteneur</th>
     <th>Type de contrat</th>
+    <th class="<%= sortable_css_class("delivered_on") %>"><%= sortable "delivered_on", t(:delivered_on) %></th>
     <th class="<%= sortable_css_class("maintained_until") %>"><%= sortable "maintained_until", t(:maintained_until) %></th>
   </tr>
   <% for machine in @machines %>
@@ -16,9 +16,9 @@
     <td><%= link_to machine.nom, machine %></td>
     <td><%= machine.fullmodel %></td>
     <td class="center"><%= machine.numero_serie %></td>
-    <td class="center"><%= l(machine.delivered_on) if machine.delivered_on.present? %></td>
     <td><%= machine.mainteneur %></td>
     <td><%= machine.type_contrat %></td>
+    <td class="center"><%= l(machine.delivered_on) if machine.delivered_on.present? %></td>
     <td class="center"><%= maintenance_limit(machine.maintained_until) %></td>
   </tr>
   <% end %>
