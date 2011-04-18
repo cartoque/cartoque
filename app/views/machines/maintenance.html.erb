@@ -4,6 +4,7 @@
 <table class="pretty">
   <tr>
     <th class="<%= sortable_css_class("nom") %>"><%= sortable "nom" %></th>
+    <th>Localisation</th>
     <th class="<%= sortable_css_class("fullmodel") %>"><%= sortable "marque", t(:fullmodel) %></th>
     <th>N° de série</th>
     <th>Mainteneur - Type de contrat</th>
@@ -13,6 +14,7 @@
   <% for machine in @machines %>
   <tr>
     <td><%= link_to machine.nom, machine %></td>
+    <td><%= machine.localization %></td>
     <td><%= machine.fullmodel %></td>
     <td class="center"><%= machine.numero_serie %></td>
     <td>
