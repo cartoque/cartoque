@@ -1,6 +1,6 @@
 module ApplicationHelper
   def sortable(column, title = nil)
-    title ||= column.titleize
+    title ||= t(column, :default => column.titleize)
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
     link_to title, params.merge(:sort => column, :direction => direction)
   end
@@ -9,6 +9,9 @@ module ApplicationHelper
     column == sort_column ? "current #{sort_direction}" : "sortable"
   end
 
+  def sortable_th(column, title = nil)
+    %(<th class="#{sortable_css_class(column)}">#{sortable(column,title)}</th>).html_safe
+  end
   def progress_bar(pcts, options={})
     pcts = [pcts, pcts] unless pcts.is_a?(Array)
     pcts = pcts.collect(&:round)
