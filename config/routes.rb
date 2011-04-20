@@ -1,5 +1,6 @@
 Cartocs::Application.routes.draw do
 
+  resources :operating_systems, :except => :show
   resources :tomcats, :only => :index
   resources :databases
   resources :storages

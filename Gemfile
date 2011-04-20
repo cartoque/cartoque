@@ -38,6 +38,7 @@ gem 'jquery-rails', '>= 0.2.7'
 gem 'yaml_db'
 gem 'pdfkit'
 gem 'storcs', '>= 0.0.2'
+gem 'ancestry'
 
 group :test do
   gem 'shoulda'

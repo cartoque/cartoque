@@ -44,11 +44,14 @@ table.show_item td.content { text-align:center; font-weight:bold; width:50%; }
 .actions { text-align:center; font-size: 90%; }
 .hidden { display:none; }
 .more { font-size:90%; text-align:left; }
+.tiny { font-size:90%; }
+.simple-list { margin:0; position:relative; display:block; padding:0 0 0 1em; list-style-type:none; }
 
 /* wrappers */
 #top-menu { padding:5px 8px 8px; margin:0 0 5px; background-color:#edf3f3; }
 #container { margin:0 auto; background-color:#FFF; padding:8px; text-align:left; }
 .column_wrapper { float:left; margin:0 15px 0 5px; }
+#sidebar { float:left; padding:10px; margin:0 10px 0 0; background:#f6f6f6; }
 
 /* errors, warnings */
 #flash_notice, #flash_error, #flash_alert { padding:5px 8px; margin:10px 0; }
@@ -107,6 +110,11 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .maintenance-critical { font-weight:bold; color:#d00; }
 .machine-mainteneur { margin:0; position:relative; display:block; padding:0 0 0 2em; list-style-type:none; }
 .mainteneur-infos { font-size:90%; }
+
+/* operating systems */
+.nested-os { margin-left:10px; }
+.nested-os .operating-system { padding:2px 0 0 14px; background: #fff url(/images/bullet_arrow_right.png) no-repeat left top; }
+.os-icon { margin:0 2px -2px 0; }
 
 /* progress bars */
 table.progress { border-collapse:collapse; border-spacing:0; empty-cells:show; text-align:center; margin:2px 0 5px; }

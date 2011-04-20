@@ -1,0 +1,12 @@
+<p class="actions">
+  <%= link_to "Nouveau système d'exploitation", new_operating_system_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Nom</th>
+  </tr>
+  <tr>
+    <td><%= nested_operating_systems @operating_systems %></td>
+  </tr>
+</table>

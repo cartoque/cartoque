@@ -1,0 +1,7 @@
+<div class="operating-system">
+  <%= operating_system.nom %>
+  <span class="tiny">
+    <%= link_to 'Editer', edit_operating_system_path(operating_system) %>
+    <%= link_to 'Supprimer', operating_system, :confirm => 'Are you sure?', :method => :delete %>
+  </span>
+</div>

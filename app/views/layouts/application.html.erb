@@ -22,9 +22,15 @@
       <%= link_to "Machines", machines_path %> | 
       <%= link_to "Tomcats", tomcats_path %>
       <%= link_to "Bases", databases_path %>
-      <%= link_to "Stockage", storages_path %>
+      <%= link_to "Stockage", storages_path %> | 
+      <%= link_to "Configuration", operating_systems_path %>
     </div>
     <div id="container">
+      <% if content_for?(:sidebar) %>
+      <div id="sidebar">
+        <%= yield(:sidebar) %>
+      </div>
+      <% end %>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>

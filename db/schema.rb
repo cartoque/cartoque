@@ -121,9 +121,13 @@ ActiveRecord::Schema.define(:version => 20110420093511) do
   end
 
   create_table "operating_systems", :force => true do |t|
-    t.string "nom",       :limit => 55, :default => "", :null => false
-    t.string "icon_path",               :default => "", :null => false
+    t.string  "nom",            :limit => 55, :default => "", :null => false
+    t.string  "icon_path",                    :default => "", :null => false
+    t.string  "ancestry"
+    t.integer "ancestry_depth",               :default => 0
   end
+
+  add_index "operating_systems", ["ancestry"], :name => "index_operating_systems_on_ancestry"
 
   create_table "physical_racks", :force => true do |t|
     t.string "nom", :limit => 50, :default => "", :null => false

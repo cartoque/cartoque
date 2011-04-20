@@ -1,0 +1,24 @@
+<%= simple_form_for(@operating_system) do |f| %>
+  <p class="actions">
+    <%= f.button :submit %>
+    ou <%= link_to "Retourner à la liste", operating_systems_path %>
+  </p>
+
+  <table class="inputs">
+    <tbody>
+      <% if @operating_system.errors.any? %>
+      <tr id="error_explanation"><td colspan="2">
+        <h2><%= pluralize(@operating_system.errors.count, "erreur") %></h2>
+        <ul>
+        <% @operating_system.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </tr>
+      <% end %>
+      <%= f.input :nom, :required => true, :wrapper_class => 'th' %>
+      <%= f.input :parent_id, :as => :select,
+                  :collection => OperatingSystem.all - (@operating_system.new_record? ? [] : @operating_system.subtree) %>
+    </tbody>
+  </table>
+<% end %>
