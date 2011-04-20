@@ -1,5 +1,6 @@
 class ConvertDatesFromStringToDates < ActiveRecord::Migration
   def self.up
+    Machine.reset_column_information
     {:date_mes => :delivered_on, :fin_garantie => :maintained_until}.each do |old_field, new_field|
       Machine.all.each do |m|
         value = m.send(old_field)
