@@ -27,7 +27,7 @@
       </tr>
       <%= f.input :ip %>
       <!--<%= f.input :type_serveur %>-->
-      <%= f.association :operating_system %>
+      <%= nested_select_tag(OperatingSystem, f, nil, :operating_system_id, :nom) %>
       <%= f.input :virtuelle %>
       <%= f.association :service %>
       <%= f.association :theme %>

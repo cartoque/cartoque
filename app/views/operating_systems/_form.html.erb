@@ -17,8 +17,7 @@
       </tr>
       <% end %>
       <%= f.input :nom, :required => true, :wrapper_class => 'th' %>
-      <%= f.input :parent_id, :as => :select,
-                  :collection => OperatingSystem.all - (@operating_system.new_record? ? [] : @operating_system.subtree) %>
+      <%= nested_select_tag(OperatingSystem, f, @operating_system, :parent_id, :nom) %>
     </tbody>
   </table>
 <% end %>

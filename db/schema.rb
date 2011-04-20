@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110420093511) do
+ActiveRecord::Schema.define(:version => 20110420130706) do
 
   create_table "applications", :force => true do |t|
     t.string  "nom",                      :default => "",    :null => false
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20110420093511) do
     t.string  "icon_path",                    :default => "", :null => false
     t.string  "ancestry"
     t.integer "ancestry_depth",               :default => 0
+    t.string  "path_cache"
   end
 
   add_index "operating_systems", ["ancestry"], :name => "index_operating_systems_on_ancestry"

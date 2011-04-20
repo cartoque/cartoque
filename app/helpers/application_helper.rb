@@ -31,4 +31,10 @@ module ApplicationHelper
   def show_version
     "<i>Cartoque v#{Cartocs::VERSION}</i>".html_safe
   end
+
+  def nested_select_tag(klass, form, object, idkey, namekey)
+    collection = klass.order("path_cache, #{namekey}")
+    collection -= object.subtree unless object.blank? || object.new_record?
+    form.input idkey, :as => :select, :collection => collection.map { |o| ["-" * o.depth + " " + o.send(namekey), o.id] }
+  end
 end
