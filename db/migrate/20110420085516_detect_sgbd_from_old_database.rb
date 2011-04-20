@@ -4,7 +4,7 @@ class DetectSgbdFromOldDatabase < ActiveRecord::Migration
     servers.map do |s|
       s.nom.gsub(/-\d*$/,"")
     end.uniq.sort.reverse.each do |cluster|
-      d = Database.new(:name => cluster)
+      d = Database.find_or_create_by_name(cluster)
       d.machines = servers.select{|s| s.nom.starts_with?(cluster)}
       d.database_type = (cluster.match(/m2$|a$/i) ? "postgres" : "oracle")
       d.save
