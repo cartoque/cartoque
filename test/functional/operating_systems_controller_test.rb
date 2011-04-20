@@ -2,7 +2,7 @@ require 'test_helper'
 
 class OperatingSystemsControllerTest < ActionController::TestCase
   setup do
-    @operating_system = operating_systems(:one)
+    @operating_system = Factory(:operating_system)
   end
 
   test "should get index" do
@@ -21,12 +21,7 @@ class OperatingSystemsControllerTest < ActionController::TestCase
       post :create, :operating_system => @operating_system.attributes
     end
 
-    assert_redirected_to operating_system_path(assigns(:operating_system))
-  end
-
-  test "should show operating_system" do
-    get :show, :id => @operating_system.to_param
-    assert_response :success
+    assert_redirected_to operating_systems_path
   end
 
   test "should get edit" do
@@ -36,7 +31,7 @@ class OperatingSystemsControllerTest < ActionController::TestCase
 
   test "should update operating_system" do
     put :update, :id => @operating_system.to_param, :operating_system => @operating_system.attributes
-    assert_redirected_to operating_system_path(assigns(:operating_system))
+    assert_redirected_to operating_systems_path
   end
 
   test "should destroy operating_system" do
