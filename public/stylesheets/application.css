@@ -78,6 +78,7 @@ tr#filters td { border:none; }
 label.required abbr { color:red; }
 
 /* generic items */
+.items_list table { width:90%; }
 .items_list h1 { text-align:center; margin-top:0.3em; font-family:Verdana, Helvetica, Arial; color:#333; text-transform:uppercase; letter-spacing:1px; font-size:1.2em; }
 
 /* welcome page */
