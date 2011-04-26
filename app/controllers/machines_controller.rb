@@ -4,6 +4,7 @@ class MachinesController < InheritedResources::Base
   helper_method :sort_column, :sort_direction
 
   has_scope :by_rack
+  has_scope :by_mainteneur
 
   alias :maintenance :index
 

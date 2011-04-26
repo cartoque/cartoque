@@ -14,6 +14,7 @@ class Machine < ActiveRecord::Base
 
   default_scope :include => [:applications, :site, :theme, :service, :operating_system, :mainteneur, :physical_rack]
   named_scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
+  named_scope :by_mainteneur, proc {|mainteneur_id| { :conditions => { :mainteneur_id => mainteneur_id } } }
 
   validates_presence_of :nom
 
