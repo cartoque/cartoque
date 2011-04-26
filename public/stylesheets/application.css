@@ -19,8 +19,9 @@ h1 { font-weight:lighter; font-family:georgia, times new roman, times, georgia, 
 h2 { font-weight:lighter; font-family:verdana,arial,sans-serif; text-align:center; margin-top:1em; color:#333; text-transform:uppercase; letter-spacing:1px; font-size:1.2em; }
 
 /* tables */
-table { padding: 0; margin: 0 auto 1.5em auto; border-left: 1px solid #C1DAD7; border-collapse:collapse; }
+table { padding: 0; margin: 0 auto 1.5em auto; border-collapse:collapse; }
 th, tr.th td { color: #4f6b72; background-color:#cae8ea; border-right: 1px solid #C1DAD7; border-bottom: 1px solid #C1DAD7; border-top: 1px solid #C1DAD7; text-transform: capitalize; text-align: center; padding: 4px; vertical-align:middle; }
+tr th:first-child, tr td:first-child { border-left: 1px solid #C1DAD7; }
 th a { text-decoration:none; color: #4f6b72; background:transparent; }
 td a { text-decoration:none; color:#239; background:transparent; }
 td img { margin:0 auto; }
@@ -28,6 +29,8 @@ td a:hover { color:#a84444; border-bottom:1px dotted #a80000; background:transpa
 td { border-right: 1px solid #C1DAD7; border-bottom: 1px solid #C1DAD7; padding: 6px; color: #4f6b72; }
 td.label { text-align:left; width: 50px; }
 table.show_item td.content { text-align:center; font-weight:bold; width:50%; }
+tr#filters { border:none; }
+tr#filters td { border:none; }
 
 /* pretty tables (sorting,etc.) */
 .pretty th.sortable { background-repeat: no-repeat; }

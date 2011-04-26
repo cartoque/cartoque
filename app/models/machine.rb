@@ -13,6 +13,7 @@ class Machine < ActiveRecord::Base
   attr_accessible :theme_id, :service_id, :operating_system_id, :site_id, :physical_rack_id, :media_drive_id, :mainteneur_id, :nom, :ancien_nom, :sousreseau_ip, :quatr_octet, :numero_serie, :virtuelle, :description, :modele, :memoire, :frequence, :delivered_on, :maintained_until, :type_contrat, :type_disque, :taille_disque, :marque, :ref_proc, :type_serveur, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :type_disque_alt, :taille_disque_alt, :nb_disque, :nb_disque_alt, :ip, :application_ids, :database_id
 
   default_scope :include => [:applications, :site, :theme, :service, :operating_system, :mainteneur, :physical_rack]
+  named_scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
 
   validates_presence_of :nom
 

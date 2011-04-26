@@ -3,6 +3,8 @@ class MachinesController < InheritedResources::Base
 
   helper_method :sort_column, :sort_direction
 
+  has_scope :by_rack
+
   alias :maintenance :index
 
   def collection
