@@ -1,11 +1,5 @@
-<script type="text/javascript">
-$(function() {
-  $('form#filters').observe(1, function(){ $(this).submit(); });
-});
-</script>
-
 <table class="pretty ninety">
-  <% form_tag '', :id => "filters", :method => :get do -%>
+  <% form_tag machines_path(params), :id => "filters", :method => :get do -%>
   <tr class="filters">
     <td></td>
     <td>

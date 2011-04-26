@@ -47,6 +47,11 @@ $(function() {
       $('#machine-hardware-title').html("Matériel");
     }
   });
+
+  //filters observer
+  $('form#filters').observe(1, function(){
+    $(this).submit();
+  });
 });
 
 // utility
