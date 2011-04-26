@@ -6,7 +6,7 @@ $(function() {
 
 <table class="pretty ninety">
   <% form_tag '', :id => "filters", :method => :get do -%>
-  <tr id="filters">
+  <tr class="filters">
     <td></td>
     <td>
 	    <%= select_tag "by_rack", options_for_select([["",""]] + PhysicalRack.all.map{|r| [r.nom,r.id]},params[:by_rack]).html_safe -%>
