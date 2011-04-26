@@ -12,7 +12,7 @@ class MachinesControllerTest < ActionController::TestCase
   end
   
   test "should get physical nodes for maintenance" do
-    get :maintenance
+    get :index, :view_mode => "maintenance"
     assert_response :success
     assert_template 'maintenance'
     assert_not_nil assigns(:machines)

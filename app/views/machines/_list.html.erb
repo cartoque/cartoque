@@ -1,27 +1,11 @@
 <p class="actions">
   <%= link_to "Ajouter une machine", new_machine_path %> | 
   <%= link_to "Export PDF", machines_path(params.merge(:format => "pdf")) %> | 
-  <%= link_to "Maintenance", maintenance_machines_path %>
+  <% if maintenance_mode? %>
+    <%= link_to "Vue normale", machines_path(:view_mode => "normal") %>
+  <% else %>
+    <%= link_to "Vue maintenance", machines_path(:view_mode => "maintenance") %>
+  <% end %>
 </p>
 
-<table class="pretty ninety">
-  <tr>
-    <%= sortable_th "nom" %>
-    <th>IP</th>
-    <th>Theme</th>
-    <th>Service</th>
-    <th>OS</th>
-    <th colspan="2" class="actions">Actions</th>
-  </tr>
-  <% for machine in @machines %>
-    <tr>
-      <td><%= link_to machine.nom, machine %></td>
-      <td><%= machine.ip %></td>
-      <td><%= machine.theme %></td>
-      <td><%= machine.service %></td>
-      <td><%= machine.operating_system %></td>
-      <td class="actions"><%= link_to "Editer", edit_machine_path(machine) %></td>
-      <td class="actions"><%= link_to "Supprimer", machine, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<%= render(maintenance_mode? ? "list_maintenance" : "list_normal") %>
