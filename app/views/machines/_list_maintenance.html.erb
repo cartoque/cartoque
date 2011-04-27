@@ -1,7 +1,9 @@
 <table class="pretty ninety">
   <% form_tag machines_path(params), :id => "filters", :method => :get do -%>
   <tr class="filters">
-    <td></td>
+    <td>
+      <%= text_field_tag "search", params[:search], :size => 12 %>
+    </td>
     <td>
 	    <%= select_tag "by_rack", options_for_select([["",""]] + PhysicalRack.all.map{|r| [r.nom,r.id]},params[:by_rack]).html_safe -%>
     </td>
