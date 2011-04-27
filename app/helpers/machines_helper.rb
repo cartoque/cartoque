@@ -15,7 +15,8 @@ module MachinesHelper
   def render_mainteneur(machine)
     return "" unless machine.mainteneur
     html = "#{machine.mainteneur} "
-    html << link_to_function("[infos]", %[$("#maintenance-#{machine.id}").slideToggle(130); return false;], :class => "mainteneur-infos")
+    html << link_to_function("[infos]", %[$("#maintenance-#{machine.id}").slideToggle(130); return false;],
+                             :class => "mainteneur-infos hide-when-print")
     html << " "
     html << " - #{machine.type_contrat}" if machine.type_contrat.present?
     html << %(<ul style="display:none" class="machine-mainteneur" id="maintenance-#{machine.id}">)

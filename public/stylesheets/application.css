@@ -134,8 +134,9 @@ p.progress-info { clear:left; font-style:italic; font-size:90%; }
   body { background-color:#FFF; }
   #container { width:auto; margin:0; padding:0; border:none; }
   table { border-collapse:collapse; }
-  th { background-color:#000; background-image:none; color:#fff; font-weight:bold; text-transform:uppercase; }
-  th, td { border:1px solid #666; }
+  .items_list table.ninety { width:100%; }
+  th { background-color:#000 !important; background-image:none; color:#fff; font-weight:bold; text-transform:uppercase; }
+  th, td { border:1px solid #666; padding:2px 4px !important; }
   #line_items { page-break-before:always; }
   .actions, .filters, .hide-when-print { display:none; }
   a, a:link, a:visited, a:hover { text-decoration:none; color:#000; }
