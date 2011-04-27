@@ -36,7 +36,7 @@ gem 'show_for'
 gem 'has_scope'
 gem 'jquery-rails', '>= 0.2.7'
 gem 'yaml_db'
-gem 'pdfkit'
+gem 'pdfkit', '0.4.6'
 gem 'storcs', '>= 0.0.2'
 gem 'ancestry'
 
