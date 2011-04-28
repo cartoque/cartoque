@@ -1,6 +1,6 @@
 <table class="pretty ninety">
   <tr>
-    <%= sortable_th "nom" %>
+    <%= sortable_th "name" %>
     <th>IP</th>
     <th>Theme</th>
     <th>Service</th>
@@ -9,7 +9,7 @@
   </tr>
   <% for machine in @machines %>
     <tr>
-      <td><%= link_to machine.nom, machine %></td>
+      <td><%= link_to machine.name, machine %></td>
       <td><%= machine.ip %></td>
       <td><%= machine.theme %></td>
       <td><%= machine.service %></td>

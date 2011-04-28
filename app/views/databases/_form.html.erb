@@ -44,7 +44,7 @@
           <label class="select optional" for="server_ids">Serveurs</label>
         </td>
         <td class="content">
-          <%= collection_select(:database, :machine_ids, Machine.order(:nom), :id, :nom,
+          <%= collection_select(:database, :machine_ids, Machine.order(:name), :id, :name,
                                 { :prompt => false }, { :multiple => "multiple" }) %>
           <%= hidden_field_tag "database[machine_ids][]", "" %>
         </td>

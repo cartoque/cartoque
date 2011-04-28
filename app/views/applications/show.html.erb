@@ -9,11 +9,11 @@
 <table class="show_item">
   <thead>
     <tr>
-      <th colspan="2"><%= @application.nom %></th>
+      <th colspan="2"><%= @application.name %></th>
     </tr>
   </thead>
   <%= show_for @application do |a| %>
-    <%= a.attribute :criticite %>
+    <%= a.attribute :criticity %>
     <%= a.attribute :iaw %>
     <%= a.attribute :pe %>
     <%= a.attribute :moa %>
@@ -25,7 +25,7 @@
     <%= a.attribute :cerbere do %>
       <%= cerbere_image(@application.cerbere, true) %>
     <% end %>
-    <%= a.attribute :fiche %>
+    <%= a.attribute :comment %>
     <tr class="wrapper application_info">
       <td colspan="2">
         Information:<br />
@@ -38,7 +38,7 @@
         <% if @application.machines.any? %>
           <ul>
           <% @application.machines.each do |machine| %>
-            <li><%= link_to machine.nom, machine %></li>
+            <li><%= link_to machine.name, machine %></li>
           <% end %>
           </ul>
         <% else %>

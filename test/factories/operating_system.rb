@@ -1,3 +1,3 @@
 Factory.define :operating_system do |m|
-  m.nom 'Linux'
+  m.name 'Linux'
 end

@@ -9,7 +9,7 @@ class Storage < ActiveRecord::Base
   end
 
   def file
-    File.expand_path("data/storage/#{machine.nom.downcase}.txt", Rails.root)
+    File.expand_path("data/storage/#{machine.name.downcase}.txt", Rails.root)
   end
 
   def device
@@ -17,11 +17,11 @@ class Storage < ActiveRecord::Base
     begin
       @device = case constructor
                 when "IBM"
-                  Storcs::Parsers::Ibm.new(machine.nom, file).device
+                  Storcs::Parsers::Ibm.new(machine.name, file).device
                 when "NetApp"
-                  Storcs::Parsers::DfNas.new(machine.nom, file).device
+                  Storcs::Parsers::DfNas.new(machine.name, file).device
                 when "Equalogic"
-                  Storcs::Parsers::Equalogic.new(machine.nom, file).device
+                  Storcs::Parsers::Equalogic.new(machine.name, file).device
                 end
     rescue Errno::ENOENT
       @device = "Pas de fichier .#{file.gsub(Rails.root.to_s,"")}"

@@ -5,21 +5,21 @@
       <%= text_field_tag "search", params[:search], :size => 12 %>
     </td>
     <td>
-	    <%= select_tag "by_rack", options_for_select([["",""]] + PhysicalRack.all.map{|r| [r.nom,r.id]},params[:by_rack]).html_safe -%>
+	    <%= select_tag "by_rack", options_for_select([["",""]] + PhysicalRack.all.map{|r| [r.name,r.id]},params[:by_rack]).html_safe -%>
     </td>
     <td></td>
     <td></td>
     <td>
-	    <%= select_tag "by_mainteneur", options_for_select([["",""]] + Mainteneur.all.map{|r| [r.nom,r.id]},params[:by_mainteneur]).html_safe -%>
+	    <%= select_tag "by_mainteneur", options_for_select([["",""]] + Mainteneur.all.map{|r| [r.name,r.id]},params[:by_mainteneur]).html_safe -%>
     </td>
     <td></td>
     <td></td>
   </tr>
   <% end -%>
   <tr>
-    <%= sortable_th "nom" %>
+    <%= sortable_th "name" %>
     <th>Localisation</th>
-    <%= sortable_th "marque", t(:fullmodel) %>
+    <%= sortable_th "manufacturer", t(:fullmodel) %>
     <th>N° de série</th>
     <th style="width:25%;">Mainteneur - Type de contrat</th>
     <%= sortable_th "delivered_on" %>
@@ -27,10 +27,10 @@
   </tr>
   <% for machine in @machines %>
   <tr>
-    <td><%= link_to machine.nom, machine %></td>
+    <td><%= link_to machine.name, machine %></td>
     <td><%= machine.localization %></td>
     <td><%= machine.fullmodel %></td>
-    <td class="center"><%= machine.numero_serie %></td>
+    <td class="center"><%= machine.serial_number %></td>
     <td>
     <% if machine.mainteneur %>
       <%= render_mainteneur(machine) %>

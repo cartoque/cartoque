@@ -10,11 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110420130706) do
+ActiveRecord::Schema.define(:version => 20110427172431) do
 
   create_table "applications", :force => true do |t|
-    t.string  "nom",                      :default => "",    :null => false
-    t.integer "criticite",  :limit => 1,  :default => 3
+    t.string  "name",                     :default => "",    :null => false
+    t.integer "criticity",  :limit => 1,  :default => 3
     t.text    "info",                                        :null => false
     t.string  "iaw",        :limit => 55, :default => "",    :null => false
     t.string  "pe",         :limit => 55, :default => "",    :null => false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20110420130706) do
     t.string  "pnd",                      :default => "",    :null => false
     t.string  "ams",        :limit => 55, :default => "",    :null => false
     t.boolean "cerbere",                  :default => false, :null => false
-    t.string  "fiche",                    :default => "",    :null => false
+    t.string  "comment",                  :default => "",    :null => false
     t.string  "identifier"
   end
 
@@ -69,32 +69,32 @@ ActiveRecord::Schema.define(:version => 20110420130706) do
     t.integer "physical_rack_id",                   :default => 0
     t.integer "media_drive_id",                     :default => 0
     t.integer "mainteneur_id",                      :default => 0
-    t.string  "nom",                 :limit => 150, :default => "",    :null => false
-    t.string  "ancien_nom",                         :default => "",    :null => false
-    t.string  "sousreseau_ip",       :limit => 23,  :default => "",    :null => false
-    t.string  "quatr_octet",         :limit => 9,   :default => "",    :null => false
-    t.string  "numero_serie",        :limit => 100, :default => "",    :null => false
+    t.string  "name",                :limit => 150, :default => "",    :null => false
+    t.string  "previous_name",                      :default => "",    :null => false
+    t.string  "subnet",              :limit => 23,  :default => "",    :null => false
+    t.string  "lastbyte",            :limit => 9,   :default => "",    :null => false
+    t.string  "serial_number",       :limit => 100, :default => "",    :null => false
     t.text    "description",                                           :null => false
-    t.string  "modele",              :limit => 100, :default => "",    :null => false
-    t.string  "memoire",             :limit => 50,  :default => "",    :null => false
-    t.float   "frequence",                          :default => 0.0,   :null => false
-    t.string  "type_contrat",        :limit => 100, :default => "",    :null => false
-    t.string  "type_disque",         :limit => 50,  :default => "",    :null => false
-    t.integer "taille_disque",                      :default => 0
-    t.string  "marque",              :limit => 50,  :default => "",    :null => false
+    t.string  "model",               :limit => 100, :default => "",    :null => false
+    t.string  "memory",              :limit => 50,  :default => "",    :null => false
+    t.float   "frequency",                          :default => 0.0,   :null => false
+    t.string  "contract_type",       :limit => 100, :default => "",    :null => false
+    t.string  "disk_type",           :limit => 50,  :default => "",    :null => false
+    t.integer "disk_size",                          :default => 0
+    t.string  "manufacturer",        :limit => 50,  :default => "",    :null => false
     t.string  "ref_proc",            :limit => 100, :default => "",    :null => false
-    t.string  "type_serveur",        :limit => 50,  :default => "",    :null => false
+    t.string  "server_type",         :limit => 50,  :default => "",    :null => false
     t.integer "nb_proc",                            :default => 0
     t.integer "nb_coeur",                           :default => 0
     t.integer "nb_rj45",                            :default => 0
     t.integer "nb_fc",                              :default => 0
     t.integer "nb_iscsi",                           :default => 0
-    t.string  "type_disque_alt",     :limit => 50,  :default => "",    :null => false
-    t.integer "taille_disque_alt",                  :default => 0
-    t.integer "nb_disque",                          :default => 0
-    t.integer "nb_disque_alt",                      :default => 0
+    t.string  "disk_type_alt",       :limit => 50,  :default => "",    :null => false
+    t.integer "disk_size_alt",                      :default => 0
+    t.integer "nb_disk",                            :default => 0
+    t.integer "nb_disk_alt",                        :default => 0
     t.integer "database_id"
-    t.boolean "virtuelle",                          :default => false
+    t.boolean "virtual",                            :default => false
     t.date    "delivered_on"
     t.date    "maintained_until"
   end
@@ -105,11 +105,11 @@ ActiveRecord::Schema.define(:version => 20110420130706) do
   end
 
   create_table "mainteneurs", :force => true do |t|
-    t.string "nom",        :limit => 50,  :default => "", :null => false
-    t.string "telephone",  :limit => 100, :default => "", :null => false
-    t.string "mail",       :limit => 200, :default => "", :null => false
-    t.string "adresse",    :limit => 200, :default => "", :null => false
-    t.string "ref_client", :limit => 50,  :default => "", :null => false
+    t.string "name",       :limit => 50,  :default => "", :null => false
+    t.string "phone",      :limit => 100, :default => "", :null => false
+    t.string "email",      :limit => 200, :default => "", :null => false
+    t.string "address",    :limit => 200, :default => "", :null => false
+    t.string "client_ref", :limit => 50,  :default => "", :null => false
   end
 
   create_table "marque", :force => true do |t|
@@ -117,11 +117,11 @@ ActiveRecord::Schema.define(:version => 20110420130706) do
   end
 
   create_table "media_drives", :force => true do |t|
-    t.string "nom", :limit => 50, :default => "", :null => false
+    t.string "name", :limit => 50, :default => "", :null => false
   end
 
   create_table "operating_systems", :force => true do |t|
-    t.string  "nom",            :limit => 55, :default => "", :null => false
+    t.string  "name",           :limit => 55, :default => "", :null => false
     t.string  "icon_path",                    :default => "", :null => false
     t.string  "ancestry"
     t.integer "ancestry_depth",               :default => 0
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(:version => 20110420130706) do
   add_index "operating_systems", ["ancestry"], :name => "index_operating_systems_on_ancestry"
 
   create_table "physical_racks", :force => true do |t|
-    t.string "nom", :limit => 50, :default => "", :null => false
+    t.string "name", :limit => 50, :default => "", :null => false
   end
 
   create_table "ref_proc", :force => true do |t|
@@ -139,21 +139,21 @@ ActiveRecord::Schema.define(:version => 20110420130706) do
   end
 
   create_table "services", :force => true do |t|
-    t.string "nom", :default => "", :null => false
+    t.string "name", :default => "", :null => false
   end
 
   create_table "sites", :force => true do |t|
-    t.string "nom", :limit => 50, :default => "", :null => false
+    t.string "name", :limit => 50, :default => "", :null => false
   end
 
   create_table "sousreseaux", :force => true do |t|
-    t.string "sousreseau_ip",             :limit => 23, :default => "", :null => false
-    t.string "sousreseau_nom_logique",                  :default => "", :null => false
-    t.string "sousreseau_couleur_fond",   :limit => 7,  :default => "", :null => false
-    t.string "sousreseau_couleur_police", :limit => 7,  :default => "", :null => false
+    t.string "cidr_mask",        :limit => 23, :default => "", :null => false
+    t.string "name",                           :default => "", :null => false
+    t.string "background_color", :limit => 7,  :default => "", :null => false
+    t.string "color",            :limit => 7,  :default => "", :null => false
   end
 
-  add_index "sousreseaux", ["sousreseau_ip"], :name => "sousreseau_ip"
+  add_index "sousreseaux", ["cidr_mask"], :name => "sousreseau_ip"
 
   create_table "storages", :force => true do |t|
     t.integer  "machine_id"
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(:version => 20110420130706) do
   end
 
   create_table "themes", :force => true do |t|
-    t.string "titre", :default => "", :null => false
+    t.string "name", :default => "", :null => false
   end
 
   create_table "type", :force => true do |t|

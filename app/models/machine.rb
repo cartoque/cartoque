@@ -10,30 +10,30 @@ class Machine < ActiveRecord::Base
   belongs_to :database
   has_one :storage
 
-  attr_accessible :theme_id, :service_id, :operating_system_id, :site_id, :physical_rack_id, :media_drive_id, :mainteneur_id, :nom, :ancien_nom, :sousreseau_ip, :quatr_octet, :numero_serie, :virtuelle, :description, :modele, :memoire, :frequence, :delivered_on, :maintained_until, :type_contrat, :type_disque, :taille_disque, :marque, :ref_proc, :type_serveur, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :type_disque_alt, :taille_disque_alt, :nb_disque, :nb_disque_alt, :ip, :application_ids, :database_id
+  attr_accessible :theme_id, :service_id, :operating_system_id, :site_id, :physical_rack_id, :media_drive_id, :mainteneur_id, :name, :previous_name, :subnet, :lastbyte, :serial_number, :virtual, :description, :model, :memory, :frequency, :delivered_on, :maintained_until, :contract_type, :disk_type, :disk_size, :manufacturer, :ref_proc, :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk, :nb_disk_alt, :ip, :application_ids, :database_id
 
   default_scope :include => [:applications, :site, :theme, :service, :operating_system, :mainteneur, :physical_rack]
   scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
   scope :by_mainteneur, proc {|mainteneur_id| { :conditions => { :mainteneur_id => mainteneur_id } } }
 
-  validates_presence_of :nom
+  validates_presence_of :name
 
   def ip
-    i = sousreseau_ip.to_s.split(".")
-    i << quatr_octet.to_s.gsub(".","")
+    i = subnet.to_s.split(".")
+    i << lastbyte.to_s.gsub(".","")
     i.compact.join(".")
   end
 
   def ip=(value)
     if value.match(/^((?:\d+\.){3})(\d+)/)
-      self.sousreseau_ip = $1.first(-1)
-      self.quatr_octet = $2
+      self.subnet = $1.first(-1)
+      self.lastbyte = $2
     end
   end
 
   def self.search(search)
     if search
-      where("nom LIKE ?", "%#{search}%")
+      where("name LIKE ?", "%#{search}%")
     else
       scoped
     end
@@ -43,7 +43,7 @@ class Machine < ActiveRecord::Base
     html = ""
     if nb_proc.present? && nb_proc > 0
       html << "#{nb_proc} * " unless nb_proc == 1
-      html << "#{nb_coeur} cores, #{frequence} GHz"
+      html << "#{nb_coeur} cores, #{frequency} GHz"
       html << "<br />(#{ref_proc})" if ref_proc.present?
     else
       html << "?"
@@ -53,15 +53,15 @@ class Machine < ActiveRecord::Base
 
   def disks
     html = ""
-    if taille_disque.present? && taille_disque > 0
-      html << "#{nb_disque} * " unless nb_disque.blank? || nb_disque == 1
-      html << "#{taille_disque}G"
-      html << " (#{type_disque})" unless type_disque.blank?
-      if taille_disque_alt.present? && taille_disque_alt > 0
+    if disk_size.present? && disk_size > 0
+      html << "#{nb_disk} * " unless nb_disk.blank? || nb_disk == 1
+      html << "#{disk_size}G"
+      html << " (#{disk_type})" unless disk_type.blank?
+      if disk_size_alt.present? && disk_size_alt > 0
         html << "<br />"
-        html << "#{nb_disque_alt} * " unless nb_disque_alt.blank? || nb_disque_alt == 1
-        html << "#{taille_disque_alt}G"
-        html << " (#{type_disque_alt})" unless type_disque_alt.blank?
+        html << "#{nb_disk_alt} * " unless nb_disk_alt.blank? || nb_disk_alt == 1
+        html << "#{disk_size_alt}G"
+        html << " (#{disk_type_alt})" unless disk_type_alt.blank?
       end
     else
       html << "?"
@@ -74,11 +74,11 @@ class Machine < ActiveRecord::Base
   end
 
   def fullmodel
-    [marque, modele].join(" ")
+    [manufacturer, model].join(" ")
   end
 
   def postgres_file
-    File.expand_path("data/postgres/#{nom.downcase}.txt", Rails.root)
+    File.expand_path("data/postgres/#{name.downcase}.txt", Rails.root)
   end
 
   def postgres_report
@@ -86,7 +86,7 @@ class Machine < ActiveRecord::Base
   end
 
   def oracle_file
-    File.expand_path("data/oracle/#{nom.downcase}.txt", Rails.root)
+    File.expand_path("data/oracle/#{name.downcase}.txt", Rails.root)
   end
 
   def oracle_report

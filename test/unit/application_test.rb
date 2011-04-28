@@ -3,13 +3,13 @@ require 'test_helper'
 class ApplicationTest < ActiveSupport::TestCase
   should "be valid" do
     assert ! Application.new.valid?
-    assert Application.new(:nom => "fakeapp").valid?
+    assert Application.new(:name => "fakeapp").valid?
   end
 
   context "Application.like" do
     setup do
-      Application.create!(:nom => "app-01")
-      Application.create!(:nom => "app-02")
+      Application.create!(:name => "app-01")
+      Application.create!(:name => "app-02")
     end
 
     should "return every application when query is blank or is not a string" do

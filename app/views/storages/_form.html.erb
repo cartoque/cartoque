@@ -12,7 +12,7 @@
       </td></tr>
       <% end %>
       <%= f.association :machine, :required => true, :wrapper_class => "th",
-                        :collection => Machine.order("nom").map{|m| [m.nom, m.id]} %>
+                        :collection => Machine.order("name").map{|m| [m.name, m.id]} %>
       <%= f.input :constructor, :collection => Storage.supported_types %>
     </tbody>
   </table>

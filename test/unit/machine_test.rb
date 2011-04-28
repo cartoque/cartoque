@@ -3,7 +3,7 @@ require 'test_helper'
 class MachineTest < ActiveSupport::TestCase
   should "be valid" do
     assert ! Machine.new.valid?
-    assert Machine.new(:nom => "my-server").valid?
+    assert Machine.new(:name => "my-server").valid?
   end
 
   context "#ip" do
@@ -11,7 +11,7 @@ class MachineTest < ActiveSupport::TestCase
       @machine = Factory(:machine)
     end
 
-    should "return sousreseau and quatr_octet" do
+    should "return sousreseau and lastbyte" do
       assert_equal "192.168.0.10", @machine.ip
     end
 

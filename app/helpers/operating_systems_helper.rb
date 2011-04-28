@@ -7,7 +7,7 @@ module OperatingSystemsHelper
     else
       img << image_tag("blank.gif", :size => "12x12", :class => "os-icon")
     end
-    img.html_safe + operating_system.nom
+    img.html_safe + operating_system.name
   end
 
   def nested_operating_systems(operating_systems)

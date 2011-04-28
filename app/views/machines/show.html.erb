@@ -11,8 +11,8 @@
   <thead>
     <tr>
       <th colspan="2" style="font-size:14px;">
-        <%= @machine.nom %>
-        <% if @machine.virtuelle? %>
+        <%= @machine.name %>
+        <% if @machine.virtual? %>
           <span class="virtual-machine">V</span>
         <% end %>
       </th>
@@ -27,13 +27,13 @@
     </tr>
     <% end %>
     <%= s.attribute :ip %>
-    <!--<%= s.attribute :type_serveur %>-->
+    <!--<%= s.attribute :server_type %>-->
     <%= s.attribute :operating_system %>
     <%= s.attribute :service %>
     <%= s.attribute :theme %>
-    <!--<%= s.attribute :ancien_nom %>-->
+    <!--<%= s.attribute :previous_name %>-->
   <% end %>
-  <% unless @machine.virtuelle? %>
+  <% unless @machine.virtual? %>
   <thead>
     <tr><th colspan="2">Maintenance</th></tr>
   </thead>
@@ -41,8 +41,8 @@
     <%= s.attribute :mainteneur %>
     <%= s.attribute :delivered_on %>
     <%= s.attribute :maintained_until %>
-    <%= s.attribute :type_contrat %>
-    <%= s.attribute :numero_serie %>
+    <%= s.attribute :contract_type %>
+    <%= s.attribute :serial_number %>
   <% end %>
   <% end %>
 </table>
@@ -52,16 +52,16 @@
 <table class="show_item">
   <thead>
     <tr>
-      <th colspan="2"><%= @machine.virtuelle? ? "Ressources" : "Matériel" %></th>
+      <th colspan="2"><%= @machine.virtual? ? "Ressources" : "Matériel" %></th>
     </tr>
   </thead>
   <%= show_for @machine do |s| %>
-    <%= s.attribute :localization unless @machine.virtuelle? %>
-    <%= s.attribute :fullmodel unless @machine.virtuelle? %>
+    <%= s.attribute :localization unless @machine.virtual? %>
+    <%= s.attribute :fullmodel unless @machine.virtual? %>
     <%= s.attribute :cpu %>
-    <%= s.attribute :memoire %>
+    <%= s.attribute :memory %>
     <%= s.attribute :disks %>
-    <%= s.attribute :media_drive unless @machine.virtuelle? %>
+    <%= s.attribute :media_drive unless @machine.virtual? %>
     <%= s.attribute :nb_rj45 %>
     <%= s.attribute :nb_fc %>
     <%= s.attribute :nb_iscsi %>
@@ -80,7 +80,7 @@
         <% if @machine.applications.any? %>
           <ul>
           <% @machine.applications.each do |application| %>
-            <li><%= link_to application.nom, application %></li>
+            <li><%= link_to application.name, application %></li>
           <% end %>
           </ul>
         <% else %>

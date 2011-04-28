@@ -1,4 +1,4 @@
-<% hidden_if_virtual = @machine.virtuelle? ? 'display:none;' : '' %>
+<% hidden_if_virtual = @machine.virtual? ? 'display:none;' : '' %>
 <%= simple_form_for(@machine) do |f| %>
   <p class="actions">
     <%= f.button :submit %>
@@ -21,17 +21,17 @@
         </ul>
       </td></tr>
       <% end %>
-      <%= f.input :nom, :required => true, :wrapper_class => 'th' %>
+      <%= f.input :name, :required => true, :wrapper_class => 'th' %>
       <tr class="wrapper machine_applications">
         <td colspan="2">Description:<br/><%= f.text_area :description, :size => "33x6" %></td>
       </tr>
       <%= f.input :ip %>
-      <!--<%= f.input :type_serveur %>-->
-      <%= nested_select_tag(OperatingSystem, f, nil, :operating_system_id, :nom) %>
-      <%= f.input :virtuelle %>
+      <!--<%= f.input :server_type %>-->
+      <%= nested_select_tag(OperatingSystem, f, nil, :operating_system_id, :name) %>
+      <%= f.input :virtual %>
       <%= f.association :service %>
       <%= f.association :theme %>
-      <!--<%= f.input :ancien_nom %>-->
+      <!--<%= f.input :previous_name %>-->
     </tbody>
     <tbody id="machine-maintenance" style="<%= hidden_if_virtual %>">
       <tr><th colspan="2">Maintenance</th></tr>
@@ -40,8 +40,8 @@
                                  :start_year => Date.today.year-5, :end_year => Date.today.year+10 %>
       <%= f.input :maintained_until, :as => :date, :order => [:day, :month, :year], :use_month_numbers => true,
                                      :start_year => Date.today.year-5, :end_year => Date.today.year+10 %>
-      <%= f.input :type_contrat %>
-      <%= f.input :numero_serie %>
+      <%= f.input :contract_type %>
+      <%= f.input :serial_number %>
     </tbody>
   </table>
   </div>
@@ -49,26 +49,26 @@
   <div id="machine_hardware" class="column_wrapper">
   <table class="inputs">
     <thead>
-      <tr><th colspan="2" id="machine-hardware-title"><%= @machine.virtuelle? ? "Ressources" : "Matériel" %></th></tr>
+      <tr><th colspan="2" id="machine-hardware-title"><%= @machine.virtual? ? "Ressources" : "Matériel" %></th></tr>
     </thead>
     <tbody id="machine-physical-hardware" style="<%= hidden_if_virtual %>">
       <%= f.association :site %>
       <%= f.association :physical_rack %>
-      <%= f.input :modele %>
-      <%= f.input :marque %>
+      <%= f.input :model %>
+      <%= f.input :manufacturer %>
     </tbody>
     <tbody>
       <%= f.input :nb_proc, :collection => [1,2,4,6,8,10,12,16,24,32] %>
       <%= f.input :ref_proc %>
-      <%= f.input :frequence, :as => :string %>
+      <%= f.input :frequency, :as => :string %>
       <%= f.input :nb_coeur, :collection => [1,2,4,6,8] %>
-      <%= f.input :memoire %>
-      <%= f.input :type_disque %>
-      <%= f.input :nb_disque, :as => :string %>
-      <%= f.input :taille_disque, :as => :string %>
-      <%= f.input :type_disque_alt %>
-      <%= f.input :nb_disque_alt, :as => :string %>
-      <%= f.input :taille_disque_alt, :as => :string %>
+      <%= f.input :memory %>
+      <%= f.input :disk_type %>
+      <%= f.input :nb_disk, :as => :string %>
+      <%= f.input :disk_size, :as => :string %>
+      <%= f.input :disk_type_alt %>
+      <%= f.input :nb_disk_alt, :as => :string %>
+      <%= f.input :disk_size_alt, :as => :string %>
       <%= f.association :media_drive %>
       <%= f.input :nb_rj45, :collection => 0..32 %>
       <%= f.input :nb_fc, :collection => 0..12 %>
@@ -85,9 +85,9 @@
     <tbody>
       <tr class="wrapper machine_applications">
         <td colspan="2">
-          <% Application.all(:order => :nom).each do |application| %>
+          <% Application.all(:order => :name).each do |application| %>
             <%= check_box_tag 'machine[application_ids][]', application.id, @machine.applications.include?(application) %>
-            <%= application.nom %>
+            <%= application.name %>
             <br />
           <% end %>
         </td>

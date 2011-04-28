@@ -13,8 +13,8 @@
     <td>
       <%= Machine.count %> serveurs
       <ul class="details">
-        <li><%= Machine.where(:virtuelle => true).count %> VMs</li>
-        <li><%= Machine.where(:virtuelle => false).count %> physiques</li>
+        <li><%= Machine.where(:virtual => true).count %> VMs</li>
+        <li><%= Machine.where(:virtual => false).count %> physiques</li>
       </ul>
   </tr>
 </table>

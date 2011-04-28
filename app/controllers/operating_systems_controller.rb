@@ -2,7 +2,7 @@ class OperatingSystemsController < InheritedResources::Base
   layout "admin"
 
   def index
-    @operating_systems = OperatingSystem.arrange(:order => "nom")
+    @operating_systems = OperatingSystem.arrange(:order => "name")
   end
 
   def create

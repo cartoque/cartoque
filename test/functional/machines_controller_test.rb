@@ -16,7 +16,7 @@ class MachinesControllerTest < ActionController::TestCase
     assert_response :success
     assert_template 'maintenance'
     assert_not_nil assigns(:machines)
-    assert_nil assigns(:machines).detect{|m| m.virtuelle?}
+    assert_nil assigns(:machines).detect{|m| m.virtual?}
   end
   
 

@@ -1,9 +1,9 @@
 class Theme < ActiveRecord::Base
   has_many :machines
 
-  default_scope order('titre')
+  default_scope order('name')
 
   def to_s
-    titre
+    name
   end
 end

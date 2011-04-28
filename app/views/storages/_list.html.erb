@@ -18,9 +18,9 @@
       <%= pretty_size(device.free) %> disponibles (<%= "%0.0f%" % device.percent_free %>)
     </td>
   </tr>
-  <% @storages.sort_by{|s| [s.constructor, s.machine.nom.downcase]}.each do |storage| %>
+  <% @storages.sort_by{|s| [s.constructor, s.machine.name.downcase]}.each do |storage| %>
     <tr>
-      <td class="top"><%= storage.machine.nom %></td>
+      <td class="top"><%= storage.machine.name %></td>
       <td class="top"><%= storage.constructor %></td>
       <td class="details"><%= render('device', :device => storage.device) if storage.device %></td>
       <td class="top actions">

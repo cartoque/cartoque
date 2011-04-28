@@ -11,7 +11,7 @@ class MachinesController < InheritedResources::Base
   def collection
     @machines ||= end_of_association_chain.search(params[:search]).order(sort_column + " " + sort_direction)
     if maintenance_mode?
-      @machines = @machines.where(:virtuelle => false)
+      @machines = @machines.where(:virtual => false)
       if params[:sort] == "maintained_until"
         @machines = @machines.select{|m| m.maintained_until.present? } + @machines.select{|m| m.maintained_until.blank? }
       end
@@ -20,7 +20,7 @@ class MachinesController < InheritedResources::Base
 
   private
   def sort_column
-    Machine.column_names.include?(params[:sort]) ? params[:sort] : "nom"
+    Machine.column_names.include?(params[:sort]) ? params[:sort] : "name"
   end
 
   def sort_direction

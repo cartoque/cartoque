@@ -1,13 +1,13 @@
 class Application < ActiveRecord::Base
   has_and_belongs_to_many :machines
 
-  attr_accessible :nom, :criticite, :info, :iaw, :pe, :moa, :amoa, :moa_note, :contact, :pnd, :ams, :cerbere, :fiche
+  attr_accessible :name, :criticity, :info, :iaw, :pe, :moa, :amoa, :moa_note, :contact, :pnd, :ams, :cerbere, :comment
 
-  validates_presence_of :nom
+  validates_presence_of :name
 
   def self.search(search)
     if search
-      where("nom LIKE ?", "%#{search}%")
+      where("name LIKE ?", "%#{search}%")
     else
       scoped
     end

@@ -4,13 +4,13 @@ class OperatingSystem < ActiveRecord::Base
   before_save :cache_ancestry
 
   #doesn't work with Ancestry (see: https://github.com/stefankroes/ancestry/issues/42)
-  #default_scope order('nom')
+  #default_scope order('name')
 
   def to_s
-    nom
+    name
   end
 
   def cache_ancestry
-    self.path_cache = path.map(&:nom).join("/")
+    self.path_cache = path.map(&:name).join("/")
   end
 end
