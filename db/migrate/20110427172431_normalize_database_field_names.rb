@@ -3,12 +3,14 @@ class NormalizeDatabaseFieldNames < ActiveRecord::Migration
     self.columns_list.each do |column|
       rename_column column[0], column[1], column[2]
     end
+    self.reset_column_informations!
   end
 
   def self.down
     self.columns_list.each do |column|
       rename_column column[0], column[2], column[1]
     end
+    self.reset_column_informations!
   end
 
   def self.columns_list
@@ -50,5 +52,11 @@ class NormalizeDatabaseFieldNames < ActiveRecord::Migration
       %w(sousreseaux sousreseau_couleur_fond background_color),
       %w(themes titre name)
     ]
+  end
+
+  def self.reset_column_informations!
+    [Application, Machine, Mainteneur, OperatingSystem, PhysicalRack, Service, Site, Theme].each do |klass|
+      klass.reset_column_information
+    end
   end
 end
