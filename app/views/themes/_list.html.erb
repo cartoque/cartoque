@@ -1,0 +1,17 @@
+<p class="actions">
+  <%= link_to "Nouveau thème", new_theme_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Nom</th>
+    <th colspan="2" class="actions">Actions</th>
+  </tr>
+<% @themes.each do |theme| %>
+  <tr>
+    <td><%= theme.name %></td>
+    <td><%= link_to 'Editer', edit_theme_path(theme) %></td>
+    <td><%= link_to 'Supprimer', theme, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

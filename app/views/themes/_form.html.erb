@@ -1,0 +1,22 @@
+<%= simple_form_for(@theme) do |f| %>
+  <p class="actions">
+    <%= f.button :submit %>
+    ou <%= link_to "Retourner à la liste", themes_path %>
+  </p>
+
+  <table class="show_item">
+    <tbody>
+      <% if @theme.errors.any? %>
+      <tr id="error_explanation"><td colspan="2">
+        <h2><%= pluralize(@theme.errors.count, "erreur") %> :</h2>
+        <ul>
+        <% @theme.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </td></tr>
+      <% end %>
+      <%= f.input :name, :required => true, :wrapper_class => "th" %>
+    </tbody>
+  </table>
+<% end %>
