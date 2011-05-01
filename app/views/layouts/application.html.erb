@@ -17,12 +17,12 @@
         <%= show_version %>
       <% end %>
       </div>
-      <%= link_to "Accueil", root_path %>
+      <%= link_to image_tag("home.png", :alt=>"Accueil"), root_path %> |
       <%= link_to "Applications", applications_path %>
       <%= link_to "Machines", machines_path %> | 
       <%= link_to "Tomcats", tomcats_path %>
       <%= link_to "Bases", databases_path %>
-      <%= link_to "Stockage", storages_path %> | 
+      <%= link_to "Stockage", storages_path %> |
       <%= link_to "Configuration", operating_systems_path %>
     </div>
     <div id="container">
