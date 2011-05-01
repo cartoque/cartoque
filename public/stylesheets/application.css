@@ -2,13 +2,8 @@
 html { overflow-y:scroll; }
 body { min-width: 800px; font-family:Verdana, Helvetica, Arial; font-size:12px; margin:0; }
 a img { border:none; }
-a { color:#000; }
-code { font-family:'andale mono','lucida console','courier new',monospace; font-size:1em; }
-p { line-height:1.6em; margin:0 0 1em 0; }
-p a { font-weight:normal; outline:none; }
-p a:link, p a:visited { color:#333; text-decoration:underline; }
-p a:hover { color:#fff; text-decoration:none; background:#000; }
-p a:active { color:#000; text-decoration:underline; }
+a { color:#000; text-decoration:none; }
+a:hover { color:#000; text-decoration:underline; }
 caption { padding: 0 0 5px 0; margin:0 auto; width:auto; font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; text-align: right; }
 
 /* fonts */
@@ -25,7 +20,7 @@ tr th:first-child, tr td:first-child { border-left: 1px solid #C1DAD7; }
 th a { text-decoration:none; color: #4f6b72; background:transparent; }
 td a { text-decoration:none; color:#239; background:transparent; }
 td img { margin:0 auto; }
-td a:hover { color:#a84444; border-bottom:1px dotted #a80000; background:transparent; }
+td a:hover { color:#d33; background:transparent; text-decoration:underline; }
 td { border-right: 1px solid #C1DAD7; border-bottom: 1px solid #C1DAD7; padding: 6px; color: #4f6b72; }
 td.label { text-align:left; width: 50px; }
 table.show_item td.content { text-align:center; font-weight:bold; width:50%; }
@@ -36,7 +31,7 @@ tr.filters td { border:none; padding:2px; text-align:center; }
 .pretty th.sortable { background-repeat: no-repeat; }
 .pretty th.asc { background: #cae8ea url(/images/arrow_up_grey.png) no-repeat left center; }
 .pretty th.desc { background: #cae8ea url(/images/arrow_down_grey.png) no-repeat left center; }
-.pretty th.sortable, .pretty th.current { text-decoration: underline; }
+.pretty th.sortable, .pretty th.current { text-decoration:underline; }
 .pretty th.current { padding-left:8px; }
 
 /* commodities */
@@ -45,16 +40,52 @@ tr.filters td { border:none; padding:2px; text-align:center; }
 .contextual { float:right; }
 .contextual * { padding:0; margin:0; }
 .actions { text-align:center; font-size: 90%; }
+.actions a { text-decoration:underline; }
 .hidden { display:none; }
 .more { font-size:90%; text-align:left; }
 .tiny { font-size:90%; }
 .simple-list { margin:0; position:relative; display:block; padding:0 0 0 1em; list-style-type:none; }
+input[type="submit"] {
+  -moz-box-shadow:inset 0px 1px 0px 0px #fff;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #fff;
+  box-shadow:inset 0px 1px 0px 0px #fff;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f7f7f7), color-stop(1, #ebebeb) );
+  background:-moz-linear-gradient( center top, #f7f7f7 5%, #ebebeb 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#ebebeb');
+  background-color:#f7f7f7;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
+  border:1px solid #cfcfcf;
+  display:inline-block;
+  color:#333;
+  font-family:arial;
+  font-size:13px;
+  font-weight:bold;
+  padding:1px 8px;
+  text-decoration:none !important;
+  text-shadow:1px 1px 0px #ffffff;
+}
+input[type="submit"]:hover {
+  color: #333;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ebebeb), color-stop(1, #f7f7f7) );
+  background:-moz-linear-gradient( center top, #ebebeb 5%, #f7f7f7 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ebebeb', endColorstr='#f7f7f7');
+  background-color:#ebebeb;
+}
+input[type="submit"]:active {
+  position:relative;
+  top:1px;
+}
 
 /* wrappers */
-#top-menu { padding:5px 8px 8px; margin:0 0 5px; background-color:#edf3f3; }
+#top-menu { padding:5px 8px 7px; margin:0 0 5px; background-color:#eee; border-bottom:1px solid #ddd; }
 #container { margin:0 auto; background-color:#FFF; padding:8px; text-align:left; }
 .column_wrapper { float:left; margin:0 15px 0 5px; }
-#sidebar { float:left; padding:10px; margin:0 10px 0 0; background:#f6f6f6; }
+#sidebar {
+  float:left; padding:10px; margin:0 10px 0 0; background:#f6f6f6;
+  -moz-box-shadow:2px 1px 4px #bbb; -webkit-box-shadow:2px 1px 4px #bbb; box-shadow:2px 1px 4px #bbb;
+}
 
 /* errors, warnings */
 #flash_notice, #flash_error, #flash_alert { padding:5px 8px; margin:10px 0; }
