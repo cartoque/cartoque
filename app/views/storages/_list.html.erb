@@ -24,8 +24,8 @@
       <td class="top"><%= storage.constructor %></td>
       <td class="details"><%= render('device', :device => storage.device) if storage.device %></td>
       <td class="top actions">
-        <%= link_to "Editer", edit_storage_path(storage) %>
-        | <%= link_to "Supprimer", storage, :confirm => 'Are you sure?', :method => :delete %>
+        <%= link_to "Editer", edit_storage_path(storage) %><br />
+        <%= link_to "Supprimer", storage, :confirm => 'Are you sure?', :method => :delete %>
       </td>
     </tr>
   <% end %>

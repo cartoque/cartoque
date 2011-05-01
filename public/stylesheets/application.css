@@ -46,7 +46,7 @@ tr.filters td { border:none; padding:2px; text-align:center; }
 .center { text-align:center; }
 .contextual { float:right; }
 .contextual * { padding:0; margin:0; }
-.actions { text-align:center; font-size: 90%; }
+.actions { text-align:center; font-size: 90%; margin-top:2px; }
 .actions a { text-decoration:underline; }
 .hidden { display:none; }
 .more { font-size:90%; text-align:left; }
