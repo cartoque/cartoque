@@ -16,24 +16,30 @@ h2 { font-weight:bold; margin:0.5em 0; font-family:verdana,arial,sans-serif; tex
 
 /* tables */
 table { padding: 0; margin: 0 auto 1.5em auto; border-collapse:collapse; }
-th, tr.th td { color: #4f6b72; background-color:#cae8ea; border-right: 1px solid #C1DAD7; border-bottom: 1px solid #C1DAD7; border-top: 1px solid #C1DAD7; text-transform: capitalize; text-align: center; padding: 4px; vertical-align:middle; }
-tr th:first-child, tr td:first-child { border-left: 1px solid #C1DAD7; }
-th a { text-decoration:none; color: #4f6b72; background:transparent; }
+th, tr.th td {
+  text-transform: capitalize; text-align: center; padding:4px 6px; vertical-align:middle;
+  color: #433; background-color:#eee; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;
+  background: -moz-linear-gradient(100% 100% 90deg, #e2e2e2, #f0f0f0);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f0f0f0), to(#e2e2e2));
+  background: -webkit-linear-gradient(#e2e2e2, #f0f0f0);
+  background: -o-linear-gradient(#e2e2e2, #f0f0f0);
+}
+tr th:first-child, tr td:first-child { border-left: 1px solid #ccc; }
+th a { text-decoration:none; color: #433; background:transparent; }
 td a { text-decoration:none; color:#239; background:transparent; }
 td img { margin:0 auto; }
 td a:hover { color:#d33; background:transparent; text-decoration:underline; }
-td { border-right: 1px solid #C1DAD7; border-bottom: 1px solid #C1DAD7; padding: 6px; color: #4f6b72; }
+td { border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 6px; color: #433; }
 td.label { text-align:left; width: 50px; }
 table.show_item td.content { text-align:center; font-weight:bold; width:50%; }
 tr.filters { border:none; font-size:90%; }
 tr.filters td { border:none; padding:2px; text-align:center; }
 
 /* pretty tables (sorting,etc.) */
-.pretty th.sortable { background-repeat: no-repeat; }
-.pretty th.asc { background: #cae8ea url(/images/arrow_up_grey.png) no-repeat left center; }
-.pretty th.desc { background: #cae8ea url(/images/arrow_down_grey.png) no-repeat left center; }
+.pretty th.current a { background-repeat:no-repeat; background-position:left center; padding-left:12px; }
+.pretty th.asc a { background-image:url(/images/arrow_up_grey.png); }
+.pretty th.desc a { background-image:url(/images/arrow_down_grey.png); }
 .pretty th.sortable, .pretty th.current { text-decoration:underline; }
-.pretty th.current { padding-left:8px; }
 
 /* commodities */
 .clear { clear:both; height:0; overflow:hidden; }
@@ -70,7 +76,7 @@ input[type="submit"]:active {
 }
 
 /* wrappers */
-#top-menu { padding:5px 8px 7px; margin:0 0 5px; background-color:#eee; border-bottom:1px solid #ddd; }
+#top-menu { padding:5px 8px 7px; margin:0 0 5px; background-color:#eee; border-bottom:1px solid #ccc; }
 #container { margin:0 auto; background-color:#FFF; padding:8px; text-align:left; }
 .column_wrapper { float:left; margin:0 15px 0 5px; }
 #sidebar {
@@ -97,14 +103,17 @@ input[type="submit"]:active {
 .simple_form label.collection_radio { margin-right:10px; margin-left:2px; }
 .simple_form .error { clear:left; margin-left:120px; color:#D00; display:block; }
 .simple_form .hint { clear:left; margin-left:120px; color:#555; display:block; font-style:italic; }
-label.required abbr { color:red; }
+label.required abbr { color:red; border-bottom:none; }
 
 /* generic items */
 .items_list table.ninety { width:90%; }
 .items_list h1 { text-align:center; margin-top:0.3em; font-family:Verdana, Helvetica, Arial; color:#333; text-transform:uppercase; letter-spacing:1px; font-size:1.2em; }
 
 /* top menu */
-#top-menu a { display:inline-block; padding-bottom:-5px; }
+#top-menu a { display:inline-block; position:relative; bottom:-1px; }
+#top-menu .contextual { /*position:relative; bottom:0px;*/ }
+#top-menu input#search { border:1px solid #bbb; }
+
 /* welcome page */
 h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; font-weight:400; text-shadow:2px 2px 2px #aaa; text-decoration:none; text-transform:none; letter-spacing:0em; word-spacing:0em; line-height:1em; }
 .welcome .details { margin:0; position:relative; display:block; padding:0 0 0 1em; list-style-type:none; color:#666; font-size:90%; }
