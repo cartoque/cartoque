@@ -19,4 +19,8 @@ class Database < ActiveRecord::Base
       report["ora_instance"]
     end
   end
+
+  def report
+    send(:"#{database_type}_report")
+  end
 end

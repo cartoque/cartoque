@@ -21,4 +21,10 @@ class DatabaseTest < ActiveSupport::TestCase
     assert d.postgres_report.blank?
     assert_equal 1, d.oracle_report.size
   end
+
+  should "return a postgres_report if postgres, oracle if oracle" do
+    d = Factory(:database)
+    assert_equal 2, d.postgres_report.size
+    assert_equal 2, d.report.size
+  end
 end
