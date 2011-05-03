@@ -1,0 +1,21 @@
+<% storages_by_constructor = Storage.all.select{|s|s.device.is_a?(Storcs::Device)}.group_by(&:constructor) %>
+<table>
+  <tr>
+    <th class="center" colspan="2">Statistiques Stockage</th>
+  </tr>
+<% storages_by_constructor.each do |constructor, devices| %>
+  <tr>
+    <td><%= link_to constructor, storages_path %></td>
+    <td>
+      <% device = Storcs::Device.new(""); device.children = devices.map(&:device).select{|s|s.is_a?(Storcs::Device)} %>
+      <%= pretty_size(device.size) %> sur <%= pluralize(device.children.count, "baie") %>
+      <ul class="details">
+        <li><%= pretty_size(device.free) %> libres (<%= "%0.0f%" % device.percent_free %>)</li>
+        <% if device.unassigned > 0 %>
+          <li><em>+ <%= pretty_size(device.unassigned) %> unassigned</em></li>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+<% end %>
+</table>

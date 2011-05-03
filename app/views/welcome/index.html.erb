@@ -12,6 +12,8 @@
   <%= render 'stats_databases' %>
 <% end %>
 
-<%= welcome_box %>
+<%= welcome_box  do %>
+  <%= render 'stats_storage' %>
+<% end %>
 
 </div><!-- #welcome-container -->
