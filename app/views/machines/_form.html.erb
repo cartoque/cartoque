@@ -11,16 +11,7 @@
   <div id="machine_general" class="column_wrapper">
   <table class="inputs">
     <tbody>
-      <% if @machine.errors.any? %>
-      <tr id="error_explanation"><td colspan="2">
-        <h2><%= pluralize(@machine.errors.count, "erreur") %> :</h2>
-        <ul>
-        <% @machine.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </td></tr>
-      <% end %>
+      <%= tabular_errors @machine %>
       <%= f.input :name, :required => true, :wrapper_class => 'th' %>
       <tr class="wrapper machine_applications">
         <td colspan="2">Description:<br/><%= f.text_area :description, :size => "33x6" %></td>

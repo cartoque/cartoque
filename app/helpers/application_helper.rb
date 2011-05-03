@@ -39,4 +39,20 @@ module ApplicationHelper
     collection -= object.subtree unless object.blank? || object.new_record?
     form.input idkey, :as => :select, :collection => collection.map { |o| ["-" * o.depth + " " + o.send(namekey), o.id] }
   end
+
+  def tabular_errors(object)
+    if object.errors.any?
+      html = <<-EOF
+      <tr id="error_explanation"><td colspan="2">
+        <h2>#{pluralize(object.errors.count, "erreur")} :</h2>
+        <ul>
+        #{object.errors.full_messages.map do |msg|
+            "<li>"+msg+"</li>"
+          end.join(" ")}
+        </ul>
+      </td></tr>
+      EOF
+      html.html_safe
+    end
+  end
 end

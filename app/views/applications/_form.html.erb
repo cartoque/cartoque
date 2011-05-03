@@ -9,16 +9,7 @@
 
   <table class="show_item">
     <tbody>
-      <% if @application.errors.any? %>
-      <tr id="error_explanation"><td colspan="2">
-        <h2><%= pluralize(@application.errors.count, "erreur") %> :</h2>
-        <ul>
-        <% @application.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </td></tr>
-      <% end %>
+      <%= tabular_errors @application %>
       <%= f.input :name, :required => true, :wrapper_class => "th" %>
       <%= f.input :criticity, :as => :radio, :collection => 1..3 %>
       <%= f.input :iaw %>

@@ -1,16 +1,7 @@
 <%= simple_form_for(@storage) do |f| %>
   <table class="show_item">
     <tbody>
-      <% if @storage.errors.any? %>
-      <tr id="error_explanation"><td colspan="2">
-        <h2><%= pluralize(@storage.errors.count, "erreur") %> :</h2>
-        <ul>
-        <% @storage.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </td></tr>
-      <% end %>
+      <%= tabular_errors @storage %>
       <%= f.association :machine, :required => true, :wrapper_class => "th",
                         :collection => Machine.order("name").map{|m| [m.name, m.id]} %>
       <%= f.input :constructor, :collection => Storage.supported_types %>

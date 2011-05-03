@@ -26,16 +26,7 @@
 <%= simple_form_for(@database) do |f| %>
   <table class="show_item">
     <tbody>
-      <% if @database.errors.any? %>
-      <tr id="error_explanation"><td colspan="2">
-        <h2><%= pluralize(@database.errors.count, "erreur") %> :</h2>
-        <ul>
-        <% @database.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </td></tr>
-      <% end %>
+      <%= tabular_errors @database %>
       <%= f.input :name, :required => true, :wrapper_class => "th" %>
       <%= f.input :database_type, :collection => %w(postgres oracle),
                   :required => true, :include_blank => false %>
