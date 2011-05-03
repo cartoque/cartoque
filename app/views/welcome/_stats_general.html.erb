@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th class="center" colspan="2">Statistiques générales</th>
+  </tr>
+  <tr>
+    <td><%= link_to "Applications", applications_path %></td>
+    <td><%= Application.count %> applications</td>
+  </tr>
+  <tr>
+    <td><%= link_to "Machines", machines_path %></td>
+    <td>
+      <%= Machine.count %> serveurs
+      <ul class="details">
+        <li><%= Machine.where(:virtual => true).count %> VMs</li>
+        <li><%= Machine.where(:virtual => false).count %> physiques</li>
+      </ul>
+  </tr>
+</table>

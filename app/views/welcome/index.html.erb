@@ -2,61 +2,16 @@
 
 <div id="welcome-container">
 
-<div class="welcome-box-out"><div class="welcome-box-in">
-</div></div>
+<%= welcome_box %>
 
-<div class="welcome-box-out"><div class="welcome-box-in">
-<table>
-  <tr>
-    <th class="center" colspan="2">Statistiques générales</th>
-  </tr>
-  <tr>
-    <td><%= link_to "Applications", applications_path %></td>
-    <td><%= Application.count %> applications</td>
-  </tr>
-  <tr>
-    <td><%= link_to "Machines", machines_path %></td>
-    <td>
-      <%= Machine.count %> serveurs
-      <ul class="details">
-        <li><%= Machine.where(:virtual => true).count %> VMs</li>
-        <li><%= Machine.where(:virtual => false).count %> physiques</li>
-      </ul>
-  </tr>
-</table>
-</div></div>
+<%= welcome_box do %>
+  <%= render 'stats_general' %>
+<% end %>
 
-<div class="welcome-box-out"><div class="welcome-box-in">
-<table>
-  <tr>
-    <th class="center" colspan="2">Statistiques Bases</th>
-  </tr>
-  <tr>
-    <td><%= link_to "Postgres", databases_path %></td>
-    <td>
-      <% databases = Database.where(:database_type => "postgres") %>
-      <%= pluralize(databases.map(&:machine_ids).flatten.uniq.count, "serveur") %>
-      <ul class="details">
-        <li><%= pluralize(databases.map(&:instances).sum, "pg_clusters") %></li>
-        <li><%= pretty_size(databases.map(&:size).sum) %> de données</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td><%= link_to "Oracle", databases_path %></td>
-    <td>
-      <% databases = Database.where(:database_type => "oracle") %>
-      <%= pluralize(databases.map(&:machine_ids).flatten.uniq.count, "serveur") %>
-      <ul class="details">
-        <li><%= pluralize(databases.map(&:instances).sum, "instances") %></li>
-        <li><%= pretty_size(databases.map(&:size).sum) %> de données</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-</div></div>
+<%= welcome_box  do %>
+  <%= render 'stats_databases' %>
+<% end %>
 
-<div class="welcome-box-out"><div class="welcome-box-in">
-</div></div>
+<%= welcome_box %>
 
 </div><!-- #welcome-container -->
