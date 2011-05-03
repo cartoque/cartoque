@@ -1,0 +1,6 @@
+[
+  { "cluster":"database-01", "pg_cluster":"8.4", "host":"server-01", "ip": "192.168.135.4", "port":5432,
+    "databases":{"app01":6054180, "app02":293962020, "app03":5341476, "app04":292479268, "app05":11149754660} },
+  { "cluster":"database-01", "pg_cluster":"9.0", "host":"server-01", "ip": "192.168.135.4", "port":5434,
+    "databases":{"app01-dev":5311356, "app02-dev":6073212, "app03-dev":11152252, "app04-dev":17543220092} }
+]

@@ -2,6 +2,17 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+require 'machine'
+class Machine
+  def postgres_file
+    File.expand_path("../data/postgres/#{name.downcase}.txt", __FILE__)
+  end
+
+  def oracle_file
+    File.expand_path("../data/oracle/#{name.downcase}.txt", __FILE__)
+  end
+end
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #

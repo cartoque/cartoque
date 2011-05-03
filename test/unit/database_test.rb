@@ -6,6 +6,19 @@ class DatabaseTest < ActiveSupport::TestCase
     assert Database.new(:name => "blah", :database_type => "postgres").valid?
   end
 
-  should "return a valid report" do
+  should "return a postgres report" do
+    d = Factory(:database)
+    assert_not_nil d
+    assert d.oracle_report.blank?
+    assert d.postgres_report.present?
+    assert_equal 2, d.postgres_report.size
+  end
+
+  should "return an oracle report" do
+    d = Factory(:oracle)
+    assert_not_nil d
+    assert d.oracle_report.present?
+    assert d.postgres_report.blank?
+    assert_equal 1, d.oracle_report.size
   end
 end
