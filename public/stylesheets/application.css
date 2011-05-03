@@ -117,6 +117,9 @@ label.required abbr { color:red; border-bottom:none; }
 /* welcome page */
 h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; font-weight:400; text-shadow:2px 2px 2px #aaa; text-decoration:none; text-transform:none; letter-spacing:0em; word-spacing:0em; line-height:1em; margin-top:0.2em; }
 .welcome .details { margin:0; position:relative; display:block; padding:0 0 0 1em; list-style-type:none; color:#666; font-size:90%; }
+.welcome-box-out { float:left; width:25%; margin:0; padding:0; }
+.welcome-box-in { float:none; margin:5px; padding:0; min-height:150px; }
+.welcome-box-in > table, .welcome-box-in > div { width:100%; }
 
 /* storage */
 #storage .device { padding-left:2px; margin-bottom:2px; background-color:#eee; }

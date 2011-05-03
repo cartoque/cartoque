@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Storcs::Formatter
+
   def sortable(column, title = nil)
     title ||= t(column, :default => column.titleize)
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
