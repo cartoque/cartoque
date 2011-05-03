@@ -21,6 +21,26 @@ class Database < ActiveRecord::Base
   end
 
   def report
-    send(:"#{database_type}_report")
+    method = :"#{database_type}_report"
+    respond_to?(method) ? send(method) : []
+  end
+
+  def instances
+    report.size
+  end
+
+  def size
+    case database_type
+    when "postgres"
+      report.inject(0) do |memo,instance|
+        memo += instance["databases"].values.sum
+      end
+    when "oracle"
+      report.inject(0) do |memo,instance|
+        memo += instance["schemas"].values.sum
+      end
+    else
+      0
+    end
   end
 end
