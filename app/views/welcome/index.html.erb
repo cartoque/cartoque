@@ -2,8 +2,6 @@
 
 <div id="welcome-container">
 
-<%= welcome_box %>
-
 <%= welcome_box do %>
   <%= render 'stats_general' %>
 <% end %>
@@ -14,6 +12,10 @@
 
 <%= welcome_box  do %>
   <%= render 'stats_storage' %>
+<% end %>
+
+<%= welcome_box  do %>
+  <%= render 'stats_maintenance' %>
 <% end %>
 
 </div><!-- #welcome-container -->

@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>Maintenance</th>
+  </tr>
+  <tr>
+    <td>
+      <% cond = "virtual = ? AND maintained_until IS NOT NULL" %>
+      <%= Machine.where([cond, false]).count %> serveurs maintenus 
+      / <%= Machine.where(:virtual => false).count %><br />
+      Dont :
+      <ul class="details">
+        <li><%= Machine.where([cond+" AND maintained_until < ?", false, Date.today]).count %> plus maintenus</li>
+        <li><%= Machine.where([cond+" AND maintained_until <= ?", false, Date.today + 6.months]).count %> à renouveler d'ici 6 mois</li>
+        <li><%= Machine.where([cond+" AND maintained_until <= ?", false, Date.today + 12.months]).count %> à renouveler d'ici 12 mois</li>
+      </ul>
+    </td>
+  </tr>
+</table>
