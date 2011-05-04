@@ -1,0 +1,19 @@
+<% title "Services" %>
+
+<p class="actions">
+  <%= link_to "Nouveau service", new_service_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Nom</th>
+    <th colspan="2" class="actions">Actions</th>
+  </tr>
+<% @services.each do |service| %>
+  <tr>
+    <td><%= service.name %></td>
+    <td><%= link_to 'Editer', edit_service_path(service) %></td>
+    <td><%= link_to 'Supprimer', service, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

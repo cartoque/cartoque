@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SitesControllerTest < ActionController::TestCase
   setup do
-    @site = sites(:one)
+    @site = Factory(:room)
   end
 
   test "should get index" do
@@ -21,12 +21,7 @@ class SitesControllerTest < ActionController::TestCase
       post :create, :site => @site.attributes
     end
 
-    assert_redirected_to site_path(assigns(:site))
-  end
-
-  test "should show site" do
-    get :show, :id => @site.to_param
-    assert_response :success
+    assert_redirected_to sites_path
   end
 
   test "should get edit" do
@@ -36,7 +31,7 @@ class SitesControllerTest < ActionController::TestCase
 
   test "should update site" do
     put :update, :id => @site.to_param, :site => @site.attributes
-    assert_redirected_to site_path(assigns(:site))
+    assert_redirected_to sites_path
   end
 
   test "should destroy site" do
