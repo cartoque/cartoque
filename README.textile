@@ -1,0 +1,28 @@
+h1. Credits
+
+This application is built using the Ruby on Rails framework. Many functionalities or techniques used here are inspired by the awesomes screencasts by Ryan Bates @ http://www.railscasts.com. Including :
+* PDFs exports with PDFKit (Episode 220)
+* Inherited Resources to DRY up controllers (Episode 230)
+* Simple_form to DRY up forms (Episode 234)
+* Search/Sort with AJAX (Episode 240)
+* Simple authentication with OmniAuth (Episode 241)
+* AJAX history state (Episode 241)
+* Trees with Ancestry (Episode 262)
+
+And soon coming:
+* 114_endless_page
+* 165_edit_multiple
+* 182_cropping_images
+* 192_authorization_with_cancan
+* 213_calendars
+* 229_polling_for_changes
+* 244_gravatar
+* 249_notifications_in_rails_3
+* 253_carrierwave_file_uploads
+* 254_pagination_with_kaminari
+* 255_undo_with_paper_trail
+* 260_messaging_with_faye
+* 263_client_side_validations
+
+Not mentionning all the more technical aspects I learned through Railscasts and I cannot list here.
+
