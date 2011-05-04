@@ -113,6 +113,7 @@ label.required abbr { color:red; border-bottom:none; }
 .items_list h1 { text-align:center; margin-top:0.3em; font-family:Verdana, Helvetica, Arial; color:#333; text-transform:uppercase; letter-spacing:1px; font-size:1.2em; }
 
 /* top menu */
+#top-menu form { display:inline; }
 #top-menu a { display:inline-block; position:relative; bottom:-1px; }
 #top-menu input#search { border:1px solid #bbb; }
 #top-menu .connected-as { font-weight:bold; position:relative; bottom:-1px; }
