@@ -8,11 +8,11 @@
     </tbody>
   </table>
 
-  <p class="actions">
+  <% action_links do %>
     <%= f.button :submit %>
     ou <%= link_to "Retourner a la liste", storages_path %>
     <% unless @storage.new_record? %>
       | <%= link_to "Voir", @storage %>
     <% end %>
-  </p>
+  <% end %>
 <% end %>

@@ -1,10 +1,10 @@
 <% title "Machine" %>
 
-<p class="actions">
+<% action_links do %>
   <%= link_to 'Editer', edit_machine_path(@machine) %> |
   <%= link_to 'Supprimer', @machine, :confirm => 'Etes-vous sûr ?', :method => :delete %> |
   <%= link_to 'Retourner à la liste', machines_path %>
-</p>
+<% end %>
 
 <div id="machine_general" class="column_wrapper">
 <table class="show_item">

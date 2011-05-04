@@ -1,12 +1,12 @@
 <% hidden_if_virtual = @machine.virtual? ? 'display:none;' : '' %>
 <%= simple_form_for(@machine) do |f| %>
-  <p class="actions">
+  <% action_links do %>
     <%= f.button :submit %>
     ou <%= link_to "Retourner à la liste", machines_path %>
     <% unless @machine.new_record? %>
       | <%= link_to "Voir", @machine %>
     <% end %>
-  </p>
+  <% end %>
 
   <div id="machine_general" class="column_wrapper">
   <table class="inputs">

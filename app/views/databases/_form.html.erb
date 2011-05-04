@@ -43,11 +43,11 @@
     </tbody>
   </table>
 
-  <p class="actions">
+  <% action_links do %>
     <%= f.button :submit %>
     ou <%= link_to "Retourner à la liste", databases_path %>
     <% unless true || @database.new_record? %>
       | <%= link_to "Voir", @database %>
     <% end %>
-  </p>
+  <% end %>
 <% end %>

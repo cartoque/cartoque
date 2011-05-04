@@ -1,8 +1,8 @@
 <%= simple_form_for(@theme) do |f| %>
-  <p class="actions">
+  <% action_links do %>
     <%= f.button :submit %>
     ou <%= link_to "Retourner à la liste", themes_path %>
-  </p>
+  <% end %>
 
   <table class="show_item">
     <tbody>

@@ -1,8 +1,8 @@
 <%= simple_form_for(@operating_system) do |f| %>
-  <p class="actions">
+  <% action_links do %>
     <%= f.button :submit %>
     ou <%= link_to "Retourner à la liste", operating_systems_path %>
-  </p>
+  <% end %>
 
   <table class="inputs">
     <tbody>

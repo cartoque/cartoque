@@ -55,4 +55,10 @@ module ApplicationHelper
       html.html_safe
     end
   end
+
+  def action_links(&block)
+    content_tag(:p, :class => "actions") do
+      capture(&block)
+    end
+  end
 end

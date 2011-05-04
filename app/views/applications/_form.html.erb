@@ -1,11 +1,11 @@
 <%= simple_form_for(@application) do |f| %>
-  <p class="actions">
+  <% action_links do %>
     <%= f.button :submit %>
     ou <%= link_to "Retourner à la liste", applications_path %>
     <% unless @application.new_record? %>
       | <%= link_to "Voir", @application %>
     <% end %>
-  </p>
+  <% end %>
 
   <table class="show_item">
     <tbody>

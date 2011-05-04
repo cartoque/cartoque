@@ -1,10 +1,10 @@
 <% title "Base de données" %>
 
-<p class="actions">
+<% action_links do %>
   <%= link_to "Editer", edit_database_path(@database) %> |
   <%= link_to "Supprimer", @database, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "Retourner à la liste", databases_path %>
-</p>
+<% end %>
 
 <table class="show_item">
   <thead>

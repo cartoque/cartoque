@@ -1,4 +1,4 @@
-<p class="actions">
+<% action_links do %>
   <%= link_to "Ajouter une machine", new_machine_path %> | 
   <%= link_to "Export PDF", machines_path(params.merge(:format => "pdf")) %> | 
   <% if maintenance_mode? %>
@@ -6,6 +6,6 @@
   <% else %>
     <%= link_to "Vue maintenance", machines_path(:view_mode => "maintenance") %>
   <% end %>
-</p>
+<% end %>
 
 <%= render(maintenance_mode? ? "list_maintenance" : "list_normal") %>

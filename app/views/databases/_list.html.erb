@@ -1,7 +1,7 @@
-<p class="actions">
+<% action_links do %>
   <%= link_to "Déclarer un serveur de bases de données", new_database_path %>
   | <%= link_to_function "Changer de vue", "$('.databases-details,.databases-summary').toggle();" %>
-</p>
+<% end %>
 
 <% postgres_databases = @databases.select{|db| db.database_type == 'postgres'} %>
 <% oracle_databases   = @databases.select{|db| db.database_type == 'oracle'} %>
@@ -19,10 +19,10 @@
     <tr>
       <td rowspan="<%= height %>">
         <%= database_nodes database %>
-        <p class="actions">
+        <% action_links do %>
           <%= link_to "edit", edit_database_path(database) %>
           | <%= link_to "suppr", database, :confirm => 'Are you sure?', :method => :delete %>
-        </p>
+        <% end %>
       </td>
       <% if database.postgres_report.present? %>
         <%= render :partial => 'postgres_report', :collection => database.postgres_report %>
@@ -47,10 +47,10 @@
     <tr>
       <td rowspan="<%= height %>">
         <%= database_nodes database %>
-        <p class="actions">
+        <% action_links do %>
           <%= link_to "edit", edit_database_path(database) %>
           | <%= link_to "suppr", database, :confirm => 'Are you sure?', :method => :delete %>
-        </p>
+        <% end %>
       </td>
       <% if database.oracle_report.present? %>
         <%= render :partial => 'oracle_report', :collection => database.oracle_report %>
