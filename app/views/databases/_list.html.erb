@@ -1,4 +1,4 @@
-<% action_links do %>
+<%= action_links do %>
   <%= link_to "Déclarer un serveur de bases de données", new_database_path %>
   | <%= link_to_function "Changer de vue", "$('.databases-details,.databases-summary').toggle();" %>
 <% end %>
@@ -19,7 +19,7 @@
     <tr>
       <td rowspan="<%= height %>">
         <%= database_nodes database %>
-        <% action_links do %>
+        <%= action_links do %>
           <%= link_to "edit", edit_database_path(database) %>
           | <%= link_to "suppr", database, :confirm => 'Are you sure?', :method => :delete %>
         <% end %>
@@ -47,7 +47,7 @@
     <tr>
       <td rowspan="<%= height %>">
         <%= database_nodes database %>
-        <% action_links do %>
+        <%= action_links do %>
           <%= link_to "edit", edit_database_path(database) %>
           | <%= link_to "suppr", database, :confirm => 'Are you sure?', :method => :delete %>
         <% end %>

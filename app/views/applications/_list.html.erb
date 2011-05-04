@@ -1,4 +1,4 @@
-<% action_links do %>
+<%= action_links do %>
   <%= link_to "Ajouter une application", new_application_path %> | 
   <%= link_to "Export PDF", applications_path(params.merge(:format => "pdf")) %>
 <% end %>

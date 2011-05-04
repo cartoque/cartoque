@@ -1,6 +1,6 @@
 <% hidden_if_virtual = @machine.virtual? ? 'display:none;' : '' %>
 <%= simple_form_for(@machine) do |f| %>
-  <% action_links do %>
+  <%= action_links do %>
     <%= f.button :submit %>
     ou <%= link_to "Retourner à la liste", machines_path %>
     <% unless @machine.new_record? %>

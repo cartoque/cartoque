@@ -1,5 +1,5 @@
 <%= simple_form_for(@site) do |f| %>
-  <% action_links do %>
+  <%= action_links do %>
     <%= f.button :submit %>
     ou <%= link_to "Retourner à la liste", sites_path %>
   <% end %>

@@ -1,5 +1,5 @@
 <%= simple_form_for(@theme) do |f| %>
-  <% action_links do %>
+  <%= action_links do %>
     <%= f.button :submit %>
     ou <%= link_to "Retourner à la liste", themes_path %>
   <% end %>

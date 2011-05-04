@@ -1,5 +1,5 @@
 <%= simple_form_for(@application) do |f| %>
-  <% action_links do %>
+  <%= action_links do %>
     <%= f.button :submit %>
     ou <%= link_to "Retourner à la liste", applications_path %>
     <% unless @application.new_record? %>

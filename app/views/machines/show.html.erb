@@ -1,6 +1,6 @@
 <% title "Machine" %>
 
-<% action_links do %>
+<%= action_links do %>
   <%= link_to 'Editer', edit_machine_path(@machine) %> |
   <%= link_to 'Supprimer', @machine, :confirm => 'Etes-vous sûr ?', :method => :delete %> |
   <%= link_to 'Retourner à la liste', machines_path %>
