@@ -52,6 +52,7 @@ tr.filters td { border:none; padding:2px; text-align:center; }
 .more { font-size:90%; text-align:left; }
 .tiny { font-size:90%; }
 .simple-list { margin:0; position:relative; display:block; padding:0 0 0 1.5em; list-style-type:none; }
+.simple-list li { margin-top:3px; }
 input[type="submit"] {
   padding:1px 8px; display:inline-block;
   -moz-box-shadow:inset 0px 1px 0px 0px #fff; -webkit-box-shadow:inset 0px 1px 0px 0px #fff; box-shadow:inset 0px 1px 0px 0px #fff;
