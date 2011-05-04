@@ -44,4 +44,5 @@ group :test do
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'mocha'
+  gem 'guard-livereload'
 end
