@@ -10,6 +10,10 @@ Cartocs::Application.routes.draw do
   end
   resources :applications
 
+  match 'auth/:provider/callback' => 'sessions#create'
+  match 'signout' => 'sessions#destroy', :as => :signout
+  match 'auth/failure' => 'sessions#failure', :as => :auth_failure
+
   #get "welcome/index"
 
   # The priority is based upon order of creation:

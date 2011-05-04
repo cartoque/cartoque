@@ -58,6 +58,8 @@ fr:
         odd: "doit être impair"
         even: "doit être pair"
         greater_than_start_date: "doit être postérieure à la date de début"
+  omniauth_invalid_ticket: "Ticket non valide !"
+  omniauth_invalid_user: "L'utilisateur n'existe pas, veuillez ré-essayer ou contacter l'administrateur"
   helpers:
     submit:
       create: "Créer"

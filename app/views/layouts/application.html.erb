@@ -12,9 +12,14 @@
     <div id="top-menu" class="hide-when-print">
       <div class="contextual">
       <% if %w(index show).include?(controller.action_name) %>
-        <%= render("#{controller.controller_name}/search") rescue show_version %>
+        <%= render("#{controller.controller_name}/search")+"|" rescue nil %>
+      <% end %>
+
+      <% if current_user %>
+        <span class="connected-as"><%= current_user.uid %></span> |
+        <%= link_to "Déconnexion", signout_path %>
       <% else %>
-        <%= show_version %>
+        <%= link_to "Connexion", "/auth/cas" %>
       <% end %>
       </div>
       <%= link_to image_tag("home.png", :alt=>"Accueil"), root_path %> |
@@ -36,6 +41,10 @@
       <% end %>
       <%= content_tag(:h1, yield(:title), :class => controller.controller_name) if show_title? %>
       <%= yield %>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+      <%= show_version %>
     </div>
   </body>
 </html>

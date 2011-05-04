@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110427172431) do
+ActiveRecord::Schema.define(:version => 20110504142326) do
 
   create_table "applications", :force => true do |t|
     t.string  "name",                     :default => "",    :null => false
@@ -169,6 +169,14 @@ ActiveRecord::Schema.define(:version => 20110427172431) do
 
   create_table "type", :force => true do |t|
     t.string "type_serveur", :limit => 100, :default => "", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
