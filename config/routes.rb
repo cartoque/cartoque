@@ -1,5 +1,6 @@
 Cartocs::Application.routes.draw do
 
+  resources :sites, :except => :show
   resources :themes, :except => :show
   resources :operating_systems, :except => :show
   resources :tomcats, :only => :index

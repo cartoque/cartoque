@@ -1,0 +1,19 @@
+<% title "Sites géographiques" %>
+
+<p class="actions">
+  <%= link_to "Nouveau sites", new_site_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Nom</th>
+    <th colspan="2" class="actions">Actions</th>
+  </tr>
+<% @sites.each do |site| %>
+  <tr>
+    <td><%= site.name %></td>
+    <td><%= link_to 'Editer', edit_site_path(site) %></td>
+    <td><%= link_to 'Supprimer', site, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

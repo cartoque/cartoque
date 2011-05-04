@@ -1,0 +1,13 @@
+<%= simple_form_for(@site) do |f| %>
+  <p class="actions">
+    <%= f.button :submit %>
+    ou <%= link_to "Retourner à la liste", sites_path %>
+  </p>
+
+  <table class="show_item">
+    <tbody>
+      <%= tabular_errors @site %>
+      <%= f.input :name, :required => true, :wrapper_class => "th" %>
+    </tbody>
+  </table>
+<% end %>
