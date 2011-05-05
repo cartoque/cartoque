@@ -5,5 +5,5 @@ Rails.application.config.middleware.use OmniAuth::Strategies::CAS, :cas_server =
 
 OmniAuth.config.full_host = Proc.new do |env|
   url = env["rack.session"]["omniauth.origin"] || env["omniauth.origin"] 
-  url.gsub(%r{/$})
+  url.gsub(%r{/$}, "")
 end
