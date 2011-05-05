@@ -5,4 +5,4 @@ test:
   domain: test.host
 
 production:
-  domain: example.com
+  domain: cartocs-test.app.ac.centre-serveur.i2
