@@ -38,10 +38,11 @@ $(function() {
   });
 
 
-  //machine 'virtuelle' toggling
-  $('input#machine_virtuelle').live('change', function(e) {
+  //TODO: test it (Jasmine?)
+  //machine 'virtual' toggling
+  $('input#machine_virtual').live('change', function(e) {
     $('#machine-maintenance, #machine-physical-hardware').toggle();
-    if ($('input#machine_virtuelle').attr('checked') == true) {
+    if ($('input#machine_virtual').attr('checked') == true) {
       $('#machine-hardware-title').html("Ressources");
     } else {
       $('#machine-hardware-title').html("Matériel");
