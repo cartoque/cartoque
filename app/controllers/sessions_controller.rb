@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    flash[:error] = t(:"omniauth_#{params[:message]}")
+    flash[:error] = t(:"omniauth_#{params[:message].gsub(%r(/.*),"")}")
   end
 
   def destroy
