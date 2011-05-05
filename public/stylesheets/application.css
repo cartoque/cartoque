@@ -30,8 +30,8 @@ td a { text-decoration:none; color:#239; background:transparent; }
 td img { margin:0 auto; }
 td a:hover { color:#d33; background:transparent; text-decoration:underline; }
 td { border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 6px; color: #433; }
-td.label { text-align:left; width: 50px; }
-table.show_item td.content { text-align:center; font-weight:bold; width:50%; }
+table.show_item td.content { text-align:center; font-weight:bold; min-width:50%; }
+td.label { width:80px; text-align:right; padding:6px; }
 tr.filters { border:none; font-size:90%; }
 tr.filters td { border:none; padding:2px; text-align:center; }
 
@@ -101,7 +101,6 @@ input[type="submit"]:active {
 .error_messages ul { margin:0; }
 
 /* forms */
-.simple_form label { float:left; width:50px; text-align:right; margin:3px; }
 .simple_form div.input { margin-bottom:10px; }
 .simple_form div.boolean label, .simple_form label.collection_radio { float:none; margin:0; }
 .simple_form label.collection_radio { margin-right:10px; margin-left:2px; }
