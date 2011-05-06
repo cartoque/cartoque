@@ -11,24 +11,26 @@
   <body>
     <div id="top-menu" class="hide-when-print">
       <div class="contextual">
-      <% if %w(index show).include?(controller.action_name) %>
+      <% if logged_in? && %w(index show).include?(controller.action_name) %>
         <%= render("#{controller.controller_name}/search")+"|" rescue nil %>
       <% end %>
 
-      <% if current_user %>
+      <% if logged_in? %>
         <span class="connected-as"><%= current_user.uid %></span> |
         <%= link_to "Déconnexion", signout_path %>
       <% else %>
         <%= link_to "Connexion", "/auth/cas" %>
       <% end %>
       </div>
-      <%= link_to image_tag("home.png", :alt=>"Accueil"), root_path %> |
+      <%= link_to image_tag("home.png", :alt=>"Accueil"), root_path %>
+      <% if logged_in? %> |
       <%= link_to "Applications", applications_path %>
       <%= link_to "Machines", machines_path %> | 
       <%= link_to "Tomcats", tomcats_path %>
       <%= link_to "Bases", databases_path %>
       <%= link_to "Stockage", storages_path %> |
       <%= link_to "Configuration", operating_systems_path %>
+      <% end %>
     </div>
     <div id="container">
       <% if content_for?(:sidebar) %>

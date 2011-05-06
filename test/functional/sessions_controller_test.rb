@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  should "access unprotected page even if not logged in" do
+    get :unprotected
+    assert_response :success
   end
 end

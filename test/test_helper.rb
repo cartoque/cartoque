@@ -2,6 +2,17 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+require 'application_controller'
+class ApplicationController
+  def current_user
+    Factory(:user)
+  end
+
+  def logged_in?
+    true
+  end
+end
+
 require 'machine'
 class Machine
   def postgres_file
