@@ -1,4 +1,4 @@
-require 'simple_form_label_input_patch'
+require 'simple_form/inputs/label_input_patch'
 
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
