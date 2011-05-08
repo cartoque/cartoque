@@ -1,0 +1,2 @@
+module PhysicalRacksHelper
+end
