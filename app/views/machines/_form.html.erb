@@ -74,15 +74,7 @@
       <tr><th colspan="2">Applications</th></tr>
     </thead>
     <tbody>
-      <tr class="wrapper machine_applications">
-        <td colspan="2">
-          <% Application.all(:order => :name).each do |application| %>
-            <%= check_box_tag 'machine[application_ids][]', application.id, @machine.applications.include?(application) %>
-            <%= application.name %>
-            <br />
-          <% end %>
-        </td>
-      </tr>
+      <%= f.association :applications, :collection => Application.order(:name), :as => :multiselect %>
     </tbody>
   </table>
   </div>
