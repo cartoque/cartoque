@@ -53,6 +53,21 @@ $(function() {
   $('form#filters').observe(1, function(){
     $(this).submit();
   });
+
+  //multiselect with bsmSelect plugin
+  $("select[multiple]").bsmSelect({
+    showEffect: function($el){ $el.fadeIn(); },
+    hideEffect: function($el){ $el.fadeOut(function(){ $(this).remove();}); },
+    title: 'Sélectionnez...',
+    highlight: 'highlight',
+    addItemTarget: 'original',
+    removeLabel: '<strong>x</strong>',
+    containerClass: 'bsmContainer',                // Class for container that wraps this widget
+    listClass: 'bsmList-custom',                   // Class for the list ($ol)
+    listItemClass: 'bsmListItem-custom',           // Class for the <li> list items
+    listItemLabelClass: 'bsmListItemLabel-custom', // Class for the label text that appears in list items
+    removeClass: 'bsmListItemRemove-custom',       // Class given to the "remove" link
+  });
 });
 
 // utility

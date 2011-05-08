@@ -4,7 +4,9 @@
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
     <meta charset="UTF-8">
     <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= stylesheet_link_tag "jquery.bsmselect", "jquery.bsmselect-custom" %>
     <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag "jquery.bsmselect", "jquery.bsmselect.compatibility", "jquery.bsmselect.sortable" %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>

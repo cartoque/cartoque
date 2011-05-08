@@ -12,7 +12,7 @@
 
 .bsmList-custom {
   /* html list that contains selected items */
-  margin: 0.5em 0 0.25em 0;
+  margin: 0.5em 0.5em 0.25em 0.5em;
   display: block;
   padding-left: 0;
   list-style: none;
@@ -21,26 +21,29 @@
 .bsmListItem-custom {
   /* li item from the html list above */
   margin: 0 5px 5px 0;
-  padding: 3px 4px 2px;
+  padding: 1px 5px 3px;
   list-style: none;
   background: #eee;
   border: 1px solid #bbb;
   line-height: 1em;
   float: left;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px; 
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px; 
 }
 
 .bsmListItem-custom:hover {
-  background-color: #e5e5e5;
-  box-shadow: 0 0 3px #aaa;
-  -webkit-box-shadow: 0 0 3px #aaa;
-  -moz-box-shadow: 0 0 3px #aaa;
+  /*background-color: #e5e5e5;*/
+  cursor:default;
+  box-shadow: 0 0 2px #aaa;
+  -webkit-box-shadow: 0 0 2px #aaa;
+  -moz-box-shadow: 0 0 2px #aaa;
 }
 
 .bsmListItemLabel-custom {
-  padding-right: 5px;
+  font-weight: normal;
+  font-size:90%;
+  padding-right:3px;
 }
 
 .bsmListItemRemove-custom {

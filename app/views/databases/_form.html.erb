@@ -1,28 +1,3 @@
-<% stylesheet "jquery.bsmselect", "jquery.bsmselect-custom" %>
-<% javascript "jquery.bsmselect", "jquery.bsmselect.compatibility", "jquery.bsmselect.sortable" %>
-
-<script type="text/javascript">//<![CDATA[
-  $(function($) {
-    $("#database_machine_ids").bsmSelect({
-      showEffect: function($el){ $el.fadeIn(); },
-      hideEffect: function($el){ $el.fadeOut(function(){ $(this).remove();}); },
-      //plugins: [$.bsmSelect.plugins.sortable()],
-      title: 'Sélectionnez...',
-      highlight: 'highlight',
-      addItemTarget: 'original',
-      removeLabel: '<strong>X</strong>',
-      containerClass: 'bsmContainer',                // Class for container that wraps this widget
-      listClass: 'bsmList-custom',                   // Class for the list ($ol)
-      listItemClass: 'bsmListItem-custom',           // Class for the <li> list items
-      listItemLabelClass: 'bsmListItemLabel-custom', // Class for the label text that appears in list items
-      removeClass: 'bsmListItemRemove-custom',       // Class given to the "remove" link
-      //extractLabel: function($o) {return $o.parents('optgroup').attr('label') + "&nbsp;>&nbsp;" + $o.html();}
-    });
-
-  });
- 
-//]]></script>
-
 <%= simple_form_for(@database) do |f| %>
   <table class="show_item">
     <tbody>
@@ -30,16 +5,7 @@
       <%= f.input :name, :required => true, :wrapper_class => "th" %>
       <%= f.input :database_type, :collection => %w(postgres oracle),
                   :required => true, :include_blank => false %>
-      <tr class="input select optional">
-        <td class="label">
-          <label class="select optional" for="server_ids">Serveurs</label>
-        </td>
-        <td class="content">
-          <%= collection_select(:database, :machine_ids, Machine.order(:name), :id, :name,
-                                { :prompt => false }, { :multiple => "multiple" }) %>
-          <%= hidden_field_tag "database[machine_ids][]", "" %>
-        </td>
-      </tr>
+      <%= f.association :machines, :collection => Machine.order(:name), :as => :multiselect %>
     </tbody>
   </table>
 
