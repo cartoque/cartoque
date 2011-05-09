@@ -1,0 +1,21 @@
+<% title "Utilisateurs" %>
+
+<%= action_links do %>
+  <%= link_to "Nouvel utilisateur", new_user_path %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Nom</th>
+    <th>Mode d'authentification</th>
+    <th colspan="2" class="actions">Actions</th>
+  </tr>
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= user.provider %> / <%= user.uid %></td>
+    <td><%= link_to 'Editer', edit_user_path(user) %></td>
+    <td><%= link_to 'Supprimer', user, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

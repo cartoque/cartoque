@@ -1,5 +1,6 @@
 Cartocs::Application.routes.draw do
 
+  resources :users, :except => :show
   resources :physical_racks, :except => :show
   resources :services, :except => :show
   resources :sites, :except => :show

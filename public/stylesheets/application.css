@@ -12,7 +12,6 @@ caption { padding: 0 0 5px 0; margin:0 auto; width:auto; font: italic 11px "Treb
 /* titles */
 h1 { font-weight:bold; margin:0.5em 0; font-family:verdana,arial,sans-serif; text-align:center; color:#000; letter-spacing:1px; font-size:1.6em; }
 h2 { font-weight:bold; margin:0.5em 0; font-family:verdana,arial,sans-serif; text-align:center; color:#333; letter-spacing:1px; font-size:1.2em; }
-#sidebar h2 { text-align:left; letter-spacing:normal; margin-top:0; }
 
 /* tables */
 table { padding: 0; margin: 0 auto 1.5em auto; border-collapse:collapse; }
@@ -81,10 +80,6 @@ input[type="submit"]:active {
 #welcome-container { margin:2em auto; max-width:1000px; }
 #container { margin:0 auto; background-color:#FFF; padding:8px; text-align:left; }
 .column_wrapper { float:left; margin:0 15px 0 5px; }
-#sidebar {
-  float:left; padding:7px 10px 10px 10px; margin:0 10px 0 0; background:#f6f6f6;
-  -moz-box-shadow:2px 1px 4px #bbb; -webkit-box-shadow:2px 1px 4px #bbb; box-shadow:2px 1px 4px #bbb;
-}
 #footer { text-align:center; color:#ccc; font-size:90%; border-top:1px solid #ddd; margin:2em; padding:5px; }
 
 /* errors, warnings */
@@ -118,6 +113,14 @@ label.required abbr { color:red; border-bottom:none; }
 #top-menu input#search { border:1px solid #bbb; }
 #top-menu .connected-as { font-weight:bold; position:relative; bottom:-1px; }
 
+/* sidebar */
+#sidebar {
+  float:left; padding:7px 10px 10px 10px; margin:0 10px 0 0; background:#f6f6f6;
+  -moz-box-shadow:2px 1px 4px #bbb; -webkit-box-shadow:2px 1px 4px #bbb; box-shadow:2px 1px 4px #bbb;
+}
+#sidebar h2 { text-align:left; letter-spacing:normal; margin-top:0; }
+#sidebar ul { border-bottom:2px solid #ddd; padding-right:1.2em; padding-bottom:0.8em; margin-bottom:0.5em; }
+#sidebar ul:last-child { border-bottom:none; padding-bottom:0; margin-bottom:0; }
 
 /* welcome page */
 h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; font-weight:400; text-shadow:2px 2px 2px #aaa; text-decoration:none; text-transform:none; letter-spacing:0em; word-spacing:0em; line-height:1em; margin-top:0.2em; }
