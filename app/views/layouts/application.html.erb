@@ -18,7 +18,7 @@
       <% end %>
 
       <% if logged_in? %>
-        <span class="connected-as"><%= current_user.uid %></span> |
+        <span class="connected-as"><%= current_user.name %></span> |
         <%= link_to "Déconnexion", signout_path %>
       <% else %>
         <%= link_to "Connexion", "/auth/cas" %>
