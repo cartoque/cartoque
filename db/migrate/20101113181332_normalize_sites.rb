@@ -2,7 +2,7 @@ class NormalizeSites < ActiveRecord::Migration
   def self.up
     rename_table :site, :sites
     rename_column :sites, :nom_site, :nom
-    Site.where(:nom => "--").each(&:destroy)
+    Site.delete_all(:nom => "--")
   end
 
   def self.down

@@ -3,7 +3,7 @@ class NormalizePhysicalRacks < ActiveRecord::Migration
     rename_table :rack, :physical_racks
     rename_column :physical_racks, :nom_rack, :nom
     rename_column :machines, :rack_id, :physical_rack_id
-    PhysicalRack.where(:nom => "--").each(&:destroy)
+    PhysicalRack.delete_all(:nom => "--")
   end
 
   def self.down

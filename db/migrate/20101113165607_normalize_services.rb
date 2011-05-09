@@ -1,7 +1,7 @@
 class NormalizeServices < ActiveRecord::Migration
   def self.up
     rename_column :services, :service_titre, :nom
-    Service.where(:nom => "-").each(&:destroy)
+    Service.delete_all(:nom => "-")
   end
 
   def self.down

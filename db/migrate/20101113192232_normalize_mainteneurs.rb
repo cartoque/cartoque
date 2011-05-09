@@ -4,7 +4,7 @@ class NormalizeMainteneurs < ActiveRecord::Migration
     rename_column :mainteneurs, :mainteneur, :nom
     rename_column :mainteneurs, :tel, :telephone
     rename_column :mainteneurs, :adresse_post, :adresse
-    Mainteneur.where(:nom => "--").each(&:destroy)
+    Mainteneur.delete_all(:nom => "--")
   end
 
   def self.down

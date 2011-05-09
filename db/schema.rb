@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20110504142326) do
     t.string  "subnet",              :limit => 23,  :default => "",    :null => false
     t.string  "lastbyte",            :limit => 9,   :default => "",    :null => false
     t.string  "serial_number",       :limit => 100, :default => "",    :null => false
+    t.boolean "virtual",                            :default => false, :null => false
     t.text    "description",                                           :null => false
     t.string  "model",               :limit => 100, :default => "",    :null => false
     t.string  "memory",              :limit => 50,  :default => "",    :null => false
@@ -94,7 +95,6 @@ ActiveRecord::Schema.define(:version => 20110504142326) do
     t.integer "nb_disk",                            :default => 0
     t.integer "nb_disk_alt",                        :default => 0
     t.integer "database_id"
-    t.boolean "virtual",                            :default => false
     t.date    "delivered_on"
     t.date    "maintained_until"
   end

@@ -1,7 +1,7 @@
 class NormalizeThemes < ActiveRecord::Migration
   def self.up
     rename_column :themes, :theme_titre, :titre
-    Theme.where(:titre => "-").each(&:destroy)
+    Theme.delete_all(:titre => "-")
   end
 
   def self.down
