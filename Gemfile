@@ -1,11 +1,10 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.5'
+gem 'mysql2', '0.2.7' #mysql2 v0.3.x are incompatible with rails 3.0.x
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'mysql2'
 
 # Use unicorn as the web server
 # gem 'unicorn'
