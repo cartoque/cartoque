@@ -7,6 +7,7 @@
 
 <table class="pretty ninety center">
   <tr>
+    <th>Liens</th>
     <th>Cerbere</th>
     <%= sortable_th "criticity" %>
     <%= sortable_th "name" %>
@@ -17,6 +18,7 @@
   </tr>
   <% for application in @applications %>
     <tr>
+      <td><%= links_for application %></td>
       <td><%= cerbere_image(application.cerbere) %></td>
       <td><%= application.criticity %></td>
       <td><%= link_to application.name, application %></td>

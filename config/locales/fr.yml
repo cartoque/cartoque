@@ -115,3 +115,4 @@ fr:
   delivered_on: "Mise en service"
   maintained_until: "Fin de maintenance"
   machine_ids: "Serveurs"
+  identifier: "Identifiant Redmine"

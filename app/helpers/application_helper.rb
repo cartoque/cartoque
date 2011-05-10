@@ -61,4 +61,13 @@ module ApplicationHelper
       capture(&block)
     end
   end
+
+  def links_for(application)
+    html = ""
+    if application.identifier.present?
+      html << link_to("R", (URI.parse(APP_CONFIG[:redmine_url])+"/projects/#{application.identifier}").to_s,
+                      :title => "Redmine #{application.identifier}", :class => "link-to-redmine")
+    end
+    content_tag(:span, html.html_safe, :class => "links")
+  end
 end
