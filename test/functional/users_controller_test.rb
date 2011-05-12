@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   setup do
-    @user = Factory(:user)
+    @user = Factory(:bob)
   end
 
   test "should get index" do
@@ -37,7 +37,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_difference('User.count', -1) do
       delete :destroy, :id => @user.to_param
     end
-
     assert_redirected_to users_path
   end
 end

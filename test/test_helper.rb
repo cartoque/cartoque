@@ -5,11 +5,7 @@ require 'rails/test_help'
 require 'application_controller'
 class ApplicationController
   def current_user
-    Factory(:user)
-  end
-
-  def logged_in?
-    true
+    User.new
   end
 end
 
