@@ -12,9 +12,9 @@
   <tr>
     <td class="global" colspan="5">
       <% device = Storcs::Device.new(""); device.children = @storages.map(&:device).select{|s|s.is_a?(Storcs::Device)} %>
-      Etat global du stockage: 
+      Etat global du stockage:
       <strong><%= pretty_size(device.size) %></strong>:
-      <%= pretty_size(device.used) %> occupés (<%= "%0.0f%" % device.percent_used %>), 
+      <%= pretty_size(device.used) %> occupés (<%= "%0.0f%" % device.percent_used %>),
       <%= pretty_size(device.free) %> disponibles (<%= "%0.0f%" % device.percent_free %>)
     </td>
   </tr>

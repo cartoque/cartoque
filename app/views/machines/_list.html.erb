@@ -1,6 +1,6 @@
 <%= action_links do %>
-  <%= link_to "Ajouter une machine", new_machine_path %> | 
-  <%= link_to "Export PDF", machines_path(params.merge(:format => "pdf")) %> | 
+  <%= link_to "Ajouter une machine", new_machine_path %> |
+  <%= link_to "Export PDF", machines_path(params.merge(:format => "pdf")) %> |
   <% if maintenance_mode? %>
     <%= link_to "Vue normale", machines_path(:view_mode => "normal") %>
   <% else %>

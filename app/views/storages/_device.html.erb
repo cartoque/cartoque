@@ -3,13 +3,13 @@
 <% else %>
 <p class="infos">
   <strong><%= pretty_size(device.size) %></strong>:
-  <%= pretty_size(device.used) %> occupés, 
+  <%= pretty_size(device.used) %> occupés,
   <%= pretty_size(device.free) %> disponibles
 </p>
 <%= progress_bar(device.percent_used,
                  :width => '23em',
                  :legend => ('%0.0f%' % device.percent_used)) %>
-  
+ 
 <% devid = "device-#{device.name.parameterize}" %>
 <% if device.unassigned > 0 %>
   <span class="unassigned">+ <%= pretty_size(device.unassigned) %> unassigned</span>
