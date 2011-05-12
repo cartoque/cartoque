@@ -64,7 +64,7 @@ module ApplicationHelper
 
   def links_for(application)
     html = ""
-    if application.identifier.present?
+    if application.identifier?
       html << link_to("R", (URI.parse(APP_CONFIG[:redmine_url])+"/projects/#{application.identifier}").to_s,
                       :title => "Redmine #{application.identifier}", :class => "link-to-redmine")
     end

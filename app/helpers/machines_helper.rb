@@ -18,7 +18,7 @@ module MachinesHelper
     html << link_to_function("[infos]", %[$("#maintenance-#{machine.id}").slideToggle(130); return false;],
                              :class => "mainteneur-infos hide-when-print")
     html << " "
-    html << " - #{machine.contract_type}" if machine.contract_type.present?
+    html << " - #{machine.contract_type}" if machine.contract_type?
     html << %(<ul style="display:none" class="machine-mainteneur" id="maintenance-#{machine.id}">)
     html << %(<li>Référence client: #{machine.mainteneur.client_ref}</li>)
     html << %(<li>Téléphone: #{machine.mainteneur.phone}</li>)
