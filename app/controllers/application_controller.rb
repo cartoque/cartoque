@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   private
   def authenticate!
-    redirect_to("/auth/required") unless logged_in?
+    redirect_to("/auth/required") unless logged_in? || api_request?
   end
 
   def current_user
@@ -27,5 +27,9 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     current_user.present?
+  end
+
+  def api_request?
+    request.local? && %w(json xml).include?(params[:format])
   end
 end

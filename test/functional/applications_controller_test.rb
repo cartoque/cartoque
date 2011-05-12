@@ -2,6 +2,10 @@ require 'test_helper'
 
 class ApplicationsControllerTest < ActionController::TestCase
   setup do
+    @controller = ApplicationsController.new
+    @controller.stubs(:current_user).returns(User.new)
+    @request    = ActionController::TestRequest.new
+    @request.stubs(:local?).returns(true)
     @application = Factory(:application)
   end
 
@@ -40,6 +44,12 @@ class ApplicationsControllerTest < ActionController::TestCase
   test "should access an application through its identifier" do
     get :show, :id => @application.identifier, :format => :xml
     assert_select "application>id", "#{@application.id}"
+  end
+
+  test "should access the API without authentication" do
+    @controller.stubs(:current_user).returns(nil)
+    get :show, :id => @application.identifier, :format => "xml"
+    assert_response :success
   end
 
   test "should get edit" do
