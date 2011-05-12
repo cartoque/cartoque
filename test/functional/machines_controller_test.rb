@@ -38,6 +38,11 @@ class MachinesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should access the xml output" do
+    get :show, :id => @machine.to_param, :format => :xml
+    assert_select "machine"
+  end
+
   test "should get edit" do
     get :edit, :id => @machine.to_param
     assert_response :success

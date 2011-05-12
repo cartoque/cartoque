@@ -29,6 +29,19 @@ class ApplicationsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should access the rest/xml API" do
+    @application.machines = [ Factory(:machine), Factory(:virtual) ]
+    get :show, :id => @application.to_param, :format => :xml
+    assert_select "application>id", "#{@application.id}"
+    assert_equal 2, @application.machines.count
+    assert_select "application>machines>machine", 2
+  end
+
+  test "should access an application through its identifier" do
+    get :show, :id => @application.identifier, :format => :xml
+    assert_select "application>id", "#{@application.id}"
+  end
+
   test "should get edit" do
     get :edit, :id => @application.to_param
     assert_response :success
