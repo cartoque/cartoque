@@ -8,4 +8,4 @@ test:
 
 production:
   domain: cartocs-test.app.ac.centre-serveur.i2
-  redmine_url: http://redmine-cs.ac.centre-serveur.i2/
+  redmine_url: http://redmine.app.ac.centre-serveur.i2/
