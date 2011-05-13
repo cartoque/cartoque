@@ -14,18 +14,28 @@ module ApplicationHelper
   def sortable_th(column, title = nil)
     %(<th class="#{sortable_css_class(column)}">#{sortable(column,title)}</th>).html_safe
   end
+
   def progress_bar(pcts, options={})
+    #width
+    width = 120
+    if options[:width].present? && options[:width].is_a?(Integer)
+      width = options[:width]
+    end
+    width = width.to_f
+    #percents calculations
     pcts = [pcts, pcts] unless pcts.is_a?(Array)
     pcts = pcts.collect(&:round)
     pcts[1] = pcts[1] - pcts[0]
-    pcts << (100 - pcts[1] - pcts[0])
-    width = options[:width] || '120px;'
+    pcts.map! do |pct|
+      pct * width / 100
+    end
+    pcts << (width - pcts[1] - pcts[0])
     legend = options[:legend] || ''
-    o = %(<table class="progress" style="width:#{width};"><tr>)
-    o << %(<td class="closed" style="width:#{pcts[0]}%;"></td>) if pcts[0] > 0
-    o << %(<td class="done" style="width:#{pcts[1]}%;"></td>) if pcts[1] > 0
-    o << %(<td class="todo" style="width:#{pcts[2]}%;"></td>) if pcts[2] > 0
-    o << %(<td class="legend">#{legend}</td>)
+    o = %(<table class="progress" style="width:#{width + 30}px;"><tr>)
+    o << %(<td class="closed" style="width:#{pcts[0]}px;"></td>) if pcts[0] > 0
+    o << %(<td class="done" style="width:#{pcts[1]}px;"></td>) if pcts[1] > 0
+    o << %(<td class="todo" style="width:#{pcts[2]}px;"></td>) if pcts[2] > 0
+    o << %(<td class="legend" style="width:30px">#{legend}</td>)
     o << %(</tr></table>)
     o.html_safe
   end

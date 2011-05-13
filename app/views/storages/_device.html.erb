@@ -7,7 +7,7 @@
   <%= pretty_size(device.free) %> disponibles
 </p>
 <%= progress_bar(device.percent_used,
-                 :width => '23em',
+                 :width => 300,
                  :legend => ('%0.0f%' % device.percent_used)) %>
  
 <% devid = "device-#{device.name.parameterize}" %>
@@ -31,7 +31,7 @@
       <%= " / #{pretty_size(array.free)} free" unless array.free == 0 %>
     </td>
     <td style="width:100%">
-      <%= progress_bar(array.percent_used, :width => '10em',
+      <%= progress_bar(array.percent_used, :width => 120,
                        :legend => "#{array.percent_used}%") %>
     </td>
   </tr>
