@@ -27,10 +27,10 @@ tr th:first-child, tr td:first-child { border-left: 1px solid #ccc; }
 th a { text-decoration:none; color: #433; background:transparent; }
 td a { text-decoration:none; color:#239; background:transparent; }
 td img { margin:0 auto; }
-td a:hover { color:#d33; background:transparent; text-decoration:underline; }
+td a:hover { color:#f33; background:transparent; text-decoration:underline; }
 td { border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 6px; color: #433; }
 table.show_item td.content { text-align:center; font-weight:bold; min-width:50%; }
-td.label { width:80px; text-align:right; padding:6px; }
+td.label { width:80px; text-align:left; padding:6px; }
 tr.filters { border:none; font-size:90%; }
 tr.filters td { border:none; padding:2px; text-align:center; }
 
@@ -132,11 +132,10 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 /* storage */
 #storage .device { padding-left:2px; margin-bottom:2px; background-color:#eee; }
 #storage .infos { text-align:left; margin-bottom:2px; font-size:100%; }
-#storage .infos strong { font-size:110%; }
 #storage td.global { font-size:110%; }
 #storage td.details { white-space:nowrap; }
 #storage td.details * { margin-bottom:0; }
-#storage td.top { vertical-align:top; padding-top:2.5em; }
+#storage td.top { vertical-align:center; }
 #storage table.progress td.closed { background:#777 none repeat scroll 0%; }
 #storage table.storage-array { font-size:90%; border-collapse:collapse; border-left:none; margin-right:0; }
 #storage tr.storage-array > td { padding:3px; white-space:nowrap; text-align:left; border-right:none; border-left:none; }
@@ -171,11 +170,11 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 
 /* progress bars */
 table.progress { border-collapse:collapse; border-spacing:0; empty-cells:show; text-align:center; margin:2px 0 5px; }
-table.progress td { border:1px solid #d7d7d7; height:0.9em; font-size:90%; padding:2px; }
-table.progress td.closed { background:#BAE0BA none repeat scroll 0%; }
+table.progress td { border:1px solid #ccc; height:0.8em; font-size:90%; padding:1px; }
+table.progress td.closed { background:#aaa none repeat scroll 0%; }
 table.progress td.done { background:#DEF0DE none repeat scroll 0%; }
 table.progress td.open { background:#FFF none repeat scroll 0%; }
-table.progress td.legend { border:none; padding-left:6px; }
+table.progress td.legend { border:none; padding-left:6px; text-align:right; }
 p.progress-info { clear:left; font-style:italic; font-size:90%; }
 
 /* media=print */
