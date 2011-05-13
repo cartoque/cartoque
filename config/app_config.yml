@@ -7,5 +7,5 @@ test:
   redmine_url: http://redmine.test.host
 
 production:
-  domain: cartocs-test.app.ac.centre-serveur.i2
+  domain: cartocs.application.ac.centre-serveur.i2
   redmine_url: http://redmine.app.ac.centre-serveur.i2/
