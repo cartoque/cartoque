@@ -83,10 +83,10 @@ input[type="submit"]:active {
 #footer { text-align:center; color:#ccc; font-size:90%; border-top:1px solid #ddd; margin:2em; padding:5px; }
 
 /* errors, warnings */
-#flash_notice, #flash_error, #flash_alert { padding:5px 8px; margin:5px auto 25px; text-align:center;
-  -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; max-width:400px; font-weight:bold; }
-#flash_notice { background-color:#CFC; color:#040; border:solid 1px #6C6; }
-#flash_error, #flash_alert { background-color:#FCC; color:#400; border:solid 1px #C66; }
+#flash_notice, #flash_error, #flash_alert { padding:8px; margin:5px auto 15px; text-align:center;
+  -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; max-width:400px; font-weight:bold; }
+#flash_notice { background-color:#ff9; color:#222; }
+#flash_error, #flash_alert { background-color:#FCC; color:#400; }
 .field_with_errors *, #error_explanation * { color:#f00; }
 .field_with_errors input, #error_explanation td { border:2px solid #f00; }
 #error_explanation td { font-weight:bold; padding:0; }
