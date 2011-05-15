@@ -6,8 +6,7 @@ class ConvertDatesFromStringToDates < ActiveRecord::Migration
         value = m.send(old_field)
         unless value.blank?
           value = "#{$1}/20#{$2}" if value.match %r{(.*\d\d)/(\d\d)$}
-          m.send("#{new_field}=", (Date.parse(value) rescue nil))
-          m.save
+          m.update_attribute(new_field, (Date.parse(value) rescue nil))
         end
       end
     end

@@ -1,8 +1,7 @@
 class DowncaseMachineNames < ActiveRecord::Migration
   def self.up
     Machine.all.each do |machine|
-      machine.nom = machine.nom.downcase
-      machine.save
+      machine.update_attribute("nom", machine.nom.downcase)
     end
   end
 
