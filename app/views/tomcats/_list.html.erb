@@ -3,7 +3,7 @@
   <tr>
     <th>Application</th>
     <th>Serveurs</th>
-    <th>Instance(s)</th>
+    <th>Instances</th>
     <th>Base</th>
     <th>Liens</th>
   </tr>
@@ -19,11 +19,12 @@
     <td><%= tomcats.map{|t| t[:tomcat]}.sort.uniq.join("<br/>").html_safe %></td>
     <td><%= tomcat[:jdbc_server] %><br />
         <%= tomcat[:jdbc_user] %> @ <%= tomcat[:jdbc_db] %></td>
-    <td>
-      Supervision (nagios)<br/>
-      Graphes (munin)<br/>
-      Projet (redmine)<br/>
-      Doc (dokuwiki)<br/>
+    <td class="links center">
+      <%= link_to "Nagios", "#", :title => "Nagios #{tomcat[:dns]}", :class => "link-to-nagios" %>
+      <%= link_to "Munin", "#", :title => "Munin #{tomcat[:dns]}", :class => "link-to-munin" %>
+      <br />
+      <%= link_to "Redmine", "#", :title => "Redmine #{tomcat[:dns]}", :class => "link-to-redmine" %>
+      <%= link_to "Doku", "#", :title => "Dokuwiki #{tomcat[:dns]}", :class => "link-to-dokuwiki" %>
     </td>
   </tr>
   <% end %>

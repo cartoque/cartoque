@@ -145,9 +145,16 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 #storage .unassigned { font-size:90%; color:#cb2; font-style:italic; font-weight:bold; float:right; padding-right:2px; }
 
 /* applications */
-.links a, .links a:link, .links a:visited, .links a:hover { text-decoration:none; font-weight:bold; padding:2px; }
-a.link-to-redmine { color:#a22; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
+.links a, .links a:link, .links a:visited, .links a:hover { text-decoration:none; font-weight:bold; padding:2px; 
+                                                            -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
+a.link-to-redmine { color:#a22; }
 a.link-to-redmine:hover { color:#fff; background-color:#a22; }
+a.link-to-nagios { color:#000; }
+a.link-to-nagios:hover { color:#fff; background-color:#000; }
+a.link-to-munin { color:#227; }
+a.link-to-munin:hover { color:#fff; background-color:#227; }
+a.link-to-dokuwiki { color:#272; }
+a.link-to-dokuwiki:hover { color:#fff; background-color:#272; }
 
 /* databases */
 .database_nodes { margin:0; position:relative; display:block; padding:0 0 0 1em; list-style-type:none; color:#666; font-size:90%; }
