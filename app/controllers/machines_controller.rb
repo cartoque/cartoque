@@ -9,7 +9,7 @@ class MachinesController < InheritedResources::Base
   before_filter :select_view_mode
 
   def collection
-    @machines ||= end_of_association_chain.search(params[:search]).order(sort_column + " " + sort_direction)
+    @machines ||= end_of_association_chain.search(params[:search]).order(sort_option)
     if maintenance_mode?
       @machines = @machines.where(:virtual => false)
       if params[:sort] == "maintained_until"
@@ -19,8 +19,18 @@ class MachinesController < InheritedResources::Base
   end
 
   private
+  def sort_option
+    sort_column.split(",").map do |column|
+      column + " " + sort_direction
+    end.join(", ")
+  end
+
   def sort_column
-    Machine.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    columns = "#{params[:sort]}".split(",").select do |column|
+      Machine.column_names.include?(column)
+    end
+    columns << "name" if columns.blank?
+    columns.join(",")
   end
 
   def sort_direction
