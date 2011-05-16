@@ -1,7 +1,7 @@
 /* general styles */
 html { overflow-y:scroll; }
 body { min-width: 800px; font-family:Verdana, Helvetica, Arial; font-size:12px; margin:0; }
-a img, img.inline { border:none; margin:0 2px -4px 0; }
+a img, img.inline { border:none; margin:-2px 2px 0 0; }
 a { color:#000; text-decoration:none; }
 a:hover { color:#000; text-decoration:underline; }
 caption { padding: 0 0 5px 0; margin:0 auto; width:auto; font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; text-align: right; }
@@ -14,9 +14,9 @@ h1 { font-weight:bold; margin:0.5em 0; font-family:verdana,arial,sans-serif; tex
 h2 { font-weight:bold; margin:0.5em 0; font-family:verdana,arial,sans-serif; text-align:center; color:#333; letter-spacing:1px; font-size:1.2em; }
 
 /* tables */
-table { padding: 0; margin: 0 auto 1.5em auto; border-collapse:collapse; }
+table { padding: 0; margin: 0.5em auto 1.5em auto; border-collapse:collapse; }
 th, tr.th td {
-  text-transform: capitalize; text-align: center; padding:4px 6px; vertical-align:middle;
+  text-transform:capitalize; font-weight:bold; text-align:center; padding:4px 6px; vertical-align:middle;
   color: #433; background-color:#eee; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;
   background: -moz-linear-gradient(100% 100% 90deg, #e2e2e2, #f0f0f0);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f0f0f0), to(#e2e2e2));
@@ -76,7 +76,7 @@ input[type="submit"]:active {
 }
 
 /* wrappers */
-#top-menu { padding:5px 8px 7px; margin:0 0 5px; background-color:#eee; border-bottom:1px solid #ccc; }
+#top-menu { padding:5px 8px; margin:0 0 5px; background-color:#eee; border-bottom:1px solid #ccc; }
 #welcome-container { margin:2em auto; max-width:1000px; }
 #container { margin:0 auto; background-color:#FFF; padding:8px; text-align:left; }
 .column_wrapper { float:left; margin:0 15px 0 5px; }
