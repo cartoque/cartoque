@@ -1,4 +1,6 @@
 class MachinesController < InheritedResources::Base
+  include SortHelpers
+
   respond_to :html, :js, :xml
 
   helper_method :sort_column, :sort_direction
@@ -19,7 +21,6 @@ class MachinesController < InheritedResources::Base
   end
 
   private
-  include SortHelpers
 
   def select_view_mode
     session[:machines_view_mode] = params[:view_mode] if params[:view_mode]

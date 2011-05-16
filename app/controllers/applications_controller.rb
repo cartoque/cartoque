@@ -1,4 +1,6 @@
 class ApplicationsController < InheritedResources::Base
+  include SortHelpers
+
   respond_to :html, :js, :xml
 
   helper_method :sort_column, :sort_direction
@@ -12,9 +14,6 @@ class ApplicationsController < InheritedResources::Base
   def collection
     @applications ||= end_of_association_chain.search(params[:search]).order(sort_column + " " + sort_direction)
   end
-
-  private
-  include SortHelpers
 end
 
 #super dirty patch for rails ticket #4840

@@ -1,4 +1,6 @@
 module SortHelpers
+  private
+
   def sort_option
     sort_column.split(",").map do |column|
       column + " " + sort_direction
