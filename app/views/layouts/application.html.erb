@@ -37,7 +37,7 @@
     </div>
     <div id="container">
       <% if content_for?(:sidebar) %>
-      <div id="sidebar">
+        <div id="sidebar" class="hide-when-print">
         <%= yield(:sidebar) %>
       </div>
       <% end %>
@@ -48,7 +48,7 @@
       <%= yield %>
     </div>
     <div class="clear"></div>
-    <div id="footer">
+    <div id="footer" class="hide-when-print">
       <%= show_version %>
     </div>
   </body>
