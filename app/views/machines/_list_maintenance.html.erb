@@ -5,7 +5,7 @@
       <%= text_field_tag "search", params[:search], :size => 12 %>
     </td>
     <td>
-	    <%= select_tag "by_rack", options_for_select([["",""]] + PhysicalRack.all.map{|r| [r.name,r.id]},params[:by_rack]).html_safe -%>
+	    <%= select_tag "by_rack", options_for_select([["",""]] + PhysicalRack.all.map{|r| [r,r.id]},params[:by_rack]).html_safe -%>
     </td>
     <td></td>
     <td></td>
@@ -28,7 +28,7 @@
   <% for machine in @machines %>
   <tr>
     <td><%= link_to machine.name, machine %></td>
-    <td><%= machine.localization %></td>
+    <td><%= machine.physical_rack %></td>
     <td><%= machine.fullmodel %></td>
     <td class="center"><%= machine.serial_number %></td>
     <td>

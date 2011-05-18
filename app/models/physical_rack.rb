@@ -1,9 +1,12 @@
 class PhysicalRack < ActiveRecord::Base
   has_many :machines
+  belongs_to :site
 
-  default_scope order('name')
+  attr_accessible :name, :site_id
+
+  default_scope includes('site').except(:order).order('sites.name, physical_racks.name')
 
   def to_s
-    name
+    [site,name].compact.join(" - ")
   end
 end

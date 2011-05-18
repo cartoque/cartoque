@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110515212104) do
+ActiveRecord::Schema.define(:version => 20110518111049) do
 
   create_table "applications", :force => true do |t|
     t.string  "name",                     :default => "",    :null => false
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(:version => 20110515212104) do
     t.integer "theme_id",                           :default => 0
     t.integer "service_id",                         :default => 0
     t.integer "operating_system_id",                :default => 0
-    t.integer "site_id",                            :default => 0
     t.integer "physical_rack_id",                   :default => 0
     t.integer "media_drive_id",                     :default => 0
     t.integer "mainteneur_id",                      :default => 0
@@ -126,7 +125,8 @@ ActiveRecord::Schema.define(:version => 20110515212104) do
   add_index "operating_systems", ["ancestry"], :name => "index_operating_systems_on_ancestry"
 
   create_table "physical_racks", :force => true do |t|
-    t.string "name", :limit => 50, :default => "", :null => false
+    t.string  "name",    :limit => 50, :default => "", :null => false
+    t.integer "site_id"
   end
 
   create_table "ref_proc", :force => true do |t|

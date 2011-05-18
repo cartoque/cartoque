@@ -43,8 +43,7 @@
       <tr><th colspan="2" id="machine-hardware-title"><%= @machine.virtual? ? "Ressources" : "Matériel" %></th></tr>
     </thead>
     <tbody id="machine-physical-hardware" style="<%= hidden_if_virtual %>">
-      <%= f.association :site %>
-      <%= f.association :physical_rack %>
+      <%= f.association :physical_rack, :collection => PhysicalRack.all.map{|r| [r,r.id]} %>
       <%= f.input :model %>
       <%= f.input :manufacturer %>
     </tbody>

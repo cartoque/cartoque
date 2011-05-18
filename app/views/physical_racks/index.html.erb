@@ -6,11 +6,13 @@
 
 <table>
   <tr>
+    <th>Site</th>
     <th>Nom</th>
     <th colspan="2" class="actions">Actions</th>
   </tr>
 <% @physical_racks.each do |physical_rack| %>
   <tr>
+    <td><%= physical_rack.site %></td>
     <td><%= physical_rack.name %></td>
     <td><%= link_to 'Editer', edit_physical_rack_path(physical_rack) %></td>
     <td><%= link_to 'Supprimer', physical_rack, :confirm => 'Etes-vous sur ?', :method => :delete %></td>

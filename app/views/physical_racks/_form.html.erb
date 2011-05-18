@@ -8,6 +8,7 @@
     <tbody>
       <%= tabular_errors @physical_rack %>
       <%= f.input :name, :required => true, :wrapper_class => "th" %>
+      <%= f.association :site %>
     </tbody>
   </table>
 <% end %>

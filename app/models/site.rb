@@ -1,5 +1,7 @@
 class Site < ActiveRecord::Base
-  has_many :machines
+  has_many :sites
+
+  attr_accessible :name
  
   default_scope order('name')
 

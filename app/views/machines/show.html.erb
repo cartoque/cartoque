@@ -56,7 +56,7 @@
     </tr>
   </thead>
   <%= show_for @machine do |s| %>
-    <%= s.attribute :localization unless @machine.virtual? %>
+    <%= s.attribute :physical_rack unless @machine.virtual? %>
     <%= s.attribute :fullmodel unless @machine.virtual? %>
     <%= s.attribute :cpu %>
     <%= s.attribute :memory %>
