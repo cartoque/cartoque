@@ -5,6 +5,7 @@ a img, img.inline { border:none; margin:-2px 2px 0 0; }
 a { color:#000; text-decoration:none; }
 a:hover { color:#000; text-decoration:underline; }
 caption { padding: 0 0 5px 0; margin:0 auto; width:auto; font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; text-align: right; }
+ul { margin-left:2em; }
 
 /* fonts */
 @font-face { font-family:'Lobster'; font-style:normal; font-weight:normal; src:local('Lobster1.4'), local('Lobster'), url('../fonts/Lobster.ttf') format('truetype'); }
@@ -136,7 +137,7 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 #storage td.global { font-size:110%; }
 #storage td.details { white-space:nowrap; }
 #storage td.details * { margin-bottom:0; }
-#storage td.top { vertical-align:middle; }
+#storage td.top { vertical-align:top; padding-top:1.8em; }
 #storage table.progress td.closed { background:#777 none repeat scroll 0%; }
 #storage table.storage-array { font-size:90%; border-collapse:collapse; border-left:none; margin-right:0; }
 #storage tr.storage-array > td { padding:3px; white-space:nowrap; text-align:left; border-right:none; border-left:none; }
