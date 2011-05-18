@@ -18,13 +18,13 @@
   </tr>
   <% for application in @applications %>
     <tr>
-      <td><%= links_for application %></td>
-      <td><%= cerbere_image(application.cerbere) %></td>
-      <td><%= application.criticity %></td>
+      <td class="center"><%= links_for application %></td>
+      <td class="center"><%= cerbere_image(application.cerbere) %></td>
+      <td class="center"><%= application.criticity %></td>
       <td><%= link_to application.name, application %></td>
       <td><%= application.info %></td>
-      <td><%= application.iaw %></td>
-      <td><%= application.ams %></td>
+      <td class="center"><%= application.iaw %></td>
+      <td class="center"><%= application.ams %></td>
       <td class="actions"><%= link_to "Editer", edit_application_path(application) %></td>
       <td class="actions"><%= link_to "Supprimer", application, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>

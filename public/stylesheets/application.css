@@ -24,6 +24,7 @@ th, tr.th td {
   background: -o-linear-gradient(#e2e2e2, #f0f0f0);
 }
 tr th:first-child, tr td:first-child { border-left: 1px solid #ccc; }
+th, td { vertical-align:middle; }
 th a { text-decoration:none; color: #433; background:transparent; }
 td a { text-decoration:none; color:#239; background:transparent; }
 td img { margin:0 auto; }
@@ -135,7 +136,7 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 #storage td.global { font-size:110%; }
 #storage td.details { white-space:nowrap; }
 #storage td.details * { margin-bottom:0; }
-#storage td.top { vertical-align:center; }
+#storage td.top { vertical-align:middle; }
 #storage table.progress td.closed { background:#777 none repeat scroll 0%; }
 #storage table.storage-array { font-size:90%; border-collapse:collapse; border-left:none; margin-right:0; }
 #storage tr.storage-array > td { padding:3px; white-space:nowrap; text-align:left; border-right:none; border-left:none; }
