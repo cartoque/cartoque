@@ -30,7 +30,7 @@ th a { text-decoration:none; color: #433; background:transparent; }
 td a { text-decoration:none; color:#239; background:transparent; }
 td img { margin:0 auto; }
 td a:hover { color:#f33; background:transparent; text-decoration:underline; }
-td { border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 6px; color: #433; }
+td { border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; padding:3px 6px; color: #433; }
 table.show_item td.content { text-align:center; font-weight:bold; min-width:50%; }
 td.label { width:80px; text-align:left; padding:6px; }
 tr.filters { border:none; font-size:90%; }
