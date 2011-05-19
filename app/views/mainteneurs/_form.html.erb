@@ -1,0 +1,17 @@
+<%= simple_form_for(@mainteneur) do |f| %>
+  <%= action_links do %>
+    <%= f.button :submit %>
+    ou <%= link_to "Retourner à la liste", mainteneurs_path %>
+  <% end %>
+
+  <table class="show_item">
+    <tbody>
+      <%= tabular_errors @mainteneur %>
+      <%= f.input :name, :required => true, :wrapper_class => "th" %>
+      <%= f.input :phone %>
+      <%= f.input :email %>
+      <%= f.input :address, :as => :text, :input_html => { :size => "40x5" } %>
+      <%= f.input :client_ref, :as => :text, :input_html => { :size => "40x5" } %>
+    </tbody>
+  </table>
+<% end %>

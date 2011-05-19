@@ -1,0 +1,29 @@
+<h1>Listing mainteneurs</h1>
+
+<%= action_links do %>
+  <%= link_to 'Nouveau Mainteneur', new_mainteneur_path %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Client ref</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @mainteneurs.each do |mainteneur| %>
+  <tr>
+    <td><%= mainteneur.name %></td>
+    <td><%= mainteneur.phone %></td>
+    <td><%= mainteneur.email %></td>
+    <td><%= mainteneur.client_ref %></td>
+    <td><%= link_to 'Voir', mainteneur %></td>
+    <td><%= link_to 'Editer', edit_mainteneur_path(mainteneur) %></td>
+    <td><%= link_to 'Supprimer', mainteneur, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
