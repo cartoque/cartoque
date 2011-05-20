@@ -9,6 +9,7 @@ ul { margin-left:2em; }
 
 /* fonts */
 @font-face { font-family:'Lobster'; font-style:normal; font-weight:normal; src:local('Lobster1.4'), local('Lobster'), url('../fonts/Lobster.ttf') format('truetype'); }
+@font-face { font-family:'Ubuntu'; font-style:normal; font-weight:normal; src:local('Ubuntu-R'), local('Ubuntu'), url('../fonts/Ubuntu-R.ttf') format('truetype'); }
 
 /* titles */
 h1 { font-weight:bold; margin:0.5em 0; font-family:verdana,arial,sans-serif; text-align:center; color:#000; letter-spacing:1px; font-size:1.6em; }
