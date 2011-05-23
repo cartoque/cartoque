@@ -5,7 +5,7 @@ class MultiselectInput < SimpleForm::Inputs::CollectionInput
     label_method, value_method = detect_collection_methods
 
     @builder.send(:"collection_select", attribute_name, collection,
-                  value_method, label_method, input_options, input_html_options)
+                  value_method, label_method, input_options, input_html_options) +
       hidden_field_tag("#{object_name}[#{attribute_name}][]", "")
   end
  
@@ -13,7 +13,6 @@ class MultiselectInput < SimpleForm::Inputs::CollectionInput
     options = super
     options[:include_blank] = false
     options[:prompt] = false
-    Rails.logger.error options.inspect
     options
   end
 
