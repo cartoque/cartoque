@@ -10,10 +10,10 @@
 </td>
 <td>
   <% if oracle_report["schemas"].present? %>
-  <span class="databases-summary" style="display:none;">
+  <span class="databases-summary">
     <%= databases_summary(oracle_report["schemas"]) %>
   </span>
-  <ul class="databases-details">
+  <ul class="databases-details" style="display:none">
   <% oracle_report["schemas"].keys.sort.each do |schema| %>
     <% size = oracle_report["schemas"][schema] %>
     <li><%= schema %><span style="float:right; padding-left:1em"><%= display_size(size) %></span></li>
