@@ -1,7 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.7'
 gem 'mysql2', '0.2.7' #mysql2 v0.3.x are incompatible with rails 3.0.x
+gem 'rake', '0.8.7'   #rake v0.9 is incompatible with rails 3.0.x
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
