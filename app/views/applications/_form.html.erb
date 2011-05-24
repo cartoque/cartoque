@@ -11,6 +11,7 @@
     <tbody>
       <%= tabular_errors @application %>
       <%= f.input :name, :required => true, :wrapper_class => "th" %>
+      <%= f.input :info, :input_html => { :size => "40x3" } %>
       <%= f.input :identifier %>
       <%= f.input :criticity, :as => :radio, :collection => 1..3 %>
       <%= f.input :iaw %>
@@ -18,7 +19,7 @@
       <%= f.input :ams %>
       <%= f.input :cerbere, :as => :radio %>
       <%= f.input :comment %>
-      <%= f.input :info, :input_html => { :size => "40x3" } %>
+      <%= f.association :machines, :collection => Machine.order(:name), :as => :multiselect %>
     </tbody>
   </table>
 <% end %>

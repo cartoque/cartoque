@@ -2,7 +2,7 @@ class Application < ActiveRecord::Base
   has_and_belongs_to_many :machines
 
   attr_accessible :name, :criticity, :info, :iaw, :pe, :moa, :amoa, :moa_note, :contact, :pnd, :ams,
-                  :cerbere, :comment, :identifier
+                  :cerbere, :comment, :identifier, :machine_ids
 
   validates_presence_of :name
 
