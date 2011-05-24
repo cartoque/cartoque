@@ -3,6 +3,14 @@ Factory.define :machine do |m|
   m.subnet '192.168.0'
   m.lastbyte '10'
   m.virtual false
+  m.nb_proc 4
+  m.ref_proc "Xeon 2300"
+  m.nb_coeur 4
+  m.frequency 3.2
+  m.memory 42
+  m.nb_disk 5
+  m.disk_size 13
+  m.disk_type "SAS"
 end
 
 Factory.define :virtual, :parent => :machine do |m|

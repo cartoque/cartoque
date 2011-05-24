@@ -38,11 +38,17 @@ class Machine < ActiveRecord::Base
     end
   end
 
+  def cores
+    html = ""
+    html << "#{nb_proc} * " unless nb_proc == 1
+    html << "#{nb_coeur} cores, #{frequency} GHz"
+    html.html_safe
+  end
+
   def cpu
     html = ""
     if nb_proc.present? && nb_proc > 0
-      html << "#{nb_proc} * " unless nb_proc == 1
-      html << "#{nb_coeur} cores, #{frequency} GHz"
+      html << cores
       html << "<br />(#{ref_proc})" if ref_proc.present?
     else
       html << "?"
@@ -66,6 +72,16 @@ class Machine < ActiveRecord::Base
       html << "?"
     end
     html.html_safe
+  end
+
+  def ram
+    html = ""
+    if memory.present? && memory.to_f > 0
+      html = memory.to_s + (memory.to_s.match(/[MG]/) ? "Go" : "")
+    else
+      html << "?"
+    end
+    html
   end
 
   def localization

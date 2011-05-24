@@ -18,7 +18,7 @@
         <% if @database.machines.any? %>
           <ul>
           <% @database.machines.each do |machine| %>
-            <li><%= link_to machine.name, machine %></li>
+            <li><%= display_machine(machine) %></li>
           <% end %>
           </ul>
         <% else %>
