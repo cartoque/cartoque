@@ -3,8 +3,14 @@
 <div id="databases" class="items_list">
   
 <%= action_links do %>
+  <div class="contextual contextswitch">
+    <span class="toggle">Changer de vue</span>
+    <ul class="contexts">
+      <li class="current"><strong>jbbarth ✓</strong></li>
+      <li><a href="#" class="manage-orgs">Test</a></li>
+    </ul>
+  </div>
   <%= link_to "Déclarer un serveur de bases de données", new_database_path %>
-  | <%= link_to_function "Changer de vue", "$('.databases-details,.databases-summary').toggle();" %>
 <% end %>
 
 <% postgres_databases = @databases.select{|db| db.database_type == 'postgres'} %>

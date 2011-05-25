@@ -67,7 +67,7 @@ module ApplicationHelper
   end
 
   def action_links(&block)
-    content_tag(:p, :class => "actions") do
+    content_tag(:div, :class => "actions") do
       capture(&block)
     end
   end

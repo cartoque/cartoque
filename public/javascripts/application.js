@@ -70,6 +70,16 @@ $(function() {
   });
 });
 
+// context
+$(function(){
+  $(".contextswitch").each(function(){
+    var a=$(this), d=a.find(".toggle");
+    d.click(function(){
+      a.hasClass("nochoices") || a.toggleClass("activated")
+    })
+  })
+});
+
 // utility
 
 /* form observer ; see: http://blessednotes.wordpress.com/2009/07/28/jquery-form-changes-observer/ */
