@@ -10,10 +10,12 @@
 </td>
 <td>
   <% if postgres_report["databases"].present? %>
+  <% if databases_view_mode == "normal" %>
   <span class="databases-summary">
     <%= databases_summary(postgres_report["databases"]) %>
   </span>
-  <ul class="databases-details" style="display:none;">
+  <% elsif databases_view_mode == "detailed" %>
+  <ul class="databases-details">
   <% postgres_report["databases"].keys.sort.each do |db| %>
     <% size = postgres_report["databases"][db] %>
     <li><%= db %><span style="float:right; padding-left:1em"><%= display_size(size) %></span></li>
@@ -22,6 +24,7 @@
       Total <span style="float:right; padding-left:1em"><%= display_size(postgres_report["databases"].values.sum) %></span>
     </li>
   </ul>
+  <% end %>
   <% end %>
 </td>
 <% if postgres_report_counter != 0 %></tr><% end %>

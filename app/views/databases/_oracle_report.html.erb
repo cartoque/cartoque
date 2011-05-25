@@ -10,10 +10,12 @@
 </td>
 <td>
   <% if oracle_report["schemas"].present? %>
+  <% if databases_view_mode == "normal" %>
   <span class="databases-summary">
     <%= databases_summary(oracle_report["schemas"]) %>
   </span>
-  <ul class="databases-details" style="display:none">
+  <% elsif databases_view_mode == "detailed" %>
+  <ul class="databases-details">
   <% oracle_report["schemas"].keys.sort.each do |schema| %>
     <% size = oracle_report["schemas"][schema] %>
     <li><%= schema %><span style="float:right; padding-left:1em"><%= display_size(size) %></span></li>
@@ -22,6 +24,7 @@
       Total <span style="float:right; padding-left:1em"><%= display_size(oracle_report["schemas"].values.sum) %></span>
     </li>
   </ul>
+  <% end %>
   <% end %>
 </td>
 <% if oracle_report_counter != 0 %></tr><% end %>

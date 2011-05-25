@@ -1,3 +1,7 @@
+<% title "Bases de données" %>
+
+<div id="databases" class="items_list">
+  
 <%= action_links do %>
   <%= link_to "Déclarer un serveur de bases de données", new_database_path %>
   | <%= link_to_function "Changer de vue", "$('.databases-details,.databases-summary').toggle();" %>
@@ -60,4 +64,6 @@
     </tr>
   <% end %>
 </table>
+</div>
+
 </div>
