@@ -3,7 +3,7 @@ require 'test_helper'
 class ApplicationHelperTest < ActionView::TestCase
   should "display action links" do
     render :text => action_links { "blah" }
-    assert_select "p.actions", "blah" 
+    assert_select "div.actions", "blah" 
   end 
 
   should "render some links to external applications" do
