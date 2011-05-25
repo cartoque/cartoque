@@ -20,10 +20,10 @@ table { padding: 0; margin: 0.5em auto 1.5em auto; border-collapse:collapse; }
 th, tr.th td {
   text-transform:capitalize; font-weight:bold; text-align:center; padding:4px 6px; vertical-align:middle;
   color: #433; background-color:#eee; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;
-  background: -moz-linear-gradient(100% 100% 90deg, #e2e2e2, #f0f0f0);
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f0f0f0), to(#e2e2e2));
-  background: -webkit-linear-gradient(#e2e2e2, #f0f0f0);
-  background: -o-linear-gradient(#e2e2e2, #f0f0f0);
+  background: -moz-linear-gradient(100% 100% 90deg, #f2f2f2, #e4e4e4);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#e4e4e4), to(#f2f2f2));
+  background: -webkit-linear-gradient(#f2f2f2, #e4e4e4);
+  background: -o-linear-gradient(#f2f2f2, #e4e4e4);
 }
 tr th:first-child, tr td:first-child { border-left: 1px solid #ccc; }
 th, td { vertical-align:middle; }
@@ -48,8 +48,14 @@ tr.filters td { border:none; padding:2px; text-align:center; }
 .center { text-align:center; }
 .contextual { float:right; }
 .contextual * { padding:0; margin:0; }
-.actions { text-align:center; font-size: 90%; margin-top:2px; }
-.actions a { text-decoration:underline; }
+.actions { text-align:center; font-size: 95%; margin:5px auto; }
+#container>.actions, .items_list>.actions {
+  margin:0 10px 10px; padding:10px 15px; font-weight:bold; text-align:left;
+  background-color:/*#e2e2ff*/#eee; border:1px solid /*#ddf*/#ddd;
+  -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;
+}
+#sidebar+.items_list>.actions { position:relative; margin-left:210px; }
+.actions a { color:#333; }
 .hidden { display:none; }
 .more { font-size:90%; text-align:left; }
 .tiny { font-size:90%; }
@@ -79,7 +85,8 @@ input[type="submit"]:active {
 }
 
 /* wrappers */
-#top-menu { padding:5px 8px; margin:0 0 5px; background-color:#eee; border-bottom:1px solid #ccc; }
+#top-menu { padding:5px 8px; margin:0 0 5px; background-color:#eee; border-bottom:1px solid #ccc;
+            text-shadow:1px 1px 0 #fff; }
 #welcome-container { margin:2em auto; max-width:1000px; }
 #container { margin:0 auto; background-color:#FFF; padding:8px; text-align:left; }
 .column_wrapper { float:left; margin:0 15px 0 5px; }
@@ -173,8 +180,8 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .machine-mainteneur { margin:0; position:relative; display:block; padding:0 0 0 2em; list-style-type:none; }
 .mainteneur-infos { font-size:90%; }
 .database_machines li { margin:4px auto; }
-.machine-details { font-size:80%; /*background-color:#7be; color:#fff;*/background-color:#eee; color:#622;
-                   padding:1px 3px; margin:2px;
+.machine-details { font-size:90%; display:inline-block; background-color:#eee; color:#446;
+                   padding:2px 3px; margin:0 6px; border:1px solid #dde;
                    -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
 
 /* operating systems */
