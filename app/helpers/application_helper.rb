@@ -91,4 +91,13 @@ module ApplicationHelper
       end
     end
   end
+
+  def context_li(text, url, options = {})
+    current = options.delete(:current)
+    if current
+      content_tag :li, text, :class => "current"
+    else
+      content_tag :li, link_to(text, url, options)
+    end
+  end
 end

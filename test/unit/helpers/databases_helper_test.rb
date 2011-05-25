@@ -39,18 +39,4 @@ class DatabasesHelperTest < ActionView::TestCase
       assert ! databases_summary(databases).include?("little")
     end
   end
-
-  context "#context_li" do
-    should "display a li.current if item is the current one" do
-      render :text => context_li("blah", "url", :current => true)
-      assert_select "li.current", "blah"
-      assert select "li a", false, "shouldn't contain a link"
-    end
-
-    should "display normal li with link inside otherwise" do
-      render :text => context_li("blah", "url", :current => false)
-      assert_select "li > a[href=url]", "blah"
-      assert_select "li.current", false, "shouldn't be the current li"
-    end
-  end
 end
