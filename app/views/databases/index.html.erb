@@ -6,13 +6,8 @@
   <div class="contextual contextswitch">
     <span class="toggle">Changer de vue</span>
     <ul class="contexts">
-    <% if databases_view_mode == "normal" %>
-      <li class="current">Vue synthétique</li>
-      <li><%= link_to "Vue détaillée", databases_path(:view_mode => "detailed") %></li>
-    <% else %>
-      <li><%= link_to "Vue synthétique", databases_path(:view_mode => "normal") %></li>
-      <li class="current">Vue détaillée</li>
-    <% end %>
+      <%= context_li "Vue synthétique", databases_path(:view_mode => "normal"), :current => (databases_view_mode == "normal") %>
+      <%= context_li "Vue détaillée", databases_path(:view_mode => "detailed"), :current => (databases_view_mode == "detailed") %>
     </ul>
   </div>
   <%= link_to "Déclarer un serveur de bases de données", new_database_path %>

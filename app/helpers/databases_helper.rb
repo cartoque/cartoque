@@ -58,4 +58,13 @@ module DatabasesHelper
   def size_in_Mo(size)
     "%.1f" % (size / 1024.0**2)
   end
+
+  def context_li(text, url, options = {})
+    current = options.delete(:current)
+    if current
+      content_tag :li, text, :class => "current"
+    else
+      content_tag :li, link_to(text, url, options)
+    end
+  end
 end
