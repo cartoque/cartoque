@@ -52,6 +52,7 @@ tr.filters td { border:none; padding:2px; text-align:center; }
 .center { text-align:center; }
 .contextual { float:right; }
 .contextual * { padding:0; margin:0; }
+.before-contextual { position:absolute; right:130px; }
 .hidden { display:none; }
 .more { font-size:90%; text-align:left; }
 .tiny { font-size:90%; }
@@ -143,21 +144,23 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 /* actions */
 .actions { text-align:center; font-size: 95%; margin:5px 0; }
 #container>.actions, .items_list>.actions, .grid_12>.actions {
-  position:relative; margin-bottom:10px; padding:7px 12px 5px; height:14px; line-height:14px;
+  position:relative; margin-bottom:10px; padding:6px 5px 5px; height:14px; line-height:14px;
   text-align:left; background-color:#edf3fe; border:1px solid #e9edf9/*#e5e5ff*/;
 }
+#container>.actions a, .items_list>.actions a, .grid_12>.actions a { margin-left:5px; }
 .actions a { color:#333; }
 .actions a:hover { color:#48c; text-decoration:none; }
+.actions a img { margin-top:-3px; }
 
 /* contexts */
 .actions li{list-style-type:none;margin:0;display:inline;}
 .actions li a{float:left;margin-right:10px;padding:0 8px;color:#666;text-shadow:1px 1px 0 rgba(255,255,255,0.7);}
 .actions li a.selected{position:relative;top:-1px;font-weight:/*bold*/normal;color:#333;background:#fff;border:1px solid #ccc;border-right-color:#eee;border-bottom-color:#eee;}
-.actions div.contextswitch{position:absolute;right:0;top:0;height:14px;padding:6px 10px 6px 12px;border-left:1px solid #e9edf9;background:url(/images/context_back-up.png) 100% -6px no-repeat;}
+.actions div.contextswitch{position:absolute;right:0;top:0;height:13px;padding:6px 10px 6px 12px;border-left:1px solid #e9edf9;background:url(/images/context_back-up.png) 100% -6px no-repeat;}
 .actions div.contextswitch.activated{background-image:url(/images/context_back-down.png);}
-.actions div.contextswitch .toggle{display:block;height:14px;line-height:16px;padding-right:15px;font-weight:/*bold*/normal;color:#333;cursor:pointer;}
+.actions div.contextswitch .toggle{display:block;height:13px;line-height:13px;padding-right:15px;font-weight:/*bold*/normal;color:#333;cursor:pointer;}
 .actions div.contextswitch.activated .toggle{color:#555;}
-.actions div.contextswitch ul{display:none;margin:0;position:absolute;top:27px;right:-1px;background:#fff;border:1px solid #ccc;border-top:none;z-index:100;-moz-box-shadow:0 2px 2px rgba(0,0,0,0.1);-webkit-box-shadow:0 2px 2px rgba(0,0,0,0.1);}
+.actions div.contextswitch ul{display:none;margin:0;position:absolute;top:26px;right:-1px;background:#fff;border:1px solid #ccc;border-top:none;z-index:100;-moz-box-shadow:0 2px 2px rgba(0,0,0,0.1);-webkit-box-shadow:0 2px 2px rgba(0,0,0,0.1);}
 .actions div.contextswitch.activated ul{display:block;}
 .actions div.contextswitch ul li{margin:0;padding:0;display:block;}
 .actions div.contextswitch ul li.current{position:relative;background:#f6f6f6;display:block;padding:5px 10px;}

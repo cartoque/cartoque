@@ -1,4 +1,7 @@
 <%= action_links do %>
+  <div class="contextual before-contextual">
+    <%= link_to image_tag("file_extension_pdf.png"), machines_path(params.merge(:format => "pdf")) %>
+  </div>
   <div class="contextual contextswitch">
     <span class="toggle">Changer de vue</span>
     <ul class="contexts">
@@ -6,8 +9,7 @@
       <%= context_li "Vue maintenance", machines_path(:view_mode => "maintenance"), :current => maintenance_mode? %>
     </ul>
   </div>
-  <%= link_to "Ajouter une machine", new_machine_path %> |
-  <%= link_to "Export PDF", machines_path(params.merge(:format => "pdf")) %>
+  <%= link_to "Ajouter une machine", new_machine_path %>
 <% end %>
 
 <%= render(maintenance_mode? ? "list_maintenance" : "list_normal") %>
