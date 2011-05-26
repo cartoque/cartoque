@@ -1,6 +1,6 @@
 <% title "Bases de données" %>
 
-<div id="databases" class="items_list">
+<div id="databases" class="items_list grid_12">
   
 <%= action_links do %>
   <div class="contextual contextswitch">
@@ -16,9 +16,11 @@
 <% postgres_databases = @databases.select{|db| db.database_type == 'postgres'} %>
 <% oracle_databases   = @databases.select{|db| db.database_type == 'oracle'} %>
 
-<div class="database_type">
+</div>
+
+<div class="database_type grid_6 clearfix">
 <h1>Postgres</h1>
-<table class="pretty ninety">
+<table class="pretty">
   <tr>
     <th>Serveurs</th>
     <%= database_headers_for("postgres") %>
@@ -44,7 +46,7 @@
 </table>
 </div>
 
-<div class="database_type">
+<div class="database_type grid_6">
 <h1>Oracle</h1>
 <table>
   <tr>
@@ -70,6 +72,4 @@
     </tr>
   <% end %>
 </table>
-</div>
-
 </div>

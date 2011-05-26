@@ -1,5 +1,7 @@
 <% title "Base de données" %>
 
+<div class="grid_12 center">
+
 <%= action_links do %>
   <%= link_to "Editer", edit_database_path(@database) %> |
   <%= link_to "Supprimer", @database, :confirm => 'Are you sure?', :method => :delete %> |
@@ -39,3 +41,5 @@
   </tbody>
   <% end %>
 </table>
+
+</div>

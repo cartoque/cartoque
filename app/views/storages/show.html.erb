@@ -1,3 +1,5 @@
+<div class="grid_12 center">
+
 <%= show_for @storage do |s| %>
   <%= s.attribute :machine_id %>
   <%= s.attribute :file %>
@@ -7,3 +9,5 @@
 
 <%= link_to 'Edit', edit_storage_path(@storage) %> |
 <%= link_to 'Back', storages_path %>
+
+</div>

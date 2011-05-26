@@ -1,12 +1,16 @@
 <% title "Machine" %>
 
+<div class="grid_12">
 <%= action_links do %>
   <%= link_to 'Editer', edit_machine_path(@machine) %> |
   <%= link_to 'Supprimer', @machine, :confirm => 'Etes-vous sûr ?', :method => :delete %> |
   <%= link_to 'Retourner à la liste', machines_path %>
 <% end %>
+</div>
 
-<div id="machine_general" class="column_wrapper">
+<div class="clear"></div>
+
+<div id="machine_general" class="grid_3">
 <table class="show_item">
   <thead>
     <tr>
@@ -48,7 +52,7 @@
 </table>
 </div>
 
-<div id="machine_hardware" class="column_wrapper">
+<div id="machine_hardware" class="grid_3">
 <table class="show_item">
   <thead>
     <tr>
@@ -69,7 +73,7 @@
 </table>
 </div>
 
-<div id="machine_relations" class="column_wrapper">
+<div id="machine_relations" class="grid_3">
 <table class="show_item">
   <thead>
     <tr><th colspan="2">Applications liées</th></tr>

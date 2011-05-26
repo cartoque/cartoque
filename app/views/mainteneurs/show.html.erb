@@ -1,5 +1,7 @@
 <% title "Mainteneur" %>
 
+<div class="grid_9 center">
+
 <%= action_links do %>
   <%= link_to 'Editer', edit_mainteneur_path(@mainteneur) %> |
   <%= link_to 'Supprimer', @mainteneur, :confirm => 'Etes-vous sûr ?', :method => :delete %> |
@@ -23,3 +25,5 @@
     <% end %>
   </tbody>
 </table>
+
+</div>

@@ -1,4 +1,5 @@
 <% hidden_if_virtual = @machine.virtual? ? 'display:none;' : '' %>
+
 <%= simple_form_for(@machine) do |f| %>
   <%= action_links do %>
     <%= f.button :submit %>
@@ -8,7 +9,7 @@
     <% end %>
   <% end %>
 
-  <div id="machine_general" class="column_wrapper">
+  <div id="machine_general" class="grid_4">
   <table class="inputs">
     <tbody>
       <%= tabular_errors @machine %>
@@ -37,7 +38,7 @@
   </table>
   </div>
 
-  <div id="machine_hardware" class="column_wrapper">
+  <div id="machine_hardware" class="grid_4">
   <table class="inputs">
     <thead>
       <tr><th colspan="2" id="machine-hardware-title"><%= @machine.virtual? ? "Ressources" : "Matériel" %></th></tr>
@@ -67,7 +68,7 @@
   </table>
   </div>
 
-  <div id="machine_applications" class="column_wrapper">
+  <div id="machine_applications" class="grid_4">
   <table class="inputs">
     <thead>
       <tr><th colspan="2">Applications</th></tr>
@@ -79,3 +80,5 @@
   </div>
 
 <% end %>
+
+</div>

@@ -1,5 +1,7 @@
 <% title "Application" %>
 
+<div class="grid_12 center">
+
 <%= action_links do %>
   <%= link_to "Editer", edit_application_path(@application) %> |
   <%= link_to "Supprimer", @application, :confirm => 'Are you sure?', :method => :delete %> |
@@ -48,3 +50,5 @@
     </tr>
   <% end %>
 </table>
+
+</div>
