@@ -172,8 +172,8 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 #storages > table { margin-left:auto; margin-right:auto; }
 #storage .device { padding-left:2px; margin-bottom:2px; background-color:#eee; }
 #storage .infos { text-align:left; margin-bottom:2px; font-size:100%; }
-#storage td.global { font-size:110%; }
-#storage td.details { white-space:nowrap; }
+#storage td.global { font-size:110%; padding:12px; }
+#storage td.details { white-space:nowrap; padding:6px; }
 #storage td.details * { margin-bottom:0; }
 #storage td.top { vertical-align:top; padding-top:1.8em; }
 #storage table.progress td.closed { background:#777 none repeat scroll 0%; }
@@ -232,9 +232,9 @@ p.progress-info { clear:left; font-style:italic; font-size:90%; }
   #container { width:auto; margin:0; padding:0; border:none; }
   table { border-collapse:collapse; }
   th { background-color:#000 !important; background-image:none; color:#fff; font-weight:bold; text-transform:uppercase; }
-  th, td { border:1px solid #666; padding:2px 4px !important; }
+  th, td { border:1px solid #666; padding:2px 4px; }
   #line_items { page-break-before:always; }
-  .actions, .filters, .hide-when-print { display:none; }
+  .actions, .filters, .hide-when-print, .more { display:none; }
   a, a:link, a:visited, a:hover { text-decoration:none; color:#000; }
   th a, th a:link, th a:visited { color:#fff; font-weight:bold; }
 }

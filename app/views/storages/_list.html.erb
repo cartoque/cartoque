@@ -1,4 +1,7 @@
 <%= action_links do %>
+  <div class="contextual">
+    <%= link_to image_tag("file_extension_pdf.png"), storages_path(:format => "pdf") %>
+  </div>
   <%= link_to "Ajouter une baie", new_storage_path %>
 <% end %>
 
