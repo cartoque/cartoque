@@ -185,6 +185,8 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 #storage .unassigned { font-size:90%; color:#cb2; font-style:italic; font-weight:bold; float:right; padding-right:2px; }
 
 /* applications */
+#machine_applications tr.multiselect td:first-child { display:none; }
+#machine_applications tr.multiselect td:last-child { border-left: 1px solid #ccc; }
 .links a, .links a:link, .links a:visited, .links a:hover { text-decoration:none; font-weight:bold; padding:2px; 
                                                             -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
 a.link-to-redmine { color:#a22; }
@@ -202,6 +204,8 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .offset { padding-left:1em; }
 
 /* machines */
+#machine_applications tr.multiselect td:first-child { display:none; }
+#machine_applications tr.multiselect td:last-child { border-left: 1px solid #ccc; }
 .virtual-machine { float:right; text-transform:uppercase; font-weight:bolder; color:#3a3; }
 .maintenance-warning { color:#f80; }
 .maintenance-critical { font-weight:bold; color:#d00; }
