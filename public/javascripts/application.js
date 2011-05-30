@@ -14,24 +14,6 @@ $(function() {
     return false
   });
 
-  $("#applications_search input").bindWithDelay("keyup", function() {
-    $.get($("#applications_search").attr("action"), $("#applications_search").serialize(), null, "script");
-    //fallback for old browsers
-    if (true || !('replaceState' in window.history)) return true
-    //push our search to history
-    history.replaceState(null, document.title, $("#applications_search").attr("action") + "?" + $("#applications_search").serialize());
-    return false;
-  }, 300);
-
-  $("#machines_search").bindWithDelay("keyup", function() {
-    $.get($("#machines_search").attr("action"), $("#machines_search").serialize(), null, "script");
-    //fallback for old browsers
-    if (true || !('replaceState' in window.history)) return true
-    //push our search to history
-    history.replaceState(null, document.title, $("#machines_search").attr("action") + "?" + $("#machines_search").serialize());
-    return false;
-  }, 300);
-
   //back button
   $(window).bind("popstate", function() {
     //$.getScript(location.href);
@@ -50,9 +32,17 @@ $(function() {
   });
 
   //filters observer
-  $('form#filters').observe(1, function(){
-    $(this).submit();
-  });
+  $(".filters input").bindWithDelay("keyup", function() {
+    $.get($("form#filters").attr("action"), $("form#filters").serialize(), null, "script");
+    //fallback for old browsers
+    if (true || !('replaceState' in window.history)) return true
+    //push our search to history
+    history.replaceState(null, document.title, $("form#filters").attr("action") + "?" + $("form#filters").serialize());
+    return false;
+  }, 300);
+  //$('form#filters').observe(1, function(){
+  //  $(this).submit();
+  //});
 
   //multiselect with bsmSelect plugin
   $("select[multiple]").bsmSelect({

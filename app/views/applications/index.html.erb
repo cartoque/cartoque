@@ -1,3 +1,37 @@
 <% title "Applications" %>
 
-<div id="applications" class="grid_12 items_list"><%= render 'list' %></div>
+<div id="applications" class="grid_12 items_list">
+
+<%= action_links do %>
+  <div class="contextual">
+    <%= link_to image_tag("file_extension_pdf.png"), applications_path(params.merge(:format => "pdf")) %>
+  </div>
+  <%= link_to "Ajouter une application", new_application_path %>
+<% end %>
+
+<table class="pretty center">
+  <%= form_tag applications_path(params), :id => "filters", :method => :get do -%>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+    <% (controller.scopes_configuration || {}).keys.each do |scope| %>
+      <%= hidden_field_tag scope, params[scope] %>
+    <% end %>
+  <tr class="filters">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><%= text_field_tag "search", params[:search] %></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% end %>
+
+  <tbody id="applications_list">
+    <%= render 'list' %>
+  </tbody>
+</table>
+
+</div>

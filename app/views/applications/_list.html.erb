@@ -1,51 +1,23 @@
-<%= action_links do %>
-  <div class="contextual">
-    <%= link_to image_tag("file_extension_pdf.png"), applications_path(params.merge(:format => "pdf")) %>
-  </div>
-  <%= link_to "Ajouter une application", new_application_path %>
-<% end %>
-
-<table class="pretty center">
-  <%= form_tag applications_path(params), :id => "filters", :method => :get do -%>
-    <%= hidden_field_tag :direction, params[:direction] %>
-    <%= hidden_field_tag :sort, params[:sort] %>
-    <% (controller.scopes_configuration || {}).keys.each do |scope| %>
-      <%= hidden_field_tag scope, params[scope] %>
-    <% end %>
-  <tr class="filters">
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><%= text_field_tag "search", params[:search] %></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <% end %>
-
+<tr>
+  <th>Liens</th>
+  <th>Cerbere</th>
+  <%= sortable_th "criticity" %>
+  <%= sortable_th "name" %>
+  <th>Description</th>
+  <th>I2 Ader Web</th>
+  <th>ACAI Messagerie Spécifique</th>
+  <th colspan="2" class="actions">Actions</th>
+</tr>
+<% for application in @applications %>
   <tr>
-    <th>Liens</th>
-    <th>Cerbere</th>
-    <%= sortable_th "criticity" %>
-    <%= sortable_th "name" %>
-    <th>Description</th>
-    <th>I2 Ader Web</th>
-    <th>ACAI Messagerie Spécifique</th>
-    <th colspan="2" class="actions">Actions</th>
+    <td class="center"><%= links_for application %></td>
+    <td class="center"><%= cerbere_image(application.cerbere) %></td>
+    <td class="center"><%= application.criticity %></td>
+    <td><%= link_to application.name, application %></td>
+    <td><%= application.info %></td>
+    <td class="center"><%= application.iaw %></td>
+    <td class="center"><%= application.ams %></td>
+    <td class="actions"><%= link_to "Editer", edit_application_path(application) %></td>
+    <td class="actions"><%= link_to "Supprimer", application, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-  <% for application in @applications %>
-    <tr>
-      <td class="center"><%= links_for application %></td>
-      <td class="center"><%= cerbere_image(application.cerbere) %></td>
-      <td class="center"><%= application.criticity %></td>
-      <td><%= link_to application.name, application %></td>
-      <td><%= application.info %></td>
-      <td class="center"><%= application.iaw %></td>
-      <td class="center"><%= application.ams %></td>
-      <td class="actions"><%= link_to "Editer", edit_application_path(application) %></td>
-      <td class="actions"><%= link_to "Supprimer", application, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<% end %>
