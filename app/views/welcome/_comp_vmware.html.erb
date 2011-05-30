@@ -1,0 +1,28 @@
+<% vms = File.readlines(Rails.root.join("data/vmware/virtual_machines.txt")).map(&:chomp!) %>
+<% vms_in_cartocs = Machine.unscoped.where(:virtual => true) %>
+<% physical_in_cartocs = Machine.unscoped.where(:virtual => false) %>
+
+<% unknown_in_vcenter = vms_in_cartocs.map(&:name) - vms %>
+<% unknown_in_cartocs = vms - vms_in_cartocs.map(&:name) - physical_in_cartocs.map(&:name) %>
+<% notvms_in_cartocs = vms - vms_in_cartocs.map(&:name) - unknown_in_cartocs %>
+
+<% diff_list = { "inconnues dans VCenter"  => unknown_in_vcenter,
+                 "manquantes dans Cartocs" => unknown_in_cartocs,
+                 "ne sont pas marquées comme \"virtuelles\" dans Cartocs" => notvms_in_cartocs
+               } %>
+
+<table>
+  <tr><th>Comparaison Vcenter</th></tr>
+  <% diff_list.each do |title,machines| %>
+  <% if machines.present? %>
+  <tr>
+    <td>
+      <%= pluralize(machines.count, "VM") %> <%= title %>, dont :
+      <div class="details">
+        <%= machines.sort.join(", ") %>
+      </div>
+    </td>
+  </tr>
+  <% end %>
+  <% end %>
+</table>

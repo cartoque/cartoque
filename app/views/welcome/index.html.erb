@@ -6,16 +6,22 @@
   <%= render 'stats_general' %>
 <% end %>
 
-<%= welcome_box  do %>
+<%= welcome_box do %>
   <%= render 'stats_databases' %>
 <% end %>
 
-<%= welcome_box  do %>
+<%= welcome_box do %>
   <%= render 'stats_storage' %>
 <% end %>
 
-<%= welcome_box  do %>
+<%= welcome_box do %>
   <%= render 'stats_maintenance' %>
+<% end %>
+
+<%= welcome_box "" %>
+
+<%= welcome_box do %>
+  <%= render 'comp_vmware' %>
 <% end %>
 
 </div><!-- #welcome-container -->
