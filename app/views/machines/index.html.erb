@@ -1,3 +1,27 @@
 <% title "Machines" %>
 
-<div id="machines" class="items_list grid_12"><%= render 'list' %></div>
+<div id="machines" class="items_list grid_12">
+
+<%= action_links do %>
+  <div class="contextual before-contextual">
+    <%= link_to image_tag("file_extension_pdf.png"), machines_path(params.merge(:format => "pdf")) %>
+  </div>
+  <div class="contextual contextswitch">
+    <span class="toggle"><%= image_tag "3d_glasses.png" %></span>
+    <ul class="contexts">
+      <%= context_li "Vue serveurs", machines_path(:view_mode => "normal"), :current => !maintenance_mode? %>
+      <%= context_li "Vue maintenance", machines_path(:view_mode => "maintenance"), :current => maintenance_mode? %>
+    </ul>
+  </div>
+  <%= link_to "Ajouter une machine", new_machine_path, :class => "icon icon-add" %>
+<% end %>
+
+
+<table class="pretty">
+  <%= render "filters_#{view_mode}" %>
+  <tbody id="machines_list">
+    <%= render "list_#{view_mode}" %>
+  </tbody>
+</table>
+
+</div>

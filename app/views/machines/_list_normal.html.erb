@@ -1,38 +1,19 @@
-<table class="pretty">
-  <%= form_tag machines_path(params), :id => "filters", :method => :get do -%>
-    <%= hidden_field_tag :direction, params[:direction] %>
-    <%= hidden_field_tag :sort, params[:sort] %>
-    <% (controller.scopes_configuration || {}).keys.each do |scope| %>
-      <%= hidden_field_tag scope, params[scope] %>
-    <% end %>
-  <tr class="filters">
-    <td><%= text_field_tag "search", params[:search] %></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <% end -%>
-
+<tr>
+  <%= sortable_th "name" %>
+  <th>IP</th>
+  <th>Theme</th>
+  <th>Service</th>
+  <th>OS</th>
+  <th colspan="2" class="actions">Actions</th>
+</tr>
+<% for machine in @machines %>
   <tr>
-    <%= sortable_th "name" %>
-    <th>IP</th>
-    <th>Theme</th>
-    <th>Service</th>
-    <th>OS</th>
-    <th colspan="2" class="actions">Actions</th>
+    <td><%= link_to machine.name, machine %></td>
+    <td><%= machine.ip %></td>
+    <td><%= machine.theme %></td>
+    <td><%= machine.service %></td>
+    <td><%= machine.operating_system %></td>
+    <td class="actions"><%= link_to "Editer", edit_machine_path(machine) %></td>
+    <td class="actions"><%= link_to "Supprimer", machine, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-  <% for machine in @machines %>
-    <tr>
-      <td><%= link_to machine.name, machine %></td>
-      <td><%= machine.ip %></td>
-      <td><%= machine.theme %></td>
-      <td><%= machine.service %></td>
-      <td><%= machine.operating_system %></td>
-      <td class="actions"><%= link_to "Editer", edit_machine_path(machine) %></td>
-      <td class="actions"><%= link_to "Supprimer", machine, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<% end %>

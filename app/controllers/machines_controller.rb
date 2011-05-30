@@ -30,4 +30,9 @@ class MachinesController < InheritedResources::Base
     session[:machines_view_mode] == "maintenance"
   end
   helper_method :maintenance_mode?
+
+  def view_mode
+    maintenance_mode? ? "maintenance" : "normal"
+  end
+  helper_method :view_mode
 end
