@@ -3,13 +3,13 @@
     <%= link_to image_tag("file_extension_pdf.png"), machines_path(params.merge(:format => "pdf")) %>
   </div>
   <div class="contextual contextswitch">
-    <span class="toggle">Changer de vue</span>
+    <span class="toggle"><%= image_tag "3d_glasses.png" %></span>
     <ul class="contexts">
       <%= context_li "Vue serveurs", machines_path(:view_mode => "normal"), :current => !maintenance_mode? %>
       <%= context_li "Vue maintenance", machines_path(:view_mode => "maintenance"), :current => maintenance_mode? %>
     </ul>
   </div>
-  <%= link_to "Ajouter une machine", new_machine_path %>
+  <%= link_to "Ajouter une machine", new_machine_path, :class => "icon icon-add" %>
 <% end %>
 
 <%= render(maintenance_mode? ? "list_maintenance" : "list_normal") %>

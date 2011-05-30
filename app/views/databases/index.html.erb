@@ -7,13 +7,13 @@
     <%= link_to image_tag("file_extension_pdf.png"), databases_path(:format => "pdf") %>
   </div>
   <div class="contextual contextswitch">
-    <span class="toggle">Changer de vue</span>
+    <span class="toggle"><%= image_tag "3d_glasses.png" %></span>
     <ul class="contexts">
       <%= context_li "Vue synthétique", databases_path(:view_mode => "normal"), :current => (databases_view_mode == "normal") %>
       <%= context_li "Vue détaillée", databases_path(:view_mode => "detailed"), :current => (databases_view_mode == "detailed") %>
     </ul>
   </div>
-  <%= link_to "Déclarer un serveur de bases de données", new_database_path %>
+  <%= link_to "Ajouter", new_database_path %>
 <% end %>
 
 <% postgres_databases = @databases.select{|db| db.database_type == 'postgres'} %>
