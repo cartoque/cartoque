@@ -1,18 +1,18 @@
 <tr>
   <%= sortable_th "name" %>
   <th>IP</th>
-  <th>Theme</th>
-  <th>Service</th>
   <th>OS</th>
+  <%= sortable_th "manufacturer,model", t(:fullmodel) %>
+  <th>Localisation</th>
   <th colspan="2" class="actions">Actions</th>
 </tr>
 <% for machine in @machines %>
   <tr>
     <td><%= link_to machine.name, machine %></td>
     <td><%= machine.ip %></td>
-    <td><%= machine.theme %></td>
-    <td><%= machine.service %></td>
     <td><%= machine.operating_system %></td>
+    <td><%= machine.fullmodel %></td>
+    <td><%= machine.physical_rack %></td>
     <td class="actions"><%= link_to "Editer", edit_machine_path(machine) %></td>
     <td class="actions"><%= link_to "Supprimer", machine, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
