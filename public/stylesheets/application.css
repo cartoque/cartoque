@@ -161,7 +161,7 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 .actions div.contextswitch.activated ul { display:block; }
 .actions div.contextswitch ul li { margin:0; padding:0; display:block; }
 .actions div.contextswitch ul li:first-child { margin-top:4px; }
-.actions div.contextswitch ul li.current { position:relative; display:block; padding:2px 12px 4px; }
+.actions div.contextswitch ul li.current { position:relative; display:block; padding:2px 12px 4px; cursor:default; }
 .actions div.contextswitch ul li>a { float:none; display:block; margin:0; min-width:130px; padding:2px 12px 4px; white-space:nowrap; }
 
 /* storage */
