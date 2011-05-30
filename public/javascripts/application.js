@@ -32,17 +32,16 @@ $(function() {
   });
 
   //filters observer
-  $(".filters input").bindWithDelay("keyup", function() {
+  submitFilters = function() {
     $.get($("form#filters").attr("action"), $("form#filters").serialize(), null, "script");
     //fallback for old browsers
     if (true || !('replaceState' in window.history)) return true
     //push our search to history
     history.replaceState(null, document.title, $("form#filters").attr("action") + "?" + $("form#filters").serialize());
     return false;
-  }, 300);
-  //$('form#filters').observe(1, function(){
-  //  $(this).submit();
-  //});
+  }
+  $(".filters input").bindWithDelay("keyup", submitFilters, 300);
+  $(".filters select").change(submitFilters);
 
   //multiselect with bsmSelect plugin
   $("select[multiple]").bsmSelect({
