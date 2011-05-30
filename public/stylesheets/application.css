@@ -8,6 +8,13 @@ a:hover { color:#e06; text-decoration:underline; }
 caption { padding:0 0 5px 0; margin:0 auto; width:auto; font:italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; text-align:right; }
 ul { margin:0.5em 0.5em 0.5em 2em; list-style-type:none; }
 
+/* input styles taken from formalize */
+input:focus, input:active, textarea:focus, textarea:active {
+  -moz-box-shadow: #06f 0 0 4px;
+  -webkit-box-shadow: #06f 0 0 4px;
+  box-shadow: #06f 0 0 4px;
+}
+
 /* fonts */
 @font-face { font-family:'Lobster'; font-style:normal; font-weight:normal; src:local('Lobster1.4'), local('Lobster'), url('../fonts/Lobster.ttf') format('truetype'); }
 @font-face { font-family:'Ubuntu'; font-style:normal; font-weight:normal; src:local('Ubuntu-R'), local('Ubuntu'), url('../fonts/Ubuntu-R.ttf') format('truetype'); }
@@ -37,8 +44,8 @@ td img { margin:0 auto; }
 td { border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:3px 6px; color:#433; }
 table.show_item td.content { text-align:center; font-weight:bold; min-width:50%; }
 td.label { width:80px; text-align:left; padding:6px; }
-tr.filters { border-bottom:none; border-top:1px solid #ffa; border-right:1px solid #ffa; border-left:1px solid #ffa; font-size:90%; }
-tr.filters td { border:none; padding:2px; text-align:center; background-color:#ffc; }
+tr.filters { border-bottom:none; border-top:1px solid #ee9; border-right:1px solid #ee9; border-left:1px solid #ee9; font-size:90%; }
+tr.filters td { border:none; padding:3px 4px; text-align:center; background-color:#ffc; }
 tr.filters input[type="text"] { border:1px solid #ccc; width:100%; }
 
 /* pretty tables (sorting,etc.) */
