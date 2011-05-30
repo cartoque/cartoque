@@ -67,6 +67,7 @@
       </div>
     <% end %>
 
+    <%= content_tag(:h1, yield(:title), :class => controller.controller_name) if show_title? %>
     <%= yield %>
 
     <div class="clear"></div>
