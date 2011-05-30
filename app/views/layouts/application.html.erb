@@ -32,10 +32,6 @@
     <div class="grid_12">
       <div id="top-menu" class="hide-when-print">
         <div class="contextual">
-        <% if logged_in? && %w(index show).include?(controller.action_name) %>
-          <%= render("#{controller.controller_name}/search")+"|" rescue nil %>
-        <% end %>
-
         <% if logged_in? %>
           <span class="connected-as"><%= current_user.name %></span> |
           <%= link_to "Déconnexion", signout_path %>

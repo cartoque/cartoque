@@ -37,8 +37,9 @@ td img { margin:0 auto; }
 td { border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:3px 6px; color:#433; }
 table.show_item td.content { text-align:center; font-weight:bold; min-width:50%; }
 td.label { width:80px; text-align:left; padding:6px; }
-tr.filters { border:none; font-size:90%; }
-tr.filters td { border:none; padding:2px; text-align:center; }
+tr.filters { border-bottom:none; border-top:1px solid #ffa; border-right:1px solid #ffa; border-left:1px solid #ffa; font-size:90%; }
+tr.filters td { border:none; padding:2px; text-align:center; background-color:#ffc; }
+tr.filters input[type="text"] { border:1px solid #ccc; width:100%; }
 
 /* pretty tables (sorting,etc.) */
 .pretty th.current a { background-repeat:no-repeat; background-position:left center; padding-left:12px; }
@@ -120,7 +121,6 @@ label.required abbr { color:red; border-bottom:none; }
 /* top menu */
 #top-menu form { display:inline; }
 #top-menu > a { display:inline-block; position:relative; bottom:-1px; }
-#top-menu input#search { border:1px solid #bbb; }
 #top-menu .connected-as { font-weight:bold; }
 #top-menu .contextual { position:relative; bottom:-1px; }
 
