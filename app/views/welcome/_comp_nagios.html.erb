@@ -6,8 +6,8 @@
   unknown_in_nagios = machines_cartocs.map(&:name) - machines_nagios
   unknown_in_cartocs = machines_nagios - machines_cartocs.map(&:name)
 
-  diff_list = { "inconnues dans Nagios"  => unknown_in_nagios,
-                "manquantes dans Cartocs" => unknown_in_cartocs }
+  diff_list = { "inconnus dans Nagios"  => unknown_in_nagios,
+                "manquants dans Cartocs" => unknown_in_cartocs }
 %>
 
 <table>
@@ -16,7 +16,7 @@
   <% if machines.present? %>
   <tr>
     <td>
-      <%= pluralize(machines.count, "VM") %> <%= title %> :
+      <%= pluralize(machines.count, "serveur") %> <%= title %> :
       <div class="details">
         <%= machines.sort.join(", ") %>
       </div>
