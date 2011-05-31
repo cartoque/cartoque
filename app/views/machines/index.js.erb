@@ -1,5 +1,5 @@
-$("#machines_search #sort").attr("value","<%= escape_javascript(sort_column) %>");
-$("#machines_search #direction").attr("value","<%= escape_javascript(sort_direction) %>");
+$('input[type="hidden"]#sort').attr("value","<%= escape_javascript(sort_column) %>");
+$('input[type="hidden"]#direction').attr("value","<%= escape_javascript(sort_direction) %>");
 <% controller.scopes_configuration.keys.each do |scope| %>
   $("#machines_search #<%= scope %>").attr("value","<%= escape_javascript(params[scope]) %>");
 <% end %>

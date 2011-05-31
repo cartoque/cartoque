@@ -1,24 +1,16 @@
 // application events
 $(function() {
   //table sorting
-  $("items_list th a").live("click", function(e) {
+  $(".items_list th a").live("click", function(e) {
     $.getScript(this.href);
     //fallback for old browsers
     if (!('pushState' in window.history)) return true
     //ensure middle, control and command clicks act normally
-    if (e.which == 2 || e.metaKey || e.ctrlKey) {
-      return true
-    }
+    //if (e.which == 2 || e.metaKey || e.ctrlKey) return true
     //push history!
     history.pushState(null, document.title, this.href);
-    return false
+    e.preventDefault();
   });
-
-  //back button
-  $(window).bind("popstate", function() {
-    //$.getScript(location.href);
-  });
-
 
   //TODO: test it (Jasmine?)
   //machine 'virtual' toggling
@@ -35,13 +27,18 @@ $(function() {
   submitFilters = function() {
     $.get($("form#filters").attr("action"), $("form#filters").serialize(), null, "script");
     //fallback for old browsers
-    if (true || !('replaceState' in window.history)) return true
+    if (!('replaceState' in window.history)) return true
     //push our search to history
-    history.replaceState(null, document.title, $("form#filters").attr("action") + "?" + $("form#filters").serialize());
-    return false;
+    var url = $("form#filters").attr("action").split("?")[0] + "?" + $("form#filters").serialize()
+    history.replaceState(null, document.title, url);
   }
   $(".filters input").bindWithDelay("keyup", submitFilters, 300);
   $(".filters select").change(submitFilters);
+
+  //back button for pushState's
+  $(window).bind("popstate", function() {
+    $.getScript(location.href);
+  });
 
   //multiselect with bsmSelect plugin
   $("select[multiple]").bsmSelect({
