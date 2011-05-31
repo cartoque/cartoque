@@ -10,7 +10,8 @@
 <% for machine in @machines %>
 <tr>
   <td><%= link_to machine.name, machine %></td>
-  <td><%= machine.physical_rack %></td>
+  <td><%= link_to_if machine.physical_rack.present?, machine.physical_rack,
+                     machines_path(:by_rack => machine.physical_rack.try(:id)) %></td>
   <td><%= machine.fullmodel %></td>
   <td class="center"><%= machine.serial_number %></td>
   <td>

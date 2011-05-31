@@ -12,7 +12,8 @@
     <td><%= machine.ip %></td>
     <td><%= machine.operating_system %></td>
     <td><%= machine.fullmodel %></td>
-    <td><%= machine.physical_rack %></td>
+    <td><%= link_to_if machine.physical_rack.present?, machine.physical_rack,
+                       machines_path(:by_rack => machine.physical_rack.try(:id)) %></td>
     <td class="actions"><%= link_to "Editer", edit_machine_path(machine) %></td>
     <td class="actions"><%= link_to "Supprimer", machine, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

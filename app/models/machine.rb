@@ -17,6 +17,10 @@ class Machine < ActiveRecord::Base
 
   validates_presence_of :name
 
+  def to_s
+    name
+  end
+
   def ip
     i = subnet.to_s.split(".")
     i << lastbyte.to_s.gsub(".","")
