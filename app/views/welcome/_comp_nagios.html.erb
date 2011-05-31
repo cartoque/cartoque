@@ -1,0 +1,27 @@
+<%
+  path = Rails.root.join("data/nagios")
+  machines_nagios = %x(grep host_name= #{path}/status.dat|cut -d"=" -f 2|sort -u).split(/\n/)
+  machines_cartocs = Machine.unscoped
+
+  unknown_in_nagios = machines_cartocs.map(&:name) - machines_nagios
+  unknown_in_cartocs = machines_nagios - machines_cartocs.map(&:name)
+
+  diff_list = { "inconnues dans Nagios"  => unknown_in_nagios,
+                "manquantes dans Cartocs" => unknown_in_cartocs }
+%>
+
+<table>
+  <tr><th>Comparaison Nagios</th></tr>
+  <% diff_list.each do |title,machines| %>
+  <% if machines.present? %>
+  <tr>
+    <td>
+      <%= pluralize(machines.count, "VM") %> <%= title %>, dont :
+      <div class="details">
+        <%= machines.sort.join(", ") %>
+      </div>
+    </td>
+  </tr>
+  <% end %>
+  <% end %>
+</table>
