@@ -11,7 +11,7 @@ class Machine < ActiveRecord::Base
 
   attr_accessible :theme_id, :service_id, :operating_system_id, :physical_rack_id, :media_drive_id, :mainteneur_id, :name, :previous_name, :subnet, :lastbyte, :serial_number, :virtual, :description, :model, :memory, :frequency, :delivered_on, :maintained_until, :contract_type, :disk_type, :disk_size, :manufacturer, :ref_proc, :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk, :nb_disk_alt, :ip, :application_ids, :database_id
 
-  default_scope :include => [:applications, :theme, :service, :operating_system, :mainteneur, :physical_rack]
+  default_scope :include => [:applications, :operating_system, :mainteneur, :physical_rack]
   scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
   scope :by_mainteneur, proc {|mainteneur_id| { :conditions => { :mainteneur_id => mainteneur_id } } }
 
