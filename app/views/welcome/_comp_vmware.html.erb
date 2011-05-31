@@ -17,7 +17,7 @@
   <% if machines.present? %>
   <tr>
     <td>
-      <%= pluralize(machines.count, "VM") %> <%= title %>, dont :
+      <%= pluralize(machines.count, "VM") %> <%= title %> :
       <div class="details">
         <%= machines.sort.join(", ") %>
       </div>
