@@ -11,8 +11,10 @@ module ApplicationHelper
     column == sort_column ? "current #{sort_direction}" : "sortable"
   end
 
-  def sortable_th(column, title = nil)
-    %(<th class="#{sortable_css_class(column)}">#{sortable(column,title)}</th>).html_safe
+  def sortable_th(column, title = nil, html_options = {})
+    content_tag :th, {:class => sortable_css_class(column)}.merge(html_options) do
+      sortable(column,title)
+    end
   end
 
   def progress_bar(pcts, options={})

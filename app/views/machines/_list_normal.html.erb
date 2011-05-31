@@ -1,10 +1,10 @@
 <tr>
   <%= sortable_th "name" %>
-  <th>IP</th>
-  <th>OS</th>
-  <%= sortable_th "manufacturer,model", t(:fullmodel) %>
-  <th>Localisation</th>
-  <th colspan="2" class="actions">Actions</th>
+  <th style="width:10em">IP</th>
+  <th style="width:12em">OS</th>
+  <%= sortable_th "manufacturer,model", t(:fullmodel), :style => "width:12em" %>
+  <th style="width:8em">Localisation</th>
+  <th colspan="2" class="actions" style="width:4em">Actions</th>
 </tr>
 <% for machine in @machines %>
   <tr>
