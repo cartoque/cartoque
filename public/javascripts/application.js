@@ -29,7 +29,8 @@ $(function() {
     //fallback for old browsers
     if (!('replaceState' in window.history)) return true
     //push our search to history
-    var url = $("form#filters").attr("action").split("?")[0] + "?" + $("form#filters").serialize()
+    var filters = jQuery.param( jQuery.grep( $('form#filters').serializeArray(), function(o){ return o.value != "" } ) )
+    var url = $("form#filters").attr("action").split("?")[0] + "?" + filters
     history.replaceState(null, document.title, url);
   }
   $(".filters input").bindWithDelay("keyup", submitFilters, 300);
