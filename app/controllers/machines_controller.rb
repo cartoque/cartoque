@@ -7,6 +7,7 @@ class MachinesController < InheritedResources::Base
 
   has_scope :by_rack
   has_scope :by_mainteneur
+  has_scope :by_system
 
   before_filter :select_view_mode
 
