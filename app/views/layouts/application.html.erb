@@ -36,8 +36,6 @@
         <% if logged_in? %>
           <span class="connected-as"><%= current_user.name %></span> |
           <%= link_to "Déconnexion", signout_path %>
-        <% else %>
-          <%= link_to "Connexion", "/auth/cas" %>
         <% end %>
         </div>
         <%= link_to image_tag("home.png", :alt=>"Accueil"), root_path %>

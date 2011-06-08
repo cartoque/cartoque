@@ -140,6 +140,17 @@ label.required abbr { color:red; border-bottom:none; }
 #sidebar ul { border-bottom:2px solid #ddd; padding-right:1.2em; padding-bottom:0.8em; margin-bottom:0.5em; }
 #sidebar ul:last-child { border-bottom:none; padding-bottom:0; margin-bottom:0; }
 
+/* authentication/sessions */
+#login {color:#c22; font-size:120%; padding-top:3em; padding-bottom:5em; }
+#cas-login { margin:3em auto 0; font-weight:bold; text-align:center; }
+#cas-login a, #cas-login a:hover {
+  display:inline-block; padding:0.4em 1em; max-width:800px; text-align:center;
+  color:#fff; background-color:#78cc01; text-decoration:none !important; text-shadow:1px 1px 1px #666;
+  -moz-border-radius:14px; -webkit-border-radius:14px; border-radius:14px;
+}
+#cas-login a:hover { background-color:#70c600; }
+#cas-login a:active { position:relative; top:1px; }
+
 /* welcome page */
 #welcome-container { margin:2em auto; }
 h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; font-weight:400; text-shadow:2px 2px 2px #aaa; text-decoration:none; text-transform:none; letter-spacing:0em; word-spacing:0em; line-height:1em; margin-top:0.5em; }
