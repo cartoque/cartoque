@@ -7,9 +7,8 @@
 <tr class="filters">
   <td><%= text_field_tag "search", params[:search] %></td>
   <td></td>
-  <td><%= select_tag "by_system", options_for_select([["",""]] + OperatingSystem.order("path_cache, name").map{ |o|
-                                                                   ["-" * o.depth + " " + o.name, o.id]
-                                                                 }, params[:by_system]).html_safe -%></td>
+  <% @os = ancestry_options(OperatingSystem.scoped.arrange(:order => 'name')){|i| "#{'-'*i.depth} #{i.name}"} %>
+  <td><%= select_tag "by_system", options_for_select([["",""]] + @os, params[:by_system]).html_safe -%></td>
   <td></td>
   <td><%= select_tag "by_rack", options_for_select([["",""]] + PhysicalRack.all.map{|r| [r,r.id]},params[:by_rack]).html_safe -%></td>
   <td></td>

@@ -52,6 +52,20 @@ module ApplicationHelper
     form.input idkey, :as => :select, :collection => collection.map { |o| ["-" * o.depth + " " + o.send(namekey), o.id] }
   end
 
+  # see ancestry wiki on github
+  # usage: <%= f.select :parent_id, @categories %>
+  #
+  # @categories = ancestry_options(Category.scoped.arrange(:order => 'name'){|i| "#{'-'*i.depth} #{i.name}"})
+  def ancestry_options(items, &block)
+    result = []
+    items.map do |item, sub_items|
+      result << [ yield(item), item.id ]
+      #recursive call
+      result += ancestry_options(sub_items) {|i| "#{'-'*i.depth} #{i.name}" }
+    end
+    result
+  end
+
   def tabular_errors(object)
     if object.errors.any?
       html = <<-EOF
