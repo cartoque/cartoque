@@ -38,7 +38,9 @@ $(function() {
 
   //back button for pushState's
   $(window).bind("popstate", function() {
-    $.getScript(location.href);
+    //commented out since it makes calls to ".js"'s urls even when not necessary at all (welcome page for instance)
+    //TODO: switch to jquery-pjax ftw!
+    //$.getScript(location.href);
   });
 
   //multiselect with bsmSelect plugin
