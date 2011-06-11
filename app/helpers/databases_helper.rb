@@ -14,11 +14,9 @@ module DatabasesHelper
   def database_headers_for(database_type)
     if database_type == "postgres"
       %(<th>PgCluster</th>
-        <th>IP:Port</th>
         <th style="text-align:left;">Bases<span style="float:right;padding-left:1em">Taille(Go)</span></th>).html_safe
     elsif database_type == "oracle"
       %(<th>Instance</th>
-        <th>IP:Port</th>
         <th style="text-align:left;">Schémas<span style="float:right;padding-left:1em">Taille(Go)</span></th>).html_safe
     end
   end

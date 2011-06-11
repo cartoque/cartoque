@@ -3,10 +3,12 @@
   <strong>
     <abbr title="<%= postgres_report["host"] %>"><%= postgres_report["pg_cluster"] %></abbr>
   </strong>
-</td>
-<td class="center">
-  <%= postgres_report["ip"] %><br />
-  <strong><%= postgres_report["port"] %></strong>
+  <br />
+  <small>
+    <%= postgres_report["ip"] %>
+    <br />
+    <strong><%= postgres_report["port"] %></strong>
+  </small>
 </td>
 <td>
   <% if postgres_report["databases"].present? %>

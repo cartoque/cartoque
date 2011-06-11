@@ -3,10 +3,11 @@
   <strong>
     <abbr title="<%= oracle_report["host"] %>"><%= oracle_report["ora_instance"] %></abbr>
   </strong>
-</td>
-<td class="center">
-  <%= oracle_report["ip"] %><br />
-  <strong><%= oracle_report["port"] %></strong>
+  <small>
+    <%= oracle_report["ip"] %>
+    <br />
+    <strong><%= oracle_report["port"] %></strong>
+  </small>
 </td>
 <td>
   <% if oracle_report["schemas"].present? %>

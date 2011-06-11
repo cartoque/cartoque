@@ -7,6 +7,7 @@ a { color:#00b; text-decoration:none; }
 a:hover { color:#e06; text-decoration:underline; }
 caption { padding:0 0 5px 0; margin:0 auto; width:auto; font:italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; text-align:right; }
 ul { margin:0.5em 0.5em 0.5em 2em; list-style-type:none; }
+small { font-size:90%; }
 
 /* input styles taken from formalize */
 input:focus, input:active, textarea:focus, textarea:active {
