@@ -1,5 +1,5 @@
 Cartocs::Application.routes.draw do
-
+  resources :saas, :only => [:index, :show]
   resources :mainteneurs
   resources :users, :except => :show
   resources :physical_racks, :except => :show

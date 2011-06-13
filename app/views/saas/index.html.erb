@@ -1,0 +1,14 @@
+<% title "Software as a Service" %>
+
+<div id="saas" class="grid_12 items_list">
+
+<%= action_links do %>
+  <div class="contextual">
+    <%= link_to image_tag("file_extension_pdf.png"), saas_path(params.merge(:format => "pdf")) %>
+  </div>
+  <ul class="select-buttons">
+    <!-- <li class="current"><%= link_to "Redmine" %></li> -->
+    <!-- <li><%= link_to "Request Tracker" %></li> -->
+    <!-- <li><%= link_to "PHP/MySQL" %></li> -->
+  </ul>
+<% end %>
