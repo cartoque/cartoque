@@ -1,0 +1,7 @@
+{ "server-01": {
+    "redmine": [
+      {"name": "redmine-01", "version": "1.2.0.stable", "size": "91247869"},
+      {"name": "redmine-02", "version": "1.1.2.stable", "size": "21054517"},
+      {"name": "redmine-03", "version": "1.2.0.stable", "size": "24254434"}
+    ]
+} }
