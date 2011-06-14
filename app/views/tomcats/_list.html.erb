@@ -13,8 +13,10 @@
   <tr>
     <% tomcat = tomcats.first %>
     <td><%= tomcat[:dns] %></td>
-    <td><%= tomcats.map{|t| t[:server]}.sort.uniq.join("<br/>").html_safe %></td>
-    <td><%= tomcats.map{|t| t[:tomcat]}.sort.uniq.join("<br/>").html_safe %></td>
+    <td class="center"><%= tomcats.map{|t| t[:server]}.sort.uniq.join("<br/>").html_safe %></td>
+    <td class="center">
+      <%= tomcats.map{|t| "#{t[:tomcat]}<br /><small>(#{t[:java_xms]}/#{t[:java_xmx]})</small>"}.sort.uniq.join("<br/>").html_safe %>
+    </td>
     <td><%= tomcat[:jdbc_server] %><br />
         <%= tomcat[:jdbc_user] %> @ <%= tomcat[:jdbc_db] %></td>
     <!--<td class="links center">
