@@ -4,7 +4,6 @@
     <th>Serveurs</th>
     <th>Instances</th>
     <th>Base</th>
-    <th>Liens</th>
   </tr>
   <% @tomcats.sort_by do |t|
        [ t[:dns], t[:server].split("-").last.to_i, t[:tomcat].split("_").last.to_i ]
@@ -18,13 +17,13 @@
     <td><%= tomcats.map{|t| t[:tomcat]}.sort.uniq.join("<br/>").html_safe %></td>
     <td><%= tomcat[:jdbc_server] %><br />
         <%= tomcat[:jdbc_user] %> @ <%= tomcat[:jdbc_db] %></td>
-    <td class="links center">
+    <!--<td class="links center">
       <%= link_to "Nagios", "#", :title => "Nagios #{tomcat[:dns]}", :class => "link-to-nagios" %>
       <%= link_to "Munin", "#", :title => "Munin #{tomcat[:dns]}", :class => "link-to-munin" %>
       <br />
       <%= link_to "Redmine", "#", :title => "Redmine #{tomcat[:dns]}", :class => "link-to-redmine" %>
       <%= link_to "Doku", "#", :title => "Dokuwiki #{tomcat[:dns]}", :class => "link-to-dokuwiki" %>
-    </td>
+    </td>-->
   </tr>
   <% end %>
 </table>
