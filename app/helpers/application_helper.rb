@@ -87,9 +87,9 @@ module ApplicationHelper
     content_tag(:span, :class => "machine-link") do
       link_to(machine.name, machine) + content_tag(:span, :class => "machine-details") do
         [ machine.operating_system,
-          (machine.nb_proc > 0 ? machine.cores : ""),
+          (machine.nb_proc && machine.nb_proc > 0 ? machine.cores : ""),
           (machine.memory.present? ? "#{machine.ram}G" : ""),
-          (machine.disk_size > 0 ? machine.disks : "") ].reject(&:blank?).join(" | ")
+          (machine.disk_size && machine.disk_size > 0 ? machine.disks : "") ].reject(&:blank?).join(" | ")
       end
     end
   end
