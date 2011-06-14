@@ -18,6 +18,11 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_select "span.machine-details", "4 * 4 cores, 3.2 GHz | 42G | 5 * 13G (SAS)"
   end
 
+  should "display machine without raising an exception if no details" do
+    render :text => display_machine(Machine.create(:name => "server-03"))
+    assert_select "span.machine-link a", "server-03"
+  end
+
   should "display nothing in machine details if no details available" do
     render :text => display_machine(Machine.new(:name => "srv"))
     assert_select "span.machine-details", ""
