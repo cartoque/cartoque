@@ -104,7 +104,7 @@ module ApplicationHelper
   end
 
   def link_to_servername(name)
-    s = Machine.find_by_name(name)
+    s = Machine.unscoped.find_by_name(name)
     link_to_if s, name, s
   end
 end
