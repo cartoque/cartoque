@@ -220,8 +220,8 @@ a.link-to-munin:hover { color:#fff; background-color:#227; }
 a.link-to-dokuwiki { color:#272; }
 a.link-to-dokuwiki:hover { color:#fff; background-color:#272; }
 
-/* databases */
-.database_nodes { margin:0; position:relative; display:block; padding:0 0 0 1em; list-style-type:none; color:#666; font-size:90%; }
+/* tomcats, databases */
+.database_nodes, .tomcat_vips { margin:0; display:block; padding:0 0 0 1.5em; list-style-type:none; color:#666; font-size:90%; }
 ul.databases-details { margin:0; position:relative; display:block; padding:0; list-style-type:none; }
 .offset { padding-left:1em; }
 

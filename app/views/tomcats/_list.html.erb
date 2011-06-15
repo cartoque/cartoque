@@ -13,7 +13,12 @@
      end.each do |dns,tomcats|%>
   <tr>
     <% tomcat = tomcats.first %>
-    <td><%= tomcat[:dns] %></td>
+    <td>
+      <%= tomcat[:dns] %>
+      <ul class="tomcat_vips">
+        <%= tomcats.map{|t| t[:vip]}.sort.uniq.map{|n| "<li>via #{n}</li>"}.join("\n").html_safe %>
+      </ul>
+    </td>
     <td class="center">
       <%= tomcats.map{|t| link_to_servername t[:server]}.sort.uniq.join("<br/>").html_safe %>
     </td>
