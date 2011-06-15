@@ -7,7 +7,7 @@
   <tr class="filters">
     <td></td>
     <td><%= select_tag "by_server", options_for_select([["",""]] + @filters[:server], params[:by_server]).html_safe -%></td>
-    <td></td>
+    <td><%= select_tag "by_tomcat", options_for_select([["",""]] + @filters[:tomcat], params[:by_tomcat]).html_safe -%></td>
     <td></td>
     <td></td>
     <td></td>
