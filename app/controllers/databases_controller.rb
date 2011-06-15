@@ -16,7 +16,11 @@ class DatabasesController < InheritedResources::Base
   end
 
   def databases_view_mode
-    session[:databases_view_mode] || "normal"
+    if action_name == "show"
+      "detailed"
+    else
+      session[:databases_view_mode] || "normal"
+    end
   end
   helper_method :databases_view_mode
 end
