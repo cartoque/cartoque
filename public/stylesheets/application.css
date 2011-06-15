@@ -74,7 +74,7 @@ input[type="submit"] {
   color:#333; background-color:#f7f7f7; border:1px solid #cfcfcf; 
   -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; 
   font-family:arial; font-size:13px; font-weight:bold; 
-  text-decoration:none !important; text-shadow:1px 1px 0px #ffffff; 
+  text-decoration:none !important; text-shadow:1px 1px 0px #fff; 
 }
 input[type="submit"]:hover { 
   color:#333; 
@@ -234,9 +234,9 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .machine-mainteneur { margin:0; position:relative; display:block; padding:0 0 0 2em; list-style-type:none; }
 .mainteneur-infos { font-size:90%; }
 .database_machines li { margin:4px auto; }
-.machine-details { font-size:90%; display:inline-block; background-color:#eee; color:#446; 
-                   padding:2px 3px; margin:0 6px; border:1px solid #dde; 
-                   -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
+.machine-details { font-size:90%; display:inline-block; background-color:#eee; color:#335; 
+                   padding:1px 6px; margin:0 6px; border:1px solid #ccd;
+                   -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px; }
 
 /* operating systems */
 .nested-os { margin-left:10px; }
