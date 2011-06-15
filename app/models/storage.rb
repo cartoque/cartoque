@@ -4,6 +4,8 @@ class Storage < ActiveRecord::Base
   validates_presence_of :machine
   validates_presence_of :constructor
 
+  scope :by_constructor, proc {|constructor| { :conditions => { :constructor => constructor } } }
+
   def self.supported_types
     ["IBM", "NetApp", "Equalogic"]
   end

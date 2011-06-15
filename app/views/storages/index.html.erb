@@ -1,3 +1,23 @@
 <% title "Stockage" %>
 
-<div id="storages" class="grid_12 center"><%= render 'list' %></div>
+<div id="storages" class="grid_12 center">
+
+<%= action_links do %>
+  <div class="contextual">
+    <%= link_to image_tag("file_extension_pdf.png"), storages_path(:format => "pdf") %>
+  </div>
+  <%= link_to "Ajouter une baie", new_storage_path %>
+<% end %>
+
+<table class="pretty center" id="storage">
+  <%= form_tag storages_path(params), :id => "filters", :method => :get do -%>
+  <tr class="filters">
+    <td></td>
+    <td><%= select_tag "by_constructor", options_for_select([["",""]] + Storage.supported_types, params[:by_constructor]).html_safe -%></td>
+    <td></td>
+  </tr>
+  <% end %>
+  <tbody id="storages_list"><%= render 'list' %></tbody>
+</table>
+
+</div>

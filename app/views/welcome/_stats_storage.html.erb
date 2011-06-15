@@ -5,7 +5,7 @@
   </tr>
 <% storages_by_constructor.each do |constructor, devices| %>
   <tr>
-    <td><%= link_to constructor, storages_path %></td>
+    <td><%= link_to constructor, storages_path(:by_constructor => constructor) %></td>
     <td>
       <% device = Storcs::Device.new(""); device.children = devices.map(&:device).select{|s|s.is_a?(Storcs::Device)} %>
       <%= pretty_size(device.size) %> sur <%= pluralize(device.children.count, "baie") %>

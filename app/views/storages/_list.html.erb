@@ -1,11 +1,3 @@
-<%= action_links do %>
-  <div class="contextual">
-    <%= link_to image_tag("file_extension_pdf.png"), storages_path(:format => "pdf") %>
-  </div>
-  <%= link_to "Ajouter une baie", new_storage_path %>
-<% end %>
-
-<table class="pretty center" id="storage">
   <tr>
     <th style="min-width:8em">Baie</th>
     <th>Constructeur</th>
@@ -33,4 +25,3 @@
       <td class="details"><%= render('device', :device => storage.device) if storage.device %></td>
     </tr>
   <% end %>
-</table>
