@@ -1,8 +1,9 @@
-<table class="pretty">
   <tr>
     <th>Application</th>
     <th>Serveurs</th>
     <th>Instances</th>
+    <th>JVM</th>
+    <th>Xms / Xmx</th>
     <th>Base</th>
   </tr>
   <% @tomcats.sort_by do |t|
@@ -17,7 +18,13 @@
       <%= tomcats.map{|t| link_to_servername t[:server]}.sort.uniq.join("<br/>").html_safe %>
     </td>
     <td class="center">
-      <%= tomcats.map{|t| "#{t[:tomcat]}<br /><small>(#{t[:java_xms]}/#{t[:java_xmx]})</small>"}.sort.uniq.join("<br/>").html_safe %>
+      <%= tomcats.map{|t| t[:tomcat]}.sort.uniq.join("<br/>").html_safe %>
+    </td>
+    <td class="center">
+      <%= tomcats.map{|t| t[:java_version]}.sort.uniq.join("<br/>").html_safe %>
+    </td>
+    <td class="center">
+      <%= tomcats.map{|t| "#{t[:java_xms]} / #{t[:java_xmx]}"}.sort.uniq.join("<br/>").html_safe %>
     </td>
     <td><%= tomcat[:jdbc_server] %><br />
         <%= tomcat[:jdbc_user] %> @ <%= tomcat[:jdbc_db] %></td>
@@ -30,4 +37,3 @@
     </td>-->
   </tr>
   <% end %>
-</table>
