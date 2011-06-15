@@ -1,0 +1,33 @@
+<% title "Software as a Service" %>
+
+<div id="saas" class="grid_12 items_list">
+
+<%= action_links do %>
+  <div class="contextual">
+    <%= link_to image_tag("file_extension_pdf.png"), saas_path(params.merge(:format => "pdf")) %>
+  </div>
+  <ul class="select-buttons">
+    <li class="current"><%= link_to "Redmine", saas_path %></li>
+    <!-- <li><%= link_to "Request Tracker" %></li> -->
+    <!-- <li><%= link_to "PHP/MySQL" %></li> -->
+  </ul>
+<% end %>
+
+<table class="pretty">
+  <tr>
+    <th>Serveur</th>
+    <th>Instances</th>
+    <th>Version</th>
+    <th>Taille</th>
+  </tr>
+  <% @redmine_instances.each do |instance| %>
+  <tr>
+    <td><%= instance.server %></td>
+    <td><%= instance.name %></td>
+    <td><%= instance.version %></td>
+    <td><%= pretty_size(instance.size) %></td>
+  </tr>
+  <% end %>
+</table>
+
+</div>
