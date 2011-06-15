@@ -7,13 +7,12 @@
 
 <table class="pretty center" id="storage">
   <tr>
-    <th>Nom</th>
-    <th>Constructor</th>
+    <th style="min-width:8em">Baie</th>
+    <th>Constructeur</th>
     <th>Details</th>
-    <th class="actions">Actions</th>
   </tr>
   <tr>
-    <td class="global" colspan="5">
+    <td class="global" colspan="3">
       <% device = Storcs::Device.new(""); device.children = @storages.map(&:device).select{|s|s.is_a?(Storcs::Device)} %>
       Etat global du stockage:
       <strong><%= pretty_size(device.size) %></strong>:
@@ -23,13 +22,15 @@
   </tr>
   <% @storages.sort_by{|s| [s.constructor, s.machine.name.downcase]}.each do |storage| %>
     <tr>
-      <td class="top"><%= storage.machine.name %></td>
+      <td class="top">
+        <strong><%= link_to storage.machine.name, storage.machine %></strong>
+        <%= action_links do %>
+          <%= link_to "edit", edit_storage_path(storage) %>
+          | <%= link_to "suppr", storage, :confirm => 'Are you sure?', :method => :delete %>
+        <% end %>
+      </td>
       <td class="top"><%= storage.constructor %></td>
       <td class="details"><%= render('device', :device => storage.device) if storage.device %></td>
-      <td class="top actions">
-        <%= link_to "Editer", edit_storage_path(storage) %><br />
-        <%= link_to "Supprimer", storage, :confirm => 'Are you sure?', :method => :delete %>
-      </td>
     </tr>
   <% end %>
 </table>
