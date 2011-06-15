@@ -41,4 +41,15 @@ class ApplicationHelperTest < ActionView::TestCase
       assert_select "li.current", false, "shouldn't be the current li"
     end
   end
+
+  context "#link_to_servername" do
+    should "return server name if no server found" do
+      assert_equal "blah", link_to_servername("blah")
+    end
+
+    should "return a link to the server if a server with that name exists" do
+      render :text => link_to_servername(Factory(:machine).name)
+      assert_select "a", "server-01"
+    end
+  end
 end
