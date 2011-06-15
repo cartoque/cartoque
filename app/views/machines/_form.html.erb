@@ -19,7 +19,9 @@
       </tr>
       <%= f.input :ip %>
       <!--<%= f.input :server_type %>-->
-      <%= nested_select_tag(OperatingSystem, f, nil, :operating_system_id, :name) %>
+      <%= f.association :operating_system, :collection => ancestry_options(
+                                                            OperatingSystem.scoped.arrange(:order => 'name')
+                                                          ){|i| "#{'-'*i.depth} #{i.name}"} %>
       <%= f.input :virtual %>
       <%= f.association :service %>
       <%= f.association :theme %>

@@ -46,10 +46,18 @@ module ApplicationHelper
     "<i>Cartoque v#{Cartocs::VERSION}</i>".html_safe
   end
 
-  def nested_select_tag(klass, form, object, idkey, namekey)
-    collection = klass.order("path_cache, #{namekey}")
-    collection -= object.subtree unless object.blank? || object.new_record?
-    form.input idkey, :as => :select, :collection => collection.map { |o| ["-" * o.depth + " " + o.send(namekey), o.id] }
+  # see ancestry wiki on github
+  # usage: <%= f.select :parent_id, @categories %>
+  #
+  # @categories = ancestry_options(Category.scoped.arrange(:order => 'name'){|i| "#{'-'*i.depth} #{i.name}"})
+  def ancestry_options(items, &block)
+    result = []
+    items.map do |item, sub_items|
+      result << [ yield(item), item.id ]
+      #recursive call
+      result += ancestry_options(sub_items) {|i| "#{'-'*i.depth} #{i.name}" }
+    end
+    result
   end
 
   def tabular_errors(object)
