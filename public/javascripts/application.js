@@ -29,7 +29,7 @@ $(function() {
     //fallback for old browsers
     if (!('replaceState' in window.history)) return true
     //push our search to history
-    var filters = jQuery.param( jQuery.grep( $('form#filters').serializeArray(), function(o){ return o.value != "" } ) )
+    var filters = jQuery.param( jQuery.grep( $('form#filters').serializeArray(), function(o){ return o.name != "utf8" && o.value != "" } ) )
     var url = $("form#filters").attr("action").split("?")[0] + "?" + filters
     history.replaceState(null, document.title, url);
   }
