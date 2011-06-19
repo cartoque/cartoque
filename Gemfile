@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.0.9'
 gem 'mysql2', '0.2.7' #mysql2 v0.3.x are incompatible with rails 3.0.x
 gem 'rake', '0.8.7'   #rake v0.9 is incompatible with rails 3.0.x
 
@@ -31,7 +31,7 @@ gem 'rake', '0.8.7'   #rake v0.9 is incompatible with rails 3.0.x
 
 gem 'nifty-generators'
 gem 'inherited_resources'
-gem 'simple_form', '>= 1.3.1'
+gem 'simple_form', '>= 1.4.1'
 gem 'show_for'
 gem 'has_scope'
 gem 'jquery-rails', '>= 0.2.7'
