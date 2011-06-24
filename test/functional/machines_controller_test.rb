@@ -49,8 +49,11 @@ class MachinesControllerTest < ActionController::TestCase
   end
 
   test "should update machine" do
-    put :update, :id => @machine.to_param, :machine => @machine.attributes
+    put :update, :id => @machine.to_param, :machine => @machine.attributes.merge("ipaddress"=>"192.168.99.99")
     assert_redirected_to machine_path(assigns(:machine))
+    @machine.reload
+    assert_equal 3232260963, @machine.read_attribute(:ipaddress)
+    assert_equal "192.168.99.99", @machine.ipaddress
   end
 
   test "should destroy machine" do

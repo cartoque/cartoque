@@ -17,7 +17,7 @@
       <tr class="wrapper machine_applications">
         <td colspan="2">Description:<br/><%= f.text_area :description, :size => "33x6" %></td>
       </tr>
-      <%= f.input :ip %>
+      <%= f.input :ipaddress, :as => :string, :input_html => { :maxlength => 15, :size => 15, :value => @machine.ipaddress } %>
       <!--<%= f.input :server_type %>-->
       <%= f.association :operating_system, :collection => ancestry_options(
                                                             OperatingSystem.scoped.arrange(:order => 'name')

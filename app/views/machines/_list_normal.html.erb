@@ -1,6 +1,6 @@
 <tr>
   <%= sortable_th "name", nil, :style => "width:10em" %>
-  <th>IP</th>
+  <%= sortable_th "ipaddress", nil, :style => "width:10em" %>
   <th style="width:12em">OS</th>
   <%= sortable_th "manufacturer,model", t(:fullmodel), :style => "width:12em" %>
   <th style="width:8em">Localisation</th>
@@ -9,7 +9,7 @@
 <% for machine in @machines %>
   <tr>
     <td><%= link_to machine.name, machine %></td>
-    <td><%= machine.ip %></td>
+    <td><%= machine.ipaddress %></td>
     <td><%= machine.operating_system %></td>
     <td><%= machine.fullmodel %></td>
     <td><%= link_to_if machine.physical_rack.present?, machine.physical_rack,

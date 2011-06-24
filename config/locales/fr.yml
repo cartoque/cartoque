@@ -116,3 +116,4 @@ fr:
   maintained_until: "Fin de maintenance"
   machine_ids: "Serveurs"
   identifier: "Identifiant Redmine"
+  ipaddress: "Adresse IP"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110615144044) do
+ActiveRecord::Schema.define(:version => 20110616125500) do
 
   create_table "applications", :force => true do |t|
     t.string  "name",                     :default => "",    :null => false
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20110615144044) do
     t.integer "database_id"
     t.date    "delivered_on"
     t.date    "maintained_until"
+    t.integer "ipaddress",           :limit => 8
   end
 
   create_table "machines_sousreseaux", :force => true do |t|

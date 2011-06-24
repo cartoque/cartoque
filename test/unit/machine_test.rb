@@ -6,18 +6,28 @@ class MachineTest < ActiveSupport::TestCase
     assert Machine.new(:name => "my-server").valid?
   end
 
-  context "#ip" do
+  context "#ipaddress" do
     setup do
       @machine = Factory(:machine)
     end
 
-    should "return sousreseau and lastbyte" do
-      assert_equal "192.168.0.10", @machine.ip
+    should "return ipaddress" do
+      assert_equal "192.168.0.10", @machine.ipaddress
+      #IPAddr.new("192.168.0.10").to_i => 3232235530
+      assert_equal 3232235530, @machine.read_attribute(:ipaddress)
     end
 
-    should "update correctly" do
-      @machine.ip = "192.168.0.11"
-      assert_equal "192.168.0.11", @machine.ip
+    should "updates with an address as a string" do
+      @machine.ipaddress = "192.168.99.99"
+      @machine.save
+      @machine.reload
+      assert_equal 3232260963, @machine.read_attribute(:ipaddress)
+      assert_equal "192.168.99.99", @machine.ipaddress
+    end
+
+    should "updates with an address as an number between 1 and 32" do
+      @machine.ipaddress = "24"
+      assert_equal "255.255.255.0", @machine.ipaddress
     end
 
     should "not update if IP is invalid" do
