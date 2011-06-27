@@ -12,6 +12,6 @@
   <td></td>
   <td><%= select_tag "by_rack", options_for_select([["",""]] + PhysicalRack.all.map{|r| [r,r.id]},params[:by_rack]).html_safe -%></td>
   <td></td>
-  <td></td>
+  <td><span id="machines_counter" class="counter"><%= @machines.count %></span></td>
 </tr>
 <% end -%>

@@ -125,6 +125,7 @@ label.required abbr { color:red; border-bottom:none; }
 /* generic items */
 .items_list h1 { text-align:center; margin-top:0.3em; font-family:Verdana, Helvetica, Arial; color:#333; text-transform:uppercase; letter-spacing:1px; font-size:1.2em; }
 .items_list>table { width:100%; }
+.counter { font-style:italic; font-size:150%; float:right; font-weight:bold; }
 
 /* top menu */
 #top-menu form { display:inline; }

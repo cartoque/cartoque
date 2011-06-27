@@ -17,6 +17,6 @@
 	    <%= select_tag "by_mainteneur", options_for_select([["",""]] + Mainteneur.all.map{|r| [r.name,r.id]},params[:by_mainteneur]).html_safe -%>
   </td>
   <td></td>
-  <td></td>
+  <td><span id="machines_counter" class="counter"><%= @machines.count %></span></td>
 </tr>
 <% end -%>
