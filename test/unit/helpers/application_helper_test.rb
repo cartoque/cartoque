@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'test_helper'
 
 class ApplicationHelperTest < ActionView::TestCase
@@ -44,7 +45,10 @@ class ApplicationHelperTest < ActionView::TestCase
 
   context "#link_to_servername" do
     should "return server name if no server found" do
-      assert_equal "blah", link_to_servername("blah")
+      link = link_to_servername("blah")
+      assert link.include?("blah")
+      render :text => link
+      assert_select "a", "Créer"
     end
 
     should "return a link to the server if a server with that name exists" do

@@ -116,7 +116,7 @@ module ApplicationHelper
     if s
       link_to name, s
     else
-      name + " " + link_to(t(:"helpers.submit.create").downcase,
+      name + " " + link_to(t(:"helpers.submit.create"),
                            new_machine_path(:machine => { :name => name }),
                            :class => "action create-machine")
     end
