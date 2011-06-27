@@ -12,18 +12,18 @@ module MachinesHelper
     end
   end
 
-  def render_mainteneur(machine)
-    return "" unless machine.mainteneur
-    html =  "#{link_to machine.mainteneur, machine.mainteneur} "
+  def render_mainteneur(machine, mainteneur)
+    return "" unless mainteneur
+    html =  "#{link_to mainteneur, mainteneur} "
     html << link_to_function("[infos]", %[$("#maintenance-#{machine.id}").slideToggle(130); return false;],
                              :class => "mainteneur-infos hide-when-print")
     html << " "
     html << " - #{machine.contract_type}" if machine.contract_type?
-    html << %(<ul style="display:none" class="machine-mainteneur" id="maintenance-#{machine.id}">)
-    html << %(<li>Référence client: #{machine.mainteneur.client_ref}</li>)
-    html << %(<li>Téléphone: #{machine.mainteneur.phone}</li>)
-    html << %(<li>Mail: #{mail_to machine.mainteneur.email}</li>)
-    html << %(<li>Adresse: #{machine.mainteneur.address}</li>)
+    html << %(<ul style="display:none" class="mainteneur" id="maintenance-#{machine.id}">)
+    html << %(<li>Référence client: #{mainteneur.client_ref}</li>)
+    html << %(<li>Téléphone: #{mainteneur.phone}</li>)
+    html << %(<li>Mail: #{mail_to mainteneur.email}</li>)
+    html << %(<li>Adresse: #{mainteneur.address}</li>)
     html << "</ul>"
     html.html_safe
   end

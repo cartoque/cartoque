@@ -10,13 +10,12 @@
 <% for machine in @machines %>
 <tr>
   <td><%= link_to machine.name, machine %></td>
-  <td><%= link_to_if machine.physical_rack.present?, machine.physical_rack,
-                     machines_path(:by_rack => machine.physical_rack.try(:id)) %></td>
+  <td><%= link_to_rack @racks[machine.physical_rack_id] %></td>
   <td><%= machine.fullmodel %></td>
   <td class="center"><%= machine.serial_number %></td>
   <td>
-  <% if machine.mainteneur %>
-    <%= render_mainteneur(machine) %>
+  <% if machine.mainteneur_id %>
+    <%= render_mainteneur(machine, @maintainers[machine.mainteneur_id]) %>
   <% end %>
   </td>
   <td class="center"><%= l(machine.delivered_on) if machine.delivered_on.present? %></td>

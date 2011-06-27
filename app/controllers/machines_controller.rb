@@ -13,6 +13,9 @@ class MachinesController < InheritedResources::Base
 
   def collection
     @machines ||= end_of_association_chain.search(params[:search]).order(sort_option)
+    @racks = PhysicalRack.all.inject({}){|memo,elem| memo[elem.id] = elem; memo }
+    @operating_systems = OperatingSystem.all.inject({}){|memo,elem| memo[elem.id] = elem; memo }
+    @maintainers = Mainteneur.all.inject({}){|memo,elem| memo[elem.id] = elem; memo }
     if maintenance_mode?
       @machines = @machines.where(:virtual => false)
       if params[:sort] == "maintained_until"

@@ -13,7 +13,7 @@ class Machine < ActiveRecord::Base
 
   acts_as_ipaddress :ipaddress
 
-  default_scope :include => [:applications, :operating_system, :mainteneur, :physical_rack]
+  default_scope :include => [:operating_system, :mainteneur, :physical_rack]
   scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
   scope :by_mainteneur, proc {|mainteneur_id| { :conditions => { :mainteneur_id => mainteneur_id } } }
   scope :by_system, proc {|system_id| { :conditions => { :operating_system_id => OperatingSystem.find(system_id).subtree.map(&:id) } } }

@@ -121,4 +121,9 @@ module ApplicationHelper
                            :class => "action create-machine")
     end
   end
+
+  def link_to_rack(rack)
+    return "" if rack.blank?
+    link_to rack, machines_path(:by_rack => rack.id)
+  end
 end

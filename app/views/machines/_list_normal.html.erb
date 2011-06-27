@@ -10,10 +10,9 @@
   <tr>
     <td><%= link_to machine.name, machine %></td>
     <td><%= machine.ipaddress %></td>
-    <td><%= machine.operating_system %></td>
+    <td><%= @operating_systems[machine.operating_system_id] %></td>
     <td><%= machine.fullmodel %></td>
-    <td><%= link_to_if machine.physical_rack.present?, machine.physical_rack,
-                       machines_path(:by_rack => machine.physical_rack.try(:id)) %></td>
+    <td><%= link_to(@racks[machine.physical_rack_id], machines_path(:by_rack => machine.physical_rack_id)) if machine.physical_rack_id %></td>
     <td class="actions"><%= link_to "Editer", edit_machine_path(machine) %></td>
     <td class="actions"><%= link_to "Supprimer", machine, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
