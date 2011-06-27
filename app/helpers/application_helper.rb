@@ -113,6 +113,12 @@ module ApplicationHelper
 
   def link_to_servername(name)
     s = Machine.unscoped.find_by_name(name)
-    link_to_if s, name, s
+    if s
+      link_to name, s
+    else
+      name + " " + link_to(t(:"helpers.submit.create").downcase,
+                           new_machine_path(:machine => { :name => name }),
+                           :class => "action create-machine")
+    end
   end
 end
