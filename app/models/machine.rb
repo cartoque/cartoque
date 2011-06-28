@@ -104,7 +104,7 @@ class Machine < ActiveRecord::Base
   end
 
   def postgres_report
-    File.exists?(postgres_file) ? JSON.parse(File.read(postgres_file)) : []
+    safe_json_parse(postgres_file)
   end
 
   def oracle_file
@@ -112,6 +112,18 @@ class Machine < ActiveRecord::Base
   end
 
   def oracle_report
-    File.exists?(oracle_file) ? JSON.parse(File.read(oracle_file)) : []
+    safe_json_parse(oracle_file, [])
+  end
+
+  def safe_json_parse(file, default_value = [])
+    if File.exists?(file)
+      begin
+        JSON.parse(File.read(file))
+      rescue JSON::ParserError => e
+        default_value
+      end
+    else
+      default_value
+    end
   end
 end
