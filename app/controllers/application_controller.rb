@@ -6,13 +6,18 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
-    status = 404
+    render_404 exception
+  end
+
+  def render_404(exception = nil)
+    logger.info "Rendering 404 with exception: #{exception.message}" if exception
     respond_to do |format|
-      format.html { render :text => "These are not the droids you're looking for", :status => status }
-      format.atom { head status }
-      format.xml { head status }
-      format.js { head status }
-      format.json { head status }
+      format.html { render :text => %(<div class="center not_found">These are not the droids you're looking for</div>),
+                           :status => :not_found, :layout => true }
+      format.atom { head :not_found }
+      format.xml { head :not_found }
+      format.js { head :not_found }
+      format.json { head :not_found }
     end
   end
 

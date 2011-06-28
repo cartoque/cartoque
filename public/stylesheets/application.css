@@ -113,6 +113,7 @@ input[type="submit"]:active {
 .error_messages h2 { text-align:left; font-weight:bold; padding:5px 10px; margin:0; background-color:#c00; color:#fff; }
 .error_messages p { margin:8px 10px; }
 .error_messages ul { margin:0; }
+.not_found { font-weight:bold; font-size:200%; padding:50px; color:#cf0000; }
 
 /* forms */
 .simple_form div.input { margin-bottom:10px; }
