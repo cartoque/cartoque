@@ -191,10 +191,8 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
                                                                    border-radius:20px; }
 .actions ul.select-buttons li a:hover { background-color:#999; color:#fff; text-shadow:1px 1px 0 #555; }
 .actions ul.select-buttons li.current a { background-color:#667; color:#fff; text-shadow:1px 1px 0 #333; }
-a.action { font-size:90%; }
-a.create-machine { background-color:#e06; color:#fff; padding:0 3px 1px; text-transform:lowercase;
-                   -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; }
-a.create-machine:hover { text-decoration:none; }
+a.create-machine { color:#e06; padding:0 3px 1px; font-weight:bold; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; }
+a.create-machine:hover { background-color:#e06; color:#fff; text-decoration:none; }
 a.create-machine:active { position:relative; top:1px; }
 
 /* storage */

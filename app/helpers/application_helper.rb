@@ -121,9 +121,9 @@ module ApplicationHelper
   end
 
   def server_missing(name)
-    name + " " + link_to(t(:"helpers.submit.create"),
-                         new_machine_path(:machine => { :name => name }),
-                         :class => "action create-machine")
+    name + " " + link_to("+", new_machine_path(:machine => { :name => name }),
+                         :class => "action create-machine",
+                         :title => t(:"helpers.submit.create"))
   end
 
   def link_to_rack(rack)

@@ -48,7 +48,7 @@ class ApplicationHelperTest < ActionView::TestCase
       link = link_to_servername("blah")
       assert link.include?("blah")
       render :text => link
-      assert_select "a", "Créer"
+      assert_select "a", "+"
     end
 
     should "return a link to the server if a server with that name exists" do
