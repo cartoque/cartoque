@@ -9,7 +9,6 @@ class TomcatsController < ApplicationController
       tomcat.each do |key,value|
         @filters[key] ||= []
         value = value.split("_").first if key == :tomcat
-        value = value.sub(/:80$/, "") if key == :vip
         @filters[key] << value unless @filters[key].include?(value)
         @filters[key] = @filters[key].compact.sort
       end
