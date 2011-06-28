@@ -1,0 +1,37 @@
+<%
+  path = Rails.root.join("data/nagios")
+  machines_nagios = %x(grep host_name= #{path}/status.dat|cut -d"=" -f 2|sort -u).split(/\n/)
+  machines_cartocs = Machine.unscoped
+
+  unknown_in_nagios = machines_cartocs.map(&:name) - machines_nagios
+  unknown_in_cartocs = machines_nagios - machines_cartocs.map(&:name)
+  unknown_in_cartocs.map!{|s| server_missing s}
+
+  diff_list = { 
+    "dans Nagios manquants dans Cartocs" => unknown_in_cartocs,
+    "de Cartocs inconnus dans Nagios"  => unknown_in_nagios
+  }
+%>
+
+<% title "Outils - Comparaison Nagios" %>
+
+<div id="tools" class="grid_12 items_list">
+
+<%= action_links do %>
+  <ul class="select-buttons">
+    <li class="current"><%= link_to "Comparaison Nagios", tool_path(:nagios_comparison) %></li>
+    <li><%= link_to "Comparaison VMWare", tool_path(:vmware_comparison) %></li>
+  </ul>
+<% end %>
+
+<% diff_list.each do |title,machines| %>
+<ul>
+  <li><strong><%= pluralize(machines.count, "serveur") %> <%= title %></strong></li>
+  <ul class="comparison details">
+    <%= machines.sort.map{|m| "<li>#{m}</li>"}.join.html_safe %>
+  </ul>
+</ul>
+<div class="clear"></div>
+<% end %>
+
+</div>

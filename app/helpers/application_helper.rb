@@ -116,10 +116,14 @@ module ApplicationHelper
     if s
       link_to name, s
     else
-      name + " " + link_to(t(:"helpers.submit.create"),
-                           new_machine_path(:machine => { :name => name }),
-                           :class => "action create-machine")
+      server_missing name
     end
+  end
+
+  def server_missing(name)
+    name + " " + link_to(t(:"helpers.submit.create"),
+                         new_machine_path(:machine => { :name => name }),
+                         :class => "action create-machine")
   end
 
   def link_to_rack(rack)

@@ -1,0 +1,38 @@
+<%
+vms = File.readlines(Rails.root.join("data/vmware/virtual_machines.txt")).map(&:chomp!)
+vms_in_cartocs = Machine.unscoped.where(:virtual => true)
+physical_in_cartocs = Machine.unscoped.where(:virtual => false)
+
+unknown_in_cartocs = vms - vms_in_cartocs.map(&:name) - physical_in_cartocs.map(&:name)
+unknown_in_vcenter = vms_in_cartocs.map(&:name) - vms
+notvms_in_cartocs = vms - vms_in_cartocs.map(&:name) - unknown_in_cartocs
+unknown_in_cartocs.map!{|s| server_missing s}
+
+diff_list = {
+              "manquantes dans Cartocs" => unknown_in_cartocs,
+              "inconnues dans VCenter"  => unknown_in_vcenter,
+              "ne sont pas marquées comme \"virtuelles\" dans Cartocs" => notvms_in_cartocs
+             } %>
+
+<% title "Outils - Comparaison VMWare" %>
+
+<div id="tools" class="grid_12 items_list">
+
+<%= action_links do %>
+  <ul class="select-buttons">
+    <li><%= link_to "Comparaison Nagios", tool_path(:nagios_comparison) %></li>
+    <li class="current"><%= link_to "Comparaison VMWare", tool_path(:vmware_comparison) %></li>
+  </ul>
+<% end %>
+
+<% diff_list.each do |title,machines| %>
+<ul>
+  <li><strong><%= pluralize(machines.count, "VM") %> <%= title %></strong></li>
+  <ul class="comparison details">
+    <%= machines.sort.map{|m| "<li>#{m}</li>"}.join.html_safe %>
+  </ul>
+</ul>
+<div class="clear"></div>
+<% end %>
+
+</div>

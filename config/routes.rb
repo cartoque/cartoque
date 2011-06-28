@@ -1,4 +1,5 @@
 Cartocs::Application.routes.draw do
+  resources :tools, :only => :show
   resources :saas, :only => [:index, :show]
   resources :mainteneurs
   resources :users, :except => :show
