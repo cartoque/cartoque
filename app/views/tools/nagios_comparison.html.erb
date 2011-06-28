@@ -17,12 +17,7 @@
 
 <div id="tools" class="grid_12 items_list">
 
-<%= action_links do %>
-  <ul class="select-buttons">
-    <li class="current"><%= link_to "Comparaison Nagios", tool_path(:nagios_comparison) %></li>
-    <li><%= link_to "Comparaison VMWare", tool_path(:vmware_comparison) %></li>
-  </ul>
-<% end %>
+<%= render "submenu" %>
 
 <% diff_list.each do |title,machines| %>
 <ul>
