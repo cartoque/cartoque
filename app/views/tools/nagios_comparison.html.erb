@@ -1,6 +1,7 @@
 <%
   path = Rails.root.join("data/nagios")
   machines_nagios = %x(grep host_name= #{path}/status.dat|cut -d"=" -f 2|sort -u).split(/\n/)
+  machines_nagios.reject!{|h| h.match(/\.(i2|gouv\.fr)$/) }
   machines_cartocs = Machine.unscoped
 
   unknown_in_nagios = machines_cartocs.map(&:name) - machines_nagios
