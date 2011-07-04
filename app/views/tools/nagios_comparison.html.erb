@@ -17,11 +17,12 @@
   end
   tomcat_unknown_in_nagios = tomcats_jason - tomcats_nagios
   tomcat_unknown_in_nagios.reject!{|t| t.match(/vm-preprod/) }
+  nb_tomcats = tomcats_jason.reject!{|t| t.match(/vm-preprod/) }.count
 
   diff_list = { 
     "dans Nagios manquants dans Cartocs" => unknown_in_cartocs,
     "de Cartocs inconnus dans Nagios"  => unknown_in_nagios,
-    "Tomcat non supervisés" => tomcat_unknown_in_nagios
+    "Tomcat non supervisés (sur #{nb_tomcats} hors préproduction)" => tomcat_unknown_in_nagios
   }
 %>
 
