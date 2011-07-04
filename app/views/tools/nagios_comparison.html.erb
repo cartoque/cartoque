@@ -9,9 +9,19 @@
   unknown_in_cartocs = machines_nagios - machines_cartocs.map(&:name)
   unknown_in_cartocs.map!{|s| server_missing s}
 
+  tomcats_jason = Tomcat.all.map{|t| t[:tomcat]+"@"+t[:server]}.select{|t| t.match(/\S@\S/)}
+  tomcats_nagios = []; prev=""
+  File.open("#{Rails.root}/data/nagios/status.dat").each_line do |line|
+    tomcats_nagios << line.split("PROCESS_").last.chomp + "@" + prev.split("=").last.chomp if line.include?("PROCESS_TC")
+    prev=line
+  end
+  tomcat_unknown_in_nagios = tomcats_jason - tomcats_nagios
+  tomcat_unknown_in_nagios.reject!{|t| t.match(/vm-preprod/) }
+
   diff_list = { 
     "dans Nagios manquants dans Cartocs" => unknown_in_cartocs,
-    "de Cartocs inconnus dans Nagios"  => unknown_in_nagios
+    "de Cartocs inconnus dans Nagios"  => unknown_in_nagios,
+    "Tomcat non supervisés" => tomcat_unknown_in_nagios
   }
 %>
 
