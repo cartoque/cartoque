@@ -231,8 +231,7 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .offset { padding-left:1em; }
 
 /* machines */
-#machine_applications tr.multiselect td:first-child { display:none; }
-#machine_applications tr.multiselect td:last-child { border-left:1px solid #ccc; }
+#machine_general th { text-transform:uppercase; }
 .virtual-machine { float:right; text-transform:uppercase; font-weight:bolder; color:#3a3; }
 .maintenance-warning { color:#f80; }
 .maintenance-critical { font-weight:bold; color:#d00; }
