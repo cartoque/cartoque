@@ -42,7 +42,7 @@ class Tomcat < Hash
   end
 
   def self.cerbere_hsh
-    @@cerbere ||= File.readlines( File.expand_path("../rp/cerbere.txt", self.dir) ).grep(/Protect/).inject({}) do |hsh,line|
+    File.readlines( File.expand_path("../rp/cerbere.txt", self.dir) ).grep(/Protect/).inject({}) do |hsh,line|
       val = line.scan(/internal host:([^,]+), .*connection (\S+)/).first
       hsh[val.first] = val.last == "ok"
       hsh
