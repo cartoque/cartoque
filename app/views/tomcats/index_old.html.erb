@@ -1,0 +1,28 @@
+<% title "Tomcats historiques" %>
+
+<div id="tomcats" class="items_list grid_12">
+
+<%= render "submenu" %>
+
+<table class="pretty">
+  <tr>
+    <th>Serveur</th>
+    <th>Instance</th>
+    <th>JVM</th>
+    <th>Xms / Xmx</th>
+    <th>Home</th>
+    <th>Applications</th>
+  </tr>
+  <% @tomcats_old.each do |tomcat|%>
+  <tr>
+    <td><%= tomcat[:server] %></td>
+    <td><%= tomcat[:tomcat] %></td>
+    <td><%= tomcat[:java] %></td>
+    <td><%= tomcat[:xms] %> / <%= tomcat[:xmx] %></td>
+    <td><%= tomcat[:home] %></td>
+    <td><%= tomcat[:apps] %></td>
+  </tr>
+  <% end %>
+</table>
+
+</div>

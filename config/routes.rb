@@ -8,7 +8,9 @@ Cartocs::Application.routes.draw do
   resources :sites, :except => :show
   resources :themes, :except => :show
   resources :operating_systems, :except => :show
-  resources :tomcats, :only => :index
+  resources :tomcats, :only => :index do
+    collection { get 'index_old', :as => 'old' }
+  end
   resources :databases
   resources :storages
   resources :machines do

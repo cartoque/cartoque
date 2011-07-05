@@ -19,4 +19,8 @@ class TomcatsController < ApplicationController
     @tomcats = @tomcats.select{|t| t[:tomcat].starts_with?(params[:by_tomcat]) } if params[:by_tomcat].present?
     @tomcats = @tomcats.select{|t| t[:java_version].starts_with?(params[:by_java]) } if params[:by_java].present?
   end
+
+  def index_old
+    @tomcats_old = TomcatOld.all
+  end
 end

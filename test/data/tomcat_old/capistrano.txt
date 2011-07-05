@@ -1,0 +1,4 @@
+             serveur                    tomcat        pid            java   xmx   xms                      home : applis
+        srv-tomcat-01         tomcat4-app-stable       4286   j2sdk1.4.2_06  256m  256m     jakarta-tomcat-4.1.31 : app01, app02
+        srv-tomcat-01         tomcat5-app-stable       4401     jdk1.5.0_02  256m  256m      jakarta-tomcat-5.5.7 : app03
+Error;;;;

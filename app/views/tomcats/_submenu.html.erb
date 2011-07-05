@@ -1,0 +1,11 @@
+<%= action_links do %>
+  <% if action_name == "index" %>
+  <div class="contextual">
+    <%= link_to image_tag("file_extension_pdf.png"), tomcats_path(params.merge(:format => "pdf")) %>
+  </div>
+  <% end %>
+  <ul class="select-buttons">
+    <%= content_tag :li, link_to("Plateforme standard", tomcats_path), :class => (action_name == "index" ? "current" : "") %>
+    <%= content_tag :li, link_to("Plateforme historique", old_tomcats_path), :class => (action_name == "index_old" ? "current" : "") %>
+  </ul>
+<% end %>
