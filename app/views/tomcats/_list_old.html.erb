@@ -1,0 +1,18 @@
+<tr>
+  <th>Serveur</th>
+  <th>Instance</th>
+  <th>JVM</th>
+  <th>Xms / Xmx</th>
+  <th>Home</th>
+  <th>Applications</th>
+</tr>
+<% @tomcats_old.each do |tomcat|%>
+<tr>
+  <td><%= tomcat[:server] %></td>
+  <td><%= tomcat[:tomcat] %></td>
+  <td><%= tomcat[:java] %></td>
+  <td><%= tomcat[:xms] %> / <%= tomcat[:xmx] %></td>
+  <td><%= tomcat[:home] %></td>
+  <td><%= tomcat[:apps] %></td>
+</tr>
+<% end %>
