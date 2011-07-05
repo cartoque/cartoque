@@ -4,6 +4,7 @@
     <th>Instances</th>
     <th>JVM</th>
     <th>Xms / Xmx</th>
+    <th>Cerbere</th>
     <th>Base</th>
   </tr>
   <% @tomcats.sort_by do |t|
@@ -30,6 +31,12 @@
     </td>
     <td class="center">
       <%= tomcats.map{|t| "#{t[:java_xms]} / #{t[:java_xmx]}"}.sort.uniq.join("<br/>").html_safe %>
+    </td>
+    <td class="center">
+      <% if tomcat[:cerbere] %>
+        <%= image_tag("lock.png") %><br />
+        <span class="<%= tomcat[:cerbere_csac] ? "csacok" : "csacko" %>">csac</span>
+      <% end %>
     </td>
     <td><%= tomcat[:jdbc_server] %><br />
         <%= tomcat[:jdbc_user] %> @ <%= tomcat[:jdbc_db] %></td>

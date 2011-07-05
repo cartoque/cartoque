@@ -7,6 +7,7 @@ class TomcatsController < ApplicationController
     @filters = {}
     @tomcats.each do |tomcat|
       tomcat.each do |key,value|
+        next if key == :cerbere || key == :cerbere_csac
         @filters[key] ||= []
         value = value.split("_").first if key == :tomcat
         @filters[key] << value unless @filters[key].include?(value)

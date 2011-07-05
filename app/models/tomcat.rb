@@ -12,6 +12,16 @@ class Tomcat < Hash
                 :jdbc_server => jdbc_server, :jdbc_db => jdbc_db, :jdbc_user => jdbc_user)
     self.merge!(:jdbc_driver => instance[3], :java_version => instance[4],
                 :java_xms => instance[5], :java_xmx => instance[6]) if instance.present?
+    if Tomcat.cerbere_hsh.has_key?(self[:dns])
+      self.merge!(:cerbere => true)
+      if Tomcat.cerbere_hsh[self[:dns]]
+        self.merge!(:cerbere_csac => true)
+      else
+        self.merge!(:cerbere_csac => false)
+      end
+    else
+      self.merge!(:cerbere => false)
+    end
   end
 
   def self.all
@@ -29,5 +39,13 @@ class Tomcat < Hash
 
   def self.dir
     File.expand_path("data/tomcat", Rails.root)
+  end
+
+  def self.cerbere_hsh
+    @@cerbere ||= File.readlines( File.expand_path("../rp/cerbere.txt", self.dir) ).grep(/Protect/).inject({}) do |hsh,line|
+      val = line.scan(/internal host:([^,]+), connection (\S+)/).first
+      hsh[val.first] = val.last == "ok"
+      hsh
+    end
   end
 end
