@@ -8,7 +8,7 @@
 </tr>
 <% @tomcats_old.each do |tomcat|%>
 <tr>
-  <td><%= tomcat[:server] %></td>
+  <td><%= link_to_servername(tomcat[:server]).html_safe %></td>
   <td><%= tomcat[:tomcat] %></td>
   <td><%= tomcat[:java] %></td>
   <td><%= tomcat[:xms] %> / <%= tomcat[:xmx] %></td>
