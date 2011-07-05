@@ -66,11 +66,11 @@ tr.filters input[type="text"] { border:1px solid #ccc; width:100%; }
 .simple-list { margin:0; position:relative; display:block; padding:0 0 0 1.5em; list-style-type:none; }
 .simple-list li { margin-top:3px; }
 input[type="submit"] { 
-  padding:1px 8px; display:inline-block; 
+  padding:3px 10px; display:inline-block; 
   -moz-box-shadow:inset 0px 1px 0px 0px #fff; -webkit-box-shadow:inset 0px 1px 0px 0px #fff; box-shadow:inset 0px 1px 0px 0px #fff; 
-  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f7f7f7), color-stop(1, #ebebeb) ); 
-  background:-moz-linear-gradient( center top, #f7f7f7 5%, #ebebeb 100% ); 
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#ebebeb'); 
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f7f7f7), color-stop(1, #efefef) ); 
+  background:-moz-linear-gradient( center top, #f7f7f7 5%, #efefef 100% ); 
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#efefef'); 
   color:#333; background-color:#f7f7f7; border:1px solid #cfcfcf; 
   -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; 
   font-family:arial; font-size:13px; font-weight:bold; 
@@ -78,10 +78,10 @@ input[type="submit"] {
 }
 input[type="submit"]:hover { 
   color:#333; 
-  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ebebeb), color-stop(1, #f7f7f7) ); 
-  background:-moz-linear-gradient( center top, #ebebeb 5%, #f7f7f7 100% ); 
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ebebeb', endColorstr='#f7f7f7'); 
-  background-color:#ebebeb; 
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #efefef), color-stop(1, #f7f7f7) ); 
+  background:-moz-linear-gradient( center top, #efefef 5%, #f7f7f7 100% ); 
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#f7f7f7'); 
+  background-color:#efefef; 
 }
 input[type="submit"]:active { 
   position:relative; 
