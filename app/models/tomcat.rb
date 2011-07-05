@@ -21,6 +21,7 @@ class Tomcat < Hash
       end
     else
       self.merge!(:cerbere => false)
+      self.merge!(:cerbere_csac => false)
     end
   end
 
@@ -47,5 +48,7 @@ class Tomcat < Hash
       hsh[val.first] = val.last == "ok"
       hsh
     end
+  rescue Errno::ENOENT
+    {}
   end
 end
