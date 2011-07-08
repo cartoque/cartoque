@@ -168,10 +168,11 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 /* actions */
 .actions { text-align:center; font-size:95%; margin:5px 0; }
 #container>.actions, .items_list>.actions, .grid_12>.actions { 
-  position:relative; margin-bottom:10px; padding:6px 5px 5px; height:14px; line-height:14px; 
-  text-align:left; background-color:#edf3fe; border:1px solid #e9edf9/*#e5e5ff*/; 
+  position:relative; margin-bottom:10px; padding:6px 5px 5px; height:14px; line-height:14px;
+  text-align:left; background-color:#edf3fe; border:1px solid #e9edf9/*#e5e5ff*/; color:#666;
 }
-#container>.actions a, .items_list>.actions a, .grid_12>.actions a { margin-left:5px; }
+#container>.actions a, .items_list>.actions a, .grid_12>.actions a { margin:0 2px; }
+.actions a:first-child { margin-left:5px; }
 .actions a img { margin-top:-3px; }
 
 /* contexts */
