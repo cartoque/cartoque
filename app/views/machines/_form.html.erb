@@ -17,7 +17,18 @@
       <tr class="wrapper machine_applications">
         <td colspan="2">Description:<br/><%= f.text_area :description, :size => "33x6" %></td>
       </tr>
-      <%= f.input :ipaddress, :as => :string, :input_html => { :maxlength => 15, :size => 15, :value => @machine.ipaddress } %>
+      <tr class="input string optional">
+        <td class="label"><%= t(:ipaddresses) %></td>
+        <td class="content">
+          <% f.object.ipaddresses.build if f.object.ipaddresses.size == 0 %>
+          <%= f.simple_fields_for :ipaddresses do |ip_form| %>
+            <%= render 'ipaddress_fields', :f => ip_form %>
+          <% end %>
+          <p class="add-field">
+            <%= link_to_add_fields image_tag("new_button.png", :class=>"inline")+" ajouter", f, :ipaddresses %>
+          </p>
+        </td>
+      </tr>
       <!--<%= f.input :server_type %>-->
       <%= f.association :operating_system, :collection => ancestry_options(
                                                             OperatingSystem.scoped.arrange(:order => 'name')

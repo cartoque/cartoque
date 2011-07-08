@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110616125500) do
+ActiveRecord::Schema.define(:version => 20110705180017) do
 
   create_table "applications", :force => true do |t|
     t.string  "name",                     :default => "",    :null => false
@@ -50,6 +50,16 @@ ActiveRecord::Schema.define(:version => 20110616125500) do
     t.integer "id_sousreseaux",              :default => 0,     :null => false
     t.string  "quatr_octet",    :limit => 9, :default => "",    :null => false
     t.boolean "virtuelle",                   :default => false, :null => false
+  end
+
+  create_table "ipaddresses", :force => true do |t|
+    t.integer  "address"
+    t.text     "comment"
+    t.integer  "machine_id"
+    t.boolean  "main"
+    t.boolean  "virtual"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "iscsi", :force => true do |t|
