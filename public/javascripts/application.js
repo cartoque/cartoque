@@ -69,6 +69,18 @@ $(function(){
   })
 });
 
+// some checkboxes acts as radio buttons on machines/show view
+$(function(){
+  $('input[type="checkbox"].main_ip').live('change', function() {
+    if ($(this).is(":checked")) {
+      var id = $(this).attr("id");
+      $('input[type="checkbox"].main_ip:checked').each(function() {
+        if ($(this).attr("id") != id) $(this).attr("checked", false);
+      });
+    }
+  });
+});
+
 // nested forms
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
