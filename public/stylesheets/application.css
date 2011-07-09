@@ -250,6 +250,8 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .machine-details { font-size:90%; display:inline-block; background-color:#eee; color:#335; 
                    padding:1px 6px; margin:0 6px; border:1px solid #ccd;
                    -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px; }
+.machine_ipaddresses ul.collection { text-align:left; font-size:90%; }
+.machine_ipaddresses ul { margin:0; }
 
 /* operating systems */
 .nested-os { margin-left:10px; }
