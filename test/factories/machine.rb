@@ -2,7 +2,6 @@ Factory.define :machine do |m|
   m.name 'server-01'
   m.subnet '192.168.0'
   m.lastbyte '10'
-  m.ipaddress '192.168.0.10'
   m.virtual false
   m.nb_proc 4
   m.ref_proc "Xeon 2300"

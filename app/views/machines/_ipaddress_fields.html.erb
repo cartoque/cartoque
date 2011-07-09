@@ -1,4 +1,6 @@
 <p class="fields">
   <%= f.text_field :address, :maxlength => 15, :size => 15, :value => f.object.address %>
+  <%= f.input_field :main %><label>principale</label>
+  <%= f.input_field :virtual %><label>VIP</label>
   <%= link_to_remove_fields image_tag("delete.png"), f %>
 </p>

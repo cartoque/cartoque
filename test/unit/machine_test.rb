@@ -6,33 +6,38 @@ class MachineTest < ActiveSupport::TestCase
     assert Machine.new(:name => "my-server").valid?
   end
 
-  context "#ipaddress" do
+  context "#ipaddresses" do
     setup do
       @machine = Factory(:machine)
     end
 
-    should "return ipaddress" do
-      assert_equal "192.168.0.10", @machine.ipaddress
-      #IPAddr.new("192.168.0.10").to_i => 3232235530
-      assert_equal 3232235530, @machine.read_attribute(:ipaddress)
-    end
-
-    should "updates with an address as a string" do
-      @machine.ipaddress = "192.168.99.99"
+    should "update with an address as a string" do
+      @machine.ipaddresses = [ Ipaddress.new(:address => "192.168.99.99", :main => true) ]
       @machine.save
       @machine.reload
       assert_equal 3232260963, @machine.read_attribute(:ipaddress)
       assert_equal "192.168.99.99", @machine.ipaddress
     end
 
-    should "updates with an address as an number between 1 and 32" do
-      @machine.ipaddress = "24"
+    should "update with an address as a number between 1 and 32" do
+      @machine.ipaddresses = [ Ipaddress.new(:address => "24", :main => true) ]
+      @machine.save
+      assert_equal 1, @machine.reload.ipaddresses.count
+      assert_equal "255.255.255.0", @machine.ipaddresses.first.address
+      assert_equal 4294967040, @machine.read_attribute(:ipaddress)
       assert_equal "255.255.255.0", @machine.ipaddress
     end
 
-    should "not update if IP is invalid" do
-      @machine.ip = "192.168.0AAA.11"
-      assert_equal "192.168.0.10", @machine.ip
+    should "leave ip empty if no main ipaddress" do
+      @machine.ipaddresses = [ Ipaddress.new(:address => "24", :main => true) ]
+      @machine.save
+      assert_not_nil @machine.reload.ipaddress
+      @machine.ipaddresses = [ Ipaddress.new(:address => "24") ]
+      @machine.save
+      assert_nil @machine.reload.ipaddress
+      @machine.ipaddresses = [ ]
+      @machine.save
+      assert_nil @machine.reload.ipaddress
     end
   end
 

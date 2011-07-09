@@ -27,6 +27,8 @@ class Machine < ActiveRecord::Base
 
   validates_presence_of :name
 
+  before_save :update_main_ipaddress
+
   def to_s
     name
   end
@@ -41,6 +43,14 @@ class Machine < ActiveRecord::Base
     if value.match(/^((?:\d+\.){3})(\d+)/)
       self.subnet = $1.first(-1)
       self.lastbyte = $2
+    end
+  end
+
+  def update_main_ipaddress
+    if ip = self.ipaddresses.detect{|ip| ip.main?}
+      self.ipaddress = ip.address
+    else
+      self.send(:write_attribute, :ipaddress, nil) 
     end
   end
 

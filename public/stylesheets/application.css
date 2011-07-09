@@ -126,6 +126,8 @@ label.required abbr { color:red; border-bottom:none; }
 .simple_form .add-field { font-size:80%; margin:0.6em 0; }
 .simple_form .add-field a { color:#000; }
 .simple_form .add-field a:hover { color:#e06; text-decoration:none; }
+.simple_form input[type="checkbox"] { margin-left:0; position:relative; top:2px; }
+.simple_form .fields label { position:relative; bottom:1px; font-size:90%; }
 
 /* generic items */
 .items_list h1 { text-align:center; margin-top:0.3em; font-family:Verdana, Helvetica, Arial; color:#333; text-transform:uppercase; letter-spacing:1px; font-size:1.2em; }
