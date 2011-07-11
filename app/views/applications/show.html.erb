@@ -31,7 +31,6 @@
     </tr>
     <%= a.attribute :criticity %>
     <%= a.attribute :iaw %>
-    <%= a.association :application_instances %>
     <%= a.attribute :ams %>
     <%= a.attribute :cerbere do %>
       <%= cerbere_image(@application.cerbere, true) %>
@@ -45,23 +44,23 @@
 <table class="show_item full">
   <thead>
     <tr>
-      <th colspan="2">
-        Machines impliquées
-      </th>
+      <th colspan="2"><%= t(:application_instances) %></th>
     </tr>
   </thead>
   <tbody class="show_for">
     <tr class="wrapper application_machines">
       <td colspan="2">
-      <% if @application.machines.any? %>
         <ul>
-        <% @application.machines.each do |machine| %>
-          <li><%= link_to machine.name, machine %></li>
+        <% @application.application_instances.each do |instance| %>
+          <%= content_tag_for :div, instance do %>
+            <strong><%= instance.name %></strong>
+            <ul class="details">
+            <% instance.machines.each do |machine| %>
+              <li><%= link_to machine.name, machine %></li>
+            <% end %>
+          <% end %>
         <% end %>
         </ul>
-      <% else %>
-        <p>Aucune machine impliquée.</p>
-      <% end %>
       </td>
     </tr>
   </tbody>
