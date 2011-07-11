@@ -237,7 +237,7 @@ a.create-machine:active { position:relative; top:1px; }
 /* applications */
 #machine_applications tr.multiselect td:first-child { display:none; }
 #machine_applications tr.multiselect td:last-child { /*border-left:1px solid #ccc;*/ }
-#application_instances .fields { border-bottom:1px solid #eee; padding:0.4em 0 0.8em; margin-bottom:1em; line-height:150%; }
+#application_instances .instance-fields { border-bottom:1px solid #eee; padding:0.4em 0 0.8em; margin-bottom:1em; line-height:150%; }
 #application_instances .fields label { display:inline-block; width:7em; }
 #application_instances .fields .bsmContainer { display:inline-block; }
 #application_instances .fields .link-delete img { position:relative; top:-2px; margin-left:3px; }
