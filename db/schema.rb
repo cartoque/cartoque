@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110709021810) do
+ActiveRecord::Schema.define(:version => 20110711102600) do
+
+  create_table "application_instances", :force => true do |t|
+    t.string   "name"
+    t.integer  "application_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "applications", :force => true do |t|
     t.string  "name",                     :default => "",    :null => false

@@ -66,7 +66,7 @@ fr:
       update: "Appliquer les modifications"
   hello: "Hello world"
   amoa: "Assistance MOA"
-  ams: "ACAI/Messagerie/Spécifique"
+  ams: "Type (ACAI Messagerie Spécifique)"
   media_drive: "Lecteur"
   cerbere: "Cerbère"
   contact: "Contact"
@@ -118,3 +118,4 @@ fr:
   identifier: "Identifiant Redmine"
   ipaddress: "Adresse IP"
   ipaddresses: "Adresses IP"
+  application_instances: "Instances"

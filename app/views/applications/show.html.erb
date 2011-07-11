@@ -31,7 +31,7 @@
     </tr>
     <%= a.attribute :criticity %>
     <%= a.attribute :iaw %>
-    <%= a.attribute :pe %>
+    <%= a.association :application_instances %>
     <%= a.attribute :ams %>
     <%= a.attribute :cerbere do %>
       <%= cerbere_image(@application.cerbere, true) %>
