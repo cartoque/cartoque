@@ -52,7 +52,7 @@ SimpleForm.setup do |config|
   # config.country_priority = nil
 
   # Default size for text inputs.
-  config.default_input_size = 25
+  config.default_input_size = 20
 
   # Specific addition (see: lib/simple_form_label_input_patch)
   config.label_input_builder = Proc.new do |label,input|

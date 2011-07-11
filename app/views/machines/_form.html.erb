@@ -10,16 +10,16 @@
   <% end %>
 
   <div id="machine_general" class="grid_4">
-  <table class="inputs">
+  <table class="inputs full">
     <tbody>
       <%= tabular_errors @machine %>
-      <%= f.input :name, :required => true, :wrapper_class => 'th' %>
+      <%= f.input :name, :required => true, :wrapper_class => 'th', :input_html => { :style => "width:10em;" } %>
       <tr class="wrapper machine_applications">
-        <td colspan="2">Description:<br/><%= f.text_area :description, :size => "33x6" %></td>
+        <td colspan="2"><label for="machine[description]" class="input">Description :</label><br/><%= f.text_area :description, :size => "30x6" %></td>
       </tr>
       <tr class="input string optional">
         <td class="content" colspan="2">
-          <label for="machine[ipaddresses]"><%= t(:ipaddresses) %>:</label><br />
+          <label for="machine[ipaddresses]" class="input"><%= t(:ipaddresses) %> :</label><br />
           <% f.object.ipaddresses.build if f.object.ipaddresses.size == 0 %>
           <%= f.simple_fields_for :ipaddresses do |ip_form| %>
             <%= render 'ipaddress_fields', :f => ip_form %>
@@ -52,7 +52,7 @@
   </div>
 
   <div id="machine_hardware" class="grid_4">
-  <table class="inputs">
+  <table class="inputs full">
     <thead>
       <tr><th colspan="2" id="machine-hardware-title"><%= @machine.virtual? ? "Ressources" : "Matériel" %></th></tr>
     </thead>
@@ -82,7 +82,7 @@
   </div>
 
   <div id="machine_applications" class="grid_4">
-  <table class="inputs">
+  <table class="inputs full">
     <thead>
       <tr><th colspan="2">Applications</th></tr>
     </thead>

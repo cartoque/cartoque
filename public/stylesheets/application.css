@@ -31,20 +31,21 @@ h2 { font-weight:bold; margin:0.2em 0 0; font-family:Ubuntu,verdana,arial,sans-s
 /* tables */
 table { padding:0; margin-top:0.5em; margin-bottom:1.5em; border-collapse:collapse; margin-left:auto; margin-right:auto; }
 th, tr.th td { 
-  text-transform:capitalize; font-weight:bold; text-align:center; padding:4px 6px; vertical-align:middle; 
-  color:#433; background-color:#eee; border-right:1px solid #ccc; border-bottom:1px solid #ccc; border-top:1px solid #ccc; 
+  text-transform:capitalize; font-weight:bold; padding:4px 6px; vertical-align:middle;
+  color:#433; background-color:#eee; border-right:1px solid #ccc; border-bottom:1px solid #ccc; border-top:1px solid #ccc;
   background:-moz-linear-gradient(100% 100% 90deg, #f5f5f5, #eaeaea); 
   background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#eaeaea), to(#f5f5f5)); 
   background:-webkit-linear-gradient(#f5f5f5, #eaeaea); 
   background:-o-linear-gradient(#f5f5f5, #eaeaea); 
 }
+th { text-align:center; }
 tr th:first-child, tr td:first-child { border-left:1px solid #ccc; }
 th, td { vertical-align:middle; }
 th a { text-decoration:none; color:#433; background:transparent; }
 td img { margin:0 auto; }
 td { border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:3px 6px; color:#433; }
 table.show_item td.content { text-align:center; font-weight:bold; min-width:50%; }
-td.label { width:80px; text-align:left; padding:6px; }
+td.label { width:75px; text-align:left; padding:6px; }
 tr.filters { border-bottom:none; border-top:1px solid #ee9; border-right:1px solid #ee9; border-left:1px solid #ee9; font-size:90%; }
 tr.filters td { border:none; padding:3px 4px; text-align:center; background-color:#ffc; }
 tr.filters input[type="text"] { border:1px solid #ccc; width:100%; }
@@ -122,12 +123,20 @@ input[type="submit"]:active {
 .simple_form .error { clear:left; margin-left:120px; color:#D00; display:block; }
 .simple_form .hint { clear:left; margin-left:120px; color:#555; display:block; font-style:italic; }
 label.required abbr { color:red; border-bottom:none; }
-.simple_form .link-delete img { position:relative; top:-2px; }
+.simple_form .link-delete img { position:relative; top:-1px; margin-left:3px; }
 .simple_form .add-field { font-size:80%; margin:0.6em 0; }
 .simple_form .add-field a { color:#000; }
 .simple_form .add-field a:hover { color:#e06; text-decoration:none; }
-.simple_form input[type="checkbox"] { margin-left:0; position:relative; top:2px; }
-.simple_form .fields label { position:relative; bottom:1px; font-size:90%; }
+.simple_form input[type="checkbox"] { margin:0 3px; position:relative; top:3px; }
+.simple_form .fields { padding:2px 0; }
+.simple_form .fields label { font-size:90%; }
+.simple_form .actions { margin:10px 0 5px; }
+.simple_form th, .simple_form tr.th td, .simple_form th:first-child, .simple_form td, .simple_form td:first-child { border:none; padding:8px; border-bottom:1px solid #f3f3f3; }
+.simple_form tr th, .simple_form tr.th td { background:#edf3fe; border-bottom:1px solid #eee !important; }
+.simple_form tr.th label { font-size:100% !important; }
+.simple_form table { border:1px solid #ddd; -moz-box-shadow: 0 0 6px #bbb; -webkit-box-shadow: 0 0 6px #bbb; box-shadow:0 0 6px #bbb; }
+.simple_form table.full { width:100%; }
+.simple_form td.label label, .simple_form label.input { font-size:90%; font-weight:bold; }
 
 /* generic items */
 .items_list h1 { text-align:center; margin-top:0.3em; font-family:Verdana, Helvetica, Arial; color:#333; text-transform:uppercase; letter-spacing:1px; font-size:1.2em; }
@@ -220,7 +229,7 @@ a.create-machine:active { position:relative; top:1px; }
 
 /* applications */
 #machine_applications tr.multiselect td:first-child { display:none; }
-#machine_applications tr.multiselect td:last-child { border-left:1px solid #ccc; }
+#machine_applications tr.multiselect td:last-child { /*border-left:1px solid #ccc;*/ }
 .links a, .links a:link, .links a:visited, .links a:hover { text-decoration:none; font-weight:bold; padding:2px; 
                                                             -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
 a.link-to-redmine { color:#a22; }
@@ -252,6 +261,7 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
                    -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px; }
 .machine_ipaddresses ul.collection { text-align:left; font-size:90%; }
 .machine_ipaddresses ul { margin:0; }
+#machine_name { font-size:150%; font-weight:bold; }
 
 /* operating systems */
 .nested-os { margin-left:10px; }
