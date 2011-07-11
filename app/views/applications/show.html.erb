@@ -55,7 +55,7 @@
           <%= content_tag_for :div, instance do %>
             <strong><%= instance.name %></strong>
             <ul class="details">
-            <% instance.machines.each do |machine| %>
+            <% instance.machines.sort_by(&:name).each do |machine| %>
               <li><%= link_to machine.name, machine %></li>
             <% end %>
           <% end %>
