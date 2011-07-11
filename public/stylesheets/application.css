@@ -237,7 +237,7 @@ a.create-machine:active { position:relative; top:1px; }
 /* applications */
 #machine_applications tr.multiselect td:first-child { display:none; }
 #machine_applications tr.multiselect td:last-child { /*border-left:1px solid #ccc;*/ }
-#application_instances .fields { border-bottom:1px solid #eee; padding:0.5em 0; line-height:150%; }
+#application_instances .fields { border-bottom:1px solid #eee; padding:0.4em 0 0.8em; margin-bottom:1em; line-height:150%; }
 .links a, .links a:link, .links a:visited, .links a:hover { text-decoration:none; font-weight:bold; padding:2px; 
                                                             -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
 a.link-to-redmine { color:#a22; }
