@@ -133,12 +133,12 @@ label.required abbr { color:red; border-bottom:none; }
 .simple_form th, .simple_form tr.th td, .simple_form th:first-child, .simple_form td, .simple_form td:first-child { border:none; padding:8px; border-bottom:1px solid #eee; }
 .simple_form tr th, .simple_form tr.th td { background:#edf3fe; border-bottom:1px solid #eee !important; }
 .simple_form tr.th label { font-size:100% !important; }
-.simple_form table { border:1px solid #eee; box-shadow:0 0 5px #ccc; }
+.simple_form table { border:1px solid #eee; box-shadow:1px 2px 2px #aaa; }
 .simple_form table.full { width:100%; }
 .simple_form td.label label, .simple_form label.input { font-size:90%; font-weight:bold; }
 
 /* show_for */
-.show_item { border:1px solid #eee; box-shadow:0 0 5px #ccc; }
+.show_item { border:1px solid #eee; box-shadow:1px 2px 2px #aaa; }
 .show_item.full { width:100%; }
 .show_item th, .show_for tr.th td, .show_item th:first-child, .show_for td, .show_for td:first-child { border:none; padding:8px; border-bottom:1px solid #eee; }
 .show_item tr th, .show_for tr.th td { background:#edf3fe; border-bottom:1px solid #eee !important; }
