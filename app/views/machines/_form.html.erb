@@ -84,10 +84,10 @@
   <div id="machine_applications" class="grid_4">
   <table class="inputs full">
     <thead>
-      <tr><th colspan="2">Applications</th></tr>
+      <tr><th colspan="2"><%= t(:application_instances) %></th></tr>
     </thead>
     <tbody>
-      <%= f.association :applications, :collection => Application.order(:name), :as => :multiselect %>
+      <%= f.association :application_instances, :collection => ApplicationInstance.order(:name).map{|i| [i.fullname, i.id]}, :as => :multiselect %>
     </tbody>
   </table>
   </div>

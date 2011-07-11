@@ -90,15 +90,11 @@
   <%= show_for @machine do |s| %>
     <tr class="wrapper machine_applications">
       <td colspan="2">
-        <% if @machine.applications.any? %>
-          <ul>
-          <% @machine.applications.each do |application| %>
-            <li><%= link_to application.name, application %></li>
-          <% end %>
-          </ul>
-        <% else %>
-          <p>Aucune application liée.</p>
+        <ul>
+        <% @machine.application_instances.each do |instance| %>
+          <li><%= link_to instance.fullname, instance.application %></li>
         <% end %>
+        </ul>
       </td>
     </tr>
   <% end %>
