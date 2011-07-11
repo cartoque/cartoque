@@ -12,7 +12,7 @@
   <table class="inputs full">
     <tbody>
       <%= tabular_errors @application %>
-      <%= f.input :name, :required => true, :wrapper_class => "th" %>
+      <%= f.input :name, :required => true, :wrapper_class => "th", :input_html => { :style => "width:9em;" } %>
       <tr class="wrapper application_info">
         <td colspan="2"><label for="application[info]" class="input">Description :</label><br/><%= f.text_area :info, :size => "30x6" %></td>
       </tr>

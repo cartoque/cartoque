@@ -257,7 +257,6 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .csacko { font-weight:bold; color:red; }
 
 /* machines */
-#machine_general th.machine_name { text-transform:uppercase; font-size:150%; }
 .virtual-machine { float:right; text-transform:uppercase; font-weight:bolder; color:#3a3; }
 .maintenance-warning { color:#f80; }
 .maintenance-critical { font-weight:bold; color:#d00; }
@@ -268,7 +267,8 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
                    padding:1px 6px; margin:0 6px; border:1px solid #ccd;
                    -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px; }
 .machine_ipaddresses ul.collection { text-align:left; margin-left:1em; font-weight:bold; }
-#machine_name { font-size:150%; font-weight:bold; }
+#machine_general th.machine_name, #application_general th.application_name { text-transform:uppercase; font-size:150%; }
+#machine_name, #application_name { font-size:150%; font-weight:bold; }
 
 /* operating systems */
 .nested-os { margin-left:10px; }
