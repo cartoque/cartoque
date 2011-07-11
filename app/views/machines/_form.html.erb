@@ -87,7 +87,7 @@
       <tr><th colspan="2"><%= t(:application_instances) %></th></tr>
     </thead>
     <tbody>
-      <%= f.association :application_instances, :collection => ApplicationInstance.order(:name).map{|i| [i.fullname, i.id]}, :as => :multiselect %>
+      <%= f.association :application_instances, :collection => ApplicationInstance.includes(:application).order("applications.name, application_instances.name").map{|i| [i.fullname, i.id]}, :as => :multiselect %>
     </tbody>
   </table>
   </div>
