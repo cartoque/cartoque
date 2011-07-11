@@ -131,10 +131,10 @@ label.required abbr { color:red; border-bottom:none; }
 .simple_form .fields { padding:2px 0; }
 .simple_form .fields label { font-size:90%; }
 .simple_form .actions { margin:10px 0 5px; }
-.simple_form th, .simple_form tr.th td, .simple_form th:first-child, .simple_form td, .simple_form td:first-child { border:none; padding:8px; border-bottom:1px solid #f3f3f3; }
+.simple_form th, .simple_form tr.th td, .simple_form th:first-child, .simple_form td, .simple_form td:first-child { border:none; padding:8px; border-bottom:1px solid #eee; }
 .simple_form tr th, .simple_form tr.th td { background:#edf3fe; border-bottom:1px solid #eee !important; }
 .simple_form tr.th label { font-size:100% !important; }
-.simple_form table { border:1px solid #ddd; -moz-box-shadow: 0 0 6px #bbb; -webkit-box-shadow: 0 0 6px #bbb; box-shadow:0 0 6px #bbb; }
+.simple_form table { border:1px solid #eee; box-shadow:0 0 5px #ccc; }
 .simple_form table.full { width:100%; }
 .simple_form td.label label, .simple_form label.input { font-size:90%; font-weight:bold; }
 
