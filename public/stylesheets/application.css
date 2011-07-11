@@ -133,7 +133,7 @@ label.required abbr { color:red; border-bottom:none; }
 .simple_form th, .simple_form tr.th td, .simple_form th:first-child, .simple_form td, .simple_form td:first-child { border:none; padding:8px; border-bottom:1px solid #eee; }
 .simple_form tr th, .simple_form tr.th td { background:#edf3fe; border-bottom:1px solid #eee !important; }
 .simple_form tr.th label { font-size:100% !important; }
-.simple_form table { border:1px solid #eee; box-shadow:1px 2px 2px #aaa; }
+.simple_form table.inputs { border:1px solid #eee; box-shadow:1px 2px 2px #aaa; }
 .simple_form table.full { width:100%; }
 .simple_form td.label label, .simple_form label.input { font-size:90%; font-weight:bold; }
 
@@ -237,9 +237,8 @@ a.create-machine:active { position:relative; top:1px; }
 /* applications */
 #machine_applications tr.multiselect td:first-child { display:none; }
 #machine_applications tr.multiselect td:last-child { /*border-left:1px solid #ccc;*/ }
-#application_instances .instance-fields { border-bottom:1px solid #eee; padding:0.4em 0 0.8em; margin-bottom:1em; line-height:150%; }
-#application_instances .fields label { display:inline-block; width:7em; }
-#application_instances .fields .bsmContainer { display:inline-block; }
+#application_instances .instance-fields { border-bottom:1px solid #ddd; padding:0 0 0.5em; }
+.instance-fields th, .instance-fields tr.th td, .instance-fields th:first-child, .instance-fields td, .instance-fields td:first-child { border:none; margin:0; padding:0.3em 0; border-bottom:none; }
 #application_instances .fields .link-delete img { position:relative; top:-2px; margin-left:3px; }
 .links a, .links a:link, .links a:visited, .links a:hover { text-decoration:none; font-weight:bold; padding:2px; 
                                                             -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }

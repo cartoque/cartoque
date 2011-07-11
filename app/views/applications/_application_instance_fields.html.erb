@@ -1,16 +1,25 @@
-<div class="fields instance-fields">
-  <%= f.label :name, :class => "input" %> <%= f.text_field :name, :maxlength => 15 %>
-  <%= link_to_remove_fields image_tag("delete.png"), f %>
-  <br />
-  <% f.object.application_urls.build if f.object.application_urls.size == 0 %>
-  <%= f.label :application_urls, :class => "input" %>
-  <%= f.simple_fields_for :application_urls do |url_form| %>
-     <%= render 'application_url_fields', :f => url_form %>
-  <% end %>
-  <span class="add-field">
-    <%= link_to_add_fields image_tag("new_button.png", :class=>"inline"), f, :application_urls %>
-  </span>
-  <br />
-  <%= f.label :machines, :class => "input" %> <%= f.input_field :machine_ids, :collection => Machine.order(:name), :as => :multiselect %>
-  <div class="clear"></div>
-</div>
+<% f.object.application_urls.build if f.object.application_urls.size == 0 %>
+<table class="fields instance-fields full">
+  <tr>
+    <td><%= f.label :name, :class => "input" %></td>
+    <td>
+      <%= f.text_field :name, :maxlength => 15 %>
+      <%= link_to_remove_fields image_tag("delete.png"), f %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= f.label :application_urls, :class => "input" %></td>
+    <td>
+      <%= f.simple_fields_for :application_urls do |url_form| %>
+        <%= render 'application_url_fields', :f => url_form %>
+      <% end %>
+      <span class="add-field"><%= link_to_add_fields image_tag("new_button.png", :class=>"inline")+" ajouter", f, :application_urls %></span>
+    </td>
+  </tr>
+  <tr>
+    <td><%= f.label :machines, :class => "input" %></td>
+    <td>
+      <%= f.input_field :machine_ids, :collection => Machine.order(:name), :as => :multiselect %>
+    </td>
+  </tr>
+</table>
