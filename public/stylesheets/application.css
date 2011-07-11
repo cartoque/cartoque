@@ -44,7 +44,6 @@ th, td { vertical-align:middle; }
 th a { text-decoration:none; color:#433; background:transparent; }
 td img { margin:0 auto; }
 td { border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:3px 6px; color:#433; }
-table.show_item td.content { text-align:center; font-weight:bold; min-width:50%; }
 td.label { width:75px; text-align:left; padding:6px; }
 tr.filters { border-bottom:none; border-top:1px solid #ee9; border-right:1px solid #ee9; border-left:1px solid #ee9; font-size:90%; }
 tr.filters td { border:none; padding:3px 4px; text-align:center; background-color:#ffc; }
@@ -137,6 +136,14 @@ label.required abbr { color:red; border-bottom:none; }
 .simple_form table { border:1px solid #eee; box-shadow:0 0 5px #ccc; }
 .simple_form table.full { width:100%; }
 .simple_form td.label label, .simple_form label.input { font-size:90%; font-weight:bold; }
+
+/* show_for */
+.show_item { border:1px solid #eee; box-shadow:0 0 5px #ccc; }
+.show_item.full { width:100%; }
+.show_item th, .show_for tr.th td, .show_item th:first-child, .show_for td, .show_for td:first-child { border:none; padding:8px; border-bottom:1px solid #eee; }
+.show_item tr th, .show_for tr.th td { background:#edf3fe; border-bottom:1px solid #eee !important; }
+.show_for td.content { min-width:50%; }
+.show_for td.label, .show_for td label { font-size:90%; font-weight:bold; }
 
 /* generic items */
 .items_list h1 { text-align:center; margin-top:0.3em; font-family:Verdana, Helvetica, Arial; color:#333; text-transform:uppercase; letter-spacing:1px; font-size:1.2em; }
@@ -249,7 +256,7 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .csacko { font-weight:bold; color:red; }
 
 /* machines */
-#machine_general th { text-transform:uppercase; }
+#machine_general th.machine_name { text-transform:uppercase; font-size:150%; }
 .virtual-machine { float:right; text-transform:uppercase; font-weight:bolder; color:#3a3; }
 .maintenance-warning { color:#f80; }
 .maintenance-critical { font-weight:bold; color:#d00; }
@@ -259,8 +266,7 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .machine-details { font-size:90%; display:inline-block; background-color:#eee; color:#335; 
                    padding:1px 6px; margin:0 6px; border:1px solid #ccd;
                    -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px; }
-.machine_ipaddresses ul.collection { text-align:left; font-size:90%; }
-.machine_ipaddresses ul { margin:0; }
+.machine_ipaddresses ul.collection { text-align:left; margin-left:1em; font-weight:bold; }
 #machine_name { font-size:150%; font-weight:bold; }
 
 /* operating systems */

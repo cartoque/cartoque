@@ -8,7 +8,10 @@
   <%= link_to "Retourner à la liste", applications_path %>
 <% end %>
 
-<table class="show_item">
+</div>
+
+<div class="grid_4">
+<table class="show_item full">
   <thead>
     <tr>
       <th colspan="2">
@@ -20,6 +23,12 @@
     </tr>
   </thead>
   <%= show_for @application do |a| %>
+    <tr class="wrapper application_info">
+      <td colspan="2">
+        <label>Information :</label><br />
+        <%= @application.info.capitalize %>
+      </td>
+    </tr>
     <%= a.attribute :criticity %>
     <%= a.attribute :iaw %>
     <%= a.attribute :pe %>
@@ -28,27 +37,33 @@
       <%= cerbere_image(@application.cerbere, true) %>
     <% end %>
     <%= a.attribute :comment %>
-    <tr class="wrapper application_info">
-      <td colspan="2">
-        Information:<br />
-        <%= @application.info %>
-      </td>
-    </tr>
-    <tr class="wrapper machine_machines">
-      <td colspan="2">
-        Machines impliquées:<br />
-        <% if @application.machines.any? %>
-          <ul>
-          <% @application.machines.each do |machine| %>
-            <li><%= link_to machine.name, machine %></li>
-          <% end %>
-          </ul>
-        <% else %>
-          <p>Aucune machine impliquée.</p>
-        <% end %>
-      </td>
-    </tr>
   <% end %>
 </table>
+</div>
 
+<div class="grid_4">
+<table class="show_item full">
+  <thead>
+    <tr>
+      <th colspan="2">
+        Machines impliquées
+      </th>
+    </tr>
+  </thead>
+  <tbody class="show_for">
+    <tr class="wrapper application_machines">
+      <td colspan="2">
+      <% if @application.machines.any? %>
+        <ul>
+        <% @application.machines.each do |machine| %>
+          <li><%= link_to machine.name, machine %></li>
+        <% end %>
+        </ul>
+      <% else %>
+        <p>Aucune machine impliquée.</p>
+      <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
 </div>

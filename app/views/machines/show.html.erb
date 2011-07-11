@@ -11,10 +11,10 @@
 <div class="clear"></div>
 
 <div id="machine_general" class="grid_3">
-<table class="show_item">
+<table class="show_item full">
   <thead>
     <tr>
-      <th colspan="2" style="font-size:14px;">
+      <th colspan="2" class="machine_name">
         <%= @machine.name %>
         <% if @machine.virtual? %>
           <span class="virtual-machine">V</span>
@@ -30,7 +30,16 @@
       </td>
     </tr>
     <% end %>
-    <%= s.attribute :ipaddresses %>
+    <tr class="wrapper machine_ipaddresses">
+      <td colspan="2">
+        <label><%= t(:ipaddresses) %> :</label><br />
+        <ul class="collection">
+        <% @machine.ipaddresses.each do |ip| %>
+          <li><%= ip %></li>
+        <% end %>
+        </ul>
+      </td>
+    </tr>
     <!--<%= s.attribute :server_type %>-->
     <%= s.attribute :operating_system %>
     <%= s.attribute :service %>
@@ -53,7 +62,7 @@
 </div>
 
 <div id="machine_hardware" class="grid_3">
-<table class="show_item">
+<table class="show_item full">
   <thead>
     <tr>
       <th colspan="2"><%= @machine.virtual? ? "Ressources" : "Matériel" %></th>
@@ -74,7 +83,7 @@
 </div>
 
 <div id="machine_relations" class="grid_3">
-<table class="show_item">
+<table class="show_item full">
   <thead>
     <tr><th colspan="2">Applications liées</th></tr>
   </thead>
