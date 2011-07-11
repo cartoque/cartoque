@@ -3,6 +3,7 @@
   <%= link_to_remove_fields image_tag("delete.png"), f %>
   <br />
   <% f.object.application_urls.build if f.object.application_urls.size == 0 %>
+  <%= f.label :application_urls, :class => "input" %>
   <%= f.simple_fields_for :application_urls do |url_form| %>
      <%= render 'application_url_fields', :f => url_form %>
   <% end %>
