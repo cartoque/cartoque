@@ -118,4 +118,5 @@ fr:
   identifier: "Identifiant Redmine"
   ipaddress: "Adresse IP"
   ipaddresses: "Adresses IP"
+  application_instance: "Instance"
   application_instances: "Instances"

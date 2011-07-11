@@ -53,7 +53,7 @@
         <ul>
         <% @application.application_instances.each do |instance| %>
           <%= content_tag_for :div, instance do %>
-            <strong><%= instance.name %></strong>
+            <strong><%= t(:application_instance) %> "<%= instance.name %>"</strong>
             <ul class="details">
             <% instance.machines.sort_by(&:name).each do |machine| %>
               <li><%= link_to machine.name, machine %></li>
