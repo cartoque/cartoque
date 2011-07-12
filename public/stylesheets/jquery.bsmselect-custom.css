@@ -21,10 +21,10 @@
 .bsmListItem-custom {
   /* li item from the html list above */
   margin: 0 5px 5px 0;
-  padding: 1px 5px 3px;
+  padding: 2px 6px 4px;
   list-style: none;
-  background: #eee;
-  border: 1px solid #bbb;
+  color:#222;
+  background: #eeeeff;
   line-height: 1em;
   float: left;
   border-radius: 4px;
@@ -35,9 +35,13 @@
 .bsmListItem-custom:hover {
   /*background-color: #e5e5e5;*/
   cursor:default;
-  box-shadow: 0 0 2px #aaa;
-  -webkit-box-shadow: 0 0 2px #aaa;
-  -moz-box-shadow: 0 0 2px #aaa;
+  box-shadow: 0 0 2px #999;
+  -webkit-box-shadow: 0 0 2px #999;
+  -moz-box-shadow: 0 0 2px #999;
+}
+
+.bsmListItem-custom a:hover {
+  text-decoration:none;
 }
 
 .bsmListItemLabel-custom {
