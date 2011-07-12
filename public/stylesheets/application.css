@@ -241,6 +241,7 @@ a.create-machine:active { position:relative; top:1px; }
 /* applications */
 #machine_applications tr.multiselect td:first-child { display:none; }
 #machine_applications tr.multiselect td:last-child { /*border-left:1px solid #ccc;*/ }
+#application_general td.content { text-align:center; }
 #application_instances .instance-fields { border-bottom:1px solid #ddd; padding:0.5em 0; margin-bottom:1em; }
 .instance-fields th, .instance-fields tr.th td, .instance-fields th:first-child, .instance-fields td, .instance-fields td:first-child { border:none; margin:0; padding:0.2em; border-bottom:none; vertical-align:top; }
 .instance-fields td.label { width:60px; padding-top:0.6em !important; }

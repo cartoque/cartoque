@@ -8,13 +8,13 @@
     <% end %>
   <% end %>
 
-  <div id="application_general" class="grid_4">
+  <div id="application_general" class="grid_5">
   <table class="inputs full">
     <tbody>
       <%= tabular_errors @application %>
       <%= f.input :name, :required => true, :wrapper_class => "th", :input_html => { :style => "width:9em;" } %>
       <tr class="wrapper application_info">
-        <td colspan="2"><label for="application[info]" class="input">Description :</label><br/><%= f.text_area :info, :size => "30x6" %></td>
+        <td colspan="2"><label for="application[info]" class="input">Description :</label><br/><%= f.text_area :info, :size => "40x5" %></td>
       </tr>
       <%= f.input :identifier %>
       <%= f.input :criticity, :as => :radio, :collection => 1..3 %>
@@ -27,7 +27,7 @@
   </div>
 
 
-  <div id="application_instances" class="grid_5">
+  <div id="application_instances" class="grid_7">
   <table class="inputs full">
     <thead>
       <tr>
