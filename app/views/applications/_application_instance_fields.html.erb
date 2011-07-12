@@ -1,14 +1,14 @@
 <% f.object.application_urls.build if f.object.application_urls.size == 0 %>
 <table class="fields instance-fields full">
   <tr>
-    <td><%= f.label :name, :class => "input" %></td>
+    <td class="label"><%= f.label :name, :class => "input" %></td>
     <td>
-      <%= f.text_field :name, :maxlength => 15 %>
-      <%= link_to_remove_fields image_tag("delete.png")+" supprimer cette instance", f %>
+      <%= f.text_field :name, :style => "width:5em; font-weight:bold;" %>
+      <%= link_to_remove_fields image_tag("delete.png")+"supprimer cette instance".html_safe, f %>
     </td>
   </tr>
   <tr>
-    <td><%= f.label :application_urls, :class => "input" %></td>
+    <td class="label"><%= f.label :application_urls, :class => "input" %></td>
     <td>
       <%= f.simple_fields_for :application_urls do |url_form| %>
         <%= render 'application_url_fields', :f => url_form %>
@@ -17,7 +17,7 @@
     </td>
   </tr>
   <tr>
-    <td><%= f.label :machines, :class => "input" %></td>
+    <td class="label"><%= f.label :machines, :class => "input" %></td>
     <td>
       <%= f.input_field :machine_ids, :collection => Machine.order(:name), :as => :multiselect %>
     </td>
