@@ -4,7 +4,7 @@
     <td class="label"><%= f.label :name, :class => "input" %></td>
     <td>
       <%= f.text_field :name, :style => "width:5em; font-weight:bold;" %>
-      <%= link_to_remove_fields image_tag("delete.png")+"supprimer cette instance".html_safe, f %>
+      <%= link_to_remove_fields image_tag("delete.png")+"supprimer cette instance".html_safe, f, :confirm => true %>
     </td>
   </tr>
   <tr>

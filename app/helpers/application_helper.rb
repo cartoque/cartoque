@@ -131,8 +131,13 @@ module ApplicationHelper
     link_to rack, machines_path(:by_rack => rack.id)
   end
 
-  def link_to_remove_fields(name, f)
-    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", :class => "link-delete").html_safe
+  def link_to_remove_fields(name, f, options = {})
+    if options.delete(:confirm)
+      js = "if (confirm('#{t(:text_are_you_sure)}')) remove_fields(this)"
+    else
+      js = "remove_fields(this)"
+    end
+    f.hidden_field(:_destroy) + link_to_function(name, js, {:class => "link-delete"}.merge(options)).html_safe
   end
   
   def link_to_add_fields(name, f, association)
