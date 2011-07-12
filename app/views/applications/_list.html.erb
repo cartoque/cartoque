@@ -18,6 +18,6 @@
     <td class="center"><%= application.iaw %></td>
     <td class="center"><%= application.ams %></td>
     <td class="actions"><%= link_to "Editer", edit_application_path(application) %></td>
-    <td class="actions"><%= link_to "Supprimer", application, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td class="actions"><%= link_to "Supprimer", application, :confirm => t(:text_are_you_sure), :method => :delete %></td>
   </tr>
 <% end %>

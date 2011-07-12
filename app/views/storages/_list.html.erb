@@ -18,7 +18,7 @@
         <strong><%= link_to storage.machine.name, storage.machine %></strong>
         <%= action_links do %>
           <%= link_to "edit", edit_storage_path(storage) %>
-          | <%= link_to "suppr", storage, :confirm => 'Are you sure?', :method => :delete %>
+          | <%= link_to "suppr", storage, :confirm => t(:text_are_you_sure), :method => :delete %>
         <% end %>
       </td>
       <td class="top center"><%= storage.constructor %></td>

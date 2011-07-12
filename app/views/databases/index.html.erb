@@ -36,7 +36,7 @@
         <%= database_nodes database %>
         <%= action_links do %>
           <%= link_to "edit", edit_database_path(database) %>
-          | <%= link_to "suppr", database, :confirm => 'Are you sure?', :method => :delete %>
+          | <%= link_to "suppr", database, :confirm => t(:text_are_you_sure), :method => :delete %>
         <% end %>
       </td>
       <% if database.postgres_report.present? %>
@@ -64,7 +64,7 @@
         <%= database_nodes database %>
         <%= action_links do %>
           <%= link_to "edit", edit_database_path(database) %>
-          | <%= link_to "suppr", database, :confirm => 'Are you sure?', :method => :delete %>
+          | <%= link_to "suppr", database, :confirm => t(:text_are_you_sure), :method => :delete %>
         <% end %>
       </td>
       <% if database.oracle_report.present? %>

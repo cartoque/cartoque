@@ -4,7 +4,7 @@
 
 <%= action_links do %>
   <%= link_to "Editer", edit_database_path(@database) %> |
-  <%= link_to "Supprimer", @database, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "Supprimer", @database, :confirm => t(:text_are_you_sure), :method => :delete %> |
   <%= link_to "Retourner à la liste", databases_path %>
 <% end %>
 

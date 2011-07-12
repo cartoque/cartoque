@@ -4,7 +4,7 @@
 
 <%= action_links do %>
   <%= link_to "Editer", edit_application_path(@application) %> |
-  <%= link_to "Supprimer", @application, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "Supprimer", @application, :confirm => t(:text_are_you_sure), :method => :delete %> |
   <%= link_to "Retourner à la liste", applications_path %>
 <% end %>
 
