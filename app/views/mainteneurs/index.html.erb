@@ -25,7 +25,7 @@
     <td><%= mainteneur.client_ref %></td>
     <td><%= link_to 'Voir', mainteneur %></td>
     <td><%= link_to 'Editer', edit_mainteneur_path(mainteneur) %></td>
-    <td><%= link_to 'Supprimer', mainteneur, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+    <td><%= link_to 'Supprimer', mainteneur, :confirm => t(:text_are_you_sure), :method => :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -3,7 +3,7 @@
 <div class="grid_12">
 <%= action_links do %>
   <%= link_to 'Editer', edit_machine_path(@machine) %> |
-  <%= link_to 'Supprimer', @machine, :confirm => 'Etes-vous sûr ?', :method => :delete %> |
+  <%= link_to 'Supprimer', @machine, :confirm => t(:text_are_you_sure), :method => :delete %> |
   <%= link_to 'Retourner à la liste', machines_path %>
 <% end %>
 </div>

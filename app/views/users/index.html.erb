@@ -17,7 +17,7 @@
     <td><%= user.name %></td>
     <td><%= user.provider %> / <%= user.uid %></td>
     <td><%= link_to 'Editer', edit_user_path(user) %></td>
-    <td><%= link_to 'Supprimer', user, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+    <td><%= link_to 'Supprimer', user, :confirm => t(:text_are_you_sure), :method => :delete %></td>
   </tr>
 <% end %>
 </table>

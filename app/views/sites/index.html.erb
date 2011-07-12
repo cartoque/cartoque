@@ -15,7 +15,7 @@
   <tr>
     <td><%= site.name %></td>
     <td><%= link_to 'Editer', edit_site_path(site) %></td>
-    <td><%= link_to 'Supprimer', site, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+    <td><%= link_to 'Supprimer', site, :confirm => t(:text_are_you_sure), :method => :delete %></td>
   </tr>
 <% end %>
 </table>

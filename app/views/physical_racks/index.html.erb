@@ -17,7 +17,7 @@
     <td><%= physical_rack.site %></td>
     <td><%= physical_rack.name %></td>
     <td><%= link_to 'Editer', edit_physical_rack_path(physical_rack) %></td>
-    <td><%= link_to 'Supprimer', physical_rack, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+    <td><%= link_to 'Supprimer', physical_rack, :confirm => t(:text_are_you_sure), :method => :delete %></td>
   </tr>
 <% end %>
 </table>

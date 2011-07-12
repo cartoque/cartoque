@@ -11,7 +11,7 @@
   <tr>
     <td><%= theme.name %></td>
     <td><%= link_to 'Editer', edit_theme_path(theme) %></td>
-    <td><%= link_to 'Supprimer', theme, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+    <td><%= link_to 'Supprimer', theme, :confirm => t(:text_are_you_sure), :method => :delete %></td>
   </tr>
 <% end %>
 </table>

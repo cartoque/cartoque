@@ -15,7 +15,7 @@
   <tr>
     <td><%= service.name %></td>
     <td><%= link_to 'Editer', edit_service_path(service) %></td>
-    <td><%= link_to 'Supprimer', service, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+    <td><%= link_to 'Supprimer', service, :confirm => t(:text_are_you_sure), :method => :delete %></td>
   </tr>
 <% end %>
 </table>

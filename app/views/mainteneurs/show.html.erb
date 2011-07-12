@@ -4,7 +4,7 @@
 
 <%= action_links do %>
   <%= link_to 'Editer', edit_mainteneur_path(@mainteneur) %> |
-  <%= link_to 'Supprimer', @mainteneur, :confirm => 'Etes-vous sûr ?', :method => :delete %> |
+  <%= link_to 'Supprimer', @mainteneur, :confirm => t(:text_are_you_sure), :method => :delete %> |
   <%= link_to 'Retourner à la liste', mainteneurs_path %>
 <% end %>
 
