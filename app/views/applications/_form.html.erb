@@ -14,7 +14,8 @@
       <%= tabular_errors @application %>
       <%= f.input :name, :required => true, :wrapper_class => "th", :input_html => { :style => "width:9em;" } %>
       <tr class="wrapper application_info">
-        <td colspan="2"><label for="application[info]" class="input">Description :</label><br/><%= f.text_area :info, :size => "40x5" %></td>
+        <td colspan="2"><label for="application[info]" class="input">Description :</label><br/>
+          <%= f.text_area :info, :class => "ninety", :style => "height:5em;" %></td>
       </tr>
       <%= f.input :identifier %>
       <%= f.input :criticity, :as => :radio, :collection => 1..3 %>

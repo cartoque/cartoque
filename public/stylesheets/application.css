@@ -57,6 +57,8 @@ tr.filters input[type="text"] { border:1px solid #ccc; width:100%; }
 
 /* commodities */
 .center { text-align:center; }
+.full { width:100%; }
+.ninety { width:90%; }
 .contextual { float:right; }
 .contextual * { padding:0; margin:0; }
 .before-contextual { position:absolute; right:60px; }
@@ -138,12 +140,10 @@ label.required abbr { color:red; border-bottom:none; }
 .simple_form tr th, .simple_form tr.th td { background:#edf3fe; border-bottom:1px solid #eee !important; }
 .simple_form tr.th label { font-size:100% !important; }
 .simple_form table.inputs { border:1px solid #eee; box-shadow:1px 2px 2px #aaa; }
-.simple_form table.full { width:100%; }
 .simple_form td.label label, .simple_form label.input { font-size:90%; font-weight:bold; }
 
 /* show_for */
 .show_item { border:1px solid #eee; box-shadow:1px 2px 2px #aaa; }
-.show_item.full { width:100%; }
 .show_item th, .show_for tr.th td, .show_item th:first-child, .show_for td, .show_for td:first-child { border:none; padding:8px; border-bottom:1px solid #eee; }
 .show_item tr th, .show_for tr.th td { background:#edf3fe; border-bottom:1px solid #eee !important; }
 .show_for td.content { min-width:50%; }
