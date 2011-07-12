@@ -8,6 +8,11 @@ class ApplicationInstance < ActiveRecord::Base
 
   attr_accessible :name, :application_id, :machine_ids, :application_urls_attributes
 
+  AVAILABLE_AUTHENTICATION_METHODS = %w(none cerbere cerbere-cas cerbere-bouchon ldap-minequip internal other)
+
+  validates_presence_of :name, :application_id, :authentication_method
+  validates_inclusion_of :authentication_method, :in => AVAILABLE_AUTHENTICATION_METHODS
+
   def fullname
     "#{application.name} (#{name})"
   end

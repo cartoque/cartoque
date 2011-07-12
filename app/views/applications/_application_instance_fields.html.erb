@@ -8,6 +8,12 @@
     </td>
   </tr>
   <tr>
+    <td class="label"><%= f.label :authentication_method, :class => "input" %></td>
+    <td>
+      <%= f.input_field :authentication_method, :as => :select, :collection =>collection_for_authentication_methods, :include_blank => false %>
+    </td>
+  </tr>
+  <tr>
     <td class="label"><%= f.label :application_urls, :class => "input" %></td>
     <td>
       <%= f.simple_fields_for :application_urls do |url_form| %>

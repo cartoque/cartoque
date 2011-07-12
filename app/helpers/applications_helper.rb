@@ -6,4 +6,10 @@ module ApplicationsHelper
       image_tag("blank.gif")
     end
   end
+
+  def collection_for_authentication_methods
+    ApplicationInstance::AVAILABLE_AUTHENTICATION_METHODS.map do |meth|
+      [ t("authentication.#{meth}"), meth ]
+    end
+  end
 end

@@ -10,13 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711141415) do
+ActiveRecord::Schema.define(:version => 20110712164642) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
     t.integer  "application_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "authentication_method"
   end
 
   create_table "application_instances_machines", :id => false, :force => true do |t|
