@@ -50,31 +50,19 @@
   <tbody class="show_for">
     <tr class="wrapper application_machines">
       <td colspan="2">
-        <ul>
-        <% @application.application_instances.each do |instance| %>
-          <%= content_tag_for :div, instance do %>
-            <strong><%= t(:application_instance) %> "<%= instance.name %>"</strong>
-            <ul>
-              <% if instance.application_urls.any? %>
-              <li><%= t(:application_urls) %></li>
-              <ul class="details">
-                <% instance.application_urls.sort_by(&:url).each do |app_url| %>
-                  <li><%= link_to app_url.url, app_url.url %></li>
-                <% end %>
-              </ul>
-              <% end %>
-              <% if instance.machines.any? %>
-              <li><%= t(:machines) %></li>
-              <ul class="details">
-                <% instance.machines.sort_by(&:name).each do |machine| %>
-                  <li><%= link_to machine.name, machine %></li>
-                <% end %>
-              </ul>
-              <% end %>
-            </ul>
+      <% @application.application_instances.each do |instance| %>
+        <%= content_tag_for :div, instance do %>
+          <strong><%= instance.name %></strong>
+          <ul>
+          <% instance.application_urls.sort_by(&:url).each do |app_url| %>
+            <li class="application_url"><%= link_to app_url.url, app_url.url, :class => "icon icon-url" %></li>
           <% end %>
+          <% if instance.machines.any? %>
+            <li class="application_instance_servers"><%= instance.machines.sort_by(&:name).map{|machine| link_to machine.name, machine }.join(", ").html_safe %></li>
+          <% end %>
+          </ul>
         <% end %>
-        </ul>
+      <% end %>
       </td>
     </tr>
   </tbody>

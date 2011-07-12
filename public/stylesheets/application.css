@@ -88,6 +88,10 @@ input[type="submit"]:active {
   top:1px; 
 }
 
+/* icons */
+.icon { background-position: 0% 50%; background-repeat: no-repeat; padding-left: 20px; padding-top: 2px; padding-bottom: 3px; }
+.icon-url { background-image: url(../images/external.png); padding-left:15px; }
+
 /* wrappers */
 #top-menu { 
   padding:5px 8px; margin-top:0; margin-bottom:5px; background-color:#eee; text-shadow:1px 1px 0 #fff; 
@@ -241,6 +245,9 @@ a.create-machine:active { position:relative; top:1px; }
 .instance-fields th, .instance-fields tr.th td, .instance-fields th:first-child, .instance-fields td, .instance-fields td:first-child { border:none; margin:0; padding:0.2em; border-bottom:none; vertical-align:top; }
 .instance-fields .label { padding-top:0.6em !important; }
 #application_instances .fields .link-delete img { position:relative; top:-2px; margin-left:3px; }
+.application_instance { width:100%; margin-bottom:5px; font-size:100%; }
+.application_instance ul { margin:0.2em 0.5em 0.2em 0.8em; }
+.application_instance li { margin:0.5em 0; font-size:90%; }
 .links a, .links a:link, .links a:visited, .links a:hover { text-decoration:none; font-weight:bold; padding:2px; 
                                                             -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
 a.link-to-redmine { color:#a22; }
