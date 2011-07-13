@@ -9,6 +9,8 @@ class Application < ActiveRecord::Base
 
   validates_presence_of :name
 
+  before_save :update_cerbere_from_instances
+
   def self.search(search)
     if search
       where("name LIKE ?", "%#{search}%")
@@ -24,6 +26,12 @@ class Application < ActiveRecord::Base
       application
     else
       super
+    end
+  end
+
+  def update_cerbere_from_instances
+    self.cerbere = self.application_instances.inject(false) do |memo,app_instance|
+      memo || app_instance.authentication_method == "cerbere"
     end
   end
 end

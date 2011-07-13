@@ -18,4 +18,15 @@ class ApplicationTest < ActiveSupport::TestCase
       assert_equal Application.count, Application.search("").length
     end
   end
+
+  context "#application_instances" do
+    should "update #cerbere from #application_instances when saved" do
+      app = Factory(:application)
+      assert_equal 0, app.application_instances.size
+      assert app.cerbere
+      ApplicationInstance.create!(:name => "prod", :application_id => app.id, :authentication_method => "cerbere")
+      app.reload
+      assert !app.cerbere
+    end
+  end
 end
