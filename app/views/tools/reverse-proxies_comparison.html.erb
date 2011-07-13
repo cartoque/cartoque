@@ -1,0 +1,35 @@
+<%
+path = Rails.root.join("data/rp")
+vhosts_lines = %x(grep -rHE '^\s*ServerName' #{path} |grep -v sites-available|sort -u 2>/dev/null).split(/\n+/)
+vhosts = vhosts_lines.map{|line| line.scan(/ServerName\s+(\S+)/).first.first}.flatten.compact
+
+app_urls = ApplicationUrl.all.map(&:url).map{|u| u.strip.gsub(%r{\S+://},"").gsub(%r{/.*},"")}
+
+unknown_in_cartocs = vhosts - app_urls
+
+diff_list = { 
+  "dans les RPs manquantes dans Cartocs" => unknown_in_cartocs
+}
+%>
+
+<% title "Outils - Comparaison Reverse-Proxies" %>
+
+<div id="tools" class="grid_12 items_list">
+
+<%= render "submenu" %>
+
+<% diff_list.each do |title,vhosts| %>
+<ul>
+  <li><strong><%= pluralize(vhosts.count, "vhost") %> <%= title %></strong></li>
+  <ul class="comparison details">
+    <%= vhosts.sort.map do |u|
+      line = vhosts_lines.detect{|v| v.include?(u)}
+      @title = line.gsub(%r{.*data/rp/},"").gsub(/:.*/,"").sub(%r{/},": ") if line
+      "<li>#{link_to u, u, :title => @title}</li>"
+    end.join.html_safe %>
+  </ul>
+</ul>
+<div class="clear"></div>
+<% end %>
+
+</div>
