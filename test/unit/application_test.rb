@@ -23,10 +23,11 @@ class ApplicationTest < ActiveSupport::TestCase
     should "update #cerbere from #application_instances when saved" do
       app = Factory(:application)
       assert_equal 0, app.application_instances.size
-      assert app.cerbere
-      ApplicationInstance.create!(:name => "prod", :application_id => app.id, :authentication_method => "cerbere")
-      app.reload
-      assert !app.cerbere
+      assert !app.cerbere, "cerbere should be false"
+      app.application_instances << ApplicationInstance.new(:name => "prod", :authentication_method => "cerbere")
+      assert app.save
+      assert_equal 1, app.application_instances.count
+      assert app.reload.cerbere, "cerbere should be true"
     end
   end
 end
