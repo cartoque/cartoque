@@ -25,7 +25,7 @@ diff_list = {
     <%= vhosts.sort.map do |u|
       line = vhosts_lines.detect{|v| v.include?(u)}
       @title = line.gsub(%r{.*data/rp/},"").gsub(/:.*/,"").sub(%r{/},": ") if line
-      "<li>#{link_to u, u, :title => @title}</li>"
+      "<li>#{link_to u, "http://#{u}", :title => @title}</li>"
     end.join.html_safe %>
   </ul>
 </ul>
