@@ -28,6 +28,18 @@ class Tomcat < Hash
   def self.all
     all = []
     Dir.glob("#{dir}/*.csv").each do |csv|
+      all += from_csv(csv)
+    end
+    all
+  end
+
+  def self.find_for_server(server_name)
+    from_csv("#{dir}/#{server_name}.csv")
+  end
+
+  def self.from_csv(csv)
+    all = []
+    if File.exists?(csv)
       lines = File.read(csv).split(/\n/) rescue []
       lines.grep(/^site;/).each do |line|
         site = line.split(";")

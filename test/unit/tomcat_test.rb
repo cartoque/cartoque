@@ -42,4 +42,13 @@ class TomcatTest < ActiveSupport::TestCase
       assert tomcats.include?(@app02)
     end
   end
+
+  context "Tomcat.find_for_server" do
+    should "return tomcats for a specific server" do
+      tomcats = Tomcat.find_for_server("vm-01")
+      assert_equal 2, tomcats.size
+      assert tomcats.include?(@app01)
+      assert tomcats.include?(@app02)
+    end
+  end
 end

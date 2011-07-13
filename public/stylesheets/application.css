@@ -65,6 +65,7 @@ tr.filters input[type="text"] { border:1px solid #ccc; width:100%; }
 .hidden { display:none; }
 .more { font-size:90%; text-align:left; }
 .tiny { font-size:90%; }
+.tinier { font-size:80%; }
 .simple-list { margin:0; position:relative; display:block; padding:0 0 0 1.5em; list-style-type:none; }
 .simple-list li { margin-top:3px; }
 input[type="submit"] { 
@@ -267,6 +268,8 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .offset { padding-left:1em; }
 .csacok { font-weight:bold; color:green; }
 .csacko { font-weight:bold; color:red; }
+.machine_tomcats ul { margin-left:1em; }
+.machine_tomcats li { padding:0.3em 0; }
 
 /* machines */
 .virtual-machine { float:right; text-transform:uppercase; font-weight:bolder; color:#3a3; }
