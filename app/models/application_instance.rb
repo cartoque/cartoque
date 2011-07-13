@@ -6,7 +6,7 @@ class ApplicationInstance < ActiveRecord::Base
   accepts_nested_attributes_for :application_urls, :reject_if => lambda{|a| a[:url].blank? },
                                                    :allow_destroy => true
 
-  attr_accessible :name, :application_id, :machine_ids, :application_urls_attributes
+  attr_accessible :name, :application_id, :machine_ids, :authentication_method, :application_urls_attributes
 
   AVAILABLE_AUTHENTICATION_METHODS = %w(none cerbere cerbere-cas cerbere-bouchon ldap-minequip internal other)
 
