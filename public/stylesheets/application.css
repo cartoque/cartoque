@@ -93,6 +93,7 @@ input[type="submit"]:active {
 /* icons */
 .icon { background-position: 0% 50%; background-repeat: no-repeat; padding-left: 20px; padding-top: 2px; padding-bottom: 3px; }
 .icon-url { background-image: url(../images/external.png); padding-left:15px; }
+.icon-server { background-image: url(../images/server_12.png); padding-left:15px; }
 
 /* wrappers */
 #top-menu { 
