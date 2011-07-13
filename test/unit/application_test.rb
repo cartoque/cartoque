@@ -30,4 +30,26 @@ class ApplicationTest < ActiveSupport::TestCase
       assert app.reload.cerbere, "cerbere should be true"
     end
   end
+
+  context "#sorted_application_instances" do
+    should "resist to empty arrays" do
+      app = Factory(:application)
+      assert_equal [], app.application_instances
+      assert_equal [], app.sorted_application_instances
+    end
+
+    should "be ordered with prod, ecole, preprod first" do
+      app = Factory(:application)
+      app.application_instances << ApplicationInstance.new(:name => "ecole", :authentication_method => "none")
+      app.application_instances << ApplicationInstance.new(:name => "aaaa", :authentication_method => "none")
+      app.application_instances << ApplicationInstance.new(:name => "ffff", :authentication_method => "none")
+      app.application_instances << ApplicationInstance.new(:name => "zzzz", :authentication_method => "none")
+      app.application_instances << ApplicationInstance.new(:name => "prod", :authentication_method => "none")
+      app.application_instances << ApplicationInstance.new(:name => "preprod", :authentication_method => "none")
+      assert app.save
+      app.reload
+      assert_equal 6, app.application_instances.count
+      assert_equal %w(prod ecole preprod aaaa ffff zzzz), app.sorted_application_instances.map(&:name)
+    end
+  end
 end

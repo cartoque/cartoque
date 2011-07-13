@@ -35,4 +35,13 @@ class Application < ActiveRecord::Base
     end
     true
   end
+
+  def sorted_application_instances
+    ary = application_instances
+    prod = ary.select{|ai| ai.name == "prod"}
+    preprod = ary.select{|ai| ai.name == "preprod"}
+    ecole = ary.select{|ai| ai.name == "ecole"}
+    others = ary.select{|ai| !%w(prod preprod ecole).include?(ai.name) }
+    [prod, ecole, preprod, others].flatten.compact
+  end
 end

@@ -47,7 +47,7 @@
   <tbody class="show_for">
     <tr class="wrapper application_machines">
       <td colspan="2">
-      <% @application.application_instances.each do |instance| %>
+      <% @application.sorted_application_instances.each do |instance| %>
         <%= content_tag_for :div, instance do %>
           <strong><%= instance.name %></strong>
           <ul>
