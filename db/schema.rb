@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110712164642) do
+ActiveRecord::Schema.define(:version => 20110714081918) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -20,10 +20,15 @@ ActiveRecord::Schema.define(:version => 20110712164642) do
     t.string   "authentication_method"
   end
 
+  add_index "application_instances", ["application_id"], :name => "index_application_instances_on_application_id"
+
   create_table "application_instances_machines", :id => false, :force => true do |t|
     t.integer "application_instance_id", :default => 0, :null => false
     t.integer "machine_id",              :default => 0, :null => false
   end
+
+  add_index "application_instances_machines", ["application_instance_id"], :name => "index_application_instances_machines_on_application_instance_id"
+  add_index "application_instances_machines", ["machine_id"], :name => "index_application_instances_machines_on_machine_id"
 
   create_table "application_urls", :force => true do |t|
     t.string   "url"
@@ -31,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20110712164642) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "application_urls", ["application_instance_id"], :name => "index_application_urls_on_application_instance_id"
 
   create_table "applications", :force => true do |t|
     t.string  "name",                     :default => "",    :null => false
@@ -48,6 +55,9 @@ ActiveRecord::Schema.define(:version => 20110712164642) do
     t.integer "machine_id",     :default => 0, :null => false
     t.integer "application_id", :default => 0, :null => false
   end
+
+  add_index "applications_machines", ["application_id"], :name => "index_applications_machines_on_application_id"
+  add_index "applications_machines", ["machine_id"], :name => "index_applications_machines_on_machine_id"
 
   create_table "bureaux", :force => true do |t|
     t.string "bureau_court", :default => "", :null => false
@@ -81,6 +91,8 @@ ActiveRecord::Schema.define(:version => 20110712164642) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "ipaddresses", ["machine_id"], :name => "index_ipaddresses_on_machine_id"
 
   create_table "iscsi", :force => true do |t|
     t.string "iscsi", :limit => 50, :default => "", :null => false
@@ -124,6 +136,14 @@ ActiveRecord::Schema.define(:version => 20110712164642) do
     t.integer "ipaddress",           :limit => 8
   end
 
+  add_index "machines", ["database_id"], :name => "index_machines_on_database_id"
+  add_index "machines", ["mainteneur_id"], :name => "index_machines_on_mainteneur_id"
+  add_index "machines", ["media_drive_id"], :name => "index_machines_on_media_drive_id"
+  add_index "machines", ["operating_system_id"], :name => "index_machines_on_operating_system_id"
+  add_index "machines", ["physical_rack_id"], :name => "index_machines_on_physical_rack_id"
+  add_index "machines", ["service_id"], :name => "index_machines_on_service_id"
+  add_index "machines", ["theme_id"], :name => "index_machines_on_theme_id"
+
   create_table "machines_sousreseaux", :force => true do |t|
     t.integer "id_machines",    :default => 0, :null => false
     t.integer "id_sousreseaux", :default => 0, :null => false
@@ -159,6 +179,8 @@ ActiveRecord::Schema.define(:version => 20110712164642) do
     t.integer "site_id"
   end
 
+  add_index "physical_racks", ["site_id"], :name => "index_physical_racks_on_site_id"
+
   create_table "ref_proc", :force => true do |t|
     t.string "ref_proc", :limit => 50, :default => "--", :null => false
   end
@@ -187,6 +209,8 @@ ActiveRecord::Schema.define(:version => 20110712164642) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "storages", ["machine_id"], :name => "index_storages_on_machine_id"
 
   create_table "themes", :force => true do |t|
     t.string "name", :default => "", :null => false
