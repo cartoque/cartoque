@@ -9,12 +9,12 @@
     <%= text_field_tag "search", params[:search], :size => 12 %>
   </td>
   <td>
-	    <%= select_tag "by_rack", options_for_select([["",""]] + PhysicalRack.all.map{|r| [r,r.id]},params[:by_rack]).html_safe -%>
+      <%= select_tag "by_rack", options_for_select([["",""]] + PhysicalRack.all.map{|r| [r,r.id]},params[:by_rack]).html_safe -%>
   </td>
   <td></td>
   <td></td>
   <td>
-	    <%= select_tag "by_mainteneur", options_for_select([["",""]] + Mainteneur.all.map{|r| [r.name,r.id]},params[:by_mainteneur]).html_safe -%>
+      <%= select_tag "by_mainteneur", options_for_select([["",""]] + Mainteneur.all.map{|r| [r.name,r.id]},params[:by_mainteneur]).html_safe -%>
   </td>
   <td></td>
   <td><span id="machines_counter" class="counter"><%= @machines.count %></span></td>
