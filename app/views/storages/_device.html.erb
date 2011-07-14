@@ -9,7 +9,7 @@
 <%= progress_bar(device.percent_used,
                  :width => 300,
                  :legend => ('%0.0f%' % device.percent_used)) %>
- 
+
 <% devid = "device-#{device.name.parameterize}" %>
 <% if device.unassigned > 0 %>
   <span class="unassigned">+ <%= pretty_size(device.unassigned) %> unassigned</span>

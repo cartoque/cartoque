@@ -12,7 +12,7 @@ module Acts
             def #{attr}
               IPAddr.new_from_int(read_attribute(:#{attr}))
             end
-         
+
             def #{attr}=(value)
               raise "Can't write attribute since there is no '#{attr}' column" unless column_for_attribute(:#{attr})
               if value == value.to_i.to_s && value.to_i <= 32 #netmask!

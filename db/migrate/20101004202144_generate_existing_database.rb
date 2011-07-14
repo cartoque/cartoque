@@ -1,7 +1,7 @@
 class GenerateExistingDatabase < ActiveRecord::Migration
   def self.up
     return if table_exists?("applications")
-    
+
     create_table "applications", :force => true do |t|
       t.string  "appli_nom",                     :default => "", :null => false
       t.integer "appli_criticite", :limit => 1,  :default => 0,  :null => false
@@ -17,31 +17,31 @@ class GenerateExistingDatabase < ActiveRecord::Migration
       t.integer "appli_cerbere",   :limit => 1,  :default => 0,  :null => false
       t.string  "appli_fiche",                   :default => "", :null => false
     end
-  
+
     create_table "bureaux", :force => true do |t|
       t.string "bureau_court", :default => "", :null => false
       t.string "bureau_long",  :default => "", :null => false
     end
-  
+
     create_table "cddvd", :force => true do |t|
       t.string "cd_dvd", :limit => 50, :default => "", :null => false
     end
-  
+
     create_table "frequence", :force => true do |t|
       t.decimal "frequence", :precision => 50, :scale => 0, :default => 0, :null => false
     end
-  
+
     create_table "interfaces", :force => true do |t|
       t.integer "id_machines",                 :default => 0,     :null => false
       t.integer "id_sousreseaux",              :default => 0,     :null => false
       t.string  "quatr_octet",    :limit => 9, :default => "",    :null => false
       t.boolean "virtuelle",                   :default => false, :null => false
     end
-  
+
     create_table "iscsi", :force => true do |t|
       t.string "iscsi", :limit => 50, :default => "", :null => false
     end
-  
+
     create_table "machines", :force => true do |t|
       t.integer "theme_id",                           :default => 6,   :null => false
       t.integer "service_id",                         :default => 1,   :null => false
@@ -78,17 +78,17 @@ class GenerateExistingDatabase < ActiveRecord::Migration
       t.integer "nb_disque",                          :default => 0,   :null => false
       t.integer "nb_disque1",                         :default => 0,   :null => false
     end
-  
+
     create_table "machines_applications", :force => true do |t|
       t.integer "machine_id",     :default => 0, :null => false
       t.integer "application_id", :default => 0, :null => false
     end
-  
+
     create_table "machines_sousreseaux", :force => true do |t|
       t.integer "id_machines",    :default => 0, :null => false
       t.integer "id_sousreseaux", :default => 0, :null => false
     end
-  
+
     create_table "mainteneur", :force => true do |t|
       t.string "mainteneur",   :limit => 50,  :default => "", :null => false
       t.string "tel",          :limit => 100, :default => "", :null => false
@@ -96,45 +96,45 @@ class GenerateExistingDatabase < ActiveRecord::Migration
       t.string "adresse_post", :limit => 200, :default => "", :null => false
       t.string "ref_client",   :limit => 50,  :default => "", :null => false
     end
-  
+
     create_table "marque", :force => true do |t|
       t.string "marque", :limit => 100, :default => "", :null => false
     end
-  
+
     create_table "os", :force => true do |t|
       t.string "os_titre",   :limit => 55, :default => "", :null => false
       t.string "os_img_url",               :default => "", :null => false
     end
-  
+
     create_table "rack", :force => true do |t|
       t.string "nom_rack", :limit => 50, :default => "", :null => false
     end
-  
+
     create_table "ref_proc", :force => true do |t|
       t.string "ref_proc", :limit => 50, :default => "--", :null => false
     end
-  
+
     create_table "services", :force => true do |t|
       t.string "service_titre", :default => "", :null => false
     end
-  
+
     create_table "site", :force => true do |t|
       t.string "nom_site", :limit => 50, :default => "", :null => false
     end
-  
+
     create_table "sousreseaux", :force => true do |t|
       t.string "sousreseau_ip",             :limit => 23, :default => "", :null => false
       t.string "sousreseau_nom_logique",                  :default => "", :null => false
       t.string "sousreseau_couleur_fond",   :limit => 7,  :default => "", :null => false
       t.string "sousreseau_couleur_police", :limit => 7,  :default => "", :null => false
     end
-  
+
     add_index "sousreseaux", ["sousreseau_ip"], :name => "sousreseau_ip"
-  
+
     create_table "themes", :force => true do |t|
       t.string "theme_titre", :default => "", :null => false
     end
-  
+
     create_table "type", :force => true do |t|
       t.string "type_serveur", :limit => 100, :default => "", :null => false
     end

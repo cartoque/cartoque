@@ -7,7 +7,7 @@ app_urls = ApplicationUrl.all.map(&:url).map{|u| u.strip.gsub(%r{\S+://},"").gsu
 
 unknown_in_cartocs = vhosts - app_urls
 
-diff_list = { 
+diff_list = {
   "dans les RPs manquants dans Cartocs" => unknown_in_cartocs
 }
 %>

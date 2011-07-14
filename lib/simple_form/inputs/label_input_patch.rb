@@ -19,7 +19,7 @@ module SimpleForm
         end
       end
       alias_method_chain :label_input, :proc
-      
+
       def label_input_builder
         options[:label_input_builder] || SimpleForm.label_input_builder
       end

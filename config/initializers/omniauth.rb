@@ -4,7 +4,7 @@ cas_server = Rails.env == 'production' ? 'https://authentification-cerbere.appli
 Rails.application.config.middleware.use OmniAuth::Strategies::CAS, :cas_server => cas_server
 
 OmniAuth.config.full_host = Proc.new do |env|
-  url = env["rack.session"]["omniauth.origin"] || env["omniauth.origin"] 
+  url = env["rack.session"]["omniauth.origin"] || env["omniauth.origin"]
   #if no url found, fall back to config/app_config.yml addresses
   if url.blank?
     url = "http://#{APP_CONFIG[:domain]}"

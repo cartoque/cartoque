@@ -8,7 +8,7 @@ class MultiselectInput < SimpleForm::Inputs::CollectionInput
                   value_method, label_method, input_options, input_html_options) +
       hidden_field_tag("#{object_name}[#{attribute_name}][]", "")
   end
- 
+
   def input_options
     options = super
     options[:include_blank] = false

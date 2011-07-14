@@ -29,7 +29,7 @@
 </head>
 
 <body>
-    
+
   <div id="container" class="container_12 clearfix">
     <div class="grid_12">
       <div id="top-menu" class="hide-when-print">
@@ -51,15 +51,15 @@
         <%= link_to "Configuration", operating_systems_path %>
       <% end %>
       </div>
-      
+
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
- 
+
     </div><!-- end-of-grid_12 -->
 
     <div class="clear"></div>
-  
+
     <% if content_for?(:sidebar) %>
       <div class="grid_3 hide-when-print">
         <div id="sidebar">

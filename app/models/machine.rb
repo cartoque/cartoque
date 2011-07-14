@@ -13,10 +13,10 @@ class Machine < ActiveRecord::Base
   accepts_nested_attributes_for :ipaddresses, :reject_if => lambda{|a| a[:address].blank? },
                                               :allow_destroy => true
 
-  attr_accessible :theme_id, :service_id, :operating_system_id, :physical_rack_id, :media_drive_id, :mainteneur_id, :name, 
-                  :previous_name, :subnet, :lastbyte, :serial_number, :virtual, :description, :model, :memory, :frequency, 
-                  :delivered_on, :maintained_until, :contract_type, :disk_type, :disk_size, :manufacturer, :ref_proc, 
-                  :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk, 
+  attr_accessible :theme_id, :service_id, :operating_system_id, :physical_rack_id, :media_drive_id, :mainteneur_id, :name,
+                  :previous_name, :subnet, :lastbyte, :serial_number, :virtual, :description, :model, :memory, :frequency,
+                  :delivered_on, :maintained_until, :contract_type, :disk_type, :disk_size, :manufacturer, :ref_proc,
+                  :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,
                   :nb_disk_alt, :ipaddress, :application_instance_ids, :database_id, :ipaddresses_attributes
 
   acts_as_ipaddress :ipaddress
@@ -51,7 +51,7 @@ class Machine < ActiveRecord::Base
     if ip = self.ipaddresses.detect{|ip| ip.main?}
       self.ipaddress = ip.address
     else
-      self.send(:write_attribute, :ipaddress, nil) 
+      self.send(:write_attribute, :ipaddress, nil)
     end
   end
 

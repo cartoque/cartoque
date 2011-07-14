@@ -14,7 +14,7 @@ class NormalizeDatabaseFieldNames < ActiveRecord::Migration
   end
 
   def self.columns_list
-    [ 
+    [
       %w(applications nom name),
       %w(applications criticite criticity),
       %w(applications fiche comment),
