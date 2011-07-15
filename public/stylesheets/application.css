@@ -30,13 +30,12 @@ h2 { font-weight:bold; margin:0.2em 0 0; font-family:Ubuntu,verdana,arial,sans-s
 
 /* tables */
 table { padding:0; margin-top:0.5em; margin-bottom:1.5em; border-collapse:collapse; margin-left:auto; margin-right:auto; }
-th, td { vertical-align:middle; }
-th { text-align:center; }
-td { padding:3px 6px; color:#433; }
+th, td { vertical-align:middle; padding:3px 6px; }
+th { text-align:center; font-weight:bold; }
 th a { text-decoration:none; color:#433; background:transparent; }
 td img { margin:0 auto; }
 td.label { width:75px; text-align:left; padding:6px; }
-.list td { border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:3px 6px; color:#433; }
+.list td { border-right:1px solid #ccc; border-bottom:1px solid #ccc; color:#433; }
 .list th, .list tr.th td { 
   text-transform:capitalize; font-weight:bold; padding:4px 6px; vertical-align:middle;
   color:#433; background-color:#eee; border-right:1px solid #ccc; border-bottom:1px solid #ccc; border-top:1px solid #ccc;
@@ -137,16 +136,16 @@ label.required abbr { color:red; border-bottom:none; }
 .simple_form .fields { padding:2px 0; }
 .simple_form .fields label { font-size:90%; }
 .simple_form .actions { margin:10px 0 5px; }
-.simple_form th, .simple_form tr.th td, .simple_form th:first-child, .simple_form td, .simple_form td:first-child { border:none; padding:8px; border-bottom:1px solid #eee; }
-.simple_form tr th, .simple_form tr.th td { background:#edf3fe; border-bottom:1px solid #eee !important; }
+.simple_form th, .simple_form tr.th td, .simple_form th:first-child, .simple_form td, .simple_form td:first-child { border:none; padding:8px; border-bottom:1px solid #ddd; }
+.simple_form tr th, .simple_form tr.th td { background:#edf3fe; border-bottom:1px solid #ddd !important; }
 .simple_form tr.th label { font-size:100% !important; }
-.simple_form table.inputs { border:1px solid #eee; box-shadow:1px 2px 2px #aaa; }
+.simple_form table.inputs { border:1px solid #ddd; box-shadow:1px 1px 1px #ccc; }
 .simple_form td.label label, .simple_form label.input { font-size:90%; font-weight:bold; }
 
 /* show_for */
-.show_item { border:1px solid #eee; box-shadow:1px 2px 2px #aaa; }
-.show_item th, .show_for tr.th td, .show_item th:first-child { border:none; padding:8px; border-bottom:1px solid #eee; }
-.show_item tr th, .show_for tr.th td { background:#edf3fe; border-bottom:1px solid #eee !important; }
+.show_item { border:1px solid #ddd; box-shadow:1px 1px 1px #ccc; }
+.show_item th, .show_for tr.th td, .show_item th:first-child { border:none; padding:8px; border-bottom:1px solid #ddd; }
+.show_item tr th, .show_for tr.th td { background:#edf3fe; border-bottom:1px solid #ddd !important; }
 .show_for td.content { min-width:50%; }
 .show_for td.label, .show_for td label { font-size:90%; font-weight:bold; }
 
