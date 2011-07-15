@@ -7,7 +7,7 @@ require 'rails/all'
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Cartocs
-  VERSION = '0.1.0'
+  VERSION = '0.2.0'
 
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
