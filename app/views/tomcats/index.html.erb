@@ -4,7 +4,7 @@
 
 <%= render "submenu" %>
 
-<table class="pretty">
+<table class="pretty list">
   <%= form_tag tomcats_path(params), :id => "filters", :method => :get do -%>
   <tr class="filters">
     <td><%= select_tag "by_vip", options_for_select([["",""]] + @filters[:vip], params[:by_vip]).html_safe -%></td>

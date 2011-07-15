@@ -9,7 +9,7 @@
   <%= link_to "Ajouter une application", new_application_path %>
 <% end %>
 
-<table class="pretty center">
+<table class="pretty list center">
   <%= form_tag applications_path(params), :id => "filters", :method => :get do -%>
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
