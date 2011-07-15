@@ -30,7 +30,7 @@ h2 { font-weight:bold; margin:0.2em 0 0; font-family:Ubuntu,verdana,arial,sans-s
 
 /* tables */
 table { padding:0; margin-top:0.5em; margin-bottom:1.5em; border-collapse:collapse; margin-left:auto; margin-right:auto; }
-th, td { vertical-align:middle; padding:3px 6px; }
+th, td { vertical-align:middle; padding:4px 6px; }
 th { text-align:center; font-weight:bold; }
 th a { text-decoration:none; color:#433; background:transparent; }
 td img { margin:0 auto; }
