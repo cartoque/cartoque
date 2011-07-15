@@ -66,6 +66,7 @@ tr.filters input[type="text"] { border:1px solid #ccc; width:100%; }
 .tinier { font-size:80%; }
 .simple-list { margin:0; position:relative; display:block; padding:0 0 0 1.5em; list-style-type:none; }
 .simple-list li { margin-top:3px; }
+.nocut { display:inline-block; white-space:nowrap; }
 input[type="submit"] { 
   padding:3px 10px; display:inline-block; 
   -moz-box-shadow:inset 0px 1px 0px 0px #fff; -webkit-box-shadow:inset 0px 1px 0px 0px #fff; box-shadow:inset 0px 1px 0px 0px #fff; 
