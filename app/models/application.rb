@@ -44,4 +44,19 @@ class Application < ActiveRecord::Base
     others = ary.select{|ai| !%w(prod preprod ecole).include?(ai.name) }
     [prod, ecole, preprod, others].flatten.compact
   end
+
+  def self.dokuwiki_pages_dir
+    File.expand_path("data/dokuwiki/pages", Rails.root)
+  end
+
+  def find_docs
+    keywords = [name] + application_instances.map(&:application_urls).flatten.map(&:url)
+    docs = []
+    keywords.each do |kw|
+      docs += %x(find #{Application.dokuwiki_pages_dir} -type f -ipath "*/#{kw}/*" -o -ipath "*/#{kw}.*").split("\n").map do |doc|
+        doc.gsub(Application.dokuwiki_pages_dir+"/","").gsub(/\.txt$/,"").gsub("/", ":")
+      end
+    end
+    docs.uniq
+  end
 end

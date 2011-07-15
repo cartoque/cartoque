@@ -1,5 +1,12 @@
 require 'test_helper'
 
+require 'application'
+class Application
+  def self.dokuwiki_pages_dir
+    File.expand_path("test/data/dokuwiki/pages", Rails.root)
+  end
+end
+
 class ApplicationTest < ActiveSupport::TestCase
   should "be valid" do
     assert ! Application.new.valid?
@@ -50,6 +57,30 @@ class ApplicationTest < ActiveSupport::TestCase
       app.reload
       assert_equal 6, app.application_instances.count
       assert_equal %w(prod ecole preprod aaaa ffff zzzz), app.sorted_application_instances.map(&:name)
+    end
+  end
+
+  context "#find_docs" do
+    should "return no doc" do
+      app = Application.new(:name => "app-03")
+      assert_equal [], app.find_docs
+    end
+
+    should "return doc corresponding to */app_name/* or */app_name.txt" do
+      app = Application.new(:name => "app-01")
+      docs = app.find_docs
+      assert_equal 2, docs.size
+      assert docs.include?("app-01")
+      assert docs.include?("app-01:doc")
+    end
+
+    should "return doc depending on linked application_urls" do
+      app = Application.new(:name => "app-02")
+      app_instance = ApplicationInstance.new(:name => "prod")
+      app_url = ApplicationUrl.new(:url => "app-02.example.com")
+      app_instance.application_urls << app_url
+      app.application_instances << app_instance
+      assert_equal ["app-02.example.com"], app.find_docs
     end
   end
 end

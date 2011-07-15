@@ -88,6 +88,8 @@ input[type="submit"]:active {
   position:relative; 
   top:1px; 
 }
+ul.details { margin:0.2em 0.5em 0.2em 0.8em; }
+ul.details li { margin:0.5em 0; font-size:90%; }
 
 /* icons */
 .icon { background-position: 0% 50%; background-repeat: no-repeat; padding-left: 20px; padding-top: 2px; padding-bottom: 3px; }
@@ -247,8 +249,6 @@ a.create-machine:active { position:relative; top:1px; }
 .instance-fields td.label { width:60px; padding-top:0.6em !important; }
 #application_instances .fields .link-delete img { position:relative; top:-2px; margin-left:3px; }
 .application_instance { width:100%; margin-bottom:5px; font-size:100%; }
-.application_instance ul { margin:0.2em 0.5em 0.2em 0.8em; }
-.application_instance li { margin:0.5em 0; font-size:90%; }
 .links a, .links a:link, .links a:visited, .links a:hover { text-decoration:none; font-weight:bold; padding:2px; 
                                                             -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
 a.link-to-redmine { color:#a22; }
