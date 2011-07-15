@@ -9,6 +9,8 @@ class ApplicationInstance < ActiveRecord::Base
   attr_accessible :name, :application_id, :machine_ids, :authentication_method, :application_urls_attributes,
                   :created_at, :updated_at
 
+  default_scope includes(:application).order("applications.name, application_instances.name")
+
   AVAILABLE_AUTHENTICATION_METHODS = %w(none cerbere cerbere-cas cerbere-bouchon ldap-minequip internal other)
 
   validates_presence_of :name, :authentication_method
