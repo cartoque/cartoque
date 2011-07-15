@@ -8,44 +8,42 @@
     <th>Base</th>
   </tr>
   <% @tomcats.sort_by do |t|
-       [ t[:dns], t[:server].split("-").last.to_i, t[:tomcat].split("_").last.to_i ]
-     end.group_by do |t|
-       t[:dns]
-     end.each do |dns,tomcats|%>
+       [ t.dns, t.server.split("-").last.to_i, t.tomcat.split("_").last.to_i ]
+     end.group_by(&:dns).each do |dns,tomcats|%>
   <tr>
     <% tomcat = tomcats.first %>
     <td>
-      <%= tomcat[:dns] %>
+      <%= tomcat.dns %>
       <ul class="tomcat_vips">
-        <%= tomcats.map{|t| t[:vip]}.sort.uniq.map{|n| "<li>via #{n}</li>"}.join("\n").html_safe %>
+        <%= tomcats.map(&:vip).sort.uniq.map{|n| "<li>via #{n}</li>"}.join("\n").html_safe %>
       </ul>
     </td>
     <td class="center">
-      <%= tomcats.map{|t| link_to_servername t[:server]}.sort.uniq.join("<br/>").html_safe %>
+      <%= tomcats.map{|t| link_to_servername t.server}.sort.uniq.join("<br/>").html_safe %>
     </td>
     <td class="center">
-      <%= tomcats.map{|t| t[:tomcat]}.sort.uniq.join("<br/>").html_safe %>
+      <%= tomcats.map(&:tomcat).sort.uniq.join("<br/>").html_safe %>
     </td>
     <td class="center">
-      <%= tomcats.map{|t| t[:java_version]}.sort.uniq.join("<br/>").html_safe %>
+      <%= tomcats.map(&:java_version).sort.uniq.join("<br/>").html_safe %>
     </td>
     <td class="center">
-      <%= tomcats.map{|t| "#{t[:java_xms]} / #{t[:java_xmx]}"}.sort.uniq.join("<br/>").html_safe %>
+      <%= tomcats.map{|t| "#{t.java_xms} / #{t.java_xmx}"}.sort.uniq.join("<br/>").html_safe %>
     </td>
     <td class="center">
-      <% if tomcat[:cerbere] %>
+      <% if tomcat.cerbere %>
         <%= image_tag("lock.png") %><br />
-        <span class="<%= tomcat[:cerbere_csac] ? "csacok" : "csacko" %>">csac</span>
+        <span class="<%= tomcat.cerbere_csac ? "csacok" : "csacko" %>">csac</span>
       <% end %>
     </td>
-    <td><%= tomcat[:jdbc_server] %><br />
-        <%= tomcat[:jdbc_user] %> @ <%= tomcat[:jdbc_db] %></td>
+    <td><%= tomcat.jdbc_server %><br />
+        <%= tomcat.jdbc_user %> @ <%= tomcat.jdbc_db %></td>
     <!--<td class="links center">
-      <%= link_to "Nagios", "#", :title => "Nagios #{tomcat[:dns]}", :class => "link-to-nagios" %>
-      <%= link_to "Munin", "#", :title => "Munin #{tomcat[:dns]}", :class => "link-to-munin" %>
+      <%= link_to "Nagios", "#", :title => "Nagios #{tomcat.dns}", :class => "link-to-nagios" %>
+      <%= link_to "Munin", "#", :title => "Munin #{tomcat.dns}", :class => "link-to-munin" %>
       <br />
-      <%= link_to "Redmine", "#", :title => "Redmine #{tomcat[:dns]}", :class => "link-to-redmine" %>
-      <%= link_to "Doku", "#", :title => "Dokuwiki #{tomcat[:dns]}", :class => "link-to-dokuwiki" %>
+      <%= link_to "Redmine", "#", :title => "Redmine #{tomcat.dns}", :class => "link-to-redmine" %>
+      <%= link_to "Doku", "#", :title => "Dokuwiki #{tomcat.dns}", :class => "link-to-dokuwiki" %>
     </td>-->
   </tr>
   <% end %>
