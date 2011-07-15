@@ -53,7 +53,7 @@ class Application < ActiveRecord::Base
     keywords = [name] + application_instances.map(&:application_urls).flatten.map(&:url)
     docs = []
     keywords.each do |kw|
-      docs += %x(find #{Application.dokuwiki_pages_dir} -type f -ipath "*/#{kw}/*" -o -ipath "*/#{kw}.*").split("\n").map do |doc|
+      docs += %x[find #{Application.dokuwiki_pages_dir} -type f \\( -ipath "*/#{kw}/*" -o -ipath "*/#{kw}.*" \\)].split("\n").map do |doc|
         doc.gsub(Application.dokuwiki_pages_dir+"/","").gsub(/\.txt$/,"").gsub("/", ":")
       end
     end
