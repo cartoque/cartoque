@@ -64,4 +64,18 @@ class Tomcat < Hashie::Mash
   rescue Errno::ENOENT
     {}
   end
+
+  def self.filters_from(tomcats)
+    tomcats.inject({}) do |filters,tomcat|
+      tomcat.each do |key,value|
+        key = key.to_sym
+        next if key == :cerbere || key == :cerbere_csac
+        filters[key] ||= []
+        value = value.split("_").first if key == :tomcat
+        filters[key] << value unless filters[key].include?(value)
+        filters[key] = filters[key].compact.sort
+      end
+      filters
+    end
+  end
 end
