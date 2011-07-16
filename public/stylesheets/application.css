@@ -145,14 +145,15 @@ label.required abbr { color:red; border-bottom:none; }
 .simple_form .fields { padding:2px 0; }
 .simple_form .fields label { font-size:90%; }
 .simple_form .actions { margin:10px 0 5px; }
-.simple_form th, .simple_form tr.th td, .simple_form th:first-child, .simple_form td, .simple_form td:first-child { border:none; padding:8px; border-bottom:1px solid #ddd; }
-.simple_form tr th, .simple_form tr.th td { background:#edf3fe; border-bottom:1px solid #ddd !important; }
+.simple_form th, .simple_form tr.th td, .simple_form th:first-child, .simple_form td, .simple_form td:first-child { border:none; padding:5px 7px; border-bottom:1px solid #e3e3e3; }
+.simple_form tr th, .simple_form tr.th td { background:#edf3fe; border-bottom:1px solid #e3e3e3 !important; }
 .simple_form tr.th label { font-size:100% !important; }
-.simple_form table.inputs { border:1px solid #ddd; box-shadow:1px 1px 1px #ccc; }
+.simple_form table.inputs { border:1px solid #e0e0e0; box-shadow:0 0 1px #ccc; }
 .simple_form td.label label, .simple_form label.input { font-size:90%; font-weight:bold; }
+.simple_form td.multiselect { padding-bottom:1em; }
 
 /* show_for */
-.show_item { border:1px solid #ddd; box-shadow:1px 1px 1px #ccc; }
+.show_item { border:1px solid #ddd; box-shadow:0 0 1px #ccc; }
 .show_item th, .show_for tr.th td, .show_item th:first-child { border:none; padding:8px; border-bottom:1px solid #ddd; }
 .show_item tr th, .show_for tr.th td { background:#edf3fe; border-bottom:1px solid #ddd !important; }
 .show_for td.content { min-width:50%; }
@@ -200,7 +201,7 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 .actions { text-align:center; font-size:95%; margin:5px 0; }
 #container>.actions, .items_list>.actions, .grid_12>.actions { 
   position:relative; margin-bottom:10px; padding:6px 5px 5px; height:14px; line-height:14px;
-  text-align:left; background-color:#edf3fe; border:1px solid #e9edf9/*#e5e5ff*/; color:#666;
+  text-align:left; background-color:#edf3fe; color:#666; border:1px solid #e9edf9; box-shadow:0 0 1px #eee;
 }
 #container>.actions a, .items_list>.actions a, .grid_12>.actions a { margin:0 2px; }
 .actions a:first-child { margin-left:5px; }
