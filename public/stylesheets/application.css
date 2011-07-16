@@ -125,6 +125,12 @@ ul.details li { margin:0.5em 0; font-size:90%; }
 .not_found { font-weight:bold; font-size:200%; padding:50px; color:#cf0000; }
 
 /* forms */
+input[type="text"], input[type="password"], textarea {
+  padding:0.1em 0.2em; box-sizing: border-box; border: 1px solid; outline: 0; border-color: #949494 #c1c1c1 #e1e1e1;
+}
+button:focus, button:active, input:focus, input:active, select:focus, select:active, textarea:focus, textarea:active {
+  -moz-box-shadow: #06F 0 0 3px; -webkit-box-shadow: #06F 0 0 3px; box-shadow: #06F 0 0 3px;
+}
 .simple_form div.input { margin-bottom:10px; }
 .simple_form div.boolean label, .simple_form label.collection_radio { float:none; margin:0; }
 .simple_form label.collection_radio { margin-right:10px; margin-left:2px; }
