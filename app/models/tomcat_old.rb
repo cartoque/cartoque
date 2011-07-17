@@ -23,4 +23,11 @@ class TomcatOld < Hash
   def self.dir
     File.expand_path("data/tomcat_old", Rails.root)
   end
+
+  def self.filters_from(tomcats_old)
+    filters = {}
+    filters[:tomcat] = %w(tomcat4 tomcat5)
+    filters[:server] = tomcats_old.map{|t| t[:server]}.compact.sort.uniq
+    filters
+  end
 end
