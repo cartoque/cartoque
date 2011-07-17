@@ -282,7 +282,8 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .maintenance-warning { color:#f80; }
 .maintenance-critical { font-weight:bold; color:#d00; }
 .machine-mainteneur { margin:0; position:relative; display:block; padding:0 0 0 2em; list-style-type:none; }
-.mainteneur-infos { font-size:90%; }
+.mainteneur-infos ul { font-size:90%; margin:0.5em; }
+ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 .database_machines li { margin:4px auto; }
 .machine-details { font-size:90%; display:inline-block; background-color:#eee; color:#335; 
                    padding:1px 6px; margin:0 6px; border:1px solid #ccd;
