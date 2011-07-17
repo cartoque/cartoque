@@ -60,15 +60,15 @@ class ApplicationTest < ActiveSupport::TestCase
     end
   end
 
-  context "#find_docs" do
+  context "#dokuwiki_pages" do
     should "return no doc" do
       app = Application.new(:name => "app-03")
-      assert_equal [], app.find_docs
+      assert_equal [], app.dokuwiki_pages
     end
 
     should "return doc corresponding to */app_name/* or */app_name.txt" do
       app = Application.new(:name => "app-01")
-      docs = app.find_docs
+      docs = app.dokuwiki_pages
       assert_equal 2, docs.size
       assert docs.include?("app-01")
       assert docs.include?("app-01:doc")
@@ -80,7 +80,7 @@ class ApplicationTest < ActiveSupport::TestCase
       app_url = ApplicationUrl.new(:url => "app-02.example.com")
       app_instance.application_urls << app_url
       app.application_instances << app_instance
-      assert_equal ["app-02.example.com"], app.find_docs
+      assert_equal ["app-02.example.com"], app.dokuwiki_pages
     end
   end
 end

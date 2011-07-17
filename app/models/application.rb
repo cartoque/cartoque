@@ -49,7 +49,7 @@ class Application < ActiveRecord::Base
     File.expand_path("data/dokuwiki/pages", Rails.root)
   end
 
-  def find_docs
+  def dokuwiki_pages
     keywords = [name] + application_instances.map(&:application_urls).flatten.map(&:url)
     docs = []
     keywords.each do |kw|
