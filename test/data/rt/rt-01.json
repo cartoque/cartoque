@@ -1,0 +1,5 @@
+[
+{"name": "rt_client_01", "nb_queues": 3, "port": "5433", "rthost": "localhost", "type": "Pg", "requiressl": "undef", "queue_names": ["General", "___Approvals", "Tests"], "nb_tickets": 632, "host": "db-01.example.com", "nb_users": 261, "password": "secret", "user": "pguser"},
+{"name": "rt_client_02", "nb_queues": 2, "port": "5433", "rthost": "localhost", "type": "Pg", "requiressl": "undef", "queue_names": ["General", "Tests"], "nb_tickets": 67564, "host": "db-01.example.com", "nb_users": 2154, "password": "secret", "user": "pguser"}
+]
+
