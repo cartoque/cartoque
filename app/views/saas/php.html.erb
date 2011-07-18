@@ -9,6 +9,11 @@ phpenvs = File.readlines("data/php/environnements.txt").grep(/ php/).map do |lin
   p = a[3].split("/")
   {:server=>a[0], :name=>p[-1], :php_version=>p[-2], :size=>a[2].to_i*1024}
 end
+
+php5 = %x(grep -rl php-test data/rp/rp-intra-01/sites-enabled/* 2>/dev/null).split.map{|f| f.split("/").last.gsub(".appli.i2","")}
+phpenvs.reject! do |env|
+  (php5.include?(env[:name]) && env[:server] != "vm-php") || (!php5.include?(env[:name]) && env[:server] == "vm-php")
+end
 %>
 
 <% title "Software as a Service - PHP/Mysql" %>
