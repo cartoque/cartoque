@@ -1,0 +1,41 @@
+<%
+mysqldbs = File.readlines("data/php/environnements.txt").grep(/ mysql/).map do |line|
+  a = line.chomp.split(/\s+/)
+  {:server=>a[0], :name=>a[3].split("/").last, :size=>a[2].to_i}
+end
+
+phpenvs = File.readlines("data/php/environnements.txt").grep(/ php/).map do |line|
+  a = line.chomp.split(/\s+/)
+  p = a[3].split("/")
+  {:server=>a[0], :name=>p[-1], :php_version=>p[-2], :size=>a[2].to_i}
+end
+%>
+
+<% title "Software as a Service - PHP/Mysql" %>
+
+<div id="saas" class="grid_12 items_list">
+
+<%= render "submenu" %>
+
+<table class="pretty list">
+  <tr>
+    <th>Environnement</th>
+    <th>Serveur</th>
+    <th>Version PHP</th>
+    <th>Taille fichiers</th>
+    <th>Base</th>
+  </tr>
+<% phpenvs.each do |env| %>
+  <tr>
+    <td><%= env[:name] %></td>
+    <td><%= link_to_servername env[:server] %></td>
+    <td class="center"><%= env[:php_version] %></td>
+    <td class="center"><%= pretty_size(env[:size]).sub("bytes","b") %></td>
+    <td class="center"><%= mysqldbs.select{|m| m[:name].starts_with?(env[:name])}.map do |db|
+      "#{db[:name]}@#{db[:server]} (#{pretty_size(db[:size]).sub("bytes","b")})"
+    end.join("<br/>").html_safe %></td>
+  </tr>
+<% end %>
+</table>
+
+</div>

@@ -4,6 +4,6 @@
   </div>
   <ul class="select-buttons">
     <%= content_tag :li, link_to("Redmine", saa_path(:redmine)), :class => (params[:id] == "redmine" ? "current" : "") %>
-    <!--<%= content_tag :li, link_to("PHP/Mysql", saa_path(:php)), :class => (params[:id] == "php" ? "current" : "") %>-->
+    <%= content_tag :li, link_to("PHP/Mysql", saa_path(:php)), :class => (params[:id] == "php" ? "current" : "") %>
   </ul>
 <% end %>
