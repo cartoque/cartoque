@@ -16,7 +16,9 @@
 <table class="pretty list">
   <tr>
     <th>Serveur</th>
-    <th>Instances</th>
+    <th>Instance</th>
+    <th>Responsable</th>
+    <th>Stats</th>
     <th>Version</th>
     <th>Taille</th>
   </tr>
@@ -27,6 +29,10 @@
   <% @i ||= 0 ; @i += 1 %>
   <%= "<tr>".html_safe if @i != 1 %>
     <td><%= link_to instance.name, "http://#{instance.name}.project.appli.i2/" %></td>
+    <td class="center"><%= instance.admin %></td>
+    <td class="center">
+      <%= instance.nb_projects %> projets / <%= instance.nb_users %> utilisateurs
+    </td>
     <td class="center"><%= instance.version %></td>
     <td class="center"><%= pretty_size(instance.size) %></td>
   </tr>
