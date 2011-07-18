@@ -25,16 +25,24 @@ end
     <th>Taille fichiers</th>
     <th>Base</th>
   </tr>
-<% phpenvs.each do |env| %>
+<% phpenvs.group_by{|i|i[:server]}.each do |server,environments| %>
+  <% @i = 0 %>
   <tr>
+    <td rowspan="<%= environments.length %>">
+      <%= link_to_servername(server).html_safe %><br />
+      <span class="tiny">(<%= environments.length %>)</span>
+    </td>
+  <% environments.sort_by{|e| e[:name]}.each do |env| %>
+  <% @i += 1 %>
+  <%= "<tr>".html_safe if @i != 1 %>
     <td><%= env[:name] %></td>
-    <td><%= link_to_servername env[:server] %></td>
     <td class="center"><%= env[:php_version] %></td>
     <td class="center"><%= pretty_size(env[:size]).sub("bytes","b") %></td>
     <td class="center"><%= mysqldbs.select{|m| m[:name].starts_with?(env[:name])}.map do |db|
       "#{db[:name]}@#{db[:server]} (#{pretty_size(db[:size]).sub("bytes","b")})"
     end.join("<br/>").html_safe %></td>
   </tr>
+  <% end %>
 <% end %>
 </table>
 
