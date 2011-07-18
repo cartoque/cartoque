@@ -51,6 +51,7 @@ class Application < ActiveRecord::Base
 
   def dokuwiki_pages
     keywords = [name] + application_instances.map(&:application_urls).flatten.map(&:url)
+    keywords.map!{|k| k.gsub(%r{^\s*\S+://}, "").gsub(%r{/.*}, "")}
     docs = []
     keywords.each do |kw|
       docs += %x[find #{Application.dokuwiki_pages_dir} -type f \\( -ipath "*/#{kw}/*" -o -ipath "*/#{kw}.*" \\)].split("\n").map do |doc|

@@ -75,9 +75,9 @@ class ApplicationTest < ActiveSupport::TestCase
     end
 
     should "return doc depending on linked application_urls" do
-      app = Application.new(:name => "app-02")
+      app = Application.new(:name => "application-02")
       app_instance = ApplicationInstance.new(:name => "prod")
-      app_url = ApplicationUrl.new(:url => "app-02.example.com")
+      app_url = ApplicationUrl.new(:url => "http://app-02.example.com/index.php")
       app_instance.application_urls << app_url
       app.application_instances << app_instance
       assert_equal ["app-02.example.com"], app.dokuwiki_pages
