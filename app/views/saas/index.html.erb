@@ -27,8 +27,8 @@
   <% @i ||= 0 ; @i += 1 %>
   <%= "<tr>".html_safe if @i != 1 %>
     <td><%= link_to instance.name, "http://#{instance.name}.project.appli.i2/" %></td>
-    <td><%= instance.version %></td>
-    <td><%= pretty_size(instance.size) %></td>
+    <td class="center"><%= instance.version %></td>
+    <td class="center"><%= pretty_size(instance.size) %></td>
   </tr>
   <% end %>
 <% end %>
