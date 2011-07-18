@@ -1,0 +1,40 @@
+<% @rt_instances = RTInstance.all.sort_by{|i| [i.server, i.name]} %>
+
+<% title "Software as a Service - Request Tracker" %>
+
+<div id="saas" class="grid_12 items_list">
+
+<%= render "submenu" %>
+
+<table class="pretty list">
+  <tr>
+    <th>Serveur</th>
+    <th>Instance</th>
+    <th>Version</th>
+    <th>Files</th>
+    <th>Utilisateurs</th>
+    <th>Tickets</th>
+    <th>Base</th>
+  </tr>
+<% @rt_instances.group_by{|i|i.server}.each do |server,instances| %>
+  <% i = 0 %>
+  <tr>
+    <td rowspan="<%= instances.length %>"><%= link_to_servername(server).html_safe %></td>
+  <% instances.each do |instance| %>
+  <% i += 1 %>
+  <%= "<tr>".html_safe if i != 1 %>
+    <td><%= instance.name %></td>
+    <td class="center"><%= instance.version %></td>
+    <td class="center"><%= instance.nb_queues %></td>
+    <td class="center"><%= instance.nb_users %></td>
+    <td class="center"><%= instance.nb_tickets %></td>
+    <td>
+      <%= instance.host %>:<%= instance.port %><br />
+      <%= instance.user %>:<%= instance.name %><br />
+    </td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+</div>
