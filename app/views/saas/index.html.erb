@@ -28,7 +28,7 @@
   <% instances.each do |instance| %>
   <% @i ||= 0 ; @i += 1 %>
   <%= "<tr>".html_safe if @i != 1 %>
-    <td><%= link_to instance.name, "http://#{instance.name}.project.appli.i2/" %></td>
+    <td><%= link_to instance.name, "http://#{instance.name}.projet.appli.i2/" %></td>
     <td class="center"><%= instance.admin %></td>
     <td class="center">
       <%= instance.nb_projects %> projets / <%= instance.nb_users %> utilisateurs
