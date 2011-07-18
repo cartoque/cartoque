@@ -11,8 +11,9 @@
     <th>Serveur</th>
     <th>Instance</th>
     <th>Responsable</th>
-    <th>Stats</th>
     <th>Version</th>
+    <th>Projets</th>
+    <th>Utilisateurs</th>
     <th>Taille</th>
   </tr>
 <% @redmine_instances.group_by{|i|i.server}.each do |server,instances| %>
@@ -23,10 +24,9 @@
   <%= "<tr>".html_safe if @i != 1 %>
     <td><%= link_to instance.name, "http://#{instance.name}.projet.appli.i2/" %></td>
     <td class="center"><%= instance.admin %></td>
-    <td class="center">
-      <%= instance.nb_projects %> projets / <%= instance.nb_users %> utilisateurs
-    </td>
     <td class="center"><%= instance.version %></td>
+    <td class="center"><%= instance.nb_projects %></td>
+    <td class="center"><%= instance.nb_users %></td>
     <td class="center"><%= pretty_size(instance.size) %></td>
   </tr>
   <% end %>
