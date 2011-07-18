@@ -35,7 +35,7 @@ end
   <% environments.sort_by{|e| e[:name]}.each do |env| %>
   <% @i += 1 %>
   <%= "<tr>".html_safe if @i != 1 %>
-    <td><%= env[:name] %></td>
+    <td><%= link_to env[:name], "http://#{env[:name]}.appli.i2/" %></td>
     <td class="center"><%= env[:php_version] %></td>
     <td class="center"><%= pretty_size(env[:size]).sub("bytes","b") %></td>
     <td class="center"><%= mysqldbs.select{|m| m[:name].starts_with?(env[:name])}.map do |db|
