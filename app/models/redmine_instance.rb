@@ -3,22 +3,21 @@ class RedmineInstance
                 :nb_projects, :nb_users
 
   def self.all
-    return @instances if defined?(@instances)
-    @instances = []
+    all_instances = []
     files.each do |f|
       begin
         json = JSON.parse(f)
         json.each do |server, components|
           instances = components["redmine"]
           instances.each do |hsh|
-            @instances << new(hsh.merge("server"=>server))
+            all_instances << new(hsh.merge("server"=>server))
           end
         end
       rescue JSON::ParserError
         Rails.logger.error "Error parsing a JSON file for Redmine"
       end
     end
-    @instances
+    all_instances
   end
 
   def self.files
