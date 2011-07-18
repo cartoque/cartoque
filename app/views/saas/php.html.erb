@@ -38,9 +38,15 @@ end
     <td><%= link_to env[:name], "http://#{env[:name]}.appli.i2/" %></td>
     <td class="center"><%= env[:php_version] %></td>
     <td class="center"><%= pretty_size(env[:size]).sub("bytes","b") %></td>
-    <td class="center"><%= mysqldbs.select{|m| m[:name].starts_with?(env[:name])}.map do |db|
-      "#{db[:name]}@#{db[:server]} (#{pretty_size(db[:size]).sub("bytes","b")})"
-    end.join("<br/>").html_safe %></td>
+    <td>
+      <ul class="details">
+      <%= mysqldbs.select{|m| m[:name].starts_with?(env[:name])}.group_by do |db|
+            db[:server]
+          end.map do |server,dbs|
+            "<li>#{link_to_servername server}: #{dbs.map{|db| "#{db[:name]} (#{pretty_size(db[:size]).sub("bytes","b")})"}.join(", ")}</li>"
+          end.join("<br/>").html_safe %>
+      </ul>
+    </td>
   </tr>
   <% end %>
 <% end %>
