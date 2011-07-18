@@ -26,9 +26,9 @@ end
   <tr>
     <th>Environnement</th>
     <th>Serveur</th>
-    <th>Version PHP</th>
-    <th>Taille fichiers</th>
-    <th>Base</th>
+    <th>Version</th>
+    <th>Fichiers</th>
+    <th>Bases</th>
   </tr>
 <% phpenvs.group_by{|i|i[:server]}.each do |server,environments| %>
   <% @i = 0 %>
