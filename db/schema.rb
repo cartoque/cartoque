@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110720061439) do
+ActiveRecord::Schema.define(:version => 20110720062806) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20110720061439) do
     t.integer  "application_instance_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "public",                  :default => true
   end
 
   add_index "application_urls", ["application_instance_id"], :name => "index_application_urls_on_application_instance_id"
