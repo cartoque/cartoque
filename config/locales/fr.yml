@@ -79,6 +79,7 @@ fr:
   iaw: "I2/Ader/Web"
   ip: "IP"
   iscsi: "iSCSI"
+  has_drac: Carte DRAC
   previous_name: "Ancien nom"
   mainteneur: "Mainteneur"
   manufacturer: "Marque"
