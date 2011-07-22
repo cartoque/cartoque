@@ -1,19 +1,22 @@
 <tr>
-  <%= sortable_th "name", nil, :style => "width:10em" %>
+  <%= sortable_th "name", nil, :style => "min-width:10em" %>
   <%= sortable_th "ipaddress", nil, :style => "width:10em" %>
   <th style="width:12em">OS</th>
-  <%= sortable_th "manufacturer,model", t(:fullmodel), :style => "width:12em" %>
+  <%= sortable_th "manufacturer,model", t(:fullmodel), :style => "min-width:12em" %>
   <th style="width:8em">Localisation</th>
-  <th colspan="2" class="actions" style="width:4em">Actions</th>
+  <th class="actions" style="width:6em;">Actions</th>
 </tr>
 <% for machine in @machines %>
   <tr>
     <td><%= link_to machine.name, machine %></td>
-    <td><%= machine.ipaddress %></td>
+    <td class="center"><%= machine.ipaddress %></td>
     <td><%= @operating_systems[machine.operating_system_id] %></td>
     <td><%= machine.fullmodel %></td>
-    <td><%= link_to_rack @racks[machine.physical_rack_id] %></td>
-    <td class="actions"><%= link_to "Editer", edit_machine_path(machine) %></td>
-    <td class="actions"><%= link_to "Supprimer", machine, :confirm => t(:text_are_you_sure), :method => :delete %></td>
+    <td class="center"><%= link_to_rack @racks[machine.physical_rack_id] %></td>
+    <td class="actions">
+      <% action_links do %>
+        <%= link_to "edit", edit_machine_path(machine) %>&nbsp;|&nbsp;<%= link_to "suppr", machine, :confirm => t(:text_are_you_sure), :method => :delete %>
+      <% end %>
+    </td>
   </tr>
 <% end %>

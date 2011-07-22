@@ -5,7 +5,7 @@
   <th>Description</th>
   <th style="width:3em">I2 Ader Web</th>
   <th style="width:3em">ACAI Messagerie Spécifique</th>
-  <th colspan="2" class="actions" style="width:5em">Actions</th>
+  <th class="actions" style="width:6em">Actions</th>
 </tr>
 <% for application in @applications %>
   <tr>
@@ -15,7 +15,10 @@
     <td><%= application.info %></td>
     <td class="center"><%= application.iaw %></td>
     <td class="center"><%= application.ams %></td>
-    <td class="actions"><%= link_to "Editer", edit_application_path(application) %></td>
-    <td class="actions"><%= link_to "Supprimer", application, :confirm => t(:text_are_you_sure), :method => :delete %></td>
+    <td class="actions">
+      <% action_links do %>
+        <%= link_to "edit", edit_application_path(application) %>&nbsp;|&nbsp;<%= link_to "suppr", application, :confirm => t(:text_are_you_sure), :method => :delete %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
