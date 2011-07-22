@@ -18,7 +18,9 @@
   </tr>
 <% @redmine_instances.group_by{|i|i.server}.each do |server,instances| %>
   <tr>
-    <td rowspan="<%= instances.length %>"><%= link_to_servername(server).html_safe %></td>
+    <td rowspan="<%= instances.length %>" class="multirow">
+      <%= link_to_servername(server).html_safe %>
+    </td>
   <% instances.each do |instance| %>
   <% @i ||= 0 ; @i += 1 %>
   <%= "<tr>".html_safe if @i != 1 %>

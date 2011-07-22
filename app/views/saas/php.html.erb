@@ -33,7 +33,7 @@ end
 <% phpenvs.group_by{|i|i[:server]}.each do |server,environments| %>
   <% @i = 0 %>
   <tr>
-    <td rowspan="<%= environments.length %>">
+    <td rowspan="<%= environments.length %>" class="multirow">
       <%= link_to_servername(server).html_safe %><br />
       <span class="tiny">(<%= environments.length %>)</span>
     </td>

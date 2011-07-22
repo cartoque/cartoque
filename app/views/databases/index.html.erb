@@ -23,7 +23,7 @@
 
 <div class="database_type grid_6 clearfix">
 <h2>Postgres</h2>
-<table class="pretty list">
+<table class="pretty list database">
   <tr>
     <th>Serveurs</th>
     <%= database_headers_for("postgres") %>
@@ -51,7 +51,7 @@
 
 <div class="database_type grid_6">
 <h2>Oracle</h2>
-<table class="pretty list">
+<table class="pretty list database">
   <tr>
     <th>Serveurs</th>
     <%= database_headers_for("oracle") %>
@@ -60,7 +60,7 @@
     <% height = database.oracle_report.size %>
     <% height = 1 if height == 0 %>
     <tr>
-      <td rowspan="<%= height %>">
+      <td rowspan="<%= height %>" class="multirow">
         <%= database_nodes database %>
         <%= action_links do %>
           <%= link_to "edit", edit_database_path(database) %>
