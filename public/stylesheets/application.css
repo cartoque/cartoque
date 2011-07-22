@@ -4,7 +4,7 @@ body { min-width:800px; font-family:Verdana, Helvetica, Arial; font-size:12px; m
 div { margin:0; }
 a img, img.inline { border:none; margin:-2px 2px 0 0; }
 a { color:#00b; text-decoration:none; }
-a:hover { color:#e06; text-decoration:underline; }
+a:hover { color:#e06; text-decoration:none; }
 caption { padding:0 0 5px 0; margin:0 auto; width:auto; font:italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; text-align:right; }
 ul { margin:0.5em 0.5em 0.5em 2em; list-style-type:none; }
 small { font-size:90%; }
@@ -105,6 +105,7 @@ ul.details li { margin:0.5em 0; font-size:90%; }
   -webkit-border-bottom-left-radius:5px; -moz-border-radius-bottomleft:5px; border-bottom-left-radius:5px; 
 }
 #top-menu a, #top-menu a:hover { color:#000; }
+#top-menu a:hover { text-decoration:underline; }
 
 #container { background-color:#fff; text-align:left; }
 .column_wrapper { float:left; margin:0 15px 0 5px; }
