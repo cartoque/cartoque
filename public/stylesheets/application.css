@@ -142,10 +142,9 @@ label.required abbr { color:red; border-bottom:none; }
 .simple_form tr th, .simple_form tr.th td, .show_item th, .show_for tr.th td, .show_item th:first-child, .list th, .list tr.th td { 
   text-transform:capitalize; font-weight:bold; padding:5px 7px; vertical-align:middle; text-shadow:1px 1px 2px #fff;
   color:#322; background-color:#f0f0f0; border-bottom:1px solid #ccc; border-top:1px solid #ccc !important;
-  background:-moz-linear-gradient(100% 100% 90deg, #f0f0f0, #e5e5e5); 
+  background:-moz-linear-gradient(100% 100% 90deg, #e5e5e5, #f0f0f0); 
   background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#e5e5e5), to(#f0f0f0)); 
   background:-webkit-linear-gradient(#f0f0f0, #e5e5e5); 
-  background:-o-linear-gradient(#f0f0f0, #e5e5e5);
 }
 .simple_form th:last-child, .simple_form td:last-child, .show_item th:last-child, .show_for td:last-child, .list th:last-child, .list td:last-child { border-right:1px solid #ccc; }
 .simple_form tr.th label { font-size:100% !important; }
