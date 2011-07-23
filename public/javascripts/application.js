@@ -101,7 +101,7 @@ function add_fields(link, association, content) {
 
 //fixed table column sizes
 function fixTableHeaders() {
-  var selector = 'tr.fixed-size, tr.fix-on-scroll';
+  var selector = 'tr.fixed-size, #fix-on-scroll';
   $(selector).children().each(function() {
     $(this).css('width', parseInt($(this).innerWidth()) - parseInt($(this).css('paddingLeft')) - parseInt($(this).css('paddingRight')));
   });
@@ -110,7 +110,7 @@ $(function() { fixTableHeaders() });
 
 //fixed table headers on scroll
 $(function () {  
-  var selector = 'tr.fix-on-scroll';
+  var selector = '#fix-on-scroll';
   var top = $(selector).offset().top; // - parseFloat($(selector).css('marginTop').replace(/auto/, 0));
   $(window).scroll(function (event) {
     // what the y position of the scroll is
