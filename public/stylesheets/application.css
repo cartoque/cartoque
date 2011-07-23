@@ -201,6 +201,7 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 
 /* actions */
 .actions { text-align:center; font-size:95%; margin:5px 0; }
+td.actions div.actions { font-size:90%; margin:0; }
 #container>.actions, .items_list>.actions, .grid_12>.actions { 
   position:relative; margin-bottom:10px; padding:6px 5px 5px; height:14px; line-height:14px;
   text-align:left; background-color:#edf3fe; color:#666; box-shadow:0 0 1px #89f;
