@@ -101,8 +101,26 @@ function add_fields(link, association, content) {
 
 //fixed table column sizes
 $(function() {
-  var selector = 'tr.fixed-size';
+  var selector = 'tr.fixed-size, tr.fix-on-scroll';
   $(selector).children().each(function() {
     $(this).css('width', parseInt($(this).innerWidth()) - parseInt($(this).css('paddingLeft')) - parseInt($(this).css('paddingRight')));
+  });
+});
+
+//fixed table headers on scroll
+$(function () {  
+  var selector = 'tr.fix-on-scroll';
+  var top = $(selector).offset().top; // - parseFloat($(selector).css('marginTop').replace(/auto/, 0));
+  $(window).scroll(function (event) {
+    // what the y position of the scroll is
+    var y = $(this).scrollTop();
+    // whether that's below the form
+    if (y >= top) {
+      // if so, ad the fixed class
+      $(selector).addClass('fixed');
+    } else {
+      // otherwise remove it
+      $(selector).removeClass('fixed');
+    }
   });
 });
