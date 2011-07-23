@@ -59,7 +59,7 @@ GEM
     inherited_resources (1.2.2)
       has_scope (~> 0.5.0)
       responders (~> 0.6.0)
-    jquery-rails (1.0.11)
+    jquery-rails (1.0.12)
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.5.2)
@@ -169,7 +169,7 @@ DEPENDENCIES
   has_scope
   hashie
   inherited_resources
-  jquery-rails (>= 0.2.7)
+  jquery-rails (>= 1.0.12)
   mocha
   mysql2 (= 0.2.7)
   nifty-generators
