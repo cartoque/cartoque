@@ -48,7 +48,7 @@
   <% end %>
   <% unless @machine.virtual? %>
   <thead>
-    <tr><th colspan="2">Maintenance</th></tr>
+    <tr><th colspan="2" class="secondary">Maintenance</th></tr>
   </thead>
   <%= show_for @machine do |s| %>
     <%= s.attribute :mainteneur %>

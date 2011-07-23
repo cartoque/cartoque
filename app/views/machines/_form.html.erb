@@ -39,7 +39,7 @@
       <!--<%= f.input :previous_name %>-->
     </tbody>
     <tbody id="machine-maintenance" style="<%= hidden_if_virtual %>">
-      <tr><th colspan="2">Maintenance</th></tr>
+      <tr><th colspan="2" class="secondary">Maintenance</th></tr>
       <%= f.association :mainteneur %>
       <%= f.input :delivered_on, :as => :date, :order => [:day, :month, :year], :use_month_numbers => true,
                                  :start_year => Date.today.year-5, :end_year => Date.today.year+10 %>
