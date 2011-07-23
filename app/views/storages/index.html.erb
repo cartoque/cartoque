@@ -11,7 +11,7 @@
 
 <table class="pretty list center" id="storage">
   <%= form_tag storages_path(params), :id => "filters", :method => :get do -%>
-  <tr class="filters">
+  <tr class="filters fixed-size">
     <td></td>
     <td><%= select_tag "by_constructor", options_for_select([["",""]] + Storage.supported_types, params[:by_constructor]).html_safe -%></td>
     <td></td>

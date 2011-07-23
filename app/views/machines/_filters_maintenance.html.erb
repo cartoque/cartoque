@@ -4,7 +4,7 @@
   <% (controller.scopes_configuration || {}).keys.each do |scope| %>
     <%= hidden_field_tag scope, params[scope] %>
   <% end %>
-<tr class="filters">
+<tr class="filters fixed-size">
   <td>
     <%= text_field_tag "search", params[:search], :size => 12 %>
   </td>
