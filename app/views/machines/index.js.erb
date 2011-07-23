@@ -5,3 +5,4 @@ $('input[type="hidden"]#direction').attr("value","<%= escape_javascript(sort_dir
 <% end %>
 $("#machines_list").html("<%= escape_javascript(render("list_#{view_mode}")) %>");
 $("#machines_counter").html("<%= @machines.count %>");
+fixTableHeaders();

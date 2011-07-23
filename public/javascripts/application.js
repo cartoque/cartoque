@@ -100,12 +100,13 @@ function add_fields(link, association, content) {
 }
 
 //fixed table column sizes
-$(function() {
+function fixTableHeaders() {
   var selector = 'tr.fixed-size, tr.fix-on-scroll';
   $(selector).children().each(function() {
     $(this).css('width', parseInt($(this).innerWidth()) - parseInt($(this).css('paddingLeft')) - parseInt($(this).css('paddingRight')));
   });
-});
+}
+$(function() { fixTableHeaders() });
 
 //fixed table headers on scroll
 $(function () {  

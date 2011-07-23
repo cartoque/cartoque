@@ -2,3 +2,4 @@ $('input[type="hidden"]#sort').attr("value","<%= escape_javascript(sort_column) 
 $('input[type="hidden"]#direction').attr("value","<%= escape_javascript(sort_direction) %>");
 $("#applications_list").html("<%= escape_javascript(render("list")) %>");
 $("#applications_counter").html("<%= @applications.count %>");
+fixTableHeaders();
