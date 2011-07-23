@@ -314,6 +314,8 @@ ul.comparison { margin:5px; list-style-type:none; display:block; clear:both; }
 ul.comparison li { margin:0; float:left; margin:2px 5px; padding:3px 6px; background-color:#f8f8f8; border:1px solid #eee; }
 
 /* fixed elements */
+tr#fix-on-scroll { border-top:1px solid #ccc; }
+tr#fix-on-scroll.fixed { border-top:none; }
 tr.fixed { position:fixed; top:0; }
 tr.fixed td, tr.fixed th { border-top:none !important; }
 tr.fixed td:first-child, tr.fixed th:first-child { border-left:none; }

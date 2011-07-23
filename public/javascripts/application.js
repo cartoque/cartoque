@@ -101,11 +101,13 @@ function add_fields(link, association, content) {
 
 //fixed table column sizes
 function fixTableHeaders() {
-  var selector = 'tr.fixed-size, #fix-on-scroll';
-  $(selector).children().each(function() {
-    $(this).css('width', parseInt($(this).innerWidth()) - parseInt($(this).css('paddingLeft')) - parseInt($(this).css('paddingRight')));
-  });
+  $('.fixed-size, #fix-on-scroll').children().each(function() { fixElementSize($(this)); });
+  $('td.multirow').siblings().andSelf().each(function() { fixElementSize($(this)); });
 }
+function fixElementSize(elem) {
+  elem.css('width', parseInt(elem.innerWidth()) - parseInt(elem.css('paddingLeft')) - parseInt(elem.css('paddingRight')));
+}
+
 $(function() { fixTableHeaders() });
 
 //fixed table headers on scroll
