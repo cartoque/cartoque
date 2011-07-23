@@ -111,6 +111,7 @@ $(function() { fixTableHeaders() });
 //fixed table headers on scroll
 $(function () {  
   var selector = '#fix-on-scroll';
+  if ($(selector).length < 1) return false;
   var top = $(selector).offset().top; // - parseFloat($(selector).css('marginTop').replace(/auto/, 0));
   $(window).scroll(function (event) {
     // what the y position of the scroll is
