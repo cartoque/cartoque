@@ -98,3 +98,11 @@ function add_fields(link, association, content) {
   $(link).parent().before(content.replace(regexp, new_id));
   bsmizeSelects();
 }
+
+//fixed table column sizes
+$(function() {
+  var selector = 'tr.fixed-size';
+  $(selector).children().each(function() {
+    $(this).css('width', parseInt($(this).innerWidth()) - parseInt($(this).css('paddingLeft')) - parseInt($(this).css('paddingRight')));
+  });
+});
