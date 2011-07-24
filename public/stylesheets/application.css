@@ -41,7 +41,7 @@ td.label { width:75px; text-align:left; padding:6px; }
 .pretty th.current a { background-repeat:no-repeat; background-position:left center; padding-left:12px; }
 .pretty th.asc a { background-image:url(/images/arrow_up_grey.png); }
 .pretty th.desc a { background-image:url(/images/arrow_down_grey.png); }
-.pretty th.sortable, .pretty th.current { text-decoration:underline; }
+.pretty th.sortable a, .pretty th.current a { border-bottom:1px solid #aaa; }
 .pretty td { padding:5px 7px; }
 
 /* commodities */
@@ -96,7 +96,7 @@ ul.details li { margin:0.5em 0; font-size:90%; }
   -webkit-border-bottom-left-radius:4px; -moz-border-radius-bottomleft:4px; border-bottom-left-radius:4px; 
 }
 #top-menu a, #top-menu a:hover { color:#000; }
-#top-menu a:hover { text-decoration:underline; }
+#top-menu a:hover { border-bottom:1px solid #aaa; }
 
 #container { background-color:#fff; text-align:left; }
 .column_wrapper { float:left; margin:0 15px 0 5px; }
