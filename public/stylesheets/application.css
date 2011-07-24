@@ -37,7 +37,6 @@ td img { margin:0 auto; }
 td.label { width:75px; text-align:left; padding:6px; }
 .list { border:1px solid #ccc; }
 .list td { border-bottom:1px solid #ccc; color:#433; padding:2px 4px; }
-.list tr th:first-child, .list tr td:first-child { border-left:1px solid #ccc; }
 .list td.multirow { border-right:1px solid #ccc; }
 .pretty th.current a { background-repeat:no-repeat; background-position:left center; padding-left:12px; }
 .pretty th.asc a { background-image:url(/images/arrow_up_grey.png); }
