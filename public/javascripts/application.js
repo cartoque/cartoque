@@ -14,7 +14,7 @@ $(function() {
 
   //TODO: test it (Jasmine?)
   //machine 'virtual' toggling
-  $('input#machine_virtual').live('change', function(e) {
+  $('#machine_virtual').live('change', function(e) {
     $('#machine-maintenance, #machine-physical-hardware').toggle();
     if ($('input#machine_virtual').attr('checked') == true) {
       $('#machine-hardware-title').html("Ressources");
@@ -25,12 +25,12 @@ $(function() {
 
   //filters observer
   submitFilters = function() {
-    $.get($("form#filters").attr("action"), $("form#filters").serialize(), null, "script");
+    $.get($("#filters").attr("action"), $("#filters").serialize(), null, "script");
     //fallback for old browsers
     if (!('replaceState' in window.history)) return true
     //push our search to history
-    var filters = jQuery.param( jQuery.grep( $('form#filters').serializeArray(), function(o){ return o.name != "utf8" && o.value != "" } ) )
-    var url = $("form#filters").attr("action").split("?")[0] + "?" + filters
+    var filters = jQuery.param( jQuery.grep( $('#filters').serializeArray(), function(o){ return o.name != "utf8" && o.value != "" } ) )
+    var url = $("#filters").attr("action").split("?")[0] + "?" + filters
     history.replaceState(null, document.title, url);
   }
   $(".filters input").bindWithDelay("keyup", submitFilters, 300);
