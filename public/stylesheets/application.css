@@ -291,7 +291,7 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 .machine-details { font-size:90%; display:inline-block; background-color:#eee; color:#335; 
                    padding:1px 6px; margin:0 6px; border:1px solid #ccd;
                    -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px; }
-.machine_ipaddresses ul.collection { text-align:left; margin-left:1em; font-weight:bold; }
+.machine_ipaddresses ul.collection { text-align:left; margin-left:0; font-weight:bold; font-size:90%; }
 #machine_general th.machine_name, #application_general th.application_name { text-transform:uppercase; font-size:150%; }
 #machine_name, #application_name { font-size:150%; font-weight:bold; }
 

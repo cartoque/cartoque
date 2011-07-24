@@ -30,16 +30,7 @@
       </td>
     </tr>
     <% end %>
-    <tr class="wrapper machine_ipaddresses">
-      <td colspan="2">
-        <label><%= t(:ipaddresses) %> :</label><br />
-        <ul class="collection">
-        <% @machine.ipaddresses.each do |ip| %>
-          <li><%= ip %></li>
-        <% end %>
-        </ul>
-      </td>
-    </tr>
+    <%= s.association :ipaddresses %>
     <!--<%= s.attribute :server_type %>-->
     <%= s.attribute :operating_system %>
     <%= s.attribute :service %>
