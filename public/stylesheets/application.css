@@ -145,6 +145,7 @@ label.required abbr { color:red; border-bottom:none; }
   background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#e5e5e5), to(#f0f0f0)); 
   background:-webkit-linear-gradient(#f0f0f0, #e5e5e5); 
 }
+.list tr th:last-child, .list tr.th td:last-child { border-right:1px solid #ccc; }
 .simple_form tr.th label { font-size:100% !important; }
 .simple_form td.label label, .simple_form label.input, .show_for td.label, .show_for td label { font-size:85%; font-weight:bold; color:#666; }
 .simple_form tr.multiselect td.content { border-right:1px solid #ccc !important; }
