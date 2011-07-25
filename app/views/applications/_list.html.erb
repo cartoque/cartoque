@@ -17,7 +17,8 @@
     <td class="center"><%= application.ams %></td>
     <td class="actions">
       <% action_links do %>
-        <%= link_to "edit", edit_application_path(application) %>&nbsp;|&nbsp;<%= link_to "suppr", application, :confirm => t(:text_are_you_sure), :method => :delete %>
+        <%= link_to "edit", edit_application_path(application) %>&nbsp;|&nbsp;<%= link_to "suppr", application,
+                    :confirm => t(:text_confirm_delete, :element => application.name), :method => :delete %>
       <% end %>
     </td>
   </tr>
