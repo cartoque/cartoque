@@ -14,7 +14,7 @@
     <td><%= machine.fullmodel %></td>
     <td class="center"><%= link_to_rack @racks[machine.physical_rack_id] %></td>
     <td class="actions">
-      <% action_links do %>
+      <%= action_links do %>
         <%= link_to "edit", edit_machine_path(machine) %>&nbsp;|&nbsp;<%= link_to "suppr", machine,
                     :confirm => t(:text_confirm_delete, :element => machine.name), :method => :delete %>
       <% end %>
