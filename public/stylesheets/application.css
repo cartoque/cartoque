@@ -270,8 +270,8 @@ a.link-to-dokuwiki { color:#272; }
 a.link-to-dokuwiki:hover { color:#fff; background-color:#272; }
 
 /* tomcats, databases */
-table.database { width:100%; }
-table.database td, table.database th:last-child { border-right:1px solid #ccc; }
+table.databases { width:100%; }
+table.databases td, table.databases th:last-child, table.database td, table.database th:last-child { border-right:1px solid #ccc; }
 .database_nodes, .tomcat_vips { margin:0; display:block; padding:0 0 0 1.5em; list-style-type:none; color:#666; font-size:90%; }
 ul.databases-details { margin:0; position:relative; display:block; padding:0; list-style-type:none; }
 .offset { padding-left:1em; }
