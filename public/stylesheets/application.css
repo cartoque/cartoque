@@ -43,6 +43,8 @@ td.label { width:75px; text-align:left; padding:6px; }
 .pretty th.desc a { background-image:url(/images/arrow_down_grey.png); }
 .pretty th.sortable a, .pretty th.current a { border-bottom:1px solid #aaa; }
 .pretty td { padding:5px 7px; }
+tbody.long-list tr.highlight td { background-color:#fbe5f5; cursor:default; }
+tbody.long-list tr.highlight td.multirow { background-color:inherit !important; }
 
 /* commodities */
 .center { text-align:center; }

@@ -30,6 +30,7 @@ end
     <th>Fichiers</th>
     <th>Bases</th>
   </tr>
+  <tbody class="long-list">
 <% phpenvs.group_by{|i|i[:server]}.each do |server,environments| %>
   <% @i = 0 %>
   <tr>
@@ -55,6 +56,7 @@ end
   </tr>
   <% end %>
 <% end %>
+  </tbody>
 </table>
 
 </div>

@@ -111,6 +111,14 @@ function add_fields(link, association, content) {
   bsmizeSelects();
 }
 
+//highlight lines when mouse is hover
+$(function() {
+  $(".pretty.list tr").hover(
+   function() { $(this).addClass("highlight"); },
+   function() { $(this).removeClass("highlight"); }
+  )
+});
+
 //fixed table column sizes
 function fixTableHeaders() {
   $('.fixed-size, #fix-on-scroll').children().each(function() { fixElementSize($(this)); });

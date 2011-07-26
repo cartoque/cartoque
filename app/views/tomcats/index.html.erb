@@ -16,7 +16,9 @@
     <td><span id="tomcats_counter" class="counter"><%= @tomcats.count %></span></td>
   </tr>
   <% end %>
-  <tbody id="tomcats_list"><%= render 'list' %></tbody>
+  <tbody id="tomcats_list" class="long-list">
+    <%= render 'list' %>
+  </tbody>
 </table>
 
 </div>
