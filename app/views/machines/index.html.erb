@@ -1,4 +1,4 @@
-<% title "Machines" %>
+<% title "Serveurs" %>
 
 <div id="machines" class="items_list grid_12">
 
@@ -13,7 +13,7 @@
       <%= context_li "Vue maintenance", machines_path(:view_mode => "maintenance"), :current => maintenance_mode? %>
     </ul>
   </div>
-  <%= link_to "Ajouter une machine", new_machine_path %>
+  <%= link_to "Ajouter un serveur", new_machine_path %>
 <% end %>
 
 
