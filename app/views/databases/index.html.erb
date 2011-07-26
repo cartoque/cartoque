@@ -19,13 +19,10 @@
 <% postgres_databases = @databases.select{|db| db.database_type == 'postgres'} %>
 <% oracle_databases   = @databases.select{|db| db.database_type == 'oracle'} %>
 
-</div>
-
-<div class="database_type grid_6 clearfix">
-<h2>Postgres</h2>
 <table class="pretty list databases">
   <tr>
-    <th>Serveurs</th>
+    <th>Serveur</th>
+    <th>Type</th>
     <%= database_headers_for("postgres") %>
   </tr>
   <% for database in postgres_databases %>
@@ -39,6 +36,7 @@
           | <%= link_to "suppr", database, :confirm => t(:text_are_you_sure), :method => :delete %>
         <% end %>
       </td>
+      <td rowspan="<%= height %>" class="multirow center">PostgreSQL</td>
       <% if database.postgres_report.present? %>
         <%= render :partial => 'postgres_report', :collection => database.postgres_report %>
       <% else %>
@@ -46,14 +44,9 @@
       <% end %>
     </tr>
   <% end %>
-</table>
-</div>
-
-<div class="database_type grid_6">
-<h2>Oracle</h2>
-<table class="pretty list databases">
   <tr>
-    <th>Serveurs</th>
+    <th>Serveur</th>
+    <th>Type</th>
     <%= database_headers_for("oracle") %>
   </tr>
   <% for database in oracle_databases %>
@@ -67,6 +60,7 @@
           | <%= link_to "suppr", database, :confirm => t(:text_are_you_sure), :method => :delete %>
         <% end %>
       </td>
+      <td rowspan="<%= height %>" class="multirow center">Oracle</td>
       <% if database.oracle_report.present? %>
         <%= render :partial => 'oracle_report', :collection => database.oracle_report %>
       <% else %>

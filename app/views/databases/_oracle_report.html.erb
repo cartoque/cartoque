@@ -1,14 +1,12 @@
 <% if oracle_report_counter != 0 %><tr><% end %>
-<td class="center">
-  <strong>
-    <abbr title="<%= oracle_report["host"] %>"><%= oracle_report["ora_instance"] %></abbr>
-  </strong>
-  <br />
-  <small>
-    <%= oracle_report["ip"] %>
-    <br />
-    <strong><%= oracle_report["port"] %></strong>
-  </small>
+<td class="database-instance center">
+  <abbr title="<%= oracle_report["host"] %>"><%= oracle_report["ora_instance"] %></abbr>
+</td>
+<td class="database-ip center">
+  <%= oracle_report["ip"] %>
+</td>
+<td class="database-port center">
+  <%= oracle_report["port"] %>
 </td>
 <td>
   <% if oracle_report["schemas"].present? %>
