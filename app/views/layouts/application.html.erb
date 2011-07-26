@@ -53,7 +53,7 @@
           <%= link_to "Déconnexion", signout_path %>
         <% end %>
         </div>
-        <%= link_to image_tag("home.png", :alt=>"Accueil"), root_path %>
+        <%= link_to image_tag("home.png", :alt=>"Accueil"), root_path, :class => "img" %>
       <% if logged_in? %> |
         <%= link_to "Applications", applications_path %>
         <%= link_to "SaaS", saa_path(:redmine) %> |
