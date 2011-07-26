@@ -1,15 +1,3 @@
-// reject bad browsers
-$(function() {
-  $.reject({
-    reject: { all: false, msie: true },
-    display: ["firefox","chrome","safari","opera","gcf"],
-    header: "Navigateur non supporté",
-    paragraph1: "Votre navigateur n'est pas supporté, vous ne pourrez donc pas utiliser correctement cette application.",
-    paragraph2: "Veuillez utiliser un navigateur moderne et respectueux des standards :",
-    close: false
-  });
-});
-
 // application events
 $(function() {
   //table sorting

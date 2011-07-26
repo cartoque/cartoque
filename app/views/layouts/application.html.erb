@@ -25,6 +25,19 @@
   <%= javascript_include_tag "jquery.bind-with-delay", "jquery.observer" %>
   <%= javascript_include_tag "jquery.bsmselect", "jquery.bsmselect.compatibility", "jquery.bsmselect.sortable" %>
   <%= javascript_include_tag "jquery.reject.min" %>
+  <script type="text/javascript">
+        // reject bad browsers
+    $(function() {
+      $.reject({
+        reject: { all: false, msie: true },
+        display: ["firefox","chrome","safari","opera","gcf"],
+        header: "Navigateur non supporté",
+        paragraph1: "Votre navigateur n'est pas supporté, vous ne pourrez donc pas utiliser correctement cette application.",
+        paragraph2: "Veuillez utiliser un navigateur moderne et respectueux des standards :",
+        close: false
+      });
+    });
+  </script>
   <%= csrf_meta_tag %>
   <%= yield(:head) %>
 </head>
