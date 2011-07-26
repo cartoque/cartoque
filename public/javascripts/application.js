@@ -113,10 +113,10 @@ function add_fields(link, association, content) {
 
 //highlight lines when mouse is hover
 $(function() {
-  $(".pretty.list tr").hover(
-   function() { $(this).addClass("highlight"); },
-   function() { $(this).removeClass("highlight"); }
-  )
+  $(".pretty.list tr").live({
+    mouseenter: function() { $(this).addClass("highlight"); },
+    mouseleave: function() { $(this).removeClass("highlight"); }
+  })
 });
 
 //fixed table column sizes
