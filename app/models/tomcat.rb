@@ -2,8 +2,9 @@
 class Tomcat < Hashie::Mash
   def initialize(site, instance = [])
     self.default = ""
-    jdbc_server = site[7].gsub(%r{.*(:jdbc:postgresql://|:jdbc:oracle:thin:@)},"")
-    jdbc_db, jdbc_user = site[7].scan(%r{([^/:]+):(\w+)$}).first
+    jdbc_string = site[7] || ""
+    jdbc_server = jdbc_string.gsub(%r{.*(:jdbc:postgresql://|:jdbc:oracle:thin:@)},"")
+    jdbc_db, jdbc_user = jdbc_string.scan(%r{([^/:]+):(\w+)$}).first
     if jdbc_server.present? && jdbc_user.present?
       jdbc_server.gsub!("#{jdbc_db}:#{jdbc_user}","")
       jdbc_server.gsub!(%r{[/:]$},"")
