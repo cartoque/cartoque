@@ -93,7 +93,7 @@ ul.details li { margin:0.5em 0; font-size:90%; }
 /* wrappers */
 #top-menu { 
   padding:5px 8px; margin-top:0; margin-bottom:5px; background-color:#ececec; text-shadow:1px 1px 0 #fff; 
-  border-width:0 1px 1px 1px; border-style:solid; border-color:#ccc; 
+  height:18px; border-width:0 1px 1px 1px; border-style:solid; border-color:#ccc;
   -webkit-border-bottom-right-radius:4px; -moz-border-radius-bottomright:4px; border-bottom-right-radius:4px; 
   -webkit-border-bottom-left-radius:4px; -moz-border-radius-bottomleft:4px; border-bottom-left-radius:4px; 
 }
