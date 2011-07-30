@@ -51,8 +51,14 @@ $(function() {
 $(function(){
   $(".contextswitch").each(function(){
     var a=$(this), d=a.find(".toggle");
-    d.click(function(){
-      a.hasClass("nochoices") || a.toggleClass("activated")
+    d.click(function(e){
+      if (a.hasClass("activated")) {
+        a.removeClass("activated");
+      } else {
+        a.addClass("activated");
+        e.stopPropagation();
+        $(document).one("click", {contextSwitch: a}, function(e){ e.data.contextSwitch.removeClass("activated"); });
+      }
     })
   })
 });
