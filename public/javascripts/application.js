@@ -99,6 +99,10 @@ function add_fields(link, association, content) {
   bsmizeSelects();
 }
 
+// elastic <textarea>'s
+$(function() {
+  $('textarea').elastic();
+});
 //highlight lines when mouse is hover
 $(function() {
   $(".pretty.list tr").live({
