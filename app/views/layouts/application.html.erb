@@ -47,23 +47,40 @@
   <div id="container" class="container_12 clearfix">
     <div class="grid_12">
       <div id="top-menu" class="hide-when-print">
-        <div class="contextual">
+        <ul class="menu-items contextual">
         <% if logged_in? %>
-          <span class="connected-as"><%= current_user.name %></span> |
-          <%= link_to "Déconnexion", signout_path %>
+          <li class="connected-as"><%= current_user.name %></li>
+          <li><%= link_to "Déconnexion", signout_path %></li>
         <% end %>
-        </div>
-        <%= link_to image_tag("home.png", :alt=>"Accueil"), root_path, :class => "img" %>
-      <% if logged_in? %> |
-        <%= link_to "Applications", applications_path %>
-        <%= link_to "SaaS", saa_path(:redmine) %> |
-        <%= link_to "Tomcats", tomcats_path %>
-        <%= link_to "Bases", databases_path %> |
-        <%= link_to "Serveurs", machines_path %> 
-        <%= link_to "Stockage", storages_path %> |
-        <%= link_to "Outils", tool_path(:nagios_comparison), :class => "tiny" %>
-        <%= link_to "Configuration", operating_systems_path, :class => "tiny" %>
-      <% end %>
+        </ul>
+        <ul class="menu-items">
+          <li><%= link_to image_tag("home.png", :alt=>"Accueil", :size => "16x16"), root_path, :class => "img" %></li>
+        <% if logged_in? %>
+          <li class="has-submenu">
+            <%= link_to_function %(Applications <span class="arrow"></span>).html_safe, "return false" %>
+            <ul class="submenu">
+              <li><%= link_to "Standard", applications_path %></li>
+              <li><%= link_to "SaaS", saa_path(:redmine) %></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <%= link_to_function %(Composants <span class="arrow"></span>).html_safe, "return false;" %>
+            <ul class="submenu">
+              <li><%= link_to "Tomcats", tomcats_path %></li>
+              <li><%= link_to "Bases", databases_path %></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <%= link_to_function %(Infrastructure <span class="arrow"></span>).html_safe, "return false;" %>
+            <ul class="submenu">
+              <li><%= link_to "Serveurs", machines_path %></li>
+              <li><%= link_to "Stockage", storages_path %></li>
+            </ul>
+          </li>
+          <li><%= link_to "Outils", tool_path(:nagios_comparison), :class => "tiny" %></li>
+          <li><%= link_to "Configuration", operating_systems_path, :class => "tiny" %></li>
+        <% end %>
+        </ul>
       </div>
 
       <% flash.each do |name, msg| %>

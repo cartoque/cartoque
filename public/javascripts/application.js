@@ -136,3 +136,38 @@ $(function () {
     }
   });
 });
+
+//top menu items
+$(function() {
+  var otherOpen = false;
+  $('.has-submenu:not(.active)>a').live('click', openSubMenu);
+  $('.has-submenu:not(.active)>a').live('mouseenter', openSubMenuIfOtherOpen);
+  $('.has-submenu.active>a').live('click', closeAllSubMenus);
+  function openSubMenu(event) {
+    closeAllSubMenus();
+    var button = $(this).parent().addClass('active');
+    var menu = $(this).children('div');
+    var h = (button.outerHeight) ? button.outerHeight() : button.height();
+    menu.addClass('active')
+        .click(function(e) { e.stopPropagation(); })
+    $(document).one('click', {button: button}, closeSubMenu);
+    otherOpen = true;
+    return false;
+  }
+  function openSubMenuIfOtherOpen(event) {
+    if (otherOpen) { $(this).trigger('click'); }
+  }
+  function closeSubMenu(event) {
+    if (!$(event.target).hasClass("submenu") && !$(event.target).closest('.has-submenu').hasClass('active')) {
+      event.data.button.removeClass('active');
+      otherOpen = false;
+    } else {
+      $(document).one('click', {button: event.data.button}, closeSubMenu);
+    }
+  }
+  function closeAllSubMenus() {
+    $('.has-submenu').removeClass('active');
+    otherOpen = false;
+    return false;
+  }
+});
