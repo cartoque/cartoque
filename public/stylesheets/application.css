@@ -126,6 +126,7 @@ input[type="text"], input[type="password"], textarea {
 button:focus, button:active, input:focus, input:active, select:focus, select:active, textarea:focus, textarea:active {
   -moz-box-shadow: #06F 0 0 3px; -webkit-box-shadow: #06F 0 0 3px; box-shadow: #06F 0 0 3px;
 }
+textarea { margin-top:3px; }
 .simple_form div.input { margin-bottom:10px; }
 .simple_form div.boolean label, .simple_form label.collection_radio { float:none; margin:0; }
 .simple_form label.collection_radio { margin-right:10px; margin-left:2px; }
