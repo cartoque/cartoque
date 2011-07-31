@@ -49,17 +49,15 @@ $(function() {
 
 // context
 $(function(){
-  $(".contextswitch").each(function(){
-    var a=$(this), d=a.find(".toggle");
-    d.click(function(e){
-      if (a.hasClass("activated")) {
-        a.removeClass("activated");
-      } else {
-        a.addClass("activated");
-        e.stopPropagation();
-        $(document).one("click", {contextSwitch: a}, function(e){ e.data.contextSwitch.removeClass("activated"); });
-      }
-    })
+  $(".contextswitch").click(function(e){
+    var a=$(this), d=a.closest(".toggle");
+    if (a.hasClass("activated")) {
+      a.removeClass("activated");
+    } else {
+      a.addClass("activated");
+      e.stopPropagation();
+      $(document).one("click", {contextSwitch: a}, function(e){ e.data.contextSwitch.removeClass("activated"); });
+    }
   })
 });
 
