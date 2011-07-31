@@ -161,6 +161,13 @@ tr.filters input[type="text"] { border:1px solid #ccc; width:100%; }
 .items_list>table { width:100%; }
 .counter { font-style:italic; font-size:150%; float:right; font-weight:bold; }
 
+/* ajax loading ; styles adapted from redmine */
+#loading { position:absolute; background-color:#f5f5f5; color:#666; border:1px solid #ddd; top:40%; left:40%; width:20%; height:70px; line-height:70px;
+                  font-weight:bold; font-size:120%; text-align:center; padding:0.6em; z-index:100; filter:alpha(opacity=70); opacity: 0.7; }
+html>body #loading { position:fixed; }
+#loading span { background-position:0% 40%; background-repeat:no-repeat; background-image:url(../images/loading.gif);
+                       padding-left:26px; vertical-align:bottom; }
+
 /* top menu */
 /*#top-menu form { display:inline; }
 #top-menu > a { display:inline-block; position:relative; bottom:-1px; }

@@ -1,3 +1,10 @@
+// ajax loader
+$(function() {
+  $('#loading').hide()
+               .ajaxStart(function() { $(this).show(); })
+               .ajaxStop(function() { $(this).hide(); });
+});
+
 // application events
 $(function() {
   //table sorting
