@@ -183,7 +183,7 @@ tr.filters input[type="text"] { border:1px solid #ccc; width:100%; }
 #top-menu a.tiny { display:block; margin-top:0; padding-top:1px; padding-bottom:1px; }
 #top-menu a:hover { background-color:#e7e7e7; }
 #top-menu .active a:hover { background-color:#f5f5f5; }
-.menu-items { list-style:none; margin:0; padding:0 0 0 2px; }
+.menu-items { list-style-type:none; margin:0; padding:0 0 0 2px; }
 .menu-items > li { padding:0; margin:0; float:left; }
 .menu-items .submenu { position:absolute; border:1px solid /*#C3D1EC*/#ccc; box-shadow:0 1px 5px #bbb; margin-top:-1px; margin-left:-1px;
                        display:none; background-color:#f5f5f5; padding:0; width:100%; }
