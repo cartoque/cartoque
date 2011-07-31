@@ -1,6 +1,5 @@
 /* general styles */
 html { overflow-y:scroll; }
-html, body, #container { background-color:#F2F2F2; background-image:url(../images/bg.png); }
 body { min-width:800px; font-family:Verdana, Helvetica, Arial; font-size:12px; margin:0; cursor:default; }
 div { margin:0; }
 a img, img.inline { border:none; margin:-2px 2px 0 0; }
