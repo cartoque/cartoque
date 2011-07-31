@@ -345,7 +345,7 @@ p.progress-info { clear:left; font-style:italic; font-size:90%; }
 
 /* tools */
 ul.comparison { margin:5px; list-style-type:none; display:block; clear:both; }
-ul.comparison li { margin:0; float:left; margin:2px 5px; padding:3px 6px; background-color:#f8f8f8; border:1px solid #eee; }
+ul.comparison li { margin:0; float:left; margin:2px; padding:3px 5px; background-color:#f8f8f8; border:1px solid #eee; }
 
 /* fixed elements */
 tr#fix-on-scroll.fixed { border-top:none; }
