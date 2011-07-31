@@ -263,7 +263,7 @@ td.actions div.actions { font-size:90%; margin:0; }
 .contexts a { border:0 !important; display:inline-block; padding:0.4em 0.5em !important; width:100%;
               -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
 .contexts a:hover { background-color:#e4ebf8 !important; color:normal; }
-a.create-machine { color:#e06; padding:0 3px 1px; font-weight:bold; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; }
+a.create-machine { color:#e06; padding:0 3px 1px; font-weight:bold; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
 a.create-machine:hover { background-color:#e06; color:#fff; text-decoration:none; }
 a.create-machine:active { position:relative; top:1px; }
 
