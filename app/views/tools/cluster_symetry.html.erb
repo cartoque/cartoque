@@ -128,7 +128,7 @@ clusters.reject!{|cluster,hsh| cluster != params[:cluster] } unless params[:clus
   <% lists_map = hsh[:nodes].map do |n|
        File.read("#{hsh[:path]}/#{n}/#{file_list}")
      end %>
-  <% hierarchy = file_list.gsub(/^list/,"").gsub("_","/") %>
+  <% hierarchy = file_list.gsub(%r{^/list},"").gsub(/\.list$/,"").gsub("_","/") %>
   <% uniq = lists_map.uniq %>
   <% if uniq.length == 1 %>
   <tr class="identical">
