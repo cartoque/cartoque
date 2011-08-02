@@ -83,7 +83,7 @@ end
 
   <% # PACKAGES WITH VERSION %>
   <% packages_map = hsh[:nodes].map do |n|
-       File.readlines("#{hsh[:path]}/#{n}/packages.list").join("\n")
+       File.read("#{hsh[:path]}/#{n}/packages.list")
      end %>
   <% uniq = packages_map.uniq %>
   <% if uniq.length == 1 %>
@@ -110,6 +110,37 @@ end
   </tr>
   <% end %>
 
+<% # FILES HIERARCHY (LISTS) %>
+<% hsh[:lists].each do |file_list| %>
+  <% lists_map = hsh[:nodes].map do |n|
+       File.read("#{hsh[:path]}/#{n}/#{file_list}")
+     end %>
+  <% hierarchy = file_list.gsub(/^list/,"").gsub("_","/") %>
+  <% uniq = lists_map.uniq %>
+  <% if uniq.length == 1 %>
+  <tr class="identical">
+    <td>Fichiers <%= hierarchy %></td><td colspan="<%= lists_map.length %>"><%= lists_map.first.lines.count %> fichiers identiques (fichier,permissions,md5sum)</td>
+  </tr>
+  <% else %>
+  <tr class="different">
+    <td>Fichiers <%= hierarchy %></td>
+    <% lists_map.each_with_index do |files,index| %>
+      <td>
+        <%= files.lines.count %> fichiers.
+        <% if index == 0 %>
+          (référence)
+        <% else %>
+          <% diff = Diffy::Diff.new(lists_map.first, files, :diff => %w(-B -b -w -E --unified=0)).to_s(:html_simple) %>
+          <% diff.gsub!(%(<li class="ins"><ins></ins></li>),"") %>
+          <% diff.gsub!(%(<li class="del"><del></del></li>),"") %>
+          <%= diff.scan("<ins>").count + diff.scan("<del>").count %> différences avec <%= hsh[:nodes].first %>:<br />
+          <%= diff.html_safe %>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+  <% end %>
+<% end %>
 
 </table>
 <% end %>
