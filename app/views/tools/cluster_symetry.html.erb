@@ -1,4 +1,5 @@
 <%
+require 'find'
 path = Rails.root.join("data/symetry")
 clusters = {}
 Dir.glob("#{path}/*").map{|c| File.basename(c)}.sort.each do |cluster|
