@@ -71,7 +71,7 @@ end
           <% diff = Diffy::Diff.new(packages_map.first, packages, :diff => %w(-B -b -w -E --unified=0)).to_s(:html_simple) %>
           <% diff.gsub!(%(<li class="ins"><ins></ins></li>),"") %>
           <% diff.gsub!(%(<li class="del"><del></del></li>),"") %>
-          <%= diff.lines.count %> différences avec <%= hsh[:nodes].first %>:<br />
+          <%= diff.scan("<ins>").count + diff.scan("<del>").count %> différences avec <%= hsh[:nodes].first %>:<br />
           <%= diff.html_safe %>
         <% end %>
       </td>
@@ -102,7 +102,7 @@ end
           <% diff = Diffy::Diff.new(packages_map.first, packages, :diff => %w(-B -b -w -E --unified=0)).to_s(:html_simple) %>
           <% diff.gsub!(%(<li class="ins"><ins></ins></li>),"") %>
           <% diff.gsub!(%(<li class="del"><del></del></li>),"") %>
-          <%= diff.lines.count %> différences avec <%= hsh[:nodes].first %>:<br />
+          <%= diff.scan("<ins>").count + diff.scan("<del>").count %> différences avec <%= hsh[:nodes].first %>:<br />
           <%= diff.html_safe %>
         <% end %>
       </td>
