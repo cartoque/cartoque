@@ -41,6 +41,7 @@ gem 'storcs', '>= 0.0.2'
 gem 'ancestry'
 gem 'omniauth'
 gem 'hashie'
+gem 'diffy'
 
 group :test do
   gem 'shoulda'

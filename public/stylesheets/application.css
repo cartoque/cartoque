@@ -316,6 +316,25 @@ p.progress-info { clear:left; font-style:italic; font-size:90%; }
 /* tools */
 ul.comparison { margin:5px; list-style-type:none; display:block; clear:both; }
 ul.comparison li { margin:0; float:left; margin:2px 5px; padding:3px 6px; background-color:#f8f8f8; border:1px solid #eee; }
+.symetry th, .symetry td { border-right:1px solid #ccc; text-align:center; }
+.symetry td { padding:0.2em 1em; }
+.symetry tr td:first-child { font-weight:bold; padding:0.2em; text-align:left; }
+.symetry tr.identical td:first-child { color:green; }
+.symetry tr.different td:first-child { color:red; }
+
+/* diff */
+.diff{overflow:auto;text-align:left;}
+.diff .zunchanged{display:none;}
+.diff ul{background:#fff;overflow:auto;font-size:13px;list-style:none;margin:0;padding:0;display:table;width:100%;}
+.diff del, .diff ins{display:block;text-decoration:none;}
+.diff li{padding:0; display:table-row;margin: 0;height:1em;}
+.diff li.ins{background:#dfd; color:#080}
+.diff li.del{background:#fee; color:#b00}
+.diff li:hover{background:#ffc}
+/* try 'whitespace:pre;' if you don't want lines to wrap */
+.diff del, .diff ins, .diff span{white-space:pre-wrap;font-family:courier;}
+.diff del strong{font-weight:normal;background:#fcc;}
+.diff ins strong{font-weight:normal;background:#9f9;}
 
 /* fixed elements */
 tr#fix-on-scroll.fixed { border-top:none; }

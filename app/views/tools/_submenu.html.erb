@@ -3,5 +3,6 @@
     <%= content_tag :li, link_to("Comparaison Nagios", tool_path(:nagios_comparison)), :class => (params[:id] == "nagios_comparison" ? "current" : "") %>
     <%= content_tag :li, link_to("Comparaison VMWare", tool_path(:vmware_comparison)), :class => (params[:id] == "vmware_comparison" ? "current" : "") %>
     <%= content_tag :li, link_to("Comparaison Reverse-Proxies", tool_path("reverse-proxies_comparison")), :class => (params[:id] == "reverse-proxies_comparison" ? "current" : "") %>
+    <%= content_tag :li, link_to("Symétrie clusters", tool_path(:cluster_symetry)), :class => (params[:id] == "cluster_symetry" ? "current" : "") %>
   </ul>
 <% end %>

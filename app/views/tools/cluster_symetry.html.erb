@@ -1,0 +1,116 @@
+<%
+path = Rails.root.join("data/symetry")
+clusters = {}
+Dir.glob("#{path}/*").map{|c| File.basename(c)}.sort.each do |cluster|
+  clusters[cluster] = {:path => "#{path}/#{cluster}",
+                       :nodes => Dir.glob("#{path}/#{cluster}/*").map{|c| File.basename(c)}.sort}
+  files = []
+  lists = []
+  Find.find(clusters[cluster][:path]).each do |file|
+    if file.ends_with?(".list")
+      lists << file.sub(clusters[cluster][:path],"").sub(%r{^/[^/]+},"")
+    elsif File.file?(file)
+      files << file.sub(clusters[cluster][:path],"").sub(%r{^/[^/]+},"")
+    end
+  end
+  clusters[cluster][:files] = files.sort.uniq
+  clusters[cluster][:lists] = lists.sort.uniq
+end
+%>
+
+<% title "Outils - Symétrie des clusters" %>
+
+<div id="tools" class="grid_12 items_list">
+
+<%= render "submenu" %>
+
+<% clusters.each do |cluster,hsh| %>
+<h2><%= cluster.upcase %></h2>
+<table class="list symetry">
+  <tr>
+    <th> </th>
+    <% hsh[:nodes].each do |node| %>
+      <th><%= node %></th>
+    <% end %>
+  </tr>
+
+  <% # FILES %>
+  <% hsh[:files].each do |file| %>
+    <% content = hsh[:nodes].map{|n| File.readlines("#{hsh[:path]}/#{n}/#{file}").reject{|l|l.starts_with?("#") || l.blank?}.join.chomp } %>
+    <% uniq = content.uniq %>
+    <% if uniq.length == 1 %>
+    <tr class="identical">
+      <td><%= file %></td><td colspan="<%= content.length %>"><code><%= content.shift.gsub("\n","<br/>").html_safe %></code></td>
+    </tr>
+    <% else %>
+    <tr class="different">
+      <td><%= file %></td><% content.length.times do %><td><code><%= content.shift.gsub("\n","<br/>").html_safe %></code></td><% end %>
+    </tr>
+    <% end %>
+  <% end %>
+
+  <% # PACKAGES WITHOUT VERSION %>
+  <% packages_map = hsh[:nodes].map do |n|
+       File.readlines("#{hsh[:path]}/#{n}/packages.list").map{|l| l.sub(/-[0-9].*/, "")}.join("\n")
+     end %>
+  <% uniq = packages_map.uniq %>
+  <% if uniq.length == 1 %>
+  <tr class="identical">
+    <td>Packages (hors version)</td><td colspan="<%= packages_map.length %>"><%= packages_map.first.count("\n")+1 %> packages</td>
+  </tr>
+  <% else %>
+  <tr class="different">
+    <td>Packages (hors version)</td>
+    <% packages_map.each_with_index do |packages,index| %>
+      <td>
+        <%= packages.lines.count %> packages.
+        <% if index == 0 %>
+          (référence)
+        <% else %>
+          <% diff = Diffy::Diff.new(packages_map.first, packages, :diff => %w(-B -b -w -E --unified=0)).to_s(:html_simple) %>
+          <% diff.gsub!(%(<li class="ins"><ins></ins></li>),"") %>
+          <% diff.gsub!(%(<li class="del"><del></del></li>),"") %>
+          <%= diff.lines.count %> différences avec <%= hsh[:nodes].first %>:<br />
+          <%= diff.html_safe %>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+  <% end %>
+
+
+
+  <% # PACKAGES WITH VERSION %>
+  <% packages_map = hsh[:nodes].map do |n|
+       File.readlines("#{hsh[:path]}/#{n}/packages.list").join("\n")
+     end %>
+  <% uniq = packages_map.uniq %>
+  <% if uniq.length == 1 %>
+  <tr class="identical">
+    <td>Packages (avec version)</td><td colspan="<%= packages_map.length %>"><%= packages_map.first.count("\n")+1 %> packages</td>
+  </tr>
+  <% else %>
+  <tr class="different">
+    <td>Packages (avec version)</td>
+    <% packages_map.each_with_index do |packages,index| %>
+      <td>
+        <%= packages.lines.count %> packages.
+        <% if index == 0 %>
+          (référence)
+        <% else %>
+          <% diff = Diffy::Diff.new(packages_map.first, packages, :diff => %w(-B -b -w -E --unified=0)).to_s(:html_simple) %>
+          <% diff.gsub!(%(<li class="ins"><ins></ins></li>),"") %>
+          <% diff.gsub!(%(<li class="del"><del></del></li>),"") %>
+          <%= diff.lines.count %> différences avec <%= hsh[:nodes].first %>:<br />
+          <%= diff.html_safe %>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+  <% end %>
+
+
+</table>
+<% end %>
+ 
+</div>

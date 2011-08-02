@@ -33,6 +33,7 @@ GEM
       activerecord (>= 2.2.2)
     arel (2.0.10)
     builder (2.1.2)
+    diffy (2.0.3)
     em-websocket (0.3.0)
       addressable (>= 2.1.1)
       eventmachine (>= 0.12.9)
@@ -164,6 +165,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
+  diffy
   factory_girl_rails
   guard-livereload
   has_scope
