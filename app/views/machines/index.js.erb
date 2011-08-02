@@ -6,3 +6,4 @@ $('input[type="hidden"]#direction').attr("value","<%= escape_javascript(sort_dir
 $("#machines_list").html("<%= escape_javascript(render("list_#{view_mode}")) %>");
 $("#machines_counter").html("<%= @machines.count %>");
 fixTableHeaders();
+$("html, body").animate({ scrollTop: 0 }, 200);

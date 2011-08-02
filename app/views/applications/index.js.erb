@@ -3,3 +3,4 @@ $('input[type="hidden"]#direction').attr("value","<%= escape_javascript(sort_dir
 $("#applications_list").html("<%= escape_javascript(render("list")) %>");
 $("#applications_counter").html("<%= @applications.count %>");
 fixTableHeaders();
+$("html, body").animate({ scrollTop: 0 }, 200);
