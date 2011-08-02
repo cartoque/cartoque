@@ -185,29 +185,37 @@ html>body #loading { position:fixed; }
   border-width:0 1px 1px 1px; border-style:solid; border-color:#ccc; padding-right:4px;
   -webkit-border-bottom-right-radius:4px; -moz-border-radius-bottomright:4px; border-bottom-right-radius:4px;
   -webkit-border-bottom-left-radius:4px; -moz-border-radius-bottomleft:4px; border-bottom-left-radius:4px;
- }
-#top-menu li > a { text-decoration:none; color:/*#3366CC*/#000; padding:0 3px 2px 4px; display:inline-block; outline:none; }
+}
+#top-menu a { text-decoration:none; color:#000; }
 #top-menu a.tiny { display:block; margin-top:0; padding-top:1px; padding-bottom:1px; }
-#top-menu a:hover { background-color:#e7e7e7; }
+#top-menu .menu-items > li > a { display:inline-block; padding:0 4px 2px 4px; }
+#top-menu .has-submenu > a { padding:0 4px 2px 4px; display:inline-block; outline:none; }
+#top-menu .has-submenu > a:hover, .menu-items > li > a:hover { background-color:#e7e7e7; }
 #top-menu .active a:hover { background-color:#f5f5f5; }
-.menu-items { list-style-type:none; margin:0; padding:0 0 0 2px; }
-.menu-items > li { padding:0; margin:0; float:left; }
-.menu-items .submenu { position:absolute; border:1px solid /*#C3D1EC*/#ccc; box-shadow:0 1px 5px #bbb; margin-top:-1px; margin-left:-1px;
-                       display:none; background-color:#f5f5f5; padding:0; width:100%; }
-.active { position:relative; border:1px solid #ccc; border-top:0; border-bottom:0; }
-.active > a { background-color:#f5f5f5; display:block; height:21px; padding:0px 2px 2px 3px !important; position:relative; z-index:15; }
-.active .submenu { display:block !important; }
-.active .submenu > li { width:100%; margin-bottom:0; padding:0; }
-.active .submenu a { border:0 !important; display:inline-block; padding:0.4em 0.5em !important; width:100%;
-                     -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
-.active .submenu a:hover { background-color:#e4ebf8 !important; }
-.submenu { color:#000; padding:2em; line-height:normal; z-index:10; }
-.submenu ul { padding:0.3em 1.2em; list-style-type:none; }
-.submenu li { padding:0.2em 0; margin:0; }
-.arrow { /* http://hedgerwow.appspot.com/demo/arrows */ border-style:dashed; border-color:transparent; border-width:0.5em;
-         display:-moz-inline-box; display:inline-block; /* Use font-size to control the size of the arrow. */ font-size:8px;
-         margin-left:0em; margin-right:0.4em; height:0; width:0; top:0.2em; line-height:0; position:relative; vertical-align:middle;
-         border-top-width:0.5em; border-top-style:solid; border-top-color:/*#36c*/#555; }
+#top-menu ul { list-style-type:none; margin:0; }
+#top-menu .menu-items { list-style-type:none; margin:0; padding:0 0 0 2px; }
+#top-menu .menu-items > li { padding:0 1px; margin:0; float:left; }
+#top-menu .menu-items .large-submenu { position:absolute; border:1px solid /*#C3D1EC*/#ccc; box-shadow:0 1px 5px #bbb; margin-top:-1px; margin-left:-10px;
+                                       display:none; background-color:#f5f5f5; padding:0; left:0; }
+#top-menu .submenu-1 { width:150px; }
+#top-menu .submenu-2 { width:300px; }
+#top-menu .submenu-3 { width:450px; }
+#top-menu .submenu-4 { width:600px; }
+#top-menu .active { position:relative; padding:0 !important; border:1px solid #ccc; border-top:0; border-bottom:0; }
+#top-menu .active > a { background-color:#f5f5f5; display:inline-block; height:21px; position:relative; z-index:15; }
+#top-menu .active .large-submenu { display:block !important; }
+#top-menu .active .large-submenu a { border:0 !important; display:inline-block; padding:0.2em 0.5em 0.3em 0.8em !important; width:100%;
+                                     -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
+#top-menu .active .large-submenu a:hover { background-color:#e4ebf8 !important; }
+#top-menu .large-submenu { color:#000; padding:2em; line-height:normal; z-index:10; }
+#top-menu .large-submenu ul { padding:0.5em 0; list-style-type:none; width:150px; }
+#top-menu .large-submenu li { padding:0em 1em; margin:0; }
+#top-menu .large-submenu li.title { margin-top:0.4em; margin-bottom:0.2em; font-weight:bold; }
+#top-menu .arrow { /* http://hedgerwow.appspot.com/demo/arrows */ border-style:dashed; border-color:transparent; border-width:0.5em;
+                   display:-moz-inline-box; display:inline-block; /* Use font-size to control the size of the arrow. */ font-size:8px;
+                   margin-left:0.4em; margin-right:0.2em; height:0; width:0; top:0.2em; line-height:0; position:relative; vertical-align:middle;
+                   border-top-width:0.5em; border-top-style:solid; border-top-color:/*#36c*/#555; }
+#top-menu li.tiny { height:24px; font-size:90%; }
 
 /* sidebar */
 #sidebar { float:left; margin:5px 0; padding:7px 10px 10px 10px; background:#f6f6f6; width:200px; box-shadow:0 0 2px #bbb; }

@@ -1,23 +1,47 @@
+<li><%= link_to "Applications", applications_path %></li>
+<li><%= link_to "Serveurs", machines_path %></li>
 <li class="has-submenu">
-  <%= link_to_function %(Applications <span class="arrow"></span>).html_safe, "return false" %>
-  <ul class="submenu">
-    <li><%= link_to "Standard", applications_path %></li>
-    <li><%= link_to "SaaS", saa_path(:redmine) %></li>
-  </ul>
+  <%= link_to_function %(Composants <span class="arrow"></span>).html_safe, "return false" %>
+  <div class="large-submenu submenu-2" style="margin-left:-70px">
+    <ul style="float:left">
+      <li class="title">Applicatifs</li>
+      <!--<li><a href="?">Load balancers</a></li>-->
+      <!--<li><a href="?">Apache HTTP</a></li>-->
+      <li><%= link_to "Tomcat / J2EE", tomcats_path %></li>
+      <li class="title">SaaS</li>
+      <li><%= link_to "Redmine", saa_path(:redmine) %></li>
+      <li><%= link_to "PHP/Mysql", saa_path(:php) %></li>
+      <li><%= link_to "Request Tracker", saa_path(:rt) %></li>
+    </ul>
+    <ul style="float:left">
+      <li class="title">Données</li>
+      <li><%= link_to "Bases SQL", databases_path %></li>
+      <!--<li><a href="?">Talend / Sunopsis</a></li>-->
+      <!--<li><a href="?">FTP VSFTPd</a></li>-->
+      <li class="title">Stockage</li>
+      <!--<li><a href="?">Virtualisation NSS</a></li>-->
+      <li><%= link_to "Baies de stockage", storages_path %></li>
+    <!--</ul>
+    <ul style="float:left">
+      <li class="title">Messagerie</li>
+      <li><a href="?">Relais SMTP</a></li>
+      <li><a href="?">BAL Cyrus</a></li>
+      <li><a href="?">Annuaires LDAP</a></li>
+      <li><a href="?">Greylisting</a></li>
+      <li><a href="?">CalDav</a></li>
+      <li><a href="?">Z-Push</a></li>
+    </ul>
+    <ul style="float:left">
+      <li class="title">Transverses</li>
+      <li><a href="?">Puppet</a></li>
+      <li><a href="?">CRON</a></li>
+      <li><a href="?">DNS Bind</a></li>-->
+      <li class="title">Infrastructure</li>
+      <li><a href="?">Racks</a></li>
+      <!--<li><a href="?">Réseau</a></li>-->
+      <!--<li><a href="?">Sauvegardes</a></li>-->
+    </ul>
+  </div>
 </li>
-<li class="has-submenu">
-  <%= link_to_function %(Composants <span class="arrow"></span>).html_safe, "return false;" %>
-  <ul class="submenu">
-    <li><%= link_to "Tomcats", tomcats_path %></li>
-    <li><%= link_to "Bases", databases_path %></li>
-  </ul>
-</li>
-<li class="has-submenu">
-  <%= link_to_function %(Infrastructure <span class="arrow"></span>).html_safe, "return false;" %>
-  <ul class="submenu">
-    <li><%= link_to "Serveurs", machines_path %></li>
-    <li><%= link_to "Stockage", storages_path %></li>
-  </ul>
-</li>
-<li><%= link_to "Outils", tool_path(:nagios_comparison), :class => "tiny" %></li>
-<li><%= link_to "Configuration", operating_systems_path, :class => "tiny" %></li>
+<li class="tiny"><%= link_to "Outils", tool_path(:nagios_comparison) %></li>
+<li class="tiny"><%= link_to "Configuration", operating_systems_path %></li>
