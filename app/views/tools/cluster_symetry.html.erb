@@ -130,7 +130,7 @@ end
         <% if index == 0 %>
           (référence)
         <% else %>
-          <% diff = Diffy::Diff.new(lists_map.first, files, :diff => %w(-B -b -w -E --unified=0)).to_s(:html_simple) %>
+          <% diff = Diffy::Diff.new(lists_map.first, files, :diff => %w(-B -b -w -E --unified=0)).to_s(:html) %>
           <% diff.gsub!(%(<li class="ins"><ins></ins></li>),"") %>
           <% diff.gsub!(%(<li class="del"><del></del></li>),"") %>
           <%= diff.scan("<ins>").count + diff.scan("<del>").count %> différences avec <%= hsh[:nodes].first %>:<br />
