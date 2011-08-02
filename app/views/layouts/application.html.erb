@@ -57,31 +57,7 @@
         </ul>
         <ul class="menu-items">
           <li><%= link_to image_tag("home.png", :alt=>"Accueil", :size => "16x16"), root_path, :class => "img" %></li>
-        <% if logged_in? %>
-          <li class="has-submenu">
-            <%= link_to_function %(Applications <span class="arrow"></span>).html_safe, "return false" %>
-            <ul class="submenu">
-              <li><%= link_to "Standard", applications_path %></li>
-              <li><%= link_to "SaaS", saa_path(:redmine) %></li>
-            </ul>
-          </li>
-          <li class="has-submenu">
-            <%= link_to_function %(Composants <span class="arrow"></span>).html_safe, "return false;" %>
-            <ul class="submenu">
-              <li><%= link_to "Tomcats", tomcats_path %></li>
-              <li><%= link_to "Bases", databases_path %></li>
-            </ul>
-          </li>
-          <li class="has-submenu">
-            <%= link_to_function %(Infrastructure <span class="arrow"></span>).html_safe, "return false;" %>
-            <ul class="submenu">
-              <li><%= link_to "Serveurs", machines_path %></li>
-              <li><%= link_to "Stockage", storages_path %></li>
-            </ul>
-          </li>
-          <li><%= link_to "Outils", tool_path(:nagios_comparison), :class => "tiny" %></li>
-          <li><%= link_to "Configuration", operating_systems_path, :class => "tiny" %></li>
-        <% end %>
+          <%= render 'layouts/top_menu' if logged_in? %>
         </ul>
       </div>
 
