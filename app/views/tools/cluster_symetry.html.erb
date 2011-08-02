@@ -42,9 +42,9 @@ clusters.reject!{|cluster,hsh| cluster != params[:cluster] } unless params[:clus
 <h2><%= cluster.upcase %></h2>
 <table class="list symetry">
   <tr>
-    <th> </th>
+    <th style="width:10%;"> </th>
     <% hsh[:nodes].each do |node| %>
-      <th><%= node %></th>
+      <th style="width:<%= 90 / hsh[:nodes].size %>%;"><%= node %></th>
     <% end %>
   </tr>
 
