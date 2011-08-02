@@ -163,7 +163,7 @@ tr.filters input[type="text"] { border:1px solid #ccc; width:100%; }
 
 /* ajax loading ; styles adapted from redmine */
 #loading { position:absolute; background-color:#f5f5f5; color:#666; border:1px solid #ddd; top:40%; left:40%; width:20%; height:70px; line-height:70px;
-                  font-weight:bold; font-size:120%; text-align:center; padding:0.6em; z-index:100; filter:alpha(opacity=70); opacity: 0.7; }
+           font-weight:bold; font-size:120%; text-align:center; padding:0.6em; z-index:100; filter:alpha(opacity=70); opacity: 0.7; display:none; }
 html>body #loading { position:fixed; }
 #loading span { background-position:0% 40%; background-repeat:no-repeat; background-image:url(../images/loading.gif);
                        padding-left:26px; vertical-align:bottom; }
