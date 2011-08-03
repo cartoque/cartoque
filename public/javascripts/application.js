@@ -113,13 +113,6 @@ function add_fields(link, association, content) {
 $(function() {
   $('textarea').elastic();
 });
-//highlight lines when mouse is hover
-$(function() {
-  $(".pretty.list tr").live({
-    mouseenter: function() { $(this).addClass("highlight"); },
-    mouseleave: function() { $(this).removeClass("highlight"); }
-  })
-});
 
 //fixed table column sizes
 function fixTableHeaders() {
