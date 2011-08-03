@@ -1,6 +1,5 @@
 <tr id="fix-on-scroll">
   <th style="width:3em">Liens</th>
-  <%= sortable_th "criticity", nil, :style => "width:3em" %>
   <%= sortable_th "name", nil, :style => "width:10em" %>
   <th>Description</th>
   <th style="width:3em">I2 Ader Web</th>
@@ -10,7 +9,6 @@
 <% for application in @applications %>
   <tr>
     <td class="center"><%= links_for application %></td>
-    <td class="center"><%= application.criticity %></td>
     <td><%= link_to application.name, application %></td>
     <td><%= application.info %></td>
     <td class="center"><%= application.iaw %></td>
