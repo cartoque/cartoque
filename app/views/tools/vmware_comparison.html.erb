@@ -7,6 +7,7 @@ unknown_in_cartocs = vms - vms_in_cartocs.map(&:name) - physical_in_cartocs.map(
 unknown_in_vcenter = vms_in_cartocs.map(&:name) - vms
 unknown_in_vcenter.reject!{ |name| name.starts_with?("vm-hra") || name.starts_with?("vm-hrw") } #RH project we're not responsible of
 unknown_in_vcenter.reject!{ |name| name.match(/millos|ritac-|-nt-|-ac-/) } #Windows servers we're not responsible of
+unknown_in_vcenter.map!{ |name| link_to_servername name}
 notvms_in_cartocs = vms - vms_in_cartocs.map(&:name) - unknown_in_cartocs
 unknown_in_cartocs.map!{|s| server_missing s}
 
