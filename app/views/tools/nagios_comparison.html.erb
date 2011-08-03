@@ -6,6 +6,7 @@
   machines_cartocs = Machine.unscoped
 
   unknown_in_nagios = machines_cartocs.map(&:name) - machines_nagios
+  unknown_in_nagios.map!{|name| link_to_servername name}
   unknown_in_cartocs = machines_nagios - machines_cartocs.map(&:name)
   unknown_in_cartocs.map!{|s| server_missing s}
 
