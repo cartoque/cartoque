@@ -184,7 +184,6 @@ html>body #loading { position:fixed; }
   -webkit-border-bottom-left-radius:4px; -moz-border-radius-bottomleft:4px; border-bottom-left-radius:4px;
 }
 #top-menu a, #top-menu a:hover { color:#000; } */
-#top-menu .connected-as { font-weight:bold; padding-right:0.4em; }
 #top-menu { font:13px/22px Arial,sans-serif; background-color:#ececec; /*color:#3366CC;*/ height:24px;
   margin-top:0; margin-bottom:5px; background-color:#ececec; text-shadow:1px 1px 0 #fff;
   border-width:0 1px 1px 1px; border-style:solid; border-color:#ccc; padding-right:4px;
@@ -197,6 +196,8 @@ html>body #loading { position:fixed; }
 #top-menu .has-submenu > a { padding:0 4px 2px 4px; display:inline-block; outline:none; }
 #top-menu .has-submenu:hover, .menu-items > li:hover { background-color:#e7e7e7; }
 #top-menu .active:hover { background-color:#f5f5f5; }
+#top-menu .connected-as { font-weight:bold; padding-right:0.4em; }
+#top-menu .connected-as:hover { background-color:#ececec; }
 #top-menu ul { list-style-type:none; margin:0; }
 #top-menu .menu-items { list-style-type:none; margin:0; padding:0 0 0 2px; }
 #top-menu .menu-items > li { padding:0 1px; margin:0; float:left; }
