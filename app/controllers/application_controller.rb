@@ -35,6 +35,6 @@ class ApplicationController < ActionController::Base
   end
 
   def api_request?
-    request.local? && %w(json xml).include?(params[:format])
+    request.local? && %w(csv json xml).include?(params[:format])
   end
 end

@@ -1,0 +1,11 @@
+<%=
+  %w(name ipaddress operating_system manufacturer model site physical_rack serial_number
+     mainteneur contract_type delivered_on maintained_until).map{|k| %("#{t(k)}")}.join(";").html_safe
+%>
+<% for m in @machines %>
+<%=
+  [ m.name, m.ipaddress, @operating_systems[m.operating_system_id], m.manufacturer,
+    m.model, m.physical_rack.try(:site), m.physical_rack.try(:name), m.serial_number,
+    m.mainteneur, m.contract_type, m.delivered_on, m.maintained_until
+  ].map{|l| %("#{l}")}.join(";").html_safe %>
+<% end %>

@@ -4,6 +4,7 @@
 
 <%= action_links do %>
   <div class="contextual before-contextual">
+    <%= link_to image_tag("file_extension_xls.png"), machines_path(params.merge(:format => "csv")) %>
     <%= link_to image_tag("file_extension_pdf.png"), machines_path(params.merge(:format => "pdf")) %>
   </div>
   <div class="contextual contextswitch">
