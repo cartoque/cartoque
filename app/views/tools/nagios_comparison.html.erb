@@ -1,7 +1,7 @@
 <%
   path = Rails.root.join("data/nagios")
   machines_nagios = %x(grep host_name= #{path}/status.dat|cut -d"=" -f 2|sort -u).split(/\n/)
-  machines_nagios.reject!{|h| h.match(/^(VIPS?\d*_|GW_|URL_)/) }
+  machines_nagios.reject!{|h| h.match(/^(VIPS?\d*_|GW_|URL_|sgbd-prod[abc]$|sgbd-prod[abc]-[a-z])/) } # service checks that can't be renamed easily in nagios
   machines_nagios.each{|h| h.gsub!(/^(MIN_|RH_|RITAC_|AM_|DEV_)/,"") }
   machines_cartocs = Machine.unscoped
 
