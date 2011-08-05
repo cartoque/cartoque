@@ -25,8 +25,9 @@ input:focus, input:active, textarea:focus, textarea:active {
 .grid_12 .grid_6 + .grid_6 { margin-left:20px; }
 
 /* titles */
-h1 { font-weight:bold; margin:0.2em 0 0; font-family:Ubuntu,verdana,arial,sans-serif; text-align:center; color:#000; letter-spacing:1px; font-size:1.8em; }
-h2 { font-weight:bold; margin:0.2em 0 0; font-family:Ubuntu,verdana,arial,sans-serif; text-align:center; color:#333; letter-spacing:1px; font-size:1.5em; }
+h1, h2 { font-weight:bold; margin:0.4em 0 0.2em; font-family:Ubuntu,verdana,arial,sans-serif; text-align:center; letter-spacing:1px; }
+h1 { color:#000; font-size:2em; }
+h2 { color:#333; font-size:1.5em; }
 
 /* tables */
 table { padding:0; margin-top:0.5em; margin-bottom:1.5em; border-collapse:collapse; margin-left:auto; margin-right:auto; }
