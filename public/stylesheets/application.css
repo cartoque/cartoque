@@ -92,6 +92,8 @@ ul.details li { margin:0.5em 0; font-size:90%; }
 .icon-server { background-image: url(../images/server_12.png); padding-left:15px; }
 
 /* wrappers */
+noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; font-size:150%; padding-top:100px;
+           background:#f00; font-weight:bold; color:#fff; text-align:center }
 #container { background-color:#fff; text-align:left; }
 .column_wrapper { float:left; margin:0 15px 0 5px; }
 #footer { text-align:center; color:#ccc; font-size:90%; border-top:1px solid #ddd; padding-top:5px; margin-top:10px; margin-bottom:10px; }
