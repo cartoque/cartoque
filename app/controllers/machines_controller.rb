@@ -1,3 +1,5 @@
+require 'csv'
+
 class MachinesController < InheritedResources::Base
   include SortHelpers
 
