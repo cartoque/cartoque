@@ -1,5 +1,5 @@
 <%=
-  CSV.generate :col_sep => ";", :force_quotes => true do |csv|
+  CSV.generate :force_quotes => true do |csv|
     csv << %w(name ipaddress operating_system manufacturer model site physical_rack serial_number
               mainteneur contract_type delivered_on maintained_until).map{|l| t(l)}
     @machines.each do |m|
