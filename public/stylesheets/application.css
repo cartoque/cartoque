@@ -216,9 +216,9 @@ html>body #loading { position:fixed; }
 #top-menu .active { position:relative; padding:0 !important; border:1px solid #ccc; border-top:0; border-bottom:0; }
 #top-menu .active > a { background-color:#f5f5f5; display:inline-block; height:21px; position:relative; z-index:15; }
 #top-menu .active .large-submenu { display:block !important; }
-#top-menu .active .large-submenu a { border:0 !important; display:inline-block; padding:0.2em 0.5em 0.3em 0.8em !important; width:100%;
+#top-menu .active .large-submenu a { border:0 !important; display:inline-block; padding:0.3em 0.4em 0.3em 0.6em !important; width:100%;
                                      -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
-#top-menu .active .large-submenu a:hover { background-color:#e4ebf8 !important; }
+#top-menu .active .large-submenu a:hover { background-color:#e4ebf8 !important; box-shadow:inset #fff 0 -1px 0, inset #ccc 0 1px 0; border-radius:4px; }
 #top-menu .large-submenu { color:#000; padding:2em; line-height:normal; z-index:10; }
 #top-menu .large-submenu ul { padding:0.5em 0; list-style-type:none; width:150px; }
 #top-menu .large-submenu li { padding:0em 1em; margin:0; }
