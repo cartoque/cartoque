@@ -1,12 +1,14 @@
-class TomcatOld < Hash
-  def initialize(elems)
+class TomcatOld < Hashie::Mash
+  def self.from_array(elems)
+    tomcat = TomcatOld.new
     #server tomcat pid java xmx xms home : apps
-    self.default = ""
+    tomcat.default = ""
     %w(server tomcat pid java xmx xms home).each do |key|
-      self[key.to_sym] = elems.shift
+      tomcat[key.to_sym] = elems.shift
     end
     elems.shift
-    self[:apps] = elems.join(" ")
+    tomcat.apps = elems.join(" ")
+    tomcat
   end
 
   def self.all
@@ -15,7 +17,7 @@ class TomcatOld < Hash
     lines.shift
     lines.each do |line|
       elems = line.strip.split(/\s+/)
-      all << new(elems) if elems.size > 7
+      all << from_array(elems) if elems.size > 7
     end
     all
   end
@@ -25,9 +27,9 @@ class TomcatOld < Hash
   end
 
   def self.filters_from(tomcats_old)
-    filters = {}
-    filters[:tomcat] = %w(tomcat4 tomcat5)
-    filters[:server] = tomcats_old.map{|t| t[:server]}.compact.sort.uniq
+    filters = Hashie::Mash.new
+    filters.tomcat = %w(tomcat4 tomcat5)
+    filters.server = tomcats_old.map{|t| t.server}.compact.sort.uniq
     filters
   end
 end

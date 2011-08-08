@@ -54,18 +54,18 @@ class TomcatTest < ActiveSupport::TestCase
 
   context "Tomcat.filters_from" do
     should "return values from hashes" do
-      tomcats = [{:key => "value1"}, {:key => "value2"}]
-      assert_equal ({:key => ["value1", "value2"]}), Tomcat.filters_from(tomcats)
+      tomcats = [{"key" => "value1"}, {"key" => "value2"}]
+      assert_equal ({"key" => ["value1", "value2"]}), Tomcat.filters_from(tomcats)
     end
 
     should "avoid 'cerbere' and 'cerbere_csac' keys" do
-      tomcats = [{:cerbere => true, :cerbere_csac => false}]
+      tomcats = [{"cerbere" => true, "cerbere_csac" => false}]
       assert_equal ({}), Tomcat.filters_from(tomcats)
     end
 
     should "reduce 'tomcat' key to the first part before an underscore" do
       tomcats = [{:tomcat => "TC60_01"}, {:tomcat => "TC60_02"}]
-      assert_equal ({:tomcat => ["TC60"]}), Tomcat.filters_from(tomcats)
+      assert_equal ({"tomcat" => ["TC60"]}), Tomcat.filters_from(tomcats)
     end
   end
 

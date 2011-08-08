@@ -67,7 +67,7 @@ class Tomcat < Hashie::Mash
   end
 
   def self.filters_from(tomcats)
-    tomcats.inject({}) do |filters,tomcat|
+    tomcats.inject(Hashie::Mash.new) do |filters,tomcat|
       tomcat.each do |key,value|
         key = key.to_sym
         next if key == :cerbere || key == :cerbere_csac
@@ -81,10 +81,10 @@ class Tomcat < Hashie::Mash
   end
 
   def self.filter_collection(tomcats, params)
-    tomcats = tomcats.select{|t| t[:vip].starts_with?(params[:by_vip]) } if params[:by_vip].present?
-    tomcats = tomcats.select{|t| t[:server] == params[:by_server]} if params[:by_server].present?
-    tomcats = tomcats.select{|t| t[:tomcat].starts_with?(params[:by_tomcat]) } if params[:by_tomcat].present?
-    tomcats = tomcats.select{|t| t[:java_version].starts_with?(params[:by_java]) } if params[:by_java].present?
+    tomcats = tomcats.select{|t| t.vip.starts_with?(params[:by_vip]) } if params[:by_vip].present?
+    tomcats = tomcats.select{|t| t.server == params[:by_server]} if params[:by_server].present?
+    tomcats = tomcats.select{|t| t.tomcat.starts_with?(params[:by_tomcat]) } if params[:by_tomcat].present?
+    tomcats = tomcats.select{|t| t.java_version.starts_with?(params[:by_java]) } if params[:by_java].present?
     tomcats
   end
 end

@@ -7,10 +7,10 @@
 <table class="pretty list">
   <%= form_tag tomcats_path(params), :id => "filters", :method => :get do -%>
   <tr class="filters fixed-size">
-    <td><%= select_tag "by_vip", options_for_select([["",""]] + @filters[:vip], params[:by_vip]).html_safe -%></td>
-    <td><%= select_tag "by_server", options_for_select([["",""]] + @filters[:server], params[:by_server]).html_safe -%></td>
-    <td><%= select_tag "by_tomcat", options_for_select([["",""]] + @filters[:tomcat], params[:by_tomcat]).html_safe -%></td>
-    <td><%= select_tag "by_java", options_for_select([["",""]] + @filters[:java_version], params[:by_java]).html_safe -%></td>
+    <td><%= select_tag "by_vip", options_for_select([["",""]] + @filters.vip, params[:by_vip]).html_safe -%></td>
+    <td><%= select_tag "by_server", options_for_select([["",""]] + @filters.server, params[:by_server]).html_safe -%></td>
+    <td><%= select_tag "by_tomcat", options_for_select([["",""]] + @filters.tomcat, params[:by_tomcat]).html_safe -%></td>
+    <td><%= select_tag "by_java", options_for_select([["",""]] + @filters.java_version, params[:by_java]).html_safe -%></td>
     <td></td>
     <td></td>
     <td><span id="tomcats_counter" class="counter"><%= @tomcats.count %></span></td>
