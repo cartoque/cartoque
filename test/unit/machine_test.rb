@@ -48,6 +48,10 @@ class MachineTest < ActiveSupport::TestCase
 
     should "display cpu" do
       assert_equal "4 * 4 cores, 3.2 GHz<br />(Xeon 2300)", @machine.cpu
+      @machine.nb_coeur = nil
+      assert_equal "4 * 3.2 GHz<br />(Xeon 2300)", @machine.cpu
+      @machine.nb_coeur = 1
+      assert_equal "4 * 3.2 GHz<br />(Xeon 2300)", @machine.cpu
     end
 
     should "display ram" do

@@ -66,7 +66,8 @@ class Machine < ActiveRecord::Base
   def cores
     html = ""
     html << "#{nb_proc} * " unless nb_proc == 1
-    html << "#{nb_coeur} cores, #{frequency} GHz"
+    html << "#{nb_coeur} cores, " unless nb_coeur.blank? || nb_coeur <= 1
+    html << "#{frequency} GHz"
     html.html_safe
   end
 
