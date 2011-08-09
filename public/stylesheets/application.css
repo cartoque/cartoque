@@ -344,6 +344,7 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 
 /* machines */
 .virtual-machine { float:right; text-transform:uppercase; font-weight:bolder; color:#3a3; }
+.hidden-if-virtual.virtual { display:none; }
 .maintenance-warning { color:#f80; }
 .maintenance-critical { font-weight:bold; color:#d00; }
 .machine-mainteneur { margin:0; position:relative; display:block; padding:0 0 0 2em; list-style-type:none; }

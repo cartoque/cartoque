@@ -18,10 +18,9 @@ $(function() {
     e.preventDefault();
   });
 
-  //TODO: test it (Jasmine?)
   //machine 'virtual' toggling
   $('#machine_virtual').live('change', function(e) {
-    $('#machine-maintenance, #machine-physical-hardware').toggle();
+    $('.hidden-if-virtual').toggleClass("virtual");
     if ($('input#machine_virtual').attr('checked') == true) {
       $('#machine-hardware-title').html("Ressources");
     } else {

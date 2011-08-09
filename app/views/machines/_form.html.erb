@@ -1,4 +1,4 @@
-<% hidden_if_virtual = @machine.virtual? ? 'display:none;' : '' %>
+<% css_classes_physical = "hidden-if-virtual" + (@machine.virtual? ? " virtual" : "") %>
 
 <%= simple_form_for(@machine) do |f| %>
   <%= action_links do %>
@@ -38,7 +38,7 @@
       <%= f.association :theme %>
       <!--<%= f.input :previous_name %>-->
     </tbody>
-    <tbody id="machine-maintenance" style="<%= hidden_if_virtual %>">
+    <tbody id="machine-maintenance" class="<%= css_classes_physical %>">
       <tr><th colspan="2" class="secondary">Maintenance</th></tr>
       <%= f.association :mainteneur %>
       <%= f.input :delivered_on, :as => :date, :order => [:day, :month, :year], :use_month_numbers => true,
@@ -56,16 +56,16 @@
     <thead>
       <tr><th colspan="2" id="machine-hardware-title"><%= @machine.virtual? ? "Ressources" : "Matériel" %></th></tr>
     </thead>
-    <tbody id="machine-physical-hardware" style="<%= hidden_if_virtual %>">
+    <tbody id="machine-physical-hardware" class="<%= css_classes_physical %>">
       <%= f.association :physical_rack, :collection => PhysicalRack.all.map{|r| [r,r.id]} %>
       <%= f.input :model %>
       <%= f.input :manufacturer %>
     </tbody>
     <tbody>
       <%= f.input :nb_proc, :collection => [1,2,4,6,8,10,12,16,24,32] %>
-      <%= f.input :ref_proc %>
+      <%= f.input :ref_proc, :wrapper_class => css_classes_physical %>
       <%= f.input :frequency, :as => :string %>
-      <%= f.input :nb_coeur, :collection => [1,2,4,6,8] %>
+      <%= f.input :nb_coeur, :collection => [1,2,4,6,8], :wrapper_class => css_classes_physical %>
       <%= f.input :memory %>
       <%= f.input :disk_type %>
       <%= f.input :nb_disk, :as => :string %>
@@ -73,11 +73,14 @@
       <%= f.input :disk_type_alt %>
       <%= f.input :nb_disk_alt, :as => :string %>
       <%= f.input :disk_size_alt, :as => :string %>
-      <%= f.association :media_drive %>
+      <%= f.association :media_drive, :wrapper_class => css_classes_physical %>
       <%= f.input :nb_rj45, :collection => 0..32 %>
-      <%= f.input :nb_fc, :collection => 0..12 %>
-      <%= f.input :nb_iscsi, :collection => 0..12 %>
-      <%= f.input :has_drac, :as => :select, :include_blank => false %>
+      <%= f.input :nb_fc, :collection => 0..12,
+                  :wrapper_class => css_classes_physical %>
+      <%= f.input :nb_iscsi, :collection => 0..12,
+                  :wrapper_class => css_classes_physical %>
+      <%= f.input :has_drac, :as => :select, :include_blank => false,
+                  :wrapper_class => css_classes_physical %>
     </tbody>
   </table>
   </div>
