@@ -1,5 +1,4 @@
 Cartocs::Application.routes.draw do
-  resources :tools, :only => :show
   resources :saas, :only => :show
   resources :mainteneurs
   resources :users, :except => :show
@@ -17,6 +16,8 @@ Cartocs::Application.routes.draw do
     collection { get 'maintenance' }
   end
   resources :applications
+
+  get 'tools(/:action(/:id(.:format)))', :to => 'tools', :as => 'tool'
 
   match 'auth/:provider/callback' => 'sessions#create'
   match 'signout' => 'sessions#destroy', :as => :signout

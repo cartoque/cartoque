@@ -28,14 +28,14 @@ end
 <%= action_links do %>
   <ul class="select-buttons">
   <% clusters.keys.each do |cluster| %>
-    <%= content_tag :li, link_to(cluster, tool_path(:cluster_symetry, :cluster => cluster)), :class => (params[:cluster] == cluster ? "current" : "") %>
+    <%= content_tag :li, link_to(cluster, tool_path(:cluster_symetry, :id => cluster)), :class => (params[:id] == cluster ? "current" : "") %>
   <% end %>
   </ul>
 <% end %>
 
 <%
 #limit clusters
-clusters.reject!{|cluster,hsh| cluster != params[:cluster] } unless params[:cluster] == "all"
+clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "all"
 %>
 
 <% clusters.each do |cluster,hsh| %>
