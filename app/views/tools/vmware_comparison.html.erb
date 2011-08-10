@@ -1,7 +1,7 @@
 <%
 vms = File.readlines(Rails.root.join("data/vmware/virtual_machines.txt")).map(&:chomp!)
-vms_in_cartocs = Machine.unscoped.where(:virtual => true)
-physical_in_cartocs = Machine.unscoped.where(:virtual => false)
+vms_in_cartocs = Machine.where(:virtual => true)
+physical_in_cartocs = Machine.where(:virtual => false)
 
 unknown_in_cartocs = vms - vms_in_cartocs.map(&:name) - physical_in_cartocs.map(&:name)
 unknown_in_vcenter = vms_in_cartocs.map(&:name) - vms

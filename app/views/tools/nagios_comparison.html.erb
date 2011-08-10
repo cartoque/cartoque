@@ -3,7 +3,7 @@
   machines_nagios = %x(grep host_name= #{path}/status.dat|cut -d"=" -f 2|sort -u).split(/\n/)
   machines_nagios.reject!{|h| h.match(/^(VIPS?\d*_|GW_|URL_|sgbd-prod[abc]$|sgbd-prod[abc]-[a-z])/) } # service checks that can't be renamed easily in nagios
   machines_nagios.each{|h| h.gsub!(/^(MIN_|RH_|RITAC_|AM_|DEV_)/,"") }
-  machines_cartocs = Machine.unscoped
+  machines_cartocs = Machine.all
 
   unknown_in_nagios = machines_cartocs.map(&:name) - machines_nagios
   unknown_in_nagios.reject!{ |name| name.starts_with?("vm-hra") || name.starts_with?("vm-hrw") } #RH project we're not responsible of
