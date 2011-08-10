@@ -27,7 +27,7 @@ class Machine < ActiveRecord::Base
   scope :by_system, proc {|system_id| { :conditions => { :operating_system_id => OperatingSystem.find(system_id).subtree.map(&:id) } } }
 
   validates_presence_of :name
-  validates_format_of :name, :with => /^[a-z0-9_-]$/i
+  validates_format_of :name, :with => /^[a-z0-9_-]+$/i
 
   before_save :update_main_ipaddress
 
