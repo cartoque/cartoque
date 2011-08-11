@@ -27,8 +27,11 @@ class Machine < ActiveRecord::Base
   scope :by_system, proc {|system_id| { :conditions => { :operating_system_id => OperatingSystem.find(system_id).subtree.map(&:id) } } }
 
   validates_presence_of :name
-  validates_format_of :name, :with => /^[a-z0-9_-]+$/i
+  validates_uniqueness_of :name
+  validates_uniqueness_of :identifier
 
+  before_validation :sanitize_attributes
+  before_validation :update_identifier
   before_save :update_main_ipaddress
 
   def to_s
@@ -46,6 +49,20 @@ class Machine < ActiveRecord::Base
       self.subnet = $1.first(-1)
       self.lastbyte = $2
     end
+  end
+
+  def sanitize_attributes
+    self.name = self.name.strip
+  end
+
+  def update_identifier
+    self.identifier = Machine.identifier_for(self.name)
+  end
+
+  def self.identifier_for(name)
+    name.downcase.gsub(/[^a-z0-9_-]/,"-")
+                 .gsub(/--+/, "-")
+                 .gsub(/^-|-$/,"")
   end
 
   def update_main_ipaddress

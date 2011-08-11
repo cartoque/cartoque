@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110720062806) do
+ActiveRecord::Schema.define(:version => 20110811050325) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(:version => 20110720062806) do
     t.date    "maintained_until"
     t.integer "ipaddress",           :limit => 8
     t.boolean "has_drac",                           :default => false
+    t.string  "identifier"
   end
 
   add_index "machines", ["database_id"], :name => "index_machines_on_database_id"

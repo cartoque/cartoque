@@ -62,4 +62,21 @@ class MachineTest < ActiveSupport::TestCase
       assert_equal "5 * 13G (SAS)", @machine.disks
     end
   end
+
+  context "#identifier" do
+    should "automatically generate an identifier" do
+      m = Machine.create(:name => "blah")
+      assert_equal "blah", m.identifier
+      m = Machine.create(:name => "( bizarr# n@me )")
+      assert_equal "bizarr-n-me", m.identifier
+    end
+
+    should "prevent from having 2 machines with the same identifier" do
+      m1 = Machine.create(:name => "srv1")
+      m2 = Machine.new(:name => "(srv1)")
+      assert ! m2.valid?
+      assert_equal m1.identifier, m2.identifier
+      assert m2.errors.has_key?(:identifier)
+    end
+  end
 end
