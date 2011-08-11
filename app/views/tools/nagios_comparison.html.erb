@@ -14,10 +14,11 @@
 
   tomcats_jason = Tomcat.all.map{|t| t[:tomcat]+"@"+t[:server]}.select{|t| t.match(/\S@\S/)}
   tomcats_nagios = []; prev=""
-  File.open("#{Rails.root}/data/nagios/status.dat").each_line do |line|
+  datafile = "#{Rails.root}/data/nagios/status.dat"
+  File.open(datafile).each_line do |line|
     tomcats_nagios << line.split("PROCESS_").last.chomp + "@" + prev.split("=").last.chomp if line.include?("PROCESS_TC")
     prev=line
-  end
+  end if File.exists?(datafile)
   tomcat_unknown_in_nagios = tomcats_jason - tomcats_nagios
   tomcat_unknown_in_nagios.reject!{|t| t.match(/vm-preprod/) }
   nb_tomcats = tomcats_jason.reject!{|t| t.match(/vm-preprod/) }.count
