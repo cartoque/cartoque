@@ -79,4 +79,25 @@ class MachineTest < ActiveSupport::TestCase
       assert m2.errors.has_key?(:identifier)
     end
   end
+
+  context "#find" do
+    setup do
+      @machine = Factory(:machine)
+    end
+
+    should "work normally with ids" do
+      assert_equal @machine, Machine.find(@machine.id)
+      assert_equal @machine, Machine.find(@machine.id.to_s)
+    end
+
+    should "work with identifiers too" do
+      assert_equal @machine, Machine.find(@machine.identifier)
+    end
+
+    should "raise an exception if no existing record with this identifier" do
+      assert_raise ActiveRecord::RecordNotFound do
+        Machine.find("non-existent")
+      end
+    end
+  end
 end

@@ -34,6 +34,16 @@ class Machine < ActiveRecord::Base
   before_validation :update_identifier
   before_save :update_main_ipaddress
 
+  def self.find(*args)
+    if args.first && args.first.is_a?(String) && !args.first.match(/^\d*$/)
+      machine = find_by_identifier(*args)
+      raise ActiveRecord::RecordNotFound, "Couldn't find Machine with identifier=#{args.first}" if machine.nil?
+      machine
+    else
+      super
+    end
+  end
+
   def to_s
     name
   end
