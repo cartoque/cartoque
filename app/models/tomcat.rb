@@ -67,7 +67,9 @@ class Tomcat < Hashie::Mash
   end
 
   def self.filters_from(tomcats)
-    tomcats.inject(Hashie::Mash.new) do |filters,tomcat|
+    filters_from = Hashie::Mash.new
+    filters_from.default = []
+    tomcats.inject(filters_from) do |filters,tomcat|
       tomcat.each do |key,value|
         key = key.to_sym
         next if key == :cerbere || key == :cerbere_csac

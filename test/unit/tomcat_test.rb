@@ -67,6 +67,10 @@ class TomcatTest < ActiveSupport::TestCase
       tomcats = [{:tomcat => "TC60_01"}, {:tomcat => "TC60_02"}]
       assert_equal ({"tomcat" => ["TC60"]}), Tomcat.filters_from(tomcats)
     end
+
+    should "return an array if key doesn't exist" do
+      assert_equal [], Tomcat.filters_from([]).non_existent_key
+    end
   end
 
   context "Tomcat.filter_collection" do
