@@ -27,7 +27,7 @@ class MachinesControllerTest < ActionController::TestCase
 
   test "should create machine" do
     assert_difference('Machine.count') do
-      post :create, :machine => @machine.attributes
+      post :create, :machine => @machine.attributes.merge("name" => "new-server")
     end
 
     assert_redirected_to machine_path(assigns(:machine))
