@@ -68,7 +68,6 @@ class Tomcat < Hashie::Mash
 
   def self.filters_from(tomcats)
     filters_from = Hashie::Mash.new
-    filters_from.default = []
     tomcats.inject(filters_from) do |filters,tomcat|
       tomcat.each do |key,value|
         key = key.to_sym
@@ -80,6 +79,8 @@ class Tomcat < Hashie::Mash
       end
       filters
     end
+    filters_from.default = []
+    filters_from
   end
 
   def self.filter_collection(tomcats, params)
