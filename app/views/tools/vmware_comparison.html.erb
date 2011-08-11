@@ -1,5 +1,7 @@
 <%
-vms = File.readlines(Rails.root.join("data/vmware/virtual_machines.txt")).map(&:chomp!)
+vms = []
+datafile = Rails.root.join("data/vmware/virtual_machines.txt")
+vms = File.readlines(datafile).map(&:chomp!) if File.exists?(datafile)
 vms_in_cartocs = Machine.where(:virtual => true)
 physical_in_cartocs = Machine.where(:virtual => false)
 
