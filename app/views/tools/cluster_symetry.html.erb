@@ -52,7 +52,7 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
   <% hsh[:files].each do |file| %>
     <% content = hsh[:nodes].map do |n|
          file_path = "#{hsh[:path]}/#{n}/#{file}"
-         File.exists?(file_path) ? File.readlines(file_path).reject{|l|l.starts_with?("#") || l.blank?}.join.chomp : []
+         File.exists?(file_path) ? File.readlines(file_path).reject{|l|l.starts_with?("#") || l.blank?}.join.chomp : ""
        end %>
     <% uniq = content.uniq %>
     <% if uniq.length == 1 %>
@@ -69,7 +69,7 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
   <% # PACKAGES WITHOUT VERSION %>
   <% packages_map = hsh[:nodes].map do |n|
        pkg_file = "#{hsh[:path]}/#{n}/packages.list"
-       File.exists?(pkg_file) ? File.readlines(pkg_file).map{|l| l.sub(/-[0-9].*/, "")}.join("\n") : []
+       File.exists?(pkg_file) ? File.readlines(pkg_file).map{|l| l.sub(/-[0-9].*/, "")}.join("\n") : ""
      end %>
   <% uniq = packages_map.uniq %>
   <% if uniq.length == 1 %>
@@ -101,7 +101,7 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
   <% # PACKAGES WITH VERSION %>
   <% packages_map = hsh[:nodes].map do |n|
        pkg_file = "#{hsh[:path]}/#{n}/packages.list"
-       File.exists?(pkg_file) ? File.read(pkg_file) : []
+       File.exists?(pkg_file) ? File.read(pkg_file) : ""
      end %>
   <% uniq = packages_map.uniq %>
   <% if uniq.length == 1 %>
@@ -132,7 +132,7 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
 <% hsh[:lists].each do |file_list| %>
   <% lists_map = hsh[:nodes].map do |n|
        file_path = "#{hsh[:path]}/#{n}/#{file_list}"
-       File.exists?(file_path) ? File.read(file_path) : []
+       File.exists?(file_path) ? File.read(file_path) : ""
      end %>
   <% hierarchy = file_list.gsub(%r{^/list},"").gsub(/\.list$/,"").gsub("_","/") %>
   <% uniq = lists_map.uniq %>
