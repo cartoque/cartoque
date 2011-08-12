@@ -41,7 +41,7 @@ end
   <% @i = 0 %>
   <tr>
     <td rowspan="<%= environments.length %>" class="multirow">
-      <%= link_to_servername(server).html_safe %><br />
+      <%= link_to_server_if_exists(server).html_safe %><br />
       <span class="tiny">(<%= environments.length %>)</span>
     </td>
   <% environments.sort_by{|e| e[:name]}.each do |env| %>
@@ -55,7 +55,7 @@ end
       <%= mysqldbs.select{|m| m[:name].starts_with?(env[:name])}.group_by do |db|
             db[:server]
           end.map do |server,dbs|
-            "<li>#{link_to_servername server}: #{dbs.map{|db| "#{db[:name]} (#{pretty_size(db[:size]).sub("bytes","b")})"}.join(", ")}</li>"
+            "<li>#{link_to_server_if_exists server}: #{dbs.map{|db| "#{db[:name]} (#{pretty_size(db[:size]).sub("bytes","b")})"}.join(", ")}</li>"
           end.join("<br/>").html_safe %>
       </ul>
     </td>

@@ -19,7 +19,7 @@
 <% @redmine_instances.group_by{|i|i.server}.each do |server,instances| %>
   <tr>
     <td rowspan="<%= instances.length %>" class="multirow">
-      <%= link_to_servername(server).html_safe %>
+      <%= link_to_server_if_exists(server).html_safe %>
     </td>
   <% instances.each do |instance| %>
   <% @i ||= 0 ; @i += 1 %>

@@ -19,7 +19,7 @@
       </ul>
     </td>
     <td class="center">
-      <%= tomcats.map{|t| link_to_servername t.server}.sort.uniq.join("<br/>").html_safe %>
+      <%= tomcats.map{|t| link_to_server_if_exists t.server}.sort.uniq.join("<br/>").html_safe %>
     </td>
     <td class="center">
       <%= tomcats.map(&:tomcat).sort.uniq.join("<br/>").html_safe %>

@@ -112,12 +112,12 @@ module ApplicationHelper
   end
 
   def link_to_servername(name)
+    link_to name, machine_path(Machine.identifier_for(name))
+  end
+
+  def link_to_server_if_exists(name)
     s = Machine.find_by_name(name)
-    if s
-      link_to name, s
-    else
-      server_missing name
-    end
+    s ? link_to(name, s) : server_missing(name)
   end
 
   def server_missing(name)

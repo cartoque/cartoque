@@ -43,17 +43,24 @@ class ApplicationHelperTest < ActionView::TestCase
     end
   end
 
-  context "#link_to_servername" do
+  context "#link_to_server_if_exists" do
     should "return server name if no server found" do
-      link = link_to_servername("blah")
+      link = link_to_server_if_exists("blah")
       assert link.include?("blah")
       render :text => link
       assert_select "a", "+"
     end
 
     should "return a link to the server if a server with that name exists" do
-      render :text => link_to_servername(Factory(:machine).name)
+      render :text => link_to_server_if_exists(Factory(:machine).name)
       assert_select "a", "server-01"
+    end
+  end
+
+  context "#link_to_servername" do
+    should "return a link to /machines/<server identifier>" do
+      render :text => link_to_servername(Factory(:machine).name)
+      assert_select "a[href=/machines/server-01]"
     end
   end
 end
