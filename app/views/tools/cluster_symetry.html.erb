@@ -15,7 +15,7 @@ Dir.glob("#{path}/*").map{|c| File.basename(c)}.sort.each do |cluster|
     end
   end
   clusters[cluster][:files] = files.sort.uniq
-  clusters[cluster][:lists] = lists.sort.uniq
+  clusters[cluster][:lists] = lists.reject{|f| f.ends_with?("packages.list")}.sort.uniq
 end
 %>
 
