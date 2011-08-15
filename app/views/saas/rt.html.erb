@@ -6,7 +6,7 @@
 
 <%= render "submenu" %>
 
-<table class="pretty list">
+<table class="pretty list bug-on-scroll">
   <tr id="fix-on-scroll">
     <th>Serveur</th>
     <th>Instance</th>
@@ -16,6 +16,7 @@
     <th>Tickets</th>
     <th>Base</th>
   </tr>
+  <tbody class="long-list">
 <% @rt_instances.group_by{|i|i.server}.each do |server,instances| %>
   <% i = 0 %>
   <tr>
@@ -37,6 +38,7 @@
   </tr>
   <% end %>
 <% end %>
+  </tbody>
 </table>
 
 </div>

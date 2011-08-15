@@ -398,9 +398,9 @@ tr.fixed td, tr.fixed th { border-top:none !important; }
 tr.fixed td:first-child, tr.fixed th:first-child { border-left:none; }
 
 /* bugs with chrome+td[multirow] */
-#php { border-top:none; }
-#php th { border-top:1px solid #ccc; }
-#php th:last-child { border-right:none; }
+#php, .bug-on-scroll { border-top:none !important; }
+#php th, .bug-on-scroll th { border-top:1px solid #ccc; }
+#php th:last-child, .bug-on-scroll th:last-child { border-right:none; }
 
 /* media=print */
 @media print {
