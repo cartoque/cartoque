@@ -1,5 +1,5 @@
 class RedmineInstance
-  attr_accessor :name, :server, :version, :size, :admin,
+  attr_accessor :name, :server, :version, :plugins, :size, :admin,
                 :nb_projects, :nb_users
 
   def self.all
@@ -36,5 +36,6 @@ class RedmineInstance
     @admin = hsh["admin"]
     @nb_projects = hsh["nb_projects"].to_i
     @nb_users = hsh["nb_users"].to_i
+    @plugins = hsh["plugins"] || []
   end
 end

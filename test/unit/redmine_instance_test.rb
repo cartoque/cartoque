@@ -24,6 +24,7 @@ class RedmineInstanceTest < ActiveSupport::TestCase
       assert_equal 1, files.size
       assert files.first.is_a?(String)
     end
+
     should "return all redmine instances" do
       instances = RedmineInstance.all
       assert_equal 3, instances.size
@@ -32,6 +33,7 @@ class RedmineInstanceTest < ActiveSupport::TestCase
       assert_equal "server-01", instance.server
       assert_equal "1.2.0.stable", instance.version
       assert_equal 91247869, instance.size
+      assert instance.plugins.is_a?(Array)
     end
   end
 end

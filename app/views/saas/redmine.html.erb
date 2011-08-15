@@ -1,4 +1,5 @@
 <% @redmine_instances = RedmineInstance.all.sort_by{|i| [i.server, i.name]} %>
+<% show_plugins = @redmine_instances.any?{|inst| inst.plugins.any?} %>
 
 <% title "Software as a Service - Redmine" %>
 
@@ -12,6 +13,7 @@
     <th>Instance</th>
     <th>Responsable</th>
     <th>Version</th>
+    <% if show_plugins %><th>Plugins</th><% end %>
     <th>Projets</th>
     <th>Utilisateurs</th>
     <th>Taille</th>
@@ -27,6 +29,7 @@
     <td><%= link_to instance.name, "http://#{instance.name}.projet.appli.i2/" %></td>
     <td class="center"><%= instance.admin %></td>
     <td class="center"><%= instance.version %></td>
+    <% if show_plugins %><td class="center"><%= instance.plugins.join("<br/>").html_safe %></td><% end %>
     <td class="center"><%= instance.nb_projects %></td>
     <td class="center"><%= instance.nb_users %></td>
     <td class="center"><%= pretty_size(instance.size) %></td>
