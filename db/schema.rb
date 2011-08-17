@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110811050325) do
+ActiveRecord::Schema.define(:version => 20110817224830) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -60,27 +60,11 @@ ActiveRecord::Schema.define(:version => 20110811050325) do
   add_index "applications_machines", ["application_id"], :name => "index_applications_machines_on_application_id"
   add_index "applications_machines", ["machine_id"], :name => "index_applications_machines_on_machine_id"
 
-  create_table "bureaux", :force => true do |t|
-    t.string "bureau_court", :default => "", :null => false
-    t.string "bureau_long",  :default => "", :null => false
-  end
-
   create_table "databases", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "database_type"
-  end
-
-  create_table "frequence", :force => true do |t|
-    t.decimal "frequence", :precision => 50, :scale => 0, :default => 0, :null => false
-  end
-
-  create_table "interfaces", :force => true do |t|
-    t.integer "id_machines",                 :default => 0,     :null => false
-    t.integer "id_sousreseaux",              :default => 0,     :null => false
-    t.string  "quatr_octet",    :limit => 9, :default => "",    :null => false
-    t.boolean "virtuelle",                   :default => false, :null => false
   end
 
   create_table "ipaddresses", :force => true do |t|
@@ -94,10 +78,6 @@ ActiveRecord::Schema.define(:version => 20110811050325) do
   end
 
   add_index "ipaddresses", ["machine_id"], :name => "index_ipaddresses_on_machine_id"
-
-  create_table "iscsi", :force => true do |t|
-    t.string "iscsi", :limit => 50, :default => "", :null => false
-  end
 
   create_table "machines", :force => true do |t|
     t.integer "theme_id",                           :default => 0
@@ -147,21 +127,12 @@ ActiveRecord::Schema.define(:version => 20110811050325) do
   add_index "machines", ["service_id"], :name => "index_machines_on_service_id"
   add_index "machines", ["theme_id"], :name => "index_machines_on_theme_id"
 
-  create_table "machines_sousreseaux", :force => true do |t|
-    t.integer "id_machines",    :default => 0, :null => false
-    t.integer "id_sousreseaux", :default => 0, :null => false
-  end
-
   create_table "mainteneurs", :force => true do |t|
     t.string "name",       :limit => 50,  :default => "", :null => false
     t.string "phone",      :limit => 100, :default => "", :null => false
     t.string "email",      :limit => 200, :default => "", :null => false
     t.string "address",    :limit => 200, :default => "", :null => false
     t.string "client_ref", :limit => 50,  :default => "", :null => false
-  end
-
-  create_table "marque", :force => true do |t|
-    t.string "marque", :limit => 100, :default => "", :null => false
   end
 
   create_table "media_drives", :force => true do |t|
@@ -183,10 +154,6 @@ ActiveRecord::Schema.define(:version => 20110811050325) do
   end
 
   add_index "physical_racks", ["site_id"], :name => "index_physical_racks_on_site_id"
-
-  create_table "ref_proc", :force => true do |t|
-    t.string "ref_proc", :limit => 50, :default => "--", :null => false
-  end
 
   create_table "services", :force => true do |t|
     t.string "name", :default => "", :null => false
@@ -217,10 +184,6 @@ ActiveRecord::Schema.define(:version => 20110811050325) do
 
   create_table "themes", :force => true do |t|
     t.string "name", :default => "", :null => false
-  end
-
-  create_table "type", :force => true do |t|
-    t.string "type_serveur", :limit => 100, :default => "", :null => false
   end
 
   create_table "users", :force => true do |t|
