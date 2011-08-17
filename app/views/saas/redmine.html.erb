@@ -18,6 +18,7 @@
     <th>Utilisateurs</th>
     <th>Taille</th>
   </tr>
+  <tbody class="long-list">
 <% @redmine_instances.group_by{|i|i.server}.each do |server,instances| %>
   <tr>
     <td rowspan="<%= instances.length %>" class="multirow">
@@ -36,6 +37,7 @@
   </tr>
   <% end %>
 <% end %>
+  </tbody>
 </table>
 
 </div>
