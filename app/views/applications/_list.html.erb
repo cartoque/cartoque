@@ -1,23 +1,21 @@
 <tr id="fix-on-scroll">
   <th style="width:3em">Liens</th>
-  <%= sortable_th "name", nil, :style => "width:10em" %>
+  <%= sortable_th "name", nil, :style => "width:12em" %>
   <th>Description</th>
   <th style="width:3em">I2 Ader Web</th>
   <th style="width:3em">ACAI Messagerie Spécifique</th>
-  <th class="actions" style="width:6em">Actions</th>
 </tr>
 <% for application in @applications %>
-  <tr>
+  <tr class="has-opaques">
     <td class="center"><%= links_for application %></td>
-    <td><%= link_to application.name, application %></td>
+    <td>
+      <div class="contextual opaque">
+        <%= link_to image_tag("delete.png"), application, :confirm => t(:text_confirm_delete, :element => application.name), :method => :delete %>
+      </div>
+      <%= link_to application.name, application %>
+    </td>
     <td><%= application.info %></td>
     <td class="center"><%= application.iaw %></td>
     <td class="center"><%= application.ams %></td>
-    <td class="actions">
-      <%= action_links do %>
-        <%= link_to "edit", edit_application_path(application) %>&nbsp;|&nbsp;<%= link_to "suppr", application,
-                    :confirm => t(:text_confirm_delete, :element => application.name), :method => :delete %>
-      <% end %>
-    </td>
   </tr>
 <% end %>

@@ -32,8 +32,8 @@
       <td rowspan="<%= height %>" class="multirow">
         <%= database_nodes database %>
         <%= action_links do %>
-          <%= link_to "edit", edit_database_path(database) %>
-          | <%= link_to "suppr", database, :confirm => t(:text_are_you_sure), :method => :delete %>
+          <%= link_to image_tag("edit.png"), edit_database_path(database) %>
+          <%= link_to image_tag("delete.png"), database, :confirm => t(:text_are_you_sure), :method => :delete %>
         <% end %>
       </td>
       <td rowspan="<%= height %>" class="multirow center">PostgreSQL</td>
@@ -56,8 +56,8 @@
       <td rowspan="<%= height %>" class="multirow">
         <%= database_nodes database %>
         <%= action_links do %>
-          <%= link_to "edit", edit_database_path(database) %>
-          | <%= link_to "suppr", database, :confirm => t(:text_are_you_sure), :method => :delete %>
+          <%= link_to image_tag("edit.png"), edit_database_path(database) %>
+          <%= link_to image_tag("delete.png"), database, :confirm => t(:text_are_you_sure), :method => :delete %>
         <% end %>
       </td>
       <td rowspan="<%= height %>" class="multirow center">Oracle</td>
