@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110817224830) do
+ActiveRecord::Schema.define(:version => 20110821144306) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -80,8 +80,6 @@ ActiveRecord::Schema.define(:version => 20110817224830) do
   add_index "ipaddresses", ["machine_id"], :name => "index_ipaddresses_on_machine_id"
 
   create_table "machines", :force => true do |t|
-    t.integer "theme_id",                           :default => 0
-    t.integer "service_id",                         :default => 0
     t.integer "operating_system_id",                :default => 0
     t.integer "physical_rack_id",                   :default => 0
     t.integer "media_drive_id",                     :default => 0
@@ -124,8 +122,6 @@ ActiveRecord::Schema.define(:version => 20110817224830) do
   add_index "machines", ["media_drive_id"], :name => "index_machines_on_media_drive_id"
   add_index "machines", ["operating_system_id"], :name => "index_machines_on_operating_system_id"
   add_index "machines", ["physical_rack_id"], :name => "index_machines_on_physical_rack_id"
-  add_index "machines", ["service_id"], :name => "index_machines_on_service_id"
-  add_index "machines", ["theme_id"], :name => "index_machines_on_theme_id"
 
   create_table "mainteneurs", :force => true do |t|
     t.string "name",       :limit => 50,  :default => "", :null => false
@@ -155,10 +151,6 @@ ActiveRecord::Schema.define(:version => 20110817224830) do
 
   add_index "physical_racks", ["site_id"], :name => "index_physical_racks_on_site_id"
 
-  create_table "services", :force => true do |t|
-    t.string "name", :default => "", :null => false
-  end
-
   create_table "sites", :force => true do |t|
     t.string "name", :limit => 50, :default => "", :null => false
   end
@@ -181,10 +173,6 @@ ActiveRecord::Schema.define(:version => 20110817224830) do
   end
 
   add_index "storages", ["machine_id"], :name => "index_storages_on_machine_id"
-
-  create_table "themes", :force => true do |t|
-    t.string "name", :default => "", :null => false
-  end
 
   create_table "users", :force => true do |t|
     t.string   "provider"

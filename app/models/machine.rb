@@ -1,9 +1,7 @@
 class Machine < ActiveRecord::Base
   has_and_belongs_to_many :applications
   has_and_belongs_to_many :application_instances
-  belongs_to :theme
   belongs_to :physical_rack
-  belongs_to :service
   belongs_to :operating_system
   belongs_to :media_drive
   belongs_to :mainteneur
@@ -13,7 +11,7 @@ class Machine < ActiveRecord::Base
   accepts_nested_attributes_for :ipaddresses, :reject_if => lambda{|a| a[:address].blank? },
                                               :allow_destroy => true
 
-  attr_accessible :theme_id, :service_id, :operating_system_id, :physical_rack_id, :media_drive_id, :mainteneur_id, :name,
+  attr_accessible :operating_system_id, :physical_rack_id, :media_drive_id, :mainteneur_id, :name,
                   :previous_name, :subnet, :lastbyte, :serial_number, :virtual, :description, :model, :memory, :frequency,
                   :delivered_on, :maintained_until, :contract_type, :disk_type, :disk_size, :manufacturer, :ref_proc,
                   :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,

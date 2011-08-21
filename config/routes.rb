@@ -3,9 +3,7 @@ Cartocs::Application.routes.draw do
   resources :mainteneurs
   resources :users, :except => :show
   resources :physical_racks, :except => :show
-  resources :services, :except => :show
   resources :sites, :except => :show
-  resources :themes, :except => :show
   resources :operating_systems, :except => :show
   resources :tomcats, :only => :index do
     collection { get 'index_old', :as => 'old' }

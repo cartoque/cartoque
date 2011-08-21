@@ -34,8 +34,6 @@
                                                             OperatingSystem.scoped.arrange(:order => 'name')
                                                           ){|i| "#{'-'*i.depth} #{i.name}"} %>
       <%= f.input :virtual %>
-      <%= f.association :service %>
-      <%= f.association :theme %>
       <!--<%= f.input :previous_name %>-->
     </tbody>
     <tbody id="machine-maintenance" class="<%= css_classes_physical %>">
