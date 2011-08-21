@@ -2,6 +2,7 @@
   <%= sortable_th "name", nil, :style => "min-width:10em" %>
   <%= sortable_th "ipaddress", nil, :style => "width:10em" %>
   <th style="width:12em">OS</th>
+  <th style="width:2em">Virtuel</th>
   <th style="width:8em">Localisation</th>
   <%= sortable_th "manufacturer,model", t(:fullmodel), :style => "min-width:12em" %>
 </tr>
@@ -15,6 +16,7 @@
     </td>
     <td class="center"><%= machine.ipaddress %></td>
     <td><%= @operating_systems[machine.operating_system_id] %></td>
+    <td class="center"><% if machine.virtual? %><span class="virtual-machine">V</span><% end %></td>
     <td class="center"><%= link_to_rack @racks[machine.physical_rack_id] %></td>
     <td><%= machine.fullmodel %></td>
   </tr>

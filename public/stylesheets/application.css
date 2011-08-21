@@ -341,7 +341,8 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .machine_tomcats li { padding:0.3em 0; }
 
 /* machines */
-.virtual-machine { float:right; text-transform:uppercase; font-weight:bolder; color:#3a3; }
+.virtual-machine { font-weight:bolder; color:#3a3; }
+.virtual-machine-right { float:right; }
 .hidden-if-virtual.virtual { display:none; }
 .maintenance-warning { color:#f80; }
 .maintenance-critical { font-weight:bold; color:#d00; }

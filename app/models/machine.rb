@@ -23,6 +23,7 @@ class Machine < ActiveRecord::Base
   scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
   scope :by_mainteneur, proc {|mainteneur_id| { :conditions => { :mainteneur_id => mainteneur_id } } }
   scope :by_system, proc {|system_id| { :conditions => { :operating_system_id => OperatingSystem.find(system_id).subtree.map(&:id) } } }
+  scope :by_virtual, proc {|virtual| { :conditions => { :virtual => virtual } } }
 
   validates_presence_of :name
   validates_uniqueness_of :name
