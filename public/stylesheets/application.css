@@ -2,7 +2,7 @@
 html { overflow-y:scroll; }
 body { min-width:800px; font-family:Verdana, Helvetica, Arial; font-size:12px; margin:0; cursor:default; }
 div { margin:0; }
-a img, img.inline { border:none; margin:-2px 2px 0 0; }
+a img, img.inline { border:none; margin:-3px 2px 1px 0; }
 a { color:#00b; text-decoration:none; }
 a:hover { color:#e06; text-decoration:none; }
 caption { padding:0 0 5px 0; margin:0 auto; width:auto; font:italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; text-align:right; }
@@ -45,7 +45,7 @@ td.label { width:75px; text-align:left; padding:6px; }
 .pretty th.desc a { background-image:url(/images/arrow_down_grey.png); }
 .pretty th.sortable a, .pretty th.current a { border-bottom:1px solid #aaa; }
 .pretty td { padding:5px 7px; }
-tbody.long-list tr:hover td { background-color:#e4ebf8; cursor:default; }
+tbody.long-list tr:hover td, div.operating-system:hover { background-color:#e4ebf8; cursor:default; }
 tbody.long-list tr:hover td.multirow { background-color:inherit !important; }
 
 /* commodities */
@@ -357,10 +357,11 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 #machine_name, #application_name { font-size:150%; font-weight:bold; }
 
 /* operating systems */
-.operating-system { margin:5px; }
+.operating-systems td { padding:0; }
+.operating-system { margin:0; padding:5px 8px; }
 .operating-system > .contextual { margin-left:10px; }
 .nested-os { margin-left:10px; }
-.nested-os .operating-system { padding:1px 0 0 16px; background:#fff url(/images/bullet_arrow_right.png) no-repeat left top; }
+.nested-os .operating-system { padding-left:16px; background:#fff url(/images/bullet_arrow_right.png) no-repeat left center; }
 .os-icon { margin:0 2px -2px 0; }
 
 /* progress bars */

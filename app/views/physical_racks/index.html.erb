@@ -7,12 +7,15 @@
 <% end %>
 
 <table class="pretty list">
+<thead>
   <tr>
     <th>Site</th>
     <th>Nom</th>
     <th>Serveurs</th>
     <th></th>
   </tr>
+</thead>
+<tbody class="long-list">
 <% @physical_racks.each do |physical_rack| %>
   <tr>
     <td><%= physical_rack.site %></td>
@@ -28,6 +31,7 @@
     <td></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 </div>
