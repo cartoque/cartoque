@@ -10,15 +10,37 @@
   <tr>
     <th>Site</th>
     <th>Nom</th>
+    <th>Serveurs</th>
     <th></th>
   </tr>
 <% @physical_racks.each do |physical_rack| %>
   <tr>
     <td><%= physical_rack.site %></td>
     <td><%= link_to physical_rack.name, edit_physical_rack_path(physical_rack) %></td>
+    <td class="center"><%= @machines_count[physical_rack.id] || 0 %></td>
     <td><%= link_to image_tag("delete.png", :size => "16x16"), physical_rack, :confirm => t(:text_are_you_sure), :method => :delete %></td>
   </tr>
 <% end %>
+<% if @machines_count[nil] %>
+  <tr>
+    <td colspan="2"><em>Inconnu</em></td>
+    <td class="center"><%= @machines_count[nil] %></td>
+    <td></td>
+  </tr>
+<% end %>
+</table>
+
+</div>
+
+
+
+
+
+
+
+
+
+
 </table>
 
 </div>
