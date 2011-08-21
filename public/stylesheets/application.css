@@ -357,8 +357,10 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 #machine_name, #application_name { font-size:150%; font-weight:bold; }
 
 /* operating systems */
+.operating-system { margin:5px; }
+.operating-system > .contextual { margin-left:10px; }
 .nested-os { margin-left:10px; }
-.nested-os .operating-system { padding:2px 0 0 14px; background:#fff url(/images/bullet_arrow_right.png) no-repeat left top; }
+.nested-os .operating-system { padding:1px 0 0 16px; background:#fff url(/images/bullet_arrow_right.png) no-repeat left top; }
 .os-icon { margin:0 2px -2px 0; }
 
 /* progress bars */
