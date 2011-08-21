@@ -6,18 +6,17 @@
   <%= link_to "Nouveau Rack", new_physical_rack_path %>
 <% end %>
 
-<table class="list">
+<table class="pretty list">
   <tr>
     <th>Site</th>
     <th>Nom</th>
-    <th colspan="2" class="actions">Actions</th>
+    <th></th>
   </tr>
 <% @physical_racks.each do |physical_rack| %>
   <tr>
     <td><%= physical_rack.site %></td>
-    <td><%= physical_rack.name %></td>
-    <td><%= link_to 'Editer', edit_physical_rack_path(physical_rack) %></td>
-    <td><%= link_to 'Supprimer', physical_rack, :confirm => t(:text_are_you_sure), :method => :delete %></td>
+    <td><%= link_to physical_rack.name, edit_physical_rack_path(physical_rack) %></td>
+    <td><%= link_to image_tag("delete.png", :size => "16x16"), physical_rack, :confirm => t(:text_are_you_sure), :method => :delete %></td>
   </tr>
 <% end %>
 </table>
