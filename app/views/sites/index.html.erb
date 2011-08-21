@@ -6,16 +6,27 @@
   <%= link_to "Nouvelle salle", new_site_path %>
 <% end %>
 
-<table class="list">
+<table class="pretty list">
   <tr>
     <th>Nom</th>
-    <th colspan="2" class="actions">Actions</th>
+    <th>Racks</th>
+    <th>Serveurs</th>
+    <th></th>
   </tr>
 <% @sites.each do |site| %>
   <tr>
-    <td><%= site.name %></td>
-    <td><%= link_to 'Editer', edit_site_path(site) %></td>
-    <td><%= link_to 'Supprimer', site, :confirm => t(:text_are_you_sure), :method => :delete %></td>
+    <td><%= link_to site.name, edit_site_path(site) %></td>
+    <td class="center"><%= @racks_count[site.id] || 0 %></td>
+    <td class="center"><%= @machines_count[site.id] || 0 %></td>
+    <td><%= link_to image_tag("delete.png", :size => "16x16"), site, :confirm => t(:text_are_you_sure), :method => :delete %></td>
+  </tr>
+<% end %>
+<% if @racks_count[nil] || @machines_count[nil] %>
+  <tr>
+    <td><em>Inconnu</em></td>
+    <td class="center"><%= @racks_count[nil] || 0 %></td>
+    <td class="center"><%= @machines_count[nil] || 0 %></td>
+    <td></td>
   </tr>
 <% end %>
 </table>
