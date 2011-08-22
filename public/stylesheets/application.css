@@ -359,8 +359,11 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 
 /* operating systems */
 .operating-systems td { padding:0; }
-.operating-system { margin:0; padding:5px 8px; }
+.operating-systems th { text-align:left; }
+.operating-systems th .contextual { padding-right:24px; }
+.operating-system { margin:0; padding:5px 3px 5px 8px; }
 .operating-system > .contextual { margin-left:10px; }
+.operating-system .machines-count { width:50px; margin:0; padding:0; text-align:right; }
 .nested-os { margin-left:10px; }
 .nested-os .operating-system { padding-left:16px; background:#fff url(/images/bullet_arrow_right.png) no-repeat left center; }
 .os-icon { margin:0 2px -2px 0; }

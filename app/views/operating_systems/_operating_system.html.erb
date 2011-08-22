@@ -1,10 +1,10 @@
-<div class="operating-system has-opaques">
-  <div class="contextual machines-count" style="width:20px; margin:0; padding:0; text-align:right;">
-    <%= @os_machines_count[operating_system.id] || 0 %>
-  </div>
-  <div class="contextual opaque">
+<div class="operating-system">
+  <div class="contextual">
     <%= link_to image_tag("delete.png", :class => "inline", :size => "16x16"), operating_system,
                 :confirm => t(:text_confirm_delete, :element => operating_system.name), :method => :delete %>
+  </div>
+  <div class="contextual machines-count">
+    <%= @os_machines_count[operating_system.id] || 0 %>
   </div>
   <%= link_to operating_system.name, edit_operating_system_path(operating_system) %>
 </div>
