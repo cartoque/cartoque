@@ -42,6 +42,7 @@ gem 'ancestry'
 gem 'omniauth'
 gem 'hashie'
 gem 'diffy'
+gem 'settler'
 
 group :test do
   gem 'shoulda'

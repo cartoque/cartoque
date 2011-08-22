@@ -150,6 +150,7 @@ GEM
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
     rubyntlm (0.1.1)
+    settler (1.2.2)
     shoulda (2.11.3)
     show_for (0.2.4)
     simple_form (1.4.1)
@@ -179,6 +180,7 @@ DEPENDENCIES
   pdfkit (= 0.4.6)
   rails (= 3.0.9)
   rake (= 0.8.7)
+  settler
   shoulda
   show_for
   simple_form (>= 1.4.1)

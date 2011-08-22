@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110821144306) do
+ActiveRecord::Schema.define(:version => 20110822204517) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -150,6 +150,19 @@ ActiveRecord::Schema.define(:version => 20110821144306) do
   end
 
   add_index "physical_racks", ["site_id"], :name => "index_physical_racks_on_site_id"
+
+  create_table "settings", :force => true do |t|
+    t.string   "key",        :null => false
+    t.string   "alt"
+    t.text     "value"
+    t.boolean  "editable"
+    t.boolean  "deletable"
+    t.boolean  "deleted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["key"], :name => "index_settings_on_key"
 
   create_table "sites", :force => true do |t|
     t.string "name", :limit => 50, :default => "", :null => false
