@@ -1,3 +1,18 @@
 <% title "Systèmes d'exploitation" %>
 
-<div id="operating_systems" class="grid_9 center"><%= render 'list' %></div>
+<div id="operating_systems" class="grid_9 center">
+  
+<%= action_links do %>
+  <%= link_to "Nouveau système d'exploitation", new_operating_system_path %>
+<% end %>
+
+<table class="list operating-systems">
+  <tr>
+    <th>Nom</th>
+  </tr>
+  <tr>
+    <td><%= nested_operating_systems @operating_systems %></td>
+  </tr>
+</table>
+
+</div>
