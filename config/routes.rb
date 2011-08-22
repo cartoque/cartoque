@@ -1,4 +1,7 @@
 Cartocs::Application.routes.draw do
+  resources :settings, :only => :index do
+   collection { put 'update_all', :as => 'update_all' }
+  end
   resources :saas, :only => :show
   resources :mainteneurs
   resources :users, :except => :show

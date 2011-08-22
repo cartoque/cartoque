@@ -15,6 +15,10 @@ settings: &settings
 #  white_list:
 #    alt: 'White-listed words'
 #    value: 'herp, derp'
+  site_announcement_message:
+    editable: true
+  site_announcement_type:
+    editable: true
 
 development:
   <<: *settings  
