@@ -6,28 +6,27 @@
   <%= link_to 'Nouveau mainteneur', new_mainteneur_path %>
 <% end %>
 
-<table class="list">
+<table class="list pretty">
+<thead>
   <tr>
     <th>Name</th>
     <th>Phone</th>
     <th>Email</th>
     <th>Client ref</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
-
+</thead>
+<tbody class="long-list">
 <% @mainteneurs.each do |mainteneur| %>
   <tr>
-    <td><%= mainteneur.name %></td>
+    <td><%= link_to mainteneur.name, mainteneur %></td>
     <td><%= mainteneur.phone %></td>
     <td><%= mainteneur.email %></td>
     <td><%= mainteneur.client_ref %></td>
-    <td><%= link_to 'Voir', mainteneur %></td>
-    <td><%= link_to 'Editer', edit_mainteneur_path(mainteneur) %></td>
-    <td><%= link_to 'Supprimer', mainteneur, :confirm => t(:text_are_you_sure), :method => :delete %></td>
+    <td><%= link_to image_tag("delete.png", :size => "16x16"), mainteneur, :confirm => t(:text_are_you_sure), :method => :delete %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 </div>
