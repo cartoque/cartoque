@@ -10,7 +10,6 @@ class NormalizeDatabaseFieldNames < ActiveRecord::Migration
     self.columns_list.each do |column|
       rename_column column[0], column[2], column[1]
     end
-    self.reset_column_informations!
   end
 
   def self.columns_list
@@ -55,8 +54,8 @@ class NormalizeDatabaseFieldNames < ActiveRecord::Migration
   end
 
   def self.reset_column_informations!
-    [Application, Machine, Mainteneur, OperatingSystem, PhysicalRack, Service, Site, Theme].each do |klass|
-      klass.reset_column_information
+    %w(Application Machine Mainteneur OperatingSystem PhysicalRack Service Site Theme).each do |klassname|
+      klassname.constantize.reset_column_information rescue true
     end
   end
 end

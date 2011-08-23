@@ -4,7 +4,6 @@ class NormalizeOperatingSystems < ActiveRecord::Migration
     rename_column :machines, :os_id, :operating_system_id
     rename_column :operating_systems, :os_titre, :nom
     rename_column :operating_systems, :os_img_url, :icon_path
-    OperatingSystem.delete_all(:nom => "-")
   end
 
   def self.down
