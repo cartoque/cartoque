@@ -425,6 +425,9 @@ tr.fixed td:first-child, tr.fixed th:first-child { border-left:none; }
 .chrome-bug-on-scroll th { border-top:1px solid #ccc; }
 .chrome-bug-on-scroll th:last-child { border-right:none; }
 
+/* reset some styles on hover/focus/etc. */
+::-moz-selection, ::-webkit-selection, ::selection { background:#c00; color:#fff; text-shadow:none; }
+
 /* media=print */
 @media print {
   body { background-color:#FFF; color:#000 !important; }
