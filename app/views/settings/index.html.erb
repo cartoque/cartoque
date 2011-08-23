@@ -6,7 +6,7 @@
     <th>Message de service</th>
     <td>
       <%= text_area_tag 'settings[site_announcement_message]', Settler[:site_announcement_message], :size => "50x2" %><br />
-      Type: <%= select_tag 'settings[site_announcement_type]',
+      Thème: <%= select_tag 'settings[site_announcement_type]',
                            options_for_select(%w(info success warning error).map{|a| [a,a]}, Settler[:site_announcement_type]) %>
     </td>
   <tr>
