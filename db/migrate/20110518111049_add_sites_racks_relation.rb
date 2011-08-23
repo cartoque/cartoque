@@ -9,9 +9,6 @@ class AddSitesRacksRelation < ActiveRecord::Migration
 
   def self.down
     add_column :machines, :site_id, :integer
-    Machine.all.each do |machine|
-      machine.update_attribute :site_id, machine.physical_rack.try(:site_id)
-    end
     remove_column :physical_racks, :site_id
   end
 end
