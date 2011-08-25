@@ -56,8 +56,8 @@ td.label { width:75px; text-align:left; padding:6px; }
 .list td { border-bottom:1px solid #ccc; color:#433; padding:2px 4px; }
 .list td.multirow { border-right:1px solid #ccc; }
 .pretty th.current a { background-repeat:no-repeat; background-position:left center; padding-left:12px; }
-.pretty th.asc a { background-image:url(/assets/arrow_up_grey.png); }
-.pretty th.desc a { background-image:url(/assets/arrow_down_grey.png); }
+.pretty th.asc a { background-image:url(<%= asset_path 'arrow_up_grey.png' %>); }
+.pretty th.desc a { background-image:url(<%= asset_path 'arrow_down_grey.png' %>); }
 .pretty th.sortable a, .pretty th.current a { border-bottom:1px solid #aaa; }
 .pretty td { padding:5px 7px; }
 tbody.long-list tr:hover td, div.operating-system:hover { background-color:#e4ebf8; cursor:default; }
@@ -104,8 +104,8 @@ ul.details li { margin:0.5em 0; font-size:90%; }
 
 /* icons */
 .icon { background-position: 0% 50%; background-repeat: no-repeat; padding-left: 20px; padding-top: 2px; padding-bottom: 3px; }
-.icon-url { background-image: url(../assets/external.png); padding-left:15px; }
-.icon-server { background-image: url(../assets/server_12.png); padding-left:15px; }
+.icon-url { background-image: url(..<%= asset_path 'external.png' %>); padding-left:15px; }
+.icon-server { background-image: url(..<%= asset_path 'server_12.png' %>); padding-left:15px; }
 
 /* wrappers */
 noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; font-size:150%; padding-top:100px;
@@ -203,7 +203,7 @@ tr.filters input[type="text"] { border:1px solid #ccc; width:100%; }
 #loading { position:absolute; background-color:#f5f5f5; color:#666; border:1px solid #ddd; top:40%; left:35%; width:30%; height:50px; line-height:50px;
            font-weight:bold; font-size:120%; text-align:center; padding:0.6em; z-index:100; opacity: 0.9; display:none; }
 html>body #loading { position:fixed; }
-#loading span { background-position:0% 40%; background-repeat:no-repeat; background-image:url(../assets/loading.gif);
+#loading span { background-position:0% 40%; background-repeat:no-repeat; background-image:url(..<%= asset_path 'loading.gif' %>);
                        padding-left:26px; vertical-align:bottom; }
 
 /* top menu */
@@ -297,8 +297,8 @@ td.actions div.actions { font-size:90%; margin:0; }
 .actions li { list-style-type:none; margin:0; display:inline; }
 .actions li a { float:left; margin-right:10px; padding:0 8px; text-shadow:1px 1px 0 rgba(255,255,255,0.7); }
 .actions li a.selected { position:relative; top:-1px; font-weight:/*bold*/normal; background:#fff; border:1px solid #ccc; border-right-color:#eee; border-bottom-color:#eee; }
-.actions div.contextswitch { position:absolute; right:0; top:0; height:13px; padding:6px 10px 6px 12px; border-left:1px solid #e9edf9; background:url(/assets/context_back-up.png) 100% -6px no-repeat; cursor:pointer; }
-.actions div.contextswitch.activated { background-image:url(/assets/context_back-down.png); }
+.actions div.contextswitch { position:absolute; right:0; top:0; height:13px; padding:6px 10px 6px 12px; border-left:1px solid #e9edf9; background:url(<%= asset_path 'context_back-up.png' %>) 100% -6px no-repeat; cursor:pointer; }
+.actions div.contextswitch.activated { background-image:url(<%= asset_path 'context_back-down.png' %>); }
 .actions div.contextswitch .toggle { display:block; height:13px; line-height:13px; padding-right:15px; font-weight:/*bold*/normal; color:#00b; cursor:pointer; }
 .actions div.contextswitch.activated .toggle { color:#e04; }
 .actions div.contextswitch ul { display:none; margin:0; position:absolute; top:25px; right:-1px; background:#fff; border:1px solid #ccc; border-top:none; z-index:10; box-shadow:0 1px 5px #bbb; }
@@ -394,7 +394,7 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 .operating-system > .contextual { margin-left:10px; }
 .operating-system .machines-count { width:50px; margin:0; padding:0; text-align:right; }
 .nested-os { margin-left:10px; }
-.nested-os .operating-system { padding-left:16px; background:#fff url(/assets/bullet_arrow_right.png) no-repeat left center; }
+.nested-os .operating-system { padding-left:16px; background:#fff url(<%= asset_path 'bullet_arrow_right.png' %>) no-repeat left center; }
 .os-icon { margin:0 2px -2px 0; }
 
 /* progress bars */
