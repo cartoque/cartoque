@@ -76,7 +76,7 @@ class MachineTest < ActiveSupport::TestCase
       m2 = Machine.new(:name => "(srv1)")
       assert ! m2.valid?
       assert_equal m1.identifier, m2.identifier
-      assert m2.errors.has_key?(:identifier)
+      assert m2.errors.keys.include?(:identifier)
     end
   end
 

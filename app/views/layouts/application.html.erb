@@ -7,7 +7,7 @@
   <noscript><%= stylesheet_link_tag "adapt/mobile.min" %></noscript>
   <script>
     var ADAPT_CONFIG = {
-      path: '/stylesheets/adapt/', dynamic: true,
+      path: '/assets/adapt/', dynamic: true,
       range: [ '0px    to 760px  = mobile.min.css',
                '760px  to 980px  = 720.min.css',
                '980px  to 1280px = 960.min.css',
@@ -17,14 +17,8 @@
                //'1920px           = fluid.min.css' ]
     };
   </script>
-  <%= javascript_include_tag "adapt.min" %>
-  <%= stylesheet_link_tag "reset" %>
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= stylesheet_link_tag "jquery.bsmselect", "jquery.bsmselect-custom" %>
-  <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag "jquery.bind-with-delay", "jquery.observer", "jquery.elastic" %>
-  <%= javascript_include_tag "jquery.bsmselect", "jquery.bsmselect.compatibility", "jquery.bsmselect.sortable" %>
-  <%= javascript_include_tag "jquery.reject.min" %>
+  <%= javascript_include_tag "application" %>
   <script type="text/javascript">
         // reject bad browsers
     $(function() {
