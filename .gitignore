@@ -1,5 +1,6 @@
 .bundle
 .rvmrc
+.sass-cache
 config/database.yml
 db/data.yml
 db/*.sqlite3
