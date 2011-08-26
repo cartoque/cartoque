@@ -16,57 +16,20 @@
   <%= link_to "Ajouter", new_database_path %>
 <% end %>
 
-<% postgres_databases = @databases.select{|db| db.database_type == 'postgres'} %>
-<% oracle_databases   = @databases.select{|db| db.database_type == 'oracle'} %>
-
 <table class="pretty list databases">
-  <tr>
-    <th>Serveur</th>
-    <th>Type</th>
-    <%= database_headers_for("postgres") %>
+  <%= form_tag databases_path(params), :id => "filters", :method => :get do -%>
+  <tr class="filters fixed-size">
+    <td></td>
+    <td><%= select_tag "by_type", options_for_select([["",""], ["PostgreSQL", "postgres"], ["Oracle", "oracle"]], params[:by_type]).html_safe -%></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
   </tr>
-  <% for database in postgres_databases %>
-    <% height = database.postgres_report.size %>
-    <% height = 1 if height == 0 %>
-    <tr>
-      <td rowspan="<%= height %>" class="multirow">
-        <%= database_nodes database %>
-        <%= action_links do %>
-          <%= link_to image_tag("edit.png"), edit_database_path(database) %>
-          <%= link_to image_tag("delete.png"), database, :confirm => t(:text_are_you_sure), :method => :delete %>
-        <% end %>
-      </td>
-      <td rowspan="<%= height %>" class="multirow center">PostgreSQL</td>
-      <% if database.postgres_report.present? %>
-        <%= render :partial => 'postgres_report', :collection => database.postgres_report %>
-      <% else %>
-        <td colspan="4" class="center">Information non disponible.</td>
-      <% end %>
-    </tr>
   <% end %>
-  <tr>
-    <th>Serveur</th>
-    <th>Type</th>
-    <%= database_headers_for("oracle") %>
-  </tr>
-  <% for database in oracle_databases %>
-    <% height = database.oracle_report.size %>
-    <% height = 1 if height == 0 %>
-    <tr>
-      <td rowspan="<%= height %>" class="multirow">
-        <%= database_nodes database %>
-        <%= action_links do %>
-          <%= link_to image_tag("edit.png"), edit_database_path(database) %>
-          <%= link_to image_tag("delete.png"), database, :confirm => t(:text_are_you_sure), :method => :delete %>
-        <% end %>
-      </td>
-      <td rowspan="<%= height %>" class="multirow center">Oracle</td>
-      <% if database.oracle_report.present? %>
-        <%= render :partial => 'oracle_report', :collection => database.oracle_report %>
-      <% else %>
-        <td colspan="4" class="center">Information non disponible.</td>
-      <% end %>
-    </tr>
-  <% end %>
+
+  <tbody id="databases_list">
+    <%= render 'list' %>
+  </tbody>
 </table>
 </div>

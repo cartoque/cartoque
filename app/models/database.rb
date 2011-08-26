@@ -4,6 +4,8 @@ class Database < ActiveRecord::Base
   validates_presence_of :name
   validates_inclusion_of :database_type, :in => %w(postgres oracle)
 
+  scope :by_type, proc {|type| { :conditions => { :database_type => type } } }
+
   def postgres_report
     machines.inject([]) do |memo,machine|
       memo.concat(machine.postgres_report)

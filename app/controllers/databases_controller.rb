@@ -1,6 +1,10 @@
 class DatabasesController < InheritedResources::Base
   before_filter :select_view_mode
 
+  respond_to :html, :js
+
+  has_scope :by_type
+
   def create
     create! { databases_url }
   end
