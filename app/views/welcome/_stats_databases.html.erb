@@ -3,7 +3,7 @@
     <th class="center" colspan="2">Statistiques Bases</th>
   </tr>
   <tr>
-    <td><%= link_to "Postgres", databases_path %></td>
+    <td><%= link_to "Postgres", databases_path(:by_type => "postgres") %></td>
     <td>
       <% databases = Database.where(:database_type => "postgres") %>
       <%= pluralize(databases.map(&:machine_ids).flatten.uniq.count, "serveur") %>
@@ -14,7 +14,7 @@
     </td>
   </tr>
   <tr>
-    <td><%= link_to "Oracle", databases_path %></td>
+    <td><%= link_to "Oracle", databases_path(:by_type => "oracle") %></td>
     <td>
       <% databases = Database.where(:database_type => "oracle") %>
       <%= pluralize(databases.map(&:machine_ids).flatten.uniq.count, "serveur") %>
