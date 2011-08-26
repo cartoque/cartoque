@@ -16,7 +16,7 @@ class DatabasesController < InheritedResources::Base
   end
 
   def databases_view_mode
-    if action_name == "show"
+    if action_name == "show" || request_from_pdfkit?
       "detailed"
     else
       session[:databases_view_mode] || "normal"

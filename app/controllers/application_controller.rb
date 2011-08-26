@@ -37,4 +37,11 @@ class ApplicationController < ActionController::Base
   def api_request?
     request.local? && %w(csv json xml).include?(params[:format])
   end
+
+  #for more information on pdfkit + asset pipeline:
+  #http://www.mobalean.com/blog/2011/08/02/pdf-generation-and-heroku
+  def request_from_pdfkit?
+    request.env["Rack-Middleware-PDFKit"] == "true"
+  end
+  helper_method :request_from_pdfkit?
 end
