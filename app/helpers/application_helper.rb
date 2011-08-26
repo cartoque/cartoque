@@ -147,4 +147,8 @@ module ApplicationHelper
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", :class => "link-add")
   end
+
+  def request_from_pdfkit?
+    request.env["Rack-Middleware-PDFKit"] == "true"
+  end
 end

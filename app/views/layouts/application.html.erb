@@ -4,6 +4,7 @@
 <head>
   <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
   <meta charset="UTF-8">
+<% if ! request_from_pdfkit? %>
   <noscript><%= stylesheet_link_tag "adapt/mobile.min.css" %></noscript>
   <script>
     var ADAPT_CONFIG = {
@@ -32,6 +33,8 @@
       });
     });
   </script>
+<% end %>
+  <%= stylesheet_link_tag "print.css", :media => "print" %>
   <%= csrf_meta_tag %>
   <%= yield(:head) %>
 </head>
