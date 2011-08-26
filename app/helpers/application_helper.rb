@@ -148,6 +148,8 @@ module ApplicationHelper
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", :class => "link-add")
   end
 
+  #for more information on pdfkit + asset pipeline:
+  #http://www.mobalean.com/blog/2011/08/02/pdf-generation-and-heroku
   def request_from_pdfkit?
     request.env["Rack-Middleware-PDFKit"] == "true"
   end
