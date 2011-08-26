@@ -13,6 +13,47 @@
 
 /* TODO: move everything below to separate stylesheet files */
 
+/* css3 mixins ; see https://gist.github.com/1096739 */
+@mixin box-shadow($left, $top, $radius, $color) {
+  box-shadow: $left $top $radius $color;
+  -webkit-box-shadow: $left $top $radius $color;
+  -moz-box-shadow: $left $top $radius $color;
+}
+
+@mixin transition($property, $duration, $easing: linear) {
+  transition: $property $duration $easing;
+  -webkit-transition: $property $duration $easing;
+  -moz-transition: $property $duration $easing;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+}
+
+@mixin border-radii($topleft, $topright, $bottomright, $bottomleft) {
+  border-top-left-radius: $topleft;
+  border-top-right-radius: $topright;
+  border-bottom-right-radius: $bottomright;
+  border-bottom-left-radius: $bottomleft;
+  -webkit-border-top-left-radius: $topleft;
+  -webkit-border-top-right-radius: $topright;
+  -webkit-border-bottom-right-radius: $bottomright;
+  -webkit-border-bottom-left-radius: $bottomleft;
+  -moz-border-radius-topleft: $topleft;
+  -moz-border-radius-topright: $topright;
+  -moz-border-radius-bottomright: $bottomright;
+  -moz-border-radius-bottomleft: $bottomleft;
+}
+
+@mixin gradient($color1, $color2) {
+  background-color: $color1;
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#{$color1}, endColorstr=#{$color2});
+  background-image: -moz-linear-gradient(center top, $color1, $color2);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($color1), to($color2));
+}
+
 /* general styles */
 html { overflow-y:scroll; }
 body { min-width:800px; font-family:Verdana, Helvetica, Arial; font-size:12px; margin:0; cursor:default; }
@@ -28,9 +69,7 @@ small { font-size:90%; }
 
 /* input styles taken from formalize */
 input:focus, input:active, textarea:focus, textarea:active {
-  -moz-box-shadow: #06f 0 0 4px;
-  -webkit-box-shadow: #06f 0 0 4px;
-  box-shadow: #06f 0 0 4px;
+  @include box-shadow(#06f, 0, 0, 4px);
 }
 
 /* fonts */
@@ -89,11 +128,11 @@ tbody.long-list tr:hover td.multirow { background-color:inherit !important; }
 .has-opaques:hover .opaque { opacity:1; }
 input[type="submit"] {
   padding:3px 10px; display:inline-block;
-  -moz-box-shadow:inset 0px 1px 0px 0px #fff; -webkit-box-shadow:inset 0px 1px 0px 0px #fff; box-shadow:inset 0px 1px 0px 0px #fff;
+  @include box-shadow(inset 0px 1px, 0px, 0px, #fff);
+  @include border-radius(3px);
   background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f7f7f7), color-stop(1, #efefef) );
   background:-moz-linear-gradient( center top, #f7f7f7 5%, #efefef 100% );
   color:#333; background-color:#f7f7f7; border:1px solid #cfcfcf;
-  -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px;
   font-family:arial; font-size:13px; font-weight:bold;
   text-decoration:none !important; text-shadow:1px 1px 0px #fff;
 }
@@ -126,7 +165,7 @@ noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; 
 
 /* errors, warnings */
 #flash_notice, #flash_error, #flash_alert { padding:8px; margin:5px auto 15px; text-align:center;
-  -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; max-width:400px; font-weight:bold; }
+                                            @include border-radius(4px); max-width:400px; font-weight:bold; }
 #flash_notice { background-color:#ff9; color:#222; }
 #flash_error, #flash_alert { background-color:#FCC; color:#400; }
 .field_with_errors *, #error_explanation * { color:#f00; }
@@ -143,7 +182,7 @@ noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; 
 /* announcements ; TODO: look at http://twitter.github.com/bootstrap */
 .announcement {
   text-align:center; margin-bottom:5px; padding:8px 15px; color:#222; font-weight:bold;
-  -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px;
+  @include border-radius(4px);
   &.info { background-color:#cef; color:#367; }
   &.success { background-color:#dfd; color:#262; }
   &.warning { background-color:#ff9; color:#620; }
@@ -163,7 +202,7 @@ input[type="text"], input[type="password"], textarea {
   padding:0.1em 0.2em; box-sizing: border-box; border: 1px solid; outline: 0; border-color: #b0b0b0 #c1c1c1 #e1e1e1;
 }
 button:focus, button:active, input:focus, input:active, select:focus, select:active, textarea:focus, textarea:active {
-  -moz-box-shadow: #06F 0 0 3px; -webkit-box-shadow: #06F 0 0 3px; box-shadow: #06F 0 0 3px;
+  @include box-shadow(#06F, 0, 0, 3px);
 }
 textarea { margin-top:3px; }
 .simple_form {
@@ -235,8 +274,7 @@ html>body #loading { position:fixed; }
   font:13px/22px Arial,sans-serif; background-color:#ececec; /*color:#3366CC;*/ height:24px;
   margin-top:0; margin-bottom:5px; background-color:#ececec; text-shadow:1px 1px 0 #fff;
   border-width:0 1px 1px 1px; border-style:solid; border-color:#ccc; padding-right:4px;
-  -webkit-border-bottom-right-radius:4px; -moz-border-radius-bottomright:4px; border-bottom-right-radius:4px;
-  -webkit-border-bottom-left-radius:4px; -moz-border-radius-bottomleft:4px; border-bottom-left-radius:4px;
+  @include border-radii(0, 0, 4px, 4px);
 
   a { text-decoration:none; color:#000; }
   a.tiny { display:block; margin-top:0; padding-top:1px; padding-bottom:1px; }
@@ -249,7 +287,7 @@ html>body #loading { position:fixed; }
   ul { list-style-type:none; margin:0; }
   .menu-items { list-style-type:none; margin:0; padding:0 0 0 2px; }
   .menu-items > li { padding:0 1px; margin:0; float:left; }
-  .menu-items .large-submenu { position:absolute; border:1px solid /*#C3D1EC*/#ccc; box-shadow:0 1px 5px #bbb; margin-top:-1px; margin-left:-10px;
+  .menu-items .large-submenu { position:absolute; border:1px solid /*#C3D1EC*/#ccc; @include box-shadow(0, 1px, 5px, #bbb); margin-top:-1px; margin-left:-10px;
                                        display:none; background-color:#f5f5f5; padding:0; left:0; }
   .submenu-1 { width:150px; }
   .submenu-2 { width:300px; }
@@ -260,7 +298,7 @@ html>body #loading { position:fixed; }
   .active .large-submenu { display:block !important; }
   .active .large-submenu a { border:0 !important; display:inline-block; padding:0.3em 0.4em 0.3em 0.6em !important; width:100%;
                                      -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
-  .active .large-submenu a:hover { background-color:#e4ebf8 !important; box-shadow:inset #fff 0 -1px 0, inset #ccc 0 1px 0; border-radius:4px; }
+  .active .large-submenu a:hover { background-color:#e4ebf8 !important; box-shadow:inset #fff 0 -1px 0, inset #ccc 0 1px 0; @include border-radius(4px); }
   .large-submenu { color:#000; padding:2em; line-height:normal; z-index:10; }
   .large-submenu ul { padding:0.5em 0; list-style-type:none; width:150px; }
   .large-submenu li { padding:0em 1em; margin:0; }
@@ -275,7 +313,7 @@ html>body #loading { position:fixed; }
 
 /* sidebar */
 #sidebar {
-  float:left; margin:5px 0; padding:7px 10px 10px 10px; background:#f6f6f6; width:200px; box-shadow:0 0 2px #bbb;
+  float:left; margin:5px 0; padding:7px 10px 10px 10px; background:#f6f6f6; width:200px; @include box-shadow(0, 0, 2px, #bbb);
   h2 { text-align:left; letter-spacing:normal; margin-top:0; margin-bottom:0.4em; }
   ul {
     border-bottom:1px solid #ddd; padding-right:1.2em; padding-bottom:0.8em; margin-bottom:0.5em;
@@ -290,7 +328,7 @@ html>body #loading { position:fixed; }
   a, a:hover {
     display:inline-block; padding:0.4em 1em; max-width:800px; text-align:center;
     color:#fff; background-color:#78cc01; text-decoration:none !important; text-shadow:1px 1px 1px #666;
-    -moz-border-radius:14px; -webkit-border-radius:14px; border-radius:14px;
+    @include border-radius(14px);
   }
   a:hover { background-color:#70c600; }
   a:active { position:relative; top:1px; }
@@ -319,7 +357,7 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
     list-style-type:none; margin:0; padding:0;
     li { padding:0; margin:0; float:left; }
     a, a:hover { padding:2px 8px; margin:0 3px 0 0; position:relative; bottom:2px; text-decoration:none; font-weight:bold;
-                 color:#222; font-size:90%; border-radius:20px; }
+                 color:#222; font-size:90%; @include border-radius(20px); }
     li a:hover { background-color:#999; color:#fff; text-shadow:1px 1px 0 #555; }
     li.current a { background-color:#667; color:#fff; text-shadow:1px 1px 0 #333; }
   }
@@ -327,7 +365,8 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
     position:absolute; right:0; top:0; height:13px; padding:6px 10px 6px 12px; border-left:1px solid #e9edf9;
     background:url(<%= asset_path 'context_back-up.png' %>) 100% -6px no-repeat; cursor:pointer;
     .toggle { display:block; height:13px; line-height:13px; padding-right:15px; font-weight:/*bold*/normal; color:#00b; cursor:pointer; }
-    ul { display:none; margin:0; position:absolute; top:25px; right:-1px; background:#fff; border:1px solid #ccc; border-top:none; z-index:10; box-shadow:0 1px 5px #bbb; }
+    ul { display:none; margin:0; position:absolute; top:25px; right:-1px; background:#fff; border:1px solid #ccc; border-top:none; z-index:10;
+         @include box-shadow(0, 1px, 5px, #bbb); }
     ul li { margin:0; padding:0; display:block; }
     ul li:first-child { margin-top:4px; }
     ul li.current { position:relative; display:block; padding:0.4em 0.5em; cursor:default; }
@@ -352,7 +391,7 @@ td.actions div.actions { font-size:90%; margin:0; }
               -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
 .contexts a:hover { background-color:#e4ebf8 !important; color:normal; }
 a.create-machine {
-  color:#e06; padding:0 3px 1px; font-weight:bold; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;
+  color:#e06; padding:0 3px 1px; font-weight:bold; @include border-radius(2px);
   &:hover { background-color:#e06; color:#fff; text-decoration:none; }
   &:active { position:relative; top:1px; }
 }
@@ -388,8 +427,7 @@ a.create-machine {
 }
 #application_instances .fields .link-delete img { position:relative; top:-2px; margin-left:3px; }
 .application_instance { width:100%; margin-bottom:5px; font-size:100%; }
-.links a, .links a:link, .links a:visited, .links a:hover { text-decoration:none; font-weight:bold; padding:2px;
-                                                            -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
+.links a, .links a:link, .links a:visited, .links a:hover { text-decoration:none; font-weight:bold; padding:2px; @include border-radius(2px); }
 a.link-to-redmine { color:#a22; }
 a.link-to-redmine:hover { color:#fff; background-color:#a22; }
 a.link-to-nagios { color:#000; }
@@ -425,8 +463,7 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 .database_machines li { margin:4px auto; }
 .machine-details { font-size:90%; display:inline-block; background-color:#eee; color:#335;
-                   padding:1px 6px; margin:0 6px; border:1px solid #ccd;
-                   -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px; }
+                   padding:1px 6px; margin:0 6px; border:1px solid #ccd; @include border-radius(10px); }
 .machine_ipaddresses ul.collection { text-align:left; margin-left:0; font-weight:bold; font-size:90%; }
 #machine_general th.machine_name, #application_general th.application_name { text-transform:uppercase; font-size:150%; }
 #machine_name, #application_name { font-size:150%; font-weight:bold; }
