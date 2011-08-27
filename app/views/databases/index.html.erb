@@ -19,7 +19,7 @@
 <table class="pretty list databases">
   <%= form_tag databases_path(params), :id => "filters", :method => :get do -%>
   <tr class="filters fixed-size">
-    <td></td>
+    <td><%= text_field_tag "by_name", params[:by_name] %></td>
     <td><%= select_tag "by_type", options_for_select([["",""], ["PostgreSQL", "postgres"], ["Oracle", "oracle"]], params[:by_type]).html_safe -%></td>
     <td></td>
     <td></td>

@@ -6,6 +6,19 @@ class DatabaseTest < ActiveSupport::TestCase
     assert Database.new(:name => "blah", :database_type => "postgres").valid?
   end
 
+  context "scopes" do
+    setup do
+      Database.create(:name => "one", :database_type => "postgres")
+      Database.create(:name => "two", :database_type => "postgres")
+      Database.create(:name => "three", :database_type => "oracle")
+    end
+
+    should "filter databases by name" do
+      assert_equal ["one"], Database.by_name("one").map(&:name)
+      assert_equal ["two", "three"], Database.by_name("t").map(&:name)
+    end
+  end
+
   should "return a postgres report" do
     d = Factory(:database)
     assert_not_nil d

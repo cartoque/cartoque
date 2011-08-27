@@ -3,6 +3,7 @@ class DatabasesController < InheritedResources::Base
 
   respond_to :html, :js
 
+  has_scope :by_name
   has_scope :by_type
 
   def create

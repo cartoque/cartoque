@@ -4,6 +4,7 @@ class Database < ActiveRecord::Base
   validates_presence_of :name
   validates_inclusion_of :database_type, :in => %w(postgres oracle)
 
+  scope :by_name, proc {|name| where("databases.name LIKE ?", "%#{name}%") }
   scope :by_type, proc {|type| { :conditions => { :database_type => type } } }
 
   def postgres_report
