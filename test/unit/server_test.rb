@@ -105,8 +105,8 @@ class ServerTest < ActiveSupport::TestCase
     setup do
       @site1 = Site.create!(:name => "eu-west")
       @site2 = Site.create!(:name => "us-east")
-      @rack1 = PhysicalRack.create!(:name => "rack-1-eu", :site => @site1)
-      @rack2 = PhysicalRack.create!(:name => "rack-2-us", :site => @site2)
+      @rack1 = PhysicalRack.create!(:name => "rack-1-eu", :site_id => @site1.id)
+      @rack2 = PhysicalRack.create!(:name => "rack-2-us", :site_id => @site2.id)
       Server.create!(:name => "srv-app-01", :physical_rack_id => @rack1.id)
       Server.create!(:name => "srv-app-02", :physical_rack_id => @rack2.id)
       Server.create!(:name => "srv-db-01", :physical_rack_id => @rack1.id)
@@ -116,6 +116,12 @@ class ServerTest < ActiveSupport::TestCase
       assert_equal 3, Server.count
       assert_equal 2, Server.by_rack(@rack1.id).count
       assert_equal 1, Server.by_rack(@rack2.id).count
+    end
+
+    should "filter servers by site" do
+      assert_equal 3, Server.count
+      assert_equal 2, Server.by_site(@site1.id).count
+      assert_equal 1, Server.by_site(@site2.id).count
     end
 
     should "filter servers by mainteneur"
