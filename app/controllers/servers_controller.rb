@@ -1,11 +1,7 @@
 require 'csv'
 
 class ServersController < InheritedResources::Base
-  include SortHelpers
-
   respond_to :html, :js, :xml, :csv
-
-  helper_method :sort_column, :sort_direction
 
   has_scope :by_rack
   has_scope :by_mainteneur
@@ -13,6 +9,13 @@ class ServersController < InheritedResources::Base
   has_scope :by_virtual
 
   before_filter :select_view_mode
+
+  include SortHelpers
+
+  def sort_column_prefix
+    "servers."
+  end
+  helper_method :sort_column, :sort_direction, :sort_column_prefix
 
   def collection
     @servers ||= end_of_association_chain.search(params[:search]).order(sort_option)

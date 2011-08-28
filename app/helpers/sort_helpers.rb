@@ -3,7 +3,7 @@ module SortHelpers
 
   def sort_option
     sort_column.split(",").map do |column|
-      column + " " + sort_direction
+      "#{sort_column_prefix}#{column} #{sort_direction}"
     end.join(", ")
   end
 
@@ -13,6 +13,10 @@ module SortHelpers
     end
     columns << "name" if columns.blank?
     columns.join(",")
+  end
+
+  def sort_column_prefix
+    ""
   end
 
   def sort_direction

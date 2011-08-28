@@ -9,6 +9,10 @@ class FakeController
     Server
   end
 
+  def sort_column_prefix
+    "prefix."
+  end
+
   def direction; sort_direction; end
   def column; sort_column; end
   def option; sort_option; end
@@ -26,11 +30,11 @@ class SortHelpersTest < ActionView::TestCase
 
   test "sort_option should only accept attributes among model column_names" do
     @controller.params = {:sort => "manufacturer"}
-    assert_equal "manufacturer", @controller.column
+    assert_equal "prefix.manufacturer", @controller.column
     @controller.params = {:sort => "namez"}
-    assert_equal "name", @controller.column
+    assert_equal "prefix.name", @controller.column
     @controller.params = {:sort => ["test"]}
-    assert_equal "name", @controller.column
+    assert_equal "prefix.name", @controller.column
   end
 
   test "sort_option should accept coma separated values" do
@@ -58,8 +62,8 @@ class SortHelpersTest < ActionView::TestCase
 
   test "sort_option should be a correct mix between sort_column and sort_direction" do
     @controller.params = {}
-    assert_equal "name asc", @controller.option
+    assert_equal "prefix.name asc", @controller.option
     @controller.params = {:sort => "name,manufacturer", :direction => "desc"}
-    assert_equal "name desc, manufacturer desc", @controller.option
+    assert_equal "prefix.name desc, prefix.manufacturer desc", @controller.option
   end
 end
