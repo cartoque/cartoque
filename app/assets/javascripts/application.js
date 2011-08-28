@@ -136,7 +136,7 @@ $(function() {
 
 //fixed table column sizes
 function fixTableHeaders() {
-  $('.fixed-size, #fix-on-scroll').children().each(function() { fixElementSize($(this)); });
+  $('.fixed-size, .fix-on-scroll').children().each(function() { fixElementSize($(this)); });
   $('td.multirow').siblings().andSelf().each(function() { fixElementSize($(this)); });
 }
 function fixElementSize(elem) {
@@ -147,7 +147,7 @@ $(function() { fixTableHeaders() });
 
 //fixed table headers on scroll
 $(function () {  
-  var selector = '#fix-on-scroll';
+  var selector = '.fix-on-scroll';
   if ($(selector).length < 1) return false;
   var top = $(selector).offset().top; // - parseFloat($(selector).css('marginTop').replace(/auto/, 0));
   $(window).scroll(function (event) {
