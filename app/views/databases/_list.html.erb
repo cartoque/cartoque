@@ -2,7 +2,7 @@
 <% oracle_databases   = @databases.select{|db| db.database_type == 'oracle'} %>
 
   <% unless postgres_databases.empty? %>
-  <tr>
+  <tr class="fix-on-scroll">
     <th>Serveur</th>
     <th>Type</th>
     <%= database_headers_for("postgres") %>
@@ -29,7 +29,7 @@
    <% end %>
 
   <% unless oracle_databases.empty? %>
-  <tr>
+  <tr class="fix-on-scroll">
     <th>Serveur</th>
     <th>Type</th>
     <%= database_headers_for("oracle") %>
