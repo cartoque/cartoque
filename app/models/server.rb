@@ -22,6 +22,15 @@ class Server < ActiveRecord::Base
   default_scope :include => [:operating_system, :mainteneur, :physical_rack]
   scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
   scope :by_site, proc {|site_id| joins(:physical_rack).where("physical_racks.site_id" => site_id) }
+  scope :by_location, proc {|location|
+    if location.match /^site:(\d+)/
+      by_site($1)
+    elsif location.match /^rack:(\d+)/
+      by_rack($1)
+    else
+      all
+    end
+  }
   scope :by_mainteneur, proc {|mainteneur_id| { :conditions => { :mainteneur_id => mainteneur_id } } }
   scope :by_system, proc {|system_id| { :conditions => { :operating_system_id => OperatingSystem.find(system_id).subtree.map(&:id) } } }
   scope :by_virtual, proc {|virtual| { :conditions => { :virtual => virtual } } }

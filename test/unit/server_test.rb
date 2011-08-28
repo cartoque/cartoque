@@ -107,9 +107,9 @@ class ServerTest < ActiveSupport::TestCase
       @site2 = Site.create!(:name => "us-east")
       @rack1 = PhysicalRack.create!(:name => "rack-1-eu", :site_id => @site1.id)
       @rack2 = PhysicalRack.create!(:name => "rack-2-us", :site_id => @site2.id)
-      Server.create!(:name => "srv-app-01", :physical_rack_id => @rack1.id)
-      Server.create!(:name => "srv-app-02", :physical_rack_id => @rack2.id)
-      Server.create!(:name => "srv-db-01", :physical_rack_id => @rack1.id)
+      @s1 = Server.create!(:name => "srv-app-01", :physical_rack_id => @rack1.id)
+      @s2 = Server.create!(:name => "srv-app-02", :physical_rack_id => @rack2.id)
+      @s3 = Server.create!(:name => "srv-db-01", :physical_rack_id => @rack1.id)
     end
 
     should "filter servers by rack" do
@@ -122,6 +122,14 @@ class ServerTest < ActiveSupport::TestCase
       assert_equal 3, Server.count
       assert_equal 2, Server.by_site(@site1.id).count
       assert_equal 1, Server.by_site(@site2.id).count
+    end
+
+    should "filter servers by location" do
+      assert_equal Server.all, Server.by_location("invalid location")
+      assert_equal Server.by_site(@site1.id), Server.by_location("site:#{@site1.id}")
+      assert_equal [], Server.by_location("site:0")
+      assert_equal Server.by_rack(@rack1.id), Server.by_location("rack:#{@site1.id}")
+      assert_equal [], Server.by_location("rack:0")
     end
 
     should "filter servers by mainteneur"
