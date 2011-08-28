@@ -40,8 +40,7 @@ module DatabasesHelper
     end
     html = %(#{top_databases.join(", ")})
     html << %(,&nbsp;...) if top_databases.size < databases.size
-    html << %(<br/>Total:<span style="float:right; padding-left:1em">)
-    html << %(#{display_size(total_size)}</span>)
+    html << %(<span style="float:right; padding-left:1em">#{display_size(total_size)}</span>)
     html.html_safe
   end
 
