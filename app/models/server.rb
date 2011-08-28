@@ -28,7 +28,7 @@ class Server < ActiveRecord::Base
     elsif location.match /^rack-(\d+)/
       by_rack($1)
     else
-      all
+      scoped
     end
   }
   scope :by_mainteneur, proc {|mainteneur_id| { :conditions => { :mainteneur_id => mainteneur_id } } }
