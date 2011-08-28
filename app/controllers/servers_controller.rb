@@ -3,7 +3,7 @@ require 'csv'
 class ServersController < InheritedResources::Base
   respond_to :html, :js, :xml, :csv
 
-  has_scope :by_rack
+  has_scope :by_location
   has_scope :by_mainteneur
   has_scope :by_system
   has_scope :by_virtual

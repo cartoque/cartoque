@@ -128,7 +128,7 @@ module ApplicationHelper
 
   def link_to_rack(rack)
     return "" if rack.blank?
-    link_to rack, servers_path(:by_rack => rack.id)
+    link_to rack, servers_path(:by_location => "rack:#{rack.id}")
   end
 
   def link_to_remove_fields(name, f, options = {})

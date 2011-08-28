@@ -30,11 +30,11 @@ class SortHelpersTest < ActionView::TestCase
 
   test "sort_option should only accept attributes among model column_names" do
     @controller.params = {:sort => "manufacturer"}
-    assert_equal "prefix.manufacturer", @controller.column
+    assert_equal "manufacturer", @controller.column
     @controller.params = {:sort => "namez"}
-    assert_equal "prefix.name", @controller.column
+    assert_equal "name", @controller.column
     @controller.params = {:sort => ["test"]}
-    assert_equal "prefix.name", @controller.column
+    assert_equal "name", @controller.column
   end
 
   test "sort_option should accept coma separated values" do

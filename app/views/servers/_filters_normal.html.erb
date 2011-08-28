@@ -10,7 +10,7 @@
   <% @os = ancestry_options(OperatingSystem.scoped.arrange(:order => 'name')){|i| "#{'-'*i.depth} #{i.name}"} %>
   <td><%= select_tag "by_system", options_for_select([["",""]] + @os, params[:by_system]).html_safe -%></td>
   <td><%= select_tag "by_virtual", options_for_select([["",""], ["oui", "1"], ["non", 0]], params[:by_virtual]).html_safe -%></td>
-  <td><%= select_tag "by_rack", options_for_select([["",""]] + PhysicalRack.all.map{|r| [r,r.id]},params[:by_rack]).html_safe -%></td>
+  <td><%= select_tag "by_location", options_for_location_filter(params[:by_location]) -%></td>
   <td><span id="servers_counter" class="counter"><%= @servers.count %></span></td>
 </tr>
 <% end -%>

@@ -9,7 +9,7 @@
     <%= text_field_tag "search", params[:search], :size => 12 %>
   </td>
   <td>
-      <%= select_tag "by_rack", options_for_select([["",""]] + PhysicalRack.all.map{|r| [r,r.id]},params[:by_rack]).html_safe -%>
+      <%= select_tag "by_location", options_for_location_filter(params[:by_location]) -%>
   </td>
   <td></td>
   <td></td>
