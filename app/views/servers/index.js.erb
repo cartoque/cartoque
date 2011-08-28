@@ -1,9 +1,9 @@
 $('input[type="hidden"]#sort').attr("value","<%= escape_javascript(sort_column) %>");
 $('input[type="hidden"]#direction').attr("value","<%= escape_javascript(sort_direction) %>");
 <% controller.scopes_configuration.keys.each do |scope| %>
-  $("#machines_search #<%= scope %>").attr("value","<%= escape_javascript(params[scope]) %>");
+  $("#servers_search #<%= scope %>").attr("value","<%= escape_javascript(params[scope]) %>");
 <% end %>
-$("#machines_list").html("<%= escape_javascript(render("list_#{view_mode}")) %>");
-$("#machines_counter").html("<%= @machines.count %>");
+$("#servers_list").html("<%= escape_javascript(render("list_#{view_mode}")) %>");
+$("#servers_counter").html("<%= @servers.count %>");
 fixTableHeaders();
 $("html, body").animate({ scrollTop: 0 }, 200);

@@ -9,8 +9,8 @@ class ApplicationController
   end
 end
 
-require 'machine'
-class Machine
+require 'server'
+class Server
   def postgres_file
     File.expand_path("../data/postgres/#{name.downcase}.txt", __FILE__)
   end

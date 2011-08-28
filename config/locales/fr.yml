@@ -116,7 +116,7 @@ fr:
   database_type: "Type"
   delivered_on: "Mise en service"
   maintained_until: "Fin de maintenance"
-  machine_ids: "Serveurs"
+  server_ids: "Serveurs"
   identifier: "Identifiant Redmine"
   ipaddress: "Adresse IP"
   ipaddresses: "Adresses IP"

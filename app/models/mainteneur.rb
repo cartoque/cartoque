@@ -1,5 +1,5 @@
 class Mainteneur < ActiveRecord::Base
-  has_many :machines
+  has_many :servers
 
   default_scope order('name')
 

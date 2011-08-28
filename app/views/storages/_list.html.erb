@@ -12,10 +12,10 @@
       <%= pretty_size(device.free) %> disponibles (<%= "%0.0f%" % device.percent_free %>)
     </td>
   </tr>
-  <% @storages.sort_by{|s| [s.constructor, s.machine.name.downcase]}.each do |storage| %>
+  <% @storages.sort_by{|s| [s.constructor, s.server.name.downcase]}.each do |storage| %>
     <tr>
       <td class="top">
-        <strong><%= link_to storage.machine.name, storage.machine %></strong>
+        <strong><%= link_to storage.server.name, storage.server %></strong>
         <%= action_links do %>
           <%= link_to image_tag("edit.png"), edit_storage_path(storage) %>
           <%= link_to image_tag("delete.png"), storage, :confirm => t(:text_are_you_sure), :method => :delete %>

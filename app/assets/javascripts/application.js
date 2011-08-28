@@ -39,13 +39,13 @@ $(function() {
     e.preventDefault();
   });
 
-  //machine 'virtual' toggling
-  $('#machine_virtual').live('change', function(e) {
+  //server 'virtual' toggling
+  $('#server_virtual').live('change', function(e) {
     $('.hidden-if-virtual').toggleClass("virtual");
-    if ($('input#machine_virtual').attr('checked') == true) {
-      $('#machine-hardware-title').html("Ressources");
+    if ($('input#server_virtual').attr('checked') == true) {
+      $('#server-hardware-title').html("Ressources");
     } else {
-      $('#machine-hardware-title').html("Matériel");
+      $('#server-hardware-title').html("Matériel");
     }
   });
 
@@ -87,7 +87,7 @@ $(function(){
   })
 });
 
-// some checkboxes acts as radio buttons on machines/show view
+// some checkboxes acts as radio buttons on servers/show view
 $(function(){
   $('input[type="checkbox"].main_ip').live('change', function() {
     if ($(this).is(":checked")) {

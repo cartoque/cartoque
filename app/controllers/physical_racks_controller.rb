@@ -1,7 +1,7 @@
 class PhysicalRacksController < InheritedResources::Base
   layout "admin"
 
-  before_filter :count_machines_per_rack, :only => :index
+  before_filter :count_servers_per_rack, :only => :index
 
   def create
     create! { physical_racks_url }
@@ -12,7 +12,7 @@ class PhysicalRacksController < InheritedResources::Base
   end
 
   protected
-  def count_machines_per_rack
-    @machines_count = Machine.where("virtual = ?", false).group("physical_rack_id").count
+  def count_servers_per_rack
+    @servers_count = Server.where("virtual = ?", false).group("physical_rack_id").count
   end
 end

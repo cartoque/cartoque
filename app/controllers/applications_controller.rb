@@ -8,7 +8,7 @@ class ApplicationsController < InheritedResources::Base
   def show
     super do |format|
       format.xml do
-        render :xml => @application.to_xml(:include => { :application_instances => { :include => [:machines, :application_urls] } },
+        render :xml => @application.to_xml(:include => { :application_instances => { :include => [:servers, :application_urls] } },
                                            :methods => :dokuwiki_pages)
       end
     end

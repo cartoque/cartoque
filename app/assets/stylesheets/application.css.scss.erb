@@ -390,7 +390,7 @@ td.actions div.actions { font-size:90%; margin:0; }
 .contexts a { border:0 !important; display:inline-block; padding:0.4em 0.5em !important; width:100%;
               -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
 .contexts a:hover { background-color:#e4ebf8 !important; color:normal; }
-a.create-machine {
+a.create-server {
   color:#e06; padding:0 3px 1px; font-weight:bold; @include border-radius(2px);
   &:hover { background-color:#e06; color:#fff; text-decoration:none; }
   &:active { position:relative; top:1px; }
@@ -415,7 +415,7 @@ a.create-machine {
 }
 
 /* applications */
-#machine_applications tr.multiselect td {
+#server_applications tr.multiselect td {
   &:first-child { display:none; }
   &:last-child { /*border-left:1px solid #ccc;*/ }
 }
@@ -449,26 +449,26 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 .offset { padding-left:1em; }
 .csacok { font-weight:bold; color:green; }
 .csacko { font-weight:bold; color:red; }
-.machine_tomcats {
+.server_tomcats {
   ul { margin-left:1em; }
   li { padding:0.3em 0; }
 }
 
-/* machines */
-.virtual-machine { font-weight:bolder; color:#3a3; }
-.virtual-machine-right { float:right; }
+/* servers */
+.virtual-server { font-weight:bolder; color:#3a3; }
+.virtual-server-right { float:right; }
 .hidden-if-virtual.virtual { display:none; }
 .maintenance-warning { color:#f80; }
 .maintenance-critical { font-weight:bold; color:#d00; }
-.machine-mainteneur { margin:0; position:relative; display:block; padding:0 0 0 2em; list-style-type:none; }
+.server-mainteneur { margin:0; position:relative; display:block; padding:0 0 0 2em; list-style-type:none; }
 .mainteneur-infos ul { font-size:90%; margin:0.5em; }
 ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
-.database_machines li { margin:4px auto; }
-.machine-details { font-size:90%; display:inline-block; background-color:#eee; color:#335;
+.database_servers li { margin:4px auto; }
+.server-details { font-size:90%; display:inline-block; background-color:#eee; color:#335;
                    padding:1px 6px; margin:0 6px; border:1px solid #ccd; @include border-radius(10px); }
-.machine_ipaddresses ul.collection { text-align:left; margin-left:0; font-weight:bold; font-size:90%; }
-#machine_general th.machine_name, #application_general th.application_name { text-transform:uppercase; font-size:150%; }
-#machine_name, #application_name { font-size:150%; font-weight:bold; }
+.server_ipaddresses ul.collection { text-align:left; margin-left:0; font-weight:bold; font-size:90%; }
+#server_general th.server_name, #application_general th.application_name { text-transform:uppercase; font-size:150%; }
+#server_name, #application_name { font-size:150%; font-weight:bold; }
 
 /* operating systems */
 .operating-systems {
@@ -479,7 +479,7 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 .operating-system {
   margin:0; padding:5px 3px 5px 8px;
   > .contextual { margin-left:10px; }
-  .machines-count { width:50px; margin:0; padding:0; text-align:right; }
+  .servers-count { width:50px; margin:0; padding:0; text-align:right; }
 }
 .nested-os {
   margin-left:10px;

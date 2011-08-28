@@ -7,12 +7,12 @@
     <td><%= Application.count %> applications</td>
   </tr>
   <tr>
-    <td><%= link_to "Serveurs", machines_path %></td>
+    <td><%= link_to "Serveurs", servers_path %></td>
     <td>
-      <%= Machine.count %> serveurs
+      <%= Server.count %> serveurs
       <ul class="details">
-        <li><%= Machine.where(:virtual => true).count %> VMs</li>
-        <li><%= Machine.where(:virtual => false).count %> physiques</li>
+        <li><%= Server.where(:virtual => true).count %> VMs</li>
+        <li><%= Server.where(:virtual => false).count %> physiques</li>
       </ul>
     </td>
   </tr>

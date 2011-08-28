@@ -3,9 +3,9 @@
 module DatabasesHelper
   def database_nodes(database)
     html = "<strong>#{link_to database.name, database}</strong>"
-    if database.machines.any? && database.machines.map(&:name) != [database.name]
+    if database.servers.any? && database.servers.map(&:name) != [database.name]
       html << %(<ul class="database_nodes">)
-      html << database.machines.map(&:name).sort.map{|n| "<li>#{n}</li>"}.join("\n")
+      html << database.servers.map(&:name).sort.map{|n| "<li>#{n}</li>"}.join("\n")
       html << "</ul>"
     end
     html.html_safe

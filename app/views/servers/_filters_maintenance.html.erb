@@ -1,4 +1,4 @@
-<%= form_tag machines_path(params), :id => "filters", :method => :get do -%>
+<%= form_tag servers_path(params), :id => "filters", :method => :get do -%>
   <%= hidden_field_tag :direction, params[:direction] %>
   <%= hidden_field_tag :sort, params[:sort] %>
   <% (controller.scopes_configuration || {}).keys.each do |scope| %>
@@ -17,6 +17,6 @@
       <%= select_tag "by_mainteneur", options_for_select([["",""]] + Mainteneur.all.map{|r| [r.name,r.id]},params[:by_mainteneur]).html_safe -%>
   </td>
   <td></td>
-  <td><span id="machines_counter" class="counter"><%= @machines.count %></span></td>
+  <td><span id="servers_counter" class="counter"><%= @servers.count %></span></td>
 </tr>
 <% end -%>

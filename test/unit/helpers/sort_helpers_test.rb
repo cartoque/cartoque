@@ -6,7 +6,7 @@ class FakeController
   include SortHelpers
 
   def resource_class
-    Machine
+    Server
   end
 
   def direction; sort_direction; end

@@ -91,13 +91,13 @@ module ApplicationHelper
     content_tag(:span, html.html_safe, :class => "links")
   end
 
-  def display_machine(machine)
-    content_tag(:span, :class => "machine-link") do
-      link_to(machine.name, machine) + content_tag(:span, :class => "machine-details") do
-        [ machine.operating_system,
-          (machine.nb_proc && machine.nb_proc > 0 ? machine.cores : ""),
-          (machine.memory? ? "#{machine.ram}G" : ""),
-          (machine.disk_size && machine.disk_size > 0 ? machine.disks : "") ].reject(&:blank?).join(" | ")
+  def display_server(server)
+    content_tag(:span, :class => "server-link") do
+      link_to(server.name, server) + content_tag(:span, :class => "server-details") do
+        [ server.operating_system,
+          (server.nb_proc && server.nb_proc > 0 ? server.cores : ""),
+          (server.memory? ? "#{server.ram}G" : ""),
+          (server.disk_size && server.disk_size > 0 ? server.disks : "") ].reject(&:blank?).join(" | ")
       end
     end
   end
@@ -112,23 +112,23 @@ module ApplicationHelper
   end
 
   def link_to_servername(name)
-    link_to name, machine_path(Machine.identifier_for(name))
+    link_to name, server_path(Server.identifier_for(name))
   end
 
   def link_to_server_if_exists(name)
-    s = Machine.find_by_name(name)
+    s = Server.find_by_name(name)
     s ? link_to(name, s) : server_missing(name)
   end
 
   def server_missing(name)
-    name + " " + link_to("+", new_machine_path(:machine => { :name => name }),
-                         :class => "action create-machine",
+    name + " " + link_to("+", new_server_path(:server => { :name => name }),
+                         :class => "action create-server",
                          :title => t(:"helpers.submit.create"))
   end
 
   def link_to_rack(rack)
     return "" if rack.blank?
-    link_to rack, machines_path(:by_rack => rack.id)
+    link_to rack, servers_path(:by_rack => rack.id)
   end
 
   def link_to_remove_fields(name, f, options = {})

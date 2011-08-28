@@ -2,31 +2,31 @@
 
 <div class="grid_12">
 <%= action_links do %>
-  <%= link_to 'Editer', edit_machine_path(@machine) %> |
-  <%= link_to 'Supprimer', @machine, :confirm => t(:text_are_you_sure), :method => :delete %> |
-  <%= link_to 'Retourner à la liste', machines_path %>
+  <%= link_to 'Editer', edit_server_path(@server) %> |
+  <%= link_to 'Supprimer', @server, :confirm => t(:text_are_you_sure), :method => :delete %> |
+  <%= link_to 'Retourner à la liste', servers_path %>
 <% end %>
 </div>
 
 <div class="clear"></div>
 
-<div id="machine_general" class="grid_3">
+<div id="server_general" class="grid_3">
 <table class="show_item full">
   <thead>
     <tr>
-      <th colspan="2" class="machine_name">
-        <%= @machine.name %>
-        <% if @machine.virtual? %>
-          <span class="virtual-machine virtual-machine-right">V</span>
+      <th colspan="2" class="server_name">
+        <%= @server.name %>
+        <% if @server.virtual? %>
+          <span class="virtual-server virtual-server-right">V</span>
         <% end %>
       </th>
     </tr>
   </thead>
-  <%= show_for @machine do |s| %>
-    <% if @machine.description.present? %>
-    <tr class="wrapper machine_description">
+  <%= show_for @server do |s| %>
+    <% if @server.description.present? %>
+    <tr class="wrapper server_description">
       <td colspan="2">
-        <%= @machine.description.capitalize %>
+        <%= @server.description.capitalize %>
       </td>
     </tr>
     <% end %>
@@ -35,11 +35,11 @@
     <%= s.attribute :operating_system %>
     <!--<%= s.attribute :previous_name %>-->
   <% end %>
-  <% unless @machine.virtual? %>
+  <% unless @server.virtual? %>
   <thead>
     <tr><th colspan="2" class="secondary">Maintenance</th></tr>
   </thead>
-  <%= show_for @machine do |s| %>
+  <%= show_for @server do |s| %>
     <%= s.attribute :mainteneur %>
     <%= s.attribute :delivered_on %>
     <%= s.attribute :maintained_until %>
@@ -50,20 +50,20 @@
 </table>
 </div>
 
-<div id="machine_hardware" class="grid_3">
+<div id="server_hardware" class="grid_3">
 <table class="show_item full">
   <thead>
     <tr>
-      <th colspan="2"><%= @machine.virtual? ? "Ressources" : "Matériel" %></th>
+      <th colspan="2"><%= @server.virtual? ? "Ressources" : "Matériel" %></th>
     </tr>
   </thead>
-  <%= show_for @machine do |s| %>
-    <%= s.attribute :physical_rack unless @machine.virtual? %>
-    <%= s.attribute :fullmodel unless @machine.virtual? %>
+  <%= show_for @server do |s| %>
+    <%= s.attribute :physical_rack unless @server.virtual? %>
+    <%= s.attribute :fullmodel unless @server.virtual? %>
     <%= s.attribute :cpu %>
     <%= s.attribute :memory %>
     <%= s.attribute :disks %>
-    <%= s.attribute :media_drive unless @machine.virtual? %>
+    <%= s.attribute :media_drive unless @server.virtual? %>
     <%= s.attribute :nb_rj45 %>
     <%= s.attribute :nb_fc %>
     <%= s.attribute :nb_iscsi %>
@@ -72,17 +72,17 @@
 </table>
 </div>
 
-<div id="machine_relations" class="grid_3">
+<div id="server_relations" class="grid_3">
 <table class="show_item full">
   <thead>
     <tr><th colspan="2">Applications liées</th></tr>
   </thead>
-  <%= show_for @machine do |s| %>
-    <tr class="wrapper machine_applications">
+  <%= show_for @server do |s| %>
+    <tr class="wrapper server_applications">
       <td colspan="2">
-        <% if @machine.application_instances.any? %>
+        <% if @server.application_instances.any? %>
         <ul>
-        <% @machine.application_instances.each do |instance| %>
+        <% @server.application_instances.each do |instance| %>
           <li><%= link_to instance.fullname, instance.application %></li>
         <% end %>
         </ul>
@@ -95,21 +95,21 @@
 </table>
 </div>
 
-<div id="machine_ci" class="grid_3">
-<% tomcats = Tomcat.find_for_server(@machine.name) %>
+<div id="server_ci" class="grid_3">
+<% tomcats = Tomcat.find_for_server(@server.name) %>
 <% tomcats.delete_if{|t| t[:tomcat].blank?} %>
 <% if tomcats.any? %>
 <table class="show_item full">
   <thead>
     <tr><th colspan="2">Tomcats</th></tr>
   </thead>
-    <tr class="wrapper machine_tomcats">
+    <tr class="wrapper server_tomcats">
       <td colspan="2">
         <ul>
         <% tomcats.sort_by{|t| t[:tomcat].split("_").last.to_s}.each do |tomcat| %>
           <li>
             <p>
-              <%= link_to tomcat[:tomcat], tomcats_path(:by_server => @machine.name) %>
+              <%= link_to tomcat[:tomcat], tomcats_path(:by_server => @server.name) %>
               <span class="tinier"><%= "#{tomcat[:java_version]} #{tomcat[:java_xms]}/#{tomcat[:java_xmx]}" %></span>
             </p>
             <p class="tinier" style="padding-left:2em"><%= tomcat[:dns] %></p>

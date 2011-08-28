@@ -13,20 +13,20 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_select "a.link-to-redmine[href=#{redmine}]", "R"
   end
 
-  should "display machine with full details" do
-    render :text => display_machine(Factory(:machine))
-    assert_select "span.machine-link a", "server-01"
-    assert_select "span.machine-details", "4 * 4 cores, 3.2 GHz | 42G | 5 * 13G (SAS)"
+  should "display server with full details" do
+    render :text => display_server(Factory(:server))
+    assert_select "span.server-link a", "server-01"
+    assert_select "span.server-details", "4 * 4 cores, 3.2 GHz | 42G | 5 * 13G (SAS)"
   end
 
-  should "display machine without raising an exception if no details" do
-    render :text => display_machine(Machine.create(:name => "server-03"))
-    assert_select "span.machine-link a", "server-03"
+  should "display server without raising an exception if no details" do
+    render :text => display_server(Server.create(:name => "server-03"))
+    assert_select "span.server-link a", "server-03"
   end
 
-  should "display nothing in machine details if no details available" do
-    render :text => display_machine(Machine.new(:name => "srv"))
-    assert_select "span.machine-details", ""
+  should "display nothing in server details if no details available" do
+    render :text => display_server(Server.new(:name => "srv"))
+    assert_select "span.server-details", ""
   end
 
   context "#context_li" do
@@ -52,15 +52,15 @@ class ApplicationHelperTest < ActionView::TestCase
     end
 
     should "return a link to the server if a server with that name exists" do
-      render :text => link_to_server_if_exists(Factory(:machine).name)
+      render :text => link_to_server_if_exists(Factory(:server).name)
       assert_select "a", "server-01"
     end
   end
 
   context "#link_to_servername" do
-    should "return a link to /machines/<server identifier>" do
-      render :text => link_to_servername(Factory(:machine).name)
-      assert_select "a[href=/machines/server-01]"
+    should "return a link to /servers/<server identifier>" do
+      render :text => link_to_servername(Factory(:server).name)
+      assert_select "a[href=/servers/server-01]"
     end
   end
 end

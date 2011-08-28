@@ -2,7 +2,7 @@
   CSV.generate :force_quotes => true do |csv|
     csv << %w(name ipaddress operating_system manufacturer model cpu memory disks nb_rj45 fc iscsi has_drac
               site physical_rack serial_number mainteneur contract_type delivered_on maintained_until).map{|l| t(l)}
-    @machines.each do |m|
+    @servers.each do |m|
       csv << [ m.name, m.ipaddress, @operating_systems[m.operating_system_id], m.manufacturer, m.model,
                m.cpu.gsub("<br />",""), m.memory, m.disks, m.nb_rj45, m.nb_fc, m.nb_iscsi, (m.has_drac ? "oui" : "non"),
                m.physical_rack.try(:site), m.physical_rack.try(:name), m.serial_number,

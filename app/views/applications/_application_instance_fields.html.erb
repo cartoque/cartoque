@@ -23,9 +23,9 @@
     </td>
   </tr>
   <tr>
-    <td class="label"><%= f.label :machines, :class => "input" %></td>
+    <td class="label"><%= f.label :servers, :class => "input" %></td>
     <td class="multiselect">
-      <%= f.input_field :machine_ids, :collection => Machine.order(:name), :as => :multiselect %>
+      <%= f.input_field :server_ids, :collection => Server.order(:name), :as => :multiselect %>
     </td>
   </tr>
 </table>

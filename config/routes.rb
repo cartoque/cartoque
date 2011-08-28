@@ -13,7 +13,7 @@ Cartocs::Application.routes.draw do
   end
   resources :databases
   resources :storages
-  resources :machines do
+  resources :servers do
     collection { get 'maintenance' }
   end
   resources :applications

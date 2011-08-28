@@ -4,8 +4,8 @@
   <table class="show_item">
     <tbody>
       <%= tabular_errors @storage %>
-      <%= f.association :machine, :required => true, :wrapper_class => "th",
-                        :collection => Machine.order("name").map{|m| [m.name, m.id]} %>
+      <%= f.association :server, :required => true, :wrapper_class => "th",
+                        :collection => Server.order("name").map{|m| [m.name, m.id]} %>
       <%= f.input :constructor, :collection => Storage.supported_types %>
     </tbody>
   </table>

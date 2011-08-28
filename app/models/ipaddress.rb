@@ -1,5 +1,5 @@
 class Ipaddress < ActiveRecord::Base
-  belongs_to :machine
+  belongs_to :server
   acts_as_ipaddress :address
 
   def to_s

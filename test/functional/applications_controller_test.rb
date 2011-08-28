@@ -35,15 +35,15 @@ class ApplicationsControllerTest < ActionController::TestCase
 
   test "should access the rest/xml API" do
     app_inst = ApplicationInstance.new(:name => "prod", :authentication_method => "none")
-    app_inst.machines = [ Factory(:machine), Factory(:virtual) ]
+    app_inst.servers = [ Factory(:server), Factory(:virtual) ]
     @application.application_instances = [ app_inst ]
     @application.save
     get :show, :id => @application.to_param, :format => :xml
     assert_select "application>id", "#{@application.id}"
     assert_equal 1, @application.application_instances.count
     assert_select "application>application-instances>application-instance", 1
-    assert_equal 2, @application.application_instances.first.machines.count
-    assert_select "application>application-instances>application-instance>machines>machine", 2
+    assert_equal 2, @application.application_instances.first.servers.count
+    assert_select "application>application-instances>application-instance>servers>server", 2
   end
 
   test "should access an application through its identifier" do

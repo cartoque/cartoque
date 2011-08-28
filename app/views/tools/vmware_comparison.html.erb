@@ -1,9 +1,9 @@
 <%
 vms = []
-datafile = Rails.root.join("data/vmware/virtual_machines.txt")
+datafile = Rails.root.join("data/vmware/virtual_servers.txt")
 vms = File.readlines(datafile).map(&:chomp!) if File.exists?(datafile)
-vms_in_cartocs = Machine.where(:virtual => true)
-physical_in_cartocs = Machine.where(:virtual => false)
+vms_in_cartocs = Server.where(:virtual => true)
+physical_in_cartocs = Server.where(:virtual => false)
 
 unknown_in_cartocs = vms - vms_in_cartocs.map(&:name) - physical_in_cartocs.map(&:name)
 unknown_in_vcenter = vms_in_cartocs.map(&:name) - vms
@@ -25,11 +25,11 @@ diff_list = {
 
 <%= render "submenu" %>
 
-<% diff_list.each do |title,machines| %>
+<% diff_list.each do |title,servers| %>
 <ul>
-  <li><strong><%= pluralize(machines.count, "VM") %> <%= title %></strong></li>
+  <li><strong><%= pluralize(servers.count, "VM") %> <%= title %></strong></li>
   <ul class="comparison details">
-    <%= machines.sort.map{|m| "<li>#{m}</li>"}.join.html_safe %>
+    <%= servers.sort.map{|m| "<li>#{m}</li>"}.join.html_safe %>
   </ul>
 </ul>
 <div class="clear"></div>

@@ -6,13 +6,13 @@ class DatabasesHelperTest < ActionView::TestCase
   end
 
   should "display nodes under a database" do
-    assert @database.machines.present?
+    assert @database.servers.present?
     assert_equal "database-01", @database.name
-    assert_equal "server-01", @database.machines.map(&:name).join(" ")
+    assert_equal "server-01", @database.servers.map(&:name).join(" ")
     render :text => database_nodes(@database)
     assert_select 'strong', @database.name
     assert_select 'ul' do
-      assert_select 'li', @database.machines.first.name
+      assert_select 'li', @database.servers.first.name
     end
   end
 

@@ -1,4 +1,4 @@
-class Machine < ActiveRecord::Base
+class Server < ActiveRecord::Base
   has_and_belongs_to_many :applications
   has_and_belongs_to_many :application_instances
   belongs_to :physical_rack
@@ -35,9 +35,9 @@ class Machine < ActiveRecord::Base
 
   def self.find(*args)
     if args.first && args.first.is_a?(String) && !args.first.match(/^\d*$/)
-      machine = find_by_identifier(*args)
-      raise ActiveRecord::RecordNotFound, "Couldn't find Machine with identifier=#{args.first}" if machine.nil?
-      machine
+      server = find_by_identifier(*args)
+      raise ActiveRecord::RecordNotFound, "Couldn't find Server with identifier=#{args.first}" if server.nil?
+      server
     else
       super
     end
@@ -65,7 +65,7 @@ class Machine < ActiveRecord::Base
   end
 
   def update_identifier
-    self.identifier = Machine.identifier_for(self.name)
+    self.identifier = Server.identifier_for(self.name)
   end
 
   def self.identifier_for(name)
@@ -84,7 +84,7 @@ class Machine < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where("machines.name LIKE ?", "%#{search}%")
+      where("servers.name LIKE ?", "%#{search}%")
     else
       scoped
     end

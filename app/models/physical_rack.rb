@@ -1,5 +1,5 @@
 class PhysicalRack < ActiveRecord::Base
-  has_many :machines
+  has_many :servers
   belongs_to :site
 
   attr_accessible :name, :site_id

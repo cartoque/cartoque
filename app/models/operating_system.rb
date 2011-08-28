@@ -1,5 +1,5 @@
 class OperatingSystem < ActiveRecord::Base
-  has_many :machines
+  has_many :servers
   has_ancestry :cache_depth => true
 
   #doesn't work with Ancestry (see: https://github.com/stefankroes/ancestry/issues/42)

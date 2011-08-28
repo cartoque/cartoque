@@ -20,14 +20,14 @@
   <tr>
     <td><%= physical_rack.site %></td>
     <td><%= link_to physical_rack.name, edit_physical_rack_path(physical_rack) %></td>
-    <td class="center"><%= @machines_count[physical_rack.id] || 0 %></td>
+    <td class="center"><%= @servers_count[physical_rack.id] || 0 %></td>
     <td><%= link_to image_tag("delete.png", :size => "16x16"), physical_rack, :confirm => t(:text_are_you_sure), :method => :delete %></td>
   </tr>
 <% end %>
-<% if @machines_count[nil] %>
+<% if @servers_count[nil] %>
   <tr>
     <td colspan="2"><em>Inconnu</em></td>
-    <td class="center"><%= @machines_count[nil] %></td>
+    <td class="center"><%= @servers_count[nil] %></td>
     <td></td>
   </tr>
 <% end %>

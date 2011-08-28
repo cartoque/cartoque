@@ -12,10 +12,10 @@ db = ActiveRecord::Base.connection
 #set default database_type if needed
 Database.update_all(:database_type => 'postgres', 'database_type' => nil)
 
-#parse old dates in Machine
+#parse old dates in Server
 {:date_mes => :delivered_on, :fin_garantie => :maintained_until}.each do |old_field, new_field|
   if db.table_exists?(old_field) && db.table_exists?(new_field)
-    Machine.all.each do |m|
+    Server.all.each do |m|
       value = m.send(old_field)
       unless value.blank?
         value = "#{$1}/20#{$2}" if value.match %r{(.*\d\d)/(\d\d)$}
@@ -25,14 +25,14 @@ Database.update_all(:database_type => 'postgres', 'database_type' => nil)
   end
 end
 
-#downcase machine names
+#downcase server names
 #TODO: add a validation on the name
-Machine.all.each do |machine|
-  machine.update_attribute("name", machine.name.downcase)
+Server.all.each do |server|
+  server.update_attribute("name", server.name.downcase)
 end
 
 #automatically find database clusters
-servers = Machine.where("name like 'sgbd%'")
+servers = Server.where("name like 'sgbd%'")
 servers.map do |s|
   s.name.gsub(/-\d*$/,"")
 end.uniq.sort.reverse.each do |cluster|
@@ -45,34 +45,34 @@ end
 
 #automatically find storage devices
 #SAN iSCSI PS5000/6000
-Machine.where("name like 'gaston%'").each do |machine|
-  Storage.create(:machine_id => machine.id, :constructor => "Equalogic")
+Server.where("name like 'gaston%'").each do |server|
+  Storage.create(:server_id => server.id, :constructor => "Equalogic")
 end
 #SAN IBM DS4500
-Machine.where("name like 'rehdsk%'").each do |machine|
-  Storage.create(:machine_id => machine.id, :constructor => "IBM") unless Storage.where(:machine_id => machine.id).exists?
+Server.where("name like 'rehdsk%'").each do |server|
+  Storage.create(:server_id => server.id, :constructor => "IBM") unless Storage.where(:server_id => server.id).exists?
 end
 #NAS
-Storage.create(:machine => Machine.find_by_name("plomb"), :constructor => "NetApp")
-Storage.create(:machine => Machine.find_by_name("antimoine"), :constructor => "NetApp")
+Storage.create(:server => Server.find_by_name("plomb"), :constructor => "NetApp")
+Storage.create(:server => Server.find_by_name("antimoine"), :constructor => "NetApp")
 
-#update Machine#ipaddress if possible
-if db.column_exists?("machines", "ipaddress") && Machine.respond_to?(:ip)
-  Machine.all.each do |machine|
+#update Server#ipaddress if possible
+if db.column_exists?("servers", "ipaddress") && Server.respond_to?(:ip)
+  Server.all.each do |server|
     begin
-      machine.update_attribute(:ipaddress, machine.ip)
+      server.update_attribute(:ipaddress, server.ip)
     rescue ArgumentError
-      $stderr.puts "  WARNING: Unable to save #{machine.name} => #{machine.ip}"
+      $stderr.puts "  WARNING: Unable to save #{server.name} => #{server.ip}"
     end
   end
 end
 
 #fill Ipaddress table if needed
-if Ipaddress.count == 0 && Machine.where("ipaddress is not null").count
-  Machine.all.each do |machine|
-    if machine.ipaddress
-      machine.ipaddresses << Ipaddress.new(:address => machine.ipaddress, :main => true)
-      machine.save
+if Ipaddress.count == 0 && Server.where("ipaddress is not null").count
+  Server.all.each do |server|
+    if server.ipaddress
+      server.ipaddresses << Ipaddress.new(:address => server.ipaddress, :main => true)
+      server.save
     end
   end
 end
@@ -85,14 +85,14 @@ if ApplicationInstance.count == 0 && Application.count > 0
   end
 end
 
-#migrate application machines old links
-if db.table_exists?("applications_machines")
-  results = Machine.connection.execute("SELECT application_id, machine_id from applications_machines;").to_a
+#migrate application servers old links
+if db.table_exists?("applications_servers")
+  results = Server.connection.execute("SELECT application_id, server_id from applications_servers;").to_a
   results.each do |result|
-    application_id, machine_id = result
+    application_id, server_id = result
     prod_instance = ApplicationInstance.find_by_name_and_application_id("prod", application_id)
-    if prod_instance && !prod_instance.machine_ids.include?(machine_id) && m=Machine.find_by_id(machine_id)
-      prod_instance.machines << m
+    if prod_instance && !prod_instance.server_ids.include?(server_id) && m=Server.find_by_id(server_id)
+      prod_instance.servers << m
       prod_instance.save
     end
   end
@@ -109,7 +109,7 @@ if ApplicationInstance.where("authentication_method" => nil).count > 0
   end
 end
 
-#set machines identifier
-Machine.where(:identifier => nil).each do |m|
-  m.update_attribute(:identifier, Machine.identifier_for(m.name))
+#set servers identifier
+Server.where(:identifier => nil).each do |m|
+  m.update_attribute(:identifier, Server.identifier_for(m.name))
 end

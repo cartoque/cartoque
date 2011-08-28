@@ -1,0 +1,23 @@
+<tr id="fix-on-scroll">
+  <%= sortable_th "name", nil, :style => "min-width:10em" %>
+  <%= sortable_th "ipaddress", nil, :style => "width:10em" %>
+  <th style="width:12em">OS</th>
+  <th style="width:2em">Virtuel</th>
+  <th style="width:8em">Localisation</th>
+  <%= sortable_th "manufacturer,model", t(:fullmodel), :style => "min-width:12em" %>
+</tr>
+<% for server in @servers %>
+  <tr class="has-opaques">
+    <td>
+      <div class="contextual opaque">
+        <%= link_to image_tag("delete.png"), server, :confirm => t(:text_confirm_delete, :element => server.name), :method => :delete %>
+      </div>
+      <%= link_to server.name, server %>
+    </td>
+    <td class="center"><%= server.ipaddress %></td>
+    <td><%= @operating_systems[server.operating_system_id] %></td>
+    <td class="center"><% if server.virtual? %><span class="virtual-server">V</span><% end %></td>
+    <td class="center"><%= link_to_rack @racks[server.physical_rack_id] %></td>
+    <td><%= server.fullmodel %></td>
+  </tr>
+<% end %>

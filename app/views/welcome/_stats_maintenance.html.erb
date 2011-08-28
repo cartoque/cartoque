@@ -5,13 +5,13 @@
   <tr>
     <td>
       <% cond = "virtual = ? AND maintained_until IS NOT NULL" %>
-      <% physical = Machine.where([cond, false]).count %>
+      <% physical = Server.where([cond, false]).count %>
       <%= physical %> serveurs physiques, dont :
       <ul class="details">
-        <li><%= Machine.where([cond+" AND maintained_until < ?", false, Date.today]).count %> fin de maintenance dépassée</li>
-        <li><%= Machine.where([cond+" AND maintained_until <= ?", false, Date.today + 6.months]).count %> à renouveler d'ici 6 mois</li>
-        <li><%= Machine.where([cond+" AND maintained_until <= ?", false, Date.today + 12.months]).count %> à renouveler d'ici 12 mois</li>
-        <li><%= physical - Machine.where([cond, false]).count %> non maintenus</li>
+        <li><%= Server.where([cond+" AND maintained_until < ?", false, Date.today]).count %> fin de maintenance dépassée</li>
+        <li><%= Server.where([cond+" AND maintained_until <= ?", false, Date.today + 6.months]).count %> à renouveler d'ici 6 mois</li>
+        <li><%= Server.where([cond+" AND maintained_until <= ?", false, Date.today + 12.months]).count %> à renouveler d'ici 12 mois</li>
+        <li><%= physical - Server.where([cond, false]).count %> non maintenus</li>
       </ul>
     </td>
   </tr>

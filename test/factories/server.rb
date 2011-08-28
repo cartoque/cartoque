@@ -1,4 +1,4 @@
-Factory.define :machine do |m|
+Factory.define :server do |m|
   m.name 'server-01'
   m.subnet '192.168.0'
   m.lastbyte '10'
@@ -13,7 +13,7 @@ Factory.define :machine do |m|
   m.disk_type "SAS"
 end
 
-Factory.define :virtual, :parent => :machine do |m|
+Factory.define :virtual, :parent => :server do |m|
   m.name 'v-server-01'
   m.virtual true
 end

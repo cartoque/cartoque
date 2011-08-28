@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822204517) do
+ActiveRecord::Schema.define(:version => 20110827212247) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -23,13 +23,13 @@ ActiveRecord::Schema.define(:version => 20110822204517) do
 
   add_index "application_instances", ["application_id"], :name => "index_application_instances_on_application_id"
 
-  create_table "application_instances_machines", :id => false, :force => true do |t|
+  create_table "application_instances_servers", :id => false, :force => true do |t|
     t.integer "application_instance_id", :default => 0, :null => false
-    t.integer "machine_id",              :default => 0, :null => false
+    t.integer "server_id",               :default => 0, :null => false
   end
 
-  add_index "application_instances_machines", ["application_instance_id"], :name => "index_application_instances_machines_on_application_instance_id"
-  add_index "application_instances_machines", ["machine_id"], :name => "index_application_instances_machines_on_machine_id"
+  add_index "application_instances_servers", ["application_instance_id"], :name => "index_application_instances_servers_on_application_instance_id"
+  add_index "application_instances_servers", ["server_id"], :name => "index_application_instances_servers_on_machine_id"
 
   create_table "application_urls", :force => true do |t|
     t.string   "url"
@@ -53,13 +53,13 @@ ActiveRecord::Schema.define(:version => 20110822204517) do
     t.string  "identifier"
   end
 
-  create_table "applications_machines", :id => false, :force => true do |t|
-    t.integer "machine_id",     :default => 0, :null => false
+  create_table "applications_servers", :id => false, :force => true do |t|
+    t.integer "server_id",      :default => 0, :null => false
     t.integer "application_id", :default => 0, :null => false
   end
 
-  add_index "applications_machines", ["application_id"], :name => "index_applications_machines_on_application_id"
-  add_index "applications_machines", ["machine_id"], :name => "index_applications_machines_on_machine_id"
+  add_index "applications_servers", ["application_id"], :name => "index_applications_servers_on_application_id"
+  add_index "applications_servers", ["server_id"], :name => "index_applications_servers_on_machine_id"
 
   create_table "databases", :force => true do |t|
     t.string   "name"
@@ -71,16 +71,44 @@ ActiveRecord::Schema.define(:version => 20110822204517) do
   create_table "ipaddresses", :force => true do |t|
     t.integer  "address",    :limit => 8
     t.text     "comment"
-    t.integer  "machine_id"
+    t.integer  "server_id"
     t.boolean  "main"
     t.boolean  "virtual"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "ipaddresses", ["machine_id"], :name => "index_ipaddresses_on_machine_id"
+  add_index "ipaddresses", ["server_id"], :name => "index_ipaddresses_on_server_id"
 
-  create_table "machines", :force => true do |t|
+  create_table "mainteneurs", :force => true do |t|
+    t.string "name",       :limit => 50,  :default => "", :null => false
+    t.string "phone",      :limit => 100, :default => "", :null => false
+    t.string "email",      :limit => 200, :default => "", :null => false
+    t.string "address",    :limit => 200, :default => "", :null => false
+    t.string "client_ref", :limit => 50,  :default => "", :null => false
+  end
+
+  create_table "media_drives", :force => true do |t|
+    t.string "name", :limit => 50, :default => "", :null => false
+  end
+
+  create_table "operating_systems", :force => true do |t|
+    t.string  "name",           :limit => 55, :default => "", :null => false
+    t.string  "icon_path",                    :default => "", :null => false
+    t.string  "ancestry"
+    t.integer "ancestry_depth",               :default => 0
+  end
+
+  add_index "operating_systems", ["ancestry"], :name => "index_operating_systems_on_ancestry"
+
+  create_table "physical_racks", :force => true do |t|
+    t.string  "name",    :limit => 50, :default => "", :null => false
+    t.integer "site_id"
+  end
+
+  add_index "physical_racks", ["site_id"], :name => "index_physical_racks_on_site_id"
+
+  create_table "servers", :force => true do |t|
     t.integer "operating_system_id",                :default => 0
     t.integer "physical_rack_id",                   :default => 0
     t.integer "media_drive_id",                     :default => 0
@@ -118,39 +146,11 @@ ActiveRecord::Schema.define(:version => 20110822204517) do
     t.string  "identifier"
   end
 
-  add_index "machines", ["database_id"], :name => "index_machines_on_database_id"
-  add_index "machines", ["mainteneur_id"], :name => "index_machines_on_mainteneur_id"
-  add_index "machines", ["media_drive_id"], :name => "index_machines_on_media_drive_id"
-  add_index "machines", ["operating_system_id"], :name => "index_machines_on_operating_system_id"
-  add_index "machines", ["physical_rack_id"], :name => "index_machines_on_physical_rack_id"
-
-  create_table "mainteneurs", :force => true do |t|
-    t.string "name",       :limit => 50,  :default => "", :null => false
-    t.string "phone",      :limit => 100, :default => "", :null => false
-    t.string "email",      :limit => 200, :default => "", :null => false
-    t.string "address",    :limit => 200, :default => "", :null => false
-    t.string "client_ref", :limit => 50,  :default => "", :null => false
-  end
-
-  create_table "media_drives", :force => true do |t|
-    t.string "name", :limit => 50, :default => "", :null => false
-  end
-
-  create_table "operating_systems", :force => true do |t|
-    t.string  "name",           :limit => 55, :default => "", :null => false
-    t.string  "icon_path",                    :default => "", :null => false
-    t.string  "ancestry"
-    t.integer "ancestry_depth",               :default => 0
-  end
-
-  add_index "operating_systems", ["ancestry"], :name => "index_operating_systems_on_ancestry"
-
-  create_table "physical_racks", :force => true do |t|
-    t.string  "name",    :limit => 50, :default => "", :null => false
-    t.integer "site_id"
-  end
-
-  add_index "physical_racks", ["site_id"], :name => "index_physical_racks_on_site_id"
+  add_index "servers", ["database_id"], :name => "index_servers_on_database_id"
+  add_index "servers", ["mainteneur_id"], :name => "index_servers_on_mainteneur_id"
+  add_index "servers", ["media_drive_id"], :name => "index_servers_on_media_drive_id"
+  add_index "servers", ["operating_system_id"], :name => "index_servers_on_operating_system_id"
+  add_index "servers", ["physical_rack_id"], :name => "index_servers_on_physical_rack_id"
 
   create_table "settings", :force => true do |t|
     t.string   "key",        :null => false
@@ -179,14 +179,14 @@ ActiveRecord::Schema.define(:version => 20110822204517) do
   add_index "sousreseaux", ["cidr_mask"], :name => "sousreseau_ip"
 
   create_table "storages", :force => true do |t|
-    t.integer  "machine_id"
+    t.integer  "server_id"
     t.string   "constructor"
     t.text     "details"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "storages", ["machine_id"], :name => "index_storages_on_machine_id"
+  add_index "storages", ["server_id"], :name => "index_storages_on_server_id"
 
   create_table "users", :force => true do |t|
     t.string   "provider"

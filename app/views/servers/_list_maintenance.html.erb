@@ -1,0 +1,24 @@
+<tr id="fix-on-scroll">
+  <%= sortable_th "name", nil, :style => "width:10em" %>
+  <th style="width:8em">Localisation</th>
+  <%= sortable_th "manufacturer,model", t(:fullmodel), :style => "width:10em" %>
+  <th style="width:10em">N° de série</th>
+  <th>Mainteneur - Type de contrat</th>
+  <%= sortable_th "delivered_on", nil, :style => "width:8em" %>
+  <%= sortable_th "maintained_until", nil, :style => "width:8em" %>
+</tr>
+<% for server in @servers %>
+<tr>
+  <td><%= link_to server.name, server %></td>
+  <td><%= link_to_rack @racks[server.physical_rack_id] %></td>
+  <td><%= server.fullmodel %></td>
+  <td class="center"><%= server.serial_number %></td>
+  <td>
+  <% if server.mainteneur_id %>
+    <%= render_mainteneur(server, @maintainers[server.mainteneur_id]) %>
+  <% end %>
+  </td>
+  <td class="center"><%= l(server.delivered_on) if server.delivered_on? %></td>
+  <td class="center"><%= maintenance_limit(server.maintained_until) %></td>
+</tr>
+<% end %>

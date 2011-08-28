@@ -1,5 +1,5 @@
 # encoding: utf-8
-module MachinesHelper
+module ServersHelper
   def maintenance_limit(date)
     return content_tag(:span, "non", :class => "maintenance-critical") if date.blank?
     months_before_end = ((date - Date.today) / 30).to_f
@@ -12,15 +12,15 @@ module MachinesHelper
     end
   end
 
-  def render_mainteneur(machine, mainteneur)
+  def render_mainteneur(server, mainteneur)
     return "" unless mainteneur
     html =  "#{link_to mainteneur, mainteneur} "
     html << link_to_function(image_tag("info.gif", :class => "inline"),
-                             %[$("#maintenance-#{machine.id}").slideToggle(130); return false;],
+                             %[$("#maintenance-#{server.id}").slideToggle(130); return false;],
                              :class => "mainteneur-infos hide-when-print")
     html << " "
-    html << " - #{machine.contract_type}" if machine.contract_type?
-    html << %(<ul style="display:none" class="mainteneur" id="maintenance-#{machine.id}">)
+    html << " - #{server.contract_type}" if server.contract_type?
+    html << %(<ul style="display:none" class="mainteneur" id="maintenance-#{server.id}">)
     html << %(<li>Référence client: #{mainteneur.client_ref}</li>)
     html << %(<li>Téléphone: #{mainteneur.phone}</li>)
     html << %(<li>Mail: #{mail_to mainteneur.email}</li>)

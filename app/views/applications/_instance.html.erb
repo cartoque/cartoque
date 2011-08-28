@@ -4,8 +4,8 @@
   <% instance.application_urls.public.sort_by(&:url).each do |app_url| %>
     <li class="application_url"><%= link_to app_url.url, app_url.url, :class => "icon icon-url" %></li>
   <% end %>
-  <% if instance.machines.any? %>
-    <li class="application_instance_servers"><%= instance.machines.sort_by(&:name).map{|machine| link_to machine.name, machine, :class => "nocut icon icon-server" }.join(" ").html_safe %></li>
+  <% if instance.servers.any? %>
+    <li class="application_instance_servers"><%= instance.servers.sort_by(&:name).map{|server| link_to server.name, server, :class => "nocut icon icon-server" }.join(" ").html_safe %></li>
   <% end %>
   </ul>
 <% end %>

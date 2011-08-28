@@ -15,16 +15,16 @@
     </tr>
   </thead>
   <%= show_for @database do |a| %>
-    <tr class="wrapper database_machines">
+    <tr class="wrapper database_servers">
       <td colspan="4">
-        <% if @database.machines.any? %>
+        <% if @database.servers.any? %>
           <ul>
-          <% @database.machines.each do |machine| %>
-            <li><%= display_machine(machine) %></li>
+          <% @database.servers.each do |server| %>
+            <li><%= display_server(server) %></li>
           <% end %>
           </ul>
         <% else %>
-          <p>Aucune machine liée.</p>
+          <p>Aucune server liée.</p>
         <% end %>
       </td>
     </tr>
