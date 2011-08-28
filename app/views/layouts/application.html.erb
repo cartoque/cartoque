@@ -71,19 +71,18 @@
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
 
+    <%= content_tag(:h1, yield(:title), :class => controller.controller_name) if show_title? %>
+
     </div><!-- end-of-grid_12 -->
 
     <div class="clear"></div>
 
     <% if content_for?(:sidebar) %>
       <div class="grid_3 hide-when-print">
-        <div id="sidebar">
-          <%= yield(:sidebar) %>
-        </div>
+        <div id="sidebar"><%= yield(:sidebar) %></div>
       </div>
     <% end %>
 
-    <%= content_tag(:h1, yield(:title), :class => controller.controller_name) if show_title? %>
     <%= yield %>
 
     <div class="clear"></div>
