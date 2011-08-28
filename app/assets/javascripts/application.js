@@ -149,18 +149,22 @@ $(function() { fixTableHeaders() });
 $(function () {  
   var selector = '.fix-on-scroll';
   if ($(selector).length < 1) return false;
-  var top = $(selector).offset().top; // - parseFloat($(selector).css('marginTop').replace(/auto/, 0));
+  $(selector).each(function() {
+    this.initialTopOffset = $(this).offset().top; // - parseFloat($(selector).css('marginTop').replace(/auto/, 0));
+  });
   $(window).scroll(function (event) {
     // what the y position of the scroll is
     var y = $(this).scrollTop();
-    // whether that's below the form
-    if (y >= top) {
-      // if so, ad the fixed class
-      $(selector).addClass('fixed');
-    } else {
-      // otherwise remove it
-      $(selector).removeClass('fixed');
-    }
+    $(selector).each(function() {
+      // whether that's below the form
+      if (y >= this.initialTopOffset) {
+        // if so, ad the fixed class
+        $(this).addClass('fixed');
+      } else {
+        // otherwise remove it
+        $(this).removeClass('fixed');
+      }
+    });
   });
 });
 
