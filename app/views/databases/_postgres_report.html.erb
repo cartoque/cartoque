@@ -1,12 +1,12 @@
 <% if postgres_report_counter != 0 %><tr><% end %>
-<td class="database-instance center">
-  <abbr title="<%= postgres_report["host"] %>"><%= postgres_report["pg_cluster"] %></abbr>
-</td>
 <td class="database-ip center">
   <%= postgres_report["ip"] %>
 </td>
 <td class="database-port center">
   <%= postgres_report["port"] %>
+</td>
+<td class="database-instance center">
+  <abbr title="<%= postgres_report["host"] %>"><%= postgres_report["pg_cluster"] %></abbr>
 </td>
 <td>
   <% if postgres_report["databases"].present? %>
