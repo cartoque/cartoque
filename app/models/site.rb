@@ -1,5 +1,5 @@
 class Site < ActiveRecord::Base
-  has_many :sites
+  has_many :physical_racks
 
   attr_accessible :name
 
