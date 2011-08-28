@@ -100,4 +100,34 @@ class ServerTest < ActiveSupport::TestCase
       end
     end
   end
+
+  context "scopes" do
+    setup do
+      @site1 = Site.create!(:name => "eu-west")
+      @site2 = Site.create!(:name => "us-east")
+      @rack1 = PhysicalRack.create!(:name => "rack-1-eu", :site => @site1)
+      @rack2 = PhysicalRack.create!(:name => "rack-2-us", :site => @site2)
+      Server.create!(:name => "srv-app-01", :physical_rack_id => @rack1.id)
+      Server.create!(:name => "srv-app-02", :physical_rack_id => @rack2.id)
+      Server.create!(:name => "srv-db-01", :physical_rack_id => @rack1.id)
+    end
+
+    should "filter servers by rack" do
+      assert_equal 3, Server.count
+      assert_equal 2, Server.by_rack(@rack1.id).count
+      assert_equal 1, Server.by_rack(@rack2.id).count
+    end
+
+    should "filter servers by mainteneur"
+    should "filter servers by system"
+    should "filter servers by virtual"
+###    scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
+###  scope :by_mainteneur, proc {|mainteneur_id| { :conditions => { :mainteneur_id => mainteneur_id } } }
+###  scope :by_system, proc {|system_id| { :conditions => { :operating_system_id => OperatingSystem.find(system_id).subtree.map(&:id) } } }
+###  scope :by_virtual, proc {|virtual| { :conditions => { :virtual => virtual } } }
+###    should "filter servers by name" do
+###      assert_equal ["one"], Database.by_name("one").map(&:name)
+###      assert_equal ["two", "three"], Database.by_name("t").map(&:name)
+###    end
+  end
 end
