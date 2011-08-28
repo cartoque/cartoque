@@ -23,9 +23,9 @@ class Server < ActiveRecord::Base
   scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
   scope :by_site, proc {|site_id| joins(:physical_rack).where("physical_racks.site_id" => site_id) }
   scope :by_location, proc {|location|
-    if location.match /^site:(\d+)/
+    if location.match /^site-(\d+)/
       by_site($1)
-    elsif location.match /^rack:(\d+)/
+    elsif location.match /^rack-(\d+)/
       by_rack($1)
     else
       all

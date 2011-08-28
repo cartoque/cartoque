@@ -126,10 +126,10 @@ class ServerTest < ActiveSupport::TestCase
 
     should "filter servers by location" do
       assert_equal Server.all, Server.by_location("invalid location")
-      assert_equal Server.by_site(@site1.id), Server.by_location("site:#{@site1.id}")
-      assert_equal [], Server.by_location("site:0")
-      assert_equal Server.by_rack(@rack1.id), Server.by_location("rack:#{@site1.id}")
-      assert_equal [], Server.by_location("rack:0")
+      assert_equal Server.by_site(@site1.id), Server.by_location("site-#{@site1.id}")
+      assert_equal [], Server.by_location("site-0")
+      assert_equal Server.by_rack(@rack1.id), Server.by_location("rack-#{@site1.id}")
+      assert_equal [], Server.by_location("rack-0")
     end
 
     should "filter servers by mainteneur"

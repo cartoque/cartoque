@@ -31,9 +31,9 @@ module ServersHelper
 
   def options_for_location_filter(selected)
     options = Site.includes("physical_racks").inject([["",""]]) do |memo,site|
-      memo << [site.name,"site:#{site.id}"]
+      memo << [site.name,"site-#{site.id}"]
       memo += site.physical_racks.map do |rack|
-        ["&nbsp; #{rack}".html_safe, "rack:#{rack.id}"]
+        ["&nbsp; #{rack}".html_safe, "rack-#{rack.id}"]
       end
       memo
     end
