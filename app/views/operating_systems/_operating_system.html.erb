@@ -4,7 +4,7 @@
                 :confirm => t(:text_confirm_delete, :element => operating_system.name), :method => :delete %>
   </div>
   <div class="contextual servers-count">
-    <%= @os_servers_count[operating_system.id] || 0 %>
+    <%= @os_servers_count[operating_system.id] %>
   </div>
   <%= link_to operating_system.name, edit_operating_system_path(operating_system) %>
 </div>

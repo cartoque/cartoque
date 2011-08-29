@@ -4,6 +4,7 @@ class OperatingSystemsController < InheritedResources::Base
   def index
     @operating_systems = OperatingSystem.arrange(:order => "name")
     @os_servers_count = Server.group("operating_system_id").count
+    @os_servers_count.default = 0
   end
 
   def create
