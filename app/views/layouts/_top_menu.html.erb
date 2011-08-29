@@ -43,5 +43,19 @@
     </ul>
   </div>
 </li>
-<li class="tiny"><%= link_to "Outils", tool_path(:nagios_comparison) %></li>
+<li class="tiny has-submenu">
+  <%= link_to_function %(Outils <span class="arrow"></span>).html_safe, "return false" %>
+  <div class="large-submenu submenu-2" style="margin-left:-70px">
+    <ul style="float:left">
+      <li class="title">Comparaison</li>
+      <li><%= link_to "CMDB&harr;Nagios".html_safe, tool_path("nagios_comparison") %></li>
+      <li><%= link_to "CMDB&harr;VCenter".html_safe, tool_path("vmware_comparison") %></li>
+      <li><%= link_to "CMDB&harr;Rev-Proxies".html_safe, tool_path("reverse-proxies_comparison") %></li>
+    </ul>
+    <ul style="float:left">
+      <li class="title">Symétrie</li>
+      <li><%= link_to "Clusters RedHat", tool_path("cluster_symetry") %></li>
+    </ul>
+  </div>
+</li>
 <li class="tiny"><%= link_to "Configuration", operating_systems_path %></li>

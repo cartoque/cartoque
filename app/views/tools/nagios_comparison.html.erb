@@ -34,8 +34,6 @@
 
 <div id="tools" class="grid_12 items_list">
 
-<%= render "submenu" %>
-
 <% diff_list.each do |title,servers| %>
 <ul>
   <li><strong><%= pluralize(servers.count, "serveur") %> <%= title %></strong></li>

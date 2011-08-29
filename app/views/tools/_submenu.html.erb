@@ -1,8 +1,0 @@
-<%= action_links do %>
-  <ul class="select-buttons">
-    <%= content_tag :li, link_to("Comparaison Nagios", tool_path(:nagios_comparison)), :class => (params[:action] == "nagios_comparison" ? "current" : "") %>
-    <%= content_tag :li, link_to("Comparaison VMWare", tool_path(:vmware_comparison)), :class => (params[:action] == "vmware_comparison" ? "current" : "") %>
-    <%= content_tag :li, link_to("Comparaison Reverse-Proxies", tool_path("reverse-proxies_comparison")), :class => (params[:action] == "reverse-proxies_comparison" ? "current" : "") %>
-    <%= content_tag :li, link_to("Symétrie clusters", tool_path(:cluster_symetry)), :class => (params[:action] == "cluster_symetry" ? "current" : "") %>
-  </ul>
-<% end %>

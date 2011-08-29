@@ -23,8 +23,6 @@ diff_list = {
 
 <div id="tools" class="grid_12 items_list">
 
-<%= render "submenu" %>
-
 <% diff_list.each do |title,servers| %>
 <ul>
   <li><strong><%= pluralize(servers.count, "VM") %> <%= title %></strong></li>
