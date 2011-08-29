@@ -7,4 +7,5 @@
     <%= @os_servers_count[operating_system.id] %>
   </div>
   <%= link_to operating_system.name, edit_operating_system_path(operating_system) %>
+  <span class="tiny">(<%= subtree.inject(0){|sum, descendant| sum + @os_servers_count[descendant] } %>)</span>
 </div>
