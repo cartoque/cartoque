@@ -27,7 +27,7 @@
 <div class="grid_4 center">
 <% if @os_subtree.present? %>
   <% if @root_os.present? %>
-  <div class="tiny" style="float:right; margin-right:10px;">
+  <div class="graph-links tiny">
     <%= link_to("Retourner au graph de répartition #{@root_os.parent.presence || "globale"}", operating_systems_path(:graph_subtree => @root_os.parent_id)) %>
   </div>
   <% end %>
