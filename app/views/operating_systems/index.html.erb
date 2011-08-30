@@ -69,7 +69,7 @@
             this.label[0].scale(1.2);
             this.label[1].attr({"font-weight": 800});
             var sel = "#operating_system_"+this.label.osId
-            //sel += ", #nested_os_"+this.label.osId+" .operating_system"
+            sel += ", #nested_os_"+this.label.osId+" .operating_system"
             $(sel).addClass("hover");
           }
         }, function () {
@@ -78,7 +78,7 @@
             this.label[0].animate({scale: 1}, 500, "bounce");
             this.label[1].attr({"font-weight": 400});
             var sel = "#operating_system_"+this.label.osId
-            //sel += ", #nested_os_"+this.label.osId+" .operating_system"
+            sel += ", #nested_os_"+this.label.osId+" .operating_system"
             $(sel).removeClass("hover");
           }
         });
