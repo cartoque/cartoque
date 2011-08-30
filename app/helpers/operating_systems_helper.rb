@@ -13,7 +13,8 @@ module OperatingSystemsHelper
   def nested_operating_systems(operating_systems)
     operating_systems.map do |operating_system, sub_os|
       subtree_ids = [operating_system.id] + descendant_ids(sub_os)
-      render(operating_system, :subtree => subtree_ids) + content_tag(:div, nested_operating_systems(sub_os), :class => "nested-os")
+      render(operating_system, :subtree => subtree_ids) +
+             content_tag(:div, nested_operating_systems(sub_os), :id => "nested_os_#{operating_system.id}", :class => "nested-os")
     end.join.html_safe
   end
 

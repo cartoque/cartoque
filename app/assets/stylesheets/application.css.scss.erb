@@ -105,7 +105,7 @@ td.label { width:75px; text-align:left; padding:6px; }
   th.sortable a, th.current a { border-bottom:1px solid #aaa; }
   td { padding:5px 7px; }
 }
-tbody.long-list tr:hover td, div.operating-system:hover { background-color:#e4ebf8; cursor:default; }
+tbody.long-list tr:hover td, div.operating_system:hover, .hover { background-color:#e4ebf8; cursor:default; }
 tbody.long-list tr:hover td.multirow { background-color:inherit !important; }
 
 /* commodities */
@@ -471,19 +471,20 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 #server_name, #application_name { font-size:150%; font-weight:bold; }
 
 /* operating systems */
-.operating-systems {
+.operating_systems {
   td { padding:0; }
   th { text-align:left; }
   th .contextual { padding-right:24px; }
 }
-.operating-system {
+.operating_system {
   margin:0; padding:5px 3px 5px 8px;
   > .contextual { margin-left:10px; }
   .servers-count { width:50px; margin:0 0 0 20px; padding:0; text-align:right; }
 }
 .nested-os {
   margin-left:10px;
-  .operating-system { padding-left:16px; background:#fff url(<%= asset_path 'bullet_arrow_right.png' %>) no-repeat left center; }
+  .operating_system { padding-left:16px; background-image: url(<%= asset_path 'bullet_arrow_right.png' %>);
+                      background-position:left center; background-repeat:no-repeat; }
 }
 .os-icon { margin:0 2px -2px 0; }
 

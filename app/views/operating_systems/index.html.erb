@@ -10,7 +10,7 @@
   var serversmap = new Object;
 </script>
 
-<table class="list operating-systems">
+<table class="list operating_systems">
   <tr>
     <th>
       <div class="contextual">Serveurs</div>
@@ -35,9 +35,15 @@
         r.g.text(125, 25, "Répartition des systèmes").attr({"font-size": 16});
 
         var pie = r.g.piechart(125, 155, 100, [<%= @operating_systems.keys.map{|os| %(serversmap[#{os.id}])}.join(", ").html_safe %>],
-                    {legend: [<%= @operating_systems.keys.map{|os| %("%% #{os}")}.join(", ").html_safe %>], legendmark: "disc", legendpos: "south",
+                    {legend: [<%= @operating_systems.keys.map{|os| %("%% #{os} [#{os.id}]")}.join(", ").html_safe %>], legendmark: "disc", legendpos: "south",
                      href: [<%= @operating_systems.keys.map{|os| %("#")}.join(", ").html_safe %>], colors: ["#36C", "#C33", "#093", "#FD0"]});
 
+        var legend_regex = /(.+) \[(\d+)\]$/;
+        $.each(pie.labels, function() {
+          var label = this[1].attrs.text;
+          this.osId = label.replace(legend_regex, "$2");
+          this[1].attr({text: label.replace(legend_regex, "$1")});
+        });
         pie.hover(function () {
           this.sector.stop();
           this.sector.scale(1.02, 1.04, this.cx, this.cy);
@@ -45,14 +51,22 @@
             this.label[0].stop();
             this.label[0].scale(1.2);
             this.label[1].attr({"font-weight": 800});
+            var sel = "#operating_system_"+this.label.osId
+            //sel += ", #nested_os_"+this.label.osId+" .operating_system"
+            $(sel).addClass("hover");
           }
         }, function () {
           this.sector.animate({scale: [1, 1, this.cx, this.cy]}, 500, "bounce");
           if (this.label) {
             this.label[0].animate({scale: 1}, 500, "bounce");
             this.label[1].attr({"font-weight": 400});
+            var sel = "#operating_system_"+this.label.osId
+            //sel += ", #nested_os_"+this.label.osId+" .operating_system"
+            $(sel).removeClass("hover");
           }
         });
+
+        piez = pie;
       };
     </script>
     <div id="distribution" class="graph" style="width:250px;"></div>
