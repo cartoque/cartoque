@@ -307,8 +307,9 @@ html>body #loading { position:fixed; }
                    display:-moz-inline-box; display:inline-block; /* Use font-size to control the size of the arrow. */ font-size:8px;
                    margin-left:0.4em; margin-right:0.2em; height:0; width:0; top:0.2em; line-height:0; position:relative; vertical-align:middle;
                    border-top-width:0.5em; border-top-style:solid; border-top-color:/*#36c*/#555; }
-  li.tiny { height:24px; font-size:90%; }
-  li.tiny a { position:relative; top:1px; }
+  li.tiny { height:24px; }
+  li.tiny > a { position:relative; top:1px; font-size:90%; }
+  li.tiny .large-submenu { font:13px/22px Arial,sans-serif; }
 }
 
 /* sidebar */
