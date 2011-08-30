@@ -34,14 +34,14 @@
   <div class="graph-container">
     <script type="text/javascript" charset="utf-8"> 
       window.onload = function () {
-        var r = Raphael("distribution", 250, 410);
+        var r = Raphael("distribution", 300, 410);
         r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
 
         var title = "Répartition des systèmes";
       <% if @root_os.present? %>
         title += " <%= @root_os.to_s %>";
       <% end %>
-        r.g.text(125, 25, title).attr({"font-size": 16});
+        r.g.text(150, 25, title).attr({"font-size": 16});
 
         var subtree = [];
         <% @os_subtree.each do |os,subos| %>
@@ -49,7 +49,7 @@
                        href: "<%= subos.any? ? "#{operating_systems_path(:graph_subtree => os.id)}" : "#" %>" });
         <% end %>
         subtree.sort(function(a,b){return b.value - a.value});
-        var pie = r.g.piechart(125, 155, 100, $.map(subtree, function(os,i){ return os.value}),
+        var pie = r.g.piechart(150, 155, 100, $.map(subtree, function(os,i){ return os.value}),
                     { legend: $.map(subtree, function(os,i){ return os.legend}), legendmark: "disc", legendpos: "south", 
                       href: $.map(subtree, function(os,i){ return os.href}), colors: ["#36C", "#C33", "#093", "#FD0"] });
 
