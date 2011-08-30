@@ -1,3 +1,4 @@
+<% total_servers = subtree.inject(0){|sum, descendant| sum + @os_servers_count[descendant] } %>
 <div class="operating-system">
   <div class="contextual">
     <%= link_to image_tag("delete.png", :class => "inline", :size => "16x16"), operating_system,
@@ -7,5 +8,8 @@
     <%= @os_servers_count[operating_system.id] %>
   </div>
   <%= link_to operating_system.name, edit_operating_system_path(operating_system) %>
-  <span class="tiny">(<%= subtree.inject(0){|sum, descendant| sum + @os_servers_count[descendant] } %>)</span>
+  <span class="tiny">(<%= total_servers %>)</span>
+  <script type="text/javascript">
+    serversmap[<%= operating_system.id %>] = <%= total_servers %>;
+  </script>
 </div>

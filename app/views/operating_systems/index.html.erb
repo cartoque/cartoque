@@ -1,10 +1,14 @@
 <% title "Systèmes d'exploitation" %>
 
-<div id="operating_systems" class="grid_9 center">
+<div id="operating_systems" class="grid_5 center">
   
 <%= action_links do %>
   <%= link_to "Nouveau système d'exploitation", new_operating_system_path %>
 <% end %>
+
+<script type="text/javascript"> 
+  var serversmap = new Object;
+</script>
 
 <table class="list operating-systems">
   <tr>
@@ -18,4 +22,40 @@
   </tr>
 </table>
 
+</div>
+
+<div class="grid_4 center">
+<% if @operating_systems.any? %>
+  <div class="graph-container">
+    <script type="text/javascript" charset="utf-8"> 
+      window.onload = function () {
+        var r = Raphael("distribution", 250, 410);
+        r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
+
+        r.g.text(125, 25, "Répartition des systèmes").attr({"font-size": 16});
+
+        var pie = r.g.piechart(125, 155, 100, [<%= @operating_systems.keys.map{|os| %(serversmap[#{os.id}])}.join(", ").html_safe %>],
+                    {legend: [<%= @operating_systems.keys.map{|os| %("%% #{os}")}.join(", ").html_safe %>], legendmark: "disc", legendpos: "south",
+                     href: [<%= @operating_systems.keys.map{|os| %("#")}.join(", ").html_safe %>], colors: ["#36C", "#C33", "#093", "#FD0"]});
+
+        pie.hover(function () {
+          this.sector.stop();
+          this.sector.scale(1.02, 1.04, this.cx, this.cy);
+          if (this.label) {
+            this.label[0].stop();
+            this.label[0].scale(1.2);
+            this.label[1].attr({"font-weight": 800});
+          }
+        }, function () {
+          this.sector.animate({scale: [1, 1, this.cx, this.cy]}, 500, "bounce");
+          if (this.label) {
+            this.label[0].animate({scale: 1}, 500, "bounce");
+            this.label[1].attr({"font-weight": 400});
+          }
+        });
+      };
+    </script>
+    <div id="distribution" class="graph" style="width:250px;"></div>
+  </div>
+<% end %>
 </div>

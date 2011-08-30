@@ -14,6 +14,9 @@
 //= require jquery.bsmselect.compatibility
 //= require jquery.bsmselect.sortable
 //= require jquery.reject.min
+//= require raphael/raphael-min
+//= require raphael/g.raphael-min
+//= require raphael/g.pie-min
 //
 //not for now: //= require_tree .
 
