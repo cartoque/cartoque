@@ -26,11 +26,13 @@
 
 <div class="grid_4 center">
 <% if @os_subtree.present? %>
-  <% if @root_os.present? %>
   <div class="graph-links tiny">
+  <% if @root_os.present? %>
     <%= link_to("Recentrer"+(@root_os.parent.present? ? " sur #{@root_os.parent}" : ""), operating_systems_path(:graph_subtree => @root_os.parent_id)) %>
-  </div>
+  <% else %>
+    &nbsp;
   <% end %>
+  </div>
   <div class="graph-container">
     <script type="text/javascript" charset="utf-8"> 
       window.onload = function () {
