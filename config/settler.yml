@@ -19,6 +19,9 @@ settings: &settings
     editable: true
   site_announcement_type:
     editable: true
+  cas_server:
+    value: 'https://authentification-cerbere.application.i2/cas/'
+    editable: true
 
 development:
   <<: *settings  
@@ -26,6 +29,8 @@ development:
 #    <<: *google
 #    alt: Development Google analytics key
 #    value: 'UA-xxxxxx-1'
+  cas_server:
+    value: 'http://localhost:9292'
 
 test:
   <<: *settings

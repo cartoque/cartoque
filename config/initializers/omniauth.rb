@@ -1,7 +1,13 @@
 require 'omniauth/enterprise'
 
-cas_server = Rails.env == 'production' ? 'https://authentification-cerbere.application.i2/cas/' : 'http://localhost:9292'
-Rails.application.config.middleware.use OmniAuth::Strategies::CAS, :cas_server => cas_server
+setup_app = Proc.new do |env|
+  if Settler.cas_server.present?
+    config = OmniAuth::Strategies::CAS::Configuration.new(:cas_server => Settler.cas_server.value)
+    env['omniauth.strategy'].instance_variable_set(:@configuration, config)
+  end
+end
+Rails.application.config.middleware.use OmniAuth::Strategies::CAS, :cas_server => "http://localhost:9292", :setup => setup_app
+
 
 OmniAuth.config.full_host = Proc.new do |env|
   url = env["rack.session"]["omniauth.origin"] || env["omniauth.origin"]
