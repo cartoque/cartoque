@@ -9,19 +9,6 @@
 #a DB connection
 db = ActiveRecord::Base.connection
 
-#parse old dates in Server
-{:date_mes => :delivered_on, :fin_garantie => :maintained_until}.each do |old_field, new_field|
-  if db.table_exists?(old_field) && db.table_exists?(new_field)
-    Server.all.each do |m|
-      value = m.send(old_field)
-      unless value.blank?
-        value = "#{$1}/20#{$2}" if value.match %r{(.*\d\d)/(\d\d)$}
-        m.update_attribute(new_field, (Date.parse(value) rescue nil))
-      end
-    end
-  end
-end
-
 #downcase server names
 #TODO: add a validation on the name
 Server.all.each do |server|
