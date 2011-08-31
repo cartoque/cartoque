@@ -18,5 +18,13 @@ class ConfigurationItemTest < ActiveSupport::TestCase
       assert_not_nil ci.identifier
       assert ci.save
     end
+
+    should "have a #to_s method in each real-CI-object classes" do
+      ActiveRecord::Base.subclasses.each do |klass|
+        if klass.instance_methods.include?(:configuration_item)
+          assert klass.instance_method_already_implemented?(:to_s), "#{klass}#to_s is not defined (required for playing with ConfigurationItem)"
+        end
+      end
+    end
   end
 end
