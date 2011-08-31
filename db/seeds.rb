@@ -43,19 +43,6 @@ end.uniq.sort.reverse.each do |cluster|
   end
 end
 
-#automatically find storage devices
-#SAN iSCSI PS5000/6000
-Server.where("name like 'gaston%'").each do |server|
-  Storage.create(:server_id => server.id, :constructor => "Equalogic")
-end
-#SAN IBM DS4500
-Server.where("name like 'rehdsk%'").each do |server|
-  Storage.create(:server_id => server.id, :constructor => "IBM") unless Storage.where(:server_id => server.id).exists?
-end
-#NAS
-Storage.create(:server => Server.find_by_name("plomb"), :constructor => "NetApp")
-Storage.create(:server => Server.find_by_name("antimoine"), :constructor => "NetApp")
-
 #update Server#ipaddress if possible
 if db.column_exists?("servers", "ipaddress") && Server.respond_to?(:ip)
   Server.all.each do |server|
