@@ -19,6 +19,15 @@ class ConfigurationItemTest < ActiveSupport::TestCase
       assert ci.save
     end
 
+    should "not fail if #to_s method of real object returns nil" do
+      Server.any_instance.stubs(:to_s).returns(nil)
+      s = Factory(:server)
+      assert_nil s.to_s
+      ci = ConfigurationItem.new(:item => s)
+      assert ci.valid?
+      assert_not_nil ci.identifier
+    end
+
     should "have a #to_s method in each real-CI-object classes" do
       ActiveRecord::Base.subclasses.each do |klass|
         if klass.instance_methods.include?(:configuration_item)

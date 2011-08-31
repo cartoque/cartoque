@@ -7,7 +7,7 @@ class ConfigurationItem < ActiveRecord::Base
 
   def update_identifier!
     if self.item.present?
-      self.identifier = "#{self.item_type.downcase}::#{self.item.to_s.parameterize}"
+      self.identifier = "#{self.item_type.downcase}::#{self.item.to_s.try(:parameterize)}"
     end
   end
 end
