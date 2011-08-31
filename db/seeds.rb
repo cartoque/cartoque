@@ -15,27 +15,6 @@ Server.all.each do |server|
   server.update_attribute("name", server.name.downcase)
 end
 
-#update Server#ipaddress if possible
-if db.column_exists?("servers", "ipaddress") && Server.respond_to?(:ip)
-  Server.all.each do |server|
-    begin
-      server.update_attribute(:ipaddress, server.ip)
-    rescue ArgumentError
-      $stderr.puts "  WARNING: Unable to save #{server.name} => #{server.ip}"
-    end
-  end
-end
-
-#fill Ipaddress table if needed
-if Ipaddress.count == 0 && Server.where("ipaddress is not null").count
-  Server.all.each do |server|
-    if server.ipaddress
-      server.ipaddresses << Ipaddress.new(:address => server.ipaddress, :main => true)
-      server.save
-    end
-  end
-end
-
 #fill ApplicationInstance if needed
 if ApplicationInstance.count == 0 && Application.count > 0
   Application.all.each do |application|
