@@ -15,19 +15,6 @@ Server.all.each do |server|
   server.update_attribute("name", server.name.downcase)
 end
 
-#migrate application servers old links
-if db.table_exists?("applications_servers")
-  results = Server.connection.execute("SELECT application_id, server_id from applications_servers;").to_a
-  results.each do |result|
-    application_id, server_id = result
-    prod_instance = ApplicationInstance.find_by_name_and_application_id("prod", application_id)
-    if prod_instance && !prod_instance.server_ids.include?(server_id) && m=Server.find_by_id(server_id)
-      prod_instance.servers << m
-      prod_instance.save
-    end
-  end
-end
-
 #set servers identifier
 Server.where(:identifier => nil).each do |m|
   m.update_attribute(:identifier, Server.identifier_for(m.name))

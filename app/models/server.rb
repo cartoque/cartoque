@@ -1,5 +1,4 @@
 class Server < ActiveRecord::Base
-  has_and_belongs_to_many :applications
   has_and_belongs_to_many :application_instances
   belongs_to :physical_rack
   belongs_to :operating_system
