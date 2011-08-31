@@ -113,3 +113,12 @@ end
 Server.where(:identifier => nil).each do |m|
   m.update_attribute(:identifier, Server.identifier_for(m.name))
 end
+
+#populate CIs if needed
+ActiveRecord::Base.subclasses.select do |klass|
+  klass != ConfigurationItem && klass.instance_methods.include?(:configuration_item)
+end.each do |klass|
+  klass.all.each do |item|
+    klass.after_save(item) if item.configuration_item.blank?
+  end
+end
