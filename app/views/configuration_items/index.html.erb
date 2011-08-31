@@ -5,9 +5,6 @@
 <%= form_tag configuration_items_path(params), :id => "filters", :method => :get do -%>
   <%= hidden_field_tag :direction, params[:direction] %>
   <%= hidden_field_tag :sort, params[:sort] %>
-  <% (controller.scopes_configuration || {}).keys.each do |scope| %>
-    <%= hidden_field_tag scope, params[scope] %>
-  <% end %>
   <table class="pretty full list">
     <tr class="filters fixed-size">
       <td><%= select_tag "by_item_type", options_for_select([["",""]] + ConfigurationItem.real_object_classes.map{|k| [k, k]} , params[:by_item_type]).html_safe -%></td>
