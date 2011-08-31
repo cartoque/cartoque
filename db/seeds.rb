@@ -119,6 +119,6 @@ ActiveRecord::Base.subclasses.select do |klass|
   klass != ConfigurationItem && klass.instance_methods.include?(:configuration_item)
 end.each do |klass|
   klass.all.each do |item|
-    klass.after_save(item) if item.configuration_item.blank?
+    ConfigurationItem.generate_ci_for(item) if item.configuration_item.blank?
   end
 end

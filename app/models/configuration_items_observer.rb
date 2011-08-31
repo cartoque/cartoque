@@ -4,13 +4,7 @@ class ConfigurationItemsObserver < ActiveRecord::Observer
   observe ActiveRecord::Base.subclasses - [ConfigurationItem]
 
   def after_save(record)
-    if record.respond_to?(:configuration_item)
-      if record.configuration_item.blank?
-        ConfigurationItem.create!(:item => record)
-      else
-        record.configuration_item.save
-      end
-    end
+    ConfigurationItem.generate_ci_for(record) if record.respond_to?(:configuration_item)
   end
 
   def after_destroy(record)

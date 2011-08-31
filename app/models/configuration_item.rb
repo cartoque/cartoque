@@ -7,6 +7,15 @@ class ConfigurationItem < ActiveRecord::Base
 
   scope :by_item_type, proc {|type| where(:item_type => type) }
 
+  def self.generate_ci_for(record)
+    raise "Not a real CI object" unless record.respond_to?(:configuration_item)
+    if record.configuration_item.blank?
+      ConfigurationItem.create!(:item => record)
+    else
+      record.configuration_item.save
+    end
+  end
+
   def update_identifier!
     if self.item.present?
       self.identifier = "#{self.item_type.downcase}::#{self.item.to_s.try(:parameterize)}"
