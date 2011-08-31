@@ -33,7 +33,7 @@ class DatabasesControllerTest < ActionController::TestCase
 
   def test_create_valid
     Database.any_instance.stubs(:valid?).returns(true)
-    post :create
+    post :create, :database => { :name => "database", :database_type => "postgres", :server_ids => [] }
     assert_redirected_to databases_url #database_url(assigns(:database))
   end
   
