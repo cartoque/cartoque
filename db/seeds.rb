@@ -28,17 +28,6 @@ if db.table_exists?("applications_servers")
   end
 end
 
-#set default authentication method
-if ApplicationInstance.where("authentication_method" => nil).count > 0
-  ApplicationInstance.all.each do |app_instance|
-    if app_instance.name == "prod" && app_instance.application.cerbere
-      app_instance.update_attribute("authentication_method", "cerbere")
-    else
-      app_instance.update_attribute("authentication_method", "none")
-    end
-  end
-end
-
 #set servers identifier
 Server.where(:identifier => nil).each do |m|
   m.update_attribute(:identifier, Server.identifier_for(m.name))
