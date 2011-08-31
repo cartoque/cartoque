@@ -20,4 +20,5 @@ class ApplicationInstance < ActiveRecord::Base
   def fullname
     "#{application.name} (#{name})"
   end
+  alias :to_s :fullname
 end

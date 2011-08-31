@@ -31,6 +31,10 @@ class Application < ActiveRecord::Base
     end
   end
 
+  def to_s
+    name
+  end
+
   def update_cerbere_from_instances
     self.cerbere = self.application_instances.inject(false) do |memo,app_instance|
       memo || app_instance.authentication_method == "cerbere"

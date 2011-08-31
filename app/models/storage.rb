@@ -11,6 +11,10 @@ class Storage < ActiveRecord::Base
     ["IBM", "NetApp", "Equalogic"]
   end
 
+  def to_s
+    server.name
+  end
+
   def file
     File.expand_path("data/storage/#{server.name.downcase}.txt", Rails.root)
   end

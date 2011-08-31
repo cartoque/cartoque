@@ -9,6 +9,10 @@ class Database < ActiveRecord::Base
   scope :by_name, proc {|name| where("databases.name LIKE ?", "%#{name}%") }
   scope :by_type, proc {|type| { :conditions => { :database_type => type } } }
 
+  def to_s
+    name
+  end
+
   def postgres_report
     servers.inject([]) do |memo,server|
       memo.concat(server.postgres_report)
