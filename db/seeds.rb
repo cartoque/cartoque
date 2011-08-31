@@ -15,18 +15,6 @@ Server.all.each do |server|
   server.update_attribute("name", server.name.downcase)
 end
 
-#automatically find database clusters
-servers = Server.where("name like 'sgbd%'")
-servers.map do |s|
-  s.name.gsub(/-\d*$/,"")
-end.uniq.sort.reverse.each do |cluster|
-  d = Database.find_or_create_by_name(cluster)
-  d.update_attribute(:database_type, (cluster.match(/m2$|a$/i) ? "postgres" : "oracle"))
-  servers.select{|s| s.name.starts_with?(cluster)}.each do |server|
-    server.update_attribute("database_id", d.id)
-  end
-end
-
 #update Server#ipaddress if possible
 if db.column_exists?("servers", "ipaddress") && Server.respond_to?(:ip)
   Server.all.each do |server|
