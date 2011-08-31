@@ -15,7 +15,7 @@
   <tr>
     <td><%= ci.item_type %></td>
     <td><%= ci.identifier %></td>
-    <td><%= link_to ci.item.name, configuration_item_path(ci) %></td>
+    <td><%= link_to ci.item.to_s, configuration_item_path(ci) %></td>
   </tr>
 <% end %>
 </tbody>
