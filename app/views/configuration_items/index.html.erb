@@ -11,7 +11,6 @@
   <% end %>
 <tr class="filters fixed-size">
   <td><%= select_tag "by_item_type", options_for_select([["",""]] + ConfigurationItem.real_object_classes.map{|k| [k, k]} , params[:by_item_type]).html_safe -%></td>
-  <td></td>
   <td><span id="configuration_items_counter" class="counter"><%= @configuration_items.count %></span></td>
 </tr>
 <% end -%>
