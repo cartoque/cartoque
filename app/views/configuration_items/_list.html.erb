@@ -1,0 +1,12 @@
+<tr class="fix-on-scroll">
+  <th>Type</th>
+  <th>Identifiant</th>
+  <th>Nom</th>
+</tr>
+<% @configuration_items.each do |ci| %>
+<tr>
+  <td><%= ci.item_type %></td>
+  <td><%= ci.identifier %></td>
+  <td><%= link_to ci.item.to_s, configuration_item_path(ci) %></td>
+</tr>
+<% end %>
