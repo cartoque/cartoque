@@ -22,6 +22,8 @@ class ConfigurationItem < ActiveRecord::Base
   def self.real_object_classes
     @@real_object_classes ||= ActiveRecord::Base.subclasses.select do |klass|
       klass != ConfigurationItem && klass.instance_methods.include?(:configuration_item)
+    end.sort_by do |klass|
+      klass.to_s
     end
   end
 end
