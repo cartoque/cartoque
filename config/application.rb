@@ -23,6 +23,7 @@ module Cartocs
 
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
+    config.active_record.observers = :configuration_items_observer
 
     # Enable the asset pipeline
     config.assets.enabled = true
