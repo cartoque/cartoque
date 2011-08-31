@@ -9,9 +9,6 @@
 #a DB connection
 db = ActiveRecord::Base.connection
 
-#set default database_type if needed
-Database.update_all(:database_type => 'postgres', 'database_type' => nil)
-
 #parse old dates in Server
 {:date_mes => :delivered_on, :fin_garantie => :maintained_until}.each do |old_field, new_field|
   if db.table_exists?(old_field) && db.table_exists?(new_field)
