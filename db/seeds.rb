@@ -15,14 +15,6 @@ Server.all.each do |server|
   server.update_attribute("name", server.name.downcase)
 end
 
-#fill ApplicationInstance if needed
-if ApplicationInstance.count == 0 && Application.count > 0
-  Application.all.each do |application|
-    ApplicationInstance.find_or_create_by_name_and_application_id("prod", application.id)
-    ApplicationInstance.find_or_create_by_name_and_application_id("ecole", application.id) if application.read_attribute(:pe).include?("E")
-  end
-end
-
 #migrate application servers old links
 if db.table_exists?("applications_servers")
   results = Server.connection.execute("SELECT application_id, server_id from applications_servers;").to_a
