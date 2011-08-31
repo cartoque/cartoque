@@ -1,4 +1,5 @@
 Cartocs::Application.routes.draw do
+  resources :configuration_items, :only => [:index, :show]
   resources :settings, :only => :index do
    collection { put 'update_all', :as => 'update_all' }
   end

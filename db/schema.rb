@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110827212247) do
+ActiveRecord::Schema.define(:version => 20110831014037) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -60,6 +60,14 @@ ActiveRecord::Schema.define(:version => 20110827212247) do
 
   add_index "applications_servers", ["application_id"], :name => "index_applications_servers_on_application_id"
   add_index "applications_servers", ["server_id"], :name => "index_applications_servers_on_machine_id"
+
+  create_table "configuration_items", :force => true do |t|
+    t.string   "item_type"
+    t.integer  "item_id"
+    t.string   "identifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "databases", :force => true do |t|
     t.string   "name"

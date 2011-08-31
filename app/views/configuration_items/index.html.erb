@@ -1,0 +1,24 @@
+<% title "CI (Configuration Items)" %>
+
+<div class="grid_12 center">
+
+<table class="pretty list full">
+<thead>
+  <tr>
+    <th>Type</th>
+    <th>Identifiant</th>
+    <th>Nom</th>
+  </tr>
+</thead>
+<tbody class="long-list">
+<% @configuration_items.each do |ci| %>
+  <tr>
+    <td><%= ci.item_type %></td>
+    <td><%= ci.identifier %></td>
+    <td><%= link_to ci.item.name, configuration_item_path(ci) %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+</div>

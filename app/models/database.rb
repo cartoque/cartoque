@@ -1,6 +1,8 @@
 class Database < ActiveRecord::Base
   attr_accessible :name, :database_type, :server_ids
   has_many :servers
+  has_one :configuration_item, :as => :item
+
   validates_presence_of :name
   validates_inclusion_of :database_type, :in => %w(postgres oracle)
 

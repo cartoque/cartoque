@@ -8,6 +8,8 @@ class Server < ActiveRecord::Base
   belongs_to :database
   has_one :storage
   has_many :ipaddresses, :dependent => :destroy
+  has_one :configuration_item, :as => :item
+
   accepts_nested_attributes_for :ipaddresses, :reject_if => lambda{|a| a[:address].blank? },
                                               :allow_destroy => true
 

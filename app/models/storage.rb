@@ -1,5 +1,6 @@
 class Storage < ActiveRecord::Base
   belongs_to :server
+  has_one :configuration_item, :as => :item
 
   validates_presence_of :server
   validates_presence_of :constructor
