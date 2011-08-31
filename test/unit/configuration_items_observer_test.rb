@@ -36,4 +36,14 @@ class ConfigurationItemsObserverTest < ActiveSupport::TestCase
       s.save!
     end
   end
+
+  should "not generate the CI twice, in any case" do
+    s = Server.new(:name => "my-new-server")
+    assert_difference "ConfigurationItem.count", +1 do
+      s.save!
+    end
+    assert_no_difference "ConfigurationItem.count" do
+      s.save!
+    end
+  end
 end

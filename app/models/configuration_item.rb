@@ -9,11 +9,8 @@ class ConfigurationItem < ActiveRecord::Base
 
   def self.generate_ci_for(record)
     raise "Not a real CI object" unless record.respond_to?(:configuration_item)
-    if record.configuration_item.blank?
-      ConfigurationItem.create!(:item => record)
-    else
-      record.configuration_item.save
-    end
+    ci = ConfigurationItem.find_or_create_by_item_type_and_item_id(record.class.to_s, record.id)
+    ci.save
   end
 
   def update_identifier!
