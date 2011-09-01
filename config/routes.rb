@@ -19,6 +19,8 @@ Cartocs::Application.routes.draw do
   end
   resources :applications
 
+  put 'hide_announcement' => 'javascripts#hide_announcement', :as => 'hide_announcement' 
+
   get 'tools(/:action(/:id(.:format)))', :to => 'tools', :as => 'tool'
 
   match 'auth/:provider/callback' => 'sessions#create'

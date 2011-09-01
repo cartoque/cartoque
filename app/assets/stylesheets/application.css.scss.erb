@@ -54,6 +54,12 @@
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($color1), to($color2));
 }
 
+@mixin opacity($value) {
+  -khtml-opacity: $value;
+  -moz-opacity: $value;
+  opacity: $value;
+}
+
 /* general styles */
 html { overflow-y:scroll; }
 body { min-width:800px; font-family:Verdana, Helvetica, Arial; font-size:12px; margin:0; cursor:default; }
@@ -179,9 +185,9 @@ noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; 
 }
 .not_found { font-weight:bold; font-size:200%; padding:50px; color:#cf0000; }
 
-/* announcements ; TODO: look at http://twitter.github.com/bootstrap */
-.announcement {
-  text-align:center; margin:0; padding:6px 15px; color:#fff; font-size:11px;
+/* announcements ; styles from http://twitter.github.com/bootstrap v1.0.0 */
+#announcement {
+  margin:0; padding:0; color:#fff; font-size:11px;
   background-color: rgba(0, 0, 0, 0.15);
   background-repeat: repeat-x;
   /* a bit too complex to be put in a mixin.. */
@@ -194,9 +200,15 @@ noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; 
   background-color: #e6e6e6;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  p { text-align:center; margin:0; padding:6px 10px; }
   a {
     color:#fff; padding-bottom:1px; border-bottom:1px dotted #fff;
     &:hover { border-bottom:1px solid #fff; }
+  }
+  a.close {
+    float:right; margin:3px 8px 2px; border-bottom:none; color:black; font-size:15px; font-weight:bold;
+    text-decoration:none; text-shadow:0 1px 0 white; @include opacity(0.2);
+    &:hover { @include opacity(0.4); }
   }
   &.info { background-color:#33bad9; }
   &.success { background-color:#74c474; }

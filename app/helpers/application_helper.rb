@@ -147,4 +147,14 @@ module ApplicationHelper
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", :class => "link-add")
   end
+
+  def current_announcement
+    return @current_announcement if defined?(@current_announcement)
+    if hide_time = session[:announcement_hide_time]
+      @current_announcement = Setting.where("settings.key = 'site_announcement_message' AND updated_at > ?", hide_time).first.try(:value)
+    else
+      @current_announcement = Setting.where("settings.key = 'site_announcement_message'").first.try(:value)
+    end
+    @current_announcement
+  end
 end
