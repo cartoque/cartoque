@@ -148,6 +148,10 @@ module ApplicationHelper
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", :class => "link-add")
   end
 
+  def link_to_edit(path)
+    link_to image_tag("edit.png"), path
+  end
+
   def current_announcement
     return @current_announcement if defined?(@current_announcement)
     if hide_time = session[:announcement_hide_time]
