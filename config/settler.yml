@@ -22,6 +22,8 @@ settings: &settings
   cas_server:
     value: 'https://authentification-cerbere.application.i2/cas/'
     editable: true
+  redmine_url:
+    editable: true
 
 development:
   <<: *settings  
@@ -31,9 +33,15 @@ development:
 #    value: 'UA-xxxxxx-1'
   cas_server:
     value: 'http://localhost:9292'
+  redmine_url:
+    value: 'http://localhost:3001/'
 
 test:
   <<: *settings
+  redmine_url:
+    value: 'http://redmine.test.host'
 
 production:
   <<: *settings
+  redmine_url:
+    value: 'http://redmine.app.ac.centre-serveur.i2/'

@@ -9,6 +9,12 @@
     </td>
   </tr>
   <tr>
+    <th>URL Redmine</th>
+    <td>
+      <%= text_field_tag 'settings[redmine_url]', Settler[:redmine_url], :size => 35 %>
+    </td>
+  </tr>
+  <tr>
     <th>Message de service</th>
     <td>
       <%= text_area_tag 'settings[site_announcement_message]', Settler[:site_announcement_message], :size => "50x2" %><br />

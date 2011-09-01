@@ -1,11 +1,8 @@
 development:
   domain: localhost:3000
-  redmine_url: http://localhost:3001/
 
 test:
   domain: test.host
-  redmine_url: http://redmine.test.host
 
 production:
   domain: cartocs.application.ac.centre-serveur.i2
-  redmine_url: http://redmine.app.ac.centre-serveur.i2/
