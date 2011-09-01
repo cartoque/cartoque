@@ -10,7 +10,7 @@
   <tr class="has-opaques">
     <td>
       <div class="contextual opaque">
-        <%= link_to image_tag("delete.png"), server, :confirm => t(:text_confirm_delete, :element => server.name), :method => :delete %>
+        <%= link_to_delete server %>
       </div>
       <%= link_to server.name, server %>
     </td>

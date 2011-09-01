@@ -23,7 +23,7 @@
     <td><%= mainteneur.phone %></td>
     <td><%= mainteneur.email %></td>
     <td><%= mainteneur.client_ref %></td>
-    <td><%= link_to image_tag("delete.png", :size => "16x16"), mainteneur, :confirm => t(:text_are_you_sure), :method => :delete %></td>
+    <td><%= link_to_delete mainteneur %></td>
   </tr>
 <% end %>
 </tbody>

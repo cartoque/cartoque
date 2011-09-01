@@ -10,7 +10,7 @@
     <td class="center hide-when-print"><%= links_for application %></td>
     <td>
       <div class="contextual opaque">
-        <%= link_to image_tag("delete.png"), application, :confirm => t(:text_confirm_delete, :element => application.name), :method => :delete %>
+        <%= link_to_delete application %>
       </div>
       <%= link_to application.name, application %>
     </td>

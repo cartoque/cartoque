@@ -18,7 +18,7 @@
         <strong><%= link_to storage.server.name, storage.server %></strong>
         <%= action_links do %>
           <%= link_to_edit edit_storage_path(storage) %>
-          <%= link_to image_tag("delete.png"), storage, :confirm => t(:text_are_you_sure), :method => :delete %>
+          <%= link_to_delete storage %>
         <% end %>
       </td>
       <td class="top center"><%= storage.constructor %></td>

@@ -152,6 +152,11 @@ module ApplicationHelper
     link_to image_tag("edit.png"), path
   end
 
+  def link_to_delete(resource)
+    confirmation = resource.respond_to?(:name) ? t(:text_confirm_delete, :element => resource.name) : t(:text_are_you_sure)
+    link_to image_tag("delete.png", :size => "16x16"), resource, :confirm => confirmation, :method => :delete
+  end
+
   def current_announcement
     return @current_announcement if defined?(@current_announcement)
     if hide_time = session[:announcement_hide_time]
