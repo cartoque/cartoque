@@ -24,8 +24,13 @@
 
 // ajax loader
 $(function() {
+  // show #loading element
   $('#loading').ajaxStart(function() { $(this).show(); })
                .ajaxStop(function() { $(this).hide(); });
+  // but not for rails' automatic $.ajax calls
+  $.rails.ajax = function(options) {
+    return $.ajax($.extend(options, {global: false}));
+  }
 });
 
 // application events
