@@ -181,7 +181,7 @@ noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; 
 
 /* announcements ; TODO: look at http://twitter.github.com/bootstrap */
 .announcement {
-  text-align:center; margin:0; padding:7px 15px; color:#fff; font-size:11px;
+  text-align:center; margin:0; padding:6px 15px; color:#fff; font-size:11px;
   background-color: rgba(0, 0, 0, 0.15);
   background-repeat: repeat-x;
   /* a bit too complex to be put in a mixin.. */
@@ -194,6 +194,10 @@ noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; 
   background-color: #e6e6e6;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  a {
+    color:#fff; padding-bottom:1px; border-bottom:1px dotted #fff;
+    &:hover { border-bottom:1px solid #fff; }
+  }
   &.info { background-color:#30c0fb; }
   &.success { background-color:#74c474; }
   &.warning { background-color:#ffd75a; }
