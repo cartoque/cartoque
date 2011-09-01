@@ -7,10 +7,29 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_select "div.actions", "blah" 
   end 
 
-  should "render some links to external applications" do
-    render :text => links_for(Factory(:application))
-    redmine = "http://redmine.test.host/projects/appli-01"
-    assert_select "a.link-to-redmine[href=#{redmine}]", "R"
+  context "#links_for" do
+    setup do
+      Settler.load!
+    end
+
+    should "render some links to external applications" do
+      render :text => links_for(Factory(:application))
+      redmine = "http://redmine.test.host/projects/appli-01"
+      assert_select "a.link-to-redmine[href=#{redmine}]", "R"
+    end
+
+    should "accept custom value for redmine_url" do
+      Settler.redmine_url.update_attribute(:value, "http://redmine.org")
+      render :text => links_for(Factory(:application))
+      assert_select "a.link-to-redmine[href=http://redmine.org/projects/appli-01]", "R"
+    end
+
+    should "not fail if redmine_url is blank (default value in this case)" do
+      Settler.redmine_url = ""
+      render :text => links_for(Factory(:application))
+      redmine = "http://redmine.test.host/projects/appli-01"
+      assert_select "a.link-to-redmine[href=#{redmine}]", "R"
+    end
   end
 
   should "display server with full details" do
