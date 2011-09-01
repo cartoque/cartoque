@@ -13,8 +13,9 @@ gem 'rake'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
+# Debugging
 gem 'ruby-debug19'
+gem 'log_buddy'
 
 # Bundle the extra gems:
 # gem 'bj'
