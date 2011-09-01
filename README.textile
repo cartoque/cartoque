@@ -1,12 +1,15 @@
 h1. Credits
 
-This application is built using the Ruby on Rails framework. Many functionalities or techniques used here are inspired by the awesomes screencasts by Ryan Bates @ http://www.railscasts.com. Including :
+This application is built using the Ruby on Rails framework.
+
+Many functionalities or techniques used here are inspired by the awesome screencasts by Ryan Bates @ http://www.railscasts.com, including :
+* Site Wide Announcements (Episode 103)
 * PDFs exports with PDFKit (Episode 220)
 * Inherited Resources to DRY up controllers (Episode 230)
 * Simple_form to DRY up forms (Episode 234)
 * Search/Sort with AJAX (Episode 240)
 * Simple authentication with OmniAuth (Episode 241)
-* AJAX history state (Episode 241)
+* AJAX history state (Episode 246)
 * Trees with Ancestry (Episode 262)
 
 And soon coming:
