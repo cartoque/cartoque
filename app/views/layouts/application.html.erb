@@ -49,7 +49,7 @@
 
   <% if Settler[:site_announcement_message].present? %>
     <div class="announcement <%= Settler[:site_announcement_type].presence || "info" %>">
-      <%= Settler[:site_announcement_message] %>
+      <%= Settler[:site_announcement_message].html_safe %>
     </div>
   <% end %>
 
