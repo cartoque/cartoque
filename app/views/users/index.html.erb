@@ -12,6 +12,7 @@
     <th>Mode d'authentification</th>
     <th></th>
   </tr>
+  <tbody class="long-list">
 <% @users.each do |user| %>
   <tr>
     <td><%= link_to user.name, edit_user_path(user) %></td>
@@ -19,6 +20,7 @@
     <td><%= link_to_delete user %></td>
   </tr>
 <% end %>
+  </tbody>
 </table>
 
 </div>
