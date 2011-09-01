@@ -231,9 +231,7 @@ noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; 
 /* forms */
 input[type="text"], input[type="password"], textarea {
   padding:0.1em 0.2em; box-sizing: border-box; border: 1px solid; outline: 0; border-color: #b0b0b0 #c1c1c1 #e1e1e1;
-}
-button:focus, button:active, input:focus, input:active, select:focus, select:active, textarea:focus, textarea:active {
-  @include box-shadow(#06F, 0, 0, 3px);
+  &:focus, &:active { @include box-shadow(#36F, 0, 0, 5px); }
 }
 textarea { margin-top:3px; }
 .simple_form {
