@@ -47,7 +47,7 @@
 
   <div id="loading"><span>Chargement</span></div>
 
-  <% if Settler[:site_announcement_message].present? %>
+  <% if Settler[:site_announcement_message].present? && logged_in? %>
     <div class="announcement <%= Settler[:site_announcement_type].presence || "info" %>">
       <%= Settler[:site_announcement_message].html_safe %>
     </div>
