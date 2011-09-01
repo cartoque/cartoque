@@ -134,7 +134,7 @@ function add_fields(link, association, content) {
 
 // elastic <textarea>'s
 $(function() {
-  $('textarea').elastic();
+  $('textarea').elastic().unbind('blur');
 });
 
 //fixed table column sizes
