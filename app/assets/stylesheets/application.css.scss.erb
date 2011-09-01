@@ -161,6 +161,10 @@ ul.details {
 .icon { background-position: 0% 50%; background-repeat: no-repeat; padding-left: 20px; padding-top: 2px; padding-bottom: 3px; }
 .icon-url { background-image: url(..<%= asset_path 'external.png' %>); padding-left:15px; }
 .icon-server { background-image: url(..<%= asset_path 'server_12.png' %>); padding-left:15px; }
+.action {
+  width:16px; height:16px; @include opacity(0.8);
+  &:hover { @include opacity(1); }
+}
 
 /* wrappers */
 noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; font-size:150%; padding-top:100px;

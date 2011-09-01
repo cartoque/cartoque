@@ -149,12 +149,12 @@ module ApplicationHelper
   end
 
   def link_to_edit(path)
-    link_to image_tag("edit.png"), path
+    link_to image_tag("edit.png", :class => "action"), path
   end
 
   def link_to_delete(resource)
     confirmation = resource.respond_to?(:name) ? t(:text_confirm_delete, :element => resource.name) : t(:text_are_you_sure)
-    link_to image_tag("delete.png", :size => "16x16"), resource, :confirm => confirmation, :method => :delete
+    link_to image_tag("delete.png", :class => "action"), resource, :confirm => confirmation, :method => :delete
   end
 
   def current_announcement
