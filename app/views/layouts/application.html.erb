@@ -47,6 +47,12 @@
 
   <div id="loading"><span>Chargement</span></div>
 
+  <% if Settler[:site_announcement_message].present? %>
+    <div class="announcement <%= Settler[:site_announcement_type].presence || "info" %>">
+      <%= Settler[:site_announcement_message] %>
+    </div>
+  <% end %>
+
   <div id="container" class="container_12 clearfix">
     <div class="grid_12">
       <div id="top-menu" class="hide-when-print">
@@ -62,11 +68,6 @@
         </ul>
       </div>
 
-      <% if Settler[:site_announcement_message].present? %>
-        <div class="announcement <%= Settler[:site_announcement_type].presence || "info" %>">
-          <%= Settler[:site_announcement_message] %>
-        </div>
-      <% end %>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>

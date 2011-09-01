@@ -181,12 +181,23 @@ noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; 
 
 /* announcements ; TODO: look at http://twitter.github.com/bootstrap */
 .announcement {
-  text-align:center; margin-bottom:5px; padding:8px 15px; color:#222; font-weight:bold;
-  @include border-radius(4px);
-  &.info { background-color:#cef; color:#367; }
-  &.success { background-color:#dfd; color:#262; }
-  &.warning { background-color:#ff9; color:#620; }
-  &.error { background-color:#fdd; color:#620; }
+  text-align:center; margin:0; padding:7px 15px; color:#fff; font-size:11px;
+  background-color: rgba(0, 0, 0, 0.15);
+  background-repeat: repeat-x;
+  /* a bit too complex to be put in a mixin.. */
+  background-image: -khtml-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.15)));
+  background-image: -moz-linear-gradient(transparent, rgba(0, 0, 0, 0.15));
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, transparent), color-stop(100%, rgba(0, 0, 0, 0.15)));
+  background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.15));
+  background-image: -o-linear-gradient(transparent, rgba(0, 0, 0, 0.15));
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.15));
+  background-color: #e6e6e6;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  &.info { background-color:#30c0fb; }
+  &.success { background-color:#74c474; }
+  &.warning { background-color:#ffd75a; }
+  &.error { background-color:#e06359; }
 }
 
 /* settings */
