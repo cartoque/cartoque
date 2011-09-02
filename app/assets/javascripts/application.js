@@ -151,21 +151,27 @@ function fixElementSize(elem) {
   elem.css('width', parseInt(elem.innerWidth()) - parseInt(elem.css('paddingLeft')) - parseInt(elem.css('paddingRight')));
 }
 
-//fix table headers one time after everything is loaded
 $(window).load(function() {
+  //fix table headers one time after everything is loaded
   fixTableHeaders();
-});
 
-//fixed table headers on scroll
-$(function () {  
+  //fixed table headers on scroll
   var selector = '.fix-on-scroll';
   if ($(selector).length < 1) return false;
   $(selector).each(function() {
     this.initialTopOffset = $(this).offset().top; // - parseFloat($(selector).css('marginTop').replace(/auto/, 0));
   });
+
+  //fix headers on scroll
   $(window).scroll(function (event) {
+    fixHeadersOnScroll();
+  });
+  //fix headers once everything is loaded (in case we're not at the top)
+  fixHeadersOnScroll();
+
+  function fixHeadersOnScroll() {
     // what the y position of the scroll is
-    var y = $(this).scrollTop();
+    var y = $(window).scrollTop();
     $(selector).each(function() {
       // whether that's below the form
       if (y >= this.initialTopOffset) {
@@ -176,7 +182,7 @@ $(function () {
         $(this).removeClass('fixed');
       }
     });
-  });
+  }
 });
 
 //top menu items
