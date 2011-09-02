@@ -1,15 +1,14 @@
 <tr class="fix-on-scroll">
-  <th class="hide-when-print" style="width:3em">Liens</th>
-  <%= sortable_th "name", nil, :style => "width:12em" %>
+  <%= sortable_th "name", nil, :style => "width:15em" %>
   <th>Description</th>
   <th style="width:3em">I2 Ader Web</th>
   <th style="width:3em">ACAI Messagerie Spécifique</th>
 </tr>
 <% for application in @applications %>
   <tr class="has-opaques">
-    <td class="center hide-when-print"><%= links_for application %></td>
     <td>
       <div class="contextual opaque">
+        <%= links_for application %>
         <%= link_to_delete application %>
       </div>
       <%= link_to application.name, application %>

@@ -452,6 +452,8 @@ a.create-server {
   &:first-child { display:none; }
   &:last-child { /*border-left:1px solid #ccc;*/ }
 }
+#applications_list tr td:first-child { line-height:16px; }
+#applications_list .contextual img { margin-top:-3px; }
 #application_general td.content { text-align:center; }
 #application_instances .instance-fields { border:none; border-bottom:1px solid #ddd; padding:0.5em 0; margin-bottom:1em; }
 .instance-fields {
@@ -460,7 +462,10 @@ a.create-server {
 }
 #application_instances .fields .link-delete img { position:relative; top:-2px; margin-left:3px; }
 .application_instance { width:100%; margin-bottom:5px; font-size:100%; }
-.links a, .links a:link, .links a:visited, .links a:hover { text-decoration:none; font-weight:bold; padding:2px; @include border-radius(2px); }
+.links {
+  padding-right:6px;
+  a, a:link, a:visited, a:hover { text-decoration:none; font-weight:bold; font-size:10px; padding:1px 2px; @include border-radius(2px); }
+}
 a.link-to-redmine { color:#a22; }
 a.link-to-redmine:hover { color:#fff; background-color:#a22; }
 a.link-to-nagios { color:#000; }
