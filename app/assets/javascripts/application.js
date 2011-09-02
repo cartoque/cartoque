@@ -25,8 +25,8 @@
 // ajax loader
 $(function() {
   // show #loading element
-  $('#loading').ajaxStart(function() { $(this).show(); })
-               .ajaxStop(function() { $(this).hide(); });
+  $('#loading').ajaxStart(function() { $(this).fadeIn(150); })
+               .ajaxStop(function() { $(this).fadeOut(150); });
   // but not for rails' automatic $.ajax calls
   $.rails.ajax = function(options) {
     return $.ajax($.extend(options, {global: false}));
