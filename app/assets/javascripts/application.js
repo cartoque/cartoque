@@ -151,7 +151,10 @@ function fixElementSize(elem) {
   elem.css('width', parseInt(elem.innerWidth()) - parseInt(elem.css('paddingLeft')) - parseInt(elem.css('paddingRight')));
 }
 
-$(function() { fixTableHeaders() });
+//fix table headers one time after everything is loaded
+$(window).load(function() {
+  fixTableHeaders();
+});
 
 //fixed table headers on scroll
 $(function () {  
