@@ -284,6 +284,9 @@ tr.filters {
     background:-webkit-gradient( linear, left top, left bottom, color-stop(0, #fff477), color-stop(1, #ffe466) );
     background:-moz-linear-gradient( center top, #fff477 0%, #ffe466 100% );
   }
+  input[type="text"], input[type="password"], textarea {
+    &:focus, &:active { @include box-shadow(#36F, 0, 0, 0); border-color:lighten(#36F,15%); border-width:1px; }
+  }
 }
 
 /* generic items */
