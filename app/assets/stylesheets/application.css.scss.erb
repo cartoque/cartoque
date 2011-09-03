@@ -174,10 +174,12 @@ noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; 
 #footer { text-align:center; color:#ccc; font-size:90%; border-top:1px solid #ddd; padding-top:5px; margin-top:10px; margin-bottom:10px; }
 
 /* errors, warnings */
-#flash_notice, #flash_error, #flash_alert { padding:8px; margin:5px auto 15px; text-align:center;
-                                            @include border-radius(4px); max-width:400px; font-weight:bold; }
-#flash_notice { background-color:#ff9; color:#222; }
-#flash_error, #flash_alert { background-color:#FCC; color:#400; }
+#flash {
+  padding:0; margin:0 auto; text-align:center; max-width:400px; font-weight:bold;
+  .flash-item { padding:6px 10px; margin:2px; @include border-radius(4px); }
+  .flash-notice { background-color:#ff9; color:#222; }
+  .flash-error, .flash-alert { background-color:#FCC; color:#222; }
+}
 .field_with_errors *, #error_explanation * { color:#f00; }
 .field_with_errors input, #error_explanation td { border:2px solid #f00; }
 #error_explanation td { font-weight:bold; padding:0; }

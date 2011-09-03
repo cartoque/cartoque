@@ -69,9 +69,12 @@
         </ul>
       </div>
 
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
+      <%= content_tag :div, :id => "flash" do %>
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :class => "flash-item flash-#{name}" %>
+        <% end %>
+      <% end unless flash.empty? %>
+
 
     <%= content_tag(:h1, yield(:title), :class => controller.controller_name) if show_title? %>
 

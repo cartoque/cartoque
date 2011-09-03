@@ -79,6 +79,9 @@ $(function() {
 
   //multiselect with bsmSelect plugin
   bsmizeSelects();
+
+  //hide alert messages
+  $('#flash').delay(4000).slideUp(300); 
 });
 
 // context
