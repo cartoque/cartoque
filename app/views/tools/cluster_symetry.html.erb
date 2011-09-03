@@ -67,7 +67,7 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
   <% # PACKAGES WITHOUT VERSION %>
   <% packages_map = hsh[:nodes].map do |n|
        pkg_file = "#{hsh[:path]}/#{n}/packages.list"
-       File.exists?(pkg_file) ? File.readlines(pkg_file).map{|l| l.sub(/-[0-9].*/, "")}.join("\n") : ""
+       File.exists?(pkg_file) ? File.readlines(pkg_file).map{|l| l.chomp.sub(/-[0-9].*/, "")}.join("\n") : ""
      end %>
   <% uniq = packages_map.uniq %>
   <% if uniq.length == 1 %>
