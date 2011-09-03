@@ -62,7 +62,7 @@
 
 /* general styles */
 html { overflow-y:scroll; }
-body { min-width:800px; font-family:Verdana, Helvetica, Arial; font-size:12px; margin:0; cursor:default; }
+body { min-width:800px; font-family:Verdana, Helvetica, Arial; font-size:12px; margin:0; cursor:default; background-image:url(<%= asset_path 'bg-noise.png' %>); }
 div { margin:0; }
 a img, img.inline { border:none; margin:-2px 2px 0px 0; }
 a {
@@ -169,7 +169,7 @@ ul.details {
 /* wrappers */
 noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; font-size:150%; padding-top:100px;
            background:#f00; font-weight:bold; color:#fff; text-align:center }
-#container { background-color:#fff; text-align:left; }
+#container { background-color:#fff; text-align:left; height:100%; @include box-shadow(0, 0, 15px, #bbb); }
 .column_wrapper { float:left; margin:0 15px 0 5px; }
 #footer { text-align:center; color:#ccc; font-size:90%; border-top:1px solid #ddd; padding-top:5px; margin-top:10px; margin-bottom:10px; }
 
@@ -306,9 +306,8 @@ html>body #loading { position:fixed; }
 /* top menu */
 #top-menu {
   font:13px/22px Arial,sans-serif; background-color:#ececec; /*color:#3366CC;*/ height:24px;
-  margin-top:0; margin-bottom:5px; background-color:#ececec; text-shadow:1px 1px 0 #fff;
-  border-width:0 1px 1px 1px; border-style:solid; border-color:#ccc; padding-right:4px;
-  @include border-radii(0, 0, 4px, 4px);
+  margin:0 0 5px 0; background-color:#ececec; text-shadow:1px 1px 0 #fff;
+  border-bottom:1px solid #ccc; padding-right:4px;
 
   a { text-decoration:none; color:#000; }
   a.tiny { display:block; margin-top:0; padding-top:1px; padding-bottom:1px; }
@@ -348,10 +347,13 @@ html>body #loading { position:fixed; }
 
 /* sidebar */
 #sidebar {
-  float:left; margin:5px 0; padding:7px 10px 10px 10px; width:200px; border-right:2px solid #ddd;
-  h2 { text-align:left; letter-spacing:normal; margin-top:0; margin-bottom:0.6em; }
+  float:left; margin:25px 0 5px -11px; padding:10px; background-color:#fcfcfc; border:1px solid #d4d4d4;
+  h2 {
+    text-align:left; letter-spacing:normal; margin-top:0; margin-bottom:0.6em;
+    img { @include opacity(0.8); }
+  }
   ul {
-    border-bottom:1px solid #eee; padding-right:1.2em; padding-bottom:0.8em; margin-bottom:0.5em;
+    border-bottom:1px solid #ddd; padding:0 16px 10px 24px; margin-bottom:0.5em;
     &:last-child { border-bottom:none; padding-bottom:0; margin-bottom:0; }
   }
 }

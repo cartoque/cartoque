@@ -55,26 +55,26 @@
   <% end %>
 
   <div id="container" class="container_12 clearfix">
+    <div id="top-menu" class="hide-when-print">
+      <ul class="menu-items contextual">
+      <% if logged_in? %>
+        <li class="connected-as"><%= current_user.name %></li>
+        <li><%= link_to "Déconnexion", signout_path %></li>
+      <% end %>
+      </ul>
+      <ul class="menu-items">
+        <li><%= link_to image_tag("home.png", :alt=>"Accueil", :size => "16x16"), root_path, :class => "img" %></li>
+        <%= render 'layouts/top_menu' if logged_in? %>
+      </ul>
+    </div>
+
+    <%= content_tag :div, :id => "flash" do %>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :class => "flash-item flash-#{name}" %>
+      <% end %>
+    <% end unless flash.empty? %>
+
     <div class="grid_12">
-      <div id="top-menu" class="hide-when-print">
-        <ul class="menu-items contextual">
-        <% if logged_in? %>
-          <li class="connected-as"><%= current_user.name %></li>
-          <li><%= link_to "Déconnexion", signout_path %></li>
-        <% end %>
-        </ul>
-        <ul class="menu-items">
-          <li><%= link_to image_tag("home.png", :alt=>"Accueil", :size => "16x16"), root_path, :class => "img" %></li>
-          <%= render 'layouts/top_menu' if logged_in? %>
-        </ul>
-      </div>
-
-      <%= content_tag :div, :id => "flash" do %>
-        <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, :class => "flash-item flash-#{name}" %>
-        <% end %>
-      <% end unless flash.empty? %>
-
 
     <%= content_tag(:h1, yield(:title), :class => controller.controller_name) if show_title? %>
 
