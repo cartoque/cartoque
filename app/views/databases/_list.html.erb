@@ -11,8 +11,8 @@
   <% for database in postgres_databases %>
     <% height = database.postgres_report.size %>
     <% height = 1 if height == 0 %>
-    <tr class="has-opaques">
-      <td rowspan="<%= height %>" class="multirow">
+    <tr>
+      <td rowspan="<%= height %>" class="multirow has-opaques">
         <div class="contextual opaque">
           <%= action_links do %>
             <%= link_to_edit edit_database_path(database) %>
@@ -40,8 +40,8 @@
   <% for database in oracle_databases %>
     <% height = database.oracle_report.size %>
     <% height = 1 if height == 0 %>
-    <tr class="has-opaques">
-      <td rowspan="<%= height %>" class="multirow">
+    <tr>
+      <td rowspan="<%= height %>" class="multirow has-opaques">
         <div class="contextual opaque">
           <%= action_links do %>
             <%= link_to_edit edit_database_path(database) %>
