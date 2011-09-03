@@ -11,13 +11,15 @@
   <% for database in postgres_databases %>
     <% height = database.postgres_report.size %>
     <% height = 1 if height == 0 %>
-    <tr>
+    <tr class="has-opaques">
       <td rowspan="<%= height %>" class="multirow">
+        <div class="contextual opaque">
+          <%= action_links do %>
+            <%= link_to_edit edit_database_path(database) %>
+            <%= link_to_delete database %>
+          <% end %>
+        </div>
         <%= database_nodes database %>
-        <%= action_links do %>
-          <%= link_to_edit edit_database_path(database) %>
-          <%= link_to_delete database %>
-        <% end %>
       </td>
       <td rowspan="<%= height %>" class="multirow center">PostgreSQL</td>
       <% if database.postgres_report.present? %>
@@ -38,13 +40,15 @@
   <% for database in oracle_databases %>
     <% height = database.oracle_report.size %>
     <% height = 1 if height == 0 %>
-    <tr>
+    <tr class="has-opaques">
       <td rowspan="<%= height %>" class="multirow">
+        <div class="contextual opaque">
+          <%= action_links do %>
+            <%= link_to_edit edit_database_path(database) %>
+            <%= link_to_delete database %>
+          <% end %>
+        </div>
         <%= database_nodes database %>
-        <%= action_links do %>
-          <%= link_to_edit edit_database_path(database) %>
-          <%= link_to_delete database %>
-        <% end %>
       </td>
       <td rowspan="<%= height %>" class="multirow center">Oracle</td>
       <% if database.oracle_report.present? %>
