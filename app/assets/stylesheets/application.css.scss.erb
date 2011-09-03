@@ -136,26 +136,14 @@ tbody.long-list tr:hover {
 .nocut { display:inline-block; white-space:nowrap; }
 .opaque { opacity:0; }
 .has-opaques:hover .opaque { opacity:1; }
-input[type="submit"] {
-  padding:3px 10px; display:inline-block;
-  @include box-shadow(inset 0px 1px, 0px, 0px, #fff);
-  @include border-radius(3px);
-  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f7f7f7), color-stop(1, #efefef) );
-  background:-moz-linear-gradient( center top, #f7f7f7 5%, #efefef 100% );
-  color:#333; background-color:#f7f7f7; border:1px solid #cfcfcf;
-  font-family:arial; font-size:13px; font-weight:bold;
-  text-decoration:none !important; text-shadow:1px 1px 0px #fff;
+button, a.button, input[type=submit] {
+  padding:3px 10px; cursor:pointer; display:inline-block; text-shadow:0 1px 1px #fff; font-weight:bold;
+  color:#333; border:solid 1px #999; text-decoration:none; text-align:center;
+  @include border-radius(2px); @include gradient(#fff, #ddd); box-shadow:none;
+  &:hover { color:#333; @include gradient(#f3f3f3, #ddd); }
+  &:active { position:relative; top:1px; }
 }
-input[type="submit"]:hover {
-  color:#333;
-  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #efefef), color-stop(1, #f7f7f7) );
-  background:-moz-linear-gradient( center top, #efefef 5%, #f7f7f7 100% );
-  background-color:#efefef;
-}
-input[type="submit"]:active {
-  position:relative;
-  top:1px;
-}
+
 ul.details {
   margin:0.2em 0.5em 0.2em 0.8em;
   li { margin:0.5em 0; font-size:90%; }
