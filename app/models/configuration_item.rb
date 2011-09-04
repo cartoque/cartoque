@@ -6,6 +6,7 @@ class ConfigurationItem < ActiveRecord::Base
   before_validation :update_identifier!
 
   scope :by_item_type, proc {|type| where(:item_type => type) }
+  default_scope order('item_type, identifier')
 
   def self.generate_ci_for(record)
     raise "Not a real CI object" unless record.respond_to?(:configuration_item)
