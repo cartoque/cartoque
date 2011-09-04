@@ -5,15 +5,15 @@
 // the compiled file.
 //
 //= require adapt.min
-//= require jquery
-//= require jquery_ujs
-//= require jquery.bind-with-delay
-//= require jquery.observer
-//= require jquery.elastic
-//= require jquery.bsmselect
-//= require jquery.bsmselect.compatibility
-//= require jquery.bsmselect.sortable
-//= require jquery.reject.min
+//= require jquery/jquery
+//= require jquery/jquery_ujs
+//= require jquery/jquery.bind-with-delay
+//= require jquery/jquery.observer
+//= require jquery/jquery.elastic
+//= require jquery/jquery.bsmselect
+//= require jquery/jquery.bsmselect.compatibility
+//= require jquery/jquery.bsmselect.sortable
+//= require jquery/jquery.reject.min
 //= require raphael/raphael-min
 //= require raphael/g.raphael-min
 //= require raphael/g.pie-min
