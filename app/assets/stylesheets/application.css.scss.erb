@@ -154,7 +154,7 @@ ul.details {
 .icon-url { background-image: url(..<%= asset_path 'external.png' %>); padding-left:15px; }
 .icon-server { background-image: url(..<%= asset_path 'server_12.png' %>); padding-left:15px; }
 .action {
-  width:16px; height:16px; @include opacity(0.8);
+  width:16px; height:16px; @include opacity(0.8); position:relative; top:-2px;
   &:hover { @include opacity(1); }
 }
 
@@ -449,7 +449,6 @@ a.create-server {
   &:last-child { /*border-left:1px solid #ccc;*/ }
 }
 #applications_list tr td:first-child { line-height:16px; }
-#applications_list .contextual img { margin-top:-3px; }
 #application_general td.content { text-align:center; }
 #application_instances .instance-fields { border:none; border-bottom:1px solid #ddd; padding:0.5em 0; margin-bottom:1em; }
 .instance-fields {
