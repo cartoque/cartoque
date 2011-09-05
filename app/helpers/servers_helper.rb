@@ -39,4 +39,19 @@ module ServersHelper
     end
     options_for_select(options, selected).html_safe
   end
+
+  def render_physical_links(links)
+    list = links.map do |l|
+      %(<li>
+          <span class="link-#{l.link_type}">#{l.server_label || l.link_type}</span> &rarr;
+          #{link_to(l.switch.name, l.switch)} #{l.switch_label}
+        </li>)
+    end.join
+    list = %(<ul class="collection">#{list}</ul>)
+    content_tag :tr, :class => "wrapper server_physical_links" do
+      content_tag(:td, t(:physical_links), :class => "label").safe_concat(
+        content_tag(:td, list.html_safe, :class => "content")
+      )
+    end
+  end
 end
