@@ -17,6 +17,10 @@
       <tr class="wrapper server_applications">
         <td colspan="2"><label for="server[description]" class="input">Description :</label><br/><%= f.text_area :description, :size => "30x4" %></td>
       </tr>
+      <%= f.association :operating_system, :collection => ancestry_options(
+                                                            OperatingSystem.scoped.arrange(:order => 'name')
+                                                          ){|i| "#{'-'*i.depth} #{i.name}"} %>
+      <%= f.input :virtual %>
       <tr class="input string optional">
         <td class="content" colspan="2">
           <label for="server[ipaddresses]" class="input"><%= t(:ipaddresses) %> :</label><br />
@@ -30,10 +34,6 @@
         </td>
       </tr>
       <!--<%= f.input :server_type %>-->
-      <%= f.association :operating_system, :collection => ancestry_options(
-                                                            OperatingSystem.scoped.arrange(:order => 'name')
-                                                          ){|i| "#{'-'*i.depth} #{i.name}"} %>
-      <%= f.input :virtual %>
       <!--<%= f.input :previous_name %>-->
     </tbody>
     <tbody id="server-maintenance" class="<%= css_classes_physical %>">

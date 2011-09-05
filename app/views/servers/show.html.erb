@@ -30,9 +30,9 @@
       </td>
     </tr>
     <% end %>
+    <%= s.attribute :operating_system %>
     <%= s.association :ipaddresses %>
     <!--<%= s.attribute :server_type %>-->
-    <%= s.attribute :operating_system %>
     <!--<%= s.attribute :previous_name %>-->
   <% end %>
   <% unless @server.virtual? %>
