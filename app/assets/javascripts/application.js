@@ -17,6 +17,7 @@
 //= require raphael/raphael-min
 //= require raphael/g.raphael-min
 //= require raphael/g.pie-min
+//= require jquery/jquery.placeholder
 //
 //not for now: //= require_tree .
 

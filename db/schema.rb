@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110831222130) do
+ActiveRecord::Schema.define(:version => 20110905110840) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -100,6 +100,16 @@ ActiveRecord::Schema.define(:version => 20110831222130) do
   end
 
   add_index "operating_systems", ["ancestry"], :name => "index_operating_systems_on_ancestry"
+
+  create_table "physical_links", :force => true do |t|
+    t.integer  "server_id"
+    t.string   "server_label"
+    t.integer  "switch_id"
+    t.string   "switch_label"
+    t.string   "link_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "physical_racks", :force => true do |t|
     t.string  "name",    :limit => 50, :default => "", :null => false

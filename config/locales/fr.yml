@@ -134,3 +134,4 @@ fr:
     ldap-minequip: "LDAP Ministère"
     internal: "Interne"
     other: "Autre"
+  physical_links: "Connectique"

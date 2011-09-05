@@ -7,16 +7,21 @@ class Server < ActiveRecord::Base
   belongs_to :database
   has_one :storage
   has_many :ipaddresses, :dependent => :destroy
+  has_many :physical_links, :dependent => :destroy, :class_name => 'PhysicalLink', :foreign_key => 'server_id'
+  has_many :connected_links, :dependent => :destroy, :class_name => 'PhysicalLink', :foreign_key => 'switch_id'
   has_one :configuration_item, :as => :item
 
   accepts_nested_attributes_for :ipaddresses, :reject_if => lambda{|a| a[:address].blank? },
                                               :allow_destroy => true
+  accepts_nested_attributes_for :physical_links, :reject_if => lambda{|a| a[:link_type].blank? || a[:switch_id].blank? },
+                                                 :allow_destroy => true
 
   attr_accessible :operating_system_id, :physical_rack_id, :media_drive_id, :mainteneur_id, :name,
                   :previous_name, :subnet, :lastbyte, :serial_number, :virtual, :description, :model, :memory, :frequency,
                   :delivered_on, :maintained_until, :contract_type, :disk_type, :disk_size, :manufacturer, :ref_proc,
                   :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,
-                  :nb_disk_alt, :ipaddress, :application_instance_ids, :database_id, :ipaddresses_attributes, :has_drac
+                  :nb_disk_alt, :ipaddress, :application_instance_ids, :database_id, :ipaddresses_attributes, :has_drac,
+                  :physical_links_attributes
 
   acts_as_ipaddress :ipaddress
 

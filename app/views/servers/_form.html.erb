@@ -33,6 +33,18 @@
           </p>
         </td>
       </tr>
+      <tr class="input string optional">
+        <td class="content" colspan="2">
+          <label for="server[physical_links]" class="input"><%= t(:physical_links) %> :</label><br />
+          <% f.object.physical_links.build if f.object.physical_links.size == 0 %>
+          <%= f.simple_fields_for :physical_links do |pl_form| %>
+            <%= render 'physical_link_fields', :f => pl_form %>
+          <% end %>
+          <p class="add-field">
+            <%= link_to_add_fields image_tag("new_button.png", :class=>"inline")+" ajouter", f, :physical_links %>
+          </p>
+        </td>
+      </tr>
       <!--<%= f.input :server_type %>-->
       <!--<%= f.input :previous_name %>-->
     </tbody>
