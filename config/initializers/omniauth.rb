@@ -1,10 +1,8 @@
 require 'omniauth/enterprise'
 
 setup_app = Proc.new do |env|
-  if Settler.cas_server.present?
-    config = OmniAuth::Strategies::CAS::Configuration.new(:cas_server => Settler.cas_server.value)
-    env['omniauth.strategy'].instance_variable_set(:@configuration, config)
-  end
+  config = OmniAuth::Strategies::CAS::Configuration.new(:cas_server => Settler.safe_cas_server)
+  env['omniauth.strategy'].instance_variable_set(:@configuration, config)
 end
 Rails.application.config.middleware.use OmniAuth::Strategies::CAS, :cas_server => "http://localhost:9292", :setup => setup_app
 
