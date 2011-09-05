@@ -14,7 +14,6 @@ gem 'rake'
 # gem 'capistrano'
 
 # Debugging
-gem 'ruby-debug19'
 gem 'log_buddy'
 
 # Bundle the extra gems:

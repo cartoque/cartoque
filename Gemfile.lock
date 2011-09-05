@@ -33,7 +33,6 @@ GEM
     addressable (2.2.4)
     ancestry (1.2.4)
       activerecord (>= 2.2.2)
-    archive-tar-minitar (0.5.2)
     arel (2.2.1)
     bcrypt-ruby (3.0.0)
     builder (3.0.0)
@@ -41,7 +40,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
-    columnize (0.3.4)
     diffy (2.0.3)
     em-websocket (0.3.1)
       addressable (>= 2.1.1)
@@ -76,8 +74,6 @@ GEM
       thor (~> 0.14)
     json (1.5.4)
     libv8 (3.3.10.2)
-    linecache19 (0.5.12)
-      ruby_core_source (>= 0.1.4)
     log_buddy (0.6.0)
     mail (2.3.0)
       i18n (>= 0.4.0)
@@ -164,19 +160,9 @@ GEM
     responders (0.6.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    ruby-debug-base19 (0.11.25)
-      columnize (>= 0.3.1)
-      linecache19 (>= 0.5.11)
-      ruby_core_source (>= 0.1.4)
-    ruby-debug19 (0.11.6)
-      columnize (>= 0.3.1)
-      linecache19 (>= 0.5.11)
-      ruby-debug-base19 (>= 0.11.19)
     ruby-openid (2.1.8)
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
-    ruby_core_source (0.1.5)
-      archive-tar-minitar (>= 0.5.2)
     rubyntlm (0.1.1)
     sass (3.1.7)
     settler (1.2.2)
@@ -225,7 +211,6 @@ DEPENDENCIES
   pdfkit (= 0.5.2)
   rails (= 3.1.0)
   rake
-  ruby-debug19
   sass
   settler
   shoulda
