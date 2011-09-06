@@ -6,7 +6,7 @@ class Ipaddress < ActiveRecord::Base
     return "" if address.blank?
     html = address
     html << " (vip)" if virtual?
-    html = %(<span style="font-weight:normal;">#{html}</span>) unless main?
+    html = %(<strong>#{html}</strong>) if main?
     html.html_safe
   end
 end
