@@ -41,37 +41,33 @@ module ServersHelper
   end
 
   def render_physical_links_association(server)
-    content_tag :tr, :class => "wrapper server_physical_links" do
-      content_tag(:td, t(:physical_links), :class => "label").safe_concat(
-        content_tag(:td, render_physical_links(server.physical_links), :class => "content")
+    render_links(server.physical_links.sort_by(&:server_label), :physical_links)
+  end
+
+  def render_connected_links_association(switch)
+    render_links(switch.connected_links.sort_by(&:switch_label), :connected_links)
+  end
+
+  def render_links(links, type = :physical_links)
+    content_tag :tr, :class => "wrapper server_#{type}" do
+      content_tag(:td, t(type), :class => "label").safe_concat(
+        content_tag(:td, render_link_collection(links, type), :class => "content")
       )
     end
   end
 
-  def render_physical_links(links)
+  def render_link_collection(links, type)
     list = links.map do |link|
-      %(<li>
-          <span class="link-#{link.link_type}">#{link.server_label || link.link_type}</span> &rarr;
-          #{link_to(link.switch.name, link.switch)} #{link.switch_label}
-        </li>)
-    end.join
-    %(<ul class="collection">#{list}</ul>).html_safe
-  end
-
-  def render_connected_links_association(server)
-    content_tag :tr, :class => "wrapper server_physical_links" do
-      content_tag(:td, t(:physical_links), :class => "label").safe_concat(
-        content_tag(:td, render_connected_links(server.connected_links), :class => "content")
-      )
-    end
-  end
-
-  def render_connected_links(links)
-    list = links.map do |link|
-      %(<li>
-          <span class="link-#{link.link_type}">#{link.server_label || link.link_type}</span>
-          #{link_to(link.server.name, link.server)} &rarr; #{link.switch_label}
-        </li>)
+      h = %(<li>)
+      h << %(<span class="link-#{link.link_type}">)
+      h << %(#{link.server_label || link.link_type})
+      h << %(</span>)
+      h << %( #{link_to(link.server.name, link.server)} ) if type == :connected_links
+      h << %( &rarr; )
+      h << %( #{link_to(link.switch.name, link.switch)} ) if type == :physical_links
+      h << %( #{link.switch_label})
+      h << %(</li>)
+      h
     end.join
     %(<ul class="collection">#{list}</ul>).html_safe
   end
