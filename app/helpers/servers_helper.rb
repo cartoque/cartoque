@@ -58,14 +58,16 @@ module ServersHelper
 
   def render_link_collection(links, type)
     list = links.map do |link|
-      h = %(<li>)
-      h << %(<span class="link-#{link.link_type}">)
+      h = %(<li class="link-#{link.link_type}">)
+      h << %(<span class="server_label">)
       h << %(#{link.server_label || link.link_type})
       h << %(</span>)
       h << %( #{link_to(link.server.name, link.server)} ) if type == :connected_links
-      h << %( &rarr; )
+      h << %( <span class="link-arrow">&rarr;</span> )
       h << %( #{link_to(link.switch.name, link.switch)} ) if type == :physical_links
+      h << %(<span class="switch_label">)
       h << %( #{link.switch_label})
+      h << %(</span>)
       h << %(</li>)
       h
     end.join
