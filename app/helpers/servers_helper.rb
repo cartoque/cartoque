@@ -57,4 +57,22 @@ module ServersHelper
     end.join
     %(<ul class="collection">#{list}</ul>).html_safe
   end
+
+  def render_connected_links_association(server)
+    content_tag :tr, :class => "wrapper server_physical_links" do
+      content_tag(:td, t(:physical_links), :class => "label").safe_concat(
+        content_tag(:td, render_connected_links(server.connected_links), :class => "content")
+      )
+    end
+  end
+
+  def render_connected_links(links)
+    list = links.map do |link|
+      %(<li>
+          <span class="link-#{link.link_type}">#{link.server_label || link.link_type}</span>
+          #{link_to(link.server.name, link.server)} &rarr; #{link.switch_label}
+        </li>)
+    end.join
+    %(<ul class="collection">#{list}</ul>).html_safe
+  end
 end
