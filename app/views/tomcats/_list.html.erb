@@ -44,8 +44,8 @@
                     "##{tomcat.dns.parameterize}", :rel => "facebox" %><%= content_tag(:span, "×#{crons.size}", :class => "tinier") if crons.size > 1 %>
         <%= content_tag(:div, :id => tomcat.dns.parameterize, :style => "display:none;") do %>
           <% crons.each do |cron| %>
-            <p>
-              <%= cron.server %> <%= cron.name %> &rarr; user=<%= cron.user %>, fréquence=<%= cron.frequency %>
+            <p style="width:900px">
+              <%= cron.server %> <%= cron.name %> &rarr; user=<%= cron.user %>, fréquence=<%= cron.frequency %><br />
               <code><%= cron.command %></code>
             </p>
           <% end %>
