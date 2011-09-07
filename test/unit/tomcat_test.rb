@@ -11,7 +11,11 @@ class TomcatTest < ActiveSupport::TestCase
   setup do
     site1 = "site;vm-01;app01.example.com;;vip-00.example.com;TC60_01;/apps/j2ee/app01;jndi01:jdbc:postgresql://app01.db:5433/db01:app01"
     site2 = "site;vm-01;app02.example.com;;vip-01.example.com;TC60_02;/apps/j2ee/app02;jndi02:jdbc:postgresql://app02.db:1521/db02:app02"
-    @app01 = Tomcat.new(site1.split(";"), { :instance => "instance;vm-01;TC60_01;jdbc9;Java160;512;1024".split(";") })
+    cron_line1 = "cron;vm-01;d;exploit_app01;0 3 * * *;exploit;/opt/chroot/www/apps/batch/app01.example.com/purge/purge_files.sh"
+    cron_line2 = "cron;vm-01;d;exploit_app01;0 5 * * *;exploit;/opt/chroot/www/apps/batch/app01.example.com/purge/purge_files2.sh"
+    @cron1 = Cron.from_array(cron_line1.split(";"))
+    @cron2 = Cron.from_array(cron_line2.split(";"))
+    @app01 = Tomcat.new(site1.split(";"), { :instance => "instance;vm-01;TC60_01;jdbc9;Java160;512;1024".split(";"), :crons => [cron_line1, cron_line2] })
     @app02 = Tomcat.new(site2.split(";"))
   end
 
@@ -20,7 +24,7 @@ class TomcatTest < ActiveSupport::TestCase
                    "tomcat" => "TC60_01", "dir" => "/apps/j2ee/app01", "jdbc_url" => "jndi01:jdbc:postgresql://app01.db:5433/db01:app01",
                    "jdbc_server" => "app01.db:5433", "jdbc_db" => "db01", "jdbc_user" => "app01",
                    "jdbc_driver" => "jdbc9", "java_version" => "Java160", "java_xms" => "512", "java_xmx" => "1024",
-                   "cerbere" => false, "cerbere_csac" => false, "crons" => [] }
+                   "cerbere" => false, "cerbere_csac" => false, "crons" => [@cron1, @cron2] }
     assert_equal expected01, @app01.to_hash
 
     expected02 = { "server" => "vm-01", "dns" => "app02.example.com", "vip" => "vip-01.example.com",

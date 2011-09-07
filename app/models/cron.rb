@@ -18,4 +18,10 @@ class Cron
   def user
     @user ||= "root"
   end
+
+  def ==(other)
+    %w(server definition_location name frequency user command).inject(true) do |memo, meth|
+      memo && (self.send(meth) == other.send(meth))
+    end
+  end
 end

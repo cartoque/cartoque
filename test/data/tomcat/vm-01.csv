@@ -1,5 +1,5 @@
 site;vm-01;app01.example.com;;vip-00.example.com;TC60_01;/apps/j2ee/app01;jndi01:jdbc:postgresql://app01.db:5433/db01:app01
 site;vm-01;app02.example.com;;vip-01.example.com;TC60_02;/apps/j2ee/app02;jndi02:jdbc:postgresql://app02.db:1521/db02:app02
 instance;vm-01;TC60_01;jdbc9;Java160;512;1024
-cron;vm-01;d;exploit_app01;0 3 * * *;exploit;/opt/chroot/www/apps/batch/app01.example.com/purge/purge_files.sh 
-cron;vm-01;d;exploit_app01;0 5 * * *;exploit;/opt/chroot/www/apps/batch/app01.example.com/purge/purge_files2.sh 
+cron;vm-01;d;exploit_app01;0 3 * * *;exploit;/opt/chroot/www/apps/batch/app01.example.com/purge/purge_files.sh
+cron;vm-01;d;exploit_app01;0 5 * * *;exploit;/opt/chroot/www/apps/batch/app01.example.com/purge/purge_files2.sh
