@@ -60,7 +60,6 @@ class Tomcat < Hashie::Mash
       lines = File.read(csv).split(/\n/) rescue []
       lines.grep(/^site;/).each do |line|
         site = line.split(";")
-        d { site }
         instance = lines.grep(/^instance;/).detect{|i| i.include?("#{site[1]};#{site[5]};")}
         crons = lines.grep(/^cron;/).select{|i| i.include?(";d;exploit_"+"#{site[2]}".split(".").first) }
         all << new(site, { :instance => (instance.present? ? instance.split(";") : []), :crons => crons })
