@@ -1,6 +1,10 @@
 #TODO: move it to Hashie::Dash
 class Tomcat < Hashie::Mash
-  def initialize(site, instance = [])
+  unloadable
+
+  def initialize(site, hsh = {})
+    instance = hsh[:instance] || []
+    cron_lines = hsh[:crons] || []
     self.default = ""
     jdbc_string = site[7] || ""
     jdbc_server = jdbc_string.gsub(%r{.*(:jdbc:postgresql://|:jdbc:oracle:thin:@)},"")
@@ -9,11 +13,13 @@ class Tomcat < Hashie::Mash
       jdbc_server.gsub!("#{jdbc_db}:#{jdbc_user}","")
       jdbc_server.gsub!(%r{[/:]$},"")
     end
+    #jvm
     self.merge!(:server => site[1], :dns => site[2], :vip => site[4],
                 :tomcat => site[5], :dir => site[6], :jdbc_url => site[7],
                 :jdbc_server => jdbc_server, :jdbc_db => jdbc_db, :jdbc_user => jdbc_user)
     self.merge!(:jdbc_driver => instance[3], :java_version => instance[4],
                 :java_xms => instance[5], :java_xmx => instance[6]) if instance.present?
+    #cerbere
     if Tomcat.cerbere_hsh.has_key?(self[:dns])
       self.merge!(:cerbere => true)
       if Tomcat.cerbere_hsh[self[:dns]]
@@ -25,6 +31,15 @@ class Tomcat < Hashie::Mash
       self.merge!(:cerbere => false)
       self.merge!(:cerbere_csac => false)
     end
+    #crons
+    self.merge!(:crons => parse_crons(cron_lines))
+  end
+
+  def parse_crons(cron_lines)
+    cron_lines.compact.map do |cron_line|
+      elems = "#{cron_line}".split(";")
+      cron_line.size >= 7 ? Cron.from_array(elems) : nil
+    end.compact
   end
 
   def self.all
@@ -45,8 +60,10 @@ class Tomcat < Hashie::Mash
       lines = File.read(csv).split(/\n/) rescue []
       lines.grep(/^site;/).each do |line|
         site = line.split(";")
+        d { site }
         instance = lines.grep(/^instance;/).detect{|i| i.include?("#{site[1]};#{site[5]};")}
-        all << new(site, (instance.present? ? instance.split(";") : []))
+        crons = lines.grep(/^cron;/).select{|i| i.include?(";d;exploit_"+"#{site[2]}".split(".").first) }
+        all << new(site, { :instance => (instance.present? ? instance.split(";") : []), :crons => crons })
       end
     end
     all
@@ -71,7 +88,7 @@ class Tomcat < Hashie::Mash
     tomcats.inject(filters_from) do |filters,tomcat|
       tomcat.each do |key,value|
         key = key.to_sym
-        next if key == :cerbere || key == :cerbere_csac
+        next if key == :cerbere || key == :cerbere_csac || key == :crons
         filters[key] ||= []
         value = value.split("_").first if key == :tomcat
         filters[key] << value unless filters[key].include?(value)

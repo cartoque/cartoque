@@ -17,6 +17,7 @@
 //= require raphael/raphael-min
 //= require raphael/g.raphael-min
 //= require raphael/g.pie-min
+//= require jquery/jquery.facebox
 //= require jquery/jquery.placeholder
 //
 //not for now: //= require_tree .
@@ -83,6 +84,9 @@ $(function() {
 
   //hide alert messages
   $('#flash').delay(4000).slideUp(300); 
+
+  //faceboxes
+  $('a[rel*=facebox]').facebox();
 });
 
 // context

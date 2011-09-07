@@ -5,6 +5,7 @@
     <th>JVM</th>
     <th>Xms / Xmx</th>
     <th>Cerbere</th>
+    <th>Crons</th>
     <th>Base</th>
   </tr>
   <% @tomcats.sort_by do |t|
@@ -12,6 +13,7 @@
      end.group_by(&:dns).each do |dns,tomcats|%>
   <tr>
     <% tomcat = tomcats.first %>
+    <% crons = tomcats.map(&:crons).flatten %>
     <td>
       <%= tomcat.dns %>
       <ul class="tomcat_vips">
@@ -34,6 +36,20 @@
       <% if tomcat.cerbere %>
         <%= image_tag("lock.png") %><br />
         <span class="<%= tomcat.cerbere_csac ? "csacok" : "csacko" %>">csac</span>
+      <% end %>
+    </td>
+    <td class="center">
+      <% if crons.any? %>
+        <%= link_to image_tag("stopwatch_start.png", :class => "inline"),
+                    "##{tomcat.dns.parameterize}", :rel => "facebox" %><%= content_tag(:span, "×#{crons.size}", :class => "tinier") if crons.size > 1 %>
+        <%= content_tag(:div, :id => tomcat.dns.parameterize, :style => "display:none;") do %>
+          <% crons.each do |cron| %>
+            <p>
+              <%= cron.server %> <%= cron.name %> &rarr; user=<%= cron.user %>, fréquence=<%= cron.frequency %>
+              <code><%= cron.command %></code>
+            </p>
+          <% end %>
+        <% end %>
       <% end %>
     </td>
     <td><%= tomcat.jdbc_server %><br />
