@@ -4,7 +4,6 @@ class Tomcat < Hashie::Mash
 
   def initialize(site, hsh = {})
     instance = hsh[:instance] || []
-    cron_lines = hsh[:crons] || []
     self.default = ""
     jdbc_string = site[7] || ""
     jdbc_server = jdbc_string.gsub(%r{.*(:jdbc:postgresql://|:jdbc:oracle:thin:@)},"")
@@ -32,10 +31,11 @@ class Tomcat < Hashie::Mash
       self.merge!(:cerbere_csac => false)
     end
     #crons
-    self.merge!(:crons => parse_crons(cron_lines))
+    self.merge!(:crons => parse_crons(hsh[:crons]))
   end
 
   def parse_crons(cron_lines)
+    return [] if cron_lines.blank?
     cron_lines.compact.map do |cron_line|
       elems = "#{cron_line}".split(";")
       cron_line.size >= 7 ? Cron.from_array(elems) : nil
