@@ -43,11 +43,9 @@
         <%= link_to image_tag("stopwatch_start.png", :class => "inline"),
                     "##{tomcat.dns.parameterize}", :rel => "facebox" %><%= content_tag(:span, "×#{crons.size}", :class => "tinier") if crons.size > 1 %>
         <%= content_tag(:div, :id => tomcat.dns.parameterize, :style => "display:none;") do %>
-          <% crons.each do |cron| %>
-            <p style="width:900px">
-              <%= cron.server %> <%= cron.name %> &rarr; user=<%= cron.user %>, fréquence=<%= cron.frequency %><br />
-              <code><%= cron.command %></code>
-            </p>
+          <%= content_tag(:div, :class => "tomcat-crons") do %>
+            <h2>Crons <%= tomcat.dns %></h2>
+            <%= render :partial => "cron", :collection => crons %>
           <% end %>
         <% end %>
       <% end %>
