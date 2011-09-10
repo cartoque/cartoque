@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110905110840) do
+ActiveRecord::Schema.define(:version => 20110909063121) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(:version => 20110905110840) do
     t.string   "item_type"
     t.integer  "item_id"
     t.string   "identifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cronjobs", :force => true do |t|
+    t.integer  "server_id"
+    t.string   "definition_location"
+    t.string   "name"
+    t.string   "frequency"
+    t.string   "user"
+    t.text     "command"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
