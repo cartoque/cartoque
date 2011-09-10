@@ -1,8 +1,6 @@
-require File.expand_path('../../../config/environment', __FILE__)
-
 desc "Imports cron jobs from tomcats' csv files"
 namespace :import do
-  task :cronjobs do
+  task :cronjobs => :environment do
     #
     # INSERTS NEW CRON JOBS
     #
@@ -33,7 +31,7 @@ namespace :import do
             $stderr.puts "Error creating cronjob: #{cron.inspect}"
           end
         else
-          puts "Skipping cronjob #{cron.name} @ #{cron.server}, already exists"
+          puts "Skipping cronjob #{cron.name} @ #{cron.server}, already exists" if ENV['DEBUG'].present?
         end
       end
     end
