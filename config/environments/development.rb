@@ -26,6 +26,6 @@ Cartocs::Application.configure do
   config.assets.compress = false
 
   # Enable assets debugging
-  config.assets.debug = true
+  config.assets.debug = false
 end
 
