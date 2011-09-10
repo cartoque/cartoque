@@ -31,7 +31,8 @@ class Tomcat < Hashie::Mash
       self.merge!(:cerbere_csac => false)
     end
     #crons
-    self.merge!(:crons => parse_crons(hsh[:crons]))
+    self.merge!(:crons => Cronjob.joins(:server).where("cronjobs.name like ? AND servers.name = ?",
+                                                       "exploit_"+self[:dns].split(".").first+"%", self[:server]))
   end
 
   def parse_crons(cron_lines)
@@ -61,8 +62,7 @@ class Tomcat < Hashie::Mash
       lines.grep(/^site;/).each do |line|
         site = line.split(";")
         instance = lines.grep(/^instance;/).detect{|i| i.include?("#{site[1]};#{site[5]};")}
-        crons = lines.grep(/^cron;/).select{|i| i.include?(";d;exploit_"+"#{site[2]}".split(".").first) }
-        all << new(site, { :instance => (instance.present? ? instance.split(";") : []), :crons => crons })
+        all << new(site, { :instance => (instance.present? ? instance.split(";") : []) })
       end
     end
     all
