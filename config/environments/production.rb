@@ -31,9 +31,18 @@ Cartocs::Application.configure do
   # In production, Apache or nginx will already do this
   config.serve_static_assets = false
 
+  # Compress javascripts and  stylesheets
+  config.assets.compress = true
+
+  # Fallback to asset pipeline if a precompiled asset is missing
+  config.assets.compile = true
+
+  # Generate digests for assets urls
+  config.assets.digest = true
+
   # Compress both stylesheets and JavaScripts
-  config.assets.js_compressor  = :uglifier
-  config.assets.css_compressor = :scss
+  #config.assets.js_compressor  = :uglifier
+  #config.assets.css_compressor = :scss
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"

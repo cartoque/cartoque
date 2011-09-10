@@ -11,6 +11,7 @@ Many functionalities or techniques used here are inspired by the awesome screenc
 * Simple authentication with OmniAuth (Episode 241)
 * AJAX history state (Episode 246)
 * Trees with Ancestry (Episode 262)
+* Upgrading to Rails 3.1 (Episode 282)
 
 And soon coming:
 * 114_endless_page
