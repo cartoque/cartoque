@@ -18,7 +18,7 @@ namespace :import do
         hsh = {}
         if elems.size >= 7
           hsh = { :server_id => server.id, :definition_location => elems[2], :name => elems[3],
-                  :frequency => elems[4], :user => elems[5], :command => elems[6] }
+                  :frequency => elems[4], :user => elems[5], :command => elems[6..-1].join(";") }
         end
         #search existing cronjob
         cron = Cronjob.where(hsh.slice(:server_id, :definition_location, :name, :frequency, :user)).first
