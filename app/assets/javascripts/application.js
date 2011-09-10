@@ -123,7 +123,7 @@ function bsmizeSelects() {
     title: 'Sélectionnez...',
     highlight: 'highlight',
     addItemTarget: 'original',
-    removeLabel: '<strong>x</strong>',
+    removeLabel: '<strong>×</strong>',
     containerClass: 'bsmContainer',                // Class for container that wraps this widget
     listClass: 'bsmList-custom',                   // Class for the list ($ol)
     listItemClass: 'bsmListItem-custom',           // Class for the <li> list items
