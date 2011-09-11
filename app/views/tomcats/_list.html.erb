@@ -44,6 +44,10 @@
                     "##{tomcat.dns.parameterize}", :rel => "facebox" %><%= content_tag(:span, "×#{crons.size}", :class => "tinier") if crons.size > 1 %>
         <%= content_tag(:div, :id => tomcat.dns.parameterize, :style => "display:none;") do %>
           <%= content_tag(:div, :class => "tomcat-crons") do %>
+            <div class="contextual">
+              Tous les crons:
+              <%= crons.map(&:server).uniq.sort_by(&:name).map{|s| link_to(s.name, cronjobs_path(:by_server => s.id))}.join(" ").html_safe %>
+            </div>
             <h2>Crons <%= tomcat.dns %></h2>
             <%= render :partial => "cron", :collection => crons %>
           <% end %>
