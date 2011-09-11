@@ -8,7 +8,7 @@
   </tr>
   <% @cronjobs.each do |cronjob| %>
   <tr>
-    <td><%= cronjob.server %></td>
+    <td><%= link_to cronjob.server, cronjob.server %></td>
     <td><%= cronjob.name %></td>
     <td><pre><%= cronjob.frequency %></pre></td>
     <td><pre><%= cronjob.user %></pre></td>
