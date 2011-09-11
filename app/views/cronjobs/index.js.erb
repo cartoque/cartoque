@@ -1,0 +1,4 @@
+$("#cronjobs_list").html("<%= escape_javascript(render("list")) %>");
+$("#cronjobs_counter").html("<%= @cronjobs.count %>");
+fixTableHeaders();
+$("html, body").animate({ scrollTop: 0 }, 200);

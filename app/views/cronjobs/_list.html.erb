@@ -1,0 +1,20 @@
+<% if @cronjobs.present? %>
+  <tr class="fix-on-scroll">
+    <th>Serveur</th>
+    <th>Nom</th>
+    <th>Fréquence</th>
+    <th>User</th>
+    <th>Commande</th>
+  </tr>
+  <% @cronjobs.each do |cronjob| %>
+  <tr>
+    <td><%= cronjob.server %></td>
+    <td><%= cronjob.name %></td>
+    <td><pre><%= cronjob.frequency %></pre></td>
+    <td><pre><%= cronjob.user %></pre></td>
+    <td><code><%= cronjob.command %></code></td>
+  </tr>
+  <% end %>
+<% else %>
+  <tr><td class="center" colspan="5">Aucun cron correspondant, sélectionnez un serveur.</td></tr>
+<% end %>
