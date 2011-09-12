@@ -152,23 +152,20 @@ $(function() {
 
 //fixed table column sizes
 function fixTableHeaders() {
+  $('.fix-on-scroll').each(function() { initializeTopOffset(this); });
   $('.fixed-size, .fix-on-scroll').children().each(function() { fixElementSize($(this)); });
   $('td.multirow').siblings().andSelf().each(function() { fixElementSize($(this)); });
 }
 function fixElementSize(elem) {
   elem.css('width', parseInt(elem.innerWidth()) - parseInt(elem.css('paddingLeft')) - parseInt(elem.css('paddingRight')));
 }
+function initializeTopOffset(elem) {
+  elem.initialTopOffset = $(elem).offset().top; // - parseFloat($(elem).css('marginTop').replace(/auto/, 0));
+}
 
 $(window).load(function() {
   //fix table headers one time after everything is loaded
   fixTableHeaders();
-
-  //fixed table headers on scroll
-  var selector = '.fix-on-scroll';
-  if ($(selector).length < 1) return false;
-  $(selector).each(function() {
-    this.initialTopOffset = $(this).offset().top; // - parseFloat($(selector).css('marginTop').replace(/auto/, 0));
-  });
 
   //fix headers on scroll
   $(window).scroll(function (event) {
@@ -180,7 +177,7 @@ $(window).load(function() {
   function fixHeadersOnScroll() {
     // what the y position of the scroll is
     var y = $(window).scrollTop();
-    $(selector).each(function() {
+    $('.fix-on-scroll').each(function() {
       // whether that's below the form
       if (y >= this.initialTopOffset) {
         // if so, ad the fixed class
