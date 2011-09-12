@@ -11,7 +11,7 @@
     <td><%= link_to nss_volume.server, nss_volume.server %></td>
     <td><%= nss_volume.name %></td>
     <td class="center"><%= nss_volume.falconstor_type %></td>
-    <td class="center"><code><%= nss_volume.guid %></code></td>
+    <td class="center"><pre><%= nss_volume.guid %></pre></td>
     <td class="center <%= nss_volume.snapshot_enabled ? "snap-yes" : "snap-no" %>"><%= nss_volume.snapshot_enabled ? "oui" : "non" %></td>
     <td class="center"><%= pretty_size(nss_volume.size) %></td>
   </tr>
