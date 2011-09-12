@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110912083734) do
+ActiveRecord::Schema.define(:version => 20110912163235) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -106,10 +106,15 @@ ActiveRecord::Schema.define(:version => 20110912083734) do
   create_table "nss_volumes", :force => true do |t|
     t.string   "name"
     t.integer  "server_id"
-    t.integer  "size",       :limit => 8
-    t.text     "attrs"
+    t.integer  "size",             :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "snapshot_enabled",              :default => false
+    t.boolean  "timemark_enabled",              :default => false
+    t.integer  "falconstor_id"
+    t.string   "guid"
+    t.string   "falconstor_type"
+    t.string   "dataset_guid"
   end
 
   create_table "operating_systems", :force => true do |t|
