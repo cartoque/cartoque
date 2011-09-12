@@ -5,6 +5,10 @@ class NssVolumesController < InheritedResources::Base
   before_filter :find_servers
 
   has_scope :by_server
+  has_scope :by_name
+  has_scope :by_type
+  has_scope :by_guid
+  has_scope :by_snapshot_status
 
   protected
   def collection
