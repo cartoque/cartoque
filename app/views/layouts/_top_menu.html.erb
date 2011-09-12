@@ -19,7 +19,7 @@
       <!--<li><a href="?">Talend / Sunopsis</a></li>-->
       <!--<li><a href="?">FTP VSFTPd</a></li>-->
       <li class="title">Stockage</li>
-      <li><%= link_to "Virtualisation NSS", nss_volumes_path %></li>
+      <li><%= link_to "Virtualisation NSS", nss_volumes_path(:by_type => "SAN") %></li>
       <li><%= link_to "Baies de stockage", storages_path %></li>
     </ul>
     <!--<ul style="float:left">
