@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 module DatabasesHelper
+  include SizeHelper
+
   def database_nodes(database)
     html = "<strong>#{link_to database.name, database}</strong>"
     if database.servers.any? && database.servers.map(&:name) != [database.name]
@@ -42,21 +44,5 @@ module DatabasesHelper
     html << %(,&nbsp;...) if top_databases.size < databases.size
     html << %(<span style="float:right; padding-left:1em">#{display_size(total_size)}</span>)
     html.html_safe
-  end
-
-  def display_size(size)
-    html = size_in_Go(size)
-    if html.to_f <= 1
-      html = %(<abbr title="#{size_in_Mo(size)}Mo">#{html}</abbr>)
-    end
-    html.to_s.html_safe
-  end
-
-  def size_in_Go(size)
-    "%.1f" % (size / 1024.0**3)
-  end
-
-  def size_in_Mo(size)
-    "%.1f" % (size / 1024.0**2)
   end
 end

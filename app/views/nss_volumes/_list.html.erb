@@ -4,7 +4,7 @@
     <th>Type</th>
     <th>Guid</th>
     <th>Snapshots</th>
-    <th>Taille</th>
+    <th class="right">Taille(Go)</th>
   </tr>
   <% @nss_volumes.each do |nss_volume| %>
   <tr class="nss-<%= nss_volume.falconstor_type.downcase %>">
@@ -13,6 +13,6 @@
     <td class="center"><%= nss_volume.falconstor_type %></td>
     <td class="center"><pre><%= nss_volume.guid %></pre></td>
     <td class="center <%= nss_volume.snapshot_enabled ? "snap-yes" : "snap-no" %>"><%= nss_volume.snapshot_enabled ? "oui" : "non" %></td>
-    <td class="center"><%= pretty_size(nss_volume.size) %></td>
+    <td class="right"><%= display_size(nss_volume.size) %></td>
   </tr>
   <% end %>
