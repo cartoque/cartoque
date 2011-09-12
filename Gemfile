@@ -18,7 +18,6 @@ gem 'log_buddy'
 
 # Bundle the extra gems:
 # gem 'bj'
-# gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
@@ -53,6 +52,7 @@ gem 'omniauth', '>= 0.2.6'
 gem 'hashie'
 gem 'diffy'
 gem 'settler'
+gem 'nokogiri'
 
 group :test do
   gem 'shoulda'

@@ -2,7 +2,7 @@
 <li><%= link_to "Serveurs", servers_path %></li>
 <li class="has-submenu">
   <%= link_to_function %(Composants <span class="arrow"></span>).html_safe, "return false" %>
-  <div class="large-submenu submenu-2" style="margin-left:-70px">
+  <div class="large-submenu submenu-3" style="margin-left:-70px">
     <ul style="float:left">
       <li class="title">Applicatifs</li>
       <!--<li><a href="?">Load balancers</a></li>-->
@@ -19,10 +19,10 @@
       <!--<li><a href="?">Talend / Sunopsis</a></li>-->
       <!--<li><a href="?">FTP VSFTPd</a></li>-->
       <li class="title">Stockage</li>
-      <!--<li><a href="?">Virtualisation NSS</a></li>-->
+      <li><%= link_to "Virtualisation NSS", nss_volumes_path %></li>
       <li><%= link_to "Baies de stockage", storages_path %></li>
-    <!--</ul>
-    <ul style="float:left">
+    </ul>
+    <!--<ul style="float:left">
       <li class="title">Messagerie</li>
       <li><a href="?">Relais SMTP</a></li>
       <li><a href="?">BAL Cyrus</a></li>
@@ -30,8 +30,8 @@
       <li><a href="?">Greylisting</a></li>
       <li><a href="?">CalDav</a></li>
       <li><a href="?">Z-Push</a></li>
-    </ul>
-    <ul style="float:left">-->
+    </ul>-->
+    <ul style="float:left">
       <li class="title">Transverses</li>
       <!--<li><a href="?">Puppet</a></li>-->
       <li><%= link_to "Tâches Cron", cronjobs_path %></li>

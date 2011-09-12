@@ -1,0 +1,16 @@
+  <tr class="fix-on-scroll">
+    <th>Serveur</th>
+    <th>Nom</th>
+    <th>Timemarks</th>
+    <th>Snapshots</th>
+    <th>Taille</th>
+  </tr>
+  <% @nss_volumes.each do |nss_volume| %>
+  <tr>
+    <td><%= link_to nss_volume.server, nss_volume.server %></td>
+    <td><%= nss_volume.name %></td>
+    <td class="center"><%= nss_volume.attrs["snapshotEnabled"] == "true" ? "oui" : "non" %></td>
+    <td class="center"><%= nss_volume.attrs["timemarkEnabled"] == "true" ? "oui" : "non" %></td>
+    <td class="center"><%= pretty_size(nss_volume.size) %></td>
+  </tr>
+  <% end %>

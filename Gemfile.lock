@@ -207,6 +207,7 @@ DEPENDENCIES
   mocha
   mysql2
   nifty-generators
+  nokogiri
   omniauth (>= 0.2.6)
   pdfkit (= 0.5.2)
   rails (= 3.1.0)

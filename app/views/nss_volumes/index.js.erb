@@ -1,0 +1,4 @@
+$("#nss_volumes_list").html("<%= escape_javascript(render("list")) %>");
+$("#nss_volumes_counter").html("<%= @nss_volumes.count %>");
+fixTableHeaders();
+$("html, body").animate({ scrollTop: 0 }, 200);

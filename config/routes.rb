@@ -1,4 +1,6 @@
 Cartocs::Application.routes.draw do
+  resources :nss_volumes
+
   resources :cronjobs, :only => [:index]
   resources :configuration_items, :only => [:index, :show]
   resources :settings, :only => :index do

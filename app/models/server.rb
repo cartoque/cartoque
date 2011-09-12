@@ -11,6 +11,7 @@ class Server < ActiveRecord::Base
   has_many :connected_links, :dependent => :destroy, :class_name => 'PhysicalLink', :foreign_key => 'switch_id'
   has_one :configuration_item, :as => :item
   has_many :cronjobs, :dependent => :destroy
+  has_many :nss_volumes, :dependent => :destroy
 
   accepts_nested_attributes_for :ipaddresses, :reject_if => lambda{|a| a[:address].blank? },
                                               :allow_destroy => true
