@@ -48,11 +48,17 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
 
   <% # FILES %>
   <% hsh[:files].each do |file| %>
+    <% blank = 0 %>
     <% content = hsh[:nodes].map do |n|
          file_path = "#{hsh[:path]}/#{n}/#{file}"
-         File.exists?(file_path) ? File.readlines(file_path).reject{|l|l.starts_with?("#") || l.blank?}.join.chomp : ""
+         lines = File.exists?(file_path) ? File.readlines(file_path).reject{|l|l.starts_with?("#") || l.blank?}.join.chomp : ""
+         blank += 1 if lines.blank?
+         lines 
        end %>
+    <% next if blank == content.size %>
     <% uniq = content.uniq %>
+    <% next if content == [[], []] %>
+    <% next if content == [[""], [""]] %>
     <% if uniq.length == 1 %>
     <tr class="identical">
       <td><%= file %></td><td colspan="<%= content.length %>"><code><%= content.shift.gsub("\n","<br/>").html_safe %></code></td>
