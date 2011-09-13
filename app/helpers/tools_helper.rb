@@ -4,7 +4,7 @@ module ToolsHelper
       output = content_tag :tr do
         (%(<th style="width:10%;">) + nodes.map{|node| %(<th style="width:#{90 / nodes.size}%;">#{node}</th>)}.join).html_safe
       end
-      output.safe_concat(capture(&block))
+      output.safe_concat(capture(&block)) if block_given?
       output
     end
   end

@@ -38,10 +38,8 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
 
 <% clusters.each do |cluster,hsh| %>
 
-<%= symetry_table_for hsh[:nodes] do %>
-
-  <% # FILES %>
-  <% hsh[:files].each do |file| %>
+<% # FILES %>
+<% hsh[:files].each do |file| %>
     <% blank = 0 %>
     <% content = hsh[:nodes].map do |n|
          file_path = "#{hsh[:path]}/#{n}/#{file}"
@@ -53,6 +51,7 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
     <% uniq = content.uniq %>
     <% next if content == [[], []] %>
     <% next if content == [[""], [""]] %>
+<%= symetry_table_for hsh[:nodes] do %>
     <% if uniq.length == 1 %>
     <tr class="identical">
       <td><%= file %></td><td colspan="<%= content.length %>"><code><%= content.shift.gsub("\n","<br/>").html_safe %></code></td>
@@ -63,7 +62,9 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
     </tr>
     <% end %>
   <% end %>
+<% end %>
 
+<%= symetry_table_for hsh[:nodes] do %>
   <% # PACKAGES WITHOUT VERSION %>
   <% packages_map = hsh[:nodes].map do |n|
        pkg_file = "#{hsh[:path]}/#{n}/packages.list"
@@ -93,9 +94,9 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
     <% end %>
   </tr>
   <% end %>
+<% end %>
 
-
-
+<%= symetry_table_for hsh[:nodes] do %>
   <% # PACKAGES WITH VERSION %>
   <% packages_map = hsh[:nodes].map do |n|
        pkg_file = "#{hsh[:path]}/#{n}/packages.list"
@@ -125,9 +126,11 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
     <% end %>
   </tr>
   <% end %>
+<% end %>
 
 <% # FILES HIERARCHY (LISTS) %>
 <% hsh[:lists].each do |file_list| %>
+<%= symetry_table_for hsh[:nodes] do %>
   <% lists_map = hsh[:nodes].map do |n|
        file_path = "#{hsh[:path]}/#{n}/#{file_list}"
        File.exists?(file_path) ? File.read(file_path) : ""
@@ -158,7 +161,6 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
   </tr>
   <% end %>
 <% end %>
-
 <% end %>
 
 <% end %>
