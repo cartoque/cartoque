@@ -37,13 +37,8 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
 %>
 
 <% clusters.each do |cluster,hsh| %>
-<table class="list symetry">
-  <tr>
-    <th style="width:10%;"> </th>
-    <% hsh[:nodes].each do |node| %>
-      <th style="width:<%= 90 / hsh[:nodes].size %>%;"><%= node %></th>
-    <% end %>
-  </tr>
+
+<%= symetry_table_for hsh[:nodes] do %>
 
   <% # FILES %>
   <% hsh[:files].each do |file| %>
@@ -164,7 +159,8 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
   <% end %>
 <% end %>
 
-</table>
+<% end %>
+
 <% end %>
  
 </div>
