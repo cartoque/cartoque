@@ -1,0 +1,5 @@
+$("#nss_disks_list").html("<%= escape_javascript(render("list")) %>");
+$("#nss_disks_counter").html("<%= @nss_disks.count %>");
+$("#nss_disks_size_counter").html("<%= pretty_size(@nss_disks.map(&:size).sum).sub(/b(ytes)?$/,"o") %>");
+fixTableHeaders();
+$("html, body").animate({ scrollTop: 0 }, 200);

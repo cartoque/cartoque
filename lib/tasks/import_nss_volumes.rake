@@ -5,7 +5,7 @@ namespace :import do
   task :nss_volumes => :environment do
     Dir.glob("data/nss/*/ipstor.conf").each do |file|
       server_name = file.split("/")[-2]
-      puts "Updating #{server_name}"
+      puts "Updating NssVolumes for #{server_name}"
       server = Server.find_or_create_by_name(server_name)
       Nokogiri::XML.parse(File.read(file)).search("//VirtualDev").each do |dev|
         volume = NssVolume.find_or_create_by_name_and_server_id(dev["name"], server.id)
