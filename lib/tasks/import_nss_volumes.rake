@@ -7,7 +7,7 @@ namespace :import do
       server_name = file.split("/")[-2]
       puts "Updating #{server_name}"
       server = Server.find_or_create_by_name(server_name)
-      Nokogiri::XML.parse(File.read("data/nss/nss-01/ipstor.conf")).search("//VirtualDev").each do |dev|
+      Nokogiri::XML.parse(File.read(file)).search("//VirtualDev").each do |dev|
         volume = NssVolume.find_or_create_by_name_and_server_id(dev["name"], server.id)
         volume.snapshot_enabled = (dev["snapshotEnabled"] == "true")
         volume.timemark_enabled = (dev["timemarkEnabled"] == "true")
