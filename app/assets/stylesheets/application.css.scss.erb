@@ -562,9 +562,12 @@ ul.comparison {
 .symetry {
   th, td { border-right:1px solid #ccc; text-align:center; }
   td { padding:0.2em 1em; }
-  tr td:first-child { font-weight:bold; padding:0.2em; text-align:left; }
-  tr.identical td:first-child { color:green; }
-  tr.different td:first-child { color:red; }
+}
+#cluster_symetry {
+  h2 { font-weight:bold; padding:0.2em; text-align:left; }
+  .more { padding:0 5px; cursor:pointer; }
+  .identical { color:green; }
+  .different { color:red; }
 }
 
 /* diff */

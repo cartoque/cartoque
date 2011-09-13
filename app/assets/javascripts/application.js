@@ -59,6 +59,11 @@ $(function() {
     }
   });
 
+  //more buttons
+  $('.more').live('click', function() {
+    $(this).parent().next().slideToggle(100);
+  });
+
   //filters observer
   submitFilters = function() {
     $.get($("#filters").attr("action"), $("#filters").serialize(), null, "script");
