@@ -37,7 +37,6 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
 %>
 
 <% clusters.each do |cluster,hsh| %>
-<h2><%= cluster.upcase %></h2>
 <table class="list symetry">
   <tr>
     <th style="width:10%;"> </th>
