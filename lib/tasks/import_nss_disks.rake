@@ -11,7 +11,7 @@ namespace :import do
         disk = NssDisk.find_or_create_by_name_and_server_id(dev["name"], server.id)
         disk.wwid = dev["wwid"]
         disk.falconstor_type = dev["type"]
-        disk.owner_id = Server.find_or_create_by_name(dev["owner"]).id unless dev["owner"].blank?
+        disk.owner = dev["owner"]
         disk.category = dev["category"]
         disk.guid = dev["guid"]
         disk.fsid = dev["fsid"]

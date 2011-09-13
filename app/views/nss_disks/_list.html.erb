@@ -8,7 +8,7 @@
   <% @nss_disks.each do |nss_disk| %>
   <tr class="nss-<%= nss_disk.falconstor_type.downcase %>">
     <td><%= link_to nss_disk.server, nss_disk.server %></td>
-    <td><%= link_to nss_disk.owner, nss_disk.owner %></td>
+    <td><%= nss_disk.owner %></td>
     <td><%= nss_disk.name %></td>
     <td class="center"><pre><%= nss_disk.guid %></pre></td>
     <td class="right"><%= display_size(nss_disk.size) %></td>

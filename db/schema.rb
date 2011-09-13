@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(:version => 20110913110636) do
     t.string   "wwid"
     t.string   "falconstor_type"
     t.integer  "server_id"
-    t.integer  "owner_id"
+    t.string   "owner"
     t.string   "category"
     t.string   "guid"
     t.string   "fsid"
