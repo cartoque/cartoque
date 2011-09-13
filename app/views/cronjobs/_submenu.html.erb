@@ -1,5 +1,0 @@
-<%= action_links do %>
-  <%= form_tag cronjobs_path, :method => :get do %>
-    <%= select_tag("id", options_for_select(@servers.map{|s| [s.name, s.id]}), :include_blank => true) %>
-  <% end %>
-<% end %>
