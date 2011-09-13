@@ -1,0 +1,5 @@
+<%= action_links do %>
+  <ul class="select-buttons">
+    <%= content_tag :li, link_to("Volumes logiques", nss_volumes_path), :class => (controller_name == "nss_volumes" ? "current" : "") %>
+  </ul>
+<% end %>
