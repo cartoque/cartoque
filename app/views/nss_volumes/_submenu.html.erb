@@ -1,6 +1,6 @@
 <%= action_links do %>
   <ul class="select-buttons">
-    <%= content_tag :li, link_to("Volumes logiques", nss_volumes_path), :class => (controller_name == "nss_volumes" ? "current" : "") %>
+    <%= content_tag :li, link_to("Volumes logiques", nss_volumes_path(:by_type => "SAN")), :class => (controller_name == "nss_volumes" ? "current" : "") %>
     <%= content_tag :li, link_to("Disques", nss_disks_path), :class => (controller_name == "nss_disks" ? "current" : "") %>
   </ul>
 <% end %>
