@@ -9,6 +9,7 @@
   <tr class="filters fixed-size">
     <td class="left" style="width:6em"><%= select_tag "by_server", options_for_select(@servers.map{|s| [s.name, s.id]}, params[:by_server]), :include_blank => true %></td>
     <td><%= text_field_tag "by_name", params[:by_name] %></td>
+    <td></td>
     <td><%= select_tag "by_type", options_for_falconstor_type(params[:by_type]).html_safe -%></td>
     <td style="width:8em;"><%= text_field_tag "by_guid", params[:by_guid] %></td>
     <td><%= select_tag "by_snapshot_status", options_for_select([["",""], ["oui", "1"], ["non", 0]], params[:by_snapshot_status]).html_safe -%></td>

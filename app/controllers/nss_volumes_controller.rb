@@ -12,7 +12,7 @@ class NssVolumesController < InheritedResources::Base
 
   protected
   def collection
-    @nss_volumes ||= end_of_association_chain.joins(:server).order("servers.name asc, nss_volumes.name asc")
+    @nss_volumes ||= end_of_association_chain.joins(:server).includes(:clients).order("servers.name asc, nss_volumes.name asc")
   end
 
   def find_servers

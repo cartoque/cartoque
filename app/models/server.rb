@@ -13,6 +13,8 @@ class Server < ActiveRecord::Base
   has_many :cronjobs, :dependent => :destroy
   has_many :nss_volumes, :dependent => :destroy
   has_many :nss_disks, :dependent => :destroy
+  has_many :nss_associations, :dependent => :destroy
+  has_many :used_nss_volumes, :through => :nss_associations, :source => :nss_volume
 
   accepts_nested_attributes_for :ipaddresses, :reject_if => lambda{|a| a[:address].blank? },
                                               :allow_destroy => true
