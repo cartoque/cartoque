@@ -11,7 +11,7 @@
   <tr class="nss-<%= nss_volume.falconstor_type.downcase %>">
     <td><%= link_to nss_volume.server, nss_volume.server %></td>
     <td><%= nss_volume.name %></td>
-    <td><%= nss_volume.clients.map{|client| link_to(client,client)}.join("<br/>").html_safe %></td>
+    <td><%= nss_volume.clients.sort_by(&:name).map{|client| link_to(client,client)}.join("<br/>").html_safe %></td>
     <td class="center"><%= nss_volume.falconstor_type %></td>
     <td class="center"><pre><%= nss_volume.guid %></pre></td>
     <td class="center <%= nss_volume.snapshot_enabled ? "snap-yes" : "snap-no" %>"><%= nss_volume.snapshot_enabled ? "oui" : "non" %></td>
