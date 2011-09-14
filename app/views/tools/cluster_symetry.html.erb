@@ -46,14 +46,21 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
        lines = File.exists?(file_path) ? File.readlines(file_path).reject{|l|l.starts_with?("#") || l.blank?}.join.chomp : ""
        blank += 1 if lines.blank?
        lines 
-     end %>
-  <% next if blank == content.size %>
-  <% uniq = content.uniq %>
-  <% next if content == [[], []] %>
-  <% next if content == [[""], [""]] %>
-  <%= symetry_table_for hsh[:nodes], :status => (uniq.length == 1), :title => file do %>
+     end
+     next if blank == content.size
+     next if content == [[], []]
+     next if content == [[""], [""]]
+     
+     status = content.inject(true) do |memo,file|
+       equality = Diffy::Diff.new(content.first, file, :diff => %w(-B -b -w -E --unified=0)).inject(true) do |memo,chunk|
+         memo && !chunk.match(/^-|^\+/)
+       end
+       memo && equality
+     end
+  %>
+  <%= symetry_table_for hsh[:nodes], :status => status, :title => file do %>
     <tr>
-    <% if uniq.length == 1 %>
+    <% if status %>
       <td colspan="<%= content.length %>"><code><%= content.shift.gsub("\n","<br/>").html_safe %></code></td>
     <% else %>
       <% content.length.times do %><td><code><%= content.shift.gsub("\n","<br/>").html_safe %></code></td><% end %>
