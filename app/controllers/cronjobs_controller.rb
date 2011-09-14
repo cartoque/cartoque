@@ -5,10 +5,14 @@ class CronjobsController < InheritedResources::Base
   before_filter :find_servers
 
   has_scope :by_server
+  has_scope :by_name
+  has_scope :by_command
 
   def index
     @cronjobs = []
-    @cronjobs = apply_scopes(Cronjob).all if params[:by_server].to_i > 0
+    if (params[:by_server].to_i > 0) || params[:by_name].present? || params[:by_command].present?
+      @cronjobs = apply_scopes(Cronjob).first(100)
+    end
   end
 
   protected

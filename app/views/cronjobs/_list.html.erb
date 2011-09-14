@@ -15,6 +15,9 @@
     <td><code><%= cronjob.command %></code></td>
   </tr>
   <% end %>
+  <% if @cronjobs.size == 100 %>
+    <tr><td class="center" colspan="5"><em>Limite de 100 crons atteinte. Vous devriez affiner votre recherche.</em></td></tr>
+  <% end %>
 <% else %>
-  <tr><td class="center" colspan="5">Aucun cron correspondant, sélectionnez un serveur.</td></tr>
+  <tr><td class="center" colspan="5"><em>Aucun cron correspondant, affinez votre recherche.</em></td></tr>
 <% end %>
