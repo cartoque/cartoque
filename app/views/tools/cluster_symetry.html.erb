@@ -53,7 +53,11 @@ clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "a
   <% next if content == [[""], [""]] %>
   <%= symetry_table_for hsh[:nodes], :status => (uniq.length == 1), :title => file do %>
     <tr>
+    <% if uniq.length == 1 %>
       <td colspan="<%= content.length %>"><code><%= content.shift.gsub("\n","<br/>").html_safe %></code></td>
+    <% else %>
+      <% content.length.times do %><td><code><%= content.shift.gsub("\n","<br/>").html_safe %></code></td><% end %>
+    <% end %>
     </tr>
   <% end %>
 <% end %>
