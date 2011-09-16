@@ -1,6 +1,7 @@
 <% if @cronjobs.present? %>
   <tr class="fix-on-scroll">
     <th>Serveur</th>
+    <th>Définition</th>
     <th>Fréquence</th>
     <th>User</th>
     <th>Commande</th>
@@ -8,6 +9,7 @@
   <% @cronjobs.each do |cronjob| %>
   <tr>
     <td><%= link_to cronjob.server, cronjob.server %></td>
+    <td><%= cronjob.definition_location %></pre></td>
     <td><pre><%= cronjob.frequency %></pre></td>
     <td><pre><%= cronjob.user %></pre></td>
     <td><code><%= cronjob.command %></code></td>

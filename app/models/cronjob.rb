@@ -5,6 +5,7 @@ class Cronjob < ActiveRecord::Base
 
   scope :by_server, proc { |server_id| where(:server_id => server_id) }
   scope :by_command, proc { |search| where("cronjobs.command LIKE ?", "%#{search}%") }
+  scope :by_definition, proc { |place| where("cronjobs.definition_location LIKE ?", "%#{place}%") }
 
   def self.parse_line(line)
     #typical line: "0 6 * * * root /usr/bin/my_script.sh >/dev/null && blah

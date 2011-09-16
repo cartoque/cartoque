@@ -6,10 +6,11 @@ class CronjobsController < InheritedResources::Base
 
   has_scope :by_server
   has_scope :by_command
+  has_scope :by_definition
 
   def index
     @cronjobs = []
-    if (params[:by_server].to_i > 0) || params[:by_command].present?
+    if (params[:by_server].to_i > 0) || params[:by_command].present? || params[:by_definition].present?
       @cronjobs = apply_scopes(Cronjob).first(100)
     end
   end

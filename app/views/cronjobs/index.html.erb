@@ -6,6 +6,7 @@
   <%= form_tag cronjobs_path(params), :id => "filters", :method => :get do -%>
   <tr class="filters fixed-size">
     <td style="width:10em"><%= select_tag "by_server", options_for_select(@servers.map{|s| [s.name, s.id]}, params[:by_server]), :include_blank => true %></td>
+    <td style="width:12em"><%= text_field_tag "by_definition", params[:by_definition] %></td>
     <td></td>
     <td></td>
     <td>
