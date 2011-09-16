@@ -6,7 +6,6 @@ class CronjobTest < ActiveSupport::TestCase
       line = "00  05  *  *  *  root  /opt/scripts/my-own-script"
       cron = Cronjob.parse_line(line)
       assert !cron.valid?
-      cron.name = "name"
       assert !cron.valid?
       cron.server_id = Factory(:server).id
       assert cron.valid?
@@ -31,7 +30,6 @@ class CronjobTest < ActiveSupport::TestCase
       crons = File.readlines(File.expand_path("../../data/crons/server-01.cron", __FILE__)).map do |line|
         c = Cronjob.parse_line(line)
         c.server = server
-        c.name = "unknown"
         c
       end
       assert ! crons.shift.valid?

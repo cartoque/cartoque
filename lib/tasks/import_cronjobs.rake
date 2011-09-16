@@ -17,21 +17,21 @@ namespace :import do
         #if enough elements
         hsh = {}
         if elems.size >= 7
-          hsh = { :server_id => server.id, :definition_location => elems[2], :name => elems[3],
+          hsh = { :server_id => server.id, :definition_location => "/etc/cron.#{elems[2]}/#{elems[3]}",
                   :frequency => elems[4], :user => elems[5], :command => elems[6..-1].join(";") }
         end
         #search existing cronjob
-        cron = Cronjob.where(hsh.slice(:server_id, :definition_location, :name, :frequency, :user)).first
+        cron = Cronjob.where(hsh.slice(:server_id, :definition_location, :frequency, :user)).first
         #if no, create a new one
         if cron.blank?
           cron = Cronjob.new(hsh)
           if cron.save
-            puts "Successfully created cronjob #{cron.name} @ #{cron.server}"
+            puts "Successfully created cronjob #{cron.definition_location} @ #{cron.server}"
           else
             $stderr.puts "Error creating cronjob: #{cron.inspect}"
           end
         else
-          puts "Skipping cronjob #{cron.name} @ #{cron.server}, already exists" if ENV['DEBUG'].present?
+          puts "Skipping cronjob #{cron.definition_location} @ #{cron.server}, already exists" if ENV['DEBUG'].present?
         end
       end
     end

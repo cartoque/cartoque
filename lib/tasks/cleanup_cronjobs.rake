@@ -16,9 +16,9 @@ namespace :cleanup do
           crons_in_database_ids = Cronjob.where(:server_id => server.id).map(&:id)
           crons.each do |line|
             elems = line.split(";")
-            hsh = { :server_id => server.id, :definition_location => elems[2], :name => elems[3],
+            hsh = { :server_id => server.id, :definition_location => "/etc/cron.#{elems[2]}/#{elems[3]}",
                     :frequency => elems[4], :user => elems[5], :command => elems[6..-1] }
-            cron = Cronjob.where(hsh.slice(:server_id, :definition_location, :name, :frequency, :user)).first
+            cron = Cronjob.where(hsh.slice(:server_id, :definition_location, :frequency, :user)).first
             crons_in_database_ids -= [cron.id] if cron.present?
           end
           if crons_in_database_ids.any?
