@@ -1,0 +1,14 @@
+mi   h    d  m  w  user  command
+20   */3  *  *  *  root  /opt/scripts/my-own-script; /opt/scripts/another-script.sh
+25   6    *  *  *  root  /etc/cron.daily/apt
+25   6    *  *  *  root  /etc/cron.daily/aptitude
+25   6    *  *  *  root  /etc/cron.daily/bsdmainutils
+25   6    *  *  *  root  /etc/cron.daily/dpkg
+25   6    *  *  *  root  /etc/cron.daily/logrotate
+25   6    *  *  *  root  /etc/cron.daily/man-db
+25   6    *  *  *  root  /etc/cron.daily/mlocate
+25   6    *  *  *  root  /etc/cron.daily/ntp
+25   6    *  *  *  root  /etc/cron.daily/passwd
+25   6    *  *  *  root  /etc/cron.daily/standard
+47   6    *  *  7  root  /etc/cron.weekly/man-db
+*/5  *    *  *  *  root  if [ -x /etc/munin/plugins/apt_all ]; then /etc/munin/plugins/apt_all update 7200 12 >/dev/null; elif [ -x /etc/munin/plugins/apt ]; then /etc/munin/plugins/apt update 7200 12 >/dev/null; fi
