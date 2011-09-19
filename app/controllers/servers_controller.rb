@@ -18,12 +18,9 @@ class ServersController < InheritedResources::Base
   helper_method :sort_column, :sort_direction, :sort_column_prefix
 
   def collection
-    @servers ||= end_of_association_chain.search(params[:search]).order(sort_option)
-    @racks = PhysicalRack.all.inject({}){|memo,elem| memo[elem.id] = elem; memo }
-    @operating_systems = OperatingSystem.all.inject({}){|memo,elem| memo[elem.id] = elem; memo }
-    @maintainers = Mainteneur.all.inject({}){|memo,elem| memo[elem.id] = elem; memo }
+    @servers ||= end_of_association_chain.includes(:operating_system, :physical_rack).search(params[:search]).order(sort_option)
     if maintenance_mode?
-      @servers = @servers.where(:virtual => false)
+      @servers = @servers.includes(:mainteneur).where(:virtual => false)
       if params[:sort] == "maintained_until"
         @servers = @servers.select{|m| m.maintained_until.present? } + @servers.select{|m| m.maintained_until.blank? }
       end

@@ -10,12 +10,12 @@
 <% for server in @servers %>
 <tr>
   <td><%= link_to server.name, server %></td>
-  <td><%= link_to_rack @racks[server.physical_rack_id] %></td>
+  <td><%= link_to_rack server.physical_rack %></td>
   <td><%= server.fullmodel %></td>
   <td class="center"><%= server.serial_number %></td>
   <td>
   <% if server.mainteneur_id %>
-    <%= render_mainteneur(server, @maintainers[server.mainteneur_id]) %>
+    <%= render_mainteneur(server, server.mainteneur) %>
   <% end %>
   </td>
   <td class="center"><%= l(server.delivered_on) if server.delivered_on? %></td>
