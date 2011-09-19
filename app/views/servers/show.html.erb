@@ -1,4 +1,4 @@
-<% title "Serveur" %>
+<% title "Serveur #{@server.name.upcase}" %>
 
 <div class="grid_12">
 <%= action_links do %>
@@ -13,9 +13,9 @@
 <div id="server_general" class="grid_3">
 <table class="show_item full">
   <thead>
-    <tr>
-      <th colspan="2" class="server_name">
-        <%= @server.name %>
+    <tr class="wrapper">
+      <th colspan="2" class="server_general">
+        Général
         <% if @server.virtual? %>
           <span class="virtual-server virtual-server-right">V</span>
         <% end %>
