@@ -30,7 +30,6 @@ class Server < ActiveRecord::Base
 
   acts_as_ipaddress :ipaddress
 
-  default_scope :include => [:operating_system, :mainteneur, :physical_rack]
   scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
   scope :by_site, proc {|site_id| joins(:physical_rack).where("physical_racks.site_id" => site_id) }
   scope :by_location, proc {|location|
