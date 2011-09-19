@@ -1,6 +1,6 @@
 <p class="tomcat-cron">
   <%= link_to_if cron.server.present?, cron.server.to_s, cron.server %>
-  <%= cron.name %> &rarr; user: <code><%= cron.user %></code>, fréquence: <code><%= cron.frequency %></code>
+  <%= cron.definition_location %> &rarr; user: <code><%= cron.user %></code>, fréquence: <code><%= cron.frequency %></code>
   <br />
   <pre><%= cron.command %></pre>
 </p>
