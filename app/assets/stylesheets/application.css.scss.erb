@@ -553,7 +553,7 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
   border:1px solid #ccc; color:#666; @include transition(all, .1s);
   &:hover { border:1px solid #bbb; @include box-shadow(#ccc, 0, 0, 5px); }
   .informations {
-    padding:2px 6px; border-left:1px solid #ccc; @include gradient(#fff,#f4f4f4); color:#777;
+    min-height:26px; padding:2px 6px; border-left:1px solid #ccc; @include gradient(#fff,#f4f4f4); color:#777;
     h5 { font-size:12px; font-weight:bold; color:#222; }
     .tinier { font-weight:normal; }
     .tinier.contextual { padding-top:2px; }
@@ -562,6 +562,7 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 }
 .related-cronjobs { background-image: url(<%= asset_path 'time.png' %>); }
 .related-tomcats { background-image: url(<%= asset_path 'tomcat.gif' %>); }
+.related-application-instances { background-image: url(<%= asset_path 'application_form.png' %>); }
 
 /* progress bars */
 table.progress {

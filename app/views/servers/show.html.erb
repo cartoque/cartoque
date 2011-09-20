@@ -75,26 +75,7 @@
 </div>
 
 <div id="server-application-relations" class="grid_3">
-<table class="show_item full">
-  <thead>
-    <tr><th colspan="2">Applications liées</th></tr>
-  </thead>
-  <%= show_for @server do |s| %>
-    <tr class="wrapper server_applications">
-      <td colspan="2">
-        <% if @server.application_instances.any? %>
-        <ul>
-        <% @server.application_instances.each do |instance| %>
-          <li><%= link_to instance.fullname, instance.application %></li>
-        <% end %>
-        </ul>
-        <% else %>
-          Pas d'instance liée.
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+  <%= render 'related_application_instances' if @server.application_instances.any? %>
 </div>
 
 <div id="server-technical-relations" class="grid_3">
