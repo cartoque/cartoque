@@ -20,6 +20,7 @@ namespace :import do
         #search existing cronjob
         attrs = cron.attributes.slice(*%w(server_id definition_location command frequency user)).reject{|k,v| v.blank?}
         existing = Cronjob.where(attrs).first
+        existing ||= Cronjob.where(attrs.slice(*%w(server_id command frequency user)).merge(:definition_location => nil)).first
         #if no, create a new one
         if existing.blank?
           if cron.save
