@@ -25,12 +25,23 @@ class CronjobTest < ActiveSupport::TestCase
       assert_equal "/opt/scripts/my-own-script", cron.command
     end
 
+    should "parse a cron line with a special frequency" do
+      line = "@reboot root  /opt/scripts/my-own-script"
+      cron = Cronjob.parse_line(line)
+      cron.server_id = Factory(:server).id
+      assert cron.valid?
+      assert_equal "@reboot", cron.frequency
+      assert_equal "root", cron.user
+      assert_equal "/opt/scripts/my-own-script", cron.command
+    end
+
     should "not be valid with 'strongly' invalid cron lines" do
       [ "",
         "      ",
         "less than six elements in line",
         "m h d  m  w  user  command",
-        "#* * * * * user commented cron"
+        "#* * * * * user commented cron",
+        "@rebootz user invalid special frequency"
       ].each do |line|
         assert !Cronjob.parse_line(line).valid?
       end
