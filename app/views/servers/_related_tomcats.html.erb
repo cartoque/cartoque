@@ -1,25 +1,14 @@
 <% tomcats = Tomcat.find_for_server(@server.name) %>
 <% tomcats.delete_if{|t| t[:tomcat].blank?} %>
-<% if tomcats.any? %>
-<table class="show_item full">
-  <thead>
-    <tr><th colspan="2">Tomcats</th></tr>
-  </thead>
-    <tr class="wrapper server_tomcats">
-      <td colspan="2">
-        <ul>
-        <% tomcats.sort_by{|t| t[:tomcat].split("_").last.to_s}.each do |tomcat| %>
-          <li>
-            <p>
-              <%= link_to tomcat[:tomcat], tomcats_path(:by_server => @server.name) %>
-              <span class="tinier"><%= "#{tomcat[:java_version]} #{tomcat[:java_xms]}/#{tomcat[:java_xmx]}" %></span>
-            </p>
-            <p class="tinier" style="padding-left:2em"><%= tomcat[:dns] %></p>
-          </li>
-        <% end %>
-        <li class="tinier" style="padding-left:6em;"><em>Total Xmx: <%= tomcats.map{|t| t[:java_xmx].to_i}.sum %></em></li>
-        </ul>
-      </td>
-    </tr>
-</table>
+<% tomcats.sort_by{|t| t[:tomcat].split("_").last.to_s}.each do |tomcat| %>
+<div class="related-ci related-tomcats">
+  <%= link_to tomcats_path(:by_server => @server.name) do %>
+  <div class="informations">
+    <div class="contextual tinier"><%= "#{tomcat[:java_version]} #{tomcat[:java_xms]}/#{tomcat[:java_xmx]}" %></div>
+    <h5><%= tomcat[:tomcat] %></h5>
+    <div class="details"><%= tomcat[:dns] %></div>
+  </div>
+  <% end %>
+</div>
 <% end %>
+<!-- Total Xmx: <%= tomcats.map{|t| t[:java_xmx].to_i}.sum %>-->
