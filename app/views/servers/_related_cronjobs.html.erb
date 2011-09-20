@@ -1,0 +1,8 @@
+<div class="related-ci related-cronjobs">
+  <%= link_to cronjobs_path(:by_server => @server) do %>
+  <div class="informations">
+    <h5><%= @server.cronjobs.count %> crons</h5>
+    <div class="details">dont <%= @server.cronjobs.where("definition_location like ?", "%/exploit%").count %> crons d'exploitation</div>
+  </div>
+  <% end %>
+</div>

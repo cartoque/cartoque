@@ -99,4 +99,5 @@
 
 <div id="server_ci" class="grid_3">
   <%= render 'related_tomcats' %>
+  <%= render 'related_cronjobs' if @server.cronjobs.any? %>
 </div>
