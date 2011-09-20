@@ -1,37 +1,40 @@
 desc "Imports cron jobs from tomcats' csv files"
 namespace :import do
   task :cronjobs => :environment do
-    #
-    # INSERTS NEW CRON JOBS
-    #
-    Dir.glob("data/tomcat/*.csv").each do |file|
-      File.readlines(file).grep(/^cron;/).each do |line|
-        #cron;server-01;d;exploit_app;0 4 * * *;root;/apps/app.example.com/script.sh
-        elems = line.split(";")
-        #create server if needed
-        server = Server.find_by_name(elems[1])
-        if server.blank?
-          server = Server.create(:name => elems[1])
-          puts "Successfully created Server: #{server.name}"
-        end
-        #if enough elements
-        hsh = {}
-        if elems.size >= 7
-          hsh = { :server_id => server.id, :definition_location => "/etc/cron.#{elems[2]}/#{elems[3]}",
-                  :frequency => elems[4], :user => elems[5], :command => elems[6..-1].join(";") }
-        end
+    Dir.glob("data/crons/*.cron").each do |file|
+      #server
+      server_name = file.split("/").last.gsub(/\.cron$/,"")
+      puts "Updating Cronjobs for #{server_name}"
+      server = Server.find_by_name(server_name) || Server.find_by_identifier(server_name)
+      if server.blank?
+        server = Server.create(:name => server_name)
+        puts "Successfully created Server: #{server.name}"
+      end
+      #cron jobs
+      File.readlines(file).each do |line|
+        cron = Cronjob.parse_line(line)
+        cron.server_id = server.id
+        #loop if nothing ; invalid cron
+        puts "Invalid cron #{server_name} -> #{line}" if !cron.valid? && ENV['DEBUG'].present?
+        next unless cron.valid?
         #search existing cronjob
-        cron = Cronjob.where(hsh.slice(:server_id, :definition_location, :frequency, :user)).first
+        attrs = cron.attributes.slice(*%w(server_id definition_location command frequency user)).reject{|k,v| v.blank?}
+        existing = Cronjob.where(attrs).first
         #if no, create a new one
-        if cron.blank?
-          cron = Cronjob.new(hsh)
+        if existing.blank?
           if cron.save
             puts "Successfully created cronjob #{cron.definition_location} @ #{cron.server}"
           else
             $stderr.puts "Error creating cronjob: #{cron.inspect}"
           end
         else
-          puts "Skipping cronjob #{cron.definition_location} @ #{cron.server}, already exists" if ENV['DEBUG'].present?
+          attr_keys = %w(server_id definition_location command frequency user)
+          if cron.attributes.slice(*attr_keys) != existing.attributes.slice(*attr_keys)
+            existing.update_attributes(cron.attributes.slice(*attr_keys))
+            puts "Updating cronjob #{existing.definition_location} @ #{existing.server}"
+          else
+            puts "Skipping cronjob #{existing.definition_location} @ #{existing.server}, already exists" if ENV['DEBUG'].present?
+          end
         end
       end
     end
