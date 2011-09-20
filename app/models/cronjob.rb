@@ -11,6 +11,9 @@ class Cronjob < ActiveRecord::Base
     #typical line: "0 6 * * * root /usr/bin/my_script.sh >/dev/null && blah
     cron = Cronjob.new
     elems = line.strip.split(/\s+/)
+    if elems.first && elems.first.match(%r{^(/|crontab)})
+      cron.definition_location = elems.shift
+    end
     if elems.size >= 6 && !elems.first.match(/^\s*[#a-z]/)
       cron.frequency = elems[0..4].join(" ")
       cron.user = elems[5]

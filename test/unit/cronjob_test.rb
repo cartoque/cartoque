@@ -6,9 +6,20 @@ class CronjobTest < ActiveSupport::TestCase
       line = "00  05  *  *  *  root  /opt/scripts/my-own-script"
       cron = Cronjob.parse_line(line)
       assert !cron.valid?
+      cron.server_id = Factory(:server).id
+      assert cron.valid?
+      assert_equal "00 05 * * *", cron.frequency
+      assert_equal "root", cron.user
+      assert_equal "/opt/scripts/my-own-script", cron.command
+    end
+
+    should "parse a cron line with the definition location in first column" do
+      line = "/etc/crontab 00  05  *  *  *  root  /opt/scripts/my-own-script"
+      cron = Cronjob.parse_line(line)
       assert !cron.valid?
       cron.server_id = Factory(:server).id
       assert cron.valid?
+      assert_equal "/etc/crontab", cron.definition_location
       assert_equal "00 05 * * *", cron.frequency
       assert_equal "root", cron.user
       assert_equal "/opt/scripts/my-own-script", cron.command
