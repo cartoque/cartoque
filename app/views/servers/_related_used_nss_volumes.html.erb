@@ -1,5 +1,5 @@
 <div class="related-ci related-used-nss-volumes">
-  <%= link_to nss_volumes_path do %>
+  <%= link_to nss_volumes_path(:by_client => @server) do %>
   <div class="informations">
     <h5>Client NSS - <%= pluralize(@server.used_nss_volumes.count, "volume") %></h5>
     <div class="details">
