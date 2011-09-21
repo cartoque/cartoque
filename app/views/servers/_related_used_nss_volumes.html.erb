@@ -3,7 +3,7 @@
   <div class="informations">
     <h5>Client NSS - <%= pluralize(@server.used_nss_volumes.count, "volume") %></h5>
     <div class="details">
-      via <%= @server.used_nss_volumes.map(&:server).uniq.sort_by(&:name).map{|s| link_to s, nss_volumes_path(:by_server => s)}.join(", ").html_safe %>
+      via <%= @server.used_nss_volumes.map(&:server).uniq.sort_by(&:name).map{|s| link_to(s,s)}.join(", ").html_safe %>
     </div>
   </div>
   <% end %>
