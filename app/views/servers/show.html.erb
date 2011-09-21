@@ -75,10 +75,14 @@
 </div>
 
 <div id="server-application-relations" class="grid_3">
+  <h4>Applications / Services</h4>
   <%= render 'related_application_instances' if @server.application_instances.any? %>
 </div>
 
 <div id="server-technical-relations" class="grid_3">
+  <h4>Composants techniques</h4>
   <%= render 'related_tomcats' %>
+  <%= render 'related_nss_volumes' if @server.nss_volumes.any? %>
+  <%= render 'related_used_nss_volumes' if @server.used_nss_volumes.any? %>
   <%= render 'related_cronjobs' if @server.cronjobs.any? %>
 </div>
