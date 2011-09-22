@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110916070431) do
+ActiveRecord::Schema.define(:version => 20110921213955) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -100,6 +100,15 @@ ActiveRecord::Schema.define(:version => 20110916070431) do
 
   create_table "media_drives", :force => true do |t|
     t.string "name", :limit => 50, :default => "", :null => false
+  end
+
+  create_table "network_disks", :force => true do |t|
+    t.integer  "server_id"
+    t.string   "server_directory"
+    t.integer  "client_id"
+    t.string   "client_mountpoint"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "nss_associations", :force => true do |t|
