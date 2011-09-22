@@ -560,9 +560,11 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
   .informations {
     min-height:26px; padding:2px 6px; border-left:1px solid #ccc; @include gradient(#fff,#f4f4f4); color:#777;
     h5 { font-size:12px; font-weight:bold; color:#222; }
+    ul { margin-left:1em; font-size:10px; }
     .tinier { font-weight:normal; }
     .tinier.contextual { padding-top:2px; }
     .details { font-size:10px; font-style:italic; color:#777; }
+    &:hover { cursor:pointer; }
   }
 }
 .related-cronjobs { background-image: url(<%= asset_path 'time.png' %>); }
@@ -570,6 +572,7 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 .related-application-instances { background-image: url(<%= asset_path 'application_form.png' %>); }
 .related-nss-volumes { background-image: url(<%= asset_path 'drive.png' %>); }
 .related-used-nss-volumes { background-image: url(<%= asset_path 'drive.png' %>); }
+.related-exported-disks { background-image: url(<%= asset_path 'drive_network.png' %>); }
 
 /* progress bars */
 table.progress {

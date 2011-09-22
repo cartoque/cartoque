@@ -60,8 +60,20 @@ $(function() {
   });
 
   //more buttons
-  $('.more').live('click', function() {
+  $('.more').live('click', function(e) {
     $(this).parent().next().slideToggle(100);
+    e.preventDefault();
+  });
+  $('.more-next').live('click', function(e) {
+    $(this).next().slideToggle(100);
+    e.preventDefault();
+  });
+  $('.more-child').live('click', function(e) {
+    $(this).find('.hidden').slideToggle(100);
+    e.preventDefault();
+  });
+  $('.more-child a').live('click', function(e) {
+    e.stopPropagation();
   });
 
   //filters observer
