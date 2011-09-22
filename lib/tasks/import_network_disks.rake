@@ -3,7 +3,7 @@ namespace :import do
   task :network_disks => :environment do
     Dir.glob("data/disks/*.fstab").each do |file|
       #client
-      client_name = file.split("/").last.gsub(/\.cron$/,"")
+      client_name = file.split("/").last.gsub(/\.fstab$/,"")
       puts "Updating NetworkDisks for #{client_name}" if ENV['DEBUG'].present?
       client = Server.find_by_name(client_name) || Server.find_by_identifier(client_name) || Server.create(:name => client_name)
       #network disks
