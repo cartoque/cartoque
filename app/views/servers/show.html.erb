@@ -42,7 +42,9 @@
     <tr><th colspan="2" class="secondary">Maintenance</th></tr>
   </thead>
   <%= show_for @server do |s| %>
-    <%= s.attribute :mainteneur %>
+    <%= s.association :mainteneur do
+          link_to_if @server.mainteneur_id.present?, @server.mainteneur, @server.mainteneur
+        end %>
     <%= s.attribute :delivered_on %>
     <%= s.attribute :maintained_until %>
     <%= s.attribute :contract_type %>
