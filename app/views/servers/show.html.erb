@@ -43,7 +43,7 @@
   </thead>
   <%= show_for @server do |s| %>
     <%= s.association :mainteneur do
-          link_to_if @server.mainteneur_id.present?, @server.mainteneur, @server.mainteneur
+          link_to_if @server.mainteneur.present?, @server.mainteneur, @server.mainteneur
         end %>
     <%= s.attribute :delivered_on %>
     <%= s.attribute :maintained_until %>
@@ -64,7 +64,7 @@
   <%= show_for @server do |s| %>
     <% unless @server.virtual? %>
       <%= s.association(:physical_rack) do
-            link_to_if @server.physical_rack_id.present?, @server.physical_rack,
+            link_to_if @server.physical_rack.present?, @server.physical_rack,
                        servers_path(:by_location => "rack-#{@server.physical_rack_id}")
           end %>
     <% end %>
