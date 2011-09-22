@@ -4,7 +4,7 @@ namespace :cleanup do
     Dir.glob("data/crons/*.cron").each do |file|
       #server
       server_name = file.split("/").last.gsub(/\.cron$/,"")
-      puts "Cleaning Cronjobs for #{server_name}"
+      puts "Cleaning Cronjobs for #{server_name}" if ENV['DEBUG'].present?
       server = Server.find_by_name(server_name) || Server.find_by_identifier(server_name)
       if server.blank?
         puts "Skipping Server #{server_name} because it doesn't exist ; you should run 'rake import:cronjobs' or 'rake import:all' first."

@@ -6,7 +6,7 @@ namespace :cleanup do
     #clean nss for existing <machine>/ipstor.conf
     Dir.glob("data/nss/*/ipstor.conf").each do |file|
       server_name = file.split("/")[-2]
-      puts "Cleaning NssDisks for #{server_name}"
+      puts "Cleaning NssDisks for #{server_name}" if ENV['DEBUG'].present?
       server = Server.find_by_name(server_name)
       if server.blank?
         puts "Skipping Server #{server_name} because it doesn't exist ; you should run 'rake import:nss_disks' or 'rake import:all' first."

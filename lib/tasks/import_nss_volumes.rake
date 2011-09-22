@@ -6,7 +6,7 @@ namespace :import do
     Dir.glob("data/nss/*/ipstor.conf").each do |file|
       #server
       server_name = file.split("/")[-2]
-      puts "Updating NssVolumes for #{server_name}"
+      puts "Updating NssVolumes for #{server_name}" if ENV['DEBUG'].present?
       server = Server.find_or_create_by_name(server_name)
       #xml parsing
       xml = Nokogiri::XML.parse(File.read(file))
