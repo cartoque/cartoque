@@ -60,7 +60,12 @@
     </tr>
   </thead>
   <%= show_for @server do |s| %>
-    <%= s.attribute :physical_rack unless @server.virtual? %>
+    <% unless @server.virtual? %>
+      <%= s.association(:physical_rack) do
+            link_to_if @server.physical_rack_id.present?, @server.physical_rack,
+                       servers_path(:by_location => "rack-#{@server.physical_rack_id}")
+          end %>
+    <% end %>
     <%= s.attribute :fullmodel unless @server.virtual? %>
     <%= s.attribute :cpu %>
     <%= s.attribute :memory %>
