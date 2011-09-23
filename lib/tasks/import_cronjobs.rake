@@ -5,11 +5,8 @@ namespace :import do
       #server
       server_name = file.split("/").last.gsub(/\.cron$/,"")
       puts "Updating Cronjobs for #{server_name}" if ENV['DEBUG'].present?
-      server = Server.find_by_name(server_name) || Server.find_by_identifier(server_name)
-      if server.blank?
-        server = Server.create(:name => server_name)
-        puts "Successfully created Server: #{server.name}"
-      end
+      server = Server.find_or_generate(server_name)
+      puts "Successfully created Server: #{server.name}" if server.just_created
       #cron jobs
       File.readlines(file).each do |line|
         cron = Cronjob.parse_line(line)

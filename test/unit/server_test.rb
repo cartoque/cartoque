@@ -145,5 +145,36 @@ class ServerTest < ActiveSupport::TestCase
 ###      assert_equal ["one"], Database.by_name("one").map(&:name)
 ###      assert_equal ["two", "three"], Database.by_name("t").map(&:name)
 ###    end
+
+    context "#find_or_generate" do
+      setup do
+        @server = Server.create(:name => "rake-server")
+      end
+
+      should "find server by name in priority" do
+        server = Server.find_or_generate("rake-server")
+        assert_equal @server, server
+        assert ! server.just_created
+      end
+
+      should "find server by identifier if no name corresponds" do
+        @server.update_attribute(:name, "rake.server")
+        assert_equal "rake.server", @server.name
+        assert_equal "rake-server", @server.identifier
+        server = Server.find_or_generate("rake-server")
+        assert_equal @server, server
+        assert ! server.just_created
+      end
+
+      should "generate a new server if no match with name and identifier" do
+        server = Server.find_by_name("rake-server3")
+        assert_nil server
+        assert_difference "Server.count", +1 do
+          server = Server.find_or_generate("rake-server3")
+        end
+        assert server.persisted?
+        assert server.just_created
+      end
+    end
   end
 end

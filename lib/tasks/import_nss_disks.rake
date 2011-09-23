@@ -6,7 +6,8 @@ namespace :import do
     Dir.glob("data/nss/*/ipstor.conf").each do |file|
       server_name = file.split("/")[-2]
       puts "Updating NssDisks for #{server_name}" if ENV['DEBUG'].present?
-      server = Server.find_or_create_by_name(server_name)
+      server = Server.find_or_generate(server_name)
+      puts "Successfully created Server: #{server.name}" if server.just_created
       Nokogiri::XML.parse(File.read(file)).search("//PhysicalDev").each do |dev|
         disk = NssDisk.find_or_create_by_name_and_server_id(dev["name"], server.id)
         disk.wwid = dev["wwid"]

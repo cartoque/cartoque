@@ -29,6 +29,7 @@ class Server < ActiveRecord::Base
                   :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,
                   :nb_disk_alt, :ipaddress, :application_instance_ids, :database_id, :ipaddresses_attributes, :has_drac,
                   :physical_links_attributes
+  attr_accessor   :just_created
 
   acts_as_ipaddress :ipaddress
 
@@ -63,6 +64,19 @@ class Server < ActiveRecord::Base
     else
       super
     end
+  end
+
+  def self.find_or_generate(name)
+    server = Server.find_by_name(name) || Server.find_by_identifier(name)
+    if server.blank?
+      server = Server.create(:name => name)
+      server.just_created = true
+    end
+    server
+  end
+
+  def just_created
+    @just_created || false
   end
 
   def to_s

@@ -5,7 +5,8 @@ namespace :import do
       #client
       client_name = file.split("/").last.gsub(/\.fstab$/,"")
       puts "Updating NetworkDisks for #{client_name}" if ENV['DEBUG'].present?
-      client = Server.find_by_name(client_name) || Server.find_by_identifier(client_name) || Server.create(:name => client_name)
+      client = Server.find_or_generate(client_name)
+      puts "Successfully created Server: #{client.name}" if client.just_created
       #network disks
       File.readlines(file).each do |line|
         next if line.match(/^\s*#/) #commented line
@@ -18,7 +19,7 @@ namespace :import do
           server = Server.joins(:ipaddresses).where("ipaddresses.address" => IPAddr.new(server_name).to_i).first
         else
         #if clientname
-          server = Server.find_by_name(server_name) || Server.find_by_identifier(server_name) || Server.create(:name => server_name)
+          server = Server.find_or_generate(server_name)
         end
         if server.blank?
           puts "Warning! couldn't find Server with IP Address #{server_name}"
