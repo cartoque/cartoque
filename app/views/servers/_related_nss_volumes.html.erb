@@ -1,7 +1,7 @@
 <div class="related-ci related-nss-volumes">
   <%= link_to nss_volumes_path(:by_server => @server) do %>
   <div class="informations">
-    <h5>Serveur NSS - <%= pluralize(@server.nss_volumes.count, "volume") %></h5>
+    <h3>Serveur NSS - <%= pluralize(@server.nss_volumes.count, "volume") %></h3>
     <div class="details">sur <%= pluralize(@server.nss_disks.count, "disques") %> en réseau</div>
   </div>
   <% end %>

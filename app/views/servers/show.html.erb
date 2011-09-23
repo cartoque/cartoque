@@ -10,23 +10,16 @@
 
 <div class="clear"></div>
 
-<div id="server_general" class="grid_3">
+<div id="server_general" class="grid_3 show">
+<%= content_tag(:div, "V", :class => "contextual virtual-server") if @server.virtual? %>
+<h2>Général</h2>
 <table class="show_item full">
-  <thead>
-    <tr class="wrapper">
-      <th colspan="2" class="server_general">
-        Général
-        <% if @server.virtual? %>
-          <span class="virtual-server virtual-server-right">V</span>
-        <% end %>
-      </th>
-    </tr>
-  </thead>
   <%= show_for @server do |s| %>
     <% if @server.description.present? %>
     <tr class="wrapper server_description">
       <td colspan="2">
-        <%= @server.description.capitalize %>
+        <span class="label">Description</span><br />
+        <div class="description"><%= @server.description.capitalize %></div>
       </td>
     </tr>
     <% end %>
@@ -37,10 +30,11 @@
     <!--<%= s.attribute :server_type %>-->
     <!--<%= s.attribute :previous_name %>-->
   <% end %>
-  <% unless @server.virtual? %>
-  <thead>
-    <tr><th colspan="2" class="secondary">Maintenance</th></tr>
-  </thead>
+</table>
+
+<% unless @server.virtual? %>
+<h2>Maintenance</h2>
+<table class="show_item full">
   <%= show_for @server do |s| %>
     <%= s.association :mainteneur do
           link_to_if @server.mainteneur.present?, @server.mainteneur, @server.mainteneur
@@ -54,13 +48,9 @@
 </table>
 </div>
 
-<div id="server_hardware" class="grid_3">
+<div id="server_hardware" class="grid_3 show">
+  <h2><%= @server.virtual? ? "Ressources" : "Matériel" %></h2>
 <table class="show_item full">
-  <thead>
-    <tr>
-      <th colspan="2"><%= @server.virtual? ? "Ressources" : "Matériel" %></th>
-    </tr>
-  </thead>
   <%= show_for @server do |s| %>
     <% unless @server.virtual? %>
       <%= s.association(:physical_rack) do
@@ -81,17 +71,17 @@
 </table>
 </div>
 
-<div id="server-application-relations" class="grid_3">
-  <h4>Applications / Services</h4>
-  <%= render 'related_application_instances' if @server.application_instances.any? %>
-</div>
-
-<div id="server-technical-relations" class="grid_3">
-  <h4>Composants techniques</h4>
+<div id="server-technical-relations" class="grid_3 show">
+  <h2>Composants</h2>
   <%= render 'related_tomcats' %>
   <%= render 'related_nss_volumes' if @server.nss_volumes.any? %>
   <%= render 'related_used_nss_volumes' if @server.used_nss_volumes.any? %>
   <%= render 'related_network_filesystems' if @server.network_filesystems.any? %>
   <%= render 'related_exported_disks' if @server.exported_disks.any? %>
   <%= render 'related_cronjobs' if @server.cronjobs.any? %>
+</div>
+
+<div id="server-application-relations" class="grid_3 show">
+  <h2>Services</h2>
+  <%= render 'related_application_instances' if @server.application_instances.any? %>
 </div>

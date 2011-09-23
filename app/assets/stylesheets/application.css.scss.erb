@@ -254,7 +254,7 @@ textarea { margin-top:3px; }
   tr.multiselect td.content { border-right:1px solid #ccc !important; }
   td.multiselect { padding-bottom:1em; }
 }
-.simple_form td.label label, .simple_form label.input, .show_for td.label, .show_for td label { font-size:85%; font-weight:bold; color:#666; }
+.simple_form td.label label, .simple_form label.input, .show_for td.label, .show_for td label, span.label { font-size:85%; font-weight:bold; color:#666; }
 th.secondary, .show_for th.secondary, .show_item th.secondary { border-top:1px solid #ccc; }
 table.inputs, .show_item, .simple_form table, table.list { border:1px solid #ccc; }
 .simple_form tr th, .simple_form tr.th td, .show_item th, .show_for tr.th td, .show_item th:first-child, .list th, .list tr.th td {
@@ -498,8 +498,7 @@ ul.databases-details { margin:0; position:relative; display:block; padding:0; li
 }
 
 /* servers */
-.virtual-server { font-weight:bolder; color:#3a3; }
-.virtual-server-right { float:right; }
+.virtual-server { font-weight:bolder; font-size:15px; color:#3a3; margin-right:5px; }
 .hidden-if-virtual.virtual { display:none; }
 .maintenance-warning { color:#f80; }
 .maintenance-critical { font-weight:bold; color:#d00; }
@@ -517,6 +516,10 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 }
 #server_general th.server_name, #application_general th.application_name { text-transform:uppercase; font-size:150%; }
 #server_name, #application_name { font-size:150%; font-weight:bold; }
+.server_description {
+  border-bottom:1px solid #ddd;
+  .description { padding:4px 10px; font-size:85%; }
+}
 
 /* operating systems */
 .operating_systems {
@@ -544,9 +547,9 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
 #nss_volumes_size_counter, #nss_disks_size_counter { font-weight:normal; font-size:130%; padding-right:5px; }
 
 /* related CIs */
-#server-application-relations, #server-technical-relations {
+.show {
   padding-top:0.5em;
-  h4 { text-align:center; margin-bottom:3px; }
+  h2 { font-size:15px; color:#44444a; text-align:center; margin:0 auto 8px; text-shadow:1px 2px #f8f8f8; }
 }
 .related-ci {
   margin:0 0 3px 0; padding:0 0 0 24px;
@@ -559,7 +562,7 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
   }
   .informations {
     min-height:26px; padding:2px 6px; border-left:1px solid #ccc; @include gradient(#fff,#f4f4f4); color:#777;
-    h5 { font-size:12px; font-weight:bold; color:#222; }
+    h3 { font-size:12px; font-weight:bold; color:#444; }
     ul { margin-left:1em; font-size:10px; }
     .tinier { font-weight:normal; }
     .tinier.contextual { padding-top:2px; }

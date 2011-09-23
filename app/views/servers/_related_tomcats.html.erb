@@ -5,7 +5,7 @@
   <%= link_to tomcats_path(:by_server => @server.name) do %>
   <div class="informations">
     <div class="contextual tinier"><%= "#{tomcat[:java_version]} #{tomcat[:java_xms]}/#{tomcat[:java_xmx]}" %></div>
-    <h5><%= tomcat[:tomcat] %></h5>
+    <h3><%= tomcat[:tomcat] %></h3>
     <div class="details"><%= tomcat[:dns] %></div>
   </div>
   <% end %>

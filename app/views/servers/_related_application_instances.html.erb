@@ -3,7 +3,7 @@
   <%= link_to instance.application do %>
   <div class="informations">
     <div class="contextual tiny"><%= instance.name %></div>
-    <h5><%= instance.application %></h5>
+    <h3><%= instance.application %></h3>
     <div class="details">
       <%= pluralize(instance.servers.count, "serveur") %> /
       <%= pluralize(instance.application_urls.count, "URL") %>
