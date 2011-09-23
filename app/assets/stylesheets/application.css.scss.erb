@@ -130,6 +130,7 @@ tbody.long-list tr:hover {
 .before-contextual { position:absolute; right:60px; }
 .hidden { display:none; }
 .more { font-size:90%; text-align:left; }
+.more:hover, .more-next:hover, .more-child:hover { cursor:pointer; }
 .tiny { font-size:90%; }
 .tinier { font-size:80%; }
 .simple-list {
@@ -567,7 +568,6 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
     .tinier { font-weight:normal; }
     .tinier.contextual { padding-top:2px; }
     .details { font-size:10px; font-style:italic; color:#777; }
-    &:hover { cursor:pointer; }
   }
 }
 .related-cronjobs { background-image: url(<%= asset_path 'time.png' %>); }
