@@ -15,7 +15,7 @@ module ServersHelper
   def render_mainteneur(server, mainteneur)
     return "" unless mainteneur
     html =  "#{link_to mainteneur, mainteneur} "
-    html << link_to_function(image_tag("info.gif", :class => "inline"),
+    html << link_to_function(image_tag("info.gif", :size => "12x12", :class => "inline"),
                              %[$("#maintenance-#{server.id}").slideToggle(130); return false;],
                              :class => "mainteneur-infos hide-when-print")
     html << " "

@@ -4,7 +4,7 @@
     <td class="label"><%= f.label :name, :class => "input" %></td>
     <td>
       <%= f.text_field :name, :style => "width:5em; font-weight:bold;" %>
-      <%= link_to_remove_fields image_tag("delete.png")+"supprimer cette instance".html_safe, f, :confirm => true %>
+      <%= link_to_remove_fields image_tag("delete.png", :size => "16x16")+"supprimer cette instance".html_safe, f, :confirm => true %>
     </td>
   </tr>
   <tr>
@@ -19,7 +19,7 @@
       <%= f.simple_fields_for :application_urls do |url_form| %>
         <%= render 'application_url_fields', :f => url_form %>
       <% end %>
-      <span class="add-field"><%= link_to_add_fields image_tag("new_button.png", :class=>"inline")+" ajouter", f, :application_urls %></span>
+      <span class="add-field"><%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+" ajouter", f, :application_urls %></span>
     </td>
   </tr>
   <tr>

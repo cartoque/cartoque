@@ -1,5 +1,5 @@
 <div class="fields">
   <%= f.text_field :url, :style => "width:25em;" %>
   <%= f.input_field :public, :as => :select, :collection => [["Publique",true], ["Privée",false]], :include_blank => false %>
-  <%= link_to_remove_fields image_tag("delete.png"), f %>
+  <%= link_to_remove_fields image_tag("delete.png", :size => "16x16"), f %>
 </div>

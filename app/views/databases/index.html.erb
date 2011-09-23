@@ -4,10 +4,10 @@
 
 <%= action_links do %>
   <div class="contextual before-contextual">
-    <%= link_to image_tag("file_extension_pdf.png"), databases_path(:format => "pdf") %>
+    <%= link_to image_tag("file_extension_pdf.png", :size => "16x16"), databases_path(:format => "pdf") %>
   </div>
   <div class="contextual contextswitch">
-    <span class="toggle"><%= image_tag "3d_glasses.png" %></span>
+    <span class="toggle"><%= image_tag "3d_glasses.png", :size => "16x16" %></span>
     <ul class="contexts">
       <%= context_li "Vue synthétique", databases_path(:view_mode => "normal"), :current => (databases_view_mode == "normal") %>
       <%= context_li "Vue détaillée", databases_path(:view_mode => "detailed"), :current => (databases_view_mode == "detailed") %>

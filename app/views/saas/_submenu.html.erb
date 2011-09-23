@@ -1,6 +1,6 @@
 <%= action_links do %>
   <div class="contextual">
-    <%= link_to image_tag("file_extension_pdf.png"), saa_path(params.merge(:format => "pdf")) %>
+    <%= link_to image_tag("file_extension_pdf.png", :size => "16x16"), saa_path(params.merge(:format => "pdf")) %>
   </div>
   <ul class="select-buttons">
     <%= content_tag :li, link_to("Redmine", saa_path(:redmine)), :class => (params[:id] == "redmine" ? "current" : "") %>

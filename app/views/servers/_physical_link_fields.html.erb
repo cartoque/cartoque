@@ -5,5 +5,5 @@
   <%= f.input_field :switch_id, :as => :select, :collection => Server.where(:virtual => false).order('name').map{|s| ["#{s}", s.id]} %>
   <%= f.text_field :switch_label, :style => "width:3em;", :placeholder => "Port" %>
 
-  <%= link_to_remove_fields image_tag("delete.png"), f %>
+  <%= link_to_remove_fields image_tag("delete.png", :size => "16x16"), f %>
 </p>

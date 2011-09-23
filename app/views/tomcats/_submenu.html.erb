@@ -1,7 +1,7 @@
 <%= action_links do %>
   <% if action_name == "index" %>
   <div class="contextual">
-    <%= link_to image_tag("file_extension_pdf.png"), tomcats_path(params.merge(:format => "pdf")) %>
+    <%= link_to image_tag("file_extension_pdf.png", :size => "16x16"), tomcats_path(params.merge(:format => "pdf")) %>
   </div>
   <% end %>
   <ul class="select-buttons">

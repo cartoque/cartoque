@@ -34,13 +34,13 @@
     </td>
     <td class="center">
       <% if tomcat.cerbere %>
-        <%= image_tag("lock.png") %><br />
+        <%= image_tag("lock.png", :size => "16x16") %><br />
         <span class="<%= tomcat.cerbere_csac ? "csacok" : "csacko" %>">csac</span>
       <% end %>
     </td>
     <td class="center">
       <% if crons.any? %>
-        <%= link_to image_tag("stopwatch_start.png", :class => "inline"),
+        <%= link_to image_tag("stopwatch_start.png", :size => "16x16", :class => "inline"),
                     "##{tomcat.dns.parameterize}", :rel => "facebox" %><%= content_tag(:span, "×#{crons.size}", :class => "tinier") if crons.size > 1 %>
        <%= render :partial => "cronjobs/cron_collection",
                   :locals => {:title => "Crons #{tomcat.dns}", :html_id => tomcat.dns.parameterize, :crons => crons,

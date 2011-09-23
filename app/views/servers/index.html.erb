@@ -4,11 +4,11 @@
 
 <%= action_links do %>
   <div class="contextual before-contextual">
-    <%= link_to image_tag("file_extension_xls.png"), servers_path(params.merge(:format => "csv")) %>
-    <%= link_to image_tag("file_extension_pdf.png"), servers_path(params.merge(:format => "pdf")) %>
+    <%= link_to image_tag("file_extension_xls.png", :size => "16x16"), servers_path(params.merge(:format => "csv")) %>
+    <%= link_to image_tag("file_extension_pdf.png", :size => "16x16"), servers_path(params.merge(:format => "pdf")) %>
   </div>
   <div class="contextual contextswitch">
-    <span class="toggle"><%= image_tag "3d_glasses.png" %></span>
+    <span class="toggle"><%= image_tag "3d_glasses.png", :size => "16x16" %></span>
     <ul class="contexts">
       <%= context_li "Vue serveurs", servers_path(:view_mode => "normal"), :current => !maintenance_mode? %>
       <%= context_li "Vue maintenance", servers_path(:view_mode => "maintenance"), :current => maintenance_mode? %>
