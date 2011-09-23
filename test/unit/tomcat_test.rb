@@ -44,8 +44,19 @@ class TomcatTest < ActiveSupport::TestCase
   end
 
   context "Tomcat.find_for_server" do
+    should "return an empty array if no tomcat found" do
+      assert_equal [], Tomcat.find_for_server("not-a-tomcat-server")
+    end
+
     should "return tomcats for a specific server" do
       tomcats = Tomcat.find_for_server("vm-01")
+      assert_equal 2, tomcats.size
+      assert tomcats.include?(@app01)
+      assert tomcats.include?(@app02)
+    end
+
+    should "be retrieved with Server#tomcats" do
+      tomcats = Server.find_or_create_by_name("vm-01").tomcats
       assert_equal 2, tomcats.size
       assert tomcats.include?(@app01)
       assert tomcats.include?(@app02)

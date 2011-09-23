@@ -208,4 +208,8 @@ class Server < ActiveRecord::Base
       default_value
     end
   end
+
+  def tomcats
+    @tomcats ||= Tomcat.find_for_server(self.name)
+  end
 end

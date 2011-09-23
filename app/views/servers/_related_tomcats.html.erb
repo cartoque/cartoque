@@ -1,6 +1,8 @@
-<% tomcats = Tomcat.find_for_server(@server.name) %>
-<% tomcats.delete_if{|t| t[:tomcat].blank?} %>
-<% tomcats.sort_by{|t| t[:tomcat].split("_").last.to_s}.each do |tomcat| %>
+<% @server.tomcats.delete_if do |t|
+     t[:tomcat].blank?
+   end.sort_by do |t|
+     t[:tomcat].split("_").last.to_s
+   end.each do |tomcat| %>
 <div class="related-ci related-tomcats">
   <%= link_to tomcats_path(:by_server => @server.name) do %>
   <div class="informations">
@@ -11,4 +13,4 @@
   <% end %>
 </div>
 <% end %>
-<!-- Total Xmx: <%= tomcats.map{|t| t[:java_xmx].to_i}.sum %>-->
+<!-- Total Xmx: <%= @server.tomcats.map{|t| t[:java_xmx].to_i}.sum %>-->

@@ -73,7 +73,7 @@
 
 <div id="server-technical-relations" class="grid_3 show">
   <h2>Composants</h2>
-  <%= render 'related_tomcats' %>
+  <%= render 'related_tomcats' if @server.tomcats.any? %>
   <%= render 'related_nss_volumes' if @server.nss_volumes.any? %>
   <%= render 'related_used_nss_volumes' if @server.used_nss_volumes.any? %>
   <%= render 'related_network_filesystems' if @server.network_filesystems.any? %>
