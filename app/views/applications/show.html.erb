@@ -1,4 +1,4 @@
-<% title "Application" %>
+<% title "Application #{@application.name.upcase}" %>
 
 <div class="grid_12 center">
 
@@ -10,22 +10,17 @@
 
 </div>
 
-<div id="application_general" class="grid_3">
+<div id="application_general" class="grid_3 show">
+<div class="contextual">
+  <%= links_for @application %>
+</div>
+<h2>Aperçu</h2>
 <table class="show_item full">
-  <thead>
-    <tr>
-      <th colspan="2" class="application_name">
-        <div class="contextual">
-          <%= links_for @application %>
-        </div>
-        <%= @application.name %>
-      </th>
-    </tr>
-  </thead>
   <%= show_for @application do |a| %>
     <tr class="wrapper application_info">
       <td colspan="2">
-        <%= @application.info.capitalize %>
+        <span class="label">Description</span><br />
+        <div class="description"><%= @application.info.capitalize %></div>
       </td>
     </tr>
     <%= a.attribute :criticity %>
@@ -36,13 +31,9 @@
 </table>
 </div>
 
-<div class="grid_5">
+<div class="grid_5 show">
+<h2><%= t(:application_instances) %></h2>
 <table class="show_item full">
-  <thead>
-    <tr>
-      <th colspan="2"><%= t(:application_instances) %></th>
-    </tr>
-  </thead>
   <tbody class="show_for">
     <tr class="wrapper application_servers">
       <td colspan="2">
@@ -53,11 +44,9 @@
 </table>
 </div>
 
-<div class="grid_4">
+<div class="grid_4 show">
+<h2>Liens</h2>
 <table class="show_item full">
-  <tr>
-    <th>Liens</th>
-  </tr>
   <tr class="wrapper application_links">
     <td>
       <% docs = @application.dokuwiki_pages %>
