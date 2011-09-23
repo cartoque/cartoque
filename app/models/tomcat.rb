@@ -32,7 +32,7 @@ class Tomcat < Hashie::Mash
     end
     #crons
     self.merge!(:crons => Cronjob.joins(:server).where("cronjobs.definition_location like ? AND servers.name = ?",
-                                                       "%/exploit_"+self[:dns].split(".").first+"%", self[:server]))
+                                                       "%/exploit_"+self[:dns].split(".").first.to_s+"%", self[:server]))
   end
 
   def parse_crons(cron_lines)
