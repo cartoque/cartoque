@@ -42,16 +42,12 @@
       <% if crons.any? %>
         <%= link_to image_tag("stopwatch_start.png", :class => "inline"),
                     "##{tomcat.dns.parameterize}", :rel => "facebox" %><%= content_tag(:span, "×#{crons.size}", :class => "tinier") if crons.size > 1 %>
-        <%= content_tag(:div, :id => tomcat.dns.parameterize, :style => "display:none;") do %>
-          <%= content_tag(:div, :class => "tomcat-crons") do %>
-            <div class="contextual">
-              Tous les crons:
-              <%= crons.map(&:server).uniq.sort_by(&:name).map{|s| link_to(s.name, cronjobs_path(:by_server => s.id))}.join(" ").html_safe %>
-            </div>
-            <h2>Crons <%= tomcat.dns %></h2>
-            <%= render :partial => "cron", :collection => crons %>
-          <% end %>
-        <% end %>
+       <%= render :partial => "cron_collection",
+                  :locals => {:title => "Crons #{tomcat.dns}", :html_id => tomcat.dns.parameterize, :crons => crons,
+                              :context => "Tous les crons: " +
+                                          crons.map(&:server).uniq.sort_by(&:name).map do |s|
+                                            link_to(s.name, cronjobs_path(:by_server => s.id))
+                                          end.join(" ").html_safe } %>
       <% end %>
     </td>
     <td><%= tomcat.jdbc_server %><br />

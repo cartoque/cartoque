@@ -1,4 +1,4 @@
-<p class="tomcat-cron">
+<p class="cron">
   <%= link_to_if cron.server.present?, cron.server.to_s, cron.server %>
   <%= cron.definition_location %> &rarr; user: <code><%= cron.user %></code>, fréquence: <code><%= cron.frequency %></code>
   <br />
