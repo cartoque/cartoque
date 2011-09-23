@@ -14,6 +14,6 @@ class SitesController < InheritedResources::Base
   protected
   def count_racks_per_site
     @racks_count = PhysicalRack.group("site_id").count
-    @servers_count = Server.where("virtual = ?", false).group("physical_racks.site_id").count
+    @servers_count = Server.includes(:physical_rack).where("virtual = ?", false).group("physical_racks.site_id").count
   end
 end
