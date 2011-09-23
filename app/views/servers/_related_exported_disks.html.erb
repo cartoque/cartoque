@@ -1,7 +1,7 @@
 <div class="related-ci related-exported-disks">
   <div class="informations more-child">
     <h3>Serveur NFS</h3>
-    <div class="details more">
+    <div class="details">
       <%= pluralize(@server.exported_disks.map(&:client_id).uniq.count, "client") %> /
       <%= pluralize(@server.exported_disks.count, "montage") %>
     </div>
