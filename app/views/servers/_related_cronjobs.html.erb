@@ -1,14 +1,19 @@
 <% exploitation_jobs = @server.cronjobs.where("definition_location like ?", "%/exploit%") %>
 <div class="related-ci related-cronjobs">
-  <%= link_to cronjobs_path(:by_server => @server) do %>
   <div class="informations<%= " more-child" if exploitation_jobs.count > 0 %>">
-    <h3><%= @server.cronjobs.count %> crons</h3>
+    <h3><%= link_to "#{@server.cronjobs.count} crons", cronjobs_path(:by_server => @server) %></h3>
     <div class="details">dont <%= pluralize exploitation_jobs.count, "cron" %> d'exploitation</div>
     <ul class="hidden">
       <% exploitation_jobs.group_by(&:definition_location).sort.each do |location,jobs| %>
-        <li><%= location.gsub("/etc/cron.d/","") %> <%= "(x#{jobs.count})" if jobs.count > 1 %></li>
+        <% short_location = location.gsub("/etc/cron.d/","") %>
+        <%= content_tag :li do %>
+          <%= link_to short_location + (jobs.count > 1 ? "(x#{jobs.count})" : ""),
+                      "##{short_location.parameterize}", :rel => "facebox" %>
+        <% end %>
+        <%= render :partial => "cronjobs/cron_collection",
+                   :locals => { :title => "Crons #{short_location} sur #{@server}", :html_id => short_location.parameterize, :crons => jobs,
+                                :context => "Tous les crons de " + link_to(@server.name, cronjobs_path(:by_server => @server.id)) } %>
       <% end %>
     </ul>
   </div>
-  <% end %>
 </div>
