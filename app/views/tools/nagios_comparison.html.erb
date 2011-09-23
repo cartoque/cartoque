@@ -16,7 +16,7 @@
   tomcats_nagios = []; prev=""
   datafile = "#{Rails.root}/data/nagios/status.dat"
   File.open(datafile).each_line do |line|
-    tomcats_nagios << line.split("PROCESS_").last.chomp + "@" + prev.split("=").last.chomp if line.include?("PROCESS_TC")
+    tomcats_nagios << line.split("PROCESS_").last.chomp + "@" + prev.split("=").last.chomp if "PROCESS_TC".in?(line)
     prev=line
   end if File.exists?(datafile)
   tomcat_unknown_in_nagios = tomcats_jason - tomcats_nagios

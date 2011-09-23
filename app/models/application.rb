@@ -46,7 +46,7 @@ class Application < ActiveRecord::Base
     prod = ary.select{|ai| ai.name == "prod"}
     preprod = ary.select{|ai| ai.name == "preprod"}
     ecole = ary.select{|ai| ai.name == "ecole"}
-    others = ary.select{|ai| !%w(prod preprod ecole).include?(ai.name) }
+    others = ary.select{|ai| !ai.name.in? %w(prod preprod ecole) }
     [prod, ecole, preprod, others].flatten.compact
   end
 

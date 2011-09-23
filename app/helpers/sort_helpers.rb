@@ -9,7 +9,7 @@ module SortHelpers
 
   def sort_column
     columns = "#{params[:sort]}".split(",").select do |column|
-      resource_class.column_names.include?(column)
+      column.in? resource_class.column_names
     end
     columns << "name" if columns.blank?
     columns.join(",")
@@ -20,6 +20,6 @@ module SortHelpers
   end
 
   def sort_direction
-    %w(asc desc).include?(params[:direction]) ? params[:direction] : "asc"
+    params[:direction].in?(%w(asc desc)) ? params[:direction] : "asc"
   end
 end

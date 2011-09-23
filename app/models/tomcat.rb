@@ -61,7 +61,7 @@ class Tomcat < Hashie::Mash
       lines = File.read(csv).split(/\n/) rescue []
       lines.grep(/^site;/).each do |line|
         site = line.split(";")
-        instance = lines.grep(/^instance;/).detect{|i| i.include?("#{site[1]};#{site[5]};")}
+        instance = lines.grep(/^instance;/).detect{|i| "#{site[1]};#{site[5]};".in?(i) }
         all << new(site, { :instance => (instance.present? ? instance.split(";") : []) })
       end
     end
