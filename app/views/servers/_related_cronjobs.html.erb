@@ -1,8 +1,14 @@
+<% exploitation_jobs = @server.cronjobs.where("definition_location like ?", "%/exploit%") %>
 <div class="related-ci related-cronjobs">
   <%= link_to cronjobs_path(:by_server => @server) do %>
-  <div class="informations">
+  <div class="informations<%= " more-child" if exploitation_jobs.count > 0 %>">
     <h3><%= @server.cronjobs.count %> crons</h3>
-    <div class="details">dont <%= pluralize @server.cronjobs.where("definition_location like ?", "%/exploit%").count, "cron" %> d'exploitation</div>
+    <div class="details">dont <%= pluralize exploitation_jobs.count, "cron" %> d'exploitation</div>
+    <ul class="hidden">
+      <% exploitation_jobs.group_by(&:definition_location).sort.each do |location,jobs| %>
+        <li><%= location.gsub("/etc/cron.d/","") %> <%= "(x#{jobs.count})" if jobs.count > 1 %></li>
+      <% end %>
+    </ul>
   </div>
   <% end %>
 </div>
