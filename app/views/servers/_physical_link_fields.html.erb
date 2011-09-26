@@ -2,7 +2,7 @@
   <%= f.input_field :link_type, :as => :select, :collection => [["Eth", "eth"], ["FC", "fc"]], :include_blank => false %>
   <%= f.text_field :server_label, :style => "width:3em;", :placeholder => "ethX" %>
   &rarr;
-  <%= f.input_field :switch_id, :as => :select, :collection => Server.where(:virtual => false).order('name').map{|s| ["#{s}", s.id]} %>
+  <%= f.input_field :switch_id, :as => :select, :collection => Server.network_devices.order('name').map{|s| ["#{s}", s.id]} %>
   <%= f.text_field :switch_label, :style => "width:3em;", :placeholder => "Port" %>
 
   <%= link_to_remove_fields image_tag("delete.png", :size => "16x16"), f %>
