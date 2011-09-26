@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110921213955) do
+ActiveRecord::Schema.define(:version => 20110926061437) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -208,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20110921213955) do
     t.integer "ipaddress",           :limit => 8
     t.boolean "has_drac",                           :default => false
     t.string  "identifier"
+    t.boolean "network_device"
   end
 
   add_index "servers", ["database_id"], :name => "index_servers_on_database_id"

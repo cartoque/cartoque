@@ -21,6 +21,7 @@
                                                             OperatingSystem.scoped.arrange(:order => 'name')
                                                           ){|i| "#{'-'*i.depth} #{i.name}"} %>
       <%= f.input :virtual %>
+      <%= f.input :network_device %>
       <tr class="input string optional">
         <td class="content" colspan="2">
           <label for="server[ipaddresses]" class="input"><%= t(:ipaddresses) %> :</label><br />
