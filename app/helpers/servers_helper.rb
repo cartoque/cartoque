@@ -50,9 +50,11 @@ module ServersHelper
 
   def render_links(links, type = :physical_links)
     content_tag :tr, :class => "wrapper server_#{type}" do
-      content_tag(:td, t(type), :class => "label").safe_concat(
-        content_tag(:td, render_link_collection(links, type), :class => "content")
-      )
+      content_tag :td, :colspan => 2 do
+        content_tag(:label, t(type)).safe_concat(
+          content_tag(:div, render_link_collection(links, type), :class => "content")
+        )
+      end
     end
   end
 
