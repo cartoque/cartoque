@@ -20,6 +20,13 @@ Server.where(:identifier => nil).each do |m|
   m.update_attribute(:identifier, Server.identifier_for(m.name))
 end
 
+#populate Server#network_device if needed
+if Server.network_devices.none? && PhysicalLink.any?
+  Server.find( PhysicalLink.select("distinct(switch_id)").map(&:switch_id) ).each do |switch|
+    switch.update_attribute(:network_device, true)
+  end
+end
+
 #populate CIs if needed
 ActiveRecord::Base.subclasses.select do |klass|
   klass != ConfigurationItem && klass.instance_methods.include?(:configuration_item)
