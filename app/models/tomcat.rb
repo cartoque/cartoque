@@ -65,6 +65,9 @@ class Tomcat < Hashie::Mash
         all << new(site, { :instance => (instance.present? ? instance.split(";") : []) })
       end
     end
+    all.reject! do |tomcat|
+      tomcat[:dns].blank?
+    end
     all
   end
 
