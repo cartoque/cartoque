@@ -2,7 +2,10 @@
 <div class="related-ci related-cronjobs">
   <div class="informations<%= " more-child" if exploitation_jobs.count > 0 %>">
     <h3><%= link_to "#{@server.cronjobs.count} crons", cronjobs_path(:by_server => @server) %></h3>
-    <div class="details">dont <%= pluralize exploitation_jobs.count, "cron" %> d'exploitation</div>
+    <div class="details">dont
+      <%= link_to_if exploitation_jobs.count > 0, pluralize(exploitation_jobs.count, "cron")+" d'exploitation",
+                     cronjobs_path(:by_server => @server, :by_definition => "exploit") %>
+    </div>
     <ul class="hidden">
       <% exploitation_jobs.group_by(&:definition_location).sort.each do |location,jobs| %>
         <% short_location = location.gsub("/etc/cron.d/","") %>
