@@ -163,7 +163,7 @@ module ApplicationHelper
 
   def current_announcement
     return @current_announcement if defined?(@current_announcement)
-    if hide_time = session[:announcement_hide_time]
+    if hide_time = current_user.settings[:announcement_hide_time]
       @current_announcement = Setting.where("settings.key = 'site_announcement_message' AND updated_at > ?", hide_time).first.try(:value)
     else
       @current_announcement = Setting.where("settings.key = 'site_announcement_message'").first.try(:value)
