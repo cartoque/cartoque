@@ -3,7 +3,7 @@
     <th>Serveur</th>
     <th>Définition</th>
     <th>Fréquence</th>
-    <th>User</th>
+    <%= sortable_th "user", nil, :style => "width:10%" %>
     <th>Commande</th>
   </tr>
   <% @cronjobs.each do |cronjob| %>

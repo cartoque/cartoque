@@ -8,10 +8,13 @@ class CronjobsController < InheritedResources::Base
   has_scope :by_command
   has_scope :by_definition
 
+  include SortHelpers
+  helper_method :sort_column, :sort_direction
+
   def index
     @cronjobs = []
     if (params[:by_server].to_i > 0) || params[:by_command].present? || params[:by_definition].present?
-      @cronjobs = apply_scopes(Cronjob).first(100)
+      @cronjobs = apply_scopes(Cronjob).joins(:server).order(sort_option).first(100)
     end
   end
 
