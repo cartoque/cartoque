@@ -17,14 +17,14 @@ class DatabasesController < InheritedResources::Base
   private
 
   def select_view_mode
-    session[:databases_view_mode] = params[:view_mode] if params[:view_mode]
+    current_user.update_setting(:databases_view_mode, params[:view_mode]) if params[:view_mode]
   end
 
   def databases_view_mode
     if action_name == "show" || request_from_pdfkit?
       "detailed"
     else
-      session[:databases_view_mode] || "normal"
+      current_user.settings[:databases_view_mode] || "normal"
     end
   end
   helper_method :databases_view_mode

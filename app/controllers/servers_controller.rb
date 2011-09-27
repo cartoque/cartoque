@@ -30,11 +30,11 @@ class ServersController < InheritedResources::Base
   private
 
   def select_view_mode
-    session[:servers_view_mode] = params[:view_mode] if params[:view_mode]
+    current_user.update_setting(:servers_view_mode, params[:view_mode]) if params[:view_mode]
   end
 
   def maintenance_mode?
-    session[:servers_view_mode] == "maintenance"
+    current_user.settings[:servers_view_mode] == "maintenance"
   end
   helper_method :maintenance_mode?
 
