@@ -138,3 +138,7 @@ fr:
   physical_links: "Se connecte à"
   connected_links: "Connectés"
   network_device: "Elément réseau"
+  server: "Serveur"
+  definition_location: "Définition"
+  frequency: "Fréquence"
+  user: "User"
