@@ -1,42 +1,16 @@
-<%
-require 'find'
-path = Rails.root.join("data/symetry")
-clusters = {}
-Dir.glob("#{path}/*").map{|c| File.basename(c)}.sort.each do |cluster|
-  clusters[cluster] = {:path => "#{path}/#{cluster}",
-                       :nodes => Dir.glob("#{path}/#{cluster}/*").map{|c| File.basename(c)}.sort}
-  files = []
-  lists = []
-  Find.find(clusters[cluster][:path]).each do |file|
-    if file.ends_with?(".list")
-      lists << file.sub(clusters[cluster][:path],"").sub(%r{^/[^/]+},"")
-    elsif File.file?(file)
-      files << file.sub(clusters[cluster][:path],"").sub(%r{^/[^/]+},"")
-    end
-  end
-  clusters[cluster][:files] = files.sort.uniq
-  clusters[cluster][:lists] = lists.reject{|f| f.ends_with?("packages.list")}.sort.uniq
-end
-%>
-
 <% title "Outils - Symétrie des clusters" %>
 
 <div id="cluster_symetry" class="grid_12 items_list">
 
 <%= action_links do %>
   <ul class="select-buttons">
-  <% clusters.keys.each do |cluster| %>
+  <% @cluster_names.each do |cluster| %>
     <%= content_tag :li, link_to(cluster, tool_path(:cluster_symetry, :id => cluster)), :class => (params[:id] == cluster ? "current" : "") %>
   <% end %>
   </ul>
 <% end %>
 
-<%
-#limit clusters
-clusters.reject!{|cluster,hsh| cluster != params[:id] } unless params[:id] == "all"
-%>
-
-<% clusters.each do |cluster,hsh| %>
+<% @clusters.each do |cluster,hsh| %>
 
 <% # FILES %>
 <% hsh[:files].each do |file| %>
