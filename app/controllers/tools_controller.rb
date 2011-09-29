@@ -53,4 +53,14 @@ class ToolsController < ApplicationController
     @tomcat_unknown_in_nagios.reject!{|t| t.match(/vm-preprod/) }
     @nb_tomcats = tomcats_jason.reject{|t| t.match(/vm-preprod/) }.count
   end
+
+  def reverse_proxies_comparison
+    path = Rails.root.join("data/rp")
+    @vhosts_lines = %x(grep -rHE '^\s*ServerName' #{path} |grep -v sites-available|sort -u 2>/dev/null).split(/\n+/)
+    vhosts = @vhosts_lines.map{|line| line.scan(/ServerName\s+(\S+)/).first.first}.flatten.compact.uniq
+
+    app_urls = ApplicationUrl.all.map(&:url).map{|u| u.strip.gsub(%r{\S+://},"").gsub(%r{/.*},"")}
+
+    @unknown_in_cartocs = vhosts - app_urls
+  end
 end

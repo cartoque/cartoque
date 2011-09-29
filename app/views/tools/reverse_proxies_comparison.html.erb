@@ -1,0 +1,12 @@
+<% title "Outils - Comparaison Reverse-Proxies" %>
+
+<div id="tools" class="grid_12 items_list">
+
+  <%= render_diff_list "dans les RPs manquants dans Cartocs",
+                       (@unknown_in_cartocs.inject([]){ |memo,u|
+                         line = @vhosts_lines.detect{|v| v.include?(u)}
+                         title = line.gsub(%r{.*data/rp/},"").gsub(/:.*/,"").sub(%r{/},": ") if line
+                         memo << "<li>#{link_to u, "http://#{u}", :title => title}</li>"
+                       }) %>
+
+</div>

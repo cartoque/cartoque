@@ -19,7 +19,7 @@ module ToolsHelper
     buff = content_tag :ul do
       buff2 = content_tag(:li, "<strong>#{pluralize(elements.count, "serveur")} #{title}</strong>".html_safe)
       buff2 << content_tag(:ul, :class => "comparison details") do
-        elements.sort.map{|m| "<li>#{m}</li>"}.join.html_safe
+        elements.sort.join.html_safe
       end
       buff2
     end
