@@ -1,47 +1,17 @@
 <%
-  path = Rails.root.join("data/nagios")
-  servers_nagios = %x(grep host_name= #{path}/status.dat|cut -d"=" -f 2|sort -u).split(/\n/)
-  servers_nagios.reject!{|h| h.match(/^(VIPS?\d*_|GW_|URL_|sgbd-prod[abc]$|sgbd-prod[abc]-[a-z])/) } # service checks that can't be renamed easily in nagios
-  servers_nagios.each{|h| h.gsub!(/^(MIN_|RH_|RITAC_|AM_|DEV_)/,"") }
-  servers_cartocs = Server.all
-
-  unknown_in_nagios = servers_cartocs.map(&:name) - servers_nagios
-  unknown_in_nagios.reject!{ |name| name.starts_with?("vm-hra") || name.starts_with?("vm-hrw") } #RH project we're not responsible of
-  unknown_in_nagios.reject!{ |name| name.match(/millos|ritac-|-nt-|-ac-|^dns-[01]$/) } #Windows servers we're not responsible of
-  unknown_in_nagios.map!{|name| link_to_servername name}
-  unknown_in_cartocs = servers_nagios - servers_cartocs.map(&:name)
-  unknown_in_cartocs.map!{|s| server_missing s}
-
-  tomcats_jason = Tomcat.all.map{|t| t[:tomcat]+"@"+t[:server]}.select{|t| t.match(/\S@\S/)}
-  tomcats_nagios = []; prev=""
-  datafile = "#{Rails.root}/data/nagios/status.dat"
-  File.open(datafile).each_line do |line|
-    tomcats_nagios << line.split("PROCESS_").last.chomp + "@" + prev.split("=").last.chomp if "PROCESS_TC".in?(line)
-    prev=line
-  end if File.exists?(datafile)
-  tomcat_unknown_in_nagios = tomcats_jason - tomcats_nagios
-  tomcat_unknown_in_nagios.reject!{|t| t.match(/vm-preprod/) }
-  nb_tomcats = tomcats_jason.reject{|t| t.match(/vm-preprod/) }.count
-
-  diff_list = {
-    "dans Nagios manquants dans Cartocs" => unknown_in_cartocs,
-    "de Cartocs inconnus dans Nagios"  => unknown_in_nagios,
-    "Tomcat non supervisés (sur #{nb_tomcats} hors préproduction)" => tomcat_unknown_in_nagios
-  }
 %>
 
 <% title "Outils - Comparaison Nagios" %>
 
 <div id="tools" class="grid_12 items_list">
 
-<% diff_list.each do |title,servers| %>
-<ul>
-  <li><strong><%= pluralize(servers.count, "serveur") %> <%= title %></strong></li>
-  <ul class="comparison details">
-    <%= servers.sort.map{|m| "<li>#{m}</li>"}.join.html_safe %>
-  </ul>
-</ul>
-<div class="clear"></div>
-<% end %>
+  <%= render_diff_list "dans Nagios manquants dans Cartocs",
+                       @unknown_in_cartocs.map{|name| link_to_servername name} %>
+
+  <%= render_diff_list "de Cartocs inconnus dans Nagios",
+                       @unknown_in_nagios.map!{|s| server_missing s} %>
+
+  <%= render_diff_list "Tomcat non supervisés (sur #{@nb_tomcats} hors préproduction)",
+                       @tomcat_unknown_in_nagios %>
 
 </div>

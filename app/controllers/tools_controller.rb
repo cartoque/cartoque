@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'find'
 
 class ToolsController < ApplicationController
@@ -24,5 +25,32 @@ class ToolsController < ApplicationController
     @clusters.reject! do |cluster,hsh|
       cluster != params[:id]
     end unless params[:id] == "all"
+  end
+
+  def nagios_comparison
+    path = Rails.root.join("data/nagios")
+    servers_nagios = %x(grep host_name= #{path}/status.dat|cut -d"=" -f 2|sort -u).split(/\n/)
+    # service checks that can't be renamed easily in nagios
+    servers_nagios.reject!{|h| h.match(/^(VIPS?\d*_|GW_|URL_|sgbd-prod[abc]$|sgbd-prod[abc]-[a-z])/) }
+    servers_nagios.each{|h| h.gsub!(/^(MIN_|RH_|RITAC_|AM_|DEV_)/,"") }
+    servers_cartocs = Server.all
+
+    @unknown_in_nagios = servers_cartocs.map(&:name) - servers_nagios
+    #RH project we're not responsible of
+    @unknown_in_nagios.reject!{ |name| name.starts_with?("vm-hra") || name.starts_with?("vm-hrw") }
+    #Windows servers we're not responsible of
+    @unknown_in_nagios.reject!{ |name| name.match(/millos|ritac-|-nt-|-ac-|^dns-[01]$/) }
+    @unknown_in_cartocs = servers_nagios - servers_cartocs.map(&:name)
+
+    tomcats_jason = Tomcat.all.map{|t| t[:tomcat]+"@"+t[:server]}.select{|t| t.match(/\S@\S/)}
+    tomcats_nagios = []; prev=""
+    datafile = "#{Rails.root}/data/nagios/status.dat"
+    File.open(datafile).each_line do |line|
+      tomcats_nagios << line.split("PROCESS_").last.chomp + "@" + prev.split("=").last.chomp if "PROCESS_TC".in?(line)
+      prev=line
+    end if File.exists?(datafile)
+    @tomcat_unknown_in_nagios = tomcats_jason - tomcats_nagios
+    @tomcat_unknown_in_nagios.reject!{|t| t.match(/vm-preprod/) }
+    @nb_tomcats = tomcats_jason.reject{|t| t.match(/vm-preprod/) }.count
   end
 end
