@@ -63,4 +63,20 @@ class ToolsController < ApplicationController
 
     @unknown_in_cartocs = vhosts - app_urls
   end
+
+  def vmware_comparison
+    vms = []
+    datafile = Rails.root.join("data/vmware/virtual_servers.txt")
+    vms = File.readlines(datafile).map(&:chomp!) if File.exists?(datafile)
+    vms_in_cartocs = Server.where(:virtual => true)
+    physical_in_cartocs = Server.where(:virtual => false)
+
+    @unknown_in_cartocs = vms - vms_in_cartocs.map(&:name) - physical_in_cartocs.map(&:name)
+    @unknown_in_vcenter = vms_in_cartocs.map(&:name) - vms
+    #RH project we're not responsible of
+    @unknown_in_vcenter.reject!{ |name| name.starts_with?("vm-hra") || name.starts_with?("vm-hrw") }
+    #Windows servers we're not responsible of
+    @unknown_in_vcenter.reject!{ |name| name.match(/millos|ritac-|-nt-|-ac-|^dns-[01]$/) }
+    @not_vms_in_cartocs = vms - vms_in_cartocs.map(&:name) - @unknown_in_cartocs
+  end
 end

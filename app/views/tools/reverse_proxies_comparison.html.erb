@@ -6,7 +6,7 @@
                        (@unknown_in_cartocs.inject([]){ |memo,u|
                          line = @vhosts_lines.detect{|v| v.include?(u)}
                          title = line.gsub(%r{.*data/rp/},"").gsub(/:.*/,"").sub(%r{/},": ") if line
-                         memo << "<li>#{link_to u, "http://#{u}", :title => title}</li>"
+                         memo << link_to(u, "http://#{u}", :title => title)
                        }) %>
 
 </div>

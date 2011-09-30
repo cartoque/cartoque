@@ -1,36 +1,14 @@
-<%
-vms = []
-datafile = Rails.root.join("data/vmware/virtual_servers.txt")
-vms = File.readlines(datafile).map(&:chomp!) if File.exists?(datafile)
-vms_in_cartocs = Server.where(:virtual => true)
-physical_in_cartocs = Server.where(:virtual => false)
-
-unknown_in_cartocs = vms - vms_in_cartocs.map(&:name) - physical_in_cartocs.map(&:name)
-unknown_in_vcenter = vms_in_cartocs.map(&:name) - vms
-unknown_in_vcenter.reject!{ |name| name.starts_with?("vm-hra") || name.starts_with?("vm-hrw") } #RH project we're not responsible of
-unknown_in_vcenter.reject!{ |name| name.match(/millos|ritac-|-nt-|-ac-|^dns-[01]$/) } #Windows servers we're not responsible of
-unknown_in_vcenter.map!{ |name| link_to_servername name}
-notvms_in_cartocs = vms - vms_in_cartocs.map(&:name) - unknown_in_cartocs
-unknown_in_cartocs.map!{|s| server_missing s}
-
-diff_list = {
-              "manquantes dans Cartocs" => unknown_in_cartocs,
-              "inconnues dans VCenter"  => unknown_in_vcenter,
-              "ne sont pas marquées comme \"virtuelles\" dans Cartocs" => notvms_in_cartocs
-             } %>
-
 <% title "Outils - Comparaison VMWare" %>
 
 <div id="tools" class="grid_12 items_list">
 
-<% diff_list.each do |title,servers| %>
-<ul>
-  <li><strong><%= pluralize(servers.count, "VM") %> <%= title %></strong></li>
-  <ul class="comparison details">
-    <%= servers.sort.map{|m| "<li>#{m}</li>"}.join.html_safe %>
-  </ul>
-</ul>
-<div class="clear"></div>
-<% end %>
+  <%= render_diff_list "manquants dans Cartocs",
+                       @unknown_in_cartocs.map{|name| server_missing name} %>
+
+  <%= render_diff_list "inconnus dans VCenter",
+                       @unknown_in_vcenter.map{|name| link_to_servername name} %>
+
+  <%= render_diff_list "ne sont pas marqués comme \"virtuels\" dans Cartocs",
+                       @not_vms_in_cartocs %>
 
 </div>
