@@ -1,11 +1,11 @@
-<% title "Outils - Symétrie des clusters" %>
+<% title "Outils - Symétrie #{@title}" %>
 
-<div id="cluster_symetry" class="grid_12 items_list">
+<div id="servers_symetry" class="grid_12 items_list">
 
 <%= action_links do %>
   <ul class="select-buttons">
   <% @cluster_names.each do |cluster| %>
-    <%= content_tag :li, link_to(cluster, tool_path(:cluster_symetry, :id => cluster)), :class => (params[:id] == cluster ? "current" : "") %>
+    <%= content_tag :li, link_to(cluster, tool_path(params[:action], :id => cluster)), :class => (params[:id] == cluster ? "current" : "") %>
   <% end %>
   </ul>
 <% end %>

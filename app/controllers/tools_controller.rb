@@ -3,28 +3,15 @@ require 'find'
 
 class ToolsController < ApplicationController
   def cluster_symetry
-    path = Rails.root.join("data/symetry")
-    @clusters = {}
-    Dir.glob("#{path}/*").map{|c| File.basename(c)}.sort.each do |cluster|
-      @clusters[cluster] = { :path => "#{path}/#{cluster}",
-                            :nodes => Dir.glob("#{path}/#{cluster}/*").map{|c| File.basename(c)}.sort }
-      files = []
-      lists = []
-      Find.find(@clusters[cluster][:path]).each do |file|
-        if file.ends_with?(".list")
-          lists << file.sub(@clusters[cluster][:path],"").sub(%r{^/[^/]+},"")
-        elsif File.file?(file)
-          files << file.sub(@clusters[cluster][:path],"").sub(%r{^/[^/]+},"")
-        end
-      end
-      @clusters[cluster][:files] = files.sort.uniq
-      @clusters[cluster][:lists] = lists.reject{|f| f.ends_with?("packages.list")}.sort.uniq
-    end
-    @cluster_names = @clusters.keys
-    #limit clusters
-    @clusters.reject! do |cluster,hsh|
-      cluster != params[:id]
-    end unless params[:id] == "all"
+    symetry_for(/sgbd-/)
+    @title = "serveurs SGBD"
+    render 'servers_symetry'
+  end
+
+  def acai_symetry
+    symetry_for(/^vm-(preprod|prod|ecole|web)/)
+    @title = "serveurs ACAI"
+    render 'servers_symetry'
   end
 
   def nagios_comparison
@@ -78,5 +65,32 @@ class ToolsController < ApplicationController
     #Windows servers we're not responsible of
     @unknown_in_vcenter.reject!{ |name| name.match(/millos|ritac-|-nt-|-ac-|^dns-[01]$/) }
     @not_vms_in_cartocs = vms - vms_in_cartocs.map(&:name) - @unknown_in_cartocs
+  end
+
+  protected
+  def symetry_for(mask)
+    path = Rails.root.join("data/symetry")
+    @clusters = {}
+    Dir.glob("#{path}/*").map{|c| File.basename(c)}.sort.each do |cluster|
+      next unless cluster.match(mask)
+      @clusters[cluster] = { :path => "#{path}/#{cluster}",
+                            :nodes => Dir.glob("#{path}/#{cluster}/*").map{|c| File.basename(c)}.sort }
+      files = []
+      lists = []
+      Find.find(@clusters[cluster][:path]).each do |file|
+        if file.ends_with?(".list")
+          lists << file.sub(@clusters[cluster][:path],"").sub(%r{^/[^/]+},"")
+        elsif File.file?(file)
+          files << file.sub(@clusters[cluster][:path],"").sub(%r{^/[^/]+},"")
+        end
+      end
+      @clusters[cluster][:files] = files.sort.uniq
+      @clusters[cluster][:lists] = lists.reject{|f| f.ends_with?("packages.list")}.sort.uniq
+    end
+    @cluster_names = @clusters.keys
+    #limit clusters
+    @clusters.reject! do |cluster,hsh|
+      cluster != params[:id]
+    end unless params[:id] == "all"
   end
 end
