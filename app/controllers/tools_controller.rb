@@ -71,8 +71,11 @@ class ToolsController < ApplicationController
   def symetry_for(mask)
     path = Rails.root.join("data/symetry")
     @clusters = {}
+    @cluster_names = []
     Dir.glob("#{path}/*").map{|c| File.basename(c)}.sort.each do |cluster|
       next unless cluster.match(mask)
+      @cluster_names << cluster
+      next unless cluster == params[:id] || params[:id] == "all"
       @clusters[cluster] = { :path => "#{path}/#{cluster}",
                             :nodes => Dir.glob("#{path}/#{cluster}/*").map{|c| File.basename(c)}.sort }
       files = []
@@ -87,10 +90,5 @@ class ToolsController < ApplicationController
       @clusters[cluster][:files] = files.sort.uniq
       @clusters[cluster][:lists] = lists.reject{|f| f.ends_with?("packages.list")}.sort.uniq
     end
-    @cluster_names = @clusters.keys
-    #limit clusters
-    @clusters.reject! do |cluster,hsh|
-      cluster != params[:id]
-    end unless params[:id] == "all"
   end
 end
