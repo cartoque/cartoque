@@ -9,7 +9,7 @@ class ToolsController < ApplicationController
   end
 
   def acai_symetry
-    symetry_for(/^vm-(preprod|prod|ecole|web)/)
+    symetry_for(/^(vm|vip)-(preprod|prod|ecole|web)/)
     @title = "serveurs ACAI"
     render 'servers_symetry'
   end
