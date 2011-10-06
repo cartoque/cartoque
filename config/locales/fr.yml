@@ -96,7 +96,7 @@ fr:
   nb_proc: "Nb. Processeurs"
   nb_rj45: "Nb. RJ45"
   serial_number: "Num. de série"
-  operating_system: "OS"
+  operating_system: "Système"
   pe: "Prod/Ecole"
   pnd: "PND"
   rack: "Rack"
