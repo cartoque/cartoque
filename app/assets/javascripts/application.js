@@ -51,7 +51,7 @@ $(function() {
 
   //server 'virtual' toggling
   $('#server_virtual').live('change', function(e) {
-    $('.hidden-if-virtual').toggleClass("virtual");
+    $('.hidden-if-virtual, .hidden-if-physical').toggleClass("virtual");
     if ($('input#server_virtual').attr('checked') == true) {
       $('#server-hardware-title').html("Ressources");
     } else {

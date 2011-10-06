@@ -25,6 +25,7 @@
       </td>
     </tr>
     <% end %>
+    <%= s.association :hypervisor if @server.hypervisor.present? %>
     <%= s.attribute :operating_system %>
     <%= s.association :ipaddresses %>
     <%= render_physical_links_association @server if @server.physical_links.any? %>

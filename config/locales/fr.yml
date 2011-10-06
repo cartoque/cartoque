@@ -142,3 +142,6 @@ fr:
   definition_location: "Définition"
   frequency: "Fréquence"
   user: "User"
+  hypervisor: "Hyperviseur"
+  virtual_machines: "Machines virtuelles"
+  unknown: "Inconnu"

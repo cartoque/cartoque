@@ -1,4 +1,5 @@
 <% css_classes_physical = "hidden-if-virtual" + (@server.virtual? ? " virtual" : "") %>
+<% css_classes_virtual = "hidden-if-physical" + (@server.virtual? ? " virtual" : "") %>
 
 <%= simple_form_for(@server) do |f| %>
   <%= action_links do %>
@@ -21,6 +22,7 @@
                                                             OperatingSystem.scoped.arrange(:order => 'name')
                                                           ){|i| "#{'-'*i.depth} #{i.name}"} %>
       <%= f.input :virtual %>
+      <%= f.association :hypervisor, :collection => Server.all, :wrapper_class => css_classes_virtual %>
       <%= f.input :network_device %>
       <tr class="input string optional">
         <td class="content" colspan="2">

@@ -17,6 +17,8 @@ class Server < ActiveRecord::Base
   has_many :used_nss_volumes, :through => :nss_associations, :source => :nss_volume
   has_many :exported_disks, :class_name => "NetworkDisk", :dependent => :destroy
   has_many :network_filesystems, :class_name => "NetworkDisk", :foreign_key => "client_id", :dependent => :destroy
+  belongs_to :hypervisor, :class_name => "Server"
+  has_many :virtual_machines, :class_name => "Server", :foreign_key => "hypervisor_id"
 
   accepts_nested_attributes_for :ipaddresses, :reject_if => lambda{|a| a[:address].blank? },
                                               :allow_destroy => true
@@ -28,7 +30,7 @@ class Server < ActiveRecord::Base
                   :delivered_on, :maintained_until, :contract_type, :disk_type, :disk_size, :manufacturer, :ref_proc,
                   :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,
                   :nb_disk_alt, :ipaddress, :application_instance_ids, :database_id, :ipaddresses_attributes, :has_drac,
-                  :physical_links_attributes, :network_device
+                  :physical_links_attributes, :network_device, :hypervisor_id
   attr_accessor   :just_created
 
   acts_as_ipaddress :ipaddress
