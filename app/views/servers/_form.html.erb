@@ -21,9 +21,15 @@
       <%= f.association :operating_system, :collection => ancestry_options(
                                                             OperatingSystem.scoped.arrange(:order => 'name')
                                                           ){|i| "#{'-'*i.depth} #{i.name}"} %>
-      <%= f.input :virtual %>
+      <tr class="input checkbox optional">
+        <td class="label"><%= content_tag :label, t(:server_type) %></td>
+        <td class="content tiny">
+          <%= f.input_field :virtual %><%= content_tag :label, t(:virtual) %><br />
+          <%= f.input_field :is_hypervisor %><%= content_tag :label, t(:hypervisor) %><br />
+          <%= f.input_field :network_device %><%= content_tag :label, t(:network_device) %>
+        </td>
+      </tr>
       <%= f.association :hypervisor, :collection => Server.all, :wrapper_class => css_classes_virtual %>
-      <%= f.input :network_device %>
       <tr class="input string optional">
         <td class="content" colspan="2">
           <label for="server[ipaddresses]" class="input"><%= t(:ipaddresses) %> :</label><br />

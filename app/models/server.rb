@@ -30,7 +30,7 @@ class Server < ActiveRecord::Base
                   :delivered_on, :maintained_until, :contract_type, :disk_type, :disk_size, :manufacturer, :ref_proc,
                   :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,
                   :nb_disk_alt, :ipaddress, :application_instance_ids, :database_id, :ipaddresses_attributes, :has_drac,
-                  :physical_links_attributes, :network_device, :hypervisor_id
+                  :physical_links_attributes, :network_device, :hypervisor_id, :is_hypervisor
   attr_accessor   :just_created
 
   acts_as_ipaddress :ipaddress
@@ -50,6 +50,7 @@ class Server < ActiveRecord::Base
   scope :by_system, proc {|system_id| { :conditions => { :operating_system_id => OperatingSystem.find(system_id).subtree.map(&:id) } } }
   scope :by_virtual, proc {|virtual| { :conditions => { :virtual => virtual } } }
   scope :network_devices, where(:network_device => true)
+  scope :hypervisor_hosts, where(:is_hypervisor => true)
 
   validates_presence_of :name
   validates_uniqueness_of :name

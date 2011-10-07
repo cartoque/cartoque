@@ -145,3 +145,4 @@ fr:
   hypervisor: "Hyperviseur"
   virtual_machines: "Machines virtuelles"
   unknown: "Inconnu"
+  server_type: "Type de serveur"
