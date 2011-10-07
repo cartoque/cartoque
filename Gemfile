@@ -60,3 +60,7 @@ group :test do
   gem 'mocha'
   gem 'guard-livereload'
 end
+
+group :development, :test do
+  gem 'rspec-rails'
+end
