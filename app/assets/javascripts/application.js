@@ -86,7 +86,16 @@ $(function() {
     var url = $("#filters").attr("action").split("?")[0] + "?" + filters
     history.replaceState(null, document.title, url);
   }
-  $(".filters input").bindWithDelay("keyup", submitFilters, 300);
+  $(".filters input").each(function() {
+    this.previousLength = this.value.length;
+  });
+  $(".filters input").bindWithDelay("keyup", function(e) {
+    elem = e.currentTarget;
+    if (elem.previousLength != elem.value.length) {
+      elem.previousLength = elem.value.length;
+      submitFilters();
+    }
+  }, 300);
   $(".filters select").change(submitFilters);
 
   //back button for pushState's
