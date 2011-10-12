@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111012115843) do
+ActiveRecord::Schema.define(:version => 20111012115844) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20111012115843) do
   create_table "applications", :force => true do |t|
     t.string  "name",                     :default => "",    :null => false
     t.integer "criticity",  :limit => 1,  :default => 3
-    t.text    "info",                                        :null => false
+    t.string  "info"
     t.string  "iaw",        :limit => 55, :default => "",    :null => false
     t.string  "pe",         :limit => 55, :default => "",    :null => false
     t.string  "ams",        :limit => 55, :default => "",    :null => false
@@ -183,7 +183,7 @@ ActiveRecord::Schema.define(:version => 20111012115843) do
     t.string  "lastbyte",            :limit => 9,   :default => "",    :null => false
     t.string  "serial_number",       :limit => 100, :default => "",    :null => false
     t.boolean "virtual",             :limit => 1,   :default => false, :null => false
-    t.text    "description",                                           :null => false
+    t.string  "description"
     t.string  "model",               :limit => 100, :default => "",    :null => false
     t.string  "memory",              :limit => 50,  :default => "",    :null => false
     t.float   "frequency",                          :default => 0.0,   :null => false
