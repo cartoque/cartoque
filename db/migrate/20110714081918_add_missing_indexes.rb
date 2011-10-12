@@ -1,7 +1,7 @@
 class AddMissingIndexes < ActiveRecord::Migration
   def self.up
     add_index :application_instances, :application_id
-    add_index :application_instances_machines, :application_instance_id
+    add_index :application_instances_machines, :application_instance_id, :name => 'index_appinstances_machines_on_appinstance'
     add_index :application_instances_machines, :machine_id
     add_index :application_urls, :application_instance_id
     add_index :applications_machines, :machine_id

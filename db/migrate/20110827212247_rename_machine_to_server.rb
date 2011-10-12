@@ -2,8 +2,8 @@ class RenameMachineToServer < ActiveRecord::Migration
   def change
     rename_table "application_instances_machines", "application_instances_servers"
     rename_column "application_instances_servers", "machine_id", "server_id"
-    rename_index "application_instances_servers", "index_application_instances_machines_on_application_instance_id",
-                                                  "index_application_instances_servers_on_application_instance_id"
+    rename_index "application_instances_servers", "index_appinstances_machines_on_appinstance",
+                                                  "index_appinstances_servers_on_appinstance"
     rename_index "application_instances_servers", "index_application_instances_machines_on_machine_id",
                                                   "index_application_instances_servers_on_machine_id"
 
