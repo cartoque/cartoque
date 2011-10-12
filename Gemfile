@@ -53,6 +53,7 @@ gem 'hashie'
 gem 'diffy'
 gem 'settler'
 gem 'nokogiri'
+gem 'acts-as-taggable-on'
 
 group :test do
   gem 'shoulda'

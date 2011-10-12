@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111012093011) do
+ActiveRecord::Schema.define(:version => 20111012115843) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20111012093011) do
     t.string  "iaw",        :limit => 55, :default => "",    :null => false
     t.string  "pe",         :limit => 55, :default => "",    :null => false
     t.string  "ams",        :limit => 55, :default => "",    :null => false
-    t.boolean "cerbere",                  :default => false, :null => false
+    t.boolean "cerbere",    :limit => 1,  :default => false, :null => false
     t.string  "comment",                  :default => "",    :null => false
     t.string  "identifier"
   end
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(:version => 20111012093011) do
     t.string  "subnet",              :limit => 23,  :default => "",    :null => false
     t.string  "lastbyte",            :limit => 9,   :default => "",    :null => false
     t.string  "serial_number",       :limit => 100, :default => "",    :null => false
-    t.boolean "virtual",                            :default => false, :null => false
+    t.boolean "virtual",             :limit => 1,   :default => false, :null => false
     t.text    "description",                                           :null => false
     t.string  "model",               :limit => 100, :default => "",    :null => false
     t.string  "memory",              :limit => 50,  :default => "",    :null => false
@@ -254,6 +254,23 @@ ActiveRecord::Schema.define(:version => 20111012093011) do
   end
 
   add_index "storages", ["server_id"], :name => "index_storages_on_server_id"
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context"
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "provider"

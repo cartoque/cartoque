@@ -30,6 +30,7 @@ GEM
       activesupport (= 3.1.0)
     activesupport (3.1.0)
       multi_json (~> 1.0)
+    acts-as-taggable-on (2.0.6)
     addressable (2.2.4)
     ancestry (1.2.4)
       activerecord (>= 2.2.2)
@@ -208,6 +209,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on
   ancestry
   coffee-script
   diffy
