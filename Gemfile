@@ -65,4 +65,5 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'sqlite3'
+  gem 'thin'
 end
