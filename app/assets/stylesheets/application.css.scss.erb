@@ -141,10 +141,10 @@ tbody.long-list tr:hover {
 .opaque { opacity:0; }
 .has-opaques:hover .opaque { opacity:1; }
 button, a.button, input[type=submit] {
-  padding:3px 10px; cursor:pointer; display:inline-block; text-shadow:0 1px 1px #fff; font-weight:bold;
-  color:#333; border:solid 1px #999; text-decoration:none; text-align:center;
-  @include border-radius(2px); @include gradient(#fff, #ddd); box-shadow:none;
-  &:hover { color:#333; @include gradient(#f3f3f3, #ddd); }
+  padding:4px 8px; cursor:pointer; display:inline-block; text-shadow:0 1px 1px #fff; font-weight:bold;
+  color:#222; border:solid 1px #aaa; text-decoration:none; text-align:center; @include transition(all, .1s);
+  @include border-radius(3px); @include gradient(#fff, #e3e3e3); box-shadow:none;
+  &:hover { color:#333; @include gradient(#fff, #ddd); box-shadow:0 0 2px #e5e5e5; border:1px solid #888; }
   &:active { position:relative; top:1px; }
 }
 
