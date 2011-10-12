@@ -9,7 +9,7 @@
   <% @cronjobs.each do |cronjob| %>
   <tr>
     <td><%= link_to cronjob.server, cronjob.server %></td>
-    <td><%= cronjob.definition_location %></pre></td>
+    <td><pre><%= cronjob.definition_location %></pre></td>
     <td><pre><%= cronjob.frequency %></pre></td>
     <td><pre><%= cronjob.user %></pre></td>
     <td><code><%= cronjob.command %></code></td>
