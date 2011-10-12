@@ -66,8 +66,8 @@ module ApplicationHelper
       <tr id="error_explanation"><td colspan="2">
         <h2>#{pluralize(object.errors.count, "erreur")} :</h2>
         <ul>
-        #{object.errors.full_messages.map do |msg|
-            "<li>"+msg+"</li>"
+        #{object.errors.map do |key,msg|
+            "<li>&#171; #{t(key, :default => key)} &#187; #{msg}</li>"
           end.join(" ")}
         </ul>
       </td></tr>
