@@ -14,7 +14,6 @@ class ServersControllerTest < ActionController::TestCase
   test "should get physical nodes for maintenance" do
     get :index, :view_mode => "maintenance"
     assert_response :success
-    assert_template 'maintenance'
     assert_not_nil assigns(:servers)
     assert_nil assigns(:servers).detect{|m| m.virtual?}
   end
