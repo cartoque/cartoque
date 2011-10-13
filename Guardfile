@@ -1,13 +1,13 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
-guard 'livereload' do
-  watch(%r{app/.+\.(erb|haml)})
-  watch(%r{app/helpers/.+\.rb})
-  watch(%r{app/controllers/.+\.rb})
-  watch(%r{public/.+\.(css|js|html)})
-  watch(%r{config/locales/.+\.yml})
-end
+###guard 'livereload' do
+###  watch(%r{app/.+\.(erb|haml)})
+###  watch(%r{app/helpers/.+\.rb})
+###  watch(%r{app/controllers/.+\.rb})
+###  watch(%r{public/.+\.(css|js|html)})
+###  watch(%r{config/locales/.+\.yml})
+###end
 
 guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch('config/application.rb')
