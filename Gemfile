@@ -61,10 +61,14 @@ group :test do
   gem 'mocha'
   gem 'guard-livereload'
   gem 'database_cleaner'
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'spork', '> 0.9.0.rc'
+  gem 'guard-spork'
+  gem 'libnotify'
 end
 
 group :development, :test do
-  gem 'rspec-rails'
   gem 'sqlite3'
   gem 'thin'
 end
