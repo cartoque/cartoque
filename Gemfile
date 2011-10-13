@@ -60,6 +60,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'mocha'
   gem 'guard-livereload'
+  gem 'database_cleaner'
 end
 
 group :development, :test do

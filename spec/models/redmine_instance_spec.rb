@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'spec_helper'
 require 'redmine_instance'
 
 class RedmineInstance
@@ -7,25 +7,21 @@ class RedmineInstance
   end
 end
 
-class RedmineInstanceTest < ActiveSupport::TestCase
-  setup do
-  end
-
-  should "initialize correctly from hash" do
-  end
-
-  context "RedmineInstance.all" do
-    should "return fake directory" do
-      assert RedmineInstance.dir.include?("test/data/redmine")
+describe RedmineInstance do
+  pending "should initialize correctly from hash"
+  
+  describe "RedmineInstance.all" do
+    it "should return fake directory" do
+      RedmineInstance.dir.should include("test/data/redmine")
     end
 
-    should "return content of files" do
+    it "should return content of files" do
       files = RedmineInstance.files
       assert_equal 1, files.size
       assert files.first.is_a?(String)
     end
 
-    should "return all redmine instances" do
+    it "should return all redmine instances" do
       instances = RedmineInstance.all
       assert_equal 3, instances.size
       instance = instances.detect{|i| i.name == "redmine-01"}
