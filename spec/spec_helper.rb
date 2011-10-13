@@ -47,6 +47,13 @@ Spork.prefork do
       DatabaseCleaner.clean
     end
   end
+
+  require 'application_controller'
+  class ApplicationController
+    def current_user
+      User.new
+    end
+  end
 end
 
 Spork.each_run do
