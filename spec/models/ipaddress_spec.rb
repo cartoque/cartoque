@@ -17,13 +17,16 @@ describe Ipaddress do
 
   context "#to_s" do
     it "should return an empty string if no address" do
-      ip = Ipaddress.new(:address => "")
-      ip.to_s.should eq("")
+      Ipaddress.new(:address => "").to_s.should eq("")
     end
 
-    pending "should include (vip) if virtual ip"
+    it "should include (vip) if virtual ip" do
+      Ipaddress.new(:address => "192.168.1.1", :virtual => true).to_s.should eq("192.168.1.1 (vip)")
+    end
 
-    pending "should be <strong>'ed if main ip"
+    it "should be <strong>'ed if main ip" do
+      Ipaddress.new(:address => "192.168.1.1", :main => true).to_s.should eq("<strong>192.168.1.1</strong>")
+    end
 
     it "should return a human-readable address" do
       ip = Ipaddress.new(:address => "127.0.0.1")

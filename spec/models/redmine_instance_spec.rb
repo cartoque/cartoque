@@ -8,8 +8,6 @@ class RedmineInstance
 end
 
 describe RedmineInstance do
-  pending "should initialize correctly from hash"
-  
   describe "RedmineInstance.all" do
     it "should return fake directory" do
       RedmineInstance.dir.should include("test/data/redmine")

@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 describe OperatingSystem do
-  pending "should be valid with just a name"
-  
-  pending "should provide a hierarchical structure"
+  it "should be valid with just a name" do
+    system = OperatingSystem.new
+    system.should_not be_valid
+    system.name = "Linux"
+    system.should be_valid
+  end
 end

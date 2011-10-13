@@ -1,6 +1,8 @@
 class NssDisk < ActiveRecord::Base
   belongs_to :server
 
+  validates_presence_of :server, :name
+
   scope :by_server, proc { |server_id| where(:server_id => server_id) }
   scope :by_owner, proc { |owner| where(:owner => owner) }
   scope :by_name, proc { |search| where("nss_disks.name LIKE ?", "%#{search}%") }
