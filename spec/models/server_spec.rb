@@ -105,8 +105,12 @@ describe Server do
       @site2 = Site.create!(:name => "us-east")
       @rack1 = PhysicalRack.create!(:name => "rack-1-eu", :site_id => @site1.id)
       @rack2 = PhysicalRack.create!(:name => "rack-2-us", :site_id => @site2.id)
-      @s1 = Server.create!(:name => "srv-app-01", :physical_rack_id => @rack1.id)
-      @s2 = Server.create!(:name => "srv-app-02", :physical_rack_id => @rack2.id)
+      @maint = Mainteneur.create!(:name => "Computer shop")
+      @os = OperatingSystem.create!(:name => "Linux")
+      @s1 = Server.create!(:name => "srv-app-01", :physical_rack_id => @rack1.id,
+                           :mainteneur_id => @maint.id, :operating_system_id => @os.id)
+      @s2 = Server.create!(:name => "srv-app-02", :physical_rack_id => @rack2.id,
+                           :virtual => true)
       @s3 = Server.create!(:name => "srv-db-01", :physical_rack_id => @rack1.id)
     end
 
@@ -132,9 +136,17 @@ describe Server do
       Server.by_location("rack-0").should eq []
     end
 
-    pending "should filter servers by mainteneur"
-    pending "should filter servers by system"
-    pending "should filter servers by virtual"
+    it "should filter servers by mainteneur" do
+      Server.by_mainteneur(@maint.id).should eq [@s1]
+    end
+
+    it "should filter servers by system" do
+      Server.by_system(@os.id).should eq [@s1]
+    end
+
+    it "should filter servers by virtual" do
+      Server.by_virtual(1).should eq [@s2]
+    end
 
     describe "#find_or_generate" do
       before do

@@ -48,7 +48,7 @@ class Server < ActiveRecord::Base
   }
   scope :by_mainteneur, proc {|mainteneur_id| { :conditions => { :mainteneur_id => mainteneur_id } } }
   scope :by_system, proc {|system_id| { :conditions => { :operating_system_id => OperatingSystem.find(system_id).subtree.map(&:id) } } }
-  scope :by_virtual, proc {|virtual| { :conditions => { :virtual => virtual } } }
+  scope :by_virtual, proc {|virtual| { :conditions => { :virtual => (virtual.to_s == "1") } } }
   scope :network_devices, where(:network_device => true)
   scope :hypervisor_hosts, where(:is_hypervisor => true)
 
