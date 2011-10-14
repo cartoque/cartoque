@@ -2,6 +2,8 @@ class Ipaddress < ActiveRecord::Base
   belongs_to :server
   acts_as_ipaddress :address
 
+  validates_presence_of :server
+
   def to_s
     return "" if address.blank?
     html = address
