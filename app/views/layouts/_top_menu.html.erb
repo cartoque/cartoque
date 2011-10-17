@@ -33,7 +33,7 @@
     </ul>-->
     <ul style="float:left">
       <li class="title">Transverses</li>
-      <!--<li><a href="?">Puppet</a></li>-->
+      <li><%= link_to "Puppet", puppet_path(:servers, :by_puppet => "1") %></li>
       <li><%= link_to "Tâches Cron", cronjobs_path %></li>
       <!--<li><a href="?">DNS Bind</a></li>
       <li class="title">Infrastructure</li>

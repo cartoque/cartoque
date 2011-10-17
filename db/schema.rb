@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111012115844) do
+ActiveRecord::Schema.define(:version => 20111014163656) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -211,6 +211,9 @@ ActiveRecord::Schema.define(:version => 20111012115844) do
     t.boolean "network_device"
     t.integer "hypervisor_id"
     t.boolean "is_hypervisor"
+    t.string  "puppetversion"
+    t.string  "facterversion"
+    t.string  "rubyversion"
   end
 
   add_index "servers", ["database_id"], :name => "index_servers_on_database_id"

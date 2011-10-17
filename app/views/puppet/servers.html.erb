@@ -1,0 +1,29 @@
+<% title "Puppet - Serveurs" %>
+
+<div id="puppet_servers" class="items_list grid_12">
+
+<%= action_links do %>
+<% end %>
+
+
+<table class="pretty list">
+  <%= form_tag puppet_path(:servers), :id => "filters", :method => :get do -%>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+  <tr class="filters fixed-size">
+    <td><%= text_field_tag "search", params[:search] %></td>
+    <% @os = ancestry_options(OperatingSystem.scoped.arrange(:order => 'name')){|i| "#{'-'*i.depth} #{i.name}"} %>
+    <td><%= select_tag "by_system", options_for_select([["",""]] + @os, params[:by_system]).html_safe -%></td>
+    <td><%= select_tag "by_virtual", options_for_select([["",""], ["oui", "1"], ["non", 0]], params[:by_virtual]).html_safe -%></td>
+    <td><%= select_tag "by_puppet", options_for_select([["",""], ["oui", "1"], ["non", 0]], params[:by_puppet]).html_safe -%></td>
+    <td></td>
+    <td></td>
+    <td><span id="puppet_servers_counter" class="counter"><%= @servers.count %></span></td>
+  </tr>
+  <% end -%>
+  <tbody id="puppet_servers_list" class="long-list">
+    <%= render "list" %>
+  </tbody>
+</table>
+
+</div>

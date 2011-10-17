@@ -111,7 +111,8 @@ describe Server do
                            :mainteneur_id => @maint.id, :operating_system_id => @os.id)
       @s2 = Server.create!(:name => "srv-app-02", :physical_rack_id => @rack2.id,
                            :virtual => true)
-      @s3 = Server.create!(:name => "srv-db-01", :physical_rack_id => @rack1.id)
+      @s3 = Server.create!(:name => "srv-db-01", :physical_rack_id => @rack1.id,
+                           :puppetversion => "0.24.5")
     end
 
     it "should filter servers by rack" do
@@ -146,6 +147,10 @@ describe Server do
 
     it "should filter servers by virtual" do
       Server.by_virtual(1).should eq [@s2]
+    end
+
+    it "should return server with puppet installed" do
+      Server.by_puppet(1).should eq [@s3]
     end
 
     describe "#find_or_generate" do
