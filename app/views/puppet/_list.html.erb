@@ -1,8 +1,9 @@
 <tr class="fix-on-scroll">
   <%= sortable_th "name", nil, :style => "min-width:10em" %>
-  <th style="width:12em">OS</th>
   <th style="width:2em">Virtuel</th>
   <th style="width:2em">Puppet</th>
+  <th style="width:12em">OS</th>
+  <th style="width:9em">OS Release (facter)</th>
   <th style="width:9em">Version Puppet</th>
   <th style="width:9em">Version Facter</th>
   <th style="width:9em">Version Ruby</th>
@@ -15,9 +16,10 @@
       </div>
       <%= link_to server.name, server %>
     </td>
-    <td><%= server.operating_system %></td>
     <td class="center"><% if server.virtual? %><span class="virtual-server">V</span><% end %></td>
     <td class="center"><% if server.puppetversion? %><span class="puppetized-server">P</span><% end %></td>
+    <td><%= server.operating_system %></td>
+    <td class="center"><%= server.operatingsystemrelease %></td>
     <td class="center"><%= server.puppetversion %></td>
     <td class="center"><%= server.facterversion %></td>
     <td class="center"><%= server.rubyversion %></td>

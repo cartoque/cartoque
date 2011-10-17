@@ -13,6 +13,8 @@ namespace :import do
       %w(rubyversion facterversion puppetversion).each do |key|
         server.send("#{key}=", facts[key]) if facts.has_key?(key)
       end
+      os = "#{facts["operatingsystem"]} #{facts["operatingsystemrelease"]}"
+      server.operatingsystemrelease = os if os.present?
       server.save if server.changed?
     end
   end

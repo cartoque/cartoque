@@ -12,10 +12,11 @@
     <%= hidden_field_tag :sort, params[:sort] %>
   <tr class="filters fixed-size">
     <td><%= text_field_tag "search", params[:search] %></td>
-    <% @os = ancestry_options(OperatingSystem.scoped.arrange(:order => 'name')){|i| "#{'-'*i.depth} #{i.name}"} %>
-    <td><%= select_tag "by_system", options_for_select([["",""]] + @os, params[:by_system]).html_safe -%></td>
     <td><%= select_tag "by_virtual", options_for_select([["",""], ["oui", "1"], ["non", 0]], params[:by_virtual]).html_safe -%></td>
     <td><%= select_tag "by_puppet", options_for_select([["",""], ["oui", "1"], ["non", 0]], params[:by_puppet]).html_safe -%></td>
+    <% @os = ancestry_options(OperatingSystem.scoped.arrange(:order => 'name')){|i| "#{'-'*i.depth} #{i.name}"} %>
+    <td><%= select_tag "by_system", options_for_select([["",""]] + @os, params[:by_system]).html_safe -%></td>
+    <td><%= select_tag "by_osrelease", options_for_select(@operatingsystemreleases.map{|v|[v,v]}, params[:by_osrelease]).html_safe -%></td>
     <td><%= select_tag "by_puppetversion", options_for_select(@puppetversions.map{|v|[v,v]}, params[:by_puppetversion]).html_safe -%></td>
     <td><%= select_tag "by_facterversion", options_for_select(@facterversions.map{|v|[v,v]}, params[:by_facterversion]).html_safe -%></td>
     <td>

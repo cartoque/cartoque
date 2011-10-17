@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014163656) do
+ActiveRecord::Schema.define(:version => 20111017090934) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -173,40 +173,40 @@ ActiveRecord::Schema.define(:version => 20111014163656) do
   add_index "physical_racks", ["site_id"], :name => "index_physical_racks_on_site_id"
 
   create_table "servers", :force => true do |t|
-    t.integer "operating_system_id",                :default => 0
-    t.integer "physical_rack_id",                   :default => 0
-    t.integer "media_drive_id",                     :default => 0
-    t.integer "mainteneur_id",                      :default => 0
-    t.string  "name",                :limit => 150, :default => "",    :null => false
-    t.string  "previous_name",                      :default => "",    :null => false
-    t.string  "subnet",              :limit => 23,  :default => "",    :null => false
-    t.string  "lastbyte",            :limit => 9,   :default => "",    :null => false
-    t.string  "serial_number",       :limit => 100, :default => "",    :null => false
-    t.boolean "virtual",             :limit => 1,   :default => false, :null => false
+    t.integer "operating_system_id",                   :default => 0
+    t.integer "physical_rack_id",                      :default => 0
+    t.integer "media_drive_id",                        :default => 0
+    t.integer "mainteneur_id",                         :default => 0
+    t.string  "name",                   :limit => 150, :default => "",    :null => false
+    t.string  "previous_name",                         :default => "",    :null => false
+    t.string  "subnet",                 :limit => 23,  :default => "",    :null => false
+    t.string  "lastbyte",               :limit => 9,   :default => "",    :null => false
+    t.string  "serial_number",          :limit => 100, :default => "",    :null => false
+    t.boolean "virtual",                :limit => 1,   :default => false, :null => false
     t.string  "description"
-    t.string  "model",               :limit => 100, :default => "",    :null => false
-    t.string  "memory",              :limit => 50,  :default => "",    :null => false
-    t.float   "frequency",                          :default => 0.0,   :null => false
-    t.string  "contract_type",       :limit => 100, :default => "",    :null => false
-    t.string  "disk_type",           :limit => 50,  :default => "",    :null => false
-    t.integer "disk_size",                          :default => 0
-    t.string  "manufacturer",        :limit => 50,  :default => "",    :null => false
-    t.string  "ref_proc",            :limit => 100, :default => "",    :null => false
-    t.string  "server_type",         :limit => 50,  :default => "",    :null => false
-    t.integer "nb_proc",                            :default => 0
-    t.integer "nb_coeur",                           :default => 0
-    t.integer "nb_rj45",                            :default => 0
-    t.integer "nb_fc",                              :default => 0
-    t.integer "nb_iscsi",                           :default => 0
-    t.string  "disk_type_alt",       :limit => 50,  :default => "",    :null => false
-    t.integer "disk_size_alt",                      :default => 0
-    t.integer "nb_disk",                            :default => 0
-    t.integer "nb_disk_alt",                        :default => 0
+    t.string  "model",                  :limit => 100, :default => "",    :null => false
+    t.string  "memory",                 :limit => 50,  :default => "",    :null => false
+    t.float   "frequency",                             :default => 0.0,   :null => false
+    t.string  "contract_type",          :limit => 100, :default => "",    :null => false
+    t.string  "disk_type",              :limit => 50,  :default => "",    :null => false
+    t.integer "disk_size",                             :default => 0
+    t.string  "manufacturer",           :limit => 50,  :default => "",    :null => false
+    t.string  "ref_proc",               :limit => 100, :default => "",    :null => false
+    t.string  "server_type",            :limit => 50,  :default => "",    :null => false
+    t.integer "nb_proc",                               :default => 0
+    t.integer "nb_coeur",                              :default => 0
+    t.integer "nb_rj45",                               :default => 0
+    t.integer "nb_fc",                                 :default => 0
+    t.integer "nb_iscsi",                              :default => 0
+    t.string  "disk_type_alt",          :limit => 50,  :default => "",    :null => false
+    t.integer "disk_size_alt",                         :default => 0
+    t.integer "nb_disk",                               :default => 0
+    t.integer "nb_disk_alt",                           :default => 0
     t.integer "database_id"
     t.date    "delivered_on"
     t.date    "maintained_until"
-    t.integer "ipaddress",           :limit => 8
-    t.boolean "has_drac",                           :default => false
+    t.integer "ipaddress",              :limit => 8
+    t.boolean "has_drac",                              :default => false
     t.string  "identifier"
     t.boolean "network_device"
     t.integer "hypervisor_id"
@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(:version => 20111014163656) do
     t.string  "puppetversion"
     t.string  "facterversion"
     t.string  "rubyversion"
+    t.string  "operatingsystemrelease"
   end
 
   add_index "servers", ["database_id"], :name => "index_servers_on_database_id"
