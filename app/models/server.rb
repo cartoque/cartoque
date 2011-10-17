@@ -51,6 +51,9 @@ class Server < ActiveRecord::Base
   scope :by_system, proc {|system_id| { :conditions => { :operating_system_id => OperatingSystem.find(system_id).subtree.map(&:id) } } }
   scope :by_virtual, proc {|virtual| { :conditions => { :virtual => (virtual.to_s == "1") } } }
   scope :by_puppet, proc {|puppet| (puppet.to_i != 0) ? where("puppetversion IS NOT NULL") : where("puppetversion IS NULL") }
+  scope :by_puppetversion, proc {|version| where(:puppetversion => version) }
+  scope :by_facterversion, proc {|version| where(:facterversion => version) }
+  scope :by_rubyversion, proc {|version| where(:rubyversion => version) }
   scope :network_devices, where(:network_device => true)
   scope :hypervisor_hosts, where(:is_hypervisor => true)
 

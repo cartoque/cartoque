@@ -4,9 +4,16 @@ class PuppetController < ApplicationController
   has_scope :by_puppet
   has_scope :by_virtual
   has_scope :by_system
+  has_scope :by_puppetversion
+  has_scope :by_facterversion
+  has_scope :by_rubyversion
 
   def servers
     @servers = apply_scopes(Server).search(params[:search]).order(sort_option)
+    for tool in %w(puppet facter ruby) do
+      instance_variable_set("@#{tool}versions",
+                            Server.select("distinct(#{tool}version)").map(&:"#{tool}version").map(&:to_s).sort)
+    end
   end
 
   def classes

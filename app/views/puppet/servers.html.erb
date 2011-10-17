@@ -16,9 +16,12 @@
     <td><%= select_tag "by_system", options_for_select([["",""]] + @os, params[:by_system]).html_safe -%></td>
     <td><%= select_tag "by_virtual", options_for_select([["",""], ["oui", "1"], ["non", 0]], params[:by_virtual]).html_safe -%></td>
     <td><%= select_tag "by_puppet", options_for_select([["",""], ["oui", "1"], ["non", 0]], params[:by_puppet]).html_safe -%></td>
-    <td></td>
-    <td></td>
-    <td><span id="puppet_servers_counter" class="counter"><%= @servers.count %></span></td>
+    <td><%= select_tag "by_puppetversion", options_for_select(@puppetversions.map{|v|[v,v]}, params[:by_puppetversion]).html_safe -%></td>
+    <td><%= select_tag "by_facterversion", options_for_select(@facterversions.map{|v|[v,v]}, params[:by_facterversion]).html_safe -%></td>
+    <td>
+      <%= select_tag "by_rubyversion", options_for_select(@rubyversions.map{|v|[v,v]}, params[:by_rubyversion]).html_safe -%>
+      <span id="puppet_servers_counter" class="counter"><%= @servers.count %></span>
+    </td>
   </tr>
   <% end -%>
   <tbody id="puppet_servers_list" class="long-list">
