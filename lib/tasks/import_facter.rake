@@ -18,13 +18,14 @@ namespace :import do
       server.save if server.changed?
       #update IPs
       facts.keys.grep(/^ipaddress_/).each do |key|
-        eth = key.gsub(/^ipaddress_/,"").gsub("_",":")
+        iface_key = key.gsub(/^ipaddress_/,"")
         addr = facts[key]
-        main = (addr == facts["ipaddress"])
-        ip = Ipaddress.find_by_address_and_server_id(IPAddr.new(addr).to_i, server.id)
-        ip = Ipaddress.new(:address => addr, :server_id => server.id) unless ip
-        ip.main = main
-        ip.comment = eth
+        ip = Ipaddress.find_by_address_and_server_id(IPAddr.new(addr).to_i, server.id) ||
+               Ipaddress.new(:address => addr, :server_id => server.id)
+        ip.main = (addr == facts["ipaddress"])
+        ip.interface = iface_key.gsub("_",":")
+        ip.netmask = facts["netmask_#{iface_key}"]
+        ip.macaddress = facts["macaddress_#{iface_key}"]
         if ip.changed?
           puts "Updating IP=#{addr} for Server #{server}" if ENV['DEBUG'].present?
           ip.save

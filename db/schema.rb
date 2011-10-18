@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111017090934) do
+ActiveRecord::Schema.define(:version => 20111017223902) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -86,6 +86,9 @@ ActiveRecord::Schema.define(:version => 20111017090934) do
     t.boolean  "virtual"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "macaddress"
+    t.string   "netmask"
+    t.string   "interface"
   end
 
   add_index "ipaddresses", ["server_id"], :name => "index_ipaddresses_on_server_id"
