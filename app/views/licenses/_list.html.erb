@@ -9,9 +9,14 @@
   <th class="right">Commentaire</th>
 </tr>
 <% @licenses.each do |license| %>
-<tr>
+<tr class="has-opaques">
   <td><%= license.editor %></td>
-  <td><%= license.key %></td>
+  <td>
+    <div class="contextual opaque">
+      <%= link_to_delete license %>
+    </div>
+    <%= link_to license.key, license %>
+  </td>
   <td><%= license.title %></td>
   <td class="center"><%= license.quantity %></td>
   <td class="center"><%= license.servers.sort_by(&:name).map{|s| link_to s, s}.join("<br/>").html_safe %></td>

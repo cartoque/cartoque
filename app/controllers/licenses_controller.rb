@@ -1,6 +1,6 @@
 class LicensesController < InheritedResources::Base
   respond_to :html, :js
-  actions :index
+  actions :index, :edit, :update, :destroy
 
   has_scope :by_editor
   has_scope :by_key

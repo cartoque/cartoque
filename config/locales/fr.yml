@@ -146,3 +146,8 @@ fr:
   virtual_machines: "Machines virtuelles"
   unknown: "Inconnu"
   server_type: "Type de serveur"
+  editor: "Editeur"
+  key: "Clé"
+  title: "Intitulé"
+  purshased_on: "Depuis le"
+  renewal_on: "A renouveler le"

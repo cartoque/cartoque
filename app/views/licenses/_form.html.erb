@@ -1,0 +1,22 @@
+<div class="grid_12 center">
+
+<%= simple_form_for(@license) do |f| %>
+  <%= action_links do %>
+    <%= f.button :submit %>
+    ou <%= link_to "Retourner à la liste", licenses_path %>
+  <% end %>
+
+  <table class="inputs">
+    <tbody>
+      <%= tabular_errors @license %>
+      <%= f.input :editor, :required => true, :disabled => true %>
+      <%= f.input :key, :required => true, :disabled => true %>
+      <%= f.input :title, :required => true, :disabled => true %>
+      <%= f.input :purshased_on, :include_blank => true %>
+      <%= f.input :renewal_on, :include_blank => true %>
+      <%= f.input :comment, :label => "Commentaire", :input_html => {:rows => 6} %>
+    </tbody>
+  </table>
+<% end %>
+
+</div>

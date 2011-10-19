@@ -8,8 +8,8 @@
     <%= hidden_field_tag :sort, params[:sort] %>
   <tr class="filters fixed-size">
     <td><%= select_tag "by_editor", options_for_select(@editors.map{|s| [s, s]}, params[:by_editor]), :include_blank => true %></td>
-    <td style="min-width:22em"><%= text_field_tag "by_key", params[:by_key] %></td>
-    <td style="min-width:22em"><%= text_field_tag "by_title", params[:by_title] %></td>
+    <td style="min-width:24em"><%= text_field_tag "by_key", params[:by_key] %></td>
+    <td style="min-width:10em"><%= text_field_tag "by_title", params[:by_title] %></td>
     <td></td>
     <td><%= select_tag "by_server", options_for_select(@servers.map{|s| [s.name, s.id]}, params[:by_server]), :include_blank => true %></td>
     <td></td>
