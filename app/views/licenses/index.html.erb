@@ -1,0 +1,22 @@
+<% title "Licences" %>
+
+<div id="licenses" class="items_list grid_12">
+
+<table class="pretty list">
+  <%= form_tag licenses_path(params), :id => "filters", :method => :get do -%>
+  <tr class="filters fixed-size">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&nbsp;</td>
+  </tr>
+  <% end %>
+  <tbody id="licenses_list" class="long-list">
+    <%= render 'list' %>
+  </tbody>
+</table>
+
+</div>

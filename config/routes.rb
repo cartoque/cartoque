@@ -1,4 +1,5 @@
 Cartocs::Application.routes.draw do
+  resources :licenses, :only => [:index]
   resources :nss_disks, :only => [:index]
   resources :nss_volumes, :only => [:index]
   resources :cronjobs, :only => [:index]

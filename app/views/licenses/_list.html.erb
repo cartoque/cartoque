@@ -1,0 +1,18 @@
+<tr class="fix-on-scroll">
+  <th class="left">Editeur</th>
+  <th class="left">Clé</th>
+  <th class="left">Intitulé</th>
+  <th>Quantité</th>
+  <th>Depuis le</th>
+  <th>A renouveler le</th>
+  <th class="right">Commentaire</th>
+</tr>
+<% @licenses.each do |license| %>
+  <td><%= license.editor %></td>
+  <td><%= license.key %></td>
+  <td><%= license.title %></td>
+  <td><%= license.quantity %></td>
+  <td><%= license.purshased_on %></td>
+  <td><%= license.renewal_on %></td>
+  <td><%= license.comment %></td>
+<% end %>

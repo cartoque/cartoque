@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018063436) do
+ActiveRecord::Schema.define(:version => 20111019073529) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -92,6 +92,18 @@ ActiveRecord::Schema.define(:version => 20111018063436) do
   end
 
   add_index "ipaddresses", ["server_id"], :name => "index_ipaddresses_on_server_id"
+
+  create_table "licenses", :force => true do |t|
+    t.string   "editor"
+    t.string   "key"
+    t.string   "title"
+    t.string   "quantity"
+    t.date     "purshased_on"
+    t.date     "renewal_on"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "mainteneurs", :force => true do |t|
     t.string "name",       :limit => 50,  :default => "", :null => false
