@@ -15,7 +15,7 @@
     <div class="contextual opaque">
       <%= link_to_delete license %>
     </div>
-    <%= link_to license.key, license %>
+    <%= link_to license.key, edit_license_path(license) %>
   </td>
   <td><%= license.title %></td>
   <td class="center"><%= license.quantity %></td>
