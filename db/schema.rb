@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111017223902) do
+ActiveRecord::Schema.define(:version => 20111018063436) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(:version => 20111017223902) do
     t.string  "facterversion"
     t.string  "rubyversion"
     t.string  "operatingsystemrelease"
+    t.integer "status",                                :default => 1
   end
 
   add_index "servers", ["database_id"], :name => "index_servers_on_database_id"

@@ -1,4 +1,8 @@
 class Server < ActiveRecord::Base
+
+  STATUS_ACTIVE = 1
+  STATUS_INACTIVE = 2
+
   has_and_belongs_to_many :application_instances
   belongs_to :physical_rack
   belongs_to :operating_system
@@ -31,11 +35,14 @@ class Server < ActiveRecord::Base
                   :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,
                   :nb_disk_alt, :ipaddress, :application_instance_ids, :database_id, :ipaddresses_attributes, :has_drac,
                   :physical_links_attributes, :network_device, :hypervisor_id, :is_hypervisor, :puppetversion,
-                  :rubyversion, :facterversion, :operatingsystemrelease
+                  :rubyversion, :facterversion, :operatingsystemrelease, :status
   attr_accessor   :just_created
 
   acts_as_ipaddress :ipaddress
 
+  default_scope where("status" => STATUS_ACTIVE)
+  scope :active, where("status" => STATUS_ACTIVE)
+  scope :inactive, where("status" => STATUS_INACTIVE)
   scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
   scope :by_site, proc {|site_id| joins(:physical_rack).where("physical_racks.site_id" => site_id) }
   scope :by_location, proc {|location|
