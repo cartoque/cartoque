@@ -9,6 +9,7 @@
   <th class="right">Commentaire</th>
 </tr>
 <% @licenses.each do |license| %>
+<tr>
   <td><%= license.editor %></td>
   <td><%= license.key %></td>
   <td><%= license.title %></td>
@@ -17,4 +18,5 @@
   <td><%= license.purshased_on %></td>
   <td><%= license.renewal_on %></td>
   <td><%= license.comment %></td>
+</tr>
 <% end %>
