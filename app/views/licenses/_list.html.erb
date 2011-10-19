@@ -3,6 +3,7 @@
   <th class="left">Clé</th>
   <th class="left">Intitulé</th>
   <th>Quantité</th>
+  <th>Affectation</th>
   <th>Depuis le</th>
   <th>A renouveler le</th>
   <th class="right">Commentaire</th>
@@ -12,6 +13,7 @@
   <td><%= license.key %></td>
   <td><%= license.title %></td>
   <td><%= license.quantity %></td>
+  <td><%= license.servers.sort_by(&:name).map{|s| link_to s, s}.join(", ").html_safe %></td>
   <td><%= license.purshased_on %></td>
   <td><%= license.renewal_on %></td>
   <td><%= license.comment %></td>

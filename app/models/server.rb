@@ -23,6 +23,7 @@ class Server < ActiveRecord::Base
   has_many :network_filesystems, :class_name => "NetworkDisk", :foreign_key => "client_id", :dependent => :destroy
   belongs_to :hypervisor, :class_name => "Server"
   has_many :virtual_machines, :class_name => "Server", :foreign_key => "hypervisor_id"
+  has_and_belongs_to_many :licenses
 
   accepts_nested_attributes_for :ipaddresses, :reject_if => lambda{|a| a[:address].blank? },
                                               :allow_destroy => true
