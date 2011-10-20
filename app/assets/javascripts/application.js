@@ -137,8 +137,8 @@ $(function(){
       var id = $(this).attr("id");
       $(this).closest('.checkboxes-as-radio').find('.radio-checkbox').each(function() {
         //uncheck other checkboxes
-        if ($(this).attr("id") != id) {
-          $(this).attr("checked", false);
+        if ($(this).attr("id") != id && $(this).attr("checked") == "checked") {
+          $(this).click();
         }
       });
     }
