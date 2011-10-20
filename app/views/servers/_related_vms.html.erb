@@ -1,0 +1,13 @@
+<div class="related-ci related-vms">
+  <div class="informations more-child">
+    <h3>Hyperviseur</h3>
+    <div class="details">
+      <%= @server.virtual_machines.count %> machines virtuelles
+    </div>
+    <ul class="hidden">
+    <% @server.virtual_machines.sort_by(&:name).each do |vm| %>
+      <li><%= link_to vm, vm %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>
