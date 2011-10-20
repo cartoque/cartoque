@@ -101,6 +101,10 @@ class Server < ActiveRecord::Base
     name
   end
 
+  def to_param
+    identifier
+  end
+
   def ip
     i = subnet.to_s.split(".")
     i << lastbyte.to_s.gsub(".","")
