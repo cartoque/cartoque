@@ -1,0 +1,13 @@
+<div class="related-ci related-licenses">
+  <div class="informations more-child">
+    <h3>Licences</h3>
+    <div class="details">
+      <%= pluralize(@server.licenses.count, "licence") %>
+    </div>
+    <ul class="hidden">
+    <% @server.licenses.each do |license| %>
+      <li><%= link_to "#{license.editor}: #{license.title}", licenses_path(:by_editor=>license.editor, :by_key=>license.key) %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>
