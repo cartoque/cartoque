@@ -141,6 +141,22 @@ $(function(){
   });
 });
 
+// treat radio buttons for server type as checkboxes
+$(function(){
+  $('.checkboxes-as-radio input[type="checkbox"]').live('change', function() {
+    if ($(this).is(":checked")) {
+      //remember the id of checked checkbox
+      var id = $(this).attr("id");
+      $(this).closest('.checkboxes-as-radio').find('input[type="checkbox"]').each(function() {
+        //uncheck other checkboxes
+        if ($(this).attr("id") != id) {
+          $(this).attr("checked", false);
+        }
+      });
+    }
+  });
+});
+
 //bsm plugin
 function bsmizeSelects() {
   $("select[multiple]").bsmSelect({

@@ -23,7 +23,7 @@
                                                           ){|i| "#{'-'*i.depth} #{i.name}"} %>
       <tr class="input checkbox optional">
         <td class="label"><%= content_tag :label, t(:server_type) %></td>
-        <td class="content tiny">
+        <td class="content tiny checkboxes-as-radio">
           <%= f.input_field :virtual %><%= content_tag :label, t(:virtual), :for => "server_virtual" %><br />
           <%= f.input_field :is_hypervisor %><%= content_tag :label, t(:hypervisor), :for => "server_is_hypervisor" %><br />
           <%= f.input_field :network_device %><%= content_tag :label, t(:network_device), :for => "server_network_device" %>
