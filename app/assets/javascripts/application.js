@@ -129,25 +129,13 @@ $(function(){
   })
 });
 
-// some checkboxes acts as radio buttons on servers/show view
-$(function(){
-  $('input[type="checkbox"].main_ip').live('change', function() {
-    if ($(this).is(":checked")) {
-      var id = $(this).attr("id");
-      $('input[type="checkbox"].main_ip:checked').each(function() {
-        if ($(this).attr("id") != id) $(this).attr("checked", false);
-      });
-    }
-  });
-});
-
 // treat radio buttons for server type as checkboxes
 $(function(){
-  $('.checkboxes-as-radio input[type="checkbox"]').live('change', function() {
+  $('.checkboxes-as-radio .radio-checkbox').live('change', function() {
     if ($(this).is(":checked")) {
       //remember the id of checked checkbox
       var id = $(this).attr("id");
-      $(this).closest('.checkboxes-as-radio').find('input[type="checkbox"]').each(function() {
+      $(this).closest('.checkboxes-as-radio').find('.radio-checkbox').each(function() {
         //uncheck other checkboxes
         if ($(this).attr("id") != id) {
           $(this).attr("checked", false);

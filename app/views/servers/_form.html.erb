@@ -24,15 +24,15 @@
       <tr class="input checkbox optional">
         <td class="label"><%= content_tag :label, t(:server_type) %></td>
         <td class="content tiny checkboxes-as-radio">
-          <%= f.input_field :virtual %><%= content_tag :label, t(:virtual), :for => "server_virtual" %><br />
-          <%= f.input_field :is_hypervisor %><%= content_tag :label, t(:hypervisor), :for => "server_is_hypervisor" %><br />
-          <%= f.input_field :network_device %><%= content_tag :label, t(:network_device), :for => "server_network_device" %>
+          <%= f.input_field :virtual, :class => "radio-checkbox" %><%= content_tag :label, t(:virtual), :for => "server_virtual" %><br />
+          <%= f.input_field :is_hypervisor, :class => "radio-checkbox" %><%= content_tag :label, t(:hypervisor), :for => "server_is_hypervisor" %><br />
+          <%= f.input_field :network_device, :class => "radio-checkbox" %><%= content_tag :label, t(:network_device), :for => "server_network_device" %>
         </td>
       </tr>
       <%= f.association :hypervisor, :collection => Server.hypervisor_hosts.order(:name) - [@server],
                                      :wrapper_class => css_classes_virtual %>
       <tr class="input string optional">
-        <td class="content" colspan="2">
+        <td class="content checkboxes-as-radio" colspan="2">
           <label for="server[ipaddresses]" class="input"><%= t(:ipaddresses) %> :</label><br />
           <% f.object.ipaddresses.build if f.object.ipaddresses.size == 0 %>
           <%= f.simple_fields_for :ipaddresses do |ip_form| %>
