@@ -6,7 +6,7 @@
     </div>
     <ul class="hidden">
     <% @server.licenses.each do |license| %>
-      <li><%= link_to "#{license.editor}: #{license.title}", licenses_path(:by_editor=>license.editor, :by_key=>license.key) %></li>
+      <li><%= link_to "#{license.editor}: #{license.title}", licenses_path(:by_server=>@server.id) %></li>
     <% end %>
     </ul>
   </div>
