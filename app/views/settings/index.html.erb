@@ -25,6 +25,13 @@
     </td>
   </tr>
   <tr>
+    <th>Domaines DNS</th>
+    <td>
+      <%= text_area_tag 'settings[dns_domains]', Settler[:dns_domains], :size => "70x8" %><br />
+    </td>
+  </tr>
+
+  <tr>
     <td></td>
     <td><%= submit_tag "Valider" %></td>
   </tr>

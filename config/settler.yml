@@ -24,6 +24,9 @@ settings: &settings
     editable: true
   redmine_url: &redmine
     editable: true
+  dns_domains:
+    value: "ac.cs\nac.centre-serveur.i2\nac.melanie2.i2\ncsac.melanie2.i2\nappli.i2\napplication.ac.centre-serveur.i2\napp.ac.cs\nsgbd.ac.cs\napp.ac.cs\ninfocentre.i2"
+    editable: true
 
 development:
   <<: *settings  
