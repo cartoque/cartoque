@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019101335) do
+ActiveRecord::Schema.define(:version => 20111025045647) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(:version => 20111019101335) do
     t.boolean "cerbere",    :limit => 1,  :default => false, :null => false
     t.string  "comment",                  :default => "",    :null => false
     t.string  "identifier"
+  end
+
+  create_table "backup_jobs", :force => true do |t|
+    t.string   "hierarchy"
+    t.string   "client_type"
+    t.string   "client_version"
+    t.string   "catalog"
+    t.integer  "server_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "configuration_items", :force => true do |t|
