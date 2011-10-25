@@ -18,6 +18,7 @@ namespace :import do
           attributes[:files] << $1
         end
       end
+      sections[hostname] = attributes if hostname
     end
     #save data in the db
     sections.each do |servername, attributes|
