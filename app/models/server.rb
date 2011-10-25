@@ -64,6 +64,7 @@ class Server < ActiveRecord::Base
   scope :by_puppetversion, proc {|version| where(:puppetversion => version) }
   scope :by_facterversion, proc {|version| where(:facterversion => version) }
   scope :by_rubyversion, proc {|version| where(:rubyversion => version) }
+  scope :by_serial_number, proc {|search| where("serial_number like ?", "%#{search}%") }
   scope :network_devices, where(:network_device => true)
   scope :hypervisor_hosts, where(:is_hypervisor => true)
 

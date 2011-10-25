@@ -7,6 +7,7 @@ class ServersController < InheritedResources::Base
   has_scope :by_mainteneur
   has_scope :by_system
   has_scope :by_virtual
+  has_scope :by_serial_number
 
   before_filter :select_view_mode
 
