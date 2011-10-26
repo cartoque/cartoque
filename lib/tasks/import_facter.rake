@@ -9,12 +9,15 @@ namespace :import do
       puts "Successfully created Server: #{server.name}" if server.just_created
       #facts
       facts = YAML.load_file(file)
-      #update facts in server
+      #update version facts in server
       %w(rubyversion facterversion puppetversion).each do |key|
         server.send("#{key}=", facts[key]) if facts.has_key?(key)
       end
       os = "#{facts["operatingsystem"]} #{facts["operatingsystemrelease"]}"
       server.operatingsystemrelease = os if os.present?
+      #virtual or not ?
+      server.virtual = (facts["virtual"] != "physical")
+      #save server
       server.save if server.changed?
       #update IPs
       facts.keys.grep(/^ipaddress_/).each do |key|
