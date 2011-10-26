@@ -20,8 +20,14 @@ namespace :import do
       server.operatingsystemrelease = os if os.present?
       #virtual or not ?
       server.virtual = (facts["virtual"] != "physical") if facts["virtual"].present?
-      #serial number
-      server.serial_number = facts["serialnumber"] if facts["serialnumber"].present? && !server.virtual?
+      #physical machines
+      unless server.virtual?
+        #serial number
+        server.serial_number = facts["serialnumber"] if facts["serialnumber"].present?
+        #manufacturer/model
+        server.manufacturer = facts["manufacturer"].gsub(/,?\s*Inc\.?$/,"") if facts["manufacturer"].present?
+        server.model = facts["productname"] if facts["productname"].present?
+      end
       #save server
       server.save if server.changed?
       #dns domains
