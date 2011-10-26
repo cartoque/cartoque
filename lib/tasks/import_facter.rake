@@ -1,6 +1,9 @@
 desc "Imports cron jobs from tomcats' csv files"
 namespace :import do
   task :facter => :environment do
+    Settler.load!
+    dns_domains_setting = Settler.dns_domains
+    dns_domains_values = dns_domains_setting.value.to_s.split(/\n|,/).map(&:strip)
     Dir.glob("data/system/*.yml").each do |file|
       #server
       server_name = file.split("/").last.gsub(/\.yml$/,"")
@@ -19,6 +22,11 @@ namespace :import do
       server.virtual = (facts["virtual"] != "physical")
       #save server
       server.save if server.changed?
+      #dns domains
+      if dns_domains_setting.present? && facts["domain"].present? && !dns_domains_values.include?(facts["domain"])
+        dns_domains_setting.value = (dns_domains_values << facts["domain"]).join("\n")
+        dns_domains_setting.save
+      end
       #update IPs
       facts.keys.grep(/^ipaddress_/).each do |key|
         iface_key = key.gsub(/^ipaddress_/,"")
