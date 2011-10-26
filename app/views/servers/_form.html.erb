@@ -78,8 +78,8 @@
     </thead>
     <tbody id="server-physical-hardware" class="<%= css_classes_physical %>">
       <%= f.association :physical_rack, :collection => PhysicalRack.all.map{|r| [r,r.id]} %>
-      <%= f.input :model %>
       <%= f.input :manufacturer %>
+      <%= f.input :model %>
     </tbody>
     <tbody>
       <%= f.input :nb_proc, :collection => [1,2,4,6,8,10,12,16,24,32] %>
