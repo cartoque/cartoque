@@ -87,9 +87,13 @@ class Server < ActiveRecord::Base
   end
 
   def self.find_or_generate(name)
-    server = Server.find_by_name(name) || Server.find_by_identifier(name)
+    servername = name.dup
+    (Settler[:dns_domains] || "").strip.split(/\n|,/).each do |domain|
+      servername.gsub!(".#{domain.strip}".gsub(/^\.\./, "."), "")
+    end
+    server = Server.find_by_name(servername) || Server.find_by_identifier(servername)
     if server.blank?
-      server = Server.create(:name => name)
+      server = Server.create(:name => servername)
       server.just_created = true
     end
     server
