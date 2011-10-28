@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111025045647) do
+ActiveRecord::Schema.define(:version => 20111028151226) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -55,8 +55,7 @@ ActiveRecord::Schema.define(:version => 20111025045647) do
 
   create_table "backup_jobs", :force => true do |t|
     t.string   "hierarchy"
-    t.string   "client_type"
-    t.string   "client_version"
+    t.string   "client"
     t.string   "catalog"
     t.integer  "server_id"
     t.datetime "created_at"
@@ -246,6 +245,7 @@ ActiveRecord::Schema.define(:version => 20111025045647) do
     t.string  "rubyversion"
     t.string  "operatingsystemrelease"
     t.integer "status",                                :default => 1
+    t.string  "arch"
   end
 
   add_index "servers", ["database_id"], :name => "index_servers_on_database_id"

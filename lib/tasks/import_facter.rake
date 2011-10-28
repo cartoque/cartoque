@@ -28,6 +28,8 @@ namespace :import do
         server.manufacturer = facts["manufacturer"].gsub(/,?\s*Inc\.?$/,"") if facts["manufacturer"].present?
         server.model = facts["productname"] if facts["productname"].present?
       end
+      #hardware
+      server.arch = facts["hardwaremodel"] if facts["hardwaremodel"].present?
       #save server
       server.save if server.changed?
       #dns domains
