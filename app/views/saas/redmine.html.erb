@@ -21,12 +21,13 @@
   <tbody class="long-list">
 <% @redmine_instances.group_by{|i|i.server}.each do |server,instances| %>
   <tr>
-    <td rowspan="<%= instances.length %>" class="multirow">
+    <td rowspan="<%= instances.length + 1 %>" class="multirow">
       <%= link_to_server_if_exists(server).html_safe %>
     </td>
+    <td colspan="<%= show_plugins ? "7" : "6" %>" class="hidden"></td>
+  </tr>
   <% instances.each do |instance| %>
-  <% @i ||= 0 ; @i += 1 %>
-  <%= "<tr>".html_safe if @i != 1 %>
+  <tr>
     <td><%= link_to instance.name, "http://#{instance.name}.projet.appli.i2/" %></td>
     <td class="center"><%= instance.admin %></td>
     <td class="center"><%= instance.version %></td>

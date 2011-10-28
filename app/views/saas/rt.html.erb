@@ -18,14 +18,14 @@
   </tr>
   <tbody class="long-list">
 <% @rt_instances.group_by{|i|i.server}.each do |server,instances| %>
-  <% i = 0 %>
   <tr>
-    <td rowspan="<%= instances.length %>" class="multirow">
+    <td rowspan="<%= instances.length+1 %>" class="multirow">
       <%= link_to_server_if_exists(server).html_safe %>
     </td>
+    <td colspan="6" class="hidden"></td>
+  </tr>
   <% instances.each do |instance| %>
-  <% i += 1 %>
-  <%= "<tr>".html_safe if i != 1 %>
+  <tr>
     <td><%= instance.name %></td>
     <td class="center"><%= instance.version %></td>
     <td class="center"><%= instance.nb_queues %></td>
