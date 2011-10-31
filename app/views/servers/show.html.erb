@@ -29,6 +29,7 @@
           link_to @server.hypervisor, @server.hypervisor
         end if @server.hypervisor.present? %>
     <%= s.attribute :operating_system %>
+    <%= s.attribute :arch if @server.arch.present? %>
     <%= s.association :ipaddresses %>
     <%= render_physical_links_association @server if @server.physical_links.any? %>
     <%= render_connected_links_association @server if @server.connected_links.any? %>
