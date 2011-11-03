@@ -1,6 +1,7 @@
 desc "Imports vmware vms and hosts from json files"
 namespace :import do
   task :vmware => :environment do
+    #vms/hosts
     Dir.glob("data/vmware/*.json").each do |file|
       host = Server.find_or_generate(file.split("/").last.gsub(/\.json$/, ""))
       host.is_hypervisor = true
@@ -14,6 +15,16 @@ namespace :import do
         vm.virtual = true
         vm.hypervisor = host
         vm.save if vm.changed?
+      end
+    end
+    #backups jobs (vms which have a create_snapshot task in the last 8 days)
+    if File.exists?("data/vmware/snapshoted_vms.txt")
+      File.readlines("data/vmware/snapshoted_vms.txt").each do |servername|
+        servername.chomp!
+        server = Server.find_or_generate(servername)
+        job = BackupJob.find_or_create_by_server_id_and_hierarchy(server.id, "/")
+        job.client_type = "VDR (vmware)"
+        job.save if job.changed?
       end
     end
   end
