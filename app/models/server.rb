@@ -92,7 +92,7 @@ class Server < ActiveRecord::Base
     (Settler[:dns_domains] || "").strip.split(/\n|,/).each do |domain|
       servername.gsub!(".#{domain.strip}".gsub(/^\.\./, "."), "")
     end
-    server = Server.find_by_name(servername) || Server.find_by_identifier(servername)
+    server = Server.unscoped.find_by_name(servername) || Server.unscoped.find_by_identifier(servername)
     if server.blank?
       server = Server.create(:name => servername)
       server.just_created = true
