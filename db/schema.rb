@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(:version => 20111028151226) do
   create_table "applications", :force => true do |t|
     t.string  "name",                     :default => "",    :null => false
     t.integer "criticity",  :limit => 1,  :default => 3
-    t.string  "info"
+    t.string  "info",                     :default => ""
     t.string  "iaw",        :limit => 55, :default => "",    :null => false
     t.string  "pe",         :limit => 55, :default => "",    :null => false
     t.string  "ams",        :limit => 55, :default => "",    :null => false
-    t.boolean "cerbere",    :limit => 1,  :default => false, :null => false
+    t.boolean "cerbere",                  :default => false, :null => false
     t.string  "comment",                  :default => "",    :null => false
     t.string  "identifier"
   end
@@ -212,8 +212,8 @@ ActiveRecord::Schema.define(:version => 20111028151226) do
     t.string  "subnet",                 :limit => 23,  :default => "",    :null => false
     t.string  "lastbyte",               :limit => 9,   :default => "",    :null => false
     t.string  "serial_number",          :limit => 100, :default => "",    :null => false
-    t.boolean "virtual",                :limit => 1,   :default => false, :null => false
-    t.string  "description"
+    t.boolean "virtual",                               :default => false, :null => false
+    t.string  "description",                           :default => ""
     t.string  "model",                  :limit => 100, :default => "",    :null => false
     t.string  "memory",                 :limit => 50,  :default => "",    :null => false
     t.float   "frequency",                             :default => 0.0,   :null => false
