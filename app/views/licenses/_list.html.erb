@@ -21,7 +21,7 @@
   <td class="center"><%= license.quantity %></td>
   <td class="center"><%= license.servers.sort_by(&:name).map{|s| link_to s, s}.join("<br/>").html_safe %></td>
   <td class="center"><%= license.purshased_on %></td>
-  <td class="center"><%= license.renewal_on %></td>
+  <td class="center"><%= renewal_limit(license.renewal_on) %></td>
   <td><%= license.comment %></td>
 </tr>
 <% end %>
