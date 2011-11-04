@@ -15,6 +15,7 @@
     <th>Version</th>
     <% if show_plugins %><th>Plugins</th><% end %>
     <th>Projets</th>
+    <th>Tickets</th>
     <th>Utilisateurs</th>
     <th>Taille</th>
   </tr>
@@ -33,6 +34,7 @@
     <td class="center"><%= instance.version %></td>
     <% if show_plugins %><td class="center"><%= instance.plugins.join("<br/>").html_safe %></td><% end %>
     <td class="center"><%= instance.nb_projects %></td>
+    <td class="center"><%= instance.nb_tickets %></td>
     <td class="center"><%= instance.nb_users %></td>
     <td class="center"><%= pretty_size(instance.size) %></td>
   </tr>
