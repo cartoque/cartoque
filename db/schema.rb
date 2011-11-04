@@ -55,7 +55,8 @@ ActiveRecord::Schema.define(:version => 20111028151226) do
 
   create_table "backup_jobs", :force => true do |t|
     t.string   "hierarchy"
-    t.string   "client"
+    t.string   "client_type"
+    t.string   "client_version"
     t.string   "catalog"
     t.integer  "server_id"
     t.datetime "created_at"
