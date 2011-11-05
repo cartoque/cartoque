@@ -1,0 +1,16 @@
+<tr class="fix-on-scroll">
+  <th class="left">Serveur</th>
+  <th class="left">Type</th>
+  <th>Version</th>
+  <th>Catalogue</th>
+  <th>Arborescence</th>
+</tr>
+<% @backup_jobs.each do |backup_job| %>
+<tr class="has-opaques">
+  <td><%= link_to backup_job.server, backup_job.server %></td>
+  <td><%= backup_job.client_type %></td>
+  <td><%= backup_job.client_version %></td>
+  <td><%= backup_job.catalog %></td>
+  <td><%= backup_job.hierarchy %></td>
+</tr>
+<% end %>

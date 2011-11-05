@@ -1,0 +1,22 @@
+<% title "Sauvegardes" %>
+
+<div id="backup_jobs" class="items_list grid_12">
+
+<table class="pretty list">
+  <%= form_tag backup_jobs_path(params), :id => "filters", :method => :get do -%>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+  <tr class="filters fixed-size">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% end %>
+  <tbody id="backup_jobs_list" class="long-list">
+    <%= render 'list' %>
+  </tbody>
+</table>
+
+</div>

@@ -1,4 +1,5 @@
 Cartocs::Application.routes.draw do
+  resources :backup_jobs, :only => [:index]
   resources :licenses
   resources :nss_disks, :only => [:index]
   resources :nss_volumes, :only => [:index]
