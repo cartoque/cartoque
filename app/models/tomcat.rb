@@ -91,6 +91,7 @@ class Tomcat < Hashie::Mash
       tomcat.each do |key,value|
         key = key.to_sym
         next if key == :cerbere || key == :cerbere_csac || key == :crons
+        next if key == :server && !Server.find(value).active?
         filters[key] ||= []
         value = value.split("_").first if key == :tomcat
         filters[key] << value unless filters[key].include?(value)

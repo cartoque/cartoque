@@ -29,7 +29,7 @@ class TomcatOld < Hashie::Mash
   def self.filters_from(tomcats_old)
     filters = Hashie::Mash.new
     filters.tomcat = %w(tomcat4 tomcat5)
-    filters.server = tomcats_old.map{|t| t.server}.compact.sort.uniq
+    filters.server = tomcats_old.map{|t| t.server if t.server.active?}.compact.sort.uniq
     filters
   end
 end

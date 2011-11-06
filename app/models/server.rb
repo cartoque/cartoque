@@ -42,7 +42,6 @@ class Server < ActiveRecord::Base
 
   acts_as_ipaddress :ipaddress
 
-  default_scope where("status" => STATUS_ACTIVE)
   scope :active, where("status" => STATUS_ACTIVE)
   scope :inactive, where("status" => STATUS_INACTIVE)
   scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
@@ -102,6 +101,10 @@ class Server < ActiveRecord::Base
 
   def just_created
     @just_created || false
+  end
+
+  def active?
+    status == STATUS_ACTIVE
   end
 
   def to_s
