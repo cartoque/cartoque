@@ -8,7 +8,7 @@ namespace :import do
       hostname = nil
       attributes = {}
       File.read(file).each_line do |line|
-        if line.match(/^SYSTEME\s+:\s+(\S+)(?:\s+\[(\S+)\])?/)
+        if line.match(/^(?:SYSTEME|- Syst\*me)\s+:\s+(\S+)(?:\s+\[(\S+)\])?/)
           sections[hostname] = attributes if hostname
           hostname = $1
           attributes = {:catalog => catalog, :type => $2, :files => []}
