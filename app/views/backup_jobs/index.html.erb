@@ -7,7 +7,7 @@
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
   <tr class="filters fixed-size">
-    <td></td>
+    <td style="width:8em;"><%= select_tag "by_server", options_for_select(@servers.map{|s| [s.name, s.id]}, params[:by_server]), :include_blank => true %></td>
     <td></td>
     <td></td>
     <td></td>
