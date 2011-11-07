@@ -1,0 +1,23 @@
+<div class="grid_9 center">
+
+<%= simple_form_for(@backup_exception) do |f| %>
+  <%= action_links do %>
+    <%= f.button :submit %>
+    ou <%= link_to "Retourner à la liste", backup_exceptions_path %>
+  <% end %>
+
+  <table class="show_item">
+    <tbody>
+      <%= tabular_errors @backup_exception %>
+      <%= f.input :reason, :input_html => { :size => "60x5" } %>
+      <tr>
+        <td class="label"><%= f.label :servers, :class => "input" %></td>
+        <td class="multiselect">
+          <%= f.input_field :server_ids, :collection => Server.active.order(:name), :as => :multiselect %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+
+</div>

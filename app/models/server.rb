@@ -25,6 +25,7 @@ class Server < ActiveRecord::Base
   has_many :virtual_machines, :class_name => "Server", :foreign_key => "hypervisor_id"
   has_and_belongs_to_many :licenses
   has_many :backup_jobs, :dependent => :destroy
+  has_and_belongs_to_many :backup_exceptions
 
   accepts_nested_attributes_for :ipaddresses, :reject_if => lambda{|a| a[:address].blank? },
                                               :allow_destroy => true

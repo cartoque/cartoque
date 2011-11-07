@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111028151226) do
+ActiveRecord::Schema.define(:version => 20111107114509) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -51,6 +51,18 @@ ActiveRecord::Schema.define(:version => 20111028151226) do
     t.boolean "cerbere",                  :default => false, :null => false
     t.string  "comment",                  :default => "",    :null => false
     t.string  "identifier"
+  end
+
+  create_table "backup_exceptions", :force => true do |t|
+    t.string   "user_id"
+    t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "backup_exceptions_servers", :id => false, :force => true do |t|
+    t.integer "backup_exception_id"
+    t.integer "server_id"
   end
 
   create_table "backup_jobs", :force => true do |t|
@@ -315,6 +327,7 @@ ActiveRecord::Schema.define(:version => 20111028151226) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "settings"
+    t.string   "authentication_token"
   end
 
 end

@@ -1,0 +1,33 @@
+<% title "Exceptions de sauvegarde" %>
+
+<div id="backup_exceptions" class="items_list grid_12">
+  
+<%= action_links do %>
+  <%= link_to "Ajouter une exception", new_backup_exception_path %>
+<% end %>
+
+<table class="pretty list">
+  <thead>
+    <tr>
+      <th class="left" style="width:11em;"><%= t(:user) %></th>
+      <th class="left"><%= t(:reason) %></th>
+      <th class="left"><%= t(:server_ids) %></th>
+      <th style="width:38px"></th>
+    </tr>
+  </thead>
+  <tbody id="backup_exceptions_list" class="long-list">
+  <% @backup_exceptions.each do |backup_exception| %>
+    <tr>
+      <td class="tiny"><%= backup_exception.user.try(:name) %></td>
+      <td><%= backup_exception.reason %></td>
+      <td><%= backup_exception.servers.map{|s| link_to s,s}.join(", ").html_safe %></td>
+      <td>
+        <%= link_to_edit edit_backup_exception_path(backup_exception) %>
+        <%= link_to_delete backup_exception %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+</div>

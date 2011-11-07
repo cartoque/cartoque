@@ -1,6 +1,20 @@
 <% title "Sauvegardes" %>
 
 <div id="backup_jobs" class="items_list grid_12">
+  
+<% if @not_backuped.any? %>
+<div id="not-backuped">
+  <div class="contextual">
+    <%= link_to "Gérer les exceptions", backup_exceptions_path %>
+  </div>
+  <h2>Non sauvegardés (<%= @not_backuped.count %>)</h2>
+  <div class="servers">
+    <%= @not_backuped.map{|server| link_to server, server}.join(", ").html_safe %>
+  </div>
+</div>
+<% end %>
+
+<div class="clear"></div>
 
 <table class="pretty list">
   <%= form_tag backup_jobs_path(params), :id => "filters", :method => :get do -%>
@@ -18,16 +32,5 @@
     <%= render 'list' %>
   </tbody>
 </table>
-
-<div class="clear"></div>
-
-<% if @not_backuped.any? %>
-  <h2>Non sauvegardés (<%= @not_backuped.count %>)</h2>
-  <ul class="comparison details">
-    <% @not_backuped.each do |server| %>
-      <li><%= link_to server, server %></li>
-    <% end %>
-  </ul>
-<% end %>
 
 </div>
