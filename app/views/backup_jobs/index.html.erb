@@ -19,4 +19,15 @@
   </tbody>
 </table>
 
+<div class="clear"></div>
+
+<% if @not_backuped.any? %>
+  <h2>Non sauvegardés (<%= @not_backuped.count %>)</h2>
+  <ul class="comparison details">
+    <% @not_backuped.each do |server| %>
+      <li><%= link_to server, server %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 </div>
