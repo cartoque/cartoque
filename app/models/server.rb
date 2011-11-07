@@ -103,7 +103,8 @@ class Server < ActiveRecord::Base
   def self.not_backuped
     backuped = BackupJob.includes(:server).where("servers.status" => Server::STATUS_ACTIVE).select("distinct(server_id)").map(&:server_id)
     exceptions = BackupException.includes(:servers).map(&:servers).flatten.map(&:id).uniq
-    Server.where("servers.status" => Server::STATUS_ACTIVE).where("id not in (?)", backuped + exceptions).order("name asc")
+    net_devices = Server.network_devices.select("id").map(&:id)
+    Server.where("servers.status" => Server::STATUS_ACTIVE).where("id not in (?)", backuped + exceptions + net_devices).order("name asc")
   end
 
   def just_created
