@@ -1,3 +1,4 @@
 $("#backup_jobs_list").html("<%= escape_javascript(render("list")) %>");
+$("#backup_jobs_counter").html("<%= @servers.count %>");
 fixTableHeaders();
 $("html, body").animate({ scrollTop: 0 }, 200);
