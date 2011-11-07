@@ -9,7 +9,15 @@
   </div>
   <h2>Non sauvegardés (<%= @not_backuped.count %>)</h2>
   <div class="servers">
-    <%= @not_backuped.map{|server| link_to server, server}.join(", ").html_safe %>
+    <% virtual, physical = @not_backuped.partition{|s| s.virtual?} %>
+    <p>
+      <strong>Physique:</strong>
+      <%= physical.present? ? physical.map{|server| link_to server, server}.join(", ").html_safe : "aucun" %>
+    </p>
+    <p>
+      <strong>Virtuel:</strong>
+      <%= virtual.present? ? virtual.map{|server| link_to server, server}.join(", ").html_safe : "aucun" %>
+    </p>
   </div>
 </div>
 <% end %>
