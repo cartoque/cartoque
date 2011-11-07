@@ -2,17 +2,30 @@ module ToolsHelper
   def symetry_table_for(nodes, options = {}, &block)
     title = options.delete(:title)
     status = options.delete(:status)
+    is_diff = options.delete(:diff)
     final = content_tag(:h2, :class => (status ? "identical" : "different")) do
       content_tag(:span, image_tag("bullet_toggle_plus.png", :size => "16x16", :class => "inline"), :class => "more") + title
     end
     final << content_tag(:table, :class => "list symetry", :style => "display:none;") do
       output = content_tag :tr do
-        nodes.map{|node| %(<th style="width:#{100 / nodes.size}%;">#{node}</th>)}.join.html_safe
+        nodes.map{|node| %(<th style="width:#{td_size(is_diff, node == nodes.first, nodes.size)}%;">#{node}</th>)}.join.html_safe
       end
       output.safe_concat(capture(&block)) if block_given?
       output
     end
     final
+  end
+
+  def td_size(is_diff, first_node, nodes_count)
+    if is_diff
+      if first_node
+        20
+      else
+        80 / (nodes_count - 1)
+      end
+    else
+      100 / nodes_count
+    end
   end
 
   def render_diff_list(title, elements)

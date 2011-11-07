@@ -49,7 +49,7 @@ packages_map = hsh[:nodes].map do |n|
   File.exists?(pkg_file) ? File.readlines(pkg_file).map{|l| l.chomp.sub(/-[0-9].*/, "")}.join("\n") : ""
 end
 uniq = packages_map.uniq %>
-<%= symetry_table_for hsh[:nodes], :status => (uniq.length == 1), :title => "Packages (hors version)" do %>
+<%= symetry_table_for hsh[:nodes], :status => (uniq.length == 1), :title => "Packages (hors version)", :diff => true do %>
   <% if uniq.length == 1 %>
   <tr>
     <td colspan="<%= packages_map.length %>"><%= packages_map.first.count("\n")+1 %> packages</td>
@@ -80,7 +80,7 @@ packages_map = hsh[:nodes].map do |n|
   File.exists?(pkg_file) ? File.read(pkg_file) : ""
 end
 uniq = packages_map.uniq %>
-<%= symetry_table_for hsh[:nodes], :status => (uniq.length == 1), :title => "Packages (avec version)" do %>
+<%= symetry_table_for hsh[:nodes], :status => (uniq.length == 1), :title => "Packages (avec version)", :diff => true do %>
   <% if uniq.length == 1 %>
   <tr class="identical">
     <td colspan="<%= packages_map.length %>"><%= packages_map.first.count("\n")+1 %> packages</td>
@@ -113,7 +113,7 @@ lists_map = hsh[:nodes].map do |n|
 end
 hierarchy = file_list.gsub(%r{^/list},"").gsub(/\.list$/,"").gsub("_","/")
 uniq = lists_map.uniq %>
-<%= symetry_table_for hsh[:nodes], :status => (uniq.length == 1), :title => "Fichiers #{hierarchy}" do %>
+<%= symetry_table_for hsh[:nodes], :status => (uniq.length == 1), :title => "Fichiers #{hierarchy}", :diff => true do %>
   <% if uniq.length == 1 %>
   <tr>
     <td colspan="<%= lists_map.length %>"><%= lists_map.first.lines.count %> fichiers identiques (fichier,permissions,md5sum)</td>
