@@ -23,7 +23,7 @@ namespace :import do
         servername.chomp!
         server = Server.find_or_generate(servername)
         job = BackupJob.find_or_create_by_server_id_and_hierarchy(server.id, "/")
-        job.client_type = "VDR (vmware)"
+        job.client_type = "VDR"
         job.save if job.changed?
       end
     end
