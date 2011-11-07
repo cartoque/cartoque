@@ -21,7 +21,7 @@
     <tr>
       <td class="tiny"><%= backup_exception.user.try(:name) %></td>
       <td><%= backup_exception.reason %></td>
-      <td><%= backup_exception.servers.map{|s| link_to s,s}.join(", ").html_safe %></td>
+      <td><%= backup_exception.servers.sort_by(&:name).map{|s| link_to s,s}.join(", ").html_safe %></td>
       <td>
         <%= link_to_edit edit_backup_exception_path(backup_exception) %>
         <%= link_to_delete backup_exception %>
