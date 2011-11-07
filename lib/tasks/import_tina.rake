@@ -9,7 +9,10 @@ namespace :import do
       attributes = {}
       File.read(file).each_line do |line|
         if line.match(/^(?:SYSTEME|- Syst\*me)\s+:\s+(\S+)(?:\s+\[(\S+)\])?/)
-          sections[hostname] = attributes if hostname
+          if hostname
+            sections[hostname] ||= []
+            sections[hostname] << attributes
+          end
           hostname = $1
           attributes = {:catalog => catalog, :type => $2, :files => []}
         elsif line.match(/Version logicielle : (.*)/)
@@ -18,17 +21,22 @@ namespace :import do
           attributes[:files] << $1
         end
       end
-      sections[hostname] = attributes if hostname
+      if hostname
+        sections[hostname] ||= []
+        sections[hostname] << attributes
+      end
     end
     #save data in the db
-    sections.each do |servername, attributes|
+    sections.each do |servername, jobs|
       server = Server.find_or_generate(servername)
-      attributes[:files].each do |fs|
-        job = BackupJob.find_or_create_by_server_id_and_hierarchy(server.id, fs)
-        job.client_type = "TiNa"
-        job.client_version = attributes[:client_version]
-        job.catalog = attributes[:catalog]
-        job.save if job.changed?
+      jobs.each do |attributes|
+        attributes[:files].each do |fs|
+          job = BackupJob.find_or_create_by_server_id_and_hierarchy(server.id, fs)
+          job.client_type = "TiNa"
+          job.client_version = attributes[:client_version]
+          job.catalog = attributes[:catalog]
+          job.save if job.changed?
+        end
       end
     end
   end
