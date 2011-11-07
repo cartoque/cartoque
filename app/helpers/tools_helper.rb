@@ -1,7 +1,7 @@
 module ToolsHelper
   def symetry_table_for(nodes, options = {}, &block)
-    title = options.delete(:title)
-    status = options.delete(:status)
+    title = options[:title]
+    status = options[:status]
     final = content_tag(:h2, :class => (status ? "identical" : "different")) do
       content_tag(:span, image_tag("bullet_toggle_plus.png", :size => "16x16", :class => "inline"), :class => "more") + title
     end
