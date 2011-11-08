@@ -153,3 +153,4 @@ fr:
   renewal_on: "A renouveler le"
   arch: "Architecture"
   reason: "Raison"
+  authentication_token: "Token API"

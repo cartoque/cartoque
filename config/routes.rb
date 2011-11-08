@@ -11,7 +11,9 @@ Cartocs::Application.routes.draw do
   end
   resources :saas, :only => :show
   resources :mainteneurs
-  resources :users, :except => :show
+  resources :users, :except => :show do
+    collection { get 'random_token' }
+  end
   resources :physical_racks, :except => :show
   resources :sites, :except => :show
   resources :operating_systems, :except => :show

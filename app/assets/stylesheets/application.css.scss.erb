@@ -148,6 +148,7 @@ button, a.button, input[type=submit] {
   &:hover { color:#333; @include gradient(#fff, #ddd); box-shadow:0 0 2px #e5e5e5; border:1px solid #888; }
   &:active { position:relative; top:1px; }
 }
+button.inline { padding:2px 4px; font-size:11px; font-weight:normal; position:relative; bottom:1px; }
 
 ul.details {
   margin:0.2em 0.5em 0.2em 0.8em;
@@ -563,6 +564,11 @@ ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
     a:hover { text-decoration:underline; }
   }
 }
+
+/* params, users */
+#user_authentication_token { background-color:#fff; }
+#authentication_token { font-weight:bold; color:#444; }
+#remove-token { background-color:#c22; color:#fff; @include gradient(#c44, #e44); text-shadow:none;}
 
 /* related CIs */
 .show {

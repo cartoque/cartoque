@@ -19,6 +19,7 @@
 //= require raphael/g.pie-min
 //= require jquery/jquery.facebox
 //= require jquery/jquery.placeholder
+//= require users
 //
 //not for now: //= require_tree .
 

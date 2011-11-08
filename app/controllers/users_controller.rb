@@ -8,4 +8,8 @@ class UsersController < InheritedResources::Base
   def update
     update! { users_url }
   end
+
+  def random_token
+    @token = SecureRandom.hex(16)
+  end
 end
