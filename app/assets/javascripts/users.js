@@ -1,7 +1,6 @@
 //generate token button
 $(function() {
   $("#generate-token").live("click", function(e) {
-    $(this).html("Génération...");
     $(this).disabled = true;
     $.ajax({
       type: "GET",
@@ -10,7 +9,6 @@ $(function() {
       //dataType: "script",
       callback: null
     });
-    $(this).html("Générer");
     return false;
   });
   $("#remove-token").live("click", function(e) {
