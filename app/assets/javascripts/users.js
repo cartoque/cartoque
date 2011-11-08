@@ -10,6 +10,7 @@ $(function() {
       //dataType: "script",
       callback: null
     });
+    $(this).html("Générer");
     return false;
   });
   $("#remove-token").live("click", function(e) {
