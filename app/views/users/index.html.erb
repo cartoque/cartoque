@@ -6,10 +6,11 @@
   <%= link_to "Nouvel utilisateur", new_user_path %>
 <% end %>
 
-<table class="list pretty">
+<table class="list pretty users">
   <tr>
     <th>Nom</th>
     <th>Mode d'authentification</th>
+    <th>API</th>
     <th></th>
   </tr>
   <tbody class="long-list">
@@ -17,6 +18,7 @@
   <tr>
     <td><%= link_to user.name, edit_user_path(user) %></td>
     <td><%= user.provider %> / <%= user.uid %></td>
+    <td class="api center"><%= "&#149;".html_safe if user.authentication_token? %></td>
     <td><%= link_to_delete user %></td>
   </tr>
 <% end %>
