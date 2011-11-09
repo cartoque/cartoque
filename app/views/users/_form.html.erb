@@ -18,7 +18,8 @@
           <span id="authentication_token"><%= @user.authentication_token %></span>
           <%= f.hidden_field :authentication_token %>
           <%= button_tag "Générer", :id => "generate-token", :class => "inline", :style => (@user.authentication_token.present? ? "display:none;" : nil) %>
-          <%= button_tag "Supprimer", :id => "remove-token", :class => "inline", :style => (@user.authentication_token.blank? ? "display:none;" : nil) %>
+          <%= button_tag "Supprimer", :id => "remove-token", :class => "inline", :style => (@user.authentication_token.blank? ? "display:none;" : nil),
+                                      "data-confirm" => t(:text_are_you_sure) %>
         </td>
       </tr>
     </tbody>
