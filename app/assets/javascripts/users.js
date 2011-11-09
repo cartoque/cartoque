@@ -2,7 +2,7 @@
 $(function() {
   $("#generate-token").live("click", function(e) {
     $(this).disabled = true;
-    $.ajax({
+    $.rails.ajax({
       type: "GET",
       url: "/users/random_token",
       //data: $(this).val(),
