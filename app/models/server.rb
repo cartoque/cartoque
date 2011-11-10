@@ -45,6 +45,9 @@ class Server < ActiveRecord::Base
 
   scope :active, where("status" => STATUS_ACTIVE)
   scope :inactive, where("status" => STATUS_INACTIVE)
+  scope :real_servers, where(:network_device => false)
+  scope :network_devices, where(:network_device => true)
+  scope :hypervisor_hosts, where(:is_hypervisor => true)
   scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
   scope :by_site, proc {|site_id| joins(:physical_rack).where("physical_racks.site_id" => site_id) }
   scope :by_location, proc {|location|
@@ -66,8 +69,6 @@ class Server < ActiveRecord::Base
   scope :by_rubyversion, proc {|version| where(:rubyversion => version) }
   scope :by_serial_number, proc {|search| where("serial_number like ?", "%#{search}%") }
   scope :by_arch, proc {|arch| where(:arch => arch) }
-  scope :network_devices, where(:network_device => true)
-  scope :hypervisor_hosts, where(:is_hypervisor => true)
 
   validates_presence_of :name
   validates_uniqueness_of :name
