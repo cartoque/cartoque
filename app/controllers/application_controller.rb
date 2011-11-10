@@ -26,8 +26,13 @@ class ApplicationController < ActionController::Base
     redirect_to("/auth/required") unless logged_in? || api_request?
   end
 
+  #TODO: test User#seen_on as soon as I find a way to test authentication correctly
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    return @current_user if @current_user
+    if session[:user_id]
+      @current_user = User.find(session[:user_id])
+      @current_user.update_attribute(:seen_on, Date.today)
+    end
   end
 
   def logged_in?

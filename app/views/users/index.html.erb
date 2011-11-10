@@ -9,16 +9,20 @@
 <table class="list pretty users">
   <tr>
     <th>Nom</th>
-    <th>Mode d'authentification</th>
+    <th>Provider</th>
+    <th>UID</th>
     <th>API</th>
+    <th>Seen</th>
     <th></th>
   </tr>
   <tbody class="long-list">
 <% @users.each do |user| %>
   <tr>
     <td><%= link_to user.name, edit_user_path(user) %></td>
-    <td><%= user.provider %> / <%= user.uid %></td>
+    <td class="center"><%= user.provider %></td>
+    <td class="center"><%= user.uid %></td>
     <td class="api center"><%= "&#149;".html_safe if user.authentication_token? %></td>
+    <td class="center"><%= user.seen_on.try(:strftime, "%d/%m/%y") %></td>
     <td><%= link_to_delete user %></td>
   </tr>
 <% end %>

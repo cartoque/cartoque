@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111107191816) do
+ActiveRecord::Schema.define(:version => 20111110074644) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -328,6 +328,7 @@ ActiveRecord::Schema.define(:version => 20111107191816) do
     t.datetime "updated_at"
     t.string   "settings"
     t.string   "authentication_token"
+    t.date     "seen_on"
   end
 
 end
