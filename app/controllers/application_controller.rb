@@ -40,7 +40,13 @@ class ApplicationController < ActionController::Base
   end
 
   def api_request?
-    request.local? && %w(csv json xml).include?(params[:format])
+    request.local? && %w(csv json xml).include?(params[:format]) && valid_api_token?
+  end
+
+  def valid_api_token?
+    token = env["HTTP_X_CARTOCS_TOKEN"]
+    File.open("/tmp/blah","w"){|f|f.write(env.inspect)}
+    @current_user ||= User.find_by_authentication_token(token) if token && token.length > 5
   end
 
   #for more information on pdfkit + asset pipeline:
