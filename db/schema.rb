@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111110074644) do
+ActiveRecord::Schema.define(:version => 20111110132120) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -250,9 +250,9 @@ ActiveRecord::Schema.define(:version => 20111110074644) do
     t.integer "ipaddress",              :limit => 8
     t.boolean "has_drac",                              :default => false
     t.string  "identifier"
-    t.boolean "network_device"
+    t.boolean "network_device",                        :default => false, :null => false
     t.integer "hypervisor_id"
-    t.boolean "is_hypervisor"
+    t.boolean "is_hypervisor",                         :default => false, :null => false
     t.string  "puppetversion"
     t.string  "facterversion"
     t.string  "rubyversion"
