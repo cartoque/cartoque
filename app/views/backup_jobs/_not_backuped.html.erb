@@ -1,0 +1,6 @@
+<% if servers.present? %>
+<p>
+  <strong><%= servers.count >= 2 ? server_type.pluralize : server_type %>:</strong>
+  <%= servers.map{|server| link_to server, server}.join(", ").html_safe %>
+</p>
+<% end %>

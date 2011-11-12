@@ -2,22 +2,15 @@
 
 <div id="backup_jobs" class="items_list grid_12">
   
-<% if @not_backuped.any? %>
+<% if @not_backuped_count > 0 %>
 <div id="not-backuped">
   <div class="contextual">
     <%= link_to "Gérer les exceptions", backup_exceptions_path %>
   </div>
-  <h2>Non sauvegardés (<%= @not_backuped.count %>)</h2>
+  <h2>Non sauvegardés (<%= @not_backuped_count %>)</h2>
   <div class="servers">
-    <% virtual, physical = @not_backuped.partition{|s| s.virtual?} %>
-    <p>
-      <strong>Physique:</strong>
-      <%= physical.present? ? physical.map{|server| link_to server, server}.join(", ").html_safe : "aucun" %>
-    </p>
-    <p>
-      <strong>Virtuel:</strong>
-      <%= virtual.present? ? virtual.map{|server| link_to server, server}.join(", ").html_safe : "aucun" %>
-    </p>
+    <%= render :partial => 'not_backuped', :locals => { :server_type => "Physique", :servers => @physical_not_backuped } %>
+    <%= render :partial => 'not_backuped', :locals => { :server_type => "Virtuel", :servers => @virtual_not_backuped } %>
   </div>
 </div>
 <% end %>

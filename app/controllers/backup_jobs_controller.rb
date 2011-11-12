@@ -17,6 +17,8 @@ class BackupJobsController < InheritedResources::Base
   end
 
   def find_not_backuped
-    @not_backuped = Server.not_backuped
+    not_backuped = Server.not_backuped
+    @not_backuped_count = not_backuped.count
+    @virtual_not_backuped, @physical_not_backuped = not_backuped.partition{|s| s.virtual?}
   end
 end
