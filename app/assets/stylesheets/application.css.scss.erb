@@ -386,19 +386,11 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 .actions {
   text-align:center; font-size:95%; margin:5px 0;
   a:first-child { margin-left:5px; }
-  a img { margin-top:-3px; }
+  a img { margin-top:1px; }
   /* contexts */
   li { list-style-type:none; margin:0; display:inline; }
   li a { float:left; margin-right:10px; padding:0 8px; text-shadow:1px 1px 0 rgba(255,255,255,0.7); }
   li a.selected { position:relative; top:-1px; font-weight:/*bold*/normal; background:#fff; border:1px solid #ccc; border-right-color:#eee; border-bottom-color:#eee; }
-  ul.select-buttons {
-    list-style-type:none; margin:0; padding:0;
-    li { padding:0; margin:0; float:left; }
-    a, a:hover { padding:2px 8px; margin:0 3px 0 0; position:relative; bottom:2px; text-decoration:none; font-weight:bold;
-                 color:#222; font-size:90%; @include border-radius(20px); }
-    li a:hover { background-color:#999; color:#fff; text-shadow:1px 1px 0 #555; }
-    li.current a { background-color:#667; color:#fff; text-shadow:1px 1px 0 #333; }
-  }
   div.contextswitch {
     position:absolute; right:0; top:0; height:13px; padding:6px 10px 6px 12px; border-left:1px solid #e9edf9;
     background:url(<%= asset_path 'context_back-up.png' %>) 100% -6px no-repeat; cursor:pointer;
@@ -419,8 +411,16 @@ h1.welcome { font-family:'Lobster', serif; font-size:40px; font-style:normal; fo
 
 td.actions div.actions { font-size:90%; margin:0; }
 #container>.actions, .items_list>.actions, .grid_12>.actions { 
-  position:relative; margin-bottom:4px; padding:6px 5px 5px; height:14px; line-height:14px;
+  position:relative; margin-bottom:4px; padding:4px 5px 3px; min-height:17px; line-height:15px;
   text-align:left; background-color:#edf3fe; color:#666; border:1px solid #def; 
+  ul.select-buttons {
+    list-style-type:none; margin:0; padding:0;
+    li { padding-top:2px; margin:1px 0 2px; display:inline-block; height:12px; }
+    a, a:hover { padding:2px 8px; margin:-2px 2px 1px 0; position:relative; bottom:1px; font-weight:bold;
+                 color:#222; font-size:90%; @include border-radius(20px); }
+    li a:hover { background-color:#999; color:#fff; text-shadow:1px 1px 0 #555; }
+    li.current a { background-color:#667; color:#fff; text-shadow:1px 1px 0 #333; }
+  }
 }
 #container>.actions a, .items_list>.actions a, .grid_12>.actions a { margin:0 2px; }
 
