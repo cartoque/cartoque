@@ -45,7 +45,6 @@ class ApplicationController < ActionController::Base
 
   def valid_api_token?
     token = env["HTTP_X_CARTOCS_TOKEN"]
-    File.open("/tmp/blah","w"){|f|f.write(env.inspect)}
     @current_user ||= User.find_by_authentication_token(token) if token && token.length > 5
   end
 
