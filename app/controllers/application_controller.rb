@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
   end
 
   def api_request?
-    request.local? && %w(csv json xml).include?(params[:format]) && valid_api_token?
+    %w(csv json xml).include?(params[:format]) && valid_api_token?
   end
 
   def valid_api_token?
