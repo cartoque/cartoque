@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
       @current_user = User.find_by_authentication_token(token)
     end
     # update User#seen_on if possible
-    @current_user.update_attribute(:seen_on, Date.today) if @current_user
+    @current_user.try(:seen_now!)
     @current_user
   end
 

@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
     set_setting(key, value)
     save
   end
+
+  def seen_now!
+    update_attribute(:seen_on, Date.today)
+  end
 end
