@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     @current_user.try(:seen_now!)
     @current_user
   end
-  helper_method :logged_in?
+  helper_method :current_user
 
   def logged_in?
     current_user.present?
