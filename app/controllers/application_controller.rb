@@ -28,11 +28,14 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return @current_user if @current_user
-    if session[:user_id] #standard login
-      @current_user = User.find(session[:user_id])
-    elsif valid_api_token? #api login
+    # Standard login
+    if valid_session_user_id?
+      @current_user = User.find(session_user_id)
+    # API login
+    elsif valid_api_token?
       @current_user = User.find_by_authentication_token(token)
     end
+    # update User#seen_on if possible
     @current_user.update_attribute(:seen_on, Date.today) if @current_user
     @current_user
   end
@@ -43,6 +46,14 @@ class ApplicationController < ActionController::Base
 
   def api_request?
     %w(csv json xml).include?(params[:format]) && valid_api_token?
+  end
+
+  def valid_session_user_id?
+    session_user_id && session_user_id.to_i > 0
+  end
+
+  def session_user_id
+    session[:user_id]
   end
 
   def valid_api_token?
