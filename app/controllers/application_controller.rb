@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   private
   def authenticate!
-    redirect_to("/auth/required") unless logged_in? || api_request?
+    redirect_to("/auth/required") unless logged_in?
   end
 
   def current_user
@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     if valid_session_user_id?
       @current_user = User.find(session_user_id)
     # API login
-    elsif valid_api_token?
+    elsif valid_api_token? && api_request?
       @current_user = User.find_by_authentication_token(token)
     end
     # update User#seen_on if possible
@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   end
 
   def api_request?
-    %w(csv json xml).include?(params[:format]) && valid_api_token?
+    %w(csv json xml).include?(params[:format])
   end
 
   def valid_session_user_id?
