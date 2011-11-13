@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  helper_method :current_user, :logged_in?
-
   rescue_from ActiveRecord::RecordNotFound do |exception|
     render_404 exception
   end
@@ -39,10 +37,12 @@ class ApplicationController < ActionController::Base
     @current_user.try(:seen_now!)
     @current_user
   end
+  helper_method :logged_in?
 
   def logged_in?
     current_user.present?
   end
+  helper_method :logged_in?
 
   def api_request?
     %w(csv json xml).include?(params[:format])
