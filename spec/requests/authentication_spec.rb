@@ -23,4 +23,20 @@ describe "Authentication" do
       end
     end
   end
+
+  describe "should update User#seen_on attribute" do
+    it "is unset by default" do
+      u = Factory(:user)
+      u.seen_on.should be_blank
+    end
+
+    it "updates when using 'current_user' and returns the current user" do
+      u = Factory(:user)
+      get servers_path(:format => "csv").to_s, {}, "HTTP_X_CARTOCS_TOKEN" => u.authentication_token
+      current_user = controller.send(:current_user)
+      current_user.should eq u
+      current_user.seen_on.should_not be_blank
+      (current_user.seen_on - Date.today).should be < 2
+    end
+  end
 end

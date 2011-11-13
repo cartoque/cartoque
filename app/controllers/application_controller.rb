@@ -26,13 +26,15 @@ class ApplicationController < ActionController::Base
     redirect_to("/auth/required") unless logged_in? || api_request?
   end
 
-  #TODO: test User#seen_on as soon as I find a way to test authentication correctly
   def current_user
     return @current_user if @current_user
-    if session[:user_id]
+    if session[:user_id] #standard login
       @current_user = User.find(session[:user_id])
-      @current_user.update_attribute(:seen_on, Date.today)
+    elsif valid_api_token? #api login
+      @current_user = User.find_by_authentication_token(token)
     end
+    @current_user.update_attribute(:seen_on, Date.today) if @current_user
+    @current_user
   end
 
   def logged_in?
@@ -44,7 +46,7 @@ class ApplicationController < ActionController::Base
   end
 
   def valid_api_token?
-    @current_user ||= User.find_by_authentication_token(token) if token && token.length > 5
+    token && token.length > 5
   end
 
   def token
