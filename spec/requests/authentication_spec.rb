@@ -21,6 +21,12 @@ describe "Authentication" do
         get servers_path(:format => "csv").to_s, {}, "HTTP_X_CARTOCS_TOKEN" => u.authentication_token
         response.status.should be(200)
       end
+
+      it "refuses access if not using csv/xml/json formats" do
+        u = Factory(:user)
+        get servers_path(:format => "html").to_s, {}, "HTTP_X_CARTOCS_TOKEN" => u.authentication_token
+        response.should redirect_to(auth_required_path)
+      end
     end
   end
 
