@@ -44,8 +44,11 @@ class ApplicationController < ActionController::Base
   end
 
   def valid_api_token?
-    token = env["HTTP_X_CARTOCS_TOKEN"]
     @current_user ||= User.find_by_authentication_token(token) if token && token.length > 5
+  end
+
+  def token
+    env["HTTP_X_CARTOCS_TOKEN"]
   end
 
   #for more information on pdfkit + asset pipeline:
