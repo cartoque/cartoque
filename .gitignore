@@ -1,6 +1,8 @@
 .bundle
 .rvmrc
 .sass-cache
+coverage
+coverage.data
 config/database.yml
 db/data.yml
 db/*.sqlite3
