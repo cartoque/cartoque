@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111114171048) do
+ActiveRecord::Schema.define(:version => 20111114191215) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20111114171048) do
     t.integer  "server_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "exclusion_patterns"
   end
 
   create_table "configuration_items", :force => true do |t|

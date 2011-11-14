@@ -15,6 +15,8 @@ namespace :import do
           end
           hostname = $1
           attributes = {:catalog => catalog, :type => $2, :files => []}
+        elsif line.match(/Exclusion : (.+)/)
+          attributes[:excluded] = $1
         elsif line.match(%r{^\s{2,}(/\S*)})
           attributes[:files] << $1
         end
@@ -31,6 +33,7 @@ namespace :import do
         attributes[:files].each do |fs|
           job = BackupJob.find_or_create_by_server_id_and_hierarchy(server.id, fs)
           job.client_type = "TiNa"
+          job.exclusion_patterns = attributes[:excluded]
           job.catalog = attributes[:catalog]
           job.save if job.changed?
         end

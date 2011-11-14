@@ -3,12 +3,14 @@
   <th>Type</th>
   <th>Catalogue</th>
   <th class="left">Arborescence</th>
+  <th class="left">Exceptions</th>
 </tr>
 <% @backup_jobs.each do |backup_job| %>
 <tr class="has-opaques">
   <td><%= link_to backup_job.server, backup_job.server %></td>
   <td class="center"><%= backup_job.client_type %></td>
   <td class="center"><%= backup_job.catalog %></td>
-  <td><%= backup_job.hierarchy %></td>
+  <td class="hierarchy"><%= backup_job.hierarchy %></td>
+  <td class="exclusion_patterns"><%= backup_job.exclusion_patterns %></td>
 </tr>
 <% end %>
