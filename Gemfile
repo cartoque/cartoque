@@ -66,6 +66,7 @@ group :test do
   gem 'spork', '> 0.9.0.rc'
   gem 'guard-spork'
   gem 'libnotify'
+  gem 'rb-inotify'
   gem 'cover_me'
 end
 
