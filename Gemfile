@@ -74,4 +74,5 @@ group :development, :test do
   gem 'sqlite3'
   gem 'thin'
   gem 'metric_fu'
+  gem 'newrelic_rpm'
 end

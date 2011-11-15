@@ -4,6 +4,7 @@
 coverage
 coverage.data
 config/database.yml
+config/newrelic.yml
 db/data.yml
 db/*.sqlite3
 log/*.log
