@@ -90,8 +90,9 @@ class Tomcat < Hashie::Mash
     tomcats.inject(filters_from) do |filters,tomcat|
       tomcat.each do |key,value|
         key = key.to_sym
+        server = Server.find_by_name(value)
         next if key == :cerbere || key == :cerbere_csac || key == :crons
-        next if key == :server && !Server.find(value).active?
+        next if key == :server && server && !server.active?
         filters[key] ||= []
         value = value.split("_").first if key == :tomcat
         filters[key] << value unless filters[key].include?(value)
