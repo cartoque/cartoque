@@ -26,7 +26,7 @@
     <td><%= select_tag "by_client_type", options_for_select(BackupJob.select("distinct(client_type)").map(&:client_type).reject(&:blank?).sort, params[:by_client_type]), :include_blank => true %></td>
     <td></td>
     <td></td>
-    <td><span id="backup_jobs_counter" class="counter"><%= @servers.count %></span></td>
+    <td><span id="backup_jobs_counter" class="counter"><%= @backup_jobs.map(&:server_id).uniq.count %></span></td>
   </tr>
   <% end %>
   <tbody id="backup_jobs_list" class="long-list">

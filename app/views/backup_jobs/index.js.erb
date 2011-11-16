@@ -1,4 +1,4 @@
 $("#backup_jobs_list").html("<%= escape_javascript(render("list")) %>");
-$("#backup_jobs_counter").html("<%= @servers.count %>");
+$("#backup_jobs_counter").html("<%= @backup_jobs.map(&:server_id).uniq.count %>");
 fixTableHeaders();
 $("html, body").animate({ scrollTop: 0 }, 200);
