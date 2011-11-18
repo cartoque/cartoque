@@ -12,10 +12,7 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.html { render :text => %(<div class="center not_found">These are not the droids you're looking for</div>),
                            :status => :not_found, :layout => true }
-      format.atom { head :not_found }
-      format.xml { head :not_found }
-      format.js { head :not_found }
-      format.json { head :not_found }
+      format.any(:atom, :xml, :js, :json) { head :not_found }
     end
   end
 
