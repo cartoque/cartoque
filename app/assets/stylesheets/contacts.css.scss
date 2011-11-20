@@ -1,10 +1,17 @@
+@import 'app/assets/stylesheets/mixins';
+
 #contact_general {
   table { border:none; margin-top:20px; }
   #contact_identity input { font-size:150%; font-weight:bold; width:12em; margin-right:4px; }
 }
 #contacts_list {
-  .contact_position { font-size:90%; color:#666; font-style:italic; margin-left:40px; }
-  th.name { width:40%; }
-  th.phone { width:12em; }
-  th.email { width:15em; }
+  .contact_card { @include box-shadow(#ccc, 0, 0, 3px); margin:8px 8px 8px 2px; padding:5px 5px 5px 44px; width:350px;
+                  background-color:#fcfcfc; background-repeat:no-repeat; background-position:6px 8px; }
+  h5 { font-size:15px; font-weight:bold; margin:0; padding:0; line-height:20px; }
+  .contact_position { font-size:100%; font-style:italic; margin-top:1px; }
+  p {
+    font-size:90%; color:#666; margin-top:4px;
+    a, a:hover { color:#666; }
+    a:hover { text-decoration:underline; }
+  }
 }
