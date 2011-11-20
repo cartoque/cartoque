@@ -1,0 +1,25 @@
+@import 'mixins';
+.virtual-server { font-weight:bolder; font-size:15px; color:#3a3; margin-right:5px; }
+.puppetized-server { font-weight:bolder; font-size:15px; color:#a3a; margin-right:5px; }
+.network-device { margin-right:5px; margin-top:2px; }
+.hidden-if-virtual.virtual { display:none; }
+.hidden-if-physical:not(.virtual) { display:none; }
+.maintenance-warning, .renewal-warning { color:#f80; }
+.maintenance-critical, .renewal-critical { font-weight:bold; color:#d00; }
+.server-mainteneur { margin:0; position:relative; display:block; padding:0 0 0 2em; list-style-type:none; }
+.mainteneur-infos ul { font-size:90%; margin:0.5em; }
+ul.mainteneur { font-size:90%; margin:0.2em 0.5em; }
+.database_servers li { margin:4px auto; }
+.server-details { font-size:90%; display:inline-block; background-color:#eee; color:#335;
+                   padding:1px 6px; margin:0 6px; border:1px solid #ccd; @include border-radius(10px); }
+#server_general {
+  ul.collection { text-align:left; margin-left:0; margin-top:0; font-size:90%; }
+  .link-arrow { font-size:150%; }
+  .link-fc .link-arrow { color:#ea0; }
+  .link-eth .link-arrow { color:#00a; }
+}
+#server_general th.server_name, #application_general th.application_name { text-transform:uppercase; font-size:150%; }
+#server_name, #application_name { font-size:150%; font-weight:bold; }
+.server_description {
+  border-bottom:1px solid #ddd;
+}

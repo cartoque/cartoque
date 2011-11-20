@@ -1,0 +1,16 @@
+.operating_systems {
+  td { padding:0; }
+  th { text-align:left; }
+  th .contextual { padding-right:24px; }
+}
+.operating_system {
+  margin:0; padding:5px 3px 5px 8px;
+  > .contextual { margin-left:10px; }
+  .servers-count { width:50px; margin:0 0 0 20px; padding:0; text-align:right; }
+}
+.nested-os {
+  margin-left:10px;
+  .operating_system { padding-left:16px; background-image: url(<%= asset_path 'bullet_arrow_right.png' %>);
+                      background-position:left center; background-repeat:no-repeat; }
+}
+.os-icon { margin:0 2px -2px 0; }

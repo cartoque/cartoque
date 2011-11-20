@@ -1,0 +1,12 @@
+@import 'mixins';
+#login { color:#c22; font-size:120%; padding-top:3em; padding-bottom:5em; }
+#cas-login {
+  margin:3em auto 0; font-weight:bold; text-align:center;
+  a, a:hover {
+    display:inline-block; padding:0.4em 1em; max-width:800px; text-align:center;
+    color:#fff; background-color:#78cc01; text-decoration:none !important; text-shadow:1px 1px 1px #666;
+    @include border-radius(14px);
+  }
+  a:hover { background-color:#70c600; }
+  a:active { position:relative; top:1px; }
+}

@@ -1,0 +1,23 @@
+@import 'mixins';
+table.databases {
+  width:100%;
+  #databases_list {
+    td, th:last-child, td, th:last-child { border-right:1px solid #ccc; }
+  }
+}
+.database_nodes, .tomcat_vips { margin:0; display:block; padding:0 0 0 1.5em; list-style-type:none; color:#666; font-size:90%; }
+ul.databases-details { margin:0; position:relative; display:block; padding:0; list-style-type:none; }
+.offset { padding-left:1em; }
+.csacok { font-weight:bold; color:green; }
+.csacko { font-weight:bold; color:red; }
+.server_tomcats {
+  ul { margin-left:1em; }
+  li { padding:0.3em 0; }
+}
+.tomcat-crons {
+  h2 { border-bottom:1px solid #eee; margin:6px 0; }
+  .contextual { margin:8px 20px 0 0; font-size:90%; }
+  .cron { width:900px; margin:10px 0; }
+  pre { overflow-x:auto; max-width:900px; background:#fcfcff; @include box-shadow(#ccc, 0, 0, 8px); font:90% "Lucida Console", monospace; padding:6px 5px; }
+  code { position:relative; top:-1px; padding:2px 4px; font-size:100%; border:1px solid #f8f8f8; }
+}
