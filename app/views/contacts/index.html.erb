@@ -1,0 +1,40 @@
+<% title "Contacts" %>
+
+<div class="grid_12">
+
+  <%= action_links do %>
+    <%= link_to 'Nouveau contact', new_contact_path %>
+  <% end %>
+
+<table id="contacts_list" class="list pretty full">
+  <thead>
+    <tr>
+      <th class="name">Nom</th>
+      <th class="phone">Téléphone</th>
+      <th class="email">Email</th>
+      <th class="comment"> </th>
+    </tr>
+  </thead>
+  <tbody class="long-list">
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td>
+          <%= link_to_edit edit_contact_path(contact) %>
+          <%= link_to_delete contact %>
+          <span class="contact_name">
+            <%= link_to contact.full_name, contact %>
+          </span>
+          <br />
+          <span class="contact_position">
+            <%= [contact.job_position, contact.company].join(", ") if contact.job_position.present? || contact.company.present? %>
+          </span>
+        </td>
+        <td><%= contact.phone %> <%= contact.mobile %></td>
+        <td><%= contact.email %></td>
+        <td><%= contact.comment %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>

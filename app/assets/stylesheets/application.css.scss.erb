@@ -9,6 +9,7 @@
  *= require_self
  *= require_directory ./js
  *= require backup_jobs
+ *= require contacts
 */
 
 /* TODO: move everything below to separate stylesheet files */
@@ -343,6 +344,8 @@ html>body #loading { position:fixed; }
                    display:-moz-inline-box; display:inline-block; /* Use font-size to control the size of the arrow. */ font-size:8px;
                    margin:0 0.2em 1px 0.4em; height:0; width:0; top:0.2em; line-height:0; position:relative; vertical-align:middle;
                    border-top-width:0.5em; border-top-style:solid; border-top-color:/*#36c*/#555; }
+  li.right-separator { border-right:1px solid #ddd; }
+  li.right-separator.active { border-right:2px solid #ddd; }
 }
 
 /* sidebar */

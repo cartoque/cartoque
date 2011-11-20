@@ -1,0 +1,10 @@
+#contact_general {
+  table { border:none; margin-top:20px; }
+  #contact_identity input { font-size:150%; font-weight:bold; width:12em; margin-right:4px; }
+}
+#contacts_list {
+  .contact_position { font-size:90%; color:#666; font-style:italic; margin-left:40px; }
+  th.name { width:40%; }
+  th.phone { width:12em; }
+  th.email { width:15em; }
+}

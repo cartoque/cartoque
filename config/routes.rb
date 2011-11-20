@@ -1,4 +1,5 @@
 Cartocs::Application.routes.draw do
+  resources :contacts
   resources :backup_exceptions, :except => :show
   resources :backup_jobs, :only => [:index]
   resources :licenses
