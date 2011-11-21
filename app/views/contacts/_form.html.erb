@@ -1,31 +1,33 @@
 <%= simple_form_for(@contact) do |f| %>
 
-  <%= action_links do %>
-    <%= f.button :submit %>
-    ou <%= link_to "Retourner à la liste", contacts_path %>
-    <% unless @contact.new_record? %>
-      | <%= link_to "Voir", @contact %>
+  <div id="contact_general" class="grid_6">
+    
+    <%= action_links do %>
+      <%= f.button :submit %>
+      ou <%= link_to "Retourner à la liste", contacts_path %>
+      <% unless @contact.new_record? %>
+        | <%= link_to "Voir", @contact %>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <div id="contact_general" class="grid_12">
-  <table class="inputs">
-    <tbody>
-      <%= tabular_errors @contact %>
-      <tr id="contact_identity">
-        <td colspan="2">
-          <%= f.text_field :first_name, :placeholder => t(:first_name) %>
-          <%= f.text_field :last_name, :placeholder => t(:last_name) %>
-        </td>
-      </tr>
-      <%= f.input :job_position %>
-      <%= f.input :company %>
-      <%= f.input :phone %>
-      <%= f.input :mobile %>
-      <%= f.input :email %>
-      <%= f.input :comment, input_html: {size: "40x5"}  %>
-    </tbody>
-  </table>
+    <table class="inputs">
+      <tbody>
+        <%= tabular_errors @contact %>
+        <tr id="contact_identity">
+          <td colspan="2">
+            <%= f.text_field :first_name, :placeholder => t(:first_name) %>
+            <%= f.text_field :last_name, :placeholder => t(:last_name) %>
+          </td>
+        </tr>
+        <%= f.input :job_position, :input_html => { :class => "long" } %>
+        <%= f.input :company, :input_html => { :class => "long" } %>
+        <%= f.input :email, :input_html => { :class => "long" } %>
+        <%= f.input :phone, :input_html => { :class => "short" } %>
+        <%= f.input :mobile, :input_html => { :class => "short" } %>
+        <%= f.input :comment, input_html: {size: "40x5"}  %>
+      </tbody>
+    </table>
+
   </div>
 
 <% end %>
