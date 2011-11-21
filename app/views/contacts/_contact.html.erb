@@ -6,7 +6,7 @@
   <h5><%= link_to contact.full_name, contact %></h5>
   <%= content_tag(:p, contact.full_position, :class => "contact_position") if contact.full_position.present? %>
   <%= content_tag :p do %>
-    <%= mail_to(contact.email) if contact.email.present? %>
+    <%= mail_to(contact.email, contact.short_email) if contact.email.present? %>
     <%= contact.phone if contact.phone.present? %>
     <%= contact.mobile if contact.mobile.present? %>
   <% end %>
