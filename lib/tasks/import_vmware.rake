@@ -10,7 +10,7 @@ namespace :import do
       host_name = json["name"]
       host_ref  = json["ref"]
       cluster =   json["cluster"]
-      json["vms"].select do |vmhsh|
+      (json["vms"] || []).select do |vmhsh|
         vmhsh["status"] == "poweredOn"
       end.each do |vmhsh|
         vm = Server.find_or_generate(vmhsh["hostname"])
