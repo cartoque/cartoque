@@ -20,4 +20,12 @@ describe Contact do
     person.job_position = ""
     person.full_position.should eq "Blah Inc."
   end
+
+  it "should shorten long email addresses" do
+    c = Contact.new
+    c.email = "john.doe@example.com"
+    c.short_email.should == "john.doe@example.com"
+    c.email = "john.doe@very.long-subdomain.example.com"
+    c.short_email.should == "john.doe@...example.com"
+  end
 end

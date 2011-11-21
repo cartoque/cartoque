@@ -8,4 +8,10 @@ class Contact < ActiveRecord::Base
   def full_position
     [job_position, company].reject(&:blank?).join(", ")
   end
+
+  def short_email
+    "#{email}".gsub(/(.+)@([^@]+)$/) do
+      $1+"@"+$2.gsub(/.*(\.[^.]+\.[^.]+)/, '..\1')
+    end
+  end
 end
