@@ -14,6 +14,12 @@ class ToolsController < ApplicationController
     render 'servers_symetry'
   end
 
+  def infra_symetry
+    symetry_for(/supervision|nagios/)
+    @title = "serveurs d'infrastructure"
+    render 'servers_symetry'
+  end
+
   def nagios_comparison
     path = Rails.root.join("data/nagios")
     servers_nagios = %x(grep host_name= #{path}/status.dat|cut -d"=" -f 2|sort -u).split(/\n/)
