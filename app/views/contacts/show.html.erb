@@ -1,32 +1,11 @@
-<% title "Contact" %>
+<% title "Contact: #{@contact.full_name}" %>
 
-<div class="grid_12 center">
+<div class="grid_6">
 
 <%= action_links do %>
-  <%= link_to 'Editer', edit_contact_path(@contact) %> |
-  <%= link_to 'Supprimer', @contact, :confirm => t(:text_are_you_sure), :method => :delete %> |
   <%= link_to 'Retourner à la liste', contacts_path %>
 <% end %>
 
-<table class="pretty">
-  <thead>
-    <tr>
-      <th colspan="2">
-        <%= @contact.first_name %>
-        <%= @contact.last_name %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= show_for @contact do |s| %>
-      <%= s.attribute :job_position %>
-      <%= s.attribute :company %>
-      <%= s.attribute :phone %>
-      <%= s.attribute :mobile %>
-      <%= s.attribute :email %>
-      <%= s.attribute :comment %>
-    <% end %>
-  </tbody>
-</table>
+<%= render :partial => 'contact', :object => @contact %>
 
 </div>
