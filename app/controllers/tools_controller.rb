@@ -3,7 +3,7 @@ require 'find'
 
 class ToolsController < ApplicationController
   def cluster_symetry
-    symetry_for(/sgbd-|etl-/)
+    symetry_for(/sgbd-|^etl/)
     @title = "serveurs SGBD"
     render 'servers_symetry'
   end
