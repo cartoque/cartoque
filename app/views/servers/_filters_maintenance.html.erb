@@ -7,7 +7,7 @@
 <tr class="filters fixed-size">
   <td><%= text_field_tag "search", params[:search], :size => 12 %></td>
   <td><%= select_tag "by_location", options_for_location_filter(params[:by_location]) -%></td>
-  <td></td>
+  <td><%= text_field_tag "by_fullmodel", params[:by_fullmodel], :size => 12 %></td>
   <td><%= text_field_tag "by_serial_number", params[:by_serial_number], :size => 12 %></td>
   <td><%= select_tag "by_mainteneur", options_for_select([["",""]] + Mainteneur.all.map{|r| [r.name,r.id]},params[:by_mainteneur]).html_safe -%></td>
   <td></td>

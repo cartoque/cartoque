@@ -69,6 +69,7 @@ class Server < ActiveRecord::Base
   scope :by_rubyversion, proc {|version| where(:rubyversion => version) }
   scope :by_serial_number, proc {|search| where("serial_number like ?", "%#{search}%") }
   scope :by_arch, proc {|arch| where(:arch => arch) }
+  scope :by_fullmodel, proc{|model| where("manufacturer like ? OR model like ?", "%#{model}%", "%#{model}%") }
 
   validates_presence_of :name
   validates_uniqueness_of :name
