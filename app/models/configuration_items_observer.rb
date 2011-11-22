@@ -1,7 +1,5 @@
-Dir.glob(Rails.root.join('app/models/*.rb')).each { |file| require file }
-
 class ConfigurationItemsObserver < ActiveRecord::Observer
-  observe ActiveRecord::Base.subclasses - [ConfigurationItem]
+  observe [ApplicationInstance, Application, Database, Server, Storage]
 
   def after_save(record)
     ConfigurationItem.generate_ci_for(record) if record.respond_to?(:configuration_item)
