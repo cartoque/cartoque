@@ -133,7 +133,7 @@ describe Server do
       invalid_result.should be_a_kind_of ActiveRecord::Relation
       Server.by_location("site-#{@site1.id}").should eq Server.by_site(@site1.id)
       Server.by_location("site-0").should eq []
-      Server.by_location("rack-#{@site1.id}").should eq Server.by_rack(@rack1.id)
+      Server.by_location("rack-#{@rack1.id}").should eq Server.by_rack(@rack1.id)
       Server.by_location("rack-0").should eq []
     end
 
@@ -180,6 +180,20 @@ describe Server do
         server.should be_persisted
         server.just_created.should be_true
       end
+    end
+  end
+
+  describe "#stock?" do
+    it "should be truthy only if it's in a rack that is marked as stock" do
+      server = Factory(:server)
+      rack = Factory(:rack1)
+      server.stock?.should be_false
+      server.physical_rack = rack
+      rack.stock?.should be_false
+      server.stock?.should be_false
+      rack.status = PhysicalRack::STATUS_STOCK
+      rack.stock?.should be_true
+      server.stock?.should be_true
     end
   end
 end

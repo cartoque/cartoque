@@ -43,8 +43,8 @@ class Server < ActiveRecord::Base
 
   acts_as_ipaddress :ipaddress
 
-  scope :active, where("status" => STATUS_ACTIVE)
-  scope :inactive, where("status" => STATUS_INACTIVE)
+  scope :active, where("servers.status" => STATUS_ACTIVE)
+  scope :inactive, where("servers.status" => STATUS_INACTIVE)
   scope :real_servers, where(:network_device => false)
   scope :network_devices, where(:network_device => true)
   scope :hypervisor_hosts, where(:is_hypervisor => true)
@@ -115,6 +115,10 @@ class Server < ActiveRecord::Base
 
   def active?
     status == STATUS_ACTIVE
+  end
+
+  def stock?
+    physical_rack.present? && physical_rack.stock?
   end
 
   def to_s

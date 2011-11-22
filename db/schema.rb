@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111122074951) do
+ActiveRecord::Schema.define(:version => 20111122100315) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(:version => 20111122074951) do
   create_table "physical_racks", :force => true do |t|
     t.string  "name",    :limit => 50, :default => "", :null => false
     t.integer "site_id"
+    t.integer "status",                :default => 1,  :null => false
   end
 
   add_index "physical_racks", ["site_id"], :name => "index_physical_racks_on_site_id"
