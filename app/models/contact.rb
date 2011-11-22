@@ -1,4 +1,6 @@
 class Contact < ActiveRecord::Base
+  has_many :contact_infos, :dependent => :destroy
+
   validates_presence_of :first_name, :last_name
 
   def full_name
