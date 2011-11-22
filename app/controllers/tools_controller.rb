@@ -15,7 +15,7 @@ class ToolsController < ApplicationController
   end
 
   def infra_symetry
-    symetry_for(/supervision|nagios/)
+    symetry_for(/supervision|nagios|tnas/)
     @title = "serveurs d'infrastructure"
     render 'servers_symetry'
   end
