@@ -11,6 +11,9 @@
       <%= tabular_errors @physical_rack %>
       <%= f.input :name, :required => true, :wrapper_class => "th" %>
       <%= f.association :site %>
+      <%= f.input :status, :as => :select, :include_blank => false,
+                           :collection => [["Armoire", PhysicalRack::STATUS_PROD],
+                                           ["Stock",   PhysicalRack::STATUS_STOCK]] %>
     </tbody>
   </table>
 <% end %>

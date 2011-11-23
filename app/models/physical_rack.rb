@@ -8,7 +8,7 @@ class PhysicalRack < ActiveRecord::Base
 
   attr_accessible :name, :site_id, :status
 
-  default_scope includes('site').except(:order).order('sites.name, physical_racks.name')
+  default_scope includes('site')
   scope :stock, where("physical_racks.status = ?", STATUS_STOCK)
   scope :non_stock, where("physical_racks.status != ?", STATUS_STOCK)
 
