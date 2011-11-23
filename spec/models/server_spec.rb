@@ -196,4 +196,42 @@ describe Server do
       server.stock?.should be_true
     end
   end
+
+  describe ".not_backuped" do
+    before do
+      @server = Factory(:server)
+      @vm = Factory(:virtual)
+    end
+
+    it "should include everything by default" do
+      Server.not_backuped.should include(@server)
+      Server.not_backuped.should include(@vm)
+    end
+
+    it "should not include active servers which have an associated backup job" do
+      Server.not_backuped.should include(@server)
+      @server.backup_jobs << BackupJob.create(:hierarchy => "/")
+      Server.not_backuped.should_not include(@server)
+    end
+
+    it "should not include servers which have a backup_exception" do
+      Server.not_backuped.should include(@server)
+      BackupException.create!(:reason => "backuped an other way", :servers => [@server])
+      Server.not_backuped.should_not include(@server)
+    end
+
+    it "should not include net devices" do
+      Server.not_backuped.should include(@server)
+      @server.update_attribute(:network_device, true)
+      Server.not_backuped.should_not include(@server)
+    end
+
+    it "should not include stock servers" do
+      Server.not_backuped.should include(@server)
+      rack = PhysicalRack.create!(:name => "rack-1", :site => Factory(:room), :status => PhysicalRack::STATUS_STOCK)
+      @server.physical_rack_id = rack.id
+      @server.save
+      Server.not_backuped.should_not include(@server)
+    end
+  end
 end

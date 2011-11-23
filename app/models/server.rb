@@ -103,10 +103,16 @@ class Server < ActiveRecord::Base
   end
 
   def self.not_backuped
+    #first list the ones that don't need backups
     backuped = BackupJob.includes(:server).where("servers.status" => Server::STATUS_ACTIVE).select("distinct(server_id)").map(&:server_id)
     exceptions = BackupException.includes(:servers).map(&:servers).flatten.map(&:id).uniq
     net_devices = Server.network_devices.select("id").map(&:id)
-    Server.where("servers.status" => Server::STATUS_ACTIVE).where("id not in (?)", backuped + exceptions + net_devices).order("name asc")
+    stock_servers = Server.joins(:physical_rack).where('physical_racks.status = ?', PhysicalRack::STATUS_STOCK).map(&:id)
+    dont_need_backup = backuped + exceptions + net_devices + stock_servers
+    #now let's search the servers
+    servers = Server.where("servers.status" => Server::STATUS_ACTIVE)
+    servers = servers.where("id not in (?)", dont_need_backup) unless dont_need_backup.empty?
+    servers.order("name asc")
   end
 
   def just_created
