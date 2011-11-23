@@ -19,7 +19,10 @@ namespace :import do
       os = "#{facts["operatingsystem"]} #{facts["operatingsystemrelease"]}"
       server.operatingsystemrelease = os if os.present?
       #virtual or not ?
-      server.virtual = (facts["virtual"] != "physical") if facts["virtual"].present?
+      if facts["virtual"].present?
+        server.virtual = facts["virtual"].in?(%w(vmware xenu kvm))
+        server.is_hypervisor = true if facts["virtual"] == "vmware_server"
+      end
       #physical machines
       unless server.virtual?
         #serial number
