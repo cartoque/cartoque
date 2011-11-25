@@ -4,6 +4,7 @@ namespace :import do
     Settler.load!
     dns_domains_setting = Settler.dns_domains
     dns_domains_values = dns_domains_setting.value.to_s.split(/\n|,/).map(&:strip)
+    existing_operating_systems = OperatingSystem.all
     Dir.glob("data/system/*.yml").each do |file|
       #server
       server_name = file.split("/").last.gsub(/\.yml$/,"")
@@ -16,8 +17,20 @@ namespace :import do
       %w(rubyversion facterversion puppetversion).each do |key|
         server.send("#{key}=", facts[key]) if facts.has_key?(key)
       end
+      #operating system
       os = "#{facts["operatingsystem"]} #{facts["operatingsystemrelease"]}"
-      server.operatingsystemrelease = os if os.present?
+      if os.present?
+        #facter field
+        server.operatingsystemrelease = os
+        #real os defined in the app
+        #TODO: document it !!!
+        system = nil
+        candidates = existing_operating_systems
+        candidates.select!{|sys| "#{sys.name}".start_with?(facts["operatingsystem"]) }
+        candidates.reject!{|sys| sys.name == facts["operatingsystem"] }
+        candidates.select!{|sys| os.start_with?(sys.name) }
+        server.operating_system = candidates.first if candidates.count == 1
+      end
       #virtual or not ?
       if facts["virtual"].present?
         server.virtual = facts["virtual"].in?(%w(vmware xenu kvm))
