@@ -12,6 +12,7 @@
 
 <div id="server_general" class="grid_3 show">
 <%= content_tag(:div, "V", :class => "contextual virtual-server") if @server.virtual? %>
+<%= content_tag(:div, "P", :class => "contextual has-puppet") if @server.puppetversion.present? %>
 <%= content_tag(:div, image_tag("router.png", :title => t(:network_device), :size => "16x16"),
                 :class => "contextual network-device") if @server.network_device? %>
 <h2>Général</h2>
