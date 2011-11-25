@@ -24,7 +24,7 @@ namespace :import do
         server.operatingsystemrelease = os
         #real os defined in the app
         #TODO: document it !!!
-        candidates = existing_operating_systems
+        candidates = existing_operating_systems.dup
         candidates.select!{|sys| "#{sys.name}".start_with?(facts["operatingsystem"]) }
         candidates.reject!{|sys| sys.name == facts["operatingsystem"] }
         candidates.select!{|sys| os.start_with?(sys.name) }
