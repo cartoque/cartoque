@@ -24,12 +24,11 @@ namespace :import do
         server.operatingsystemrelease = os
         #real os defined in the app
         #TODO: document it !!!
-        system = nil
         candidates = existing_operating_systems
         candidates.select!{|sys| "#{sys.name}".start_with?(facts["operatingsystem"]) }
         candidates.reject!{|sys| sys.name == facts["operatingsystem"] }
         candidates.select!{|sys| os.start_with?(sys.name) }
-        server.operating_system = candidates.first if candidates.count == 1
+        server.operating_system_id = candidates.first.id if candidates.count == 1
       end
       #virtual or not ?
       if facts["virtual"].present?
