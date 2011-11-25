@@ -8,6 +8,6 @@ class OperatingSystem < ActiveRecord::Base
   #default_scope order('name')
 
   def to_s
-    name
+    name + (codename.present? ? " "+codename : "")
   end
 end

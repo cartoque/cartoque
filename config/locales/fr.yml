@@ -162,3 +162,4 @@ fr:
   mobile: "Mobile"
   email: "Adresse mail"
   managed_with_puppet: "Puppetisable"
+  codename: "Nom de code"
