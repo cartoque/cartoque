@@ -10,6 +10,7 @@
     <tbody>
       <%= tabular_errors @operating_system %>
       <%= f.input :name, :required => true, :wrapper_class => 'th' %>
+      <%= f.input :managed_with_puppet %>
       <% @os = OperatingSystem.scoped.arrange(:order => 'name') %>
       <% exclusions_for_future_versions = @operating_system.subtree unless @operating_system.blank? || @operating_system.new_record? %>
       <%= f.input :parent_id, :as => :select, :collection => ancestry_options(@os){|i| "#{'-'*i.depth} #{i.name}"} %>

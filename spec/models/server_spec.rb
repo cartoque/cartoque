@@ -234,4 +234,17 @@ describe Server do
       Server.not_backuped.should_not include(@server)
     end
   end
+
+  describe "#can_be_managed_with_puppet?" do
+    it "should require having an compatible os defined" do
+      srv = Factory(:server)
+      srv.operating_system.should be_blank
+      srv.can_be_managed_with_puppet?.should be_false
+      sys = OperatingSystem.create(:name => "Ubuntu 11.10")
+      srv.update_attribute(:operating_system_id, sys.id)
+      srv.reload.can_be_managed_with_puppet?.should be_false
+      sys.update_attribute(:managed_with_puppet, true)
+      srv.reload.can_be_managed_with_puppet?.should be_true
+    end
+  end
 end

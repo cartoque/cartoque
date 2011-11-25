@@ -15,6 +15,9 @@ class PuppetController < ApplicationController
       instance_variable_set("@#{column}s",
                             Server.select("distinct(#{column})").map(&:"#{column}").map(&:to_s).sort)
     end
+    @to_puppetize = Server.where(:operating_system_id => OperatingSystem.where(:managed_with_puppet => true))
+                          .where(:puppetversion => nil)
+                          .order("name asc")
   end
 
   def classes

@@ -161,3 +161,4 @@ fr:
   phone: "Téléphone"
   mobile: "Mobile"
   email: "Adresse mail"
+  managed_with_puppet: "Puppetisable"

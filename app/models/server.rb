@@ -264,4 +264,8 @@ class Server < ActiveRecord::Base
   def tomcats
     @tomcats ||= Tomcat.find_for_server(self.name)
   end
+
+  def can_be_managed_with_puppet?
+    operating_system.present? && operating_system.managed_with_puppet?
+  end
 end

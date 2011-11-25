@@ -2,9 +2,14 @@
 
 <div id="puppet_servers" class="items_list grid_12">
 
-<%= action_links do %>
+<% if @to_puppetize.present? %>
+<div id="to-puppetize">
+  <h2>À puppetiser (<%= @to_puppetize.count %>)</h2>
+  <div class="servers">
+    <%= @to_puppetize.map{|server| link_to server, server}.join(", ").html_safe %>
+  </div>
+</div>
 <% end %>
-
 
 <table class="pretty list">
   <%= form_tag puppet_path(:servers), :id => "filters", :method => :get do -%>
