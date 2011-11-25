@@ -4,6 +4,9 @@
 
 <% if @to_puppetize.present? %>
 <div id="to-puppetize">
+  <div class="contextual puppet_rate">
+    Puppetisation: <%= 100 * @puppetized_count / (@to_puppetize.count + @puppetized_count) %>%
+  </div>
   <h2>À puppetiser (<%= @to_puppetize.count %>)</h2>
   <div class="servers">
     <%= @to_puppetize.map{|server| link_to server, server}.join(", ").html_safe %>
