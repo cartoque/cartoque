@@ -1,3 +1,10 @@
 <% title t(:edit_a_physical_rack) %>
 
 <%= render 'form' %>
+
+<div class="grid_4 physical_rack_servers">
+  <h3><%= t(:servers) %></h3>
+  <ul class="comparison details">
+    <%= @physical_rack.servers.sort_by(&:name).map{|s| content_tag(:li, link_to(s, s))}.join.html_safe %>
+  </ul>
+</div>
