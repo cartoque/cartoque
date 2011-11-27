@@ -23,9 +23,9 @@ describe Contact do
 
   it "should shorten long email addresses" do
     c = Contact.new
-    c.email = "john.doe@example.com"
+    c.email_infos = [ContactInfo.new(:value => "john.doe@example.com", :info_type => "mail")]
     c.short_email.should == "john.doe@example.com"
-    c.email = "john.doe@very.long-subdomain.example.com"
+    c.email_infos = [ContactInfo.new(:value => "john.doe@very.long-subdomain.example.com", :info_type => "mail")]
     c.short_email.should == "john.doe@...example.com"
   end
 end

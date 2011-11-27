@@ -18,4 +18,8 @@ describe ContactInfo do
     contact.should have(1).contact_info
     lambda { contact.destroy }.should change(ContactInfo, :count).by(-1)
   end
+
+  it "should display value when using #to_s" do
+    ContactInfo.new(:value => "blah").to_s.should eq "blah"
+  end
 end

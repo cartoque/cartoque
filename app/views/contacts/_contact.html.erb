@@ -8,10 +8,6 @@
   <%= content_tag :p do %>
     <%= mail_to(contact.email, contact.short_email) if contact.email.present? %>
     <%= contact.phone if contact.phone.present? %>
-    <%= contact.mobile if contact.mobile.present? %>
   <% end %>
   <% content_tag(:p, contact.comment) if contact.comment.present? %>
 </div>
-<!--<td><%= contact.phone %> <%= contact.mobile %></td>
-<td><%= contact.email %></td>
-<td><%= contact.comment %></td>-->

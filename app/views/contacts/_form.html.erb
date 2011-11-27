@@ -22,9 +22,32 @@
         <%= f.input :job_position, :input_html => { :class => "long" } %>
         <%= f.input :company_name, :label => t(:company),
                     :input_html => { :class => "long", :data => { :autocomplete_source => autocomplete_companies_path } } %>
-        <%= f.input :email, :input_html => { :class => "long" } %>
-        <%= f.input :phone, :input_html => { :class => "short" } %>
-        <%= f.input :mobile, :input_html => { :class => "short" } %>
+        <tr>
+          <td class="label top"><%= f.label :email %></td>
+          <td>
+            <% f.object.email_infos.build if f.object.email_infos.size == 0 %>
+            <%= f.simple_fields_for :email_infos do |info_form| %>
+              <%= render 'email_info_fields', :f => info_form %>
+            <% end %>
+            <span class="add-field">
+              <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+"ajouter", f, :email_infos %>
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="label top"><%= f.label :phone %></td>
+          <td>
+            <% f.object.phone_infos.build if f.object.phone_infos.size == 0 %>
+            <%= f.simple_fields_for :phone_infos do |info_form| %>
+              <%= render 'phone_info_fields', :f => info_form %>
+            <% end %>
+            <span class="add-field">
+              <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+"ajouter", f, :phone_infos %>
+            </span>
+          </td>
+        </tr>
+
         <%= f.input :comment, input_html: {size: "40x5"}  %>
       </tbody>
     </table>
