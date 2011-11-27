@@ -14,9 +14,9 @@ describe Contact do
   it "should return the full job position of a person" do
     person = Factory(:contact)
     person.full_position.should eq "CEO, WorldCompany"
-    person.company = ""
+    person.company = nil
     person.full_position.should eq "CEO"
-    person.company = "Blah Inc."
+    person.company = Company.new(:name => "Blah Inc.")
     person.job_position = ""
     person.full_position.should eq "Blah Inc."
   end

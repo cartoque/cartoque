@@ -6,6 +6,7 @@
 //
 //= require adapt.min
 //= require jquery/jquery
+//= require jquery-ui
 //= require jquery/jquery_ujs
 //= require jquery/jquery.bind-with-delay
 //= require jquery/jquery.observer
@@ -19,6 +20,7 @@
 //= require raphael/g.pie-min
 //= require jquery/jquery.facebox
 //= require jquery/jquery.placeholder
+//= require contacts
 //= require users
 //
 //not for now: //= require_tree .

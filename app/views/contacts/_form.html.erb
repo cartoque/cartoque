@@ -20,7 +20,8 @@
           </td>
         </tr>
         <%= f.input :job_position, :input_html => { :class => "long" } %>
-        <%= f.input :company, :input_html => { :class => "long" } %>
+        <%= f.input :company_name, :label => t(:company),
+                    :input_html => { :class => "long", :data => { :autocomplete_source => autocomplete_companies_path } } %>
         <%= f.input :email, :input_html => { :class => "long" } %>
         <%= f.input :phone, :input_html => { :class => "short" } %>
         <%= f.input :mobile, :input_html => { :class => "short" } %>
