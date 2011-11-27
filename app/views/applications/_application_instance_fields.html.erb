@@ -19,7 +19,7 @@
       <%= f.simple_fields_for :application_urls do |url_form| %>
         <%= render 'application_url_fields', :f => url_form %>
       <% end %>
-      <span class="add-field"><%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+" ajouter", f, :application_urls %></span>
+      <span class="add-field"><%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+t(:add).downcase, f, :application_urls %></span>
     </td>
   </tr>
   <tr>

@@ -1,17 +1,17 @@
 <table class="list">
   <tr>
-    <th>Maintenance</th>
+    <th><%= t(:maintenance) %></th>
   </tr>
   <tr>
     <td>
       <% cond = "virtual = ? AND maintained_until IS NOT NULL" %>
       <% physical = Server.where([cond, false]).count %>
-      <%= physical %> serveurs physiques, dont :
+      <%= t(:x_physical_servers_of_which, :count => physical) %> :
       <ul class="details">
-        <li><%= Server.where([cond+" AND maintained_until < ?", false, Date.today]).count %> fin de maintenance dépassée</li>
-        <li><%= Server.where([cond+" AND maintained_until <= ?", false, Date.today + 6.months]).count %> à renouveler d'ici 6 mois</li>
-        <li><%= Server.where([cond+" AND maintained_until <= ?", false, Date.today + 12.months]).count %> à renouveler d'ici 12 mois</li>
-        <li><%= physical - Server.where([cond, false]).count %> non maintenus</li>
+        <li><%= Server.where([cond+" AND maintained_until < ?", false, Date.today]).count %> <%= t(:maintenance_over) %></li>
+        <li><%= Server.where([cond+" AND maintained_until <= ?", false, Date.today + 6.months]).count %> <%= t(:maintenance_renewal_in_6_months) %></li>
+        <li><%= Server.where([cond+" AND maintained_until <= ?", false, Date.today + 12.months]).count %> <%= t(:maintenance_renewal_in_12_months) %></li>
+        <li><%= physical - Server.where([cond, false]).count %> <%= t(:not_maintained) %></li>
       </ul>
     </td>
   </tr>

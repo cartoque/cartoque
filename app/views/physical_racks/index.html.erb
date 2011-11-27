@@ -1,18 +1,18 @@
-<% title "Racks (armoires)" %>
+<% title t(:physical_racks) %>
 
 <div class="grid_9 center">
 
 <%= action_links do %>
-  <%= link_to "Nouveau Rack", new_physical_rack_path %>
+  <%= link_to t(:new_physical_rack), new_physical_rack_path %>
 <% end %>
 
 <table class="pretty list physical_racks">
 <thead>
   <tr>
-    <th>Site</th>
-    <th>Nom</th>
-    <th>Serveurs</th>
-    <th>Stock?</th>
+    <th><%= t(:site) %></th>
+    <th><%= t(:name) %></th>
+    <th><%= t(:servers) %></th>
+    <th><%= t(:stock) %>?</th>
     <th></th>
   </tr>
 </thead>
@@ -28,7 +28,7 @@
 <% end %>
 <% if @servers_count[nil] %>
   <tr>
-    <td colspan="2"><em>Inconnu</em></td>
+    <td colspan="2"><em>><%= t(:unknown) %></em></td>
     <td class="center"><%= @servers_count[nil] %></td>
     <td></td>
     <td></td>

@@ -13,9 +13,9 @@
 
   <%= action_links do %>
     <%= f.button :submit %>
-    ou <%= link_to "Retourner à la liste", databases_path %>
+    <%= t(:or) %> <%= link_to t(:back_to_the_list), databases_path %>
     <% unless true || @database.new_record? %>
-      | <%= link_to "Voir", @database %>
+      | <%= link_to t(:show), @database %>
     <% end %>
   <% end %>
 <% end %>

@@ -4,9 +4,9 @@
 <%= simple_form_for(@server) do |f| %>
   <%= action_links do %>
     <%= f.button :submit %>
-    ou <%= link_to "Retourner à la liste", servers_path %>
+    <%= t(:or) %> <%= link_to t(:back_to_the_list), servers_path %>
     <% unless @server.new_record? %>
-      | <%= link_to "Voir", @server %>
+      | <%= link_to t(:show), @server %>
     <% end %>
   <% end %>
 
@@ -16,7 +16,7 @@
       <%= tabular_errors @server %>
       <%= f.input :name, :required => true, :wrapper_class => 'th', :input_html => { :style => "width:10em;" } %>
       <tr class="wrapper server_applications">
-        <td colspan="2"><label for="server[description]" class="input">Description :</label><br/><%= f.text_area :description, :size => "30x4" %></td>
+        <td colspan="2"><label for="server[description]" class="input"><%= t(:description) %> :</label><br/><%= f.text_area :description, :size => "30x4" %></td>
       </tr>
       <%= f.association :operating_system, :collection => ancestry_options(
                                                             OperatingSystem.scoped.arrange(:order => 'name')
@@ -39,7 +39,7 @@
             <%= render 'ipaddress_fields', :f => ip_form %>
           <% end %>
           <p class="add-field">
-            <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+" ajouter", f, :ipaddresses %>
+            <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+t(:add).downcase, f, :ipaddresses %>
           </p>
         </td>
       </tr>
@@ -51,7 +51,7 @@
             <%= render 'physical_link_fields', :f => pl_form %>
           <% end %>
           <p class="add-field">
-            <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+" ajouter", f, :physical_links %>
+            <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+t(:add).downcase, f, :physical_links %>
           </p>
         </td>
       </tr>
@@ -59,7 +59,7 @@
       <!--<%= f.input :previous_name %>-->
     </tbody>
     <tbody id="server-maintenance" class="<%= css_classes_physical %>">
-      <tr><th colspan="2" class="secondary">Maintenance</th></tr>
+      <tr><th colspan="2" class="secondary"><%= t(:maintenance) %></th></tr>
       <%= f.association :mainteneur %>
       <%= f.input :delivered_on, :as => :date, :order => [:day, :month, :year], :use_month_numbers => true,
                                  :start_year => Date.today.year-5, :end_year => Date.today.year+10 %>
@@ -74,7 +74,7 @@
   <div id="server_hardware" class="grid_4">
   <table class="inputs full">
     <thead>
-      <tr><th colspan="2" id="server-hardware-title"><%= @server.virtual? ? "Ressources" : "Matériel" %></th></tr>
+      <tr><th colspan="2" id="server-hardware-title"><%= @server.virtual? ? t(:resources) : t(:hardware) %></th></tr>
     </thead>
     <tbody id="server-physical-hardware" class="<%= css_classes_physical %>">
       <%= f.association :physical_rack, :collection => PhysicalRack.all.map{|r| [r,r.id]} %>

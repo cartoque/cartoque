@@ -1,17 +1,14 @@
-<%
-%>
-
-<% title "Outils - Comparaison Nagios" %>
+<% title "#{t(:tools)} - #{t(:nagios_comparison)}" %>
 
 <div id="tools" class="grid_12 items_list">
 
-  <%= render_diff_list "dans Nagios manquants dans Cartocs",
+  <%= render_diff_list t(:in_nagios_missing_in_cartocs),
                        @unknown_in_cartocs.map{|name| link_to_servername name} %>
 
-  <%= render_diff_list "de Cartocs inconnus dans Nagios",
+  <%= render_diff_list t(:in_cartocs_missing_in_nagios),
                        @unknown_in_nagios.map!{|s| server_missing s} %>
 
-  <%= render_diff_list "Tomcat non supervisés (sur #{@nb_tomcats} hors préproduction)",
+  <%= render_diff_list t(:tomcat_not_monitored_among, :tomcats_count => @nb_tomcats),
                        @tomcat_unknown_in_nagios %>
 
 </div>

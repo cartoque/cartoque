@@ -1,9 +1,9 @@
-<% title "Contact: #{@contact.full_name}" %>
+<% title "#{t(:contact)}: #{@contact.full_name}" %>
 
 <div class="grid_6">
 
 <%= action_links do %>
-  <%= link_to 'Retourner à la liste', contacts_path %>
+  <%= link_to t(:back_to_the_list), contacts_path %>
 <% end %>
 
 <%= render :partial => 'contact', :object => @contact %>

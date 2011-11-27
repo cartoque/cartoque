@@ -1,10 +1,10 @@
-<% title "Exceptions de sauvegarde" %>
+<% title t(:backup_exceptions) %>
 
 <div id="backup_exceptions" class="items_list grid_12">
   
 <%= action_links do %>
-  <%= link_to "Ajouter une exception", new_backup_exception_path %> | 
-  <%= link_to "Retourner aux sauvegardes", backup_jobs_path %>
+  <%= link_to t(:add_an_exception), new_backup_exception_path %> | 
+  <%= link_to t(:back_to_backup_jobs), backup_jobs_path %>
 <% end %>
 
 <table class="pretty list">

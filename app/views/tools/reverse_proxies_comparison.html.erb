@@ -1,8 +1,8 @@
-<% title "Outils - Comparaison Reverse-Proxies" %>
+<% title "#{t(:tools)} - #{t(:reverse_proxies_comparison)}" %>
 
 <div id="tools" class="grid_12 items_list">
 
-  <%= render_diff_list "dans les RPs manquants dans Cartocs",
+  <%= render_diff_list t(:in_reverse_proxies_missing_in_cartocs),
                        (@unknown_in_cartocs.inject([]){ |memo,u|
                          line = @vhosts_lines.detect{|v| v.include?(u)}
                          title = line.gsub(%r{.*data/rp/},"").gsub(/:.*/,"").sub(%r{/},": ") if line

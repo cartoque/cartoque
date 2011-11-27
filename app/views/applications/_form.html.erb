@@ -2,9 +2,9 @@
 
   <%= action_links do %>
     <%= f.button :submit %>
-    ou <%= link_to "Retourner à la liste", applications_path %>
+    <%= t(:or) %> <%= link_to t(:back_to_the_list), applications_path %>
     <% unless @application.new_record? %>
-      | <%= link_to "Voir", @application %>
+      | <%= link_to t(:show), @application %>
     <% end %>
   <% end %>
 
@@ -42,7 +42,7 @@
             <%= render 'application_instance_fields', :f => instance_form %>
           <% end %>
           <p class="add-field">
-            <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+" ajouter une instance", f, :application_instances %>
+            <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+t(:add_an_application_instance).downcase, f, :application_instances %>
           </p>
         </td>
       </tr>

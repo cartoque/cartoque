@@ -1,11 +1,11 @@
-<% title "Mainteneur" %>
+<% title t(:maintainer) %>
 
 <div class="grid_9 center">
 
 <%= action_links do %>
-  <%= link_to 'Editer', edit_mainteneur_path(@mainteneur) %> |
-  <%= link_to 'Supprimer', @mainteneur, :confirm => t(:text_are_you_sure), :method => :delete %> |
-  <%= link_to 'Retourner à la liste', mainteneurs_path %>
+  <%= link_to t(:edit), edit_mainteneur_path(@mainteneur) %> |
+  <%= link_to t(:delete), @mainteneur, :confirm => t(:text_are_you_sure), :method => :delete %> |
+  <%= link_to t(:back_to_the_list), mainteneurs_path %>
 <% end %>
 
 <table class="show_item">

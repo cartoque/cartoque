@@ -1,15 +1,15 @@
   <tr class="fix-on-scroll">
-    <th style="min-width:8em">Baie</th>
-    <th>Constructeur</th>
-    <th>Details</th>
+    <th style="min-width:8em"><%= t(:storage_device) %></th>
+    <th><%= t(:constructor) %></th>
+    <th><%= t(:details) %></th>
   </tr>
   <tr>
     <td class="global" colspan="3">
       <% device = Storcs::Device.new(""); device.children = @storages.map(&:device).select{|s|s.is_a?(Storcs::Device)} %>
-      Etat global du stockage:
+      <%= t(:storage_global_state) %>
       <strong><%= pretty_size(device.size) %></strong>:
-      <%= pretty_size(device.used) %> occupés (<%= "%0.0f%" % device.percent_used %>),
-      <%= pretty_size(device.free) %> disponibles (<%= "%0.0f%" % device.percent_free %>)
+      <%= pretty_size(device.used) %> <%= t(:storage_used) %> (<%= "%0.0f%" % device.percent_used %>),
+      <%= pretty_size(device.free) %> <%= t(:storage_left) %> (<%= "%0.0f%" % device.percent_free %>)
     </td>
   </tr>
   <% @storages.sort_by{|s| [s.constructor, s.server.name.downcase]}.each do |storage| %>

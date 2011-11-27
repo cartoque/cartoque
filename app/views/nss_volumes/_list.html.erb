@@ -1,11 +1,11 @@
   <tr class="fix-on-scroll">
-    <th class="left">Serveur</th>
-    <th class="left">Nom</th>
-    <th class="left">Clients</th>
-    <th>Type</th>
-    <th>Guid</th>
-    <th>Snapshots</th>
-    <th class="right">Taille(Go)</th>
+    <th class="left"><%= t(:server) %></th>
+    <th class="left"><%= t(:name) %></th>
+    <th class="left"><%= t(:clients) %></th>
+    <th><%= t(:type) %></th>
+    <th><%= t(:nss_guid) %></th>
+    <th><%= t(:snapshots) %></th>
+    <th class="right"><%= t(:size_in_Go) %></th>
   </tr>
   <% @nss_volumes.each do |nss_volume| %>
   <tr class="nss-<%= nss_volume.falconstor_type.downcase %>">

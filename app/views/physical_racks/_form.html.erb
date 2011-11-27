@@ -3,7 +3,7 @@
 <%= simple_form_for(@physical_rack) do |f| %>
   <%= action_links do %>
     <%= f.button :submit %>
-    ou <%= link_to "Retourner à la liste", physical_racks_path %>
+    <%= t(:or) %> <%= link_to t(:back_to_the_list), physical_racks_path %>
   <% end %>
 
   <table class="show_item">
@@ -12,8 +12,8 @@
       <%= f.input :name, :required => true, :wrapper_class => "th" %>
       <%= f.association :site %>
       <%= f.input :status, :as => :select, :include_blank => false,
-                           :collection => [["Armoire", PhysicalRack::STATUS_PROD],
-                                           ["Stock",   PhysicalRack::STATUS_STOCK]] %>
+                           :collection => [[t(:rack_real),  PhysicalRack::STATUS_PROD],
+                                           [t(:rack_stock), PhysicalRack::STATUS_STOCK]] %>
     </tbody>
   </table>
 <% end %>

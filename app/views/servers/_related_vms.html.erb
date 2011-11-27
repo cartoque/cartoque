@@ -1,8 +1,8 @@
 <div class="related-ci related-vms">
   <div class="informations more-child">
-    <h3>Hyperviseur</h3>
+    <h3><%= t(:virtualization_host) %></h3>
     <div class="details">
-      <%= @server.virtual_machines.count %> machines virtuelles
+      <%= @server.virtual_machines.count %> <%= t(:virtual_machines) %>
     </div>
     <ul class="hidden">
     <% @server.virtual_machines.sort_by(&:name).each do |vm| %>

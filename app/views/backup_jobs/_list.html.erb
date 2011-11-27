@@ -1,9 +1,9 @@
 <tr class="fix-on-scroll">
-  <th class="left">Serveur</th>
-  <th>Type</th>
-  <th>Catalogue</th>
-  <th class="left">Arborescence</th>
-  <th class="left">Exceptions</th>
+  <th class="left"><%= t(:server) %></th>
+  <th><%= t(:type) %></th>
+  <th><%= t(:catalog) %></th>
+  <th class="left"><%= t(:hierarchy) %></th>
+  <th class="left"><%= t(:exceptions) %></th>
 </tr>
 <% @backup_jobs.each do |backup_job| %>
 <tr class="has-opaques">

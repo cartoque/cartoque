@@ -8,13 +8,13 @@
 
 <table class="pretty list chrome-bug-on-scroll">
   <tr class="fix-on-scroll">
-    <th>Serveur</th>
-    <th>Instance</th>
-    <th>Version</th>
-    <th>Files</th>
-    <th>Utilisateurs</th>
-    <th>Tickets</th>
-    <th>Base</th>
+    <th><%= t(:server) %></th>
+    <th><%= t(:application_instance) %></th>
+    <th><%= t(:version) %></th>
+    <th><%= t(:queues) %></th>
+    <th><%= t(:users) %></th>
+    <th><%= t(:tickets) %></th>
+    <th><%= t(:database) %></th>
   </tr>
   <tbody class="long-list">
 <% @rt_instances.group_by{|i|i.server}.each do |server,instances| %>

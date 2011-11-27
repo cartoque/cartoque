@@ -1,8 +1,8 @@
 <div class="related-ci related-licenses">
   <div class="informations more-child">
-    <h3>Licences</h3>
+    <h3><%= t(:licenses) %></h3>
     <div class="details">
-      <%= pluralize(@server.licenses.count, "clé") %> de licence
+      <%= pluralize(@server.licenses.count, t(:key).downcase) %>
     </div>
     <ul class="hidden">
     <% @server.licenses.each do |license| %>

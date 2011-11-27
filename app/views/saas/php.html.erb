@@ -30,11 +30,11 @@ end
 
 <table id="php" class="pretty list chrome-bug-on-scroll">
   <tr class="fix-on-scroll">
-    <th>Environnement</th>
-    <th>Serveur</th>
-    <th>Version</th>
-    <th>Fichiers</th>
-    <th>Bases</th>
+    <th><%= t(:environment) %></th>
+    <th><%= t(:server) %></th>
+    <th><%= t(:version) %></th>
+    <th><%= t(:files) %></th>
+    <th><%= t(:databases) %></th>
   </tr>
   <tbody class="long-list">
 <% phpenvs.group_by{|i|i[:server]}.each do |server,environments| %>

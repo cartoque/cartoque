@@ -4,7 +4,7 @@
     <%= sortable_th "definition_location", nil, :style => "width:15%" %>
     <%= sortable_th "frequency", nil, :style => "width:10em" %>
     <%= sortable_th "user", nil, :style => "width:10%" %>
-    <th>Commande</th>
+    <th><%= t(:command) %></th>
   </tr>
   <% @cronjobs.each do |cronjob| %>
   <tr>
@@ -16,8 +16,8 @@
   </tr>
   <% end %>
   <% if @cronjobs.size == 100 %>
-    <tr><td class="center" colspan="5"><em>Limite de 100 crons atteinte. Vous devriez affiner votre recherche.</em></td></tr>
+    <tr><td class="center" colspan="5"><em><%= t(:text_cron_number_limit) %></em></td></tr>
   <% end %>
 <% else %>
-  <tr><td class="center" colspan="5"><em>Aucun cron correspondant, affinez votre recherche.</em></td></tr>
+  <tr><td class="center" colspan="5"><em><%= t(:text_no_cron_found) %></em></td></tr>
 <% end %>

@@ -3,7 +3,7 @@
 <%= simple_form_for(@operating_system) do |f| %>
   <%= action_links do %>
     <%= f.button :submit %>
-    ou <%= link_to "Retourner à la liste", operating_systems_path %>
+    <%= t(:or) %> <%= link_to t(:back_to_the_list), operating_systems_path %>
   <% end %>
 
   <table class="inputs">

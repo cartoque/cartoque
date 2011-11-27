@@ -1,10 +1,10 @@
-<% title "Serveur #{@server.name.upcase}" %>
+<% title "#{t(:server)} #{@server.name.upcase}" %>
 
 <div class="grid_12">
 <%= action_links do %>
-  <%= link_to 'Editer', edit_server_path(@server) %> |
-  <%= link_to 'Supprimer', @server, :confirm => t(:text_are_you_sure), :method => :delete %> |
-  <%= link_to 'Retourner à la liste', servers_path %>
+  <%= link_to t(:edit), edit_server_path(@server) %> |
+  <%= link_to t(:delete), @server, :confirm => t(:text_are_you_sure), :method => :delete %> |
+  <%= link_to t(:back_to_the_list), servers_path %>
 <% end %>
 </div>
 
@@ -21,7 +21,7 @@
     <% if @server.description.present? %>
     <tr class="wrapper server_description">
       <td colspan="2">
-        <span class="label">Description</span><br />
+        <span class="label"><%= t(:description) %></span><br />
         <div class="description"><%= @server.description.capitalize %></div>
       </td>
     </tr>
@@ -40,7 +40,7 @@
 </table>
 
 <% unless @server.virtual? %>
-<h2>Maintenance</h2>
+<h2><%= t(:maintenance) %></h2>
 <table class="show_item full">
   <%= show_for @server do |s| %>
     <%= s.association :mainteneur do
@@ -56,7 +56,7 @@
 </div>
 
 <div id="server_hardware" class="grid_3 show">
-  <h2><%= @server.virtual? ? "Ressources" : "Matériel" %></h2>
+<h2><%= @server.virtual? ? t(:resources) : t(:hardware) %></h2>
 <table class="show_item full">
   <%= show_for @server do |s| %>
     <% unless @server.virtual? %>
@@ -79,7 +79,7 @@
 </div>
 
 <div id="server-technical-relations" class="grid_3 show">
-  <h2>Composants</h2>
+  <h2><%= t(:components) %></h2>
   <%= render 'related_vms' if @server.virtual_machines.any? %>
   <%= render 'related_licenses' if @server.licenses.any? %>
   <%= render 'related_tomcats' if @server.tomcats.any? %>
@@ -91,6 +91,6 @@
 </div>
 
 <div id="server-application-relations" class="grid_3 show">
-  <h2>Services</h2>
+  <h2><%= t(:services) %></h2>
   <%= render 'related_application_instances' if @server.application_instances.any? %>
 </div>

@@ -1,4 +1,4 @@
-<% title "Serveurs" %>
+<% title t(:servers) %>
 
 <div id="servers" class="items_list grid_12">
 
@@ -14,7 +14,7 @@
       <%= context_li "Vue maintenance", servers_path(:view_mode => "maintenance"), :current => maintenance_mode? %>
     </ul>
   </div>
-  <%= link_to "Ajouter un serveur", new_server_path %>
+  <%= link_to t(:add_a_server), new_server_path %>
 <% end %>
 
 

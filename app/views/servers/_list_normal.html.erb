@@ -1,10 +1,10 @@
 <tr class="fix-on-scroll">
   <%= sortable_th "name", nil, :style => "min-width:10em" %>
   <%= sortable_th "ipaddress", nil, :style => "width:10em" %>
-  <th style="width:12em">OS</th>
-  <th style="width:2em">Archi</th>
-  <th style="width:2em">Virtuel</th>
-  <th style="width:8em">Localisation</th>
+  <th style="width:12em"><%= t(:operating_system) %></th>
+  <th style="width:2em"><%= t(:arch_short) %></th>
+  <th style="width:2em"><%= t(:virtual) %></th>
+  <th style="width:8em"><%= t(:localization) %></th>
   <%= sortable_th "manufacturer,model", t(:fullmodel), :style => "min-width:12em" %>
 </tr>
 <% for server in @servers %>

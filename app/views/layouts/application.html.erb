@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+  <title><%= content_for?(:title) ? yield(:title) : t(:default_title) %></title>
   <meta charset="UTF-8">
 <% if ! request_from_pdfkit? %>
   <noscript><%= stylesheet_link_tag "adapt/mobile.min.css" %></noscript>
@@ -21,14 +21,14 @@
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <script type="text/javascript">
-        // reject bad browsers
+    // reject bad browsers
     $(function() {
       $.reject({
         reject: { all: false, msie: true },
         display: ["firefox","chrome","safari","opera","gcf"],
-        header: "Navigateur non supporté",
-        paragraph1: "Votre navigateur n'est pas supporté, vous ne pourrez donc pas utiliser correctement cette application.",
-        paragraph2: "Veuillez utiliser un navigateur moderne et respectueux des standards :",
+        header: "<%= t(:text_browser_not_supported_header) %>",
+        paragraph1: "<%= t(:text_browser_not_supported_paragraph1) %>",
+        paragraph2: "<%= t(:text_browser_not_supported_paragraph2) %>",
         close: false
       });
     });
@@ -42,10 +42,10 @@
 <body>
 
   <noscript>
-    Vous devriez activer Javascript pour utiliser cette application.
+    <%= t(:text_please_activate_javascript) %>
   </noscript>
 
-  <div id="loading"><span>Chargement</span></div>
+  <div id="loading"><span><%= t(:loading) %></span></div>
 
   <% if logged_in? && current_announcement.present? %>
     <div id="announcement" class="hide-when-print <%= Settler[:site_announcement_type].presence || "info" %>">
@@ -59,11 +59,11 @@
       <ul class="menu-items contextual">
       <% if logged_in? %>
         <li class="connected-as"><%= current_user.name %></li>
-        <li><%= link_to "Déconnexion", signout_path %></li>
+        <li><%= link_to t(:disconnection), signout_path %></li>
       <% end %>
       </ul>
       <ul class="menu-items">
-        <li><%= link_to image_tag("home.png", :alt=>"Accueil", :size => "16x16"), root_path, :class => "img" %></li>
+        <li><%= link_to image_tag("home.png", :alt => t(:home), :size => "16x16"), root_path, :class => "img" %></li>
         <%= render 'layouts/top_menu' if logged_in? %>
       </ul>
     </div>

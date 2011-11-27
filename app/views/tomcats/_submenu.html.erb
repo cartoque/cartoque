@@ -5,7 +5,7 @@
   </div>
   <% end %>
   <ul class="select-buttons">
-    <%= content_tag :li, link_to("Plateforme standard", tomcats_path), :class => (action_name == "index" ? "current" : "") %>
-    <%= content_tag :li, link_to("Plateforme historique", old_tomcats_path), :class => (action_name == "index_old" ? "current" : "") %>
+    <%= content_tag :li, link_to(t(:tomcats_standard), tomcats_path), :class => (action_name == "index" ? "current" : "") %>
+    <%= content_tag :li, link_to(t(:tomcats_old), old_tomcats_path), :class => (action_name == "index_old" ? "current" : "") %>
   </ul>
 <% end %>

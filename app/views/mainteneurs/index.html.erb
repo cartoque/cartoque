@@ -1,18 +1,18 @@
+<% title t(:maintainers) %>
+
 <div class="grid_9 center">
 
-<% title "Mainteneurs" %>
-
 <%= action_links do %>
-  <%= link_to 'Nouveau mainteneur', new_mainteneur_path %>
+  <%= link_to t(:new_maintainer), new_mainteneur_path %>
 <% end %>
 
 <table class="list pretty">
 <thead>
   <tr>
-    <th>Name</th>
-    <th>Phone</th>
-    <th>Email</th>
-    <th>Client ref</th>
+    <th><%= t(:name) %></th>
+    <th><%= t(:phone) %></th>
+    <th><%= t(:email) %></th>
+    <th><%= t(:client_ref) %></th>
     <th></th>
   </tr>
 </thead>

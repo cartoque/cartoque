@@ -1,9 +1,9 @@
 <div class="related-ci related-exported-disks">
   <div class="informations more-child">
-    <h3>Client NFS</h3>
+    <h3><%= t(:nfs_client) %></h3>
     <div class="details">
-      <%= pluralize(@server.network_filesystems.count, "montage") %> sur
-      <%= pluralize(@server.network_filesystems.map(&:server_id).uniq.count, "serveur") %>
+      <%= pluralize(@server.network_filesystems.count, t(:mount)) %> <%= t(:on) %>
+      <%= pluralize(@server.network_filesystems.map(&:server_id).uniq.count, t(:server)) %>
     </div>
     <ul class="hidden">
       <% Server.where(:id => @server.network_filesystems.map(&:server_id).uniq).order("name").each do |server| %>

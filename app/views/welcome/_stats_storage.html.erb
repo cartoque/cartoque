@@ -1,7 +1,7 @@
 <% storages_by_constructor = Storage.all.select{|s|s.device.is_a?(Storcs::Device)}.group_by(&:constructor) %>
 <table class="list">
   <tr>
-    <th class="center" colspan="2">Statistiques Stockage</th>
+    <th class="center" colspan="2"><%= t(:statistics_storage) %></th>
   </tr>
 <% storages_by_constructor.each do |constructor, devices| %>
   <tr>

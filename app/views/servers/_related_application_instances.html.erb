@@ -5,8 +5,8 @@
     <div class="contextual tiny"><%= instance.name %></div>
     <h3><%= instance.application %></h3>
     <div class="details">
-      <%= pluralize(instance.servers.count, "serveur") %> /
-      <%= pluralize(instance.application_urls.count, "URL") %>
+      <%= pluralize(instance.servers.count, t(:server).downcase) %> /
+      <%= pluralize(instance.application_urls.count, t(:url)) %>
     </div>
   </div>
   <% end %>

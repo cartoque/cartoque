@@ -3,8 +3,8 @@
 
   <% unless postgres_databases.empty? %>
   <tr class="fix-on-scroll">
-    <th>Serveur</th>
-    <th>Type</th>
+    <th><%= t(:server) %></th>
+    <th><%= t(:type) %></th>
     <%= database_headers_for("postgres") %>
   </tr>
   <% end %>
@@ -25,15 +25,15 @@
       <% if database.postgres_report.present? %>
         <%= render :partial => 'postgres_report', :collection => database.postgres_report %>
       <% else %>
-        <td colspan="4" class="center">Information non disponible.</td>
+        <td colspan="4" class="center"><%= t(:information_not_available) %></td>
       <% end %>
     </tr>
    <% end %>
 
   <% unless oracle_databases.empty? %>
   <tr class="fix-on-scroll">
-    <th>Serveur</th>
-    <th>Type</th>
+    <th><%= t(:server) %></th>
+    <th><%= t(:type) %></th>
     <%= database_headers_for("oracle") %>
   </tr>
   <% end %>
@@ -54,7 +54,7 @@
       <% if database.oracle_report.present? %>
         <%= render :partial => 'oracle_report', :collection => database.oracle_report %>
       <% else %>
-        <td colspan="4" class="center">Information non disponible.</td>
+        <td colspan="4" class="center"><%= t(:information_not_available) %></td>
       <% end %>
     </tr>
   <% end %>

@@ -1,11 +1,11 @@
-<% title "Application #{@application.name.upcase}" %>
+<% title "#{t(:application)} #{@application.name.upcase}" %>
 
 <div class="grid_12 center">
 
 <%= action_links do %>
-  <%= link_to "Editer", edit_application_path(@application) %> |
-  <%= link_to "Supprimer", @application, :confirm => t(:text_are_you_sure), :method => :delete %> |
-  <%= link_to "Retourner à la liste", applications_path %>
+  <%= link_to t(:edit), edit_application_path(@application) %> |
+  <%= link_to t(:delete), @application, :confirm => t(:text_are_you_sure), :method => :delete %> |
+  <%= link_to t(:back_to_the_list), applications_path %>
 <% end %>
 
 </div>
@@ -19,7 +19,7 @@
   <%= show_for @application do |a| %>
     <tr class="wrapper application_info">
       <td colspan="2">
-        <span class="label">Description</span><br />
+        <span class="label"><%= t(:description) %></span><br />
         <div class="description"><%= @application.info.capitalize %></div>
       </td>
     </tr>
@@ -45,7 +45,7 @@
 </div>
 
 <div class="grid_4 show">
-<h2>Liens</h2>
+<h2><%= t(:links) %></h2>
 <table class="show_item full">
   <tr class="wrapper application_links">
     <td>
@@ -57,7 +57,7 @@
         <li class="application_doc"><%= link_to_doc doc %></li>
       <% end %>
     <% else %>
-      <li>Aucune page de doc trouvée.</li>
+      <li><%= t(:no_documentation_page_found) %>.</li>
     <% end %>
       </ul>
     </td>

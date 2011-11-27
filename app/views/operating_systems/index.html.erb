@@ -1,9 +1,9 @@
-<% title "Systèmes d'exploitation" %>
+<% title t(:operating_systems) %>
 
 <div id="operating_systems" class="grid_5 center">
   
 <%= action_links do %>
-  <%= link_to "Nouveau système d'exploitation", new_operating_system_path %>
+  <%= link_to t(:new_operating_system), new_operating_system_path %>
 <% end %>
 
 <script type="text/javascript"> 
@@ -13,8 +13,8 @@
 <table class="list operating_systems">
   <tr>
     <th>
-      <div class="contextual">Serveurs</div>
-      Nom(total)
+      <div class="contextual"><%= t(:servers) %></div>
+      <%= "#{t(:name)}(#{t(:total)})" %>
     </th>
   </tr>
   <tr>
@@ -28,7 +28,7 @@
 <% if @os_subtree.present? %>
   <div class="graph-links tiny">
   <% if @root_os.present? %>
-    <%= link_to("Recentrer"+(@root_os.parent.present? ? " sur #{@root_os.parent}" : ""), operating_systems_path(:graph_subtree => @root_os.parent_id)) %>
+    <%= link_to(@root_os.parent.present? ? "#{t(:center_on)} #{@root_os.parent}" : t(:center), operating_systems_path(:graph_subtree => @root_os.parent_id)) %>
   <% else %>
     &nbsp;
   <% end %>
@@ -39,7 +39,7 @@
         var r = Raphael("distribution", 300, 410);
         r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
 
-        var title = "Répartition des systèmes";
+        var title = "<%= t(:systems_distribution) %>";
       <% if @root_os.present? %>
         title += " <%= @root_os.to_s %>";
       <% end %>

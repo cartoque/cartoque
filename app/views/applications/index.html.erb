@@ -1,4 +1,4 @@
-<% title "Applications" %>
+<% title t(:applications) %>
 
 <div id="applications" class="grid_12 items_list">
 
@@ -6,7 +6,7 @@
   <div class="contextual">
     <%= link_to image_tag("file_extension_pdf.png", :size => "16x16"), applications_path(params.merge(:format => "pdf")) %>
   </div>
-  <%= link_to "Ajouter une application", new_application_path %>
+  <%= link_to t(:add_an_application), new_application_path %>
 <% end %>
 
 <table class="pretty list center">

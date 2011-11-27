@@ -1,6 +1,6 @@
 <p class="cron">
   <%= link_to_if cron.server.present?, cron.server.to_s, cron.server %>
-  <%= cron.definition_location %> &rarr; user: <code><%= cron.user %></code>, fréquence: <code><%= cron.frequency %></code>
+  <%= cron.definition_location %> &rarr; <%= t(:user).downcase %>: <code><%= cron.user %></code>, <%= t(:frequency).downcase %>: <code><%= cron.frequency %></code>
   <br />
   <pre><%= cron.command %></pre>
 </p>

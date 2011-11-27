@@ -1,6 +1,6 @@
 <div class="grid_12 center" id="login">
-  AUTHENTIFICATION OBLIGATOIRE<br/>Si vous n'avez pas de compte, contactez un administrateur.
+  <%= t(:text_mandatory_authentication).upcase %><br/><%= t(:text_if_you_want_an_account) %>
   <div id="cas-login">
-    <%= link_to "Cliquer ici pour s'authentifier avec CERBERE-CAS", '/auth/cas' %>
+    <%= link_to t(:click_here_for_authentication), '/auth/cas' %>
   </div>
 </div>

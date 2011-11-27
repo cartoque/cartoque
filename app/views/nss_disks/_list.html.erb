@@ -1,9 +1,9 @@
   <tr class="fix-on-scroll">
-    <th class="left">Serveur</th>
-    <th class="left">Owner</th>
-    <th class="left">Nom</th>
-    <th>Guid</th>
-    <th class="right">Taille(Go)</th>
+    <th class="left"><%= t(:server) %></th>
+    <th class="left"><%= t(:nss_owner) %></th>
+    <th class="left"><%= t(:name) %></th>
+    <th><%= t(:nss_guid) %></th>
+    <th class="right"><%= t(:size_in_Go) %></th>
   </tr>
   <% @nss_disks.each do |nss_disk| %>
   <tr class="nss-<%= nss_disk.falconstor_type.downcase %>">

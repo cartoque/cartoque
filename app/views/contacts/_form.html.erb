@@ -4,9 +4,9 @@
     
     <%= action_links do %>
       <%= f.button :submit %>
-      ou <%= link_to "Retourner à la liste", contacts_path %>
+      <%= t(:or) %> <%= link_to t(:back_to_the_list), contacts_path %>
       <% unless @contact.new_record? %>
-        | <%= link_to "Voir", @contact %>
+        | <%= link_to t(:show), @contact %>
       <% end %>
     <% end %>
 

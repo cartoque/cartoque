@@ -1,18 +1,18 @@
 <table class="list">
   <tr>
-    <th class="center" colspan="2">Statistiques générales</th>
+    <th class="center" colspan="2"><%= t(:statistics_main) %></th>
   </tr>
   <tr>
-    <td><%= link_to "Applications", applications_path %></td>
-    <td><%= Application.count %> applications</td>
+    <td><%= link_to t(:applications), applications_path %></td>
+    <td><%= Application.count %> <%= t(:applications).downcase %></td>
   </tr>
   <tr>
-    <td><%= link_to "Serveurs", servers_path %></td>
+    <td><%= link_to t(:servers), servers_path %></td>
     <td>
-      <%= Server.count %> serveurs
+      <%= Server.count %> <%= t(:servers) %>
       <ul class="details">
-        <li><%= Server.where(:virtual => true).count %> VMs</li>
-        <li><%= Server.where(:virtual => false).count %> physiques</li>
+        <li><%= Server.where(:virtual => true).count %> <%= t(:virtual).downcase.pluralize %></li>
+        <li><%= Server.where(:virtual => false).count %> <%= t(:physical).downcase.pluralize %></li>
       </ul>
     </td>
   </tr>

@@ -1,14 +1,14 @@
 <% content_for :sidebar  do %>
-  <h2><%= image_tag "settings.png", :size => "16x16", :class => "inline" %> Configuration</h2>
+  <h2><%= image_tag "settings.png", :size => "16x16", :class => "inline" %> <%= t(:configuration) %></h2>
   <ul class="simple-list">
-    <li><%= link_to "Mainteneurs", mainteneurs_path %></li>
-    <li><%= link_to "Racks (armoires)", physical_racks_path %></li>
-    <li><%= link_to "Salles d'hébergement", sites_path %></li>
-    <li><%= link_to "Systèmes d'exploitation", operating_systems_path %></li>
+    <li><%= link_to t(:maintainers), mainteneurs_path %></li>
+    <li><%= link_to t(:physical_racks), physical_racks_path %></li>
+    <li><%= link_to t(:hosting_rooms), sites_path %></li>
+    <li><%= link_to t(:operating_systems), operating_systems_path %></li>
   </ul>
   <ul class="simple-list">
-    <li><%= link_to "Paramètres globaux", settings_path %></li>
-    <li><%= link_to "Utilisateurs", users_path %></li>
+    <li><%= link_to t(:global_parameters), settings_path %></li>
+    <li><%= link_to t(:users), users_path %></li>
   </ul>
 <% end %>
 

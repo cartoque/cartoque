@@ -9,15 +9,15 @@
 
 <table class="pretty list">
   <tr class="fix-on-scroll">
-    <th>Serveur</th>
-    <th>Instance</th>
-    <th>Responsable</th>
-    <th>Version</th>
-    <% if show_plugins %><th>Plugins</th><% end %>
-    <th>Projets</th>
-    <th>Tickets</th>
-    <th>Utilisateurs</th>
-    <th>Taille</th>
+    <th><%= t(:server) %></th>
+    <th><%= t(:application_instance) %></th>
+    <th><%= t(:manager) %></th>
+    <th><%= t(:version) %></th>
+    <% if show_plugins %><th><%= t(:plugins) %></th><% end %>
+    <th><%= t(:projects) %></th>
+    <th><%= t(:tickets) %></th>
+    <th><%= t(:users) %></th>
+    <th><%= t(:size) %></th>
   </tr>
   <tbody class="long-list">
 <% @redmine_instances.group_by{|i|i.server}.each do |server,instances| %>

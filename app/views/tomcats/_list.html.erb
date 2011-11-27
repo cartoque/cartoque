@@ -1,12 +1,12 @@
   <tr class="fix-on-scroll">
-    <th>Application</th>
-    <th>Serveurs</th>
-    <th>Instances</th>
+    <th><%= t(:application) %></th>
+    <th><%= t(:servers) %></th>
+    <th><%= t(:applicaiton_instances) %></th>
     <th>JVM</th>
     <th>Xms / Xmx</th>
-    <th>Cerbere</th>
-    <th>Crons</th>
-    <th>Base</th>
+    <th><%= t(:cerbere) %></th>
+    <th><%= t(:crons) %></th>
+    <th><%= t(:database_short) %></th>
   </tr>
   <% @tomcats.sort_by do |t|
        [ t.dns, t.server.split("-").last.to_i, t.tomcat.split("_").last.to_i ]

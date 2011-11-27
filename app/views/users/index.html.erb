@@ -1,18 +1,18 @@
-<% title "Utilisateurs" %>
+<% title t(:users) %>
 
 <div class="grid_9 center">
 
 <%= action_links do %>
-  <%= link_to "Nouvel utilisateur", new_user_path %>
+  <%= link_to t(:new_user), new_user_path %>
 <% end %>
 
 <table class="list pretty users">
   <tr>
-    <th>Nom</th>
-    <th>Provider</th>
-    <th>UID</th>
-    <th>API</th>
-    <th>Seen</th>
+    <th><%= t(:name) %></th>
+    <th><%= t(:user_provider) %></th>
+    <th><%= t(:user_uid) %></th>
+    <th><%= t(:user_api) %></th>
+    <th><%= t(:user_seen) %></th>
     <th></th>
   </tr>
   <tbody class="long-list">

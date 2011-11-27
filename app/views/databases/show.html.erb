@@ -1,34 +1,30 @@
-<% title "Base de données" %>
+<% title t(:database) %>
 
 <div class="grid_12 center">
 
 <%= action_links do %>
-  <%= link_to "Editer", edit_database_path(@database) %> |
-  <%= link_to "Supprimer", @database, :confirm => t(:text_are_you_sure), :method => :delete %> |
-  <%= link_to "Retourner à la liste", databases_path %>
+  <%= link_to t(:edit), edit_database_path(@database) %> |
+  <%= link_to t(:delete), @database, :confirm => t(:text_are_you_sure), :method => :delete %> |
+  <%= link_to t(:back_to_the_list), databases_path %>
 <% end %>
 
 <table class="pretty list database">
   <thead>
     <tr>
-      <th colspan="4">Base <%= @database.name %></th>
+      <th colspan="4"><%= @database.name %></th>
     </tr>
   </thead>
   <%= show_for @database do |a| %>
     <tr class="wrapper database_servers">
       <td colspan="4">
-        <% if @database.servers.any? %>
-          <ul>
-          <% @database.servers.each do |server| %>
-            <li><%= display_server(server) %></li>
-          <% end %>
-          </ul>
-        <% else %>
-          <p>Aucune server liée.</p>
+        <ul>
+        <% @database.servers.each do |server| %>
+          <li><%= display_server(server) %></li>
         <% end %>
+        </ul>
       </td>
     </tr>
-  <% end %>
+  <% end if @database.servers.any? %>
   <% if @database.postgres_report.present? or @database.oracle_report.present? %>
   <thead>
     <tr>

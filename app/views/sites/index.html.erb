@@ -1,17 +1,17 @@
-<% title "Salles d'hébergement" %>
+<% title t(:hosting_rooms) %>
 
 <div class="grid_9 center">
 
 <%= action_links do %>
-  <%= link_to "Nouvelle salle", new_site_path %>
+  <%= link_to t(:new_hosting_room), new_site_path %>
 <% end %>
 
 <table class="pretty list">
 <thead>
   <tr>
-    <th>Nom</th>
-    <th>Racks</th>
-    <th>Serveurs</th>
+    <th><%= t(:name) %></th>
+    <th><%= t(:physical_racks) %></th>
+    <th><%= t(:servers) %></th>
     <th></th>
   </tr>
 </thead>
@@ -26,7 +26,7 @@
 <% end %>
 <% if @racks_count[nil] || @servers_count[nil] %>
   <tr>
-    <td><em>Inconnu</em></td>
+    <td><em><%= t(:unknown) %></em></td>
     <td class="center"><%= @racks_count[nil] || 0 %></td>
     <td class="center"><%= @servers_count[nil] || 0 %></td>
     <td></td>

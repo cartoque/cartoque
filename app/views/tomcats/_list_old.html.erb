@@ -1,10 +1,10 @@
 <tr class="fix-on-scroll">
-  <th>Serveur</th>
-  <th>Instance</th>
+  <th><%= t(:server) %></th>
+  <th><%= t(:application_instance) %></th>
   <th>JVM</th>
   <th>Xms / Xmx</th>
   <th>Home</th>
-  <th>Applications</th>
+  <th><%= t(:applications) %></th>
 </tr>
 <% @tomcats_old.each do |tomcat|%>
 <tr>

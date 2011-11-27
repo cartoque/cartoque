@@ -1,12 +1,12 @@
 <tr class="fix-on-scroll">
-  <th class="left">Editeur</th>
-  <th class="left">Clé</th>
-  <th class="left">Intitulé</th>
-  <th>Quantité</th>
-  <th>Affectation</th>
-  <th>Depuis le</th>
-  <th>A renouveler le</th>
-  <th class="right">Commentaire</th>
+  <th class="left"><%= t(:editor) %></th>
+  <th class="left"><%= t(:key) %></th>
+  <th class="left"><%= t(:title) %></th>
+  <th><%= t(:quantity) %></th>
+  <th><%= t(:servers) %></th>
+  <th><%= t(:purshased_on) %></th>
+  <th><%= t(:renewal_on) %></th>
+  <th class="right"><%= t(:comment) %></th>
 </tr>
 <% @licenses.each do |license| %>
 <tr class="has-opaques">

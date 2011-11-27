@@ -1,4 +1,4 @@
-<% title "Stockage" %>
+<% title t(:storage) %>
 
 <div id="storages" class="grid_12 center">
 
@@ -6,7 +6,7 @@
   <div class="contextual">
     <%= link_to image_tag("file_extension_pdf.png", :size => "16x16"), storages_path(:format => "pdf") %>
   </div>
-  <%= link_to "Ajouter une baie", new_storage_path %>
+  <%= link_to t(:add_a_storage_device), new_storage_path %>
 <% end %>
 
 <table class="pretty list center" id="storage">

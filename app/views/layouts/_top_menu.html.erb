@@ -1,11 +1,11 @@
-<li><%= link_to "Applications", applications_path %></li>
-<li><%= link_to "Serveurs", servers_path %></li>
+<li><%= link_to t(:applications), applications_path %></li>
+<li><%= link_to t(:servers), servers_path %></li>
 <li class="has-submenu">
-  <%= link_to_function %(Plateforme <span class="arrow"></span>).html_safe, "return false" %>
+  <%= link_to_function %(#{t(:platform)} <span class="arrow"></span>).html_safe, "return false" %>
   <div class="large-submenu submenu-3" style="margin-left:-70px">
     <ul style="float:left">
-      <li class="title">Applicatifs</li>
-      <!--<li><a href="?">Load balancers</a></li>-->
+      <li class="title"><%= t(:application_server) %></li>
+      <!--<li><a href="?"><%= t(:load_balancers) %></a></li>-->
       <!--<li><a href="?">Apache HTTP</a></li>-->
       <li><%= link_to "Tomcat / J2EE", tomcats_path %></li>
       <li class="title">SaaS</li>
@@ -14,51 +14,51 @@
       <li><%= link_to "Request Tracker", saa_path(:rt) %></li>
     </ul>
     <ul style="float:left">
-      <li class="title">Données</li>
-      <li><%= link_to "Bases SQL", databases_path %></li>
+      <li class="title"><%= t(:data) %></li>
+      <li><%= link_to t(:sql_databases), databases_path %></li>
       <!--<li><a href="?">Talend / Sunopsis</a></li>-->
       <!--<li><a href="?">FTP VSFTPd</a></li>-->
-      <li class="title">Stockage</li>
-      <li><%= link_to "Virtualisation NSS", nss_volumes_path(:by_type => "SAN") %></li>
-      <li><%= link_to "Baies de stockage", storages_path %></li>
+      <li class="title"><%= t(:storage) %></li>
+      <li><%= link_to t(:nss_virtualization), nss_volumes_path(:by_type => "SAN") %></li>
+      <li><%= link_to t(:storage_devices), storages_path %></li>
     </ul>
     <!--<ul style="float:left">
-      <li class="title">Messagerie</li>
-      <li><a href="?">Relais SMTP</a></li>
-      <li><a href="?">BAL Cyrus</a></li>
-      <li><a href="?">Annuaires LDAP</a></li>
+      <li class="title"><%= t(:mail_services) %></li>
+      <li><a href="?"><%= t(:smtp_relays) %></a></li>
+      <li><a href="?">Cyrus</a></li>
+      <li><a href="?"><%= t(:ldap_directories) %></a></li>
       <li><a href="?">Greylisting</a></li>
       <li><a href="?">CalDav</a></li>
       <li><a href="?">Z-Push</a></li>
     </ul>-->
     <ul style="float:left">
-      <li class="title">Transverses</li>
-      <li><%= link_to "Licences", licenses_path %></li>
+      <li class="title"><%= t(:misc_services) %></li>
+      <li><%= link_to t(:licenses), licenses_path %></li>
       <li><%= link_to "Puppet", puppet_path(:servers, :by_puppet => "1") %></li>
-      <li><%= link_to "Sauvegardes", backup_jobs_path %></li>
-      <li><%= link_to "Tâches Cron", cronjobs_path %></li>
+      <li><%= link_to t(:backups), backup_jobs_path %></li>
+      <li><%= link_to t(:cron_tasks), cronjobs_path %></li>
       <!--<li><a href="?">DNS Bind</a></li>
-      <li class="title">Infrastructure</li>
-      <li><a href="?">Racks</a></li>
-      <li><a href="?">Réseau</a></li>-->
+      <li class="title"><%= t(:infrastructure) %></li>
+      <li><a href="?"><%= t(:physical_racks) %></a></li>
+      <li><a href="?"><%= t(:networking) %></a></li>-->
     </ul>
   </div>
 </li>
 <li class="right-separator"><%= link_to "Contacts", contacts_path %></li>
 <li class="has-submenu right-separator">
-  <%= link_to_function %(Outils <span class="arrow"></span>).html_safe, "return false" %>
+  <%= link_to_function %(#{t(:tools)} <span class="arrow"></span>).html_safe, "return false" %>
   <div class="large-submenu submenu-2" style="margin-left:-70px">
     <ul style="float:left">
-      <li class="title">Comparaison</li>
-      <li><%= link_to "avec Nagios".html_safe, tool_path("nagios_comparison") %></li>
-      <li><%= link_to "avec Rev-Proxies".html_safe, tool_path("reverse_proxies_comparison") %></li>
+      <li class="title"><%= t(:comparison) %></li>
+      <li><%= link_to t(:with_nagios), tool_path("nagios_comparison") %></li>
+      <li><%= link_to t(:with_reverse_proxies), tool_path("reverse_proxies_comparison") %></li>
     </ul>
     <ul style="float:left">
-      <li class="title">Symétrie</li>
-      <li><%= link_to "Serveurs ACAI", tool_path("acai_symetry") %></li>
-      <li><%= link_to "Serveurs SGBD", tool_path("cluster_symetry") %></li>
-      <li><%= link_to "Serveurs Infra", tool_path("infra_symetry") %></li>
+      <li class="title"><%= t(:symetry) %></li>
+      <li><%= link_to t(:servers)+" ACAI", tool_path("acai_symetry") %></li>
+      <li><%= link_to t(:servers)+" SGBD", tool_path("cluster_symetry") %></li>
+      <li><%= link_to t(:servers)+" Infra", tool_path("infra_symetry") %></li>
     </ul>
   </div>
 </li>
-<li class="tiny"><%= link_to "Configuration", operating_systems_path %></li>
+<li class="tiny"><%= link_to t(:configuration), operating_systems_path %></li>
