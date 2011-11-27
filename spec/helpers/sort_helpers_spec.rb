@@ -66,4 +66,11 @@ describe SortHelpers do
     @controller.params = {:sort => "name,manufacturer", :direction => "desc"}
     assert_equal "prefix.name desc, prefix.manufacturer desc", @controller.option
   end
+
+  it "should authorize prefix from an other resource if existent" do
+    @controller.params = {:sort => "licenses.key", :direction => "asc"}
+    @controller.option.should eq "licenses.key asc"
+    @controller.params = {:sort => "licenzes.key", :direction => "asc"}
+    @controller.option.should eq "prefix.name asc"
+  end
 end
