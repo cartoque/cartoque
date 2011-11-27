@@ -61,7 +61,6 @@ group :test do
   gem 'mocha'
   gem 'guard-livereload'
   gem 'database_cleaner'
-  gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'spork', '> 0.9.0.rc'
   gem 'guard-spork'
@@ -71,6 +70,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'rspec-rails'
   gem 'sqlite3'
   gem 'thin'
   gem 'metric_fu'
