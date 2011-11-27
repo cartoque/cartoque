@@ -1,0 +1,26 @@
+<%= simple_form_for(@company) do |f| %>
+
+  <div id="company_general" class="grid_6">
+    
+    <%= action_links do %>
+      <%= f.button :submit %>
+      <%= t(:or) %> <%= link_to t(:back_to_the_list), contacts_path %>
+      <% unless @company.new_record? %>
+        | <%= link_to t(:show), @company %>
+      <% end %>
+    <% end %>
+
+    <table class="inputs">
+      <tbody>
+        <%= tabular_errors @company %>
+        <tr id="company_identity">
+          <td colspan="2">
+            <%= f.text_field :name, :placeholder => t(:name) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+<% end %>

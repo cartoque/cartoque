@@ -1,4 +1,4 @@
-<% title "#{t(:contact)}: #{@contact.full_name}" %>
+<% title "#{t(:company)}: #{@company}" %>
 
 <div class="grid_4">
 
@@ -6,6 +6,6 @@
   <%= link_to t(:back_to_the_list), contacts_path %>
 <% end %>
 
-<%= render :partial => 'contact', :object => @contact %>
+<%= render :partial => 'company', :object => @company %>
 
 </div>

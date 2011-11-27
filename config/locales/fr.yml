@@ -215,6 +215,8 @@ fr:
   contacts: "Contacts"
   new_contact: "Nouveau contact"
   contact: "Contact"
+  new_company: "Nouvelle entreprise"
+  edit_a_company: "Edition d'une entreprise"
   cron: "Cron"
   crons: "Crons"
   cron_tasks: "Tâches CRON"

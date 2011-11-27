@@ -1,14 +1,14 @@
 @import 'mixins';
 
-#contact_general {
+#contact_general, #company_general {
   table { border:none; margin-top:20px; }
   input.short { width:8em; }
   input.long { width:25em; }
-  #contact_identity input { font-size:150%; font-weight:bold; width:12em; margin-right:4px; }
+  #contact_identity input, #company_identity input { font-size:150%; font-weight:bold; width:12em; margin-right:4px; }
 }
-.contact_card {
+.contact_card, .company_card {
   margin:8px 0; padding:5px 5px 5px 44px; background-color:#fcfcfc; background-repeat:no-repeat; background-position:6px 8px;
-  min-height:3em; border:1px solid #ccc; @include box-shadow(#ccc, 0, 0, 3px); @include transition(all, .1s);
+  min-height:3.2em; border:1px solid #ccc; @include box-shadow(#ccc, 0, 0, 3px); @include transition(all, .1s);
   &:hover { border:1px solid #bbb; @include box-shadow(#bbb, 0, 0, 4px); }
   h5 { font-size:15px; font-weight:bold; margin:0; padding:0; line-height:20px; }
   .contact_position { font-size:100%; font-style:italic; margin-top:1px; }
