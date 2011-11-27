@@ -15,9 +15,10 @@
         <%= tabular_errors @company %>
         <tr id="company_identity">
           <td colspan="2">
-            <%= f.text_field :name, :placeholder => t(:name) %>
+            <%= f.text_field :name, :placeholder => t(:name), :style => "width:20em" %>
           </td>
         </tr>
+        <%= f.input :comment, input_html: {size: "40x5"}  %>
       </tbody>
     </table>
 
