@@ -1,7 +1,7 @@
-require 'test_helper'
+require 'spec_helper'
 
-class ServersHelperTest < ActionView::TestCase
-  should "render options for location filter" do
+describe ServersHelper do
+  it "should render options for location filter" do
     @site1 = Site.create!(:name => "eu-west")
     @site2 = Site.create!(:name => "us-east")
     @rack1 = PhysicalRack.create!(:name => "rack-1-eu", :site_id => @site1.id)
