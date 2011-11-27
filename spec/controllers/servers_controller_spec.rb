@@ -25,4 +25,63 @@ describe ServersController do
       end
     end
   end
+
+  describe "real ServersController" do
+    before do
+      controller.session[:user_id] = Factory(:user).id #authentication
+      @server = Factory(:server)
+    end
+
+    it "should get index" do
+      get :index
+      assert_response :success
+      assert_not_nil assigns(:servers)
+    end
+    
+    it "should get physical nodes for maintenance" do
+      get :index, :view_mode => "maintenance"
+      assert_response :success
+      assert_not_nil assigns(:servers)
+      assert_nil assigns(:servers).detect{|m| m.virtual?}
+    end
+    
+
+    it "should get new" do
+      get :new
+      assert_response :success
+    end
+
+    it "should create server" do
+      lambda{ post :create, :server => @server.attributes.merge("name" => "new-server") }.should change(Server, :count)
+      assert_redirected_to server_path(assigns(:server))
+    end
+
+    it "should show server" do
+      get :show, :id => @server.to_param
+      assert_response :success
+    end
+
+    it "should access the xml output" do
+      get :show, :id => @server.to_param, :format => :xml
+      assert_select "server"
+    end
+
+    it "should get edit" do
+      get :edit, :id => @server.to_param
+      assert_response :success
+    end
+
+    it "should update server" do
+      put :update, :id => @server.to_param, :server => @server.attributes.merge("ipaddresses_attributes"=>[{"address"=>"192.168.99.99", "main"=>"1"}])
+      assert_redirected_to server_path(assigns(:server))
+      @server.reload
+      assert_equal 3232260963, @server.read_attribute(:ipaddress)
+      assert_equal "192.168.99.99", @server.ipaddress
+    end
+
+    it "should destroy server" do
+      lambda{ delete :destroy, :id => @server.to_param }.should change(Server, :count).by(-1)
+      assert_redirected_to servers_path
+    end
+  end
 end

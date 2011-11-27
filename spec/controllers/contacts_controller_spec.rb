@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ContactsController do
   before do
-    controller.session[:user_id] = Factory(:user).id
+    controller.session[:user_id] = Factory(:user).id #authentication
   end
 
   describe "GET /index" do

@@ -1,7 +1,8 @@
-require 'test_helper'
+require 'spec_helper'
 
-class DatabasesControllerTest < ActionController::TestCase
-  setup do
+describe DatabasesController do
+  before do
+    controller.session[:user_id] = Factory(:user).id #authentication
     @database = Factory(:database)
   end
 
