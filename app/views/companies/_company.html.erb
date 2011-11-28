@@ -5,9 +5,9 @@
   </div>
   <h5><%= link_to company.name, company %></h5>
   <% if company.contacts.any? %>
-  <p>
-    <%= company.contacts.first(2).map(&:short_name).join(", ") %>
-    <%= t(:and_X_others, :value => company.contacts.count - 2) if company.contacts.count > 2 %>
+  <p class="tiny">
+     <%= company.contacts.first(2).map{|c| link_to(c.short_name,c)}.join(", ").html_safe %>
+     <%= t(:and_X_others, :value => company.contacts.count - 2) if company.contacts.count > 2 %>
   </p>
   <% end %>
 </div>
