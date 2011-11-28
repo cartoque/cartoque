@@ -5,9 +5,24 @@
   </div>
   <h5><%= link_to contact.full_name, contact %></h5>
   <%= content_tag(:p, contact.full_position, :class => "contact_position") if contact.full_position.present? %>
+<% if controller.action_name == "index" %>
   <%= content_tag :p do %>
     <%= mail_to(contact.email, contact.short_email) if contact.email.present? %>
     <%= contact.phone if contact.phone.present? %>
   <% end %>
-  <% content_tag(:p, contact.comment) if contact.comment.present? %>
 </div>
+<% else %>
+  <%= content_tag :p do %>
+    <%= contact.email_infos.map{|mail| "Mail: "+mail_to(mail, mail)}.join("<br />, ").html_safe %>
+  <% end if contact.email_infos.any? %>
+  <%= content_tag :p do %>
+    <%= contact.phone_infos.map{|phone| "Tél: #{phone}"}.join("<br />, ").html_safe %>
+  <% end if contact.phone_infos.any? %>
+</div>
+<% if contact.comment.present? %>
+<div class="postit">
+    <p><%= contact.comment %></p>
+</div>
+<% end %>
+
+<% end %>
