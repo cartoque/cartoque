@@ -28,4 +28,18 @@ describe Contact do
     c.email_infos = [ContactInfo.new(:value => "john.doe@very.long-subdomain.example.com", :info_type => "mail")]
     c.short_email.should == "john.doe@...example.com"
   end
+
+  it "should destroy the associated contact infos when deleted" do
+    c = Contact.create(:first_name => "John", :last_name => "Doe")
+    c.should be_persisted
+    lambda {
+      c.email_infos << ContactInfo.new(:value => "blah@example.com", :info_type => "email")
+      c.phone_infos << ContactInfo.new(:value => "555-123456", :info_type => "phone")
+      c.save
+    }.should change(ContactInfo, :count).by(+2)
+    c.reload.should have(2).contact_infos
+    lambda {
+      c.destroy
+    }.should change(ContactInfo, :count).by(-2)
+  end
 end
