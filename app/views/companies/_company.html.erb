@@ -1,4 +1,4 @@
-<div class="company_card" style="background-image:url(<%= asset_path("building.png") %>)">
+<div class="company_card" style="background-image:url(<%= asset_path(company.image_url) %>)">
   <div class="contextual">
     <%= link_to_edit edit_company_path(company) %><br />
     <%= link_to_delete company %>

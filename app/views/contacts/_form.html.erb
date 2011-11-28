@@ -1,5 +1,10 @@
 <%= simple_form_for(@contact) do |f| %>
 
+  <div id="contact_image" class="grid_2 image_url_form">
+    <%= render 'contacts/image_url_form', :entity => @contact, :f => f,
+                                          :available_images => Contact.available_images_hash %>
+  </div>
+
   <div id="contact_general" class="grid_6">
     
     <%= action_links do %>

@@ -43,4 +43,25 @@ class Contact < ActiveRecord::Base
       $1+"@"+$2.gsub(/.*(\.[^.]+\.[^.]+)/, '..\1')
     end
   end
+
+  def self.available_images
+    %w(ceo.png
+       reseller_account.png 
+       user_chief_female.png 
+       user.png 
+       user_female.png
+       user_ninja.png 
+       user_clown.png
+       user_astronaut.png
+       user_batman.png)
+  end
+
+  def self.available_images_hash
+    hsh = {}
+    available = self.available_images
+    available.each_with_index do |img, idx|
+      hsh[img] = available[idx+1] || available[0]
+    end
+    hsh
+  end
 end

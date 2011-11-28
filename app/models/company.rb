@@ -5,4 +5,20 @@ class Company < ActiveRecord::Base
   def to_s
     name
   end
+
+  def self.available_images
+    %w(building.png
+       premium_support.png
+       house_one.png
+       agp.png)
+  end
+
+  def self.available_images_hash
+    hsh = {}
+    available = self.available_images
+    available.each_with_index do |img, idx|
+      hsh[img] = available[idx+1] || available[0]
+    end
+    hsh
+  end
 end

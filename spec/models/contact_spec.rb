@@ -54,4 +54,13 @@ describe Contact do
       c.destroy
     }.should change(ContactInfo, :count).by(-2)
   end
+
+  describe "#available_images and #available_images_index" do
+    it "should be an array of available images" do
+      Contact.available_images.should be_a(Array)
+    end
+
+    it "should generate a hash" do
+    end
+  end
 end
