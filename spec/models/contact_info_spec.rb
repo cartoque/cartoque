@@ -4,7 +4,7 @@ describe ContactInfo do
   it "should have all fields to be valid" do
     info = ContactInfo.new
     info.should_not be_valid
-    info.should have_at_least(3).errors
+    info.should have_at_least(2).errors
     info.contact_id = Factory(:contact).id
     info.info_type = "phone"
     info.value = "555-123456"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111127191638) do
+ActiveRecord::Schema.define(:version => 20111128101523) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20111127191638) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment"
+    t.string   "image_url",  :default => "building.png"
   end
 
   create_table "configuration_items", :force => true do |t|
@@ -106,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20111127191638) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
+    t.string   "image_url",    :default => "ceo.png"
   end
 
   create_table "cronjobs", :force => true do |t|

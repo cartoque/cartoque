@@ -2,9 +2,10 @@
 require 'spec_helper'
 
 describe Contact do
-  it "should have a first and a last name to be valid" do
+  it "should have a first name, a last name and an image url to be valid" do
     Contact.new.should_not be_valid
-    Contact.new(:first_name => "John", :last_name => "Doe").should be_valid
+    Contact.new(:first_name => "John", :last_name => "Doe", :image_url => "").should_not be_valid
+    Contact.new(:first_name => "John", :last_name => "Doe", :image_url => "ceo.png").should be_valid
   end
 
   it "should return the full name of a person" do
