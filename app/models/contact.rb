@@ -22,6 +22,11 @@ class Contact < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def short_name
+    initials = first_name.gsub(/(?:^|[ -.])(.)[^ -.]*/){ $1.upcase }
+    "#{initials} #{last_name.capitalize}"
+  end
+
   def full_position
     [job_position, company].reject(&:blank?).join(", ")
   end

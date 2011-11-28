@@ -4,4 +4,10 @@
     <%= link_to_delete company %>
   </div>
   <h5><%= link_to company.name, company %></h5>
+  <% if company.contacts.any? %>
+  <p>
+    <%= company.contacts.first(2).map(&:short_name).join(", ") %>
+    <%= ", + #{company.contacts.count - 2}..." if company.contacts.count > 2 %>
+  </p>
+  <% end %>
 </div>

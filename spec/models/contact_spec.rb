@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'spec_helper'
 
 describe Contact do
@@ -9,6 +10,16 @@ describe Contact do
   it "should return the full name of a person" do
     contact = Contact.new(:first_name => "John", :last_name => "Doe")
     contact.full_name.should == "John Doe"
+  end
+
+  it "should return a shortened version of the name of a person" do
+    contact = Contact.new(:first_name => "John-Mitchel Charles", :last_name => "Doe")
+    contact.short_name.should == "JMC Doe"
+    contact.first_name = "Jérémy"
+    contact.short_name.should == "J Doe"
+    contact.first_name = "john"
+    contact.last_name = "DOE"
+    contact.short_name.should == "J Doe"
   end
 
   it "should return the full job position of a person" do
