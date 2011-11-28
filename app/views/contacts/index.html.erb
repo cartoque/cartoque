@@ -8,6 +8,7 @@
     <% @contacts.each do |contact| %>
       <%= render :partial => 'contact', :object => contact %>
     <% end %>
+    <%= content_tag(:p, t(:and_X_others, :value => @contacts_count - 10), :class => "more_contacts") if @contacts_count > 10 %>
   </div>
 </div>
 
@@ -19,5 +20,6 @@
     <% @companies.each do |company| %>
       <%= render :partial => 'companies/company', :object => company %>
     <% end %>
+    <%= content_tag(:p, t(:and_X_others, :value => @companies_count - 10), :class => "more_companies") if @companies_count > 10 %>
   </div>
 </div>
