@@ -11,6 +11,8 @@
 </div>
 
 <div class="grid_4">
-  <h2 class="center">Membres</h2>
+<% if @company.contacts.any? %>
+  <h2 class="center"><%= t(:members) %></h2>
   <%= render :partial => 'contacts/contact', :collection => @company.contacts %>
+<% end %>
 </div>

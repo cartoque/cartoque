@@ -361,3 +361,6 @@ fr:
   statistics_storage: "Statistiques Stockage"
   and_X_others: "et %{value} autre(s)..."
   click_to_change: "Cliquer pour modifier"
+  members: "Membres"
+  works_at: "Travaille à"
+  with: "avec"

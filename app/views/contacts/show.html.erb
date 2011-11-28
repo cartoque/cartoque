@@ -1,6 +1,6 @@
 <% title "#{t(:contact)}: #{@contact.full_name}" %>
 
-<div class="grid_4">
+<div id="contact_informations" class="grid_4">
 
 <%= action_links do %>
   <%= link_to t(:back_to_the_list), contacts_path %>
@@ -8,4 +8,16 @@
 
 <%= render :partial => 'contact', :object => @contact %>
 
+</div>
+
+<div class="grid_4">
+<% if @contact.company.present? %>
+  <h2><%= t(:works_at) %></h2>
+  <%= render 'companies/company', :company => @contact.company %>
+
+  <% if @contact.company.contacts.count > 1 %>
+    <h2><%= t(:with) %></h2>
+    <%= render :partial => 'contacts/contact', :collection => @contact.company.contacts - [@contact] %>
+  <% end %>
+<% end %>
 </div>
