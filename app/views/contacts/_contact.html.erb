@@ -12,12 +12,12 @@
   <% end %>
 </div>
 <% else %>
-  <%= content_tag :p do %>
-    <%= contact.email_infos.map{|mail| "#{t(:mail_short)}: "+mail_to(mail, mail)}.join("<br />, ").html_safe %>
-  <% end if contact.email_infos.any? %>
-  <%= content_tag :p do %>
-    <%= contact.phone_infos.map{|phone| "#{t(:phone_short)}: #{phone}"}.join(",<br />").html_safe %>
-  <% end if contact.phone_infos.any? %>
+  <% contact.email_infos.each do |info| %>
+    <%= content_tag(:p, "#{t(:mail_short)}: #{mail_to(info)}".html_safe) %>
+  <% end %>
+  <% contact.phone_infos.each do |info| %>
+    <%= content_tag(:p, "#{t(:phone_short)}: #{info}") %>
+  <% end %>
 </div>
 <% if contact.comment.present? %>
 <div class="postit">
