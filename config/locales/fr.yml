@@ -359,3 +359,4 @@ fr:
   statistics_databases: "Statistiques Bases"
   statistics_main: "Statistiques Générales"
   statistics_storage: "Statistiques Stockage"
+  and_X_others: "et %{value} autre(s)..."
