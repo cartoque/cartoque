@@ -366,3 +366,5 @@ fr:
   with: "avec"
   placeholder_for_contacts_search: "Rechercher un contact ou une entreprise..."
   actions: "Actions"
+  text_new_contact_explanation: "Créer un nouveau contact : commercial, expert technique, maître d'oeuvre ou maître d'ouvrage, etc."
+  text_new_company_explanation: "Créer une nouvelle entreprise, une organisation, une équipe interne ou un support"

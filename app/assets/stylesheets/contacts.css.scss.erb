@@ -37,7 +37,11 @@
   background-image:url(<%= asset_path('search.png') %>); background-repeat:no-repeat; background-position:6px 50%;
 }
 #contacts_actions {
-  text-align:center; min-height:300px; width:100%; float:right; margin:0 -20px 5px 0; padding:4px; background-color:#fcfcfc;
-  border:1px solid #d4d4d4; @include box-shadow(0, 0, 5px, #ccc);
+  text-align:center; min-height:300px; width:100%; float:right; margin:0 -20px 5px 0; padding:4px 10px; background-color:#fcfcfc;
+  border:1px solid #d4d4d4; @include box-shadow(0, 0, 6px, #bbb);
   h2 { margin:4px; }
+  p {
+    padding:5px; font-style:italic; font-size:90%; color:#444; line-height:150%; margin-bottom:10px;
+    .button-add { margin:5px auto; font-style:normal; font-weight:bold; color:#333; }
+  }
 }

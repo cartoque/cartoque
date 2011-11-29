@@ -81,7 +81,7 @@ td.multirow+td.hidden { border-bottom:0; border-top:0; height:0; padding:0; }
 .nocut { display:inline-block; white-space:nowrap; }
 .opaque { opacity:0; }
 .has-opaques:hover .opaque { opacity:1; }
-button, a.button, input[type=submit] {
+button, a.button, input[type=submit], a.button-add {
   padding:4px 8px; cursor:pointer; display:inline-block; text-shadow:0 1px 1px #fff; font-weight:bold;
   color:#222; border:solid 1px #aaa; text-decoration:none; text-align:center; @include transition(all, .1s);
   @include border-radius(3px); @include gradient(#fff, #e3e3e3); box-shadow:none;
@@ -89,6 +89,10 @@ button, a.button, input[type=submit] {
   &:active { position:relative; top:1px; }
 }
 button.inline { padding:2px 4px; font-size:11px; font-weight:normal; position:relative; bottom:1px; }
+a.button-add, a.button-add:hover {
+  @include border-radius(12px); @include background-image-gradient('..<%= asset_path 'add.png' %>', #fff, #e3e3e3); box-shadow:none;
+  padding:4px 12px 3px 24px; background-position:3px 50%; background-repeat: no-repeat; border:1px solid #bbb; font-weight:normal;
+}
 
 ul.details {
   margin:0.2em 0.5em 0.2em 0.8em;

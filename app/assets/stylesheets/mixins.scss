@@ -39,6 +39,13 @@
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($color1), to($color2));
 }
 
+@mixin background-image-gradient($image, $color1, $color2) {
+  background: $color1;
+  background-image: url($image);
+  background-image: url($image), -moz-linear-gradient(center top, $color1, $color2);
+  background-image: url($image), -webkit-gradient(linear, 0% 0%, 0% 100%, from($color1), to($color2));
+}
+
 @mixin opacity($value) {
   -khtml-opacity: $value;
   -moz-opacity: $value;
