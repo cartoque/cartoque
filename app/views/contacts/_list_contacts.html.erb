@@ -2,3 +2,4 @@
   <%= render :partial => 'contact', :object => contact %>
 <% end %>
 <%= content_tag(:p, t(:and_X_others, :value => @contacts_count - 10), :class => "more_contacts") if @contacts_count > 10 %>
+<%= content_tag(:p, t(:no_contact_found), :class => "no_result") if @contacts.count == 0 %>

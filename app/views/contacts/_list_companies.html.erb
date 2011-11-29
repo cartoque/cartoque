@@ -2,3 +2,4 @@
   <%= render :partial => 'companies/company', :object => company %>
 <% end %>
 <%= content_tag(:p, t(:and_X_others, :value => @companies_count - 10), :class => "more_companies") if @companies_count > 10 %>
+<%= content_tag(:p, t(:no_company_found), :class => "no_result") if @companies.count == 0 %>
