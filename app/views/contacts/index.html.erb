@@ -1,11 +1,13 @@
 <% title t(:contacts) %>
 
-<div class="grid_8 filters">
+<div class="grid_8">
 
-  <%= form_tag contacts_path(params), :id => "filters", :method => :get do -%>
-    <input type="text" name="search" id="search_contacts" placeholder="<%= t(:placeholder_for_contacts_search) %>"
-           value="<%= params[:search] %>" autocomplete="off" />
-  <% end %>
+  <div class="filters">
+    <%= form_tag contacts_path(params), :id => "filters", :method => :get do -%>
+      <input type="text" name="search" id="search_contacts" placeholder="<%= t(:placeholder_for_contacts_search) %>"
+             value="<%= params[:search] %>" autocomplete="off" />
+    <% end %>
+  </div>
 
   <div class="grid_4" style="margin-left:0;">
     <div id="contacts_list">

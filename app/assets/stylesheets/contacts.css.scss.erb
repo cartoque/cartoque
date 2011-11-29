@@ -37,7 +37,7 @@
 }
 #search_contacts {
   width:100%; font-size:140%; color:#222; padding:4px 4px 2px 24px; margin:3px 0 10px 0; border:1px solid #ccc; @include border-radius(4px);
-  background-image:url(<%= asset_path('search.png') %>); background-repeat:no-repeat; background-position:6px 50%;
+  background-image:url(<%= asset_path('search.png') %>); background-repeat:no-repeat; background-position:6px 50%; @include box-sizing(border-box);
 }
 #contacts_actions {
   text-align:center; min-height:300px; width:100%; float:right; margin:0 -20px 5px 0; padding:4px 10px; background-color:#fcfcfc;
