@@ -89,10 +89,14 @@ button, a.button, input[type=submit], a.button-add {
   &:active { position:relative; top:1px; }
 }
 button.inline { padding:2px 4px; font-size:11px; font-weight:normal; position:relative; bottom:1px; }
-a.button-add, a.button-add:hover {
-  @include border-radius(12px); @include background-image-gradient('..<%= asset_path 'add.png' %>', #fff, #e3e3e3); box-shadow:none;
-  padding:4px 12px 4px 24px; background-position:4px 50%, 0 50%; background-repeat: no-repeat; border:1px solid #bbb; font-weight:normal;
-  line-height:14px;
+a.button-add {
+  padding:4px 12px 4px 24px; border:1px solid #bbb; font-weight:normal; line-height:14px; box-shadow:none; @include border-radius(12px);
+  @include background-image-gradient('..<%= asset_path 'add.png' %>', #fff, #e3e3e3);
+  background-position:4px 50%, 0 50%; background-repeat: no-repeat;
+  &:hover {
+    @include background-image-gradient('..<%= asset_path 'add.png' %>', #fcfcfc, #ddd);
+    background-position:4px 50%, 0 50%; background-repeat: no-repeat;
+  }
 }
 
 ul.details {

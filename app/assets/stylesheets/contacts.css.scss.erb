@@ -22,8 +22,8 @@
 }
 .contact_card, .company_card {
   margin:8px 0; padding:5px 5px 5px 44px; background-color:#fcfcfc; background-repeat:no-repeat; background-position:6px 8px;
-  min-height:3.2em; border:1px solid #eee; @include transition(all, .1s);
-  &:hover { border:1px solid #bbb; @include box-shadow(#aaa, 0, 0, 5px); }
+  min-height:3.2em; border:1px solid #ddd; @include transition(all, .1s);
+  &:hover { border:1px solid #bbb; @include box-shadow(#bbb, 0, 0, 4px); }
   h5 { font-size:15px; font-weight:bold; margin:0; padding:0; line-height:20px; }
   .contact_position { font-size:100%; font-style:italic; margin-top:1px; }
   p {
@@ -36,12 +36,12 @@
   padding:5px; font-style:italic; color:#555;
 }
 #search_contacts {
-  width:100%; font-size:140%; color:#222; padding:4px 4px 2px 24px; margin:3px 0 10px 0; border:1px solid #ccc; @include border-radius(4px);
+  width:100%; font-size:140%; color:#222; padding:4px 4px 2px 24px; margin:3px 0 10px 0; border:1px solid #bbb; @include border-radius(4px);
   background-image:url(<%= asset_path('search.png') %>); background-repeat:no-repeat; background-position:6px 50%; @include box-sizing(border-box);
 }
 #contacts_actions {
   text-align:center; width:100%; float:right; margin:0 -20px 5px 0; padding:4px 10px; background-color:#fcfcfc;
-  border:1px solid #d4d4d4; @include box-shadow(0, 0, 6px, #bbb);
+  border:1px solid #d4d4d4; @include box-shadow(0, 0, 4px, #bbb);
   h2 { margin:4px; }
   p {
     padding:5px; font-style:italic; font-size:90%; color:#444; line-height:150%; margin-bottom:10px;
