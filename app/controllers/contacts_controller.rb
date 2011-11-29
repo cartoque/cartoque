@@ -17,4 +17,9 @@ class ContactsController < InheritedResources::Base
     @companies_count = Company.search(params[:search]).count
     @contacts_count  = Contact.search(params[:search]).count
   end
+
+  def full_display?(contact)
+    controller_name == "contacts" && action_name != "index" && contact.id.to_s == params[:id]
+  end
+  helper_method :full_display?
 end

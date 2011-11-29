@@ -1,28 +1,29 @@
-<div class="contact_card" style="background-image:url(<%= asset_path(contact.image_url) %>)">
+<div class="contact_card<%= " active" if full_display?(contact) %>" style="background-image:url(<%= asset_path(contact.image_url) %>)">
   <div class="contextual">
     <%= link_to_edit edit_contact_path(contact) %><br />
     <%= link_to_delete contact %>
   </div>
   <h5><%= link_to contact.full_name, contact %></h5>
   <%= content_tag(:p, contact.full_position, :class => "contact_position") if contact.full_position.present? %>
-<% if controller.controller_name != "contacts" || controller.action_name == "index" || contact.id.to_s != params[:id] %>
-  <%= content_tag :p do %>
-    <%= mail_to(contact.email, contact.short_email) if contact.email.present? %>
-    <%= contact.phone if contact.phone.present? %>
-  <% end %>
-</div>
-<% else %>
-  <% contact.email_infos.each do |info| %>
-    <%= content_tag(:p, "#{t(:mail_short)}: #{mail_to(info)}".html_safe) %>
-  <% end %>
-  <% contact.phone_infos.each do |info| %>
-    <%= content_tag(:p, "#{t(:phone_short)}: #{info}") %>
-  <% end %>
-</div>
-<% if contact.comment.present? %>
-<div class="postit">
-    <p><%= contact.comment %></p>
-</div>
-<% end %>
 
+  <% if !full_display?(contact) %>
+    <%= content_tag :p do %>
+      <%= mail_to(contact.email, contact.short_email) if contact.email.present? %>
+      <%= contact.phone if contact.phone.present? %>
+    <% end %>
+  <% else %>
+    <% contact.email_infos.each do |info| %>
+      <%= content_tag(:p, "#{t(:mail_short)}: #{mail_to(info)}".html_safe) %>
+    <% end %>
+    <% contact.phone_infos.each do |info| %>
+      <%= content_tag(:p, "#{t(:phone_short)}: #{info}") %>
+    <% end %>
+  <% end %>
+
+</div>
+
+<% if contact.comment.present? && full_display?(contact) %>
+  <div class="postit">
+    <p><%= contact.comment %></p>
+  </div>
 <% end %>
