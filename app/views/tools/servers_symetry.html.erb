@@ -65,7 +65,7 @@ uniq = packages_map.uniq %>
           <% diff = Diffy::Diff.new(packages_map.first, packages, :diff => %w(-B -b -w -E --unified=0)).to_s(:html_simple) %>
           <% diff.gsub!(%(<li class="ins"><ins></ins></li>),"") %>
           <% diff.gsub!(%(<li class="del"><del></del></li>),"") %>
-          <%= diff.scan("<ins>").count + diff.scan("<del>").count %> différences avec <%= hsh[:nodes].first %>:<br />
+          <%= t(:x_differences_with, :count => diff.scan("<ins>").count + diff.scan("<del>").count, :node => hsh[:nodes].first) %>:<br />
           <%= diff.html_safe %>
         <% end %>
       </td>
@@ -96,7 +96,7 @@ uniq = packages_map.uniq %>
           <% diff = Diffy::Diff.new(packages_map.first, packages, :diff => %w(-B -b -w -E --unified=0)).to_s(:html_simple) %>
           <% diff.gsub!(%(<li class="ins"><ins></ins></li>),"") %>
           <% diff.gsub!(%(<li class="del"><del></del></li>),"") %>
-          <%= diff.scan("<ins>").count + diff.scan("<del>").count %> différences avec <%= hsh[:nodes].first %>:<br />
+          <%= t(:x_differences_with, :count => diff.scan("<ins>").count + diff.scan("<del>").count, :node => hsh[:nodes].first) %>:<br />
           <%= diff.html_safe %>
         <% end %>
       </td>
@@ -129,7 +129,7 @@ uniq = lists_map.uniq %>
           <% diff = Diffy::Diff.new(lists_map.first, files, :diff => %w(-B -b -w -E --unified=0)).to_s(:html_simple) %>
           <% diff.gsub!(%(<li class="ins"><ins></ins></li>),"") %>
           <% diff.gsub!(%(<li class="del"><del></del></li>),"") %>
-          <%= diff.scan("<ins>").count + diff.scan("<del>").count %> différences avec <%= hsh[:nodes].first %>:<br />
+          <%= t(:x_differences_with, :count => diff.scan("<ins>").count + diff.scan("<del>").count, :node => hsh[:nodes].first) %>:<br />
           <%= diff.html_safe %>
         <% end %>
       </td>

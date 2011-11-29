@@ -370,3 +370,4 @@ fr:
   text_new_company_explanation: "Créer une nouvelle entreprise, une organisation, une équipe interne ou un support"
   no_contact_found: "Pas de contact trouvé"
   no_company_found: "Pas d'entreprise trouvée"
+  x_differences_with: "%{count} différences avec %{node}"
