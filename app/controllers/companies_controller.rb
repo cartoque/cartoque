@@ -9,4 +9,9 @@ class CompaniesController < InheritedResources::Base
     @companies = Company.order(:name).where("name like ?", "%#{params[:term]}%")
     render :json => @companies.map(&:name)
   end
+
+  def full_display?(company)
+    company == @company
+  end
+  helper_method :full_display?
 end

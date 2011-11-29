@@ -19,7 +19,7 @@ class ContactsController < InheritedResources::Base
   end
 
   def full_display?(contact)
-    controller_name == "contacts" && action_name != "index" && contact.id.to_s == params[:id]
+    contact == @contact
   end
   helper_method :full_display?
 end
