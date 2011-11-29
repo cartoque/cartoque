@@ -17,4 +17,6 @@ describe ContactsController do
       response.should render_template("index")
     end
   end
+
+  pending "test filtering / search functionality"
 end

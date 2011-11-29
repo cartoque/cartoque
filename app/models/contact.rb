@@ -64,4 +64,13 @@ class Contact < ActiveRecord::Base
     end
     hsh
   end
+
+  def self.search(search)
+    if search
+      s = "%#{search}%"
+      includes("company").where("first_name LIKE ? OR last_name LIKE ? OR job_position LIKE ? OR companies.name LIKE ?", s, s, s, s)
+    else
+      scoped
+    end
+  end
 end

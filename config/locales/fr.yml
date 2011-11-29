@@ -364,3 +364,5 @@ fr:
   members: "Membres"
   works_at: "Travaille à"
   with: "avec"
+  placeholder_for_contacts_search: "Rechercher un contact ou une entreprise..."
+  actions: "Actions"

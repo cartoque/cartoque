@@ -60,7 +60,24 @@ describe Contact do
       Contact.available_images.should be_a(Array)
     end
 
-    it "should generate a hash" do
+    pending "should generate a hash"
+  end
+
+  describe "#search" do
+    before do
+      @contact1 = Contact.create(:first_name => "John", :last_name => "Doe", :job_position => "Commercial")
+      @contact2 = Contact.create(:first_name => "James", :last_name => "Dean", :job_position => "Director")
+    end
+
+    it "should return everything if parameter is blank" do
+      Contact.search("").should eq [@contact1, @contact2]
+    end
+    
+    it "should filter contacts by first_name, last_name, and job_position" do
+      Contact.search("James").should eq [@contact2]
+      Contact.search("Doe").should eq [@contact1]
+      Contact.search("D").should eq [@contact1, @contact2]
+      Contact.search("Director").should eq [@contact2]
     end
   end
 end
