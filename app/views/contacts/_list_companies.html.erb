@@ -2,6 +2,6 @@
   <%= render :partial => 'companies/company', :object => company %>
 <% end %>
 <%= content_tag(:p, :class => "more_companies") do %>
-  <%= link_to t(:and_X_others, :value => @companies_count - 10), contacts_path(params.merge(:all_companies=>1))  %>
-<% end if @companies_count > 10 && params[:all_companies].blank? %>
+  <%= link_to t(:and_X_others, :value => @companies_count - 25), contacts_path(params.merge(:all_companies=>1))  %>
+<% end if @companies_count > 25 && params[:all_companies].blank? %>
 <%= content_tag(:p, t(:no_company_found), :class => "no_result") if @companies.count == 0 %>
