@@ -26,10 +26,6 @@ class Contact < ActiveRecord::Base
     "#{initials} #{last_name.capitalize}"
   end
 
-  def full_position
-    [job_position, company].reject(&:blank?).join(", ")
-  end
-
   def phone
     phone_infos.first
   end

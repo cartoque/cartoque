@@ -4,7 +4,7 @@
     <%= link_to_delete contact %>
   </div>
   <h5><%= link_to contact.full_name, contact %></h5>
-  <%= content_tag(:p, contact.full_position, :class => "contact_position") if contact.full_position.present? %>
+  <%= content_tag(:p, full_position(contact, true), :class => "contact_position") if full_position(contact).present? %>
 
   <% if !full_display?(contact) %>
     <%= content_tag :p do %>

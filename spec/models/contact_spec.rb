@@ -23,16 +23,6 @@ describe Contact do
     contact.short_name.should == "J Doe"
   end
 
-  it "should return the full job position of a person" do
-    person = Factory(:contact)
-    person.full_position.should eq "CEO, WorldCompany"
-    person.company = nil
-    person.full_position.should eq "CEO"
-    person.company = Company.new(:name => "Blah Inc.")
-    person.job_position = ""
-    person.full_position.should eq "Blah Inc."
-  end
-
   it "should shorten long email addresses" do
     c = Contact.new
     c.email_infos = [ContactInfo.new(:value => "john.doe@example.com", :info_type => "mail")]
