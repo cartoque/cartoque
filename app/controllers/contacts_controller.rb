@@ -4,13 +4,13 @@ class ContactsController < InheritedResources::Base
   respond_to :html, :js
 
   def index
-    @companies = Company.search(params[:search])
+    @companies = Company.search(params[:search]).limit(params[:all_companies].blank? ? 10 : nil)
     index!
   end
 
   private
   def collection
-    @contacts ||= end_of_association_chain.search(params[:search]).limit(10).order("contacts.updated_at desc")
+    @contacts ||= end_of_association_chain.search(params[:search]).limit(params[:all_contacts].blank? ? 10 : nil).order("contacts.updated_at desc")
   end
 
   def find_companies_and_contacts_count
