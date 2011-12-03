@@ -6,8 +6,11 @@
 #contact_general, #company_general {
   table { border:none; margin-top:20px; }
   input.short { width:8em; }
-  input.long { width:23em; }
-  #contact_identity input, #company_identity input { font-size:150%; font-weight:bold; width:12em; margin-right:4px; }
+  input.long { width:22em; }
+  #contact_identity input, #company_identity input {
+    font-size:150%; font-weight:bold; width:11em;
+    &:first-child { margin-right:0.2em; }
+  }
   td.top { vertical-align:top; padding-top:1em; }
 }
 #contact_informations, #company_informations {
