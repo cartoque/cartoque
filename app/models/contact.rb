@@ -7,7 +7,7 @@ class Contact < ActiveRecord::Base
 
   belongs_to :company
 
-  validates_presence_of :first_name, :last_name, :image_url
+  validates_presence_of :last_name, :image_url
 
   def company_name
     company.try(:name)
