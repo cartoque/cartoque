@@ -5,7 +5,7 @@ describe ContactInfo do
     info = ContactInfo.new
     info.should_not be_valid
     info.should have_at_least(2).errors
-    info.contact_id = Factory(:contact).id
+    info.entity = Factory(:contact)
     info.info_type = "phone"
     info.value = "555-123456"
     info.should be_valid

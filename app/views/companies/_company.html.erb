@@ -10,6 +10,16 @@
      <%= t(:and_X_others, :value => company.contacts.count - 2) if company.contacts.count > 2 %>
   </p>
   <% end %>
+
+  <% if full_display?(company) %>
+    <% company.email_infos.each do |info| %>
+      <%= content_tag(:p, "#{t(:mail_short)}: #{mail_to(info)}".html_safe) %>
+    <% end %>
+    <% company.phone_infos.each do |info| %>
+      <%= content_tag(:p, "#{t(:phone_short)}: #{info}") %>
+    <% end %>
+  <% end %>
+
 </div>
 
 <% if company.comment.present? && full_display?(company) %>

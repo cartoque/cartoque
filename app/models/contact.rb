@@ -1,8 +1,8 @@
 class Contact < ActiveRecord::Base
-  has_many :contact_infos, :dependent => :destroy
-  has_many :email_infos, :class_name => "ContactInfo", :conditions => {:info_type => "email"}
+  has_many :contact_infos, :dependent => :destroy, :as => :entity
+  has_many :email_infos, :class_name => "ContactInfo", :conditions => {:info_type => "email"}, :as => :entity
   accepts_nested_attributes_for :email_infos, :reject_if => lambda{|a| a[:value].blank? }, :allow_destroy => true
-  has_many :phone_infos, :class_name => "ContactInfo", :conditions => {:info_type => "phone"}
+  has_many :phone_infos, :class_name => "ContactInfo", :conditions => {:info_type => "phone"}, :as => :entity
   accepts_nested_attributes_for :phone_infos, :reject_if => lambda{|a| a[:value].blank? }, :allow_destroy => true
 
   belongs_to :company
