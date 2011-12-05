@@ -372,3 +372,5 @@ fr:
   no_contact_found: "Pas de contact trouvé"
   no_company_found: "Pas d'entreprise trouvée"
   x_differences_with: "%{count} différences avec %{node}"
+  sort_by: "Trier par"
+  updated_at: "Mise à jour"

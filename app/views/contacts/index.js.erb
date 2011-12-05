@@ -1,3 +1,5 @@
+$('input[type="hidden"]#sort').attr("value","<%= escape_javascript(sort_column) %>");
+$('input[type="hidden"]#direction').attr("value","<%= escape_javascript(sort_direction) %>");
 $("#contacts_list").html("<%= escape_javascript(render("list_contacts")) %>");
 $("#companies_list").html("<%= escape_javascript(render("list_companies")) %>");
 $("html, body").animate({ scrollTop: 0 }, 200);

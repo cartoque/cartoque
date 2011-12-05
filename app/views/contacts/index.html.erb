@@ -2,11 +2,19 @@
 
 <div class="grid_8">
 
-  <div class="filters">
+  <div class="filters contacts_filter">
     <%= form_tag contacts_path(params), :id => "filters", :method => :get do -%>
       <input type="text" name="search" id="search_contacts" placeholder="<%= t(:placeholder_for_contacts_search) %>"
              value="<%= params[:search] %>" autocomplete="off" />
+      <%= hidden_field_tag :direction, params[:direction] %>
+      <%= hidden_field_tag :sort, params[:sort] %>
     <% end %>
+    <div class="contextual tiny contacts_sort_by">
+      <%= t(:sort_by) %>:
+      <%= content_tag :span, sortable("last_name", t(:name).downcase), :class => sortable_css_class("last_name") %> 
+      <%= content_tag :span, sortable("first_name", t(:first_name).downcase), :class => sortable_css_class("first_name") %> 
+      <%= content_tag :span, sortable("updated_at", t(:updated_at).downcase), :class => sortable_css_class("updated_at") %> 
+    </div>
   </div>
 
   <div class="grid_4" style="margin-left:0;">
