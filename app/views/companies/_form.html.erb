@@ -25,6 +25,14 @@
         </tr>
 
         <tr>
+          <td class="label top"><%= f.label :roles %></td>
+          <td>
+            <%= f.input_field :is_maintainer, :class => "radio-checkbox" %>
+            <%= content_tag :label, t(:maintainer), :for => "company_is_maintainer" %>
+          </td>
+        </tr>
+
+        <tr>
           <td class="label top"><%= f.label :email %></td>
           <td>
             <% f.object.email_infos.build if f.object.email_infos.size == 0 %>

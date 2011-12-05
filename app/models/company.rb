@@ -4,6 +4,8 @@ class Company < ActiveRecord::Base
 
   validates_presence_of :name
 
+  scope :maintainers, where(:is_maintainer => true)
+
   def to_s
     name
   end

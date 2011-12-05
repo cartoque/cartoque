@@ -22,4 +22,15 @@ describe Company do
       Company.search("Comp").should eq [@company1, @company2]
     end
   end
+
+  describe "scopes" do
+    before do
+      @company1 = Company.create(:name => "WorldCompany", :is_maintainer => false)
+      @company2 = Company.create(:name => "TinyCompany", :is_maintainer => true)
+    end
+
+    it "should return maintainers only" do
+      Company.maintainers.should eq [ @company2 ]
+    end
+  end
 end
