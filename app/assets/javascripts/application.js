@@ -41,7 +41,7 @@ $(function() {
 // application events
 $(function() {
   //table sorting
-  $(".items_list th a").live("click", function(e) {
+  $(".items_list th a, .sort_by a").live("click", function(e) {
     $.getScript(this.href);
     //fallback for old browsers
     if (!('pushState' in window.history)) return true
