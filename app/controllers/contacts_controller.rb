@@ -6,7 +6,7 @@ class ContactsController < InheritedResources::Base
   def index
     params[:sort] ||= "updated_at"
     params[:direction] ||= "desc"
-    @companies = Company.search(params[:search]).limit(params[:all_companies].blank? ? 25 : nil)
+    @companies = Company.search(params[:search]).limit(params[:all_companies].blank? ? 25 : nil).order(sort_option.gsub(/(last|first)_name/, "name"))
     index!
   end
 
