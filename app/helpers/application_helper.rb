@@ -170,4 +170,11 @@ module ApplicationHelper
     end
     @current_announcement
   end
+
+  def link_to_website(website)
+    website.strip!
+    target = website
+    target = "http://"+target unless target.match(%r(^\w+://))
+    link_to website, target
+  end
 end

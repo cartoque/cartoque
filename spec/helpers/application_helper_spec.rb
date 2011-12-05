@@ -82,4 +82,16 @@ describe ApplicationHelper do
       assert_select "a[href=/servers/server-01]"
     end
   end
+
+  describe "#link_to_website" do
+    it "should generate a link to a website" do
+      website = "http://www.example.com"
+      link_to_website(website).should eq %(<a href="#{website}">#{website}</a>)
+    end
+
+    it "should add 'http://' if no protocol defined" do
+      website = "www.example.com"
+      link_to_website(website).should eq %(<a href="http://#{website}">#{website}</a>)
+    end
+  end
 end
