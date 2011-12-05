@@ -15,6 +15,9 @@
     <% company.email_infos.each do |info| %>
       <%= content_tag(:p, "#{t(:mail_short)}: #{mail_to(info)}".html_safe) %>
     <% end %>
+    <% company.website_infos.each do |info| %>
+      <%= content_tag(:p, "#{t(:website_short)}: #{link_to(info)}".html_safe) %>
+    <% end %>
     <% company.phone_infos.each do |info| %>
       <%= content_tag(:p, "#{t(:phone_short)}: #{info}") %>
     <% end %>

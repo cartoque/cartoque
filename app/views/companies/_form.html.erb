@@ -38,6 +38,19 @@
         </tr>
 
         <tr>
+          <td class="label top"><%= f.label :website %></td>
+          <td>
+            <% f.object.website_infos.build if f.object.website_infos.size == 0 %>
+            <%= f.simple_fields_for :website_infos do |info_form| %>
+              <%= render 'website_info_fields', :f => info_form %>
+            <% end %>
+            <span class="add-field">
+              <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+"ajouter", f, :website_infos %>
+            </span>
+          </td>
+        </tr>
+
+        <tr>
           <td class="label top"><%= f.label :phone %></td>
           <td>
             <% f.object.phone_infos.build if f.object.phone_infos.size == 0 %>

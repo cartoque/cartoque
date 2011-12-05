@@ -178,6 +178,8 @@ fr:
   email: "Adresse mail"
   mail_short: "Mail"
   phone_short: "Tél"
+  website: "Site web"
+  website_short: "Site"
   managed_with_puppet: "Puppetisable"
   codename: "Nom de code"
   add: "Ajouter"
