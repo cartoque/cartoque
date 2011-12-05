@@ -26,5 +26,9 @@ class ContactsController < InheritedResources::Base
   helper_method :full_display?
   
   include SortHelpers
+
+  def sort_column_prefix
+    "contacts."
+  end
   helper_method :sort_column, :sort_direction, :sort_column_prefix
 end
