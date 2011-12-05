@@ -27,6 +27,6 @@
 
 <% if company.comment.present? && full_display?(company) %>
   <div class="postit">
-    <p><%= company.comment %></p>
+    <%= simple_format company.comment %>
   </div>
 <% end %>

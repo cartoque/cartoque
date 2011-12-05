@@ -24,6 +24,6 @@
 
 <% if contact.comment.present? && full_display?(contact) %>
   <div class="postit">
-    <p><%= contact.comment %></p>
+    <%= simple_format contact.comment %>
   </div>
 <% end %>
