@@ -23,6 +23,7 @@ class MigrateExistingMaintainers < ActiveRecord::Migration
         $stderr.puts "ERROR: unable to import #{mainteneur["name"]}"
       end
       if company.present?
+        company.update_attribute("is_maintainer", true)
         maintainers_servers[mainteneur["id"]].each do |server_id|
           begin
             Server.find(server_id).update_attribute("maintainer_id", company.id)
