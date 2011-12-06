@@ -17,6 +17,13 @@ module ApplicationHelper
     end
   end
 
+  def sortable_link(column, title = nil)
+    title ||= t(column, :default => column.titleize)
+    content_tag :span, :class => sortable_css_class(column) do
+      sortable(column, title) + content_tag(:span, "", :class=>"arrow")
+    end
+  end
+
   def progress_bar(pcts, options={})
     #width
     width = 120

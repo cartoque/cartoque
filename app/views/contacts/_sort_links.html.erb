@@ -1,4 +1,4 @@
 <%= t(:sort_by) %>:
-<%= content_tag :span, sortable("last_name", t(:name).downcase), :class => sortable_css_class("last_name") %> 
-<%= content_tag :span, sortable("first_name", t(:first_name).downcase), :class => sortable_css_class("first_name") %> 
-<%= content_tag :span, sortable("updated_at", t(:updated_at).downcase), :class => sortable_css_class("updated_at") %> 
+<%= sortable_link "last_name", t(:name).downcase %>
+<%= sortable_link "first_name", t(:first_name).downcase %> 
+<%= sortable_link "updated_at", t(:updated_at).downcase %> 
