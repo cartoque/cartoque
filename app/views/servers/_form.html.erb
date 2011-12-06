@@ -60,7 +60,7 @@
     </tbody>
     <tbody id="server-maintenance" class="<%= css_classes_physical %>">
       <tr><th colspan="2" class="secondary"><%= t(:maintenance) %></th></tr>
-      <%= f.association :mainteneur %>
+      <%= f.association :maintainer, :collection => Company.maintainers %>
       <%= f.input :delivered_on, :as => :date, :order => [:day, :month, :year], :use_month_numbers => true,
                                  :start_year => Date.today.year-5, :end_year => Date.today.year+10 %>
       <%= f.input :maintained_until, :as => :date, :order => [:day, :month, :year], :use_month_numbers => true,

@@ -12,19 +12,17 @@ module ServersHelper
     end
   end
 
-  def render_mainteneur(server, mainteneur)
-    return "" unless mainteneur
-    html =  "#{link_to mainteneur, mainteneur} "
+  def render_maintainer(server, maintainer)
+    return "" unless maintainer
+    html =  "#{link_to maintainer, maintainer} "
     html << link_to_function(image_tag("info.gif", :size => "12x12", :class => "inline"),
                              %[$("#maintenance-#{server.id}").slideToggle(130); return false;],
-                             :class => "mainteneur-infos hide-when-print")
+                             :class => "maintainer-infos hide-when-print")
     html << " "
     html << " - #{server.contract_type}" if server.contract_type?
-    html << %(<ul style="display:none" class="mainteneur" id="maintenance-#{server.id}">)
-    html << %(<li>Référence client: #{mainteneur.client_ref}</li>)
-    html << %(<li>Téléphone: #{mainteneur.phone}</li>)
-    html << %(<li>Mail: #{mail_to mainteneur.email}</li>)
-    html << %(<li>Adresse: #{mainteneur.address}</li>)
+    html << %(<ul style="display:none" class="maintainer" id="maintenance-#{server.id}">)
+    html << %(<li>Téléphone: #{maintainer.phone}</li>)
+    html << %(<li>Mail: #{mail_to maintainer.email}</li>)
     html << "</ul>"
     html.html_safe
   end

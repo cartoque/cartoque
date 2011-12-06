@@ -81,7 +81,6 @@ fr:
   iscsi: "iSCSI"
   has_drac: Carte DRAC
   previous_name: "Ancien nom"
-  mainteneur: "Mainteneur"
   manufacturer: "Marque"
   memory: "Mémoire RAM (Go)"
   moa: "MOA"

@@ -14,7 +14,6 @@ Cartocs::Application.routes.draw do
    collection { put 'update_all', :as => 'update_all' }
   end
   resources :saas, :only => :show
-  resources :mainteneurs
   resources :users, :except => :show do
     collection { get 'random_token' }
   end

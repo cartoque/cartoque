@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111206062022) do
+ActiveRecord::Schema.define(:version => 20111206072413) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -159,14 +159,6 @@ ActiveRecord::Schema.define(:version => 20111206062022) do
   create_table "licenses_servers", :id => false, :force => true do |t|
     t.integer "license_id"
     t.integer "server_id"
-  end
-
-  create_table "mainteneurs", :force => true do |t|
-    t.string "name",       :limit => 50,  :default => "", :null => false
-    t.string "phone",      :limit => 100, :default => "", :null => false
-    t.string "email",      :limit => 200, :default => "", :null => false
-    t.string "address",    :limit => 200, :default => "", :null => false
-    t.string "client_ref", :limit => 50,  :default => "", :null => false
   end
 
   create_table "media_drives", :force => true do |t|

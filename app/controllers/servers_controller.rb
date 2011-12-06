@@ -4,7 +4,7 @@ class ServersController < InheritedResources::Base
   respond_to :html, :js, :xml, :csv
 
   has_scope :by_location
-  has_scope :by_mainteneur
+  has_scope :by_maintainer
   has_scope :by_system
   has_scope :by_virtual
   has_scope :by_serial_number
@@ -23,7 +23,7 @@ class ServersController < InheritedResources::Base
   def collection
     @servers ||= end_of_association_chain.active.includes(:operating_system, :physical_rack).search(params[:search]).order(sort_option)
     if maintenance_mode?
-      @servers = @servers.includes(:mainteneur).where(:virtual => false)
+      @servers = @servers.includes(:maintainer).where(:virtual => false)
       if params[:sort] == "maintained_until"
         @servers = @servers.select{|m| m.maintained_until.present? } + @servers.select{|m| m.maintained_until.blank? }
       end

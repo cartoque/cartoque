@@ -43,8 +43,8 @@
 <h2><%= t(:maintenance) %></h2>
 <table class="show_item full">
   <%= show_for @server do |s| %>
-    <%= s.association :mainteneur do
-          link_to_if @server.mainteneur.present?, @server.mainteneur, @server.mainteneur
+    <%= s.association :maintainer do
+          link_to_if @server.maintainer.present?, @server.maintainer, @server.maintainer
         end %>
     <%= s.attribute :delivered_on %>
     <%= s.attribute :maintained_until %>
