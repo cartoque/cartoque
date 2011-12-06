@@ -19,7 +19,7 @@
 
 <div class="grid_4">
 <% if @company.maintained_servers.any? %>
-  <h2 class="center"><%= t(:maintenance) %> (<%= @company.maintained_servers.count %>)</h2>
+  <h2 class="center"><%= t(:maintains) %> <%= @company.maintained_servers.count %> <%= t(:servers) %></h2>
   <ul class="comparison">
     <% @company.maintained_servers.sort_by(&:name).each do |server| %>
       <li><%= link_to_servername server.name %></li>

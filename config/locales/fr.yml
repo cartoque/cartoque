@@ -241,6 +241,7 @@ fr:
   maintenance_over: "fin de maintenance dépassée"
   maintenance_renewal_in_6_months: "à renouveler d'ici 6 mois"
   maintenance_renewal_in_12_months: "à renouveler d'ici 12 mois"
+  maintains: "Maintient"
   not_maintained: "non maintenus"
   resources: "Ressources"
   hardware: "Matériel"
