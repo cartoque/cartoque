@@ -34,15 +34,6 @@ class Contact < ActiveRecord::Base
        user_batman.png)
   end
 
-  def self.available_images_hash
-    hsh = {}
-    available = self.available_images
-    available.each_with_index do |img, idx|
-      hsh[img] = available[idx+1] || available[0]
-    end
-    hsh
-  end
-
   def self.search(search)
     if search
       s = "%#{search}%"

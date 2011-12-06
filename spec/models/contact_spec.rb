@@ -50,7 +50,14 @@ describe Contact do
       Contact.available_images.should be_a(Array)
     end
 
-    pending "should generate a hash"
+    it "should generate a hash" do
+      hsh = Contact.available_images_hash
+      images = Contact.available_images
+      hsh.should be_a(Hash)
+      hsh.length.should eq images.length
+      hsh.keys.sort.should eq images.sort
+      hsh.values.sort.should eq images.sort
+    end
   end
 
   describe "#search" do
