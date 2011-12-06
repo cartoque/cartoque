@@ -5,7 +5,7 @@ class Company < ActiveRecord::Base
 
   validates_presence_of :name
 
-  scope :maintainers, where(:is_maintainer => true)
+  scope :maintainers, where(:is_maintainer => true).order('name asc')
 
   def to_s
     name
