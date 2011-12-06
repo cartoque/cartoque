@@ -33,4 +33,16 @@ describe Company do
       Company.maintainers.should eq [ @company2 ]
     end
   end
+
+  describe "#maintained_servers" do
+    before do
+      @company = Company.create(:name => "Wolrd company", :is_maintainer => true)
+      @server1 = Server.create(:name => "srv-01", :maintainer_id => @company.id) 
+      @server2 = Server.create(:name => "srv-01", :maintainer_id => nil) 
+    end
+
+    it "has some maintained servers" do
+      @company.maintained_servers.should eq [ @server1 ]
+    end
+  end
 end

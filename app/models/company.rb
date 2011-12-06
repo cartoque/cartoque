@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
   has_many :contacts, :dependent => :nullify
+  has_many :maintained_servers, :class_name => 'Server', :foreign_key => 'maintainer_id'
   include Contactable
 
   validates_presence_of :name
