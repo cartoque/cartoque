@@ -23,7 +23,7 @@ class ServersController < InheritedResources::Base
   def collection
     @servers ||= end_of_association_chain.active.includes(:operating_system, :physical_rack).search(params[:search]).order(sort_option)
     if maintenance_mode?
-      @servers = @servers.includes(:maintainer).where(:virtual => false)
+      @servers = @servers.includes(:maintainer => :contact_infos).where(:virtual => false)
       if params[:sort] == "maintained_until"
         @servers = @servers.select{|m| m.maintained_until.present? } + @servers.select{|m| m.maintained_until.blank? }
       end
