@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
   end
 
   def token
-    env["HTTP_X_CARTOCS_TOKEN"]
+    env["HTTP_X_API_TOKEN"]
   end
 
   #for more information on pdfkit + asset pipeline:
