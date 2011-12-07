@@ -1,0 +1,5 @@
+<%= CSV.generate do |csv|
+      @tomcats.each do |tomcat|
+        csv << [tomcat.server, tomcat.tomcat, tomcat.dns, tomcat.java_version]
+      end
+    end %>

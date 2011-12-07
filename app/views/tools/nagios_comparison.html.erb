@@ -8,7 +8,4 @@
   <%= render_diff_list t(:in_cartocs_missing_in_nagios),
                        @unknown_in_nagios.map!{|s| link_to_servername s} %>
 
-  <%= render_diff_list t(:tomcat_not_monitored_among, :tomcats_count => @nb_tomcats),
-                       @tomcat_unknown_in_nagios %>
-
 </div>

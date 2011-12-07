@@ -355,7 +355,6 @@ fr:
   symetry: "Symétrie"
   in_nagios_missing_in_cartocs: "dans Nagios manquants dans Cartocs"
   in_cartocs_missing_in_nagios: "de Cartocs inconnus dans Nagios"
-  tomcat_not_monitored_among: "Tomcat non supervisés (sur %{tomcats_count} hors préproduction)"
   in_reverse_proxies_missing_in_cartocs: "dans les RPs manquants dans Cartocs"
   welcome_to_cartocs: "Welcome to CartoCS"
   statistics_databases: "Statistiques Bases"

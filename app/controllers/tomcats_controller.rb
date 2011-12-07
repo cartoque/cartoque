@@ -1,5 +1,7 @@
+require 'csv'
+
 class TomcatsController < ApplicationController
-  respond_to :html, :js
+  respond_to :html, :js, :csv
 
   def index
     @tomcats = Tomcat.all

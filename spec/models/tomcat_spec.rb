@@ -1,9 +1,11 @@
 require 'spec_helper'
-require 'tomcat'
 
+#let's change Tomcat.dir
+#TODO: a bit ugly, make it better!
+require 'tomcat'
 class Tomcat
   def self.dir
-    File.expand_path("test/data/tomcat", Rails.root)
+    File.expand_path("spec/data/tomcat", Rails.root)
   end
 end
 
@@ -32,7 +34,7 @@ describe Tomcat do
 
   context "Tomcat.all" do
     it "should return fake directory" do
-      Tomcat.dir.to_s.should include("test/data/tomcat")
+      Tomcat.dir.to_s.should include("spec/data/tomcat")
     end
 
     it "should return all tomcats" do

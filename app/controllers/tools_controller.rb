@@ -34,17 +34,6 @@ class ToolsController < ApplicationController
     #Windows servers we're not responsible of
     @unknown_in_nagios.reject!{ |name| name.match(/millos|ritac-|-nt-|-ac-|^dns-[01]$/) }
     @unknown_in_cartocs = servers_nagios - servers_cartocs.map(&:name)
-
-    tomcats_jason = Tomcat.all.map{|t| t[:tomcat]+"@"+t[:server]}.select{|t| t.match(/\S@\S/)}
-    tomcats_nagios = []; prev=""
-    datafile = "#{Rails.root}/data/nagios/status.dat"
-    File.open(datafile).each_line do |line|
-      tomcats_nagios << line.split("PROCESS_").last.chomp + "@" + prev.split("=").last.chomp if "PROCESS_TC".in?(line)
-      prev=line
-    end if File.exists?(datafile)
-    @tomcat_unknown_in_nagios = tomcats_jason - tomcats_nagios
-    @tomcat_unknown_in_nagios.reject!{|t| t.match(/vm-preprod/) }
-    @nb_tomcats = tomcats_jason.reject{|t| t.match(/vm-preprod/) }.count
   end
 
   def reverse_proxies_comparison
