@@ -1,5 +1,7 @@
 <%= CSV.generate do |csv|
-      @tomcats.each do |tomcat|
+      @tomcats.sort_by do |tomcat|
+        [ tomcat.server, tomcat.tomcat ]
+      end.each do |tomcat|
         csv << [tomcat.server, tomcat.tomcat, tomcat.dns, tomcat.java_version]
       end
     end %>
