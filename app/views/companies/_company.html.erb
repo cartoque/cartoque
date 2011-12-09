@@ -21,7 +21,7 @@
     <% company.phone_infos.each do |info| %>
       <%= content_tag(:p, "#{t(:phone_short)}: #{info}") %>
     <% end %>
-    <% contact.address_infos.each do |info| %>
+    <% company.address_infos.each do |info| %>
       <%= content_tag(:p, "#{t(:address_short)}: #{info}") %>
     <% end %>
   <% end %>
