@@ -71,6 +71,19 @@
           </td>
         </tr>
 
+        <tr>
+          <td class="label top"><%= f.label :address %></td>
+          <td>
+            <% f.object.address_infos.build if f.object.address_infos.size == 0 %>
+            <%= f.simple_fields_for :address_infos do |info_form| %>
+              <%= render 'address_info_fields', :f => info_form %>
+            <% end %>
+            <span class="add-field">
+              <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+"ajouter", f, :address_infos %>
+            </span>
+          </td>
+        </tr>
+
         <%= f.input :comment, input_html: {size: "40x5"}  %>
       </tbody>
     </table>

@@ -179,6 +179,8 @@ fr:
   phone_short: "Tél"
   website: "Site web"
   website_short: "Site"
+  address: "Adresse"
+  address_short: "Adresse"
   managed_with_puppet: "Puppetisable"
   codename: "Nom de code"
   add: "Ajouter"
