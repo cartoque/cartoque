@@ -6,17 +6,29 @@ describe ContactsController do
   end
 
   describe "GET /index" do
+    before do
+      @doe = Contact.create!(:last_name => "Doe")
+      @smith = Contact.create!(:last_name => "Smith")
+    end
+
     it "assigns @contacts" do
-      contact = Factory(:contact)
       get :index
-      assigns(:contacts).should eq([contact])
+      assigns(:contacts).should eq([@doe, @smith])
     end
 
     it "renders the index template" do
       get :index
       response.should render_template("index")
     end
-  end
 
-  pending "test filtering / search functionality"
+    it "should filter contacts by name" do
+      get :index, :search => "smi"
+      assigns(:contacts).should eq([@smith])
+    end
+
+    it "should sort contacts correctly" do
+      get :index, :sort => "last_name", :direction => "desc"
+      assigns(:contacts).should eq([@smith, @doe])
+    end
+  end
 end
