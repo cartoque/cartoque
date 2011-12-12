@@ -1,5 +1,5 @@
 <div class="fields">
   <%= f.hidden_field :info_type, :value => "address" %>
-  <%= f.input_field :value, :as => :text, :size => "35x4" %>
+  <%= f.input_field :value, :as => :text, :size => "35x4", :required => false %>
   <%= link_to_remove_fields image_tag("delete.png", :size => "16x16"), f %>
 </div>
