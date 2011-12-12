@@ -23,7 +23,9 @@ Cartocs::Application.routes.draw do
   resources :tomcats, :only => :index do
     collection { get 'index_old', :as => 'old' }
   end
-  resources :databases
+  resources :databases do
+    collection { get 'distribution' }
+  end
   resources :storages
   resources :servers do
     collection { get 'maintenance' }
