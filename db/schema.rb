@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111206072413) do
+ActiveRecord::Schema.define(:version => 20111213183422) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -112,6 +112,11 @@ ActiveRecord::Schema.define(:version => 20111206072413) do
     t.string   "image_url",    :default => "ceo.png"
   end
 
+  create_table "contacts_mailing_lists", :id => false, :force => true do |t|
+    t.integer "contact_id"
+    t.integer "mailing_list_id"
+  end
+
   create_table "cronjobs", :force => true do |t|
     t.integer  "server_id"
     t.string   "definition_location"
@@ -159,6 +164,13 @@ ActiveRecord::Schema.define(:version => 20111206072413) do
   create_table "licenses_servers", :id => false, :force => true do |t|
     t.integer "license_id"
     t.integer "server_id"
+  end
+
+  create_table "mailing_lists", :force => true do |t|
+    t.string   "name"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "media_drives", :force => true do |t|
@@ -237,6 +249,13 @@ ActiveRecord::Schema.define(:version => 20111206072413) do
   end
 
   add_index "physical_racks", ["site_id"], :name => "index_physical_racks_on_site_id"
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.string   "fullname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "servers", :force => true do |t|
     t.integer "operating_system_id",                   :default => 0
@@ -343,6 +362,14 @@ ActiveRecord::Schema.define(:version => 20111206072413) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "upgrades", :force => true do |t|
+    t.integer  "server_id"
+    t.text     "packages_list"
+    t.string   "strategy"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

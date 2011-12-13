@@ -1,4 +1,5 @@
 Cartocs::Application.routes.draw do
+  resources :upgrades, :only => :index
   resources :companies do
     collection { get 'autocomplete' }
   end

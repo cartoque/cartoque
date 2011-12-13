@@ -1,0 +1,21 @@
+<% title t(:upgrades) %>
+
+<div id="upgrades" class="items_list grid_12">
+
+<table class="pretty list">
+  <%= form_tag upgrades_path, :id => "filters", :method => :get do -%>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+  <tr class="filters fixed-size">
+    <td><%= text_field_tag "search", params[:by_server] %></td>
+    <td></td>
+    <td></td>
+    <td><%= text_field_tag "search", params[:by_package] %></td>
+  </tr>
+  <% end -%>
+  <tbody id="upgrades_list" class="long-list">
+    <%= render "list" %>
+  </tbody>
+</table>
+
+</div>

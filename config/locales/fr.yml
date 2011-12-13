@@ -378,3 +378,6 @@ fr:
   sort_by: "Trier par"
   updated_at: "Mise à jour"
   roles: "Rôles"
+  upgrades: "Mises à jour"
+  packages_list: "paquets"
+  count: "Nombre"
