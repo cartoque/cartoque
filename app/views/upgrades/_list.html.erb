@@ -1,8 +1,8 @@
 <tr class="fix-on-scroll">
-  <%= sortable_th "name", nil, :style => "width:10em" %>
-  <%= sortable_th "type", nil, :style => "width:2em" %>
-  <%= sortable_th "count", nil, :style => "width:2em" %>
-  <%= sortable_th "packages_list", nil, :style => "min-width:9em" %>
+  <%= sortable_th "servers.name", t(:name), :style => "width:10em" %>
+  <th><%= t(:type) %></th>
+  <th><%= t(:count) %></th>
+  <th><%= t(:packages_list) %></th>
 </tr>
 <% for upgrade in @upgrades %>
   <tr class="has-opaques">
