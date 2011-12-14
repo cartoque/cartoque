@@ -12,7 +12,7 @@ describe Upgrade do
   end
 
   it "should serialize #packages_list" do
-    obj = {this: ["is", "a", "test"]}
+    obj = [ {name: "libc6"}, {name: "kernel"}]
     @upgrade.packages_list = obj
     @upgrade.save
     @upgrade.reload
