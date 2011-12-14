@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     return @current_user if @current_user
     # Standard login
     if valid_session_user_id?
-      @current_user = User.find(session_user_id)
+      @current_user = User.find_by_id(session_user_id)
     # API login
     elsif valid_api_token? && api_request?
       @current_user = User.find_by_authentication_token(token)
