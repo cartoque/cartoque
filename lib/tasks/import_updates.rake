@@ -12,7 +12,7 @@ namespace :import do
           name = pkg[:name]
           status = "normal"
           status = "needing_reboot" if name.match(/^linux-(base|image)/)
-          status = "important" if name.match(/^apache2|^bind9(-|$)|^firmware-|^heartbeat/)
+          status = "important" if name.match(/^apache2|^bind9$|^firmware-|^heartbeat/)
           status = "important" if name.match(/^ldirector|^libc\d|-(scn|sen)$|^mysql-server/)
           status = "important" if name.match(/^openssh-server|^php5|^postfix|^postgresql-\d/)
           status = "important" if name.match(/^puppet$/)
