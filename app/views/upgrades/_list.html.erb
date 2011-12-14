@@ -1,14 +1,14 @@
 <tr class="fix-on-scroll">
   <%= sortable_th "servers.name", t(:name), :style => "width:10em" %>
   <th><%= t(:type) %></th>
-  <th><%= t(:count) %></th>
+  <%= sortable_th "count_total", t(:count), :style => "width:2em" %>
   <th><%= t(:packages_list) %></th>
 </tr>
 <% for upgrade in @upgrades %>
   <tr class="has-opaques">
     <td><%= link_to upgrade.server.name, upgrade.server %></td>
     <td class="center"><%= upgrade.strategy %></td>
-    <td class="center"><%= upgrade.packages_list.count %></td>
+    <td class="center"><%= upgrade.count_total %></td>
     <td><%= upgrade.packages_list.map{|p| p[:name]}.join(" ") %></td>
   </tr>
 <% end %>

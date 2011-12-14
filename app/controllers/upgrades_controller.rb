@@ -11,6 +11,7 @@ class UpgradesController < InheritedResources::Base
   helper_method :sort_column, :sort_direction, :sort_column_prefix
 
   def collection
-    @upgrades ||= end_of_association_chain.includes(:server).order("servers.name asc")
+    sorter = params[:sort].blank? ? "servers.name" : sort_option
+    @upgrades ||= end_of_association_chain.includes(:server).order(sorter)
   end
 end

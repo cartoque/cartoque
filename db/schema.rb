@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111213183422) do
+ActiveRecord::Schema.define(:version => 20111214102636) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -370,6 +370,9 @@ ActiveRecord::Schema.define(:version => 20111213183422) do
     t.string   "strategy"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "count_total"
+    t.integer  "count_needing_reboot"
+    t.integer  "count_important"
   end
 
   create_table "users", :force => true do |t|
