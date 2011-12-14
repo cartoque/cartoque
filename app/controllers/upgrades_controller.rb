@@ -1,6 +1,9 @@
 class UpgradesController < InheritedResources::Base
   respond_to :html, :js
 
+  has_scope :by_package
+  has_scope :by_server
+
   include SortHelpers
 
   protected
