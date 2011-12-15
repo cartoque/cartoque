@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 module UpgradesHelper
   def format_packages_list(packages_list)
     sort_order = {"needing_reboot"=>0, "important"=>1, "normal"=>2}
@@ -10,6 +12,6 @@ module UpgradesHelper
 
   def format_package_upgrade(package)
     content_tag :span, h(package[:name]), :class => "package package_#{package[:status]}",
-                                          :title => "#{h package[:old]} &rarr; #{h package[:new]}".html_safe
+                                          :title => "#{h package[:old]} → #{h package[:new]}".html_safe
   end
 end
