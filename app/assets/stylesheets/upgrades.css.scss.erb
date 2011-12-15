@@ -1,3 +1,9 @@
-.package_needing_reboot { color:#d11; }
-.package_important { color:#00b; }
-.package_normal { color:#555; font-size:90%; }
+@import 'mixins';
+
+.package {
+  padding:1px 3px; @include border-radius(3px);
+  &:hover { background-color:#bbd; }
+  &.package_needing_reboot { color:#d11; }
+  &.package_important { color:#00b; }
+  &.package_normal { color:#555; font-size:90%; }
+}

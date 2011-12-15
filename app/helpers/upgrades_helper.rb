@@ -4,7 +4,12 @@ module UpgradesHelper
     packages_list.sort_by do |p|
       sort_order[p[:status]]
     end.map do |p|
-      content_tag(:span, h(p[:name]), :class => "package_#{p[:status]}")
+      format_package_upgrade(p)
     end.join(" ").html_safe
+  end
+
+  def format_package_upgrade(package)
+    content_tag :span, h(package[:name]), :class => "package package_#{package[:status]}",
+                                          :title => "#{h package[:old]} &rarr; #{h package[:new]}".html_safe
   end
 end
