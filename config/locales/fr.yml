@@ -379,5 +379,6 @@ fr:
   updated_at: "Mise à jour"
   roles: "Rôles"
   upgrades: "Mises à jour"
+  system_upgrades: "Mises à jour système"
   packages_list: "paquets"
   count: "Nombre"
