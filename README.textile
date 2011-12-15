@@ -1,6 +1,11 @@
 h1. Credits
 
-This application is built using the Ruby on Rails framework.
+This application is built using the following technologies :
+* Ruby on Rails framework for server-side logic
+* jQuery and various jQuery plugins for client-side animations
+* some awesome javascript graphic libraries like RaphaelJS or d3.js
+* some icons from famfamfam, fatcow and pc.de-duesseldorf sets
+* some webfonts from Google Webfonts: Ubuntu and LeckerLi One
 
 Many functionalities or techniques used here are inspired by the awesome screencasts by Ryan Bates @ http://www.railscasts.com, including :
 * Site Wide Announcements (Episode 103)
@@ -29,4 +34,3 @@ And soon coming:
 * 263_client_side_validations
 
 Not mentionning all the more technical aspects I learned through Railscasts and I cannot list here.
-
