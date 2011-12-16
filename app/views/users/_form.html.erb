@@ -11,7 +11,7 @@
       <%= tabular_errors @user %>
       <%= f.input :name, :required => true, :wrapper_class => "th" %>
       <%= f.input :provider, :collection => [["Cerbère CAS", "cas"]] %>
-      <%= f.input :uid, :required => true, :input_html => { :style => "width:400px;" } %>
+      <%= f.input :uid, :input_html => { :style => "width:400px;" } %>
       <tr>
         <td class="label"><%= f.label :authentication_token, :class => "input" %></td>
         <td>
