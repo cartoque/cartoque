@@ -4,8 +4,7 @@
 
 <table class="pretty list">
   <%= form_tag licenses_path(params), :id => "filters", :method => :get do -%>
-    <%= hidden_field_tag :direction, params[:direction] %>
-    <%= hidden_field_tag :sort, params[:sort] %>
+    <%= hidden_sort_fields %>
   <tr class="filters fixed-size">
     <td><%= select_tag "by_editor", options_for_select(@editors.map{|s| [s, s]}, params[:by_editor]), :include_blank => true %></td>
     <td style="min-width:24em"><%= text_field_tag "by_key", params[:by_key] %></td>

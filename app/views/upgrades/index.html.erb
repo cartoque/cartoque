@@ -4,8 +4,7 @@
 
 <table class="pretty list">
   <%= form_tag upgrades_path, :id => "filters", :method => :get do -%>
-    <%= hidden_field_tag :direction, params[:direction] %>
-    <%= hidden_field_tag :sort, params[:sort] %>
+    <%= hidden_sort_fields %>
   <tr class="filters fixed-size">
     <td><%= text_field_tag "by_server", params[:by_server] %></td>
     <td></td>

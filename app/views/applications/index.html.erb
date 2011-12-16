@@ -11,8 +11,7 @@
 
 <table class="pretty list center">
   <%= form_tag applications_path(params), :id => "filters", :method => :get do -%>
-    <%= hidden_field_tag :direction, params[:direction] %>
-    <%= hidden_field_tag :sort, params[:sort] %>
+    <%= hidden_sort_fields %>
     <% (controller.scopes_configuration || {}).keys.each do |scope| %>
       <%= hidden_field_tag scope, params[scope] %>
     <% end %>

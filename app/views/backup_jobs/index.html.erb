@@ -19,8 +19,7 @@
 
 <table class="pretty list">
   <%= form_tag backup_jobs_path(params), :id => "filters", :method => :get do -%>
-    <%= hidden_field_tag :direction, params[:direction] %>
-    <%= hidden_field_tag :sort, params[:sort] %>
+    <%= hidden_sort_fields %>
   <tr class="filters fixed-size">
     <td style="width:8em;"><%= select_tag "by_server", options_for_select(@servers.map{|s| [s.name, s.id]}, params[:by_server]), :include_blank => true %></td>
     <td><%= select_tag "by_client_type", options_for_select(BackupJob.select("distinct(client_type)").map(&:client_type).reject(&:blank?).sort, params[:by_client_type]), :include_blank => true %></td>

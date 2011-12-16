@@ -24,6 +24,15 @@ module ApplicationHelper
     end
   end
 
+  def hidden_sort_fields
+    hidden_field_tag(:direction, params[:direction]) +
+      hidden_field_tag(:sort, params[:sort])
+  end
+
+  def hidden_controller_scopes_fields
+    (controller.scopes_configuration || {}).keys.map{|scope| hidden_field_tag scope, params[scope]}.inject(:+)
+  end
+
   def progress_bar(pcts, options={})
     #width
     width = 120

@@ -6,8 +6,7 @@
     <%= form_tag contacts_path(params), :id => "filters", :method => :get do -%>
       <input type="text" name="search" id="search_contacts" placeholder="<%= t(:placeholder_for_contacts_search) %>"
              value="<%= params[:search] %>" autocomplete="off" />
-      <%= hidden_field_tag :direction, params[:direction] %>
-      <%= hidden_field_tag :sort, params[:sort] %>
+      <%= hidden_sort_fields %>
     <% end %>
     <div id="sort_links" class="contextual tiny sort_by contacts_sort_by">
       <%= render 'sort_links' %>
