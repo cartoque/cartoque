@@ -21,6 +21,7 @@
 //= require jquery/jquery.facebox
 //= require jquery/jquery.placeholder
 //= require contacts
+//= require upgrades
 //= require users
 //
 //not for now: //= require_tree .

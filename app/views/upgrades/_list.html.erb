@@ -1,12 +1,20 @@
 <tr class="fix-on-scroll">
-  <%= sortable_th "name", t(:name), :style => "width:10em" %>
+  <%= sortable_th "name", t(:name), :style => "width:14em" %>
   <th><%= t(:type) %></th>
   <%= sortable_th "upgrades.count_total", t(:count), :style => "width:2em" %>
   <th><%= t(:packages_list) %></th>
 </tr>
 <% for upgrade in @upgrades %>
   <tr class="has-opaques">
-    <td><%= link_to upgrade.server.name, upgrade.server %></td>
+    <td>
+      <%= link_to upgrade.server.name, upgrade.server %>
+      <% if upgrade.count_total > 0 %>
+        <br />
+        <span class="upgraded" id="upgraded-<%= upgrade.id %>"><%= validated_by(upgrade.upgrader) if upgrade.upgraded_status? %></span>
+        <%= button_tag t(:validate), :id => "upgrade-#{upgrade.id}", :class => "validate",
+                                     :data => { :id => upgrade.id } unless upgrade.upgraded_status? %>
+      <% end %>
+    </td>
     <td class="center"><%= upgrade.strategy %></td>
     <td class="center"><%= upgrade.count_total %></td>
     <td><%= format_packages_list(upgrade.packages_list) %></td>

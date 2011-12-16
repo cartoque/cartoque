@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111215191215) do
+ActiveRecord::Schema.define(:version => 20111216074914) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -379,6 +379,9 @@ ActiveRecord::Schema.define(:version => 20111215191215) do
     t.integer  "count_total"
     t.integer  "count_needing_reboot"
     t.integer  "count_important"
+    t.datetime "upgraded_at"
+    t.boolean  "upgraded_status",      :default => false
+    t.integer  "upgrader_id"
   end
 
   create_table "users", :force => true do |t|

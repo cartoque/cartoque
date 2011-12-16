@@ -1,0 +1,2 @@
+$("#upgrade-<%=@upgrade.id.to_i%>").hide();
+$("#upgraded-<%=@upgrade.id.to_i%>").html("<%= validated_by(@upgrade.upgrader) %>");

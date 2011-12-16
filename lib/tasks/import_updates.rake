@@ -22,7 +22,11 @@ namespace :import do
       end.compact
       upgrade = Upgrade.find_or_create_by_server_id_and_strategy(server.id, "apt")
       upgrade.packages_list = packages
-      upgrade.save if upgrade.changed?
+      if upgrade.changed?
+        upgrade.upgraded_status = false
+        upgrade.upgrader = nil
+        upgrade.save
+      end
     end
   end
 end

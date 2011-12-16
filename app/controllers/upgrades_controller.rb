@@ -4,6 +4,14 @@ class UpgradesController < InheritedResources::Base
   has_scope :by_package
   has_scope :by_server
 
+  def validate
+    @upgrade = Upgrade.find_by_id(params[:id])
+    if @upgrade
+      @upgrade.update_attribute(:upgrader_id, current_user.id)
+      @upgrade.update_attribute(:upgraded_status, true)
+    end
+  end
+
   include SortHelpers
 
   protected

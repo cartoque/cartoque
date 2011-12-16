@@ -386,3 +386,5 @@ fr:
   datacenters: "Centres-Serveurs"
   new_datacenter: "Nouveau Centre-Serveur"
   edit_a_datacenter: "Edition d'un Centre-Serveur"
+  validate: "Valider"
+  validated_by: "Validé par %{person}"

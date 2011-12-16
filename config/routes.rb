@@ -1,6 +1,8 @@
 Cartocs::Application.routes.draw do
   resources :datacenters, :except => :show
-  resources :upgrades, :only => :index
+  resources :upgrades, :only => :index do
+    member { put 'validate' }
+  end
   resources :companies do
     collection { get 'autocomplete' }
   end

@@ -23,4 +23,11 @@ describe Upgrade do
     @upgrade.packages_list.should be_blank
     @upgrade.count_total.should eq 0
   end
+
+  it "has an upgrader" do
+    user = Factory(:user)
+    @upgrade.upgrader_id = user.id
+    @upgrade.save
+    @upgrade.reload.upgrader.should eq user
+  end
 end
