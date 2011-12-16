@@ -115,6 +115,7 @@ fr:
   rack: "Rack"
   physical_rack: "Rack"
   physical_racks: "Racks"
+  physical_racks_long: "Racks / Etagères"
   edit_a_physical_rack: "Edition d'un rack"
   new_physical_rack: "Nouveau rack"
   rack_real: "Armoire"
