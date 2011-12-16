@@ -1,2 +1,3 @@
-$("#upgrade-<%=@upgrade.id.to_i%>").hide();
-$("#upgraded-<%=@upgrade.id.to_i%>").html("<%= validated_by(@upgrade.upgrader) %>");
+$("#upgrade-<%=@upgrade.id.to_i%>").hide()
+$("#upgraded-<%=@upgrade.id.to_i%>").html("<%= validated_by(@upgrade.upgrader) %>")
+                                    .closest("tr").addClass("grey");

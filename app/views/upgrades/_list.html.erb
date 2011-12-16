@@ -5,7 +5,7 @@
   <th><%= t(:packages_list) %></th>
 </tr>
 <% for upgrade in @upgrades %>
-  <tr class="has-opaques">
+  <tr class="has-opaques<%= " grey" if upgrade.count_total == 0 || upgrade.upgraded_status %>">
     <td><%= link_to upgrade.server.name, upgrade.server %></td>
     <td class="center"><%= upgrade.strategy %></td>
     <td class="center"><%= upgrade.count_total %></td>
