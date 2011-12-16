@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111216074914) do
+ActiveRecord::Schema.define(:version => 20111216165817) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -42,14 +42,11 @@ ActiveRecord::Schema.define(:version => 20111216074914) do
   add_index "application_urls", ["application_instance_id"], :name => "index_application_urls_on_application_instance_id"
 
   create_table "applications", :force => true do |t|
-    t.string  "name",                     :default => "",    :null => false
-    t.integer "criticity",  :limit => 1,  :default => 3
-    t.string  "info",                     :default => ""
-    t.string  "iaw",        :limit => 55, :default => "",    :null => false
-    t.string  "pe",         :limit => 55, :default => "",    :null => false
-    t.string  "ams",        :limit => 55, :default => "",    :null => false
-    t.boolean "cerbere",                  :default => false, :null => false
-    t.string  "comment",                  :default => "",    :null => false
+    t.string  "name",                    :default => "",    :null => false
+    t.integer "criticity",  :limit => 1, :default => 3
+    t.string  "info",                    :default => ""
+    t.boolean "cerbere",                 :default => false, :null => false
+    t.string  "comment",                 :default => "",    :null => false
     t.string  "identifier"
   end
 
