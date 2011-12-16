@@ -66,7 +66,6 @@ fr:
       update: "Appliquer les modifications"
   hello: "Hello world"
   amoa: "Assistance MOA"
-  ams: "Type (ACAI Messagerie Spécifique)"
   media_drive: "Lecteur"
   cerbere: "Cerbère"
   contact: "Contact"
@@ -76,7 +75,6 @@ fr:
   fc: "Nb. FC"
   comment: "Commentaire"
   frequency: "Fréquence"
-  iaw: "I2/Ader/Web"
   ip: "IP"
   iscsi: "iSCSI"
   has_drac: Carte DRAC

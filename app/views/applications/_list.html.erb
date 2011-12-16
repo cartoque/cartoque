@@ -1,8 +1,6 @@
 <tr class="fix-on-scroll">
   <%= sortable_th "name", nil, :style => "width:15em" %>
   <th><%= t(:description) %></th>
-  <th style="width:3em">I2 Ader Web</th>
-  <th style="width:3em">ACAI Messagerie Spécifique</th>
 </tr>
 <% for application in @applications %>
   <tr class="has-opaques">
@@ -14,7 +12,5 @@
       <%= link_to application.name, application %>
     </td>
     <td><%= application.info %></td>
-    <td class="center"><%= application.iaw %></td>
-    <td class="center"><%= application.ams %></td>
   </tr>
 <% end %>
