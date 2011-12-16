@@ -1,0 +1,3 @@
+app-01.txt
+app-01/doc.txt
+app-02.example.com.txt

@@ -50,17 +50,22 @@ class Application < ActiveRecord::Base
     [prod, ecole, preprod, others].flatten.compact
   end
 
-  def self.dokuwiki_pages_dir
-    File.expand_path("data/dokuwiki/pages", Rails.root)
+  def self.dokuwiki_dir
+    File.expand_path("data/dokuwiki", Rails.root)
   end
 
   def dokuwiki_pages
     keywords = [name] + application_instances.map(&:application_urls).flatten.map(&:url)
-    keywords.map!{|k| k.gsub(%r{^\s*\S+://}, "").gsub(%r{/.*}, "")}
+    keywords.map!{|k| k.gsub(%r{^\s*\S+://}, "").gsub(%r{/.*}, "").downcase}
+    available_docs = Dir.glob("#{Application.dokuwiki_dir}/*.txt").map do |f|
+      File.readlines(f).map(&:chomp)
+    end.flatten
     docs = []
     keywords.each do |kw|
-      docs += %x[find #{Application.dokuwiki_pages_dir} -type f \\( -ipath "*/#{kw}/*" -o -ipath "*/#{kw}.*" \\)].split("\n").map do |doc|
-        doc.gsub(Application.dokuwiki_pages_dir+"/","").gsub(/\.txt$/,"").gsub("/", ":")
+      docs += available_docs.select do |docname|
+        docname.include?(kw)
+      end.map do |doc|
+        doc.gsub(/\.txt$/,"").gsub("/", ":")
       end
     end
     docs.uniq

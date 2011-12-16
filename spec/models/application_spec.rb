@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'application'
 
 class Application
-  def self.dokuwiki_pages_dir
-    File.expand_path("test/data/dokuwiki/pages", Rails.root)
+  def self.dokuwiki_dir
+    File.expand_path("spec/data/dokuwiki", Rails.root)
   end
 end
 
