@@ -6,17 +6,16 @@
 </tr>
 <% for upgrade in @upgrades %>
   <tr class="has-opaques">
+    <td><%= link_to upgrade.server.name, upgrade.server %></td>
+    <td class="center"><%= upgrade.strategy %></td>
+    <td class="center"><%= upgrade.count_total %></td>
     <td>
-      <%= link_to upgrade.server.name, upgrade.server %>
+      <%= format_packages_list(upgrade.packages_list) %>
       <% if upgrade.count_total > 0 %>
-        <br />
         <span class="upgraded" id="upgraded-<%= upgrade.id %>"><%= validated_by(upgrade.upgrader) if upgrade.upgraded_status? %></span>
         <%= button_tag t(:validate), :id => "upgrade-#{upgrade.id}", :class => "validate",
                                      :data => { :id => upgrade.id } unless upgrade.upgraded_status? %>
       <% end %>
     </td>
-    <td class="center"><%= upgrade.strategy %></td>
-    <td class="center"><%= upgrade.count_total %></td>
-    <td><%= format_packages_list(upgrade.packages_list) %></td>
   </tr>
 <% end %>
