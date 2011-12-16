@@ -2,8 +2,10 @@
   <h2><%= image_tag "settings.png", :size => "16x16", :class => "inline" %> <%= t(:configuration) %></h2>
   <ul class="simple-list">
     <li><%= link_to t(:datacenters), datacenters_path %></li>
-    <li><%= link_to t(:physical_racks_long), physical_racks_path %></li>
     <li><%= link_to t(:hosting_rooms), sites_path %></li>
+    <li><%= link_to t(:physical_racks_long), physical_racks_path %></li>
+  </ul>
+  <ul class="simple-list">
     <li><%= link_to t(:operating_systems), operating_systems_path %></li>
   </ul>
   <ul class="simple-list">
