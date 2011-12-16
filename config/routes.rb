@@ -1,4 +1,5 @@
 Cartocs::Application.routes.draw do
+  resources :datacenters, :except => :show
   resources :upgrades, :only => :index
   resources :companies do
     collection { get 'autocomplete' }

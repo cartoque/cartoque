@@ -1,0 +1,26 @@
+<% title t(:datacenters) %>
+
+<div class="grid_9 center">
+
+<%= action_links do %>
+  <%= link_to t(:new_datacenter), new_datacenter_path %>
+<% end %>
+
+<table class="pretty list datacenters">
+<thead>
+  <tr>
+    <th><%= t(:name) %></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody class="long-list">
+<% @datacenters.each do |datacenter| %>
+  <tr>
+    <td><%= link_to datacenter.name, edit_datacenter_path(datacenter) %></td>
+    <td><%= link_to_delete datacenter %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+</div>

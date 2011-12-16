@@ -1,0 +1,19 @@
+<div class="grid_9 center">
+
+<%= simple_form_for(@datacenter) do |f| %>
+  <%= action_links do %>
+    <%= f.button :submit %>
+    <%= t(:or) %> <%= link_to t(:back_to_the_list), datacenters_path %>
+  <% end %>
+
+  <table class="show_item">
+    <tbody>
+      <%= tabular_errors @datacenter %>
+      <%= f.input :name, :required => true,
+                         :wrapper_class => "th",
+                         :input_html => { :size => 30 } %>
+    </tbody>
+  </table>
+<% end %>
+
+</div>

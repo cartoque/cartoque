@@ -1,0 +1,2 @@
+module DatacentersHelper
+end
