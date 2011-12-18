@@ -26,14 +26,14 @@ class ToolsController < ApplicationController
     # service checks that can't be renamed easily in nagios
     servers_nagios.reject!{|h| h.match(/^(VIPS?\d*_|GW_|URL_|sgbd-prod[abc]$|sgbd-prod[abc]-[a-z])/) }
     servers_nagios.each{|h| h.gsub!(/^(MIN_|RH_|RITAC_|AM_|DEV_)/,"") }
-    servers_cartocs = Server.all
+    servers_cartoque = Server.all
 
-    @unknown_in_nagios = servers_cartocs.map(&:name) - servers_nagios
+    @unknown_in_nagios = servers_cartoque.map(&:name) - servers_nagios
     #RH project we're not responsible of
     @unknown_in_nagios.reject!{ |name| name.starts_with?("vm-hra") || name.starts_with?("vm-hrw") }
     #Windows servers we're not responsible of
     @unknown_in_nagios.reject!{ |name| name.match(/millos|ritac-|-nt-|-ac-|^dns-[01]$/) }
-    @unknown_in_cartocs = servers_nagios - servers_cartocs.map(&:name)
+    @unknown_in_cartoque = servers_nagios - servers_cartoque.map(&:name)
   end
 
   def reverse_proxies_comparison
@@ -43,7 +43,7 @@ class ToolsController < ApplicationController
 
     app_urls = ApplicationUrl.all.map(&:url).map{|u| u.strip.gsub(%r{\S+://},"").gsub(%r{/.*},"")}
 
-    @unknown_in_cartocs = vhosts - app_urls
+    @unknown_in_cartoque = vhosts - app_urls
   end
 
   protected

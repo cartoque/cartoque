@@ -9,7 +9,7 @@ if defined?(Bundler)
   Bundler.require(:default, :assets, Rails.env)
 end
 
-module Cartocs
+module Cartoque
   VERSION = '0.2.0'
 
   class Application < Rails::Application

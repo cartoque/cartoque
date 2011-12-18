@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Cartocs::Application.load_tasks
+Cartoque::Application.load_tasks

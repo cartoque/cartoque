@@ -5,4 +5,4 @@ test:
   domain: test.host
 
 production:
-  domain: cartocs.application.ac.centre-serveur.i2
+  domain: cartoque.application.ac.centre-serveur.i2

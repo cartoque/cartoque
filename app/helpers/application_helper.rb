@@ -59,7 +59,7 @@ module ApplicationHelper
   end
 
   def show_version
-    "<i>Cartoque v#{Cartocs::VERSION}</i>".html_safe
+    "<i>Cartoque v#{Cartoque::VERSION}</i>".html_safe
   end
 
   # see ancestry wiki on github
