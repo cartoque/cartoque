@@ -1,4 +1,13 @@
-h1. Credits
+h1. Cartoque: a free & simple CMDB
+
+Build status: "!https://secure.travis-ci.org/jbbarth/cartoque.png?branch=master!":http://travis-ci.org/jbbarth/cartoque
+Dependencies: "!https://gemnasium.com/jbbarth/cartoque.png!":https://gemnasium.com/rails/rails
+
+h2. Licence
+
+Cartoque is released under the MIT license.
+
+h2. Credits
 
 This application is built using the following technologies :
 * Ruby on Rails framework for server-side logic
