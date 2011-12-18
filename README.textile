@@ -1,7 +1,7 @@
 h1. Cartoque: a free & simple CMDB
 
 Build status: "!https://secure.travis-ci.org/jbbarth/cartoque.png?branch=master!":http://travis-ci.org/jbbarth/cartoque
-Dependencies: "!https://gemnasium.com/jbbarth/cartoque.png!":https://gemnasium.com/rails/rails
+Dependencies: "!https://gemnasium.com/jbbarth/cartoque.png!":https://gemnasium.com/jbbarth/cartoque
 
 h2. Licence
 
