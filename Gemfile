@@ -38,7 +38,6 @@ gem 'uglifier'
 gem 'therubyracer'
 
 # App's gems
-gem 'nifty-generators'
 gem 'inherited_resources'
 gem 'simple_form', '>= 1.4.1'
 gem 'show_for'
@@ -56,10 +55,8 @@ gem 'nokogiri'
 gem 'acts-as-taggable-on'
 
 group :test do
-  gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'mocha'
-  gem 'guard-livereload'
   gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'spork', '> 0.9.0.rc'
@@ -73,6 +70,4 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'sqlite3'
   gem 'thin'
-  gem 'metric_fu'
-  gem 'newrelic_rpm'
 end
