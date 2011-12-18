@@ -4,3 +4,7 @@ rvm:
   - rbx
   - rbx-2.0
   - jruby
+branches:
+  only:
+    - master
+    - stable
