@@ -3,14 +3,14 @@ require 'redmine_instance'
 
 class RedmineInstance
   def self.dir
-    Rails.root.join("test/data/redmine").to_s
+    Rails.root.join("spec/data/redmine").to_s
   end
 end
 
 describe RedmineInstance do
   describe "RedmineInstance.all" do
     it "should return fake directory" do
-      RedmineInstance.dir.should include("test/data/redmine")
+      RedmineInstance.dir.should include("spec/data/redmine")
     end
 
     it "should return content of files" do

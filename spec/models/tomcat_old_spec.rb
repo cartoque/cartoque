@@ -3,7 +3,7 @@ require 'tomcat_old'
 
 class TomcatOld
   def self.dir
-    File.expand_path("test/data/tomcat_old", Rails.root)
+    File.expand_path("spec/data/tomcat_old", Rails.root)
   end
 end
 
@@ -15,7 +15,7 @@ describe TomcatOld do
 
   describe "Tomcat.all" do
     it "should return fake directory" do
-      TomcatOld.dir.to_s.should include("test/data/tomcat_old")
+      TomcatOld.dir.to_s.should include("spec/data/tomcat_old")
     end
 
     it "should return all tomcats" do
