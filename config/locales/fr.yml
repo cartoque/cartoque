@@ -357,7 +357,7 @@ fr:
   in_nagios_missing_in_cartoque: "dans Nagios manquants dans Cartoque"
   in_cartoque_missing_in_nagios: "de Cartoque inconnus dans Nagios"
   in_reverse_proxies_missing_in_cartoque: "dans les RPs manquants dans Cartoque"
-  welcome_to_cartoque: "Welcome to CartoCS"
+  welcome_to_cartoque: "Welcome to Cartoque"
   statistics_databases: "Statistiques Bases"
   statistics_main: "Statistiques Générales"
   statistics_storage: "Statistiques Stockage"
