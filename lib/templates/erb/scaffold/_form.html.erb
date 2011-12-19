@@ -1,23 +1,19 @@
-<%%= simple_form_for(@<%= singular_name %>) do |f| %>
-  <%% if @<%= singular_name %>.errors.any? %>
-    <div id="error_explanation">
-      <h2><%%= pluralize(@<%= singular_name %>.errors.count, "error") %> prohibited this <%= singular_name %> from being saved:</h2>
+<div class="grid_12 center">
 
-      <ul>
-      <%% @<%= singular_name %>.errors.full_messages.each do |msg| %>
-        <li><%%= msg %></li>
-      <%% end %>
-      </ul>
-    </div>
+<%%= simple_form_for(@<%= singular_name %>) do |f| %>
+  <%%= action_links do %>
+    <%%= f.button :submit %>
+    <%%= t(:or) %> <%%= link_to t(:back_to_the_list), <%= pural_name %>_path %>
   <%% end %>
 
-  <div class="inputs">
-  <%- attributes.each do |attribute| -%>
-    <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %> %>
-  <%- end -%>
-  </div>
-
-  <div class="actions">
-    <%%= f.button :submit %>
-  </div>
+  <table class="show_item">
+    <tbody>
+      <%%= tabular_errors @<%= singular_name %> %>
+    <%- attributes.each do |attribute| -%>
+      <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %> %>
+    <%- end -%>
+    </tbody>
+  </table>
 <%% end %>
+
+</div>
