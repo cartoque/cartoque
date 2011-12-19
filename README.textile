@@ -3,6 +3,57 @@ h1. Cartoque: a free & simple CMDB
 Build status: "!https://secure.travis-ci.org/jbbarth/cartoque.png?branch=master!":http://travis-ci.org/jbbarth/cartoque
 Dependencies: "!https://gemnasium.com/jbbarth/cartoque.png!":https://gemnasium.com/jbbarth/cartoque
 
+*Cartoque* is a free, web-based CMDB tool built to replace an existing PHP application we used to have at work. It's built 
+on top of the "Ruby on Rails":http://rubyonrails.org/ web framework.
+
+Since it's used only at my $WORK for the moment, *I don't recommend you use it in a production environment for now*. Actually, 
+it comes with opinionated choices that might not be the best for you now (see "Requirements" below). The goal of this 
+project is to make the application evolve in a product generic-enough for use in a small to medium datacenters. But please note 
+that we don't want to replace MS Excel or MS Access, we don't believe too generic products are good for this job. If you're 
+searching a generic CMDB tool, you might want to give a try to "iTop":http://www.combodo.com/-Overview-.html.
+
+h2. Requirements
+
+* *Clients*: Cartoque requires that your clients use a modern web browser (Chrome, Firefox, Safari, Opera) ; IE support is blocked since this browser is too shitty and I cannot test it extensively ; Javascript must be enabled
+* *Application server*: you'll need *Ruby 1.9.2-p290 or higher* and an application server that supports Rails applications ; the installation of these components are out of the scope of this tutorial, but I personnaly run my production environment with Ruby 1.9.2-p290 installed with "RVM":http://beginrescueend.com/, and "Phusion Passenger":http://www.modrails.com/ 3.0.x in standalone mode
+* *Database server*: MySQL version 5.0 or higher is required (support for Postgresql is untested but might be OK)
+* *Authentication*: a CAS server is required for authentication
+
+h2. Installing the application
+
+This section is not complete for the moment. Basically, if you have a correct application stack and you've cloned the repository, it installs like any Rails 3 web app :
+
+bc. cd /path/to/cartoque
+gem install bundler
+bundle install
+rake db:migrate db:seed
+
+Then you can configure the CAS server:
+
+bc. rails runner 'Settler.load!; Setting.find_by_key("cas_server").upgrate_attribute(:value, "http://your-cas-server.your-company.com/")'
+
+(don't forget the trailing slash!)
+
+And then add the first user:
+
+bc. rails runner 'User.create(:name => "John", :provider => "cas", :uid => "john.smith")'
+
+You're ready to go !
+
+h2. Populating the CMDB
+
+Today the CMDB is populated through file transfers and custom rake tasks. Some of these tasks are versionned in the current repository. There are 2 global tasks that I run every 10 minutes on my production environment for loading new items from files and cleaning up old stuff :
+
+bc. rake import:all cleanup:all
+
+In the next few months we want to provide a full REST API that handle all the load tasks and then completely remove those custom rake tasks.
+
+h2. Reporting bugs and contributing
+
+If you have any issue, feel free to report an issue "on the Github bug tracker":https://github.com/jbbarth/cartoque/issues with a detailed description of your problem and minimal steps to reproduce.
+
+If you want to contribute, you're welcome ! We plan to work with Github's forks and pull requests, but please fill an issue before developing any additional feature. The general idea is we won't integrate new features if they're too specific, tightly coupled to your infrastructure, or untested.
+
 h2. Licence
 
 Cartoque is released under the MIT license.
@@ -27,19 +78,4 @@ Many functionalities or techniques used here are inspired by the awesome screenc
 * Trees with Ancestry (Episode 262)
 * Upgrading to Rails 3.1 (Episode 282)
 
-And soon coming:
-* 114_endless_page
-* 165_edit_multiple
-* 182_cropping_images
-* 192_authorization_with_cancan
-* 213_calendars
-* 229_polling_for_changes
-* 244_gravatar
-* 249_notifications_in_rails_3
-* 253_carrierwave_file_uploads
-* 254_pagination_with_kaminari
-* 255_undo_with_paper_trail
-* 260_messaging_with_faye
-* 263_client_side_validations
-
-Not mentionning all the more technical aspects I learned through Railscasts and I cannot list here.
+Not mentionning all the more technical aspects I learned through Railscasts and I cannot list here. Thanks Ryan Bates!
