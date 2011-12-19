@@ -5,6 +5,18 @@ describe User do
     @user = Factory(:user)
   end
 
+  it "should have a unique name" do
+    other = User.new(:name => @user.name)
+    other.should_not be_valid
+    other.errors.keys.should == [:name]
+    other.errors[:name].should == [I18n.t("activerecord.errors.messages.taken")]
+  end
+
+  it "should have a unique provider+uid" do
+
+    
+  end
+
   describe "#settings" do
     it "should always be a hash" do
       @user.update_attribute(:settings, nil)

@@ -18,7 +18,7 @@ describe UsersController do
   end
 
   it "should should create user" do
-    lambda{ post :create, :user => @user.attributes }.should change(User, :count)
+    lambda{ post :create, :user => @user.attributes.merge("name"=>"john") }.should change(User, :count)
     assert_redirected_to users_path
   end
 
