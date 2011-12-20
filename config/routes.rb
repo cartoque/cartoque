@@ -1,4 +1,5 @@
 Cartoque::Application.routes.draw do
+  resources :roles, :except => :show
   resources :datacenters, :except => :show
   resources :upgrades, :only => :index do
     member { put 'validate' }

@@ -1,0 +1,17 @@
+<div class="grid_9 center">
+
+<%= simple_form_for(@role) do |f| %>
+  <%= action_links do %>
+    <%= f.button :submit %>
+    <%= t(:or) %> <%= link_to t(:back_to_the_list), roles_path %>
+  <% end %>
+
+  <table class="show_item">
+    <tbody>
+      <%= tabular_errors @role %>
+      <%= f.input :name %>
+    </tbody>
+  </table>
+<% end %>
+
+</div>
