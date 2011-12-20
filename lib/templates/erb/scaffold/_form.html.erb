@@ -3,7 +3,7 @@
 <%%= simple_form_for(@<%= singular_name %>) do |f| %>
   <%%= action_links do %>
     <%%= f.button :submit %>
-    <%%= t(:or) %> <%%= link_to t(:back_to_the_list), <%= pural_name %>_path %>
+    <%%= t(:or) %> <%%= link_to t(:back_to_the_list), <%= plural_name %>_path %>
   <%% end %>
 
   <table class="show_item">
