@@ -9,4 +9,6 @@ branches:
     - master
     - stable
 before_script:
-  - "mysql -e 'create database cartoque_test;' && cp config/database.yml.travis config/database.yml"
+  - "mysql -e 'create database cartoque_test;'"
+  - "cp config/database.yml.travis config/database.yml"
+script: "bundle exec rake db:migrate db:seed test"
