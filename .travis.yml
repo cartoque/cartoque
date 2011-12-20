@@ -8,3 +8,5 @@ branches:
   only:
     - master
     - stable
+before_script:
+  - "mysql -e 'create database cartoque_test;' && cp config/database.yml.travis config/database.yml"
