@@ -1,20 +1,19 @@
-h1. Cartoque: a free & simple CMDB
+h1. Cartoque: a free & simple CMDB 
 
-Build status: "!https://secure.travis-ci.org/jbbarth/cartoque.png?branch=master!":http://travis-ci.org/jbbarth/cartoque
-Dependencies: "!https://gemnasium.com/jbbarth/cartoque.png!":https://gemnasium.com/jbbarth/cartoque
+"!https://secure.travis-ci.org/jbbarth/cartoque.png?branch=master!":http://travis-ci.org/jbbarth/cartoque "!https://gemnasium.com/jbbarth/cartoque.png!":https://gemnasium.com/jbbarth/cartoque
 
 *Cartoque* is a free, web-based CMDB tool built to replace an existing PHP application we used to have at work. It's built 
 on top of the "Ruby on Rails":http://rubyonrails.org/ web framework.
 
 Since it's used only at my $WORK for the moment, *I don't recommend you use it in a production environment for now*. Actually, 
-it comes with opinionated choices that might not be the best for you now (see "Requirements" below). The goal of this 
-project is to make the application evolve in a product generic-enough for use in a small to medium datacenters. But please note 
-that we don't want to replace MS Excel or MS Access, we don't believe too generic products are good for this job. If you're 
-searching a generic CMDB tool, you might want to give a try to "iTop":http://www.combodo.com/-Overview-.html.
+it comes with opinionated choices that might not fit your needs (see "Requirements" below). The goal of this project is to make 
+the application evolve in a product generic-enough for use in small to medium datacenters. But we don't want to replace MS Access, 
+we don't believe too generic products are good for this job. If you're searching a generic CMDB tool, you might want to give a 
+try to "iTop":http://www.combodo.com/-Overview-.html.
 
 h2. Requirements
 
-* *Clients*: Cartoque requires that your clients use a modern web browser (Chrome, Firefox, Safari, Opera) ; IE support is blocked since this browser is too shitty and I cannot test it extensively ; Javascript must be enabled
+* *Clients*: clients should use a modern web browser (Chrome, Firefox, Safari, Opera) ; IE support is blocked since this browser is too shitty and I cannot test it extensively (feel free to fill a new issue about this subject) ; Javascript must be enabled
 * *Application server*: you'll need *Ruby 1.9.2-p290 or higher* and an application server that supports Rails applications ; the installation of these components are out of the scope of this tutorial, but I personnaly run my production environment with Ruby 1.9.2-p290 installed with "RVM":http://beginrescueend.com/, and "Phusion Passenger":http://www.modrails.com/ 3.0.x in standalone mode
 * *Database server*: MySQL version 5.0 or higher is required (support for Postgresql is untested but might be OK)
 * *Authentication*: a CAS server is required for authentication
@@ -28,13 +27,11 @@ gem install bundler
 bundle install
 rake db:migrate db:seed
 
-Then you can configure the CAS server:
+Then you can configure the CAS server (replace the CAS server URL, with a trailing slash):
 
 bc. rails runner 'Settler.load!; Setting.find_by_key("cas_server").upgrate_attribute(:value, "http://your-cas-server.your-company.com/")'
 
-(don't forget the trailing slash!)
-
-And then add the first user:
+And then add the first user (replace at least the uid):
 
 bc. rails runner 'User.create(:name => "John", :provider => "cas", :uid => "john.smith")'
 
