@@ -29,7 +29,7 @@ rake db:migrate db:seed
 
 Then you can configure the CAS server (replace the CAS server URL, with a trailing slash):
 
-bc. rails runner 'Settler.load!; Setting.find_by_key("cas_server").upgrate_attribute(:value, "http://your-cas-server.your-company.com/")'
+bc. rails runner 'Settler.load!; Setting.find_by_key("cas_server").update_attribute(:value, "http://your-cas-server.your-company.com/")'
 
 And then add the first user (replace at least the uid):
 
