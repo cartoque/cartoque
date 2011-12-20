@@ -46,10 +46,8 @@ module Cartoque
     # Generators replacement
     # TODO: see if it really works
     config.generators do |g|
-      g.test_framework :test_unit, :fixture => false
-      g.test_framework :shoulda, :fixture => false
-      g.fallbacks[:shoulda] = :test_unit
-      g.fixture_replacement :factory_girl, :dir => 'test/factories'
+      g.test_framework :rspec, :fixture => false, :views => false
+      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
 
     # Enable the asset pipeline
