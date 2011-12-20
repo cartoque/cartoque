@@ -1,9 +1,9 @@
 rvm:
   - 1.9.2
-#  - ruby-head
-#  - rbx
-#  - rbx-2.0
-#  - jruby
+  - ruby-head
+  - rbx
+  - rbx-2.0
+  - jruby
 branches:
   only:
     - master
