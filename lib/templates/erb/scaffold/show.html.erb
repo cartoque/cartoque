@@ -1,8 +1,17 @@
-<%%= show_for @<%= singular_name %> do |s| %>
-<% attributes.each do |attribute| -%>
-  <%%= s.<%= attribute.reference? ? :association : :attribute %> :<%= attribute.name %> %>
-<% end -%>
+<%% title t(:<%= singular_name %>) %>
+
+<div class="grid_12 center">
+
+<%%= action_links do %>
+  <%%= link_to t(:back_to_the_list), <%= plural_name %>_path %>
 <%% end %>
 
-<%%= link_to 'Edit', edit_<%= singular_name %>_path(@<%= singular_name %>) %> |
-<%%= link_to 'Back', <%= plural_name %>_path %>
+<table class="show_item full">
+  <%%= show_for @<%= singular_name %> do |s| %>
+  <%- attributes.each do |attribute| -%>
+    <%%= s.<%= attribute.reference? ? :association : :attribute %> :<%= attribute.name %> %>
+  <%- end -%>
+  <%% end %>
+</table>
+
+</div>

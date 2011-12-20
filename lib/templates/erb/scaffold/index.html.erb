@@ -1,0 +1,32 @@
+<%% title t(:<%= plural_name %>) %>
+
+<div class="grid_12 center">
+
+<%%= action_links do %>
+  <%%= link_to t(:new_<%= singular_name %>), new_<%= singular_name %>_path %>
+<%% end %>
+
+<table class="pretty list <%= plural_name %>">
+<thead>
+  <tr>
+  <%- attributes.each do |attribute| -%>
+    <%%= t(:<%= attribute.name %>) %>
+  <%- end -%>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody class="long-list">
+<%% @<%= plural_name %>.each do |<%= singular_name %>| %>
+  <tr>
+  <%- attributes.each do |attribute| -%>
+    <td><%%= <%= singular_name %>.<%= attribute.name %> %></td>
+  <%- end -%>
+    <td><%%= link_to_edit edit_<%= singular_name %>_path(<%= singular_name %>) %></td>
+    <td><%%= link_to_delete <%= singular_name %> %></td>
+  </tr>
+<%% end %>
+</tbody>
+</table>
+
+</div>
