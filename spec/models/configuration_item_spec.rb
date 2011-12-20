@@ -22,28 +22,28 @@ describe ConfigurationItem do
       ci.should be_valid
       ci.identifier.should_not be_nil
     end
+  end
 
-    describe "concrete classes" do
-      before do
-        Dir.glob(Rails.root.join('app/models/*')).each{|f| require f}
-      end
+  describe "concrete classes" do
+    before do
+      Dir.glob(Rails.root.join('app/models/*')).each{|f| require f}
+    end
 
-      it "should have a #to_s method in each real-CI-object classes" do
-        ActiveRecord::Base.subclasses.each do |klass|
-          if klass.instance_methods.include?(:configuration_item)
-            #"#{klass}#to_s is not defined (required for playing with ConfigurationItem)"
-            klass.should be_instance_method_already_implemented(:to_s)
-          end
+    it "should have a #to_s method in each real-CI-object classes" do
+      ActiveRecord::Base.subclasses.each do |klass|
+        if klass.instance_methods.include?(:configuration_item)
+          #"#{klass}#to_s is not defined (required for playing with ConfigurationItem)"
+          klass.should be_instance_method_already_implemented(:to_s)
         end
       end
+    end
 
-      it "should match classes observed in ConfigurationItemsObserver" do
-        classes_with_configuration_item = ActiveRecord::Base.subclasses.select do |klass|
-          klass.instance_methods.include?(:configuration_item)
-        end.map(&:name).sort
-        observed_classes = ConfigurationItemsObserver.instance.observed_classes.map(&:name).sort
-        classes_with_configuration_item.should eq observed_classes
-      end
+    it "should match classes observed in ConfigurationItemsObserver" do
+      classes_with_configuration_item = ActiveRecord::Base.subclasses.select do |klass|
+        klass.instance_methods.include?(:configuration_item)
+      end.map(&:name).sort
+      observed_classes = ConfigurationItemsObserver.instance.observed_classes.map(&:name).sort
+      classes_with_configuration_item.should eq observed_classes
     end
   end
 end
