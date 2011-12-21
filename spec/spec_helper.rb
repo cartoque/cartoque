@@ -62,6 +62,8 @@ Spork.prefork do
     # automatically mark decorator specs as :type => :decorator
     # TODO: remove it when it's included in Draper
     require 'draper/rspec_integration'
+    # include capybara matchers in decorator specs
+    config.include Capybara::RSpecMatchers, :type => :decorator
   end
 end
 
