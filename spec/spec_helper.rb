@@ -39,11 +39,11 @@ Spork.prefork do
     #config.use_transactional_fixtures = true
 
     # Config mode for OmniAuth
-    OmniAuth.config.test_mode = true
-    OmniAuth.config.mock_auth[:cas] = {
-      'provider' => 'cas',
-      'uid'      => Factory(:user).uid
-    }
+    #OmniAuth.config.test_mode = true
+    #OmniAuth.config.mock_auth[:cas] = {
+    #  'provider' => 'cas',
+    #  'uid'      => Factory(:user).uid
+    #}
 
     #a clean state between each spec/test
     config.before(:suite) do
