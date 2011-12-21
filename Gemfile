@@ -53,6 +53,7 @@ gem 'diffy'
 gem 'settler'
 gem 'nokogiri'
 gem 'acts-as-taggable-on'
+gem 'draper'
 
 group :test do
   gem 'factory_girl_rails'
