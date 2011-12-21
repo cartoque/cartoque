@@ -1,6 +1,6 @@
 require 'csv'
 
-class ServersController < InheritedResources::Base
+class ServersController < ResourcesController
   respond_to :html, :js, :xml, :csv
 
   has_scope :by_location
@@ -21,7 +21,7 @@ class ServersController < InheritedResources::Base
   helper_method :sort_column, :sort_direction, :sort_column_prefix
 
   def collection
-    @servers ||= end_of_association_chain.active.includes(:operating_system, :physical_rack).search(params[:search]).order(sort_option)
+    @servers ||= super.active.includes(:operating_system, :physical_rack).search(params[:search]).order(sort_option)
     if maintenance_mode?
       @servers = @servers.includes(:maintainer => :contact_infos).where(:virtual => false)
       if params[:sort] == "maintained_until"
