@@ -58,6 +58,10 @@ Spork.prefork do
     config.after(:each) do
       DatabaseCleaner.clean
     end
+
+    # automatically mark decorator specs as :type => :decorator
+    # TODO: remove it when it's included in Draper
+    require 'draper/rspec_integration'
   end
 end
 
