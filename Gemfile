@@ -71,6 +71,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'capybara'
   gem 'sqlite3'
   gem 'thin'
   gem 'pry'
