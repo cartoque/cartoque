@@ -28,6 +28,53 @@ class ServerDecorator < ResourceDecorator
     (condition ? yield : "").html_safe
   end
 
+  def cores
+    html = ""
+    html << "#{model.nb_proc} * " unless model.nb_proc == 1
+    html << "#{model.nb_coeur} cores, " unless model.nb_coeur.blank? || model.nb_coeur <= 1
+    html << "#{model.frequency} GHz"
+    html.html_safe
+  end
+
+  def cpu
+    html = ""
+    if model.nb_proc.present? && model.nb_proc > 0
+      html << cores
+      html << "<br />(#{model.ref_proc})" if model.ref_proc.present?
+    else
+      html << "?"
+    end
+    html.html_safe
+  end
+
+  def disks
+    html = ""
+    if model.disk_size.present? && model.disk_size > 0
+      html << "#{model.nb_disk} * " unless model.nb_disk.blank? || model.nb_disk == 1
+      html << "#{model.disk_size}G"
+      html << " (#{model.disk_type})" unless model.disk_type.blank?
+      if model.disk_size_alt.present? && model.disk_size_alt > 0
+        html << "<br />"
+        html << "#{model.nb_disk_alt} * " unless model.nb_disk_alt.blank? || model.nb_disk_alt == 1
+        html << "#{model.disk_size_alt}G"
+        html << " (#{model.disk_type_alt})" unless model.disk_type_alt.blank?
+      end
+    else
+      html << "?"
+    end
+    html.html_safe
+  end
+
+  def ram
+    html = ""
+    if model.memory.present? && model.memory.to_f > 0
+      html = model.memory.to_s + (model.memory.to_s.match(/[MG]/) ? "Go" : "")
+    else
+      html << "?"
+    end
+    html
+  end
+
   # Accessing Helpers
   #   You can access any helper via a proxy
   #

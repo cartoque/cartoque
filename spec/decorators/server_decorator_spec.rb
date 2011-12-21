@@ -51,4 +51,22 @@ describe ServerDecorator do
       @server.virtual_badge.should have_selector("div", :text => "V")
     end
   end
+
+  describe "hardware details" do
+    it "should display cpu" do
+      @server.cpu.should eq "4 * 4 cores, 3.2 GHz<br />(Xeon 2300)"
+      @server.nb_coeur = nil
+      @server.cpu.should eq "4 * 3.2 GHz<br />(Xeon 2300)"
+      @server.nb_coeur = 1
+      @server.cpu.should eq "4 * 3.2 GHz<br />(Xeon 2300)"
+    end
+
+    it "should display ram" do
+      @server.ram.should eq "42"
+    end
+
+    it "should display disks" do
+      @server.disks.should eq "5 * 13G (SAS)"
+    end
+  end
 end

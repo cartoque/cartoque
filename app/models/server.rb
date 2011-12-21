@@ -179,53 +179,6 @@ class Server < ActiveRecord::Base
     end
   end
 
-  def cores
-    html = ""
-    html << "#{nb_proc} * " unless nb_proc == 1
-    html << "#{nb_coeur} cores, " unless nb_coeur.blank? || nb_coeur <= 1
-    html << "#{frequency} GHz"
-    html.html_safe
-  end
-
-  def cpu
-    html = ""
-    if nb_proc.present? && nb_proc > 0
-      html << cores
-      html << "<br />(#{ref_proc})" if ref_proc.present?
-    else
-      html << "?"
-    end
-    html.html_safe
-  end
-
-  def disks
-    html = ""
-    if disk_size.present? && disk_size > 0
-      html << "#{nb_disk} * " unless nb_disk.blank? || nb_disk == 1
-      html << "#{disk_size}G"
-      html << " (#{disk_type})" unless disk_type.blank?
-      if disk_size_alt.present? && disk_size_alt > 0
-        html << "<br />"
-        html << "#{nb_disk_alt} * " unless nb_disk_alt.blank? || nb_disk_alt == 1
-        html << "#{disk_size_alt}G"
-        html << " (#{disk_type_alt})" unless disk_type_alt.blank?
-      end
-    else
-      html << "?"
-    end
-    html.html_safe
-  end
-
-  def ram
-    html = ""
-    if memory.present? && memory.to_f > 0
-      html = memory.to_s + (memory.to_s.match(/[MG]/) ? "Go" : "")
-    else
-      html << "?"
-    end
-    html
-  end
-
   def localization
     physical_rack
   end
