@@ -19,7 +19,7 @@
       <td colspan="4">
         <ul>
         <% @database.servers.each do |server| %>
-          <li><%= display_server(server) %></li>
+          <li><%= server.decorate.short_line %></li>
         <% end %>
         </ul>
       </td>

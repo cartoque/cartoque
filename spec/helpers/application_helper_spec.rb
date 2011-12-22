@@ -32,22 +32,6 @@ describe ApplicationHelper do
     end
   end
 
-  it "should display server with full details" do
-    render :text => display_server(Factory(:server))
-    assert_select "span.server-link a", "server-01"
-    assert_select "span.server-details", "4 * 4 cores, 3.2 GHz | 42G | 5 * 13G (SAS)"
-  end
-
-  it "should display server without raising an exception if no details" do
-    render :text => display_server(Server.create(:name => "server-03"))
-    assert_select "span.server-link a", "server-03"
-  end
-
-  it "should display nothing in server details if no details available" do
-    render :text => display_server(Server.new(:name => "srv"))
-    assert_select "span.server-details", ""
-  end
-
   describe "#context_li" do
     it "should display a li.current if item is the current one" do
       render :text => context_li("blah", "url", :current => true)

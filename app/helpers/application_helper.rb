@@ -111,17 +111,6 @@ module ApplicationHelper
     @redmine_url ||= Settler[:redmine_url]
   end
 
-  def display_server(server)
-    content_tag(:span, :class => "server-link") do
-      link_to(server.name, server) + content_tag(:span, :class => "server-details") do
-        [ server.operating_system,
-          (server.nb_proc && server.nb_proc > 0 ? server.cores : ""),
-          (server.memory? ? "#{server.ram}G" : ""),
-          (server.disk_size && server.disk_size > 0 ? server.disks : "") ].reject(&:blank?).join(" | ")
-      end
-    end
-  end
-
   def context_li(text, url, options = {})
     current = options.delete(:current)
     if current

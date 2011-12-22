@@ -69,4 +69,22 @@ describe ServerDecorator do
       @server.disks.should eq "5 * 13G (SAS)"
     end
   end
+
+  describe "#short_line" do
+    it "should display server with full details" do
+      line = @server.short_line
+      line.should have_selector(:css, "span.server-link a", :text => "server-01")
+      line.should have_selector(:css, "span.server-details", :text => "4 * 4 cores, 3.2 GHz | 42G | 5 * 13G (SAS)")
+    end
+
+    it "should display server without raising an exception if no details" do
+      line = Server.new(:name => "server-03").decorate.short_line
+      line.should have_selector(:css, "span.server-link a", :text => "server-03")
+    end
+
+    it "should display nothing in server details if no details available" do
+      line = Server.new(:name => "srv").decorate.short_line
+      line.should have_selector(:css, "span.server-details", :text => "")
+    end
+  end
 end

@@ -75,6 +75,17 @@ class ServerDecorator < ResourceDecorator
     html
   end
 
+  def short_line
+    h.content_tag(:span, :class => "server-link") do
+      h.link_to(model.name, model) + h.content_tag(:span, :class => "server-details") do
+        [ model.operating_system,
+          (model.nb_proc && model.nb_proc > 0 ? cores : ""),
+          (model.memory? ? "#{ram}G" : ""),
+          (model.disk_size && model.disk_size > 0 ? disks : "") ].reject(&:blank?).join(" | ")
+      end
+    end
+  end
+
   # Accessing Helpers
   #   You can access any helper via a proxy
   #
