@@ -1,4 +1,5 @@
 # backports https://github.com/jcasimir/draper/pull/87
+# and https://github.com/jcasimir/draper/issues/60 workaround
 
 module Draper
   module DecoratorExampleGroup
@@ -15,7 +16,9 @@ module Draper
     # Specs tagged type: :decorator set the Draper view context
     config.around do |example|
       if :decorator == example.metadata[:type]
-        ApplicationController.new.set_current_view_context
+        controller = ApplicationController.new
+        controller.request = ActionDispatch::TestRequest.new
+        controller.set_current_view_context
       end
       example.call
     end
