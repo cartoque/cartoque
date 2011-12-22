@@ -6,11 +6,10 @@
   <%= link_to t(:new_role), new_role_path %>
 <% end %>
 
-<table class="pretty list roles full">
+<table class="pretty list roles">
 <thead>
   <tr>
     <th><%= t(:name) %></th>
-    <th></th>
     <th></th>
   </tr>
 </thead>
@@ -18,8 +17,10 @@
 <% @roles.each do |role| %>
   <tr>
     <td><%= role.name %></td>
-    <td><%= link_to_edit edit_role_path(role) %></td>
-    <td><%= link_to_delete role %></td>
+    <td>
+      <%= link_to_edit edit_role_path(role) %>
+      <%= link_to_delete role %>
+    </td>
   </tr>
 <% end %>
 </tbody>
