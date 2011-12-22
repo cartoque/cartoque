@@ -389,3 +389,4 @@ fr:
   edit_a_datacenter: "Edition d'un Centre-Serveur"
   validate: "Valider"
   validated_by: "Validé par %{person}"
+  word_no: "Non"

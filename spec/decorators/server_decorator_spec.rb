@@ -87,4 +87,24 @@ describe ServerDecorator do
       line.should have_selector(:css, "span.server-details", :text => "")
     end
   end
+
+  describe "#maintenance_limit" do
+    it "returns 'no' if maintenance end date is blank" do
+      @server.maintenance_limit.should have_selector(:css, "span.maintenance-critical", :text => I18n.t(:word_no))
+    end
+
+    it "returns the date if server is maintained until the next 2 years" do
+      @server.maintained_until = Date.today + 2.years
+      @server.maintenance_limit.should == I18n.l(@server.maintained_until)
+    end
+
+    it "returns warning or critical <span> if under 6 or 12 months" do
+      @server.maintained_until = Date.today - 2.years
+      @server.maintenance_limit.should have_selector(:css, "span.maintenance-critical")
+      @server.maintained_until = Date.today + 5.months
+      @server.maintenance_limit.should have_selector(:css, "span.maintenance-critical")
+      @server.maintained_until = Date.today + 11.months
+      @server.maintenance_limit.should have_selector(:css, "span.maintenance-warning")
+    end
+  end
 end

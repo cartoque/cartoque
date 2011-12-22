@@ -6,7 +6,7 @@ class ResourcesController < InheritedResources::Base
   protected
 
   def collection
-    get_resource_ivar || set_resource_ivar(decorate_resource_or_collection(end_of_association_chain))
+    get_collection_ivar || set_collection_ivar(decorate_resource_or_collection(super))
   end
 
   def resource

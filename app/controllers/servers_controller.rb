@@ -21,13 +21,15 @@ class ServersController < ResourcesController
   helper_method :sort_column, :sort_direction, :sort_column_prefix
 
   def collection
-    @servers ||= super.active.includes(:operating_system, :physical_rack).search(params[:search]).order(sort_option)
+    return @servers if defined?(@servers)
+    @servers = end_of_association_chain.active.includes(:operating_system, :physical_rack).search(params[:search]).order(sort_option)
     if maintenance_mode?
       @servers = @servers.includes(:maintainer => :contact_infos).where(:virtual => false)
       if params[:sort] == "maintained_until"
         @servers = @servers.select{|m| m.maintained_until.present? } + @servers.select{|m| m.maintained_until.blank? }
       end
     end
+    @servers = decorate_resource_or_collection(@servers)
   end
 
   private

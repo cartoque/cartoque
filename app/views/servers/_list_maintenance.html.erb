@@ -19,6 +19,6 @@
   <% end %>
   </td>
   <td class="center"><%= l(server.delivered_on) if server.delivered_on? %></td>
-  <td class="center"><%= maintenance_limit(server.maintained_until) %></td>
+  <td class="center"><%= server.maintenance_limit %></td>
 </tr>
 <% end %>
