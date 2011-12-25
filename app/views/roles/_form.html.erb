@@ -9,7 +9,7 @@
   <table class="show_item">
     <tbody>
       <%= tabular_errors @role %>
-      <%= f.input :name %>
+      <%= f.input :name, :required => true, :wrapper_class => "th" %>
     </tbody>
   </table>
 <% end %>
