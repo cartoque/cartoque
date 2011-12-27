@@ -55,6 +55,11 @@ gem 'nokogiri'
 gem 'acts-as-taggable-on'
 gem 'draper'
 
+# Plugins/engines
+Dir.glob(File.expand_path("../vendor/plugins/*/Gemfile",__FILE__)).each do |gemfile|
+  instance_eval File.read(gemfile)
+end
+
 group :test do
   gem 'factory_girl_rails'
   gem 'mocha'
