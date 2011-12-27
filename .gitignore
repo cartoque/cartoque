@@ -12,4 +12,5 @@ tmp/*
 tmp/**/*
 data/*
 extra
+vendor/plugins/*
 **.rbc
