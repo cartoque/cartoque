@@ -6,31 +6,31 @@
   <% end %>
   </ul>
   <ul class="menu-items">
-    <li><%= link_to image_tag("home.png", :alt => t(:home), :size => "16x16"), root_path, :class => "img" %></li>
+    <li class="home"><%= link_to image_tag("home.png", :alt => t(:home), :size => "16x16"), root_path, :class => "img" %></li>
   <% if logged_in? %>
-    <li><%= link_to t(:applications), applications_path %></li>
-    <li><%= link_to t(:servers), servers_path %></li>
-    <li class="has-submenu">
+    <li class="applications"><%= link_to t(:applications), applications_path %></li>
+    <li class="servers"><%= link_to t(:servers), servers_path %></li>
+    <li class="platform has-submenu">
       <%= link_to_function %(#{t(:platform)} <span class="arrow"></span>).html_safe, "return false" %>
       <div class="large-submenu submenu-3" style="margin-left:-70px">
         <ul style="float:left">
-          <li class="title"><%= t(:application_server) %></li>
+          <li class="application-servers-items title"><%= t(:application_server) %></li>
           <!--<li><a href="?"><%= t(:load_balancers) %></a></li>-->
           <!--<li><a href="?">Apache HTTP</a></li>-->
-          <li><%= link_to "Tomcat / J2EE", tomcats_path %></li>
-          <li class="title">SaaS</li>
-          <li><%= link_to "Redmine", saa_path(:redmine) %></li>
-          <li><%= link_to "PHP/Mysql", saa_path(:php) %></li>
-          <li><%= link_to "Request Tracker", saa_path(:rt) %></li>
+          <li class="tomcats"><%= link_to "Tomcat / J2EE", tomcats_path %></li>
+          <li class="saas title">SaaS</li>
+          <li class="redmine"><%= link_to "Redmine", saa_path(:redmine) %></li>
+          <li class="php-mysql"><%= link_to "PHP/Mysql", saa_path(:php) %></li>
+          <li class="request-tracker"><%= link_to "Request Tracker", saa_path(:rt) %></li>
         </ul>
         <ul style="float:left">
-          <li class="title"><%= t(:data) %></li>
-          <li><%= link_to t(:sql_databases), databases_path %></li>
+          <li class="data-items title"><%= t(:data) %></li>
+          <li class="databases"><%= link_to t(:sql_databases), databases_path %></li>
           <!--<li><a href="?">Talend / Sunopsis</a></li>-->
           <!--<li><a href="?">FTP VSFTPd</a></li>-->
-          <li class="title"><%= t(:storage) %></li>
-          <li><%= link_to t(:nss_virtualization), nss_volumes_path(:by_type => "SAN") %></li>
-          <li><%= link_to t(:storage_devices), storages_path %></li>
+          <li class="storage-items title"><%= t(:storage) %></li>
+          <li class="nss-virtualization"><%= link_to t(:nss_virtualization), nss_volumes_path(:by_type => "SAN") %></li>
+          <li class="storage-devices"><%= link_to t(:storage_devices), storages_path %></li>
         </ul>
         <!--<ul style="float:left">
           <li class="title"><%= t(:mail_services) %></li>
@@ -42,12 +42,12 @@
           <li><a href="?">Z-Push</a></li>
         </ul>-->
         <ul style="float:left">
-          <li class="title"><%= t(:misc_services) %></li>
-          <li><%= link_to t(:licenses), licenses_path %></li>
-          <li><%= link_to "Puppet", puppet_path(:servers, :by_puppet => "1") %></li>
-          <li><%= link_to t(:backups), backup_jobs_path %></li>
-          <li><%= link_to t(:upgrades), upgrades_path %></li>
-          <li><%= link_to t(:cron_tasks), cronjobs_path %></li>
+          <li class="misc-items title"><%= t(:misc_services) %></li>
+          <li class="licenses"><%= link_to t(:licenses), licenses_path %></li>
+          <li class="puppet"><%= link_to "Puppet", puppet_path(:servers, :by_puppet => "1") %></li>
+          <li class="backups"><%= link_to t(:backups), backup_jobs_path %></li>
+          <li class="upgrades"><%= link_to t(:upgrades), upgrades_path %></li>
+          <li class="cron-tasks"><%= link_to t(:cron_tasks), cronjobs_path %></li>
           <!--<li><a href="?">DNS Bind</a></li>
           <li class="title"><%= t(:infrastructure) %></li>
           <li><a href="?"><%= t(:physical_racks) %></a></li>
@@ -56,7 +56,7 @@
       </div>
     </li>
     <li class="right-separator contacts"><%= link_to "Contacts", contacts_path %></li>
-    <li class="tiny"><%= link_to t(:configuration), operating_systems_path %></li>
+    <li class="configuration tiny"><%= link_to t(:configuration), operating_systems_path %></li>
   <% end %>
   </ul>
 </div>
