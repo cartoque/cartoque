@@ -152,7 +152,7 @@ fr:
   edit_a_server: "Edition d'un serveur"
   new_server: "Nouveau serveur"
   x_physical_servers_of_which: "%{count} serveurs physiques, dont"
-  main_informations: "Informations générales"
+  main_informations: "Informations"
   definition_location: "Définition"
   frequency: "Fréquence"
   hypervisor: "Hyperviseur"
