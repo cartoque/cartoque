@@ -48,7 +48,7 @@ Cartoque::Application.routes.draw do
   put 'hide_announcement' => 'javascripts#hide_announcement', :as => 'hide_announcement' 
 
   get 'puppet(/:action(.:format))', :to => 'puppet', :as => 'puppet'
-  get 'tools(/:action(/:id(.:format)))', :to => 'tools', :as => 'tool'
+  get 'tools(/:action(/:id(.:format)))', :to => 'tools'
 
   match 'auth/:provider/callback' => 'sessions#create'
   match 'signout' => 'sessions#destroy', :as => :signout

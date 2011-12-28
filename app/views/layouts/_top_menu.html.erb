@@ -51,14 +51,14 @@
   <div class="large-submenu submenu-2" style="margin-left:-70px">
     <ul style="float:left">
       <li class="title"><%= t(:comparison) %></li>
-      <li><%= link_to t(:with_nagios), tool_path("nagios_comparison") %></li>
-      <li><%= link_to t(:with_reverse_proxies), tool_path("reverse_proxies_comparison") %></li>
+      <li><%= link_to t(:with_nagios), "/tools/nagios_comparison" %></li>
+      <li><%= link_to t(:with_reverse_proxies), "/tools/reverse_proxies_comparison" %></li>
     </ul>
     <ul style="float:left">
       <li class="title"><%= t(:symetry) %></li>
-      <li><%= link_to t(:servers)+" ACAI", tool_path("acai_symetry") %></li>
-      <li><%= link_to t(:servers)+" SGBD", tool_path("cluster_symetry") %></li>
-      <li><%= link_to t(:servers)+" Infra", tool_path("infra_symetry") %></li>
+      <li><%= link_to t(:servers)+" ACAI", "/tools/acai_symetry" %></li>
+      <li><%= link_to t(:servers)+" SGBD", "/tools/cluster_symetry" %></li>
+      <li><%= link_to t(:servers)+" Infra", "/tools/infra_symetry" %></li>
     </ul>
   </div>
 </li>

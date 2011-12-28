@@ -5,7 +5,7 @@
 <%= action_links do %>
   <ul class="select-buttons">
   <% @cluster_names.each do |cluster| %>
-    <%= content_tag :li, link_to(cluster, tool_path(params[:action], :id => cluster)), :class => (params[:id] == cluster ? "current" : "") %>
+    <%= content_tag :li, link_to(cluster, "/tools/#{params[:action]}/#{cluster}"), :class => (params[:id] == cluster ? "current" : "") %>
   <% end %>
   </ul>
 <% end %>
