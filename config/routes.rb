@@ -41,6 +41,7 @@ Cartoque::Application.routes.draw do
   Dir.glob(File.expand_path("../../vendor/plugins/*/config/routes.rb",__FILE__)).each do |routefile|
     engine_name = routefile.gsub("/config/routes.rb", "").gsub(%r{.*/vendor/plugins/}, "")
     engine = "#{engine_name.camelize}::Engine".constantize rescue nil
+    #$stderr.puts "Mounting engine '#{engine}' to path '/#{engine_name}"
     mount engine => "/#{engine_name}" unless engine.nil?
   end
 
