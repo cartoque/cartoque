@@ -5,7 +5,9 @@ namespace :import do
     Dir.glob("data/update/*.apt").each do |file|
       servername = File.basename(file).gsub(/\.apt$/, "")
       server = Server.find_or_generate(servername)
-      packages = File.readlines(file).grep(/ => /).map(&:strip).map do |line|
+      lines = File.readlines(file)
+      next if lines.count < 2
+      packages = lines.grep(/ => /).map(&:strip).map do |line|
         if line.match /^(\S+)\s+\((\S+) => (\S+)\)/
           #puts "server:#{servername}, package:#{$1}, from:#{$2}, to:#{$3}"
           pkg = {name: $1, old: $2, new: $3}
