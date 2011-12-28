@@ -8,7 +8,7 @@ namespace :cleanup do
       hosts << file.split("/").last.gsub(/\.json$/, "")
       json = JSON.load(File.read(file)) rescue nil
       next if json.blank?
-      json["vms"].each do |vmhsh|
+      (json["vms"] || []).each do |vmhsh|
         vms << vmhsh["hostname"]
       end
     end
