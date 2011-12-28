@@ -54,6 +54,7 @@ gem 'settler'
 gem 'nokogiri'
 gem 'acts-as-taggable-on'
 gem 'draper'
+gem 'deface'
 
 # Plugins/engines
 Dir.glob(File.expand_path("../vendor/plugins/*/Gemfile",__FILE__)).each do |gemfile|
