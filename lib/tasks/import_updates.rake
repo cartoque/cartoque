@@ -2,8 +2,8 @@ desc "Imports system packages to update"
 namespace :import do
   task :updates => :environment do
     # ONLY APT FILES FOR NOW !!!!!!
-    Dir.glob("data/update/*.txt").each do |file|
-      servername = File.basename(file).gsub(/\.txt$/, "")
+    Dir.glob("data/update/*.apt").each do |file|
+      servername = File.basename(file).gsub(/\.apt$/, "")
       server = Server.find_or_generate(servername)
       packages = File.readlines(file).grep(/ => /).map(&:strip).map do |line|
         if line.match /^(\S+)\s+\((\S+) => (\S+)\)/
