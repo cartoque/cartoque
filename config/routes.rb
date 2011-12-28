@@ -37,6 +37,13 @@ Cartoque::Application.routes.draw do
   end
   resources :applications
 
+  # Plugins/engines
+  Dir.glob(File.expand_path("../../vendor/plugins/*/config/routes.rb",__FILE__)).each do |routefile|
+    engine_name = routefile.gsub("/config/routes.rb", "").gsub(%r{.*/vendor/plugins/}, "")
+    engine = "#{engine_name.classify}::Engine".constantize rescue nil
+    mount engine => "/#{engine_name}" unless engine.nil?
+  end
+
   put 'hide_announcement' => 'javascripts#hide_announcement', :as => 'hide_announcement' 
 
   get 'puppet(/:action(.:format))', :to => 'puppet', :as => 'puppet'
