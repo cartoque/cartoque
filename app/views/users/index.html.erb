@@ -8,11 +8,11 @@
 
 <table class="list pretty users">
   <tr>
-    <th><%= t(:name) %></th>
+    <%= sortable_th "name" %>
     <th><%= t(:user_provider) %></th>
-    <th><%= t(:user_uid) %></th>
+    <%= sortable_th "uid", t(:user_uid) %>
     <th><%= t(:user_api) %></th>
-    <th><%= t(:user_seen) %></th>
+    <%= sortable_th "seen_on", t(:user_seen) %>
     <th></th>
   </tr>
   <tbody class="long-list">

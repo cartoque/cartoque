@@ -12,4 +12,11 @@ class UsersController < InheritedResources::Base
   def random_token
     @token = SecureRandom.hex(16)
   end
+
+  include SortHelpers
+  helper_method :sort_column, :sort_direction
+
+  def collection
+    @users ||= end_of_association_chain.order(sort_option)
+  end
 end
