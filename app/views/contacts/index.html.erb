@@ -7,10 +7,15 @@
       <input type="text" name="search" id="search_contacts" placeholder="<%= t(:placeholder_for_contacts_search) %>"
              value="<%= params[:search] %>" autocomplete="off" />
       <%= hidden_sort_fields %>
+      <div id="sort_links" class="contextual tiny sort_by contacts_sort_by">
+        <%= render 'sort_links' %>
+      </div>
+      <div class="contextual tiny contacts_view_internals">
+        <%= hidden_field_tag "with_internals", "0", :id => nil %>
+        <%= check_box_tag "with_internals", "1", view_internals %>
+        <label for="with_internals"><%= t(:show_internals) %></label>
+      </div>
     <% end %>
-    <div id="sort_links" class="contextual tiny sort_by contacts_sort_by">
-      <%= render 'sort_links' %>
-    </div>
   </div>
 
   <div class="grid_4" style="margin-left:0;">

@@ -77,4 +77,19 @@ describe Contact do
       Contact.search("Director").should eq [@contact2]
     end
   end
+
+  #TODO: move it to a dedicated spec on Contactable module
+  describe "#with_internals scope" do
+    it "retrieve internal users only if param is truthy" do
+      bob = Contact.create!(:last_name => "Smith", :internal => true)
+      alice = Contact.create!(:last_name => "Smith", :internal => false)
+      Contact.all.should include bob
+      Contact.all.should include alice
+      Contact.with_internals(false).should_not include bob
+      Contact.with_internals(false).should include alice
+      #but
+      Contact.with_internals(true).should include bob
+      Contact.with_internals(true).should include alice
+    end
+  end
 end

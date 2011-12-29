@@ -12,6 +12,8 @@ module Contactable
       accepts_nested_attributes_for :website_infos, :reject_if => lambda{|a| a[:value].blank? }, :allow_destroy => true
       has_many :address_infos, :class_name => "ContactInfo", :conditions => {:info_type => "address"}, :as => :entity
       accepts_nested_attributes_for :address_infos, :reject_if => lambda{|a| a[:value].blank? }, :allow_destroy => true
+  
+      scope :with_internals, proc{|show_internals| where(:internal => false) unless show_internals}
     end
   end
 

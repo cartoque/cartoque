@@ -100,7 +100,7 @@ $(function() {
       submitFilters();
     }
   }, 300);
-  $(".filters select").change(submitFilters);
+  $(".filters select, .filters input[type='checkbox']").change(submitFilters);
 
   //back button for pushState's
   $(window).bind("popstate", function() {

@@ -30,5 +30,31 @@ describe ContactsController do
       get :index, :sort => "last_name", :direction => "desc"
       assigns(:contacts).should eq([@smith, @doe])
     end
+
+    describe "with internal visibility" do
+      before do
+        @bob = Contact.create!(:last_name => "Bob", :internal => true)
+        @vendor = Company.create!(:name => "Manufacturer inc.")
+        @team = Company.create!(:name => "Our team (internal)", :internal => true)
+      end
+
+      it "shouldn't display internal contacts/companies by default" do
+        get :index
+        assigns(:contacts).should_not include @bob
+        assigns(:companies).should include @vendor
+        assigns(:companies).should_not include @team
+      end
+
+      it "should display internal contacts/companies with some more params or session" do
+        get :index, :with_internals => "1"
+        assigns(:contacts).should include @bob
+        assigns(:companies).should include @team
+        #and keep it in session...
+        controller.send(:current_user).settings[:contacts_view_internals].should eq "1"
+        get :index
+        assigns(:contacts).should include @bob
+        assigns(:companies).should include @team
+      end
+    end
   end
 end
