@@ -55,7 +55,7 @@ h2. Extra
 
 If you want to see Cartoque's model dependencies, you can run :
 
-  rake erd
+bc. rake erd
 
 It will generate a graph of classes relations in the ERD.pdf file.
 
