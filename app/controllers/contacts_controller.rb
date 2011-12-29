@@ -7,13 +7,21 @@ class ContactsController < InheritedResources::Base
     params[:sort] ||= "updated_at"
     params[:direction] ||= "desc"
     companies_sort_option = sort_option.gsub(/(last|first)_name/, "name").gsub("contacts.", "companies.")
-    @companies = Company.with_internals(view_internals).search(params[:search]).limit(params[:all_companies].blank? ? 25 : nil).order(companies_sort_option)
+    @companies = Company.with_internals(view_internals)
+                        .search(params[:search])
+                        .limit(params[:all_companies].blank? ? 25 : nil)
+                        .includes(:email_infos, :phone_infos, :contacts)
+                        .order(companies_sort_option)
     index!
   end
 
   private
   def collection
-    @contacts ||= end_of_association_chain.with_internals(view_internals).search(params[:search]).limit(params[:all_contacts].blank? ? 25 : nil).order(sort_option)
+    @contacts ||= end_of_association_chain.with_internals(view_internals)
+                                          .search(params[:search])
+                                          .limit(params[:all_contacts].blank? ? 25 : nil)
+                                          .includes(:email_infos, :phone_infos, :company)
+                                          .order(sort_option)
   end
 
   def find_companies_and_contacts_count
