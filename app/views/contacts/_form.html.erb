@@ -24,6 +24,13 @@
             <%= f.text_field :last_name, :placeholder => t(:last_name) %>
           </td>
         </tr>
+        <tr class="input boolean optional">
+          <td class="label"><label class="boolean optional" for="contact_internal"><%= t(:internal) %></label></td>
+          <td class="content">
+            <div class="lefty"><%= f.input_field :internal %></div>
+            <div class="hint"><%= t(:text_internal_tip) %></div>
+          </td>
+        </tr>
         <%= f.input :job_position, :input_html => { :class => "long" } %>
         <%= f.input :company_name, :label => t(:company),
                     :input_html => { :class => "long", :data => { :autocomplete_source => autocomplete_companies_path } } %>

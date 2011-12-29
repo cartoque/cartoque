@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111220115926) do
+ActiveRecord::Schema.define(:version => 20111229053342) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20111220115926) do
     t.text     "comment"
     t.string   "image_url",     :default => "building.png"
     t.boolean  "is_maintainer", :default => false
+    t.boolean  "internal",      :default => false
   end
 
   create_table "configuration_items", :force => true do |t|
@@ -107,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20111220115926) do
     t.datetime "updated_at"
     t.integer  "company_id"
     t.string   "image_url",    :default => "ceo.png"
+    t.boolean  "internal",     :default => false
   end
 
   create_table "contacts_mailing_lists", :id => false, :force => true do |t|

@@ -171,6 +171,8 @@ fr:
   first_name: "Prénom"
   last_name: "Nom"
   company: "Entreprise"
+  internal: "Interne"
+  text_internal_tip: "(non affiché par défaut dans la section \"Contacts\")"
   job_position: "Poste"
   phone: "Téléphone"
   mobile: "Mobile"

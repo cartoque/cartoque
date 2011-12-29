@@ -23,7 +23,13 @@
             <%= f.text_field :name, :placeholder => t(:name), :style => "width:100%" %>
           </td>
         </tr>
-
+        <tr class="input boolean optional">
+          <td class="label"><label class="boolean optional" for="contact_internal"><%= t(:internal) %></label></td>
+          <td class="content">
+            <div class="lefty"><%= f.input_field :internal %></div>
+            <div class="hint"><%= t(:text_internal_tip) %></div>
+          </td>
+        </tr>
         <tr>
           <td class="label top"><%= f.label :roles %></td>
           <td>
