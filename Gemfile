@@ -80,4 +80,5 @@ group :development, :test do
   gem 'sqlite3'
   gem 'thin'
   gem 'pry'
+  gem 'rails-erd' #graphviz of classes
 end

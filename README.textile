@@ -51,6 +51,14 @@ If you have any issue, feel free to report an issue "on the Github bug tracker":
 
 If you want to contribute, you're welcome ! We plan to work with Github's forks and pull requests, but please fill an issue before developing any additional feature. The general idea is we won't integrate new features if they're too specific, tightly coupled to your infrastructure, or untested.
 
+h2. Extra
+
+If you want to see Cartoque's model dependencies, you can run :
+
+  rake erd
+
+It will generate a graph of classes relations in the ERD.pdf file.
+
 h2. Licence
 
 Cartoque is released under the MIT license.
