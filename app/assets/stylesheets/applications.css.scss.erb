@@ -4,7 +4,10 @@
   &:last-child { /*border-left:1px solid #ccc;*/ }
 }
 #applications_list tr td:first-child { line-height:16px; }
-#application_general td.content { text-align:center; }
+#application_general {
+  td.content { text-align:center; }
+  &>.contextual { padding-top:6px; }
+}
 #application_instances .instance-fields { border:none; border-bottom:1px solid #ddd; padding:0.5em 0; margin-bottom:1em; }
 .instance-fields {
   th, tr.th td, th:first-child, td, td:first-child { border:none; margin:0; padding:0.2em; border-bottom:none; vertical-align:top; }
