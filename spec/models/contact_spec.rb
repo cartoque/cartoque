@@ -92,4 +92,27 @@ describe Contact do
       Contact.with_internals(true).should include alice
     end
   end
+
+  describe "#company_name=" do
+    it "auto-creates a company if none with that name already exists" do
+      company = Company.create(name: "World Company")
+      lambda { Contact.create(last_name: "Smith", company_name: "World Company") }.should_not change(Company, :count)
+      Company.where(name: "Universe Company").count.should eq 0
+      lambda { Contact.create(last_name: "Parker", company_name: "Universe Company") }.should change(Company, :count).by(+1)
+      Company.where(name: "Universe Company").count.should eq 1
+    end
+
+    it "should propagate #internal value when auto-creating a company" do
+      company = Company.create(name: "World Company")
+      Contact.create(last_name: "Smith", company_name: "World Company", internal: true)
+      company.reload.internal.should be_false
+      Contact.create(last_name: "Parker", company_name: "Universe Company", internal: false)
+      Company.find_by_name("Universe Company").internal.should be_false
+      #but
+      #WARNING: it only works if internal field is set before company_name, which is the case in the HTML form
+      #TODO: fix it :)
+      Contact.create(last_name: "Goldberg", internal: true, company_name: "Our team")
+      Company.find_by_name("Our team").internal.should be_true
+    end
+  end
 end

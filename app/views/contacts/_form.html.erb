@@ -27,6 +27,7 @@
         <tr class="input boolean optional">
           <td class="label"><label class="boolean optional" for="contact_internal"><%= t(:internal) %></label></td>
           <td class="content">
+            <% #WARNING: this field should stay ahead of 'company_name', otherwise 'internal' property would not be propagated to a new company %>
             <div class="lefty"><%= f.input_field :internal %></div>
             <div class="hint"><%= t(:text_internal_tip) %></div>
           </td>

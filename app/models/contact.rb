@@ -10,7 +10,9 @@ class Contact < ActiveRecord::Base
   end
 
   def company_name=(name)
-    self.company = Company.find_or_create_by_name(name) if name.present?
+    if name.present?
+      self.company = Company.find_by_name(name) || Company.create(name: name, internal: self.internal)
+    end
   end
 
   def full_name
