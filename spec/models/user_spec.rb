@@ -56,5 +56,11 @@ describe User do
       @user.seen_on.should be_a Date
       (Date.today - @user.seen_on).should be < 2
     end
+
+    it "should not save the user if not necessary" do
+      @user.seen_now!
+      @user.stub!(:save).and_raise(RuntimeError)
+      lambda{ @user.seen_now! }.should_not raise_error
+    end
   end
 end
