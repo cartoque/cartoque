@@ -9,8 +9,7 @@ namespace :cleanup do
     end
     # destroy if no update file or server is nil
     Upgrade.includes(:server).each do |upgrade|
-      upgrade.destroy if upgrade.server.blank?
-      upgrade.destroy unless upgrade.server.name.in?(update_files)
+      upgrade.destroy if upgrade.server.blank? || !upgrade.server.name.in?(update_files)
     end
   end
 end
