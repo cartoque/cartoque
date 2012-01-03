@@ -19,7 +19,7 @@
             <%= link_to_delete database %>
           <% end %>
         </div>
-        <%= database_nodes database %>
+        <%= database.pretty_nodes %>
       </td>
       <td rowspan="<%= height %>" class="multirow center">PostgreSQL</td>
       <% if database.postgres_report.present? %>
@@ -48,7 +48,7 @@
             <%= link_to_delete database %>
           <% end %>
         </div>
-        <%= database_nodes database %>
+        <%= database.pretty_nodes %>
       </td>
       <td rowspan="<%= height %>" class="multirow center">Oracle</td>
       <% if database.oracle_report.present? %>

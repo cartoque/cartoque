@@ -1,14 +1,26 @@
 require 'spec_helper'
 
 describe DatabasesController do
+  
+  # This should return the minimal set of attributes required to create a valid
+  # Database. As you add validations to Database, be sure to
+  # update the return value of this method accordingly.
+  def valid_attributes
+    {:name => "db-01", :database_type => "postgres"}
+  end
+
   before do
     controller.session[:user_id] = Factory(:user).id #authentication
     @database = Factory(:database)
   end
 
-  def test_index
-    get :index
-    assert_template 'index'
+  describe "GET index" do
+    it "assigns all databases as @databases" do
+      db = Database.create! valid_attributes
+      get :index
+      assert_template 'index'
+      assigns(:databases).should include db
+    end
   end
   
   def test_show

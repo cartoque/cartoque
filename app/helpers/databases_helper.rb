@@ -6,16 +6,6 @@ require 'server_decorator'
 module DatabasesHelper
   include SizeHelper
 
-  def database_nodes(database)
-    html = "<strong>#{link_to database.name, database}</strong>"
-    if database.servers.any? && database.servers.map(&:name) != [database.name]
-      html << %(<ul class="database_nodes">)
-      html << database.servers.map(&:name).sort.map{|n| "<li>#{n}</li>"}.join("\n")
-      html << "</ul>"
-    end
-    html.html_safe
-  end
-
   def database_headers_for(database_type)
     if database_type == "postgres"
       %(<th>IP</th>
