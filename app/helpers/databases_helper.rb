@@ -6,20 +6,6 @@ require 'server_decorator'
 module DatabasesHelper
   include SizeHelper
 
-  def database_headers_for(database_type)
-    if database_type == "postgres"
-      %(<th>IP</th>
-        <th>Port</th>
-        <th>PgCluster</th>
-        <th style="text-align:left;">Bases<span style="float:right;padding-left:1em">Taille(Go)</span></th>).html_safe
-    elsif database_type == "oracle"
-      %(<th>IP</th>
-        <th>Port</th>
-        <th>Instance</th>
-        <th style="text-align:left;">Schémas<span style="float:right;padding-left:1em">Taille(Go)</span></th>).html_safe
-    end
-  end
-
   def databases_summary(databases)
     return "" if databases.blank?
     total_size = databases.values.sum

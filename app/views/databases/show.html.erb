@@ -19,7 +19,7 @@
       <td colspan="4">
         <ul>
         <% @database.servers.each do |server| %>
-          <li><%= server.decorate.short_line %></li>
+          <li><%= ServerDecorator.new(server).short_line %></li>
         <% end %>
         </ul>
       </td>
@@ -28,7 +28,7 @@
   <% if @database.postgres_report.present? or @database.oracle_report.present? %>
   <thead>
     <tr>
-      <%= database_headers_for(@database.database_type) %>
+      <%= @database.table_headers %>
     </tr>
   </thead>
   <tbody>

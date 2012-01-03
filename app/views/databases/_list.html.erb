@@ -5,7 +5,7 @@
   <tr class="fix-on-scroll">
     <th><%= t(:server) %></th>
     <th><%= t(:type) %></th>
-    <%= database_headers_for("postgres") %>
+    <%= postgres_databases.first.table_headers %>
   </tr>
   <% end %>
   <% for database in postgres_databases %>
@@ -34,7 +34,7 @@
   <tr class="fix-on-scroll">
     <th><%= t(:server) %></th>
     <th><%= t(:type) %></th>
-    <%= database_headers_for("oracle") %>
+    <%= oracle_databases.first.table_headers %>
   </tr>
   <% end %>
   <% for database in oracle_databases %>
