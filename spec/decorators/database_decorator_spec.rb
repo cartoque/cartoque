@@ -15,8 +15,8 @@ describe DatabaseDecorator do
   end
 
   it "should return <th> headers depending on the database" do
-    Database.new(:database_type => "postgres").decorate.table_headers.should have_selector('th', :text => 'PgCluster')
-    Database.new(:database_type => "oracle").decorate.table_headers.should have_selector('th', :text => 'Instance')
+    Database.new(:database_type => "postgres").decorate.table_headers.should have_selector('th', :text => I18n.t(:postgres_instance))
+    Database.new(:database_type => "oracle").decorate.table_headers.should have_selector('th', :text => I18n.t(:oracle_instance))
     Database.new(:database_type => "not valid").decorate.table_headers.should be_nil
   end
 end
