@@ -11,6 +11,11 @@ describe Upgrade do
     @server.upgrade.should eq @upgrade
   end
 
+  it "should have a server" do
+    Upgrade.new.should_not be_valid
+    Upgrade.new(:server_id => Factory(:virtual).id).should be_valid
+  end
+
   it "should serialize #packages_list" do
     obj = [ {name: "libc6"}, {name: "kernel"}]
     @upgrade.packages_list = obj
