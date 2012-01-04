@@ -1,5 +1,7 @@
 class Database < ActiveRecord::Base
   attr_accessible :name, :database_type, :server_ids
+
+  has_many :database_instances, :dependent => :destroy
   has_many :servers
   has_one :configuration_item, :as => :item
 
