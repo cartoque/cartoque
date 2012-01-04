@@ -12,16 +12,25 @@ class DatabaseDecorator < ResourceDecorator
   end
 
   def table_headers
+    labels = table_column_names
+    if labels
+      html = "".html_safe
+      labels.first(3).each do |label|
+        html << h.content_tag(:th, t(label))
+      end
+      html << h.content_tag(:th, style: "text-align:left;") do
+        ERB::Util.h(t(labels[3])).html_safe +
+          h.content_tag(:span, t(labels[4]), style: "float:right;padding-left:1em")
+      end 
+      html
+    end
+  end
+
+  def table_column_names
     if model.database_type == "postgres"
-      %(<th>#{t(:ip)}</th>
-        <th>#{t(:port)}</th>
-        <th>#{t(:postgres_instance)}</th>
-        <th style="text-align:left;">#{t(:postgres_items)}<span style="float:right;padding-left:1em">#{t(:size_in_GB)}</span></th>).html_safe
+      %w(ip port postgres_instance postgres_items size_in_GB)
     elsif model.database_type == "oracle"
-      %(<th>#{t(:ip)}</th>
-        <th>#{t(:port)}</th>
-        <th>#{t(:oracle_instance)}</th>
-        <th style="text-align:left;">#{t(:oracle_items)}<span style="float:right;padding-left:1em">#{t(:size_in_GB)}</span></th>).html_safe
+      %w(ip port oracle_instance oracle_items size_in_GB)
     end
   end
 end
