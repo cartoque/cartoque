@@ -2,6 +2,9 @@ desc "Cleanup facts from puppet's yaml files (only ips for now)"
 namespace :cleanup do
   task :facter => :environment do
     Dir.glob("data/system/*.yml").each do |file|
+      #server
+      server_name = file.split("/").last.gsub(/\.yml$/,"")
+      server = Server.find_or_generate(server_name)
       #facts
       facts = YAML.load_file(file)
       #collect IPs found by puppet
