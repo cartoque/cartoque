@@ -1,23 +1,6 @@
 <% title t(:generate_a_mailing_list) %>
 
-<!--
-<% @contacts ||= [] %>
-<div id="mailing_list_importer" class="grid_6">
-  <div class="importer_category">
-    <h2 class="left"><%= t(:add_a_contact) %> :</h2>
-    <div class="filters">
-      <%= form_tag new_mailing_list_path(params.except(:action, :new)), :id => "filters", :method => :get do -%>
-        <%= text_field_tag "search_contact", params[:search_contact], :style => "margin-left:15px;" %>
-      <% end %>
-    </div>
-    <div id="mailing_list_contacts">
-      <%= render 'list_contacts' %>
-    </div>
-  </div>
-</div>
--->
-
-<div id="mailing_list_result" class="grid_6 center">
+<div id="mailing_list_result" class="grid_12 center">
   <%= simple_form_for(@mailing_list) do |f| %>
     <table class="show_item">
       <tbody>
