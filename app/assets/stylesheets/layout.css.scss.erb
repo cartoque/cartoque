@@ -15,9 +15,7 @@ ul { margin:0.5em 0.5em 0.5em 2em; list-style-type:none; }
 small { font-size:90%; }
 
 /* input styles taken from formalize */
-input:focus, input:active, textarea:focus, textarea:active {
-  @include box-shadow(#06f, 0, 0, 4px);
-}
+input:focus, input:active, textarea:focus, textarea:active { @include box-shadow(rgba(0,0,0,.3), 0, 0, 5px); border: 1px solid #5897FB; }
 
 /* fonts */
 @font-face { font-family:'Lobster'; font-style:normal; font-weight:normal; src:local('Lobster1.4'), local('Lobster'), url('../fonts/Lobster.ttf') format('truetype'); }
@@ -186,7 +184,7 @@ noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; 
 /* forms */
 input[type="text"], input[type="password"], input[type="tel"], input[type="email"], input[type="url"], input[type="search"], textarea {
   padding:0.1em 0.2em; box-sizing: border-box; border: 1px solid; outline: 0; border-color: #b0b0b0 #c1c1c1 #e1e1e1;
-  &:focus, &:active { @include box-shadow(#36F, 0, 0, 5px); }
+  &:focus, &:active { @include box-shadow(rgba(0,0,0,.3), 0, 0, 5px); border: 1px solid #5897FB; }
 }
 textarea { margin-top:3px; }
 .simple_form {
@@ -241,9 +239,7 @@ tr.filters {
     background:-webkit-gradient( linear, left top, left bottom, color-stop(0, #fff477), color-stop(1, #ffe466) );
     background:-moz-linear-gradient( center top, #fff477 0%, #ffe466 100% );
   }
-  input[type="text"], input[type="password"], textarea {
-    &:focus, &:active { @include box-shadow(#36F, 0, 0, 0); border-color:lighten(#36F,15%); border-width:1px; }
-  }
+  input:focus, input:active, textarea:focus, textarea:active { @include box-shadow(rgba(0,0,0,.3), 0, 0, 5px); border: 1px solid #5897FB; }
 }
 
 /* generic items */
