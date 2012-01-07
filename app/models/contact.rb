@@ -2,6 +2,7 @@ class Contact < ActiveRecord::Base
   include Contactable
 
   belongs_to :company
+  has_and_belongs_to_many :mailing_lists
 
   validates_presence_of :last_name, :image_url
 

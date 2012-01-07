@@ -387,7 +387,6 @@ ActiveRecord::Schema.define(:version => 20120104074824) do
     t.integer  "count_total"
     t.integer  "count_needing_reboot"
     t.integer  "count_important"
-    t.datetime "upgraded_at"
     t.boolean  "upgraded_status",      :default => false
     t.integer  "upgrader_id"
   end

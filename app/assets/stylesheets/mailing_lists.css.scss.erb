@@ -1,0 +1,15 @@
+@import 'mixins';
+
+#mailing_list_importer {
+  .importer_category {
+    min-height:100px;
+  }
+  input[type="text"] {
+    width:90%; font-size:140%; color:#222; padding:4px 4px 2px 24px; margin:3px 0 2px 0; border:1px solid #bbb; @include border-radius(4px);
+    background-image:url(<%= asset_path('search.png') %>); background-repeat:no-repeat; background-position:6px 50%; @include box-sizing(border-box);
+  }
+  .contact_card  {
+    border:none; background-color:#fff; box-shadow:none;
+    h5 { font-size:14px; }
+  }
+}

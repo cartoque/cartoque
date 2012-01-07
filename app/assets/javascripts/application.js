@@ -19,6 +19,7 @@
 //= require jquery/jquery.facebox
 //= require jquery/jquery.placeholder
 //= require contacts
+//= require mailing_lists
 //= require upgrades
 //= require users
 //

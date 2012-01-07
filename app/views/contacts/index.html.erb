@@ -43,8 +43,8 @@
       <%= link_to t(:new_company), new_company_path, :class => "button-add" %><br />
       <%= t(:text_new_company_explanation) %>
     </p>
-    <p class="hidden">
-      <%= link_to_function "Générer une mailing list", "alert('Soon ! :)');", :class => "button-mail" %><br />
+    <p>
+      <%= link_to t(:generate_a_mailing_list), new_mailing_list_path, :class => "button-mail" %><br />
       <%= t(:text_generate_mailinglist_explanation) %>
     </p>
   </div>
