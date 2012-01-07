@@ -19,6 +19,9 @@ class MultiselectInput < SimpleForm::Inputs::CollectionInput
   def input_html_options
     options = super
     options[:multiple] = true
+    options[:class] = "#{options[:class]} chzn-select".strip
+    options[:data] ||= {}
+    options[:data][:placeholder] ||= I18n.t(:select)
     options
   end
 end

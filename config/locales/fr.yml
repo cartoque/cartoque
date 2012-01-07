@@ -391,3 +391,4 @@ fr:
   oracle_items: "Schémas"
   postgres_instance: "PgCluster"
   postgres_items: "Bases"
+  select: "Sélectionner..."
