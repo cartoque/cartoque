@@ -273,7 +273,6 @@ fr:
   text_browser_not_supported_paragraph1: "Votre navigateur n'est pas supporté, vous ne pourrez donc pas utiliser correctement cette application."
   text_browser_not_supported_paragraph2: "Veuillez utiliser un navigateur moderne et respectueux des standards :"
   text_please_activate_javascript: "Vous devriez activer Javascript pour utiliser cette application."
-  loading: "Chargement"
   disconnection: "Déconnexion"
   home: "Accueil"
   platform: "Plateforme"
