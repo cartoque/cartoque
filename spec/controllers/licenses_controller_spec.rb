@@ -3,7 +3,7 @@ require 'spec_helper'
 describe LicensesController do
   before do
     controller.session[:user_id] = Factory(:user).id #authentication
-    @license = License.create
+    @license = License.create(:editor => "WorldSoft")
   end
 
   it "should should get index" do
