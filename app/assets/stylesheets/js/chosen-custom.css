@@ -1,0 +1,17 @@
+select.multiselect {
+  width:100%;
+}
+.chzn-container, .chzn-container-multi {
+  font-size: 12px;
+}
+.chzn-container-multi .chzn-choices .search-choice {
+  font-size: 11px;
+  padding: 2px 18px 2px 5px;
+  margin: 2px;
+}
+.chzn-container-multi .chzn-choices .search-choice .search-choice-close {
+  top: 3px;
+}
+.chzn-container-multi .chzn-choices .search-field input {
+  padding:2px !important;
+}
