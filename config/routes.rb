@@ -1,5 +1,5 @@
 Cartoque::Application.routes.draw do
-  resources :mailing_lists
+  resources :mailing_lists, :except => :show
   resources :roles, :except => :show
   resources :datacenters, :except => :show
   resources :upgrades, :only => :index do

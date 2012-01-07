@@ -1,9 +1,0 @@
-<% title t(:mailing_list) %>
-
-<div class="grid_12">
-  <p><%= t(:name) %>: <%= @mailing_list.name %></p>
-  <p>
-    <%= t(:contacts) %>:<br />
-    <%= text_area_tag "contacts", @mailing_list.contacts.map(&:email_infos).map(&:first).map(&:value).join("\n"), :cols => 70 %>
-  </p>
-</div>

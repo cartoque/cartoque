@@ -394,3 +394,7 @@ fr:
   generate_a_mailing_list: "Générer une liste de diffusion"
   mailing_list: "Liste de diffusion"
   add_a_contact: "Ajouter un contact"
+  use_an_existing_mailing_list: "utiliser une liste existante"
+  edit_a_mailing_list: "Edition d'une liste de diffusion"
+  new_mailing_list: "Ajouter une liste de diffusion"
+  mailing_lists: "Listes de diffusion"
