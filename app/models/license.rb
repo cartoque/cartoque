@@ -5,4 +5,6 @@ class License < ActiveRecord::Base
   scope :by_key, proc { |search| where("`key` LIKE ?", "%#{search}%") }
   scope :by_title, proc { |search| where("title LIKE ?", "%#{search}%") }
   scope :by_server, proc { |id| joins(:servers).where("servers.id" => id) }
+
+  validates_presence_of :editor
 end
