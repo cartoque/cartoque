@@ -100,9 +100,11 @@ a.button-add {
   &:hover { @include background-image-gradient('..<%= asset_path 'add.png' %>', #fefefe, #e0e0e0); background-position:4px 50%, 0 50%; }
 }
 a.button-add, a.button-mail {
-  padding:4px 12px 4px 24px; border:1px solid #bbb; font-weight:normal; line-height:14px; box-shadow:none;
+  border:1px solid #bbb; font-weight:normal; line-height:14px; box-shadow:none;
   &:hover { background-repeat: no-repeat; }
 }
+a.button-add { padding:4px 12px 4px 24px; }
+a.button-mail { padding:4px 6px 4px 26px; }
 
 ul.details {
   margin:0.2em 0.5em 0.2em 0.8em;
