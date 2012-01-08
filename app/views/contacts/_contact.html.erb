@@ -1,5 +1,5 @@
 <div class="contact_card<%= " active" if full_display?(contact) %>" style="background-image:url(<%= asset_path(contact.image_url) %>)">
-  <div class="contextual">
+  <div class="contextual action-links">
     <%= link_to_edit edit_contact_path(contact) %><br />
     <%= link_to_delete contact %>
   </div>
