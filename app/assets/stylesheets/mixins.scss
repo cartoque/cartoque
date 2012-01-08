@@ -46,6 +46,21 @@
   background-image: url($image), -webkit-gradient(linear, 0% 0%, 0% 100%, from($color1), to($color2));
 }
 
+@mixin complex-gradient($color1, $num1, $color2, $num2) {
+  $znum1: $num1 / 100;
+  $znum2: $num2 / 100;
+  $pnum1: "#{$num1}%";
+  $pnum2: "#{$num2}%";
+  background-color: $color1;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop($znum1, $color1), color-stop($znum2, $color2));
+  background-image: -webkit-linear-gradient(center bottom, $color1 $pnum1, $color2 $pnum2);
+  background-image: -moz-linear-gradient(center bottom, $color1 $pnum1, $color2 $pnum2);
+  background-image: -o-linear-gradient(bottom, $color1 $pnum1, $color2 $pnum2);
+  background-image: -ms-linear-gradient(top, $color1 $pnum1, $color2 $pnum2);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color1}', endColorstr='#{$color2}',GradientType=0 );
+  background-image: linear-gradient(top, $color1 $pnum1, $color2 $pnum2);
+}
+
 @mixin opacity($value) {
   -khtml-opacity: $value;
   -moz-opacity: $value;
