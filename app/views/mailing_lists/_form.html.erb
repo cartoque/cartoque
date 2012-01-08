@@ -9,6 +9,7 @@
     </table>
     <%= action_links do %>
       <%= f.button :submit %>
+      <%= t(:or) %> <%= link_to t(:use_an_existing_mailing_list), mailing_lists_path %>
     <% end %>
   <% end %>
 </div>
