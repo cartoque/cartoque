@@ -13,6 +13,7 @@ namespace :import do
       puts "Successfully created Server: #{server.name}" if server.just_created
       #facts
       facts = YAML.load_file(file)
+      next unless facts
       #update version facts in server
       %w(rubyversion facterversion puppetversion).each do |key|
         server.send("#{key}=", facts[key]) if facts.has_key?(key)
