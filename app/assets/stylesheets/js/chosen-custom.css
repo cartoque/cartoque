@@ -1,5 +1,6 @@
 select.multiselect {
-  width:100%;
+  display:inline-block;
+  min-width:26em;
 }
 .chzn-container, .chzn-container-multi {
   font-size: 12px;
