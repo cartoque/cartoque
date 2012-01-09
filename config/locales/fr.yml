@@ -145,6 +145,7 @@ fr:
   physical_links: "Se connecte à"
   connected_links: "Connectés"
   network_device: "Elément réseau"
+  network_devices: "éléments réseau"
   server: "Serveur"
   servers: "Serveurs"
   add_a_server: "Ajouter un serveur"
