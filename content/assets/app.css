@@ -14,7 +14,7 @@
 body { background-image: url('./bg-grey-noise.png'); font-family: 'Lato', Helvetica, Verdana, sans-serif; }
 a { text-decoration: none; }
 a:link, a:visited { color: #f30; } 
-a:hover { color: #f90; }
+a:hover { color: #f30; }
 
 /* layout */
 #container {
@@ -35,6 +35,8 @@ a:hover { color: #f90; }
   min-height:300px;
   border-right:1px solid #bbb;
 }
+#sidebar a:link, #sidebar a:visited { color:#333; }
+#sidebar a:hover { color:#f30; }
 #sidebar ul, #sidebar li {
   list-style-type:none;
   margin:0;
@@ -60,13 +62,18 @@ a:hover { color: #f90; }
   font-size:16px;
   font-family: 'Open Sans', sans-serif;
 }
-h2 {
+h1, h2 {
   font-family: 'Open Sans', sans-serif;
-  font-size:12px;
   text-transform:uppercase;
 }
+h1 {
+  font-size:18px;
+}
+h2 {
+  font-size:12px;
+}
 
-#content pre, #content code {
+#content pre {
   font-family: monospace;
   background-color: #fafafa;
   border: 1px solid #dadada;
@@ -79,4 +86,7 @@ h2 {
   width:auto;
   overflow-x: auto;
   overflow-y: hidden;
+}
+#content p {
+  margin:8px 0 12px 0;
 }

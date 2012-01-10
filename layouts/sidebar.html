@@ -1,5 +1,8 @@
 <div id="sidebar">
   <ul>
-    <li class="title">Welcome</li>
+    <li class="title"><%= link_to_unless_current "Welcome", "/" %></li>
+    <li class="title"><%= link_to_unless_current "Installation", "/guide/install.html" %></li>
+    <li class="title"><%= link_to_unless_current "Populate the CMDB", "/guide/populate.html" %></li>
+    <li class="title"><%= link_to_unless_current "Contribute", "/guide/contribute.html" %></li>
   </ul>
 </div>
