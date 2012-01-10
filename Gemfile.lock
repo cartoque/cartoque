@@ -1,0 +1,22 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    adsf (1.0.1)
+      rack (>= 1.0.0)
+    cri (2.0.2)
+    mime-types (1.17.2)
+    nanoc (3.2.3)
+      nanoc3 (>= 3.2.3)
+    nanoc3 (3.2.3)
+      cri (~> 2.0)
+    rack (1.4.0)
+    redcarpet (1.17.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  adsf
+  mime-types
+  nanoc (> 3.1)
+  redcarpet (~> 1.17)

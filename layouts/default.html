@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cartoque - <%= @item[:title] %></title>
+    <link rel="stylesheet" type="text/css" media="all" href="./assets/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="./assets/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="./assets/960.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="./assets/app.css" />
+    <meta charset="utf-8">
+    <meta name="generator" content="nanoc 3.1.6">
+  </head>
+  <body>
+    <div class="container_16">
+      <span class="sitetitle">Cartoque</span>
+      <span class="sitesubtitle">A free & simple CMDB for your datacenter</span>
+    </div>
+    <div id="container" class="container_16">
+      <div class="grid_4">
+        <%= render "sidebar" %>
+      </div>
+      <div class="grid_12">
+        <div id="content">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
