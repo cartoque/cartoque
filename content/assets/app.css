@@ -25,15 +25,18 @@ a:hover { color: #f30; }
 }
 #sidebar, #content {
   margin:0;
-  padding:12px 10px 12px 0;
+  padding:12px 10px 12px 18px;
+}
+#content {
+  min-height:300px;
+  margin-left:9px;
+  border-left:1px solid #bbb;
 }
 
 /* sidebar */
 #sidebar {
   margin:0;
   padding-left:10px;
-  min-height:300px;
-  border-right:1px solid #bbb;
 }
 #sidebar a:link, #sidebar a:visited { color:#333; }
 #sidebar a:hover { color:#f30; }
