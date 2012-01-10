@@ -12,5 +12,6 @@ tmp/*
 tmp/**/*
 data/*
 extra
+output
 vendor/plugins/*
 **.rbc
