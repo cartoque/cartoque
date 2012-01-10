@@ -15,6 +15,7 @@ compile '/assets/*' do
 end
 
 compile '*' do
+  filter :erb
   filter :redcarpet #:erb
   layout 'default'
 end
