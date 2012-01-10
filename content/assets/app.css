@@ -7,11 +7,7 @@
   font-family: 'Open Sans'; font-style: normal; font-weight: 700;
   src: local('Open Sans Bold'), local('OpenSans-Bold'), url('./OpenSans-Bold.woff') format('woff');
 }
-@font-face {
-  font-family: 'Lato'; font-style: normal; font-weight: 400;
-  src: local('Lato Regular'), local('Lato-Regular'), url('./Lato-Regular.woff') format('woff');
-}
-body { background-image: url('./bg-grey-noise.png'); font-family: 'Lato', Helvetica, Verdana, sans-serif; }
+body { background-image: url('./bg-grey-noise.png'); font-family: helvetica, arial, freesans, clean, sans-serif; }
 a { text-decoration: none; }
 a:link, a:visited { color: #f30; } 
 a:hover { color: #f30; }
