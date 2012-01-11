@@ -42,11 +42,13 @@ ul { list-style-type:square; }
   margin:0;
   font-size:11px;
 }
-#sidebar li.title {
+#sidebar li.title, #sidebar li.title>a {
   font-family: 'Open Sans Bold', sans-serif;
+  font-size:12px;
   text-transform: uppercase;
   font-weight:bold;
   margin:0 0 6px;
+  color:#223;
 }
 #sidebar li {
   text-transform:none;
