@@ -1,4 +1,43 @@
 --- 
 title: API Authentication
 ---
-/!\ This page is under construction.
+
+API Authentication
+==================
+
+All actions against the REST API need authentication through a custom **authentication token**. This 
+authentication token is linked to a user account. It should be passed with every HTTP request as a 
+custom HTTP header called **X-Api-Token**.
+
+
+Creating an authentication token
+--------------------------------
+
+* Go to the **Configuration** section in the top menu bar
+* Click **Users** in the sidebar
+* Either create a new user or edit the one who needs access to the API
+* **Generate a token**
+
+Be careful, re-generating an authentication token cannot be undone. It means the old one will stop working, 
+so if it's used in scripts or 3rd party tools, you'll need to update them with the new authentication token.
+
+
+Using the authentication token
+------------------------------
+
+An example with curl :
+
+    curl -H "X-Api-Token: <token>" <API URL>
+
+Of course you'll have to replace the values. For instance, here is a list of my servers if my token is "abcdef123" :
+
+    curl -sL -H "X-Api-Token: abcdef123" http://cartoque.home/servers.json
+
+See the [list of API endpoints](/api/endpoints.html) for further informations on available URLs, parameters and formats.
+
+
+Other authentication modes
+--------------------------
+
+If you're intested in making other authentication methods possible (such as [Oauth](http://oauth.net)), 
+feel free to fill an issue on Github.
