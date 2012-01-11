@@ -11,6 +11,7 @@ body { background-image: url('./bg-grey-noise.png'); font-family: helvetica, ari
 a { text-decoration: none; }
 a:link, a:visited { color: #f30; } 
 a:hover { color: #f30; }
+ul { list-style-type:square; }
 
 /* layout */
 #container {
@@ -78,6 +79,8 @@ h1 {
 }
 h2 {
   font-size:12px;
+  margin:15px 0 8px;
+  border-bottom: 1px solid #888;
 }
 
 #content pre {
