@@ -34,7 +34,7 @@ a:hover { color: #f30; }
   margin:0;
   padding-left:10px;
 }
-#sidebar a:link, #sidebar a:visited { color:#333; }
+#sidebar a:link, #sidebar a:visited { color:#000; }
 #sidebar a:hover { color:#f30; }
 #sidebar ul, #sidebar li {
   list-style-type:none;
@@ -50,6 +50,9 @@ a:hover { color: #f30; }
 #sidebar li {
   text-transform:none;
   margin-left:15px;
+}
+#sidebar .active {
+  color:#b00;
 }
 .sitetitle, .sitesubtitle {
   display:inline-block;
