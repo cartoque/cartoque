@@ -45,6 +45,11 @@ a:hover { color: #f30; }
   font-family: 'Open Sans Bold', sans-serif;
   text-transform: uppercase;
   font-weight:bold;
+  margin:0 0 6px;
+}
+#sidebar li {
+  text-transform:none;
+  margin-left:15px;
 }
 .sitetitle, .sitesubtitle {
   display:inline-block;
