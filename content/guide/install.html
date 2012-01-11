@@ -4,28 +4,29 @@ Installation instructions
 Requirements
 ------------
 
-* **Clients**: clients should use a modern web browser (Chrome, Firefox, Safari, Opera) ; IE support is blocked since this browser is too shitty and I cannot test it extensively (feel free to fill a new issue about this subject) ; Javascript must be enabled
-* **Application server**: you'll need *Ruby 1.9.2-p290 or higher* and an application server that supports Rails applications ; the installation of these components are out of the scope of this tutorial, but I personnaly run my production environment with Ruby 1.9.2-p290 installed with "RVM":http://beginrescueend.com/, and "Phusion Passenger":http://www.modrails.com/ 3.0.x in standalone mode
+If you want to install Cartoque, you need to check the following requirements are met :
+
+* **Clients**: clients should use a modern web browser (Chrome, Firefox, Safari, Opera) ; IE support is blocked since I had a lot of problems with it and I cannot test it myself (feel free to fill a new issue about this subject) ; Javascript must be enabled
+* **Application server**: you'll need *Ruby 1.9.2-p290 or higher* (previous versions are buggued) and an application server that supports Rails applications ; the installation of these components are out of the scope of this tutorial, but I personnaly run my production environment with Ruby 1.9.2-p290 installed with "RVM":http://beginrescueend.com/, and "Phusion Passenger":http://www.modrails.com/ 3.0.x in standalone mode
 * **Database server**: MySQL version 5.0 or higher is required (support for Postgresql is untested but might be OK)
 * **Authentication**: a CAS server is required for authentication
 
 Installing the application
 --------------------------
 
-This section is not complete for the moment. Basically, if you have a correct application stack and you've cloned the repository, it installs like any Rails 3 web app :
+This section is not complete for the moment. Basically, if you have the correct application stack and you've cloned the repository, it installs like any Rails 3 web app :
 
     cd /path/to/cartoque
     gem install bundler
     bundle install
     rake db:migrate db:seed
 
-Then you can configure the CAS server (replace the CAS server URL, without the trailing slash):
+Then you can configure the CAS server (replace the CAS server URL, *without the trailing slash*):
 
-    rails runner 'Settler.load!
-    Setting.find_by_key("cas_server").update_attribute(:value, "http://your-cas-server.your-company.com")'
+    rails runner 'Settler.load!; Setting.find_by_key("cas_server").update_attribute(:value, "http://your-cas-server.com")'
 
 And then add the first user (replace at least the uid):
 
     rails runner 'User.create(:name => "John", :provider => "cas", :uid => "john.smith")'
 
-You're ready to go !
+Start the server, open your browser in the correct URL, and you're ready to go !
