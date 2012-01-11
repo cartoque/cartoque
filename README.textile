@@ -11,45 +11,9 @@ the application evolve in a product generic-enough for use in small to medium da
 we don't believe too generic products are good for this job. If you're searching a generic CMDB tool, you might want to give a 
 try to "iTop":http://www.combodo.com/-Overview-.html.
 
-h2. Requirements
+h2. Installing, populating the CMDB, contributing
 
-* *Clients*: clients should use a modern web browser (Chrome, Firefox, Safari, Opera) ; IE support is blocked since this browser is too shitty and I cannot test it extensively (feel free to fill a new issue about this subject) ; Javascript must be enabled
-* *Application server*: you'll need *Ruby 1.9.2-p290 or higher* and an application server that supports Rails applications ; the installation of these components are out of the scope of this tutorial, but I personnaly run my production environment with Ruby 1.9.2-p290 installed with "RVM":http://beginrescueend.com/, and "Phusion Passenger":http://www.modrails.com/ 3.0.x in standalone mode
-* *Database server*: MySQL version 5.0 or higher is required (support for Postgresql is untested but might be OK)
-* *Authentication*: a CAS server is required for authentication
-
-h2. Installing the application
-
-This section is not complete for the moment. Basically, if you have a correct application stack and you've cloned the repository, it installs like any Rails 3 web app :
-
-bc. cd /path/to/cartoque
-gem install bundler
-bundle install
-rake db:migrate db:seed
-
-Then you can configure the CAS server (replace the CAS server URL, without the trailing slash):
-
-bc. rails runner 'Settler.load!; Setting.find_by_key("cas_server").update_attribute(:value, "http://your-cas-server.your-company.com")'
-
-And then add the first user (replace at least the uid):
-
-bc. rails runner 'User.create(:name => "John", :provider => "cas", :uid => "john.smith")'
-
-You're ready to go !
-
-h2. Populating the CMDB
-
-Today the CMDB is populated through file transfers and custom rake tasks. Some of these tasks are versionned in the current repository. There are 2 global tasks that I run every 10 minutes on my production environment for loading new items from files and cleaning up old stuff :
-
-bc. rake import:all cleanup:all
-
-In the next few months we want to provide a full REST API that handle all the load tasks and then completely remove those custom rake tasks.
-
-h2. Reporting bugs and contributing
-
-If you have any issue, feel free to report an issue "on the Github bug tracker":https://github.com/jbbarth/cartoque/issues with a detailed description of your problem and minimal steps to reproduce.
-
-If you want to contribute, you're welcome ! We plan to work with Github's forks and pull requests, but please fill an issue before developing any additional feature. The general idea is we won't integrate new features if they're too specific, tightly coupled to your infrastructure, or untested.
+See "the website":http://jbbarth.github.com/cartoque/
 
 h2. Extra
 
