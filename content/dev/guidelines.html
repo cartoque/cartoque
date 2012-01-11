@@ -1,4 +1,28 @@
 --- 
 title: Developer guidelines
 ---
-/!\ This page is under construction.
+
+Developer guidelines
+====================
+
+Developing a fully functional CMDB from scratch is not trivial. Maintaining a general coherence in the code and the architecture neither.
+This page explains some of the general principles I adopted while developing Cartoque. This could be useful if you want to contribute, or 
+if you just want to re-use the code in your own project. Anyway, it mostly helps me writing down what I have in mind about the general 
+architecture of this product. Feel free to discuss it on the [Github tracker](http://github.com/jbbarth/cartoque/issues).
+
+
+Use gems where possible
+-----------------------
+I'm a big fan of [Railscasts](http://railscasts.com/), and I'm especially a fan of how Ryan doesn't always re-invent the wheel. If a gem 
+does what you want, if it's simple to integrate with the application and already integrated other gems, then _bingo!_.
+
+
+Write specs but don't be dumb
+-----------------------------
+I admire people that fully develop with a TDD/BDD approach. Really. I'm a lot more confident in my code when I do that, but I don't always 
+have the extra 15% time to write a full test suite. Plus it often turns out to be 50% in my experience, I'm not a ruby guru and 
+testing/moching/stubbing is not that easy... So I write specs for parts of the code that are here for a long time or when I think pieces 
+of code are somehow complex or have edge cases. Clearly, I don't write specs for scaffolds that will obviously stay scaffolds. Don't be dumb.
+
+
+*More to come.*
