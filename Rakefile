@@ -20,7 +20,7 @@ task :publish => [:clean] do
     ENV['GIT_WORK_TREE'] = Dir.pwd
     
     File.unlink(gif) if File.file?(gif)
-    FileUtils.copy('../.gitignore', '.') unless File.exist?('.gitignore')
+    FileUtils.copy('../.gitignore', '.')
     `git add -A`
     tsha = `git write-tree`.strip
     puts "Created tree   #{tsha}"
