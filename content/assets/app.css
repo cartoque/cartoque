@@ -7,6 +7,7 @@
   font-family: 'Open Sans'; font-style: normal; font-weight: 700;
   src: local('Open Sans Bold'), local('OpenSans-Bold'), url('./OpenSans-Bold.woff') format('woff');
 }
+html { overflow-y:scroll; }
 body { background-image: url('./bg-grey-noise.png'); font-family: helvetica, arial, freesans, clean, sans-serif; }
 a { text-decoration: none; }
 a:link, a:visited { color: #f30; } 
