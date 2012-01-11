@@ -28,7 +28,7 @@ route '/assets/*' do
 end
 
 route '*' do
-  if item.identifier != "/" && item.attributes[:extension] == "html"
+  if !item.identifier.end_with?("/") && item.attributes[:extension] == "html"
     item.identifier.gsub(%r(/$),'.html')
   else
     item.identifier + 'index.html'
