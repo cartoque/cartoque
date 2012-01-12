@@ -189,7 +189,10 @@ input[type="text"], input[type="password"], input[type="tel"], input[type="email
   @include complex-gradient(#fff, 85, #eee, 99);
   &:focus, &:active { @include box-shadow(rgba(0,0,0,.3), 0, 0, 5px); border: 1px solid #5897FB; }
 }
-textarea { margin-top:3px; }
+textarea {
+  margin-top:3px;
+  @include complex-gradient(#fff, 98, #eee, 99);
+}
 .simple_form {
   div.input { margin-bottom:10px; }
   div.boolean label, label.collection_radio { float:none; margin:0; }
