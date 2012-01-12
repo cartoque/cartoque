@@ -5,8 +5,7 @@ class Application < ActiveRecord::Base
   accepts_nested_attributes_for :application_instances, :reject_if => lambda{|a| a[:name].blank? },
                                                         :allow_destroy => true
 
-  attr_accessible :name, :criticity, :info, :iaw, :pe, :moa, :amoa, :moa_note, :contact, :pnd, :ams,
-                  :cerbere, :comment, :identifier, :server_ids, :application_instances_attributes
+  attr_accessible :name, :criticity, :info, :cerbere, :comment, :identifier, :server_ids, :application_instances_attributes
 
   validates_presence_of :name
 
