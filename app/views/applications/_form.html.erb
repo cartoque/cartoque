@@ -13,12 +13,9 @@
     <tbody>
       <%= tabular_errors @application %>
       <%= f.input :name, :required => true, :wrapper_class => "th", :input_html => { :style => "width:9em;" } %>
-      <tr class="wrapper application_info">
-        <td colspan="2"><label for="application[info]" class="input">Description :</label><br/>
-          <%= f.text_area :info, :class => "ninety", :size => "30x4" %></td>
-      </tr>
+      <%= f.input :description, :input_html => { :size => "28x6" } %>
       <%= f.input :identifier %>
-      <%= f.input :comment, :input_html => { :rows => 4 } %>
+      <%= f.input :comment, :input_html => { :size => "28x4" } %>
     </tbody>
   </table>
   </div>

@@ -17,10 +17,10 @@
 <h2>Aperçu</h2>
 <table class="show_item full">
   <%= show_for @application do |a| %>
-    <tr class="wrapper application_info">
+    <tr class="wrapper application_description">
       <td colspan="2">
         <span class="label"><%= t(:description) %></span><br />
-        <div class="description"><%= @application.info.capitalize %></div>
+        <div class="description"><%= @application.description.capitalize %></div>
       </td>
     </tr>
     <%= a.attribute :comment %>
