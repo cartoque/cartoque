@@ -31,7 +31,7 @@ describe ConfigurationItem do
 
     it "should have a #to_s method in each real-CI-object classes" do
       ActiveRecord::Base.subclasses.each do |klass|
-        if klass.instance_methods.include?(:configuration_item)
+        if klass.reflect_on_all_associations.detect{|a|a.name == :configuration_item && a.macro == :has_one}
           #"#{klass}#to_s is not defined (required for playing with ConfigurationItem)"
           klass.should be_instance_method_already_implemented(:to_s)
         end
@@ -40,7 +40,7 @@ describe ConfigurationItem do
 
     it "should match classes observed in ConfigurationItemsObserver" do
       classes_with_configuration_item = ActiveRecord::Base.subclasses.select do |klass|
-        klass.instance_methods.include?(:configuration_item)
+        klass.reflect_on_all_associations.detect{|a|a.name == :configuration_item && a.macro == :has_one}
       end.map(&:name).sort
       observed_classes = ConfigurationItemsObserver.instance.observed_classes.map(&:name).sort
       classes_with_configuration_item.should eq observed_classes
