@@ -1,8 +1,9 @@
 class ApplicationInstance < ActiveRecord::Base
+  acts_as_configuration_item
+
   belongs_to :application
   has_and_belongs_to_many :servers
   has_many :application_urls, :dependent => :destroy
-  has_one :configuration_item, :as => :item
 
   accepts_nested_attributes_for :application_urls, :reject_if => lambda{|a| a[:url].blank? },
                                                    :allow_destroy => true

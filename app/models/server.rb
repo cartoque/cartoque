@@ -1,4 +1,5 @@
 class Server < ActiveRecord::Base
+  acts_as_configuration_item
 
   STATUS_ACTIVE = 1
   STATUS_INACTIVE = 2
@@ -13,7 +14,6 @@ class Server < ActiveRecord::Base
   has_many :ipaddresses, :dependent => :destroy
   has_many :physical_links, :dependent => :destroy, :class_name => 'PhysicalLink', :foreign_key => 'server_id'
   has_many :connected_links, :dependent => :destroy, :class_name => 'PhysicalLink', :foreign_key => 'switch_id'
-  has_one :configuration_item, :as => :item
   has_many :cronjobs, :dependent => :destroy
   has_many :nss_volumes, :dependent => :destroy
   has_many :nss_disks, :dependent => :destroy

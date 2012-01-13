@@ -1,9 +1,10 @@
 class Database < ActiveRecord::Base
+  acts_as_configuration_item
+
   attr_accessible :name, :database_type, :server_ids
 
   has_many :database_instances, :dependent => :destroy
   has_many :servers
-  has_one :configuration_item, :as => :item
 
   validates_presence_of :name
   validates_inclusion_of :database_type, :in => %w(postgres oracle)
