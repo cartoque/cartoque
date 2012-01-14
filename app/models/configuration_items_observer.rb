@@ -2,12 +2,12 @@ class ConfigurationItemsObserver < ActiveRecord::Observer
   observe [ApplicationInstance, Application, Database, Server, Storage]
 
   def after_save(record)
-    if record.respond_to?(:ci)
-      if record.ci.item.blank?
-        ci = record.ci.dup #frozen?..
+    if record.respond_to?(:configuration_item_with_auto_creation)
+      if record.configuration_item.item.blank?
+        ci = record.configuration_item.dup #frozen?..
         ci.item = record
       else
-        ci = record.ci
+        ci = record.configuration_item
       end
       ci.save
     end
@@ -15,7 +15,7 @@ class ConfigurationItemsObserver < ActiveRecord::Observer
 
   def after_destroy(record)
     if record.respond_to?(:configuration_item) && record.configuration_item.present?
-      record.ci.destroy
+      record.configuration_item.destroy
     end
   end
 end

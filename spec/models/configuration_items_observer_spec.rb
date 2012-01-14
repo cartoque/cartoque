@@ -4,7 +4,7 @@ describe ConfigurationItemsObserver do
   it "should create a CI when a concrete-CI-object is saved" do
     s = Server.new(:name => "my-new-server")
     s.should be_valid
-    s.configuration_item.should be_blank
+    s.configuration_item.should_not be_blank
     lambda { s.save }.should change(ConfigurationItem, :count).by(+1)
     s.should be_persisted
     s.reload.configuration_item.should be_present
@@ -13,14 +13,12 @@ describe ConfigurationItemsObserver do
   it "should add a CI when #ci method is called" do
     s = Server.new(:name => "my-new-server")
     s.should be_valid
-    s.configuration_item.should be_blank
-    s.ci.should_not be_blank
-    s.ci.should_not be_persisted
+    s.configuration_item.should_not be_blank
+    s.configuration_item.should_not be_persisted
     s.configuration_item.should_not be_blank
     lambda { s.save }.should change(ConfigurationItem, :count).by(+1)
     s.should be_persisted
     s.reload.configuration_item.should be_persisted
-    s.reload.ci.should eq s.configuration_item
   end
 
   it "should update its CI when a concrete-CI-object with an existing CI is updated" do

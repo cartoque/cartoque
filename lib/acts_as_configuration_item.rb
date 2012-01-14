@@ -9,9 +9,10 @@ module Acts
         class_eval <<-"SRC"
           has_one :configuration_item, :as => :item, :autosave => false
 
-          def ci
-            self.configuration_item ||= ::ConfigurationItem.new
+          def configuration_item_with_auto_creation
+            self.configuration_item_without_auto_creation || (self.configuration_item = ::ConfigurationItem.new)
           end
+          alias_method_chain :configuration_item, :auto_creation
         SRC
       end
     end
