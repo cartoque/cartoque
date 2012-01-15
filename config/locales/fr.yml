@@ -101,7 +101,6 @@ fr:
   disk_type: "Type disque 1"
   disk_type_alt: "Type disque 2"
   server_type: "Type de serveur"
-  memoire_virtuelle: "Mémoire virtuelle"
   rack: "Rack"
   physical_rack: "Rack"
   physical_racks: "Racks"
