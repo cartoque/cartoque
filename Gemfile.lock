@@ -88,6 +88,7 @@ GEM
     hashie (1.1.0)
     hike (1.2.1)
     i18n (0.6.0)
+    i18n-verify (0.0.5)
     inherited_resources (1.3.0)
       has_scope (~> 0.5.0)
       responders (~> 0.6.0)
@@ -286,6 +287,7 @@ DEPENDENCIES
   guard-spork
   has_scope
   hashie
+  i18n-verify
   inherited_resources
   jquery-rails (>= 1.0.12)
   json

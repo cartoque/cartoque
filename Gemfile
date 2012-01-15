@@ -82,4 +82,5 @@ group :development, :test do
   gem 'thin'
   gem 'pry'
   gem 'rails-erd' #graphviz of classes
+  gem 'i18n-verify'
 end
