@@ -12,7 +12,7 @@
     <td class="left" style="width:6em"><%= select_tag "by_client", options_for_select(@clients.map{|s| [s.name, s.id]}, params[:by_client]), :include_blank => true %></td>
     <td><%= select_tag "by_type", options_for_falconstor_type(params[:by_type]).html_safe -%></td>
     <td style="width:8em;"><%= text_field_tag "by_guid", params[:by_guid] %></td>
-    <td><%= select_tag "by_snapshot_status", options_for_select([["",""], ["oui", "1"], ["non", 0]], params[:by_snapshot_status]).html_safe -%></td>
+    <td><%= select_tag "by_snapshot_status", options_for_select([["",""], [t(:word_yes), "1"], [t(:word_no), 0]], params[:by_snapshot_status]).html_safe -%></td>
     <td>
       <span id="nss_volumes_counter" class="counter"><%= @nss_volumes.count %></span>
       <span id="nss_volumes_size_counter" class="counter"><%= pretty_size(@nss_volumes.map(&:size).sum).sub(/b(ytes)?$/,"o") %></span>

@@ -10,7 +10,7 @@
   <td><%= select_tag "by_system", options_for_select([["",""]] + @os, params[:by_system]).html_safe -%></td>
   <% @archs = Server.select("distinct(arch)").map(&:arch).compact.sort %>
   <td><%= select_tag "by_arch", options_for_select([["",""]] + @archs, params[:by_arch]).html_safe -%></td>
-  <td><%= select_tag "by_virtual", options_for_select([["",""], ["oui", "1"], ["non", 0]], params[:by_virtual]).html_safe -%></td>
+  <td><%= select_tag "by_virtual", options_for_select([["",""], [t(:word_yes), "1"], [t(:word_no), 0]], params[:by_virtual]).html_safe -%></td>
   <td><%= select_tag "by_location", options_for_location_filter(params[:by_location]) -%></td>
   <td><span id="servers_counter" class="counter"><%= @servers.count %></span></td>
 </tr>
