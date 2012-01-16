@@ -12,7 +12,7 @@
       <%= f.input :name, :required => true, :wrapper_class => "th" %>
       <%= f.input :provider, :collection => [["Cerbère CAS", "cas"]] %>
       <%= f.input :uid, :input_html => { :style => "width:400px;" } %>
-      <%= f.input :locale, :collection => %w(fr en) %>
+      <%= f.input :locale, :collection => [%w(Français fr), %w(English en)] %>
       <tr>
         <td class="label"><%= f.label :authentication_token, :class => "input" %></td>
         <td>
