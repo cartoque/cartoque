@@ -27,4 +27,8 @@ class User < ActiveRecord::Base
   def locale
     settings[:locale] rescue nil
   end
+
+  def locale=(new_locale)
+    update_setting(:locale, new_locale)
+  end
 end
