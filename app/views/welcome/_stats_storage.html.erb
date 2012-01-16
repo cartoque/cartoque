@@ -8,11 +8,11 @@
     <td><%= link_to constructor, storages_path(:by_constructor => constructor) %></td>
     <td>
       <% device = Storcs::Device.new(""); device.children = devices.map(&:device).select{|s|s.is_a?(Storcs::Device)} %>
-      <%= pretty_size(device.size) %> sur <%= pluralize(device.children.count, "baie") %>
+      <%= pretty_size(device.size) %> <%= t(:word_on) %> <%= pluralize(device.children.count, t(:storage_device)) %>
       <ul class="details">
-        <li><%= pretty_size(device.free) %> libres (<%= "%0.0f%" % device.percent_free %>)</li>
+        <li><%= pretty_size(device.free) %> <%= t(:storage_left) %> (<%= "%0.0f%" % device.percent_free %>)</li>
         <% if device.unassigned > 0 %>
-          <li><em>+ <%= pretty_size(device.unassigned) %> unassigned</em></li>
+          <li><em>+ <%= pretty_size(device.unassigned) %> <%= t(:storage_unassigned) %></em></li>
         <% end %>
       </ul>
     </td>

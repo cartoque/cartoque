@@ -14,7 +14,7 @@
                       "##{short_location.parameterize}", :rel => "facebox" %>
         <% end %>
         <%= render :partial => "cronjobs/cron_collection",
-                   :locals => { :title => "#{t(:crons)} #{short_location} #{t(:on)} #{@server}", :html_id => short_location.parameterize, :crons => jobs,
+                   :locals => { :title => "#{t(:crons)} #{short_location} #{t(:word_on)} #{@server}", :html_id => short_location.parameterize, :crons => jobs,
                                 :context => t(:all_crons_of) + link_to(@server.name, cronjobs_path(:by_server => @server.id)) } %>
       <% end %>
     </ul>

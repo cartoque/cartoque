@@ -2,7 +2,7 @@
   <div class="informations more-child">
     <h3><%= t(:nfs_client) %></h3>
     <div class="details">
-      <%= pluralize(@server.network_filesystems.count, t(:mount)) %> <%= t(:on) %>
+      <%= pluralize(@server.network_filesystems.count, t(:mount)) %> <%= t(:word_on) %>
       <%= pluralize(@server.network_filesystems.map(&:server_id).uniq.count, t(:server)) %>
     </div>
     <ul class="hidden">

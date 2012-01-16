@@ -12,12 +12,12 @@
 
 <% devid = "device-#{device.name.parameterize}" %>
 <% if device.unassigned > 0 %>
-  <span class="unassigned">+ <%= pretty_size(device.unassigned) %> unassigned</span>
+  <span class="unassigned">+ <%= pretty_size(device.unassigned) %> <%= t(:storage_unassigned) %></span>
 <% end %>
 
 <% if device.children.any? %>
 <p class="more">
-  <%= link_to "Plus", {},
+  <%= link_to t(:more), {},
               :onclick => %($("##{devid}").toggle(); return false;) %>
 </p>
 <% end %>
