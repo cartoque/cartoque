@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
   def seen_now!
     update_attribute(:seen_on, Date.today) unless seen_on == Date.today
   end
+
+  def locale
+    settings[:locale] rescue nil
+  end
 end

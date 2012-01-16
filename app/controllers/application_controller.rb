@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate!
+  before_filter :set_locale
 
   protect_from_forgery
 
@@ -67,4 +68,19 @@ class ApplicationController < ActionController::Base
     request.env["Rack-Middleware-PDFKit"] == "true"
   end
   helper_method :request_from_pdfkit?
+
+  # locale selection
+  # see: http://guides.rubyonrails.org/i18n.html
+  def set_locale
+    logger.debug "* Current user: #{current_user.inspect}"
+    logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
+    I18n.locale = current_user.try(:locale) || extract_locale_from_accept_language_header
+    logger.debug "* Locale set to '#{I18n.locale}'"
+  end
+
+  private
+  def extract_locale_from_accept_language_header
+    locale_candidate = "#{request.env['HTTP_ACCEPT_LANGUAGE']}".scan(/^[a-z]{2}/).first
+    (locale_candidate && I18n.available_locales.include?(locale_candidate.to_sym)) ? locale_candidate : nil
+  end
 end
