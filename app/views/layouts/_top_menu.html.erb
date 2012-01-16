@@ -1,7 +1,7 @@
 <div id="top-menu" class="hide-when-print">
   <ul class="menu-items contextual">
   <% if logged_in? %>
-    <li class="connected-as"><%= current_user.name %></li>
+    <li class="connected-as"><%= link_to current_user.name, edit_user_path(current_user) %></li>
     <li><%= link_to t(:disconnection), signout_path %></li>
   <% end %>
   </ul>
