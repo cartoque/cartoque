@@ -1,0 +1,32 @@
+---
+title: Response format and conventions
+---
+
+Response format and conventions
+===============================
+
+Format
+------
+
+When a request succeeds, the format used in the response depends on the requested one. We strongly encourage you to use **JSON**, i.e. ask for ``http://.../../<something>.json`` in your requests.
+
+For instance, if you ask for ``http://your-cartoque-server/servers.json``, you'll get a list of your servers in json format.
+
+Other formats are natively supported by the applications but should not be used within the API :
+
+  - **html** : it's for humans, hey!
+  - **pdf** : same here.
+  - **csv** : only used for /servers and /applications for now, might disappear in the future.
+  - **xml** : same as **csv**, most likely to be removed in the next release since the world now has **json** :)
+
+HTTP Response code
+------------------
+
+We'll use the same HTTP status code as everywhere. Here's a list of the subset we'll use, found in the great [Stripe's API](https://stripe.com/docs/api) :
+
+  - *200 OK* - Everything worked as expected.
+  - *400 Bad Request* - Often missing a required parameter.
+  - *401 Unauthorized* - No valid API key provided.
+  - *402 Request Failed* - Parameters were valid but request failed.
+  - *404 Not Found* - The requested item doesn't exist.
+  - *500, 502, 503, 504* Server errors - something went wrong on Cartoque's side.

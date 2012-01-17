@@ -86,14 +86,20 @@ h2 {
   border-bottom: 1px solid #888;
 }
 
-#content pre {
+#content pre, #content code {
   font-family: monospace;
   background-color: #fafafa;
-  border: 1px solid #dadada;
-  padding: 0 5px;
 }
-
+#content code {
+  border: 1px solid #dadada;
+  padding:1px 3px;
+}
+#content pre>code {
+  border:none;
+  padding:0;
+}
 #content pre {
+  border: 1px solid #dadada;
   margin: 0.5em 1em 0.5em 1.6em;
   padding: 5px;
   width:auto;
