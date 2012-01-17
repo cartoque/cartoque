@@ -477,7 +477,7 @@ fr:
   actions: "Actions"
   text_new_contact_explanation: "Créer un nouveau contact : commercial, expert technique, maître d'oeuvre ou maître d'ouvrage, etc."
   text_new_company_explanation: "Créer une nouvelle entreprise, une organisation, une équipe interne ou un support"
-  text_generate_mailinglist_explanation: "Générer une liste de diffusion à partir d'éléments de la plateforme et des contacts associés"
+  text_generate_mailinglist_explanation: "Générer une liste de diffusion à partir d'éléments de la plateforme"
   no_contact_found: "Pas de contact trouvé"
   no_company_found: "Pas d'entreprise trouvée"
   x_differences_with: "%{count} différences avec %{node}"

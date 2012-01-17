@@ -320,7 +320,7 @@ en:
   actions: "Actions"
   text_new_contact_explanation: "Create a new contact : salesman, expert, project manager or client, etc."
   text_new_company_explanation: "Create a new company, an organization, an internal or support service"
-  text_generate_mailinglist_explanation: "Generate a new mailing list from configuration items or associated contacts"
+  text_generate_mailinglist_explanation: "Generate a new mailing list from configuration items"
   no_contact_found: "No contact found"
   no_company_found: "No company found"
   x_differences_with: "%{count} differences with %{node}"
