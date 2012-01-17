@@ -41,6 +41,7 @@
       REST API
       <ul>
         <li><a href="authentication.html">Authentication</a></li>
+        <li><a href="response.html">Response</a></li>
         <li><span class="active" title="You're here.">List of endpoints</span></li>
       </ul>
     </li>
@@ -50,7 +51,32 @@
       </div>
       <div class="grid_13">
         <div id="content">
-          <p>/!\ This page is under construction.</p>
+          <h1>List of API Endpoints</h1>
+
+<p>This page lists API endpoints available in Cartoque. If you find some errors or missing informations, feel free to <a href="https://github.com/jbbarth/cartoque/issues/new">open a new issue</a> or even clone this repository, fix the problem and <a href="https://github.com/jbbarth/cartoque/pulls">issue a pull request</a> on GitHub.</p>
+
+<h2>Applications</h2>
+
+<p>Get a list of all applications:</p>
+
+<pre><code>GET /applications.json
+</code></pre>
+
+<p>Expected response:</p>
+
+<p>Example with curl:</p>
+
+<pre><code>curl -H &quot;X-Api-Token: abcde123456&quot; http://my-cartoque-server/applications.json
+</code></pre>
+
+<p>Other formats: <strong>xml</strong> and <strong>csv</strong> formats used to be there but will be removed in a future release. Don't use them!</p>
+
+<h2>Servers</h2>
+
+<p>Get a list of all servers:</p>
+
+<pre><code>GET /servers.json
+</code></pre>
 
         </div>
       </div>

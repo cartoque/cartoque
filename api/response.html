@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cartoque - Response format and conventions</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/960.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/app.css" />
+    <meta http-equiv="cache-control" content="max-age=10, must-revalidate" />
+    <meta charset="utf-8">
+    <meta name="generator" content="nanoc 3.2.3">
+  </head>
+  <body>
+    <a href="http://github.com/jbbarth/cartoque">
+      <img style="position: absolute; top: 0; right: 0; border: 0;" src="../assets/github-ribbon.png" alt="Fork me on GitHub">
+    </a>
+    <div class="container_16">
+      <span class="sitetitle">Cartoque</span>
+      <span class="sitesubtitle">A free & simple CMDB for your datacenter</span>
+    </div>
+    <div id="container" class="container_16">
+      <div class="grid_3">
+        <div id="sidebar">
+  <ul>
+    <li class="title"><a href="../">Overview</a></li>
+    <li class="title">
+      User guide
+      <ul>
+        <li><a href="../guide/install.html">Installation</a></li>
+        <li><a href="../guide/populate.html">Populate the CMDB</a></li>
+        <li><a href="../guide/contribute.html">Contribute</a></li>
+      </ul>
+    </li>
+    <li class="title">
+      Developer corner
+      <ul>
+        <li><a href="../dev/guidelines.html">Guidelines</a></li>
+      </ul>
+    </li>
+    <li class="title">
+      REST API
+      <ul>
+        <li><a href="authentication.html">Authentication</a></li>
+        <li><span class="active" title="You're here.">Response</span></li>
+        <li><a href="endpoints.html">List of endpoints</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+      </div>
+      <div class="grid_13">
+        <div id="content">
+          <h1>Response format and conventions</h1>
+
+<h2>Format</h2>
+
+<p>When a request succeeds, the format used in the response depends on the requested one. We strongly encourage you to use <strong>JSON</strong>, i.e. ask for <code>http://.../../&lt;something&gt;.json</code> in your requests.</p>
+
+<p>For instance, if you ask for <code>http://your-cartoque-server/servers.json</code>, you'll get a list of your servers in json format.</p>
+
+<p>Other formats are natively supported by the applications but should not be used within the API :</p>
+
+<ul>
+<li><strong>html</strong> : it's for humans, hey!</li>
+<li><strong>pdf</strong> : same here.</li>
+<li><strong>csv</strong> : only used for /servers and /applications for now, might disappear in the future.</li>
+<li><strong>xml</strong> : same as <strong>csv</strong>, most likely to be removed in the next release since the world now has <strong>json</strong> :)</li>
+</ul>
+
+<h2>HTTP Response code</h2>
+
+<p>We'll use the same HTTP status code as everywhere. Here's a list of the subset we'll use, found in the great <a href="https://stripe.com/docs/api">Stripe's API</a> :</p>
+
+<ul>
+<li><em>200 OK</em> - Everything worked as expected.</li>
+<li><em>400 Bad Request</em> - Often missing a required parameter.</li>
+<li><em>401 Unauthorized</em> - No valid API key provided.</li>
+<li><em>402 Request Failed</em> - Parameters were valid but request failed.</li>
+<li><em>404 Not Found</em> - The requested item doesn't exist.</li>
+<li><em>500, 502, 503, 504</em> Server errors - something went wrong on Cartoque's side.</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
