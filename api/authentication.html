@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cartoque - API Authentication</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/960.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/app.css" />
+    <meta http-equiv="cache-control" content="max-age=10, must-revalidate" />
+    <meta charset="utf-8">
+    <meta name="generator" content="nanoc 3.2.3">
+  </head>
+  <body>
+    <a href="http://github.com/jbbarth/cartoque">
+      <img style="position: absolute; top: 0; right: 0; border: 0;" src="../assets/github-ribbon.png" alt="Fork me on GitHub">
+    </a>
+    <div class="container_16">
+      <span class="sitetitle">Cartoque</span>
+      <span class="sitesubtitle">A free & simple CMDB for your datacenter</span>
+    </div>
+    <div id="container" class="container_16">
+      <div class="grid_3">
+        <div id="sidebar">
+  <ul>
+    <li class="title"><a href="../">Overview</a></li>
+    <li class="title">
+      User guide
+      <ul>
+        <li><a href="../guide/install.html">Installation</a></li>
+        <li><a href="../guide/populate.html">Populate the CMDB</a></li>
+        <li><a href="../guide/contribute.html">Contribute</a></li>
+      </ul>
+    </li>
+    <li class="title">
+      Developer corner
+      <ul>
+        <li><a href="../dev/guidelines.html">Guidelines</a></li>
+      </ul>
+    </li>
+    <li class="title">
+      REST API
+      <ul>
+        <li><span class="active" title="You're here.">Authentication</span></li>
+        <li><a href="endpoints.html">List of endpoints</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+      </div>
+      <div class="grid_13">
+        <div id="content">
+          <h1>API Authentication</h1>
+
+<p>All actions against the REST API need authentication through a custom <strong>authentication token</strong>. This 
+authentication token is linked to a user account. It should be passed with every HTTP request as a 
+custom HTTP header called <strong>X-Api-Token</strong>.</p>
+
+<h2>Creating an authentication token</h2>
+
+<ul>
+<li>Go to the <strong>Configuration</strong> section in the top menu bar</li>
+<li>Click <strong>Users</strong> in the sidebar</li>
+<li>Either create a new user or edit the one who needs access to the API</li>
+<li><strong>Generate a token</strong></li>
+</ul>
+
+<p>Be careful, re-generating an authentication token cannot be undone. It means the old one will stop working, 
+so if it's used in scripts or 3rd party tools, you'll need to update them with the new authentication token.</p>
+
+<h2>Using the authentication token</h2>
+
+<p>An example with curl :</p>
+
+<pre><code>curl -H &quot;X-Api-Token: &lt;token&gt;&quot; &lt;API URL&gt;
+</code></pre>
+
+<p>Of course you'll have to replace the values. For instance, here is a list of my servers if my token is &quot;abcdef123&quot; :</p>
+
+<pre><code>curl -sL -H &quot;X-Api-Token: abcdef123&quot; http://cartoque.home/servers.json
+</code></pre>
+
+<p>See the <a href="endpoints.html">list of API endpoints</a> for further informations on available URLs, parameters and formats.</p>
+
+<h2>Other authentication modes</h2>
+
+<p>If you're intested in making other authentication methods possible (such as <a href="http://oauth.net">Oauth</a>), 
+feel free to fill an issue on Github.</p>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
