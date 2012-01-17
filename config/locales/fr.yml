@@ -29,7 +29,125 @@ fr:
       only_second: "%S"
     am: 'am'
     pm: 'pm'
+  
+  # adapted from activesupport-3.1.3/lib/active_support/locale/en.yml
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " et "
+      last_word_connector: ", et "
 
+  # adapted from responders-0.6.4/lib/responders/locales/en.yml
+  flash:
+    actions:
+      create:
+        notice: '%{resource_name} a été créé avec succès.'
+      update:
+        notice: '%{resource_name} a été mis à jour avec succès.'
+      destroy:
+        notice: '%{resource_name} a bien été supprimé.'
+        alert: "%{resource_name} n'a pas pu être supprimé."
+
+  # adapted from actionpack-3.1.3/lib/action_view/locale/en.yml
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+    currency:
+      format:
+        format: "%u%n"
+        unit: "€"
+        separator: "."
+        delimiter: ","
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one:   "octet"
+            other: "Octets"
+          kb: "Ko"
+          mb: "Mo"
+          gb: "Go"
+          tb: "To"
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: Millier
+          million: Million
+          billion: Milliard
+          trillion: Billion
+          quadrillion: Billiard
+  datetime:
+    distance_in_words:
+      half_a_minute: "30 secondes"
+      less_than_x_seconds:
+        one:   "moins d'une seconde"
+        other: "moins de %{count} seconds"
+      x_seconds:
+        one:   "1 seconde"
+        other: "%{count} secondes"
+      less_than_x_minutes:
+        one:   "moins d'une minute"
+        other: "moins de %{count} minutes"
+      x_minutes:
+        one:   "1 minute"
+        other: "%{count} minutes"
+      about_x_hours:
+        one:   "environ 1 heure"
+        other: "environ %{count} heures"
+      x_days:
+        one:   "1 jour"
+        other: "%{count} jours"
+      about_x_months:
+        one:   "environ 1 mois"
+        other: "environ %{count} mois"
+      x_months:
+        one:   "1 mois"
+        other: "%{count} mois"
+      about_x_years:
+        one:   "environ 1 an"
+        other: "environ %{count} ans"
+      over_x_years:
+        one:   "plus d'1 an"
+        other: "plus de %{count} ans"
+      almost_x_years:
+        one:   "presque 1 an"
+        other: "presque %{count} ans"
+    prompts:
+      year:   "Année"
+      month:  "Mois"
+      day:    "Jour"
+      hour:   "Heure"
+      minute: "Minute"
+      second: "Seconde"
+  helpers:
+    select:
+      prompt: "Sélectionnez..."
+    submit:
+      create: "Créer"
+      update: "Appliquer les modifications"
+      submit: 'Sauvegarder'
+
+  # adapted from active_record locales
   activerecord:
     errors:
       template:
@@ -38,6 +156,7 @@ fr:
           other: "Impossible d'enregistrer {{model}} : {{count}} erreurs."
         body: "Veuillez vérifier les champs suivants :"
       messages:
+        record_invalid: "Erreurs de validation: %{errors}"
         inclusion: "n'est pas inclus(e) dans la liste"
         exclusion: "n'est pas disponible"
         invalid: "n'est pas valide"
@@ -48,7 +167,6 @@ fr:
         too_long: "est trop long (pas plus de {{count}} caractères)"
         too_short: "est trop court (au moins {{count}} caractères)"
         wrong_length: "ne fait pas la bonne longueur (doit comporter {{count}} caractères)"
-        taken: "est déjà utilisé"
         not_a_number: "n'est pas un nombre"
         greater_than: "doit être supérieur à {{count}}"
         greater_than_or_equal_to: "doit être supérieur ou égal à {{count}}"
@@ -58,12 +176,36 @@ fr:
         odd: "doit être impair"
         even: "doit être pair"
         greater_than_start_date: "doit être postérieure à la date de début"
+        taken: "est déjà utilisé"
+
+
+  # adapted from activemodel-3.1.3/lib/active_model/locale/en.yml
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      inclusion: "n'est pas inclus(e) dans la liste"
+      exclusion: "n'est pas disponible"
+      invalid: "n'est pas valide"
+      confirmation: "ne concorde pas avec la confirmation"
+      accepted: "doit être accepté(e)"
+      empty: "doit être renseigné(e)"
+      blank: "doit être renseigné(e)"
+      too_long: "est trop long (pas plus de {{count}} caractères)"
+      too_short: "est trop court (au moins {{count}} caractères)"
+      wrong_length: "ne fait pas la bonne longueur (doit comporter {{count}} caractères)"
+      not_a_number: "n'est pas un nombre"
+      not_an_integer: "n'est pas un entier"
+      greater_than: "doit être supérieur à {{count}}"
+      greater_than_or_equal_to: "doit être supérieur ou égal à {{count}}"
+      equal_to: "doit être égal à {{count}}"
+      less_than: "doit être inférieur à {{count}}"
+      less_than_or_equal_to: "doit être inférieur ou égal à {{count}}"
+      odd: "doit être impair"
+      even: "doit être pair"
+
+  # cartocs standard locales
   omniauth_invalid_ticket: "Ticket non valide !"
   omniauth_invalid_user: "L'utilisateur n'existe pas, veuillez ré-essayer ou contacter l'administrateur"
-  helpers:
-    submit:
-      create: "Créer"
-      update: "Appliquer les modifications"
   hello: "Hello world"
   media_drive: "Lecteur"
   disk_size: "Disque dur 1"
