@@ -2,60 +2,22 @@
 en:
   date:
     formats:
-      default: "%m/%d/%Y"
-      short: "%b %d"
-      long: "%B %d, %Y"
       long_ordinal: "%B %d, %Y"
       only_day: "%e"
 
-    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
-    abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
-    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
-    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    order:
-      - :year
-      - :month
-      - :day
-  
   time:
     formats:
-      default: "%m/%d/%Y %I:%M %p"
-      time: "%I:%M %p"
-      short: "%d %b %H:%M"
-      long: "%B %d, %Y %H:%M"
+      time: "%H:%M"
       long_ordinal: "%B %d, %Y %H:%M"
       only_second: "%S"
-    am: "am"
-    pm: "pm"
 
-  activerecord:
-    errors:
-      template:
-        header:
-          one:    "1 error prohibited this %{model} from being saved"
-          other:  "%{count} errors prohibited this %{model} from being saved"
-        body: "Please check the following fields:"
-      messages:
-        inclusion: "is not included in the list"
-        exclusion: "is reserved"
-        invalid: "is invalid"
-        confirmation: "doesn't match confirmation"
-        accepted: "must be accepted"
-        empty: "can't be empty"
-        blank: "can't be blank"
-        too_long: "is too long (maximum is %{count} characters)"
-        too_short: "is too short (minimum is %{count} characters)"
-        wrong_length: "is the wrong length (should be %{count} characters)"
-        taken: "has already been taken"
-        not_a_number: "is not a number"
-        greater_than: "must be greater than %{count}"
-        greater_than_or_equal_to: "must be greater than or equal to %{count}"
-        equal_to: "must be equal to %{count}"
-        less_than: "must be less than %{count}"
-        less_than_or_equal_to: "must be less than or equal to %{count}"
-        odd: "must be odd"
-        even: "must be even"
-        greater_than_start_date: "must be greater than start date"
+  # see activesupport-3.1.3/lib/active_support/locale/en.yml
+  # see responders-0.6.4/lib/responders/locales/en.yml
+  # see actionpack-3.1.3/lib/action_view/locale/en.yml
+  # see activerecord-3.1.3/lib/active_record/locale/en.yml
+  # see activemodel-3.1.3/lib/active_model/locale/en.yml 
+
+  # cartocs standard locales
   omniauth_invalid_ticket: "Invalid ticket!"
   omniauth_invalid_user: "This user doesn't exist, please re-try or contact your administrator"
   helpers:
