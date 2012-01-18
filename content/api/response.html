@@ -30,3 +30,12 @@ We'll use the same HTTP status code as everywhere. Here's a list of the subset w
   - *402 Request Failed* - Parameters were valid but request failed.
   - *404 Not Found* - The requested item doesn't exist.
   - *500, 502, 503, 504* Server errors - something went wrong on Cartoque's side.
+
+
+Namespacing conventions
+-----------------------
+
+About namespacing objects, we follow the same conventions as [the one described used in https://gaug.es api](http://railstips.org/blog/archives/2011/12/01/creating-an-api/), if I quote John Nunemaker:
+
+> Again, we decided on a rule. In this case, all top level objects should be name-spaced, but objects referenced from a 
+> top level object or a collection of several objects did not require name-spacing.

@@ -13,6 +13,8 @@ a { text-decoration: none; }
 a:link, a:visited { color: #f30; } 
 a:hover { color: #f30; }
 ul { list-style-type:square; }
+blockquote { margin:5px 15px; font-style:italic; }
+blockquote > p { margin:0; }
 
 /* layout */
 #container {
