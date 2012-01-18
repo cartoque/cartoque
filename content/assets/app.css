@@ -94,7 +94,7 @@ h2 {
 }
 #content code {
   border: 1px solid #dadada;
-  padding:1px 3px;
+  padding:0 2px;
 }
 #content pre>code {
   border:none;
