@@ -78,6 +78,7 @@ class Tomcat < Hashie::Mash
   def self.cerbere_hsh
     File.readlines( File.expand_path("../rp/cerbere.txt", self.dir) ).grep(/Protect/).inject({}) do |hsh,line|
       val = line.scan(/internal host:([^,]+), .*connection (\S+)/).first
+      next unless val
       hsh[val.first] = val.last == "ok"
       hsh
     end
