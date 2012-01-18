@@ -17,6 +17,7 @@ end
 compile '*' do
   filter :erb
   filter :redcarpet #:erb
+  filter :colorize_syntax, :colorizers => {:javascript => :pygmentize}
   layout 'default'
   if %w(css html).include? item.attributes[:extension]
     filter :relativize_paths, :type => item.attributes[:extension].to_sym
