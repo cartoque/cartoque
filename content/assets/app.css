@@ -109,3 +109,15 @@ h2 {
 #content p {
   margin:8px 0 12px 0;
 }
+#screenshots {
+  padding: 10px;
+  text-align: center;
+}
+#screenshots > div {
+  width:30%;
+  display:inline-block;
+}
+#screenshots img {
+  padding:5px;
+  border:1px solid #bbb;
+}
