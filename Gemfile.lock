@@ -15,6 +15,7 @@ GEM
     rack (1.4.0)
     rake (0.8.7)
     redcarpet (1.17.2)
+    systemu (2.4.2)
 
 PLATFORMS
   ruby
@@ -28,3 +29,4 @@ DEPENDENCIES
   pygmentize
   rake
   redcarpet (~> 1.17)
+  systemu
