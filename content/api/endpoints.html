@@ -29,3 +29,22 @@ Servers
 Get a list of all servers:
 
     GET /servers.json
+
+Example with curl:
+
+    curl -sLH "X-Api-Token: abcde123456" http://my-cartoque-server/servers.json
+
+Expected response:
+
+<pre><code><%= json_pretty(%({"servers":[{"id":433,"name":"server-01"},{"id":434,"name":"server-02"}]})) %></code></pre>
+
+Parameters:
+
+* **search=[term]** : filters on servers which name include [term]
+* **by_location=[site:id|room:id]** : filters on site (room) or physical rack id = [id]
+* **by_maintainer=id** : filters on maintainer with id = [id]
+* **by_system=id** : filters on operating system id = [id] + its descendants (i.e. filtering on Linux will also search sub-operating systems, for instance Debian, etc.)
+* **by_virtual=[0|1]** : filters on whether the servers are virtual or not ; "1" means virtual, "0" means not virtual
+* **by_serial_number=[serial]** : filters server by serial number
+* **by_arch=[arch]** : filters by server architecture if available
+* **by_fullmodel=[term]** : filters on manufacturer or model containing [term]
