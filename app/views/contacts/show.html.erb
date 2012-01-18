@@ -10,7 +10,7 @@
 
 </div>
 
-<div class="grid_4">
+<div class="grid_4 contact_relations">
 <% if @contact.company.present? %>
   <h2><%= t(:works_at) %></h2>
   <%= render 'companies/company', :company => @contact.company %>
