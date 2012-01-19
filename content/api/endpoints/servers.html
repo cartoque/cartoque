@@ -20,7 +20,9 @@ Example with curl:
 
 Expected response:
 
-<pre><code class="highlight language-javascript"><%= json_pretty(%({"servers":[{"id":433,"name":"server-01"},{"id":434,"name":"server-02"}]})) %></code></pre>
+<% json_block do %>
+{"servers":[{"id":433,"name":"server-01"},{"id":434,"name":"server-02"}]}
+<% end %>
 
 Parameters:
 
@@ -46,6 +48,8 @@ Example with curl:
 
 Expected response:
 
-<pre><code class="highlight language-javascript"><%= json_pretty(%({"server":{"id":433,"name":"server-01","ip":"192.168.1.1"}})) %></code></pre>
+<% json_block do %>
+  {"server":{"id":433,"name":"server-01","ip":"192.168.1.1"}}
+<% end %>
 
 Parameters: none.

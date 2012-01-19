@@ -6,6 +6,14 @@ include Nanoc3::Helpers::LinkTo
 require 'json'
 module Cartoque
   module NanocHelpers
+    def json_block(&block)
+      raise "Gimme a block" unless block_given?
+      html = json_pretty(capture(&block).strip)
+      html = %(<pre><code class="highlight language-javascript">)+html+%(</code></pre>)
+      buffer = eval('_erbout', block.binding)
+      buffer << html
+    end
+
     def json_pretty(json_string)
       JSON.pretty_generate(JSON.parse(json_string))
     end
