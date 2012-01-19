@@ -2,17 +2,18 @@
 <html>
   <head>
     <title>Cartoque - API Authentication</title>
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/reset.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/text.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/960.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/app.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/960.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/app.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/pygments.css" />
     <meta http-equiv="cache-control" content="max-age=10, must-revalidate" />
     <meta charset="utf-8">
     <meta name="generator" content="nanoc 3.2.3">
   </head>
   <body>
     <a href="http://github.com/jbbarth/cartoque">
-      <img style="position: absolute; top: 0; right: 0; border: 0;" src="../assets/github-ribbon.png" alt="Fork me on GitHub">
+      <img style="position: absolute; top: 0; right: 0; border: 0;" src="../static/github-ribbon.png" alt="Fork me on GitHub">
     </a>
     <div class="container_16">
       <span class="sitetitle">Cartoque</span>
@@ -64,9 +65,7 @@ custom HTTP header called <strong>X-Api-Token</strong>.</p>
 <li>Click <strong>Users</strong> in the sidebar</li>
 <li>Either create a new user or edit the one who needs access to the API</li>
 <li><strong>Generate a token</strong></li>
-</ul>
-
-<h2>Updating an authentication token</h2>
+</ul><h2>Updating an authentication token</h2>
 
 <p>If a user already has an authentication token, you can change it with the same basic steps described above.</p>
 
@@ -77,12 +76,12 @@ so if it's used in scripts or 3rd party tools, you'll need to update them with t
 
 <p>An example with curl :</p>
 
-<pre><code>curl -H &quot;X-Api-Token: &lt;token&gt;&quot; &lt;API URL&gt;
+<pre><code>curl -H "X-Api-Token: &lt;token&gt;" &lt;API URL&gt;
 </code></pre>
 
-<p>Of course you'll have to replace the values. For instance, here is a list of my servers if my token is &quot;abcdef123&quot; :</p>
+<p>Of course you'll have to replace the values. For instance, here is a list of my servers if my token is "abcdef123" :</p>
 
-<pre><code>curl -sL -H &quot;X-Api-Token: abcdef123&quot; http://cartoque.home/servers.json
+<pre><code>curl -sL -H "X-Api-Token: abcdef123" http://cartoque.home/servers.json
 </code></pre>
 
 <p>See the <a href="endpoints.html">list of API endpoints</a> for further informations on available URLs, parameters and formats.</p>
@@ -91,7 +90,6 @@ so if it's used in scripts or 3rd party tools, you'll need to update them with t
 
 <p>If you're intested in making other authentication methods possible (such as <a href="http://oauth.net">Oauth</a>), 
 feel free to fill an issue on Github.</p>
-
         </div>
       </div>
     </div>

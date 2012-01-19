@@ -2,17 +2,18 @@
 <html>
   <head>
     <title>Cartoque - Installation</title>
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/reset.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/text.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/960.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/app.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/960.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/app.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/pygments.css" />
     <meta http-equiv="cache-control" content="max-age=10, must-revalidate" />
     <meta charset="utf-8">
     <meta name="generator" content="nanoc 3.2.3">
   </head>
   <body>
     <a href="http://github.com/jbbarth/cartoque">
-      <img style="position: absolute; top: 0; right: 0; border: 0;" src="../assets/github-ribbon.png" alt="Fork me on GitHub">
+      <img style="position: absolute; top: 0; right: 0; border: 0;" src="../static/github-ribbon.png" alt="Fork me on GitHub">
     </a>
     <div class="container_16">
       <span class="sitetitle">Cartoque</span>
@@ -58,19 +59,21 @@
 <p>If you want to install Cartoque, you need to check the following requirements are met :</p>
 
 <ul>
-<li><strong>Clients</strong>: clients should use a modern web browser (Chrome, Firefox, Safari, Opera) ; IE support is blocked 
+<li>
+<strong>Clients</strong>: clients should use a modern web browser (Chrome, Firefox, Safari, Opera) ; IE support is blocked 
 since I had a lot of problems with it and I cannot test it myself (feel free to fill a new issue about this 
 subject) ; Javascript must be enabled</li>
-<li><strong>Application server</strong>: you'll need <strong>Ruby 1.9.2-p290 or higher</strong> (previous versions are buggued) and an 
+<li>
+<strong>Application server</strong>: you'll need <strong>Ruby 1.9.2-p290 or higher</strong> (previous versions are buggued) and an 
 application server that supports Rails applications ; the installation of these components are out of the 
 scope of this tutorial, but I personnaly run my production environment with Ruby 1.9.2-p290 installed with 
 <a href="http://beginrescueend.com/">RVM</a>, and <a href="http://www.modrails.com/">Phusion Passenger</a> 3.0.x in standalone mode</li>
-<li><strong>Database server</strong>: MySQL version 5.0 or higher is required (support for Postgresql is untested but might 
+<li>
+<strong>Database server</strong>: MySQL version 5.0 or higher is required (support for Postgresql is untested but might 
 be OK)</li>
-<li><strong>Authentication</strong>: a CAS server is required for authentication</li>
-</ul>
-
-<h2>Installing the application</h2>
+<li>
+<strong>Authentication</strong>: a CAS server is required for authentication</li>
+</ul><h2>Installing the application</h2>
 
 <p>This section is not complete for the moment. Basically, if you have the correct application stack and you've cloned the repository, it installs like any Rails 3 web app :</p>
 
@@ -82,16 +85,15 @@ rake db:migrate db:seed
 
 <p>Then you can configure the CAS server (replace the CAS server URL, <em>without the trailing slash</em>):</p>
 
-<pre><code>rails runner 'Settler.load!; Setting.find_by_key(&quot;cas_server&quot;).update_attribute(:value, &quot;http://your-cas-server.com&quot;)'
+<pre><code>rails runner 'Settler.load!; Setting.find_by_key("cas_server").update_attribute(:value, "http://your-cas-server.com")'
 </code></pre>
 
 <p>And then add the first user (replace at least the uid):</p>
 
-<pre><code>rails runner 'User.create(:name =&gt; &quot;John&quot;, :provider =&gt; &quot;cas&quot;, :uid =&gt; &quot;john.smith&quot;)'
+<pre><code>rails runner 'User.create(:name =&gt; "John", :provider =&gt; "cas", :uid =&gt; "john.smith")'
 </code></pre>
 
 <p>Start the server, open your browser in the correct URL, and you're ready to go !</p>
-
         </div>
       </div>
     </div>

@@ -2,17 +2,18 @@
 <html>
   <head>
     <title>Cartoque - API Endpoints</title>
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/reset.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/text.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/960.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/app.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/960.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/app.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/pygments.css" />
     <meta http-equiv="cache-control" content="max-age=10, must-revalidate" />
     <meta charset="utf-8">
     <meta name="generator" content="nanoc 3.2.3">
   </head>
   <body>
     <a href="http://github.com/jbbarth/cartoque">
-      <img style="position: absolute; top: 0; right: 0; border: 0;" src="../assets/github-ribbon.png" alt="Fork me on GitHub">
+      <img style="position: absolute; top: 0; right: 0; border: 0;" src="../static/github-ribbon.png" alt="Fork me on GitHub">
     </a>
     <div class="container_16">
       <span class="sitetitle">Cartoque</span>
@@ -66,7 +67,7 @@
 
 <p>Example with curl:</p>
 
-<pre><code>curl -H &quot;X-Api-Token: abcde123456&quot; http://my-cartoque-server/applications.json
+<pre><code>curl -H "X-Api-Token: abcde123456" http://my-cartoque-server/applications.json
 </code></pre>
 
 <p>Other formats: <strong>xml</strong> and <strong>csv</strong> formats used to be there but will be removed in a future release. Don't use them!</p>
@@ -78,6 +79,46 @@
 <pre><code>GET /servers.json
 </code></pre>
 
+<p>Example with curl:</p>
+
+<pre><code>curl -sLH "X-Api-Token: abcde123456" http://my-cartoque-server/servers.json
+</code></pre>
+
+<p>Expected response:</p>
+
+<pre><code class="highlight language-javascript"><span class="p">{</span>
+  <span class="s2">"servers"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">433</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"server-01"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">434</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"server-02"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>search=[term]</code> : filters on servers which name include [term]</li>
+<li>
+<code>by_location=[site:id|room:id]</code> : filters on site (room) or physical rack id = [id]</li>
+<li>
+<code>by_maintainer=id</code> : filters on maintainer with id = [id]</li>
+<li>
+<code>by_system=id</code> : filters on operating system id = [id] + its descendants (i.e. filtering on Linux will also search sub-operating systems, for instance Debian, etc.)</li>
+<li>
+<code>by_virtual=[0|1]</code> : filters on whether the servers are virtual or not ; "1" means virtual, "0" means not virtual</li>
+<li>
+<code>by_serial_number=[serial]</code> : filters server by serial number</li>
+<li>
+<code>by_arch=[arch]</code> : filters by server architecture if available</li>
+<li>
+<code>by_fullmodel=[term]</code> : filters on manufacturer or model containing [term]</li>
+</ul>
         </div>
       </div>
     </div>

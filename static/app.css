@@ -13,6 +13,8 @@ a { text-decoration: none; }
 a:link, a:visited { color: #f30; } 
 a:hover { color: #f30; }
 ul { list-style-type:square; }
+blockquote { margin:5px 15px; font-style:italic; }
+blockquote > p { margin:0; }
 
 /* layout */
 #container {
@@ -92,7 +94,7 @@ h2 {
 }
 #content code {
   border: 1px solid #dadada;
-  padding:1px 3px;
+  padding:0 2px;
 }
 #content pre>code {
   border:none;
@@ -107,14 +109,14 @@ h2 {
   overflow-y: hidden;
 }
 #content p {
-  margin:8px 0 12px 0;
+  margin:8px 0 6px;
 }
 #screenshots {
   padding: 10px;
   text-align: center;
 }
 #screenshots > div {
-  width:30%;
+  width:33%;
   display:inline-block;
 }
 #screenshots img {
