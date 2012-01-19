@@ -5,46 +5,18 @@ title: API Endpoints
 List of API Endpoints
 =====================
 
-This page lists API endpoints available in Cartoque. If you find some errors or missing informations, feel free to [open a new issue](https://github.com/jbbarth/cartoque/issues/new) or even clone this repository, fix the problem and [issue a pull request](https://github.com/jbbarth/cartoque/pulls) on GitHub.
+This page lists API endpoints available in Cartoque. For each endpoint, a link is provided to a dedicated page where parameters and response format are detailed.
 
+If you find some errors or missing informations, feel free to [open a new issue](https://github.com/jbbarth/cartoque/issues/new) or even clone this repository, fix the problem and [issue a pull request](https://github.com/jbbarth/cartoque/pulls) on GitHub.
 
 Applications
 ------------
-Get a list of all applications:
 
-    GET /applications.json
-
-Expected response:
-
-
-Example with curl:
-
-    curl -H "X-Api-Token: abcde123456" http://my-cartoque-server/applications.json
-
-Other formats: **xml** and **csv** formats used to be there but will be removed in a future release. Don't use them!
-
+- `GET /applications.json` : list all applications. [More details](/api/endpoints/servers.html#get_servers)
+- `GET /applications/:id.json` : show a specific application. [More details](/api/endpoints/servers.html#get_server)
 
 Servers
 -------
-Get a list of all servers:
 
-    GET /servers.json
-
-Example with curl:
-
-    curl -sLH "X-Api-Token: abcde123456" http://my-cartoque-server/servers.json
-
-Expected response:
-
-<pre><code class="highlight language-javascript"><%= json_pretty(%({"servers":[{"id":433,"name":"server-01"},{"id":434,"name":"server-02"}]})) %></code></pre>
-
-Parameters:
-
-* `search=[term]` : filters on servers which name include [term]
-* `by_location=[site:id|room:id]` : filters on site (room) or physical rack id = [id]
-* `by_maintainer=id` : filters on maintainer with id = [id]
-* `by_system=id` : filters on operating system id = [id] + its descendants (i.e. filtering on Linux will also search sub-operating systems, for instance Debian, etc.)
-* `by_virtual=[0|1]` : filters on whether the servers are virtual or not ; "1" means virtual, "0" means not virtual
-* `by_serial_number=[serial]` : filters server by serial number
-* `by_arch=[arch]` : filters by server architecture if available
-* `by_fullmodel=[term]` : filters on manufacturer or model containing [term]
+- `GET /servers.json` : list all servers. [More details](/api/endpoints/applications.html#get_applications)
+- `GET /servers/:id.json` : show a specific server. [More details](/api/endpoints/applications.html#get_application)
