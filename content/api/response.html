@@ -5,6 +5,8 @@ title: Response format and conventions
 Response format and conventions
 ===============================
 
+This page describes some common conventions we use in the API.
+
 Format
 ------
 
@@ -16,7 +18,7 @@ Other formats are natively supported by the applications but should not be used 
 
   - **html** : it's for humans, hey!
   - **pdf** : same here.
-  - **csv** : only used for ``/servers`` and ``/applications`` for now, might disappear in the future.
+  - **csv** : only used for ``/servers`` and ``/applications`` for now, might disappear in the future ; NOT DOCUMENTED
   - **xml** : same as **csv**, most likely to be removed in the next release since the world now has **json** :)
 
 HTTP Response code
@@ -35,7 +37,7 @@ We'll use the same HTTP status code as everywhere. Here's a list of the subset w
 Namespacing conventions
 -----------------------
 
-About namespacing objects, we follow the same conventions as [the one described used in https://gaug.es api](http://railstips.org/blog/archives/2011/12/01/creating-an-api/), if I quote John Nunemaker:
+About namespacing objects, we follow the same conventions as [Gaug.es, documented here](http://railstips.org/blog/archives/2011/12/01/creating-an-api/), if I quote John Nunemaker:
 
 > Again, we decided on a rule. In this case, all top level objects should be name-spaced, but objects referenced from a 
 > top level object or a collection of several objects did not require name-spacing.
