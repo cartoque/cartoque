@@ -11,6 +11,7 @@
 //= require jquery/jquery.chosen
 //= require jquery/jquery.bind-with-delay
 //= require jquery/jquery.observer
+//= require jquery/jquery.inline-labels
 //= require jquery/jquery.elastic
 //= require jquery/jquery.reject.min
 //= require raphael/raphael-min

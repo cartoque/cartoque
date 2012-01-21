@@ -4,7 +4,8 @@
 
   <div class="filters contacts_filter">
     <%= form_tag contacts_path(params), :id => "filters", :method => :get do -%>
-      <input type="text" name="search" id="search_contacts" placeholder="<%= t(:placeholder_for_contacts_search) %>"
+      <label for="search_contacts" class="inline"><%= t(:placeholder_for_contacts_search) %></label>
+      <input type="text" name="search" id="search_contacts" zplaceholder="<%= t(:placeholder_for_contacts_search) %>"
              value="<%= params[:search] %>" autocomplete="off" />
       <%= hidden_sort_fields %>
       <div id="sort_links" class="contextual tiny sort_by contacts_sort_by">

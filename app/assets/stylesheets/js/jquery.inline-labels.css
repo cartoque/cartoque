@@ -1,0 +1,25 @@
+
+/* user-defined settings */
+
+label.inline.supported {
+  color: #999;
+}
+label.inline.supported.focus {
+  color: #ccc;
+}
+
+/* don't change any of this! */
+
+label.inline.supported {
+  position: absolute !important;
+  cursor: text !important;
+  visibility: hidden !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+}
+label.inline.supported.empty {
+  visibility: visible !important;
+}
+
