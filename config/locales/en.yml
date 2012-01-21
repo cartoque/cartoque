@@ -227,7 +227,7 @@ en:
   text_browser_not_supported_paragraph1: "Your browser is not supported, you won't be able to use this application correctly."
   text_browser_not_supported_paragraph2: "Please use a modern browser which respects web standards:"
   text_please_activate_javascript: "You should enable Javascript to use this application."
-  disconnection: "Disconnection"
+  disconnection: "Log out"
   home: "Home"
   platform: "Platform"
   application_server: "Application server"
