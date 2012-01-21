@@ -33,7 +33,7 @@ describe ConfigurationItem do
       ActiveRecord::Base.subclasses.each do |klass|
         if klass.reflect_on_all_associations.detect{|a|a.name == :configuration_item && a.macro == :has_one}
           #"#{klass}#to_s is not defined (required for playing with ConfigurationItem)"
-          klass.should be_instance_method_already_implemented(:to_s)
+          klass.instance_methods.should include(:to_s)
         end
       end
     end
