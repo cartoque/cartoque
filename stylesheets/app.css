@@ -83,7 +83,7 @@ h1 {
   font-size:18px;
 }
 h2 {
-  font-size:12px;
+  font-size:14px;
   margin:15px 0 8px;
   border-bottom: 1px solid #888;
 }
@@ -102,11 +102,20 @@ h2 {
 }
 #content pre {
   border: 1px solid #dadada;
-  margin: 0.5em 1em 0.5em 1.6em;
-  padding: 5px;
+  margin: 10px 10px 10px 15px;
+  padding: 2px 4px;
   width:auto;
   overflow-x: auto;
   overflow-y: hidden;
+}
+#content h2+pre {
+  font-size: 16px;
+  padding: 4px 7px 2px;
+  border: 1px solid #ccc;
+}
+#content h2+pre, #content h2+pre>code {
+  background-color:#e5e5e8;
+  color: #000;
 }
 #content p {
   margin:8px 0 6px;
