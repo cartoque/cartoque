@@ -63,4 +63,31 @@ describe ApplicationsController do
     lambda{ delete :destroy, :id => @application.to_param }.should change(Application, :count).by(-1)
     assert_redirected_to applications_path
   end
+
+  it "allows creation with contacts" do
+    contacts_count = Contact.count
+    contact_relations_count = ContactRelation.count
+
+    Application.find_by_name("webapp-01").should be_blank
+    c = Factory(:contact)
+
+    post :create, application: { name: "webapp-01", contact_ids: [c.id] }
+    app = Application.find_by_name("webapp-01")
+    app.contact_ids.should == [c.id]
+
+    ContactRelation.count.should eq contact_relations_count+1
+    app.destroy
+    ContactRelation.count.should eq contact_relations_count
+  end
+
+  it "allows update with contacts" do
+    app = Application.create!(name: "webapp-01")
+    c = Factory(:contact)
+
+    put :update, :id => app.id, application: { name: "webapp-01", contact_ids: [] }
+    app.reload.contact_ids.should == []
+
+    put :update, :id => app.id, application: { name: "webapp-01", contact_ids: [c.id] }
+    app.reload.contact_ids.should == [c.id]
+  end
 end

@@ -1,13 +1,21 @@
 require 'spec_helper'
 
 describe ConfigurationItemsObserver do
-  it "should create a CI when a concrete-CI-object is saved" do
+  it "should have a CI object" do
     s = Server.new(:name => "my-new-server")
     s.should be_valid
     s.configuration_item.should_not be_blank
     lambda { s.save }.should change(ConfigurationItem, :count).by(+1)
     s.should be_persisted
     s.reload.configuration_item.should be_present
+  end
+
+  it "should preserve associations defined before save" do
+    a = Application.new(:name => "webapp-01")
+    c = Contact.create(:last_name => "Doe")
+    a.contact_ids = [c.id]
+    a.save
+    a.reload.contact_ids.should eq [c.id]
   end
 
   it "should add a CI when #ci method is called" do

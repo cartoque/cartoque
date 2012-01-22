@@ -3,11 +3,11 @@ class ConfigurationItemsObserver < ActiveRecord::Observer
 
   def after_save(record)
     if record.respond_to?(:configuration_item_with_auto_creation)
-      if record.configuration_item.item.blank?
-        ci = record.configuration_item.dup #frozen?..
+      ci = record.configuration_item
+      if ci.item.blank?
+        ci = ci.dup if ci.id.nil? #frozen?..
+        ci.contact_ids = record.configuration_item.contact_ids
         ci.item = record
-      else
-        ci = record.configuration_item
       end
       ci.save
     end

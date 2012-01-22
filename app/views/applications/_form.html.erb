@@ -16,6 +16,14 @@
       <%= f.input :description, :input_html => { :size => "28x6" } %>
       <%= f.input :identifier %>
       <%= f.input :comment, :input_html => { :size => "28x4" } %>
+      <tr class="input select optional">
+        <td class="label">
+          <label class="select optional" for="application_contacts"><%= t(:contacts) %></label>
+        </td>
+        <td class="multiselect">
+          <%= f.input_field :contact_ids, :collection => Contact.all.map{|c| [c.to_s, c.id]}, :as => :multiselect %>
+        </td>
+      </tr>
     </tbody>
   </table>
   </div>

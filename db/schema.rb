@@ -98,6 +98,11 @@ ActiveRecord::Schema.define(:version => 20120122154624) do
     t.string   "entity_type"
   end
 
+  create_table "contact_relations", :force => true do |t|
+    t.integer "configuration_item_id", :default => 0, :null => false
+    t.integer "contact_id",            :default => 0, :null => false
+  end
+
   create_table "contacts", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"

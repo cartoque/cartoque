@@ -24,6 +24,7 @@
       </td>
     </tr>
     <%= a.attribute :comment %>
+    <%= a.association :contacts if @application.contacts.any? %>
   <% end %>
 </table>
 </div>

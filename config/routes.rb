@@ -1,4 +1,6 @@
 Cartoque::Application.routes.draw do
+  resources :contact_relations
+
   resources :mailing_lists, :except => :show
   resources :roles, :except => :show
   resources :datacenters, :except => :show

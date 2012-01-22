@@ -1,5 +1,7 @@
 class ConfigurationItem < ActiveRecord::Base
   belongs_to :item, :polymorphic => true
+  has_many :contact_relations, :dependent => :destroy
+  has_many :contacts, :through => :contact_relations
 
   validates_presence_of :item
 
