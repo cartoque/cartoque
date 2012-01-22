@@ -114,7 +114,7 @@ h2 {
   border: 1px solid #ccc;
 }
 #content h2+pre, #content h2+pre>code {
-  background-color:#f3f3f6;
+  background-color:#dadae0;
   color: #000;
 }
 #content p {
