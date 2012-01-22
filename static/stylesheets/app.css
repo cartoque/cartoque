@@ -1,14 +1,14 @@
 /* general styles */
 @font-face {
   font-family: 'Lobster'; font-style: normal; font-weight: normal;
-  src: local('Lobster'), url('./Lobster.woff') format('woff');
+  src: local('Lobster'), url('../fonts/Lobster.woff') format('woff');
 }
 @font-face {
   font-family: 'Open Sans'; font-style: normal; font-weight: 700;
-  src: local('Open Sans Bold'), local('OpenSans-Bold'), url('./OpenSans-Bold.woff') format('woff');
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url('../fonts/OpenSans-Bold.woff') format('woff');
 }
 html { overflow-y:scroll; }
-body { background-image: url('./bg-grey-noise.png'); font-family: helvetica, arial, freesans, clean, sans-serif; }
+body { background-image: url('../images/bg-grey-noise.png'); font-family: helvetica, arial, freesans, clean, sans-serif; }
 a { text-decoration: none; }
 a:link, a:visited { color: #f30; } 
 a:hover { color: #f30; }
