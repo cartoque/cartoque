@@ -39,7 +39,7 @@ class Server < ActiveRecord::Base
                   :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,
                   :nb_disk_alt, :ipaddress, :application_instance_ids, :database_id, :ipaddresses_attributes, :has_drac,
                   :physical_links_attributes, :network_device, :hypervisor_id, :is_hypervisor, :puppetversion,
-                  :rubyversion, :facterversion, :operatingsystemrelease, :status
+                  :rubyversion, :facterversion, :operatingsystemrelease, :status, :identifier, :arch
   attr_accessor   :just_created
 
   acts_as_ipaddress :ipaddress

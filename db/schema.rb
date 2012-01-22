@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112122159) do
+ActiveRecord::Schema.define(:version => 20120122154624) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -274,7 +274,6 @@ ActiveRecord::Schema.define(:version => 20120112122159) do
     t.integer "operating_system_id",                   :default => 0
     t.integer "physical_rack_id",                      :default => 0
     t.integer "media_drive_id",                        :default => 0
-    t.integer "mainteneur_id",                         :default => 0
     t.string  "name",                   :limit => 150, :default => "",    :null => false
     t.string  "previous_name",                         :default => "",    :null => false
     t.string  "subnet",                 :limit => 23,  :default => "",    :null => false
@@ -319,7 +318,6 @@ ActiveRecord::Schema.define(:version => 20120112122159) do
   end
 
   add_index "servers", ["database_id"], :name => "index_servers_on_database_id"
-  add_index "servers", ["mainteneur_id"], :name => "index_servers_on_mainteneur_id"
   add_index "servers", ["media_drive_id"], :name => "index_servers_on_media_drive_id"
   add_index "servers", ["operating_system_id"], :name => "index_servers_on_operating_system_id"
   add_index "servers", ["physical_rack_id"], :name => "index_servers_on_physical_rack_id"

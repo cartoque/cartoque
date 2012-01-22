@@ -206,7 +206,7 @@ describe Server do
 
     it "should not include stock servers" do
       Server.not_backuped.should include(@server)
-      rack = PhysicalRack.create!(:name => "rack-1", :site => Factory(:room), :status => PhysicalRack::STATUS_STOCK)
+      rack = PhysicalRack.create!(:name => "rack-1", :site_id => Factory(:room).id, :status => PhysicalRack::STATUS_STOCK)
       @server.physical_rack_id = rack.id
       @server.save
       Server.not_backuped.should_not include(@server)
