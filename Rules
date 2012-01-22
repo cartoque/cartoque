@@ -26,7 +26,7 @@ end
 
 route '/static/*' do
   #item.identifier.gsub(%r(/$),'.')+item.attributes[:extension]
-  item.identifier[0..-2]
+  item.identifier[7..-2] # 7 => remove 'static/'
 end
 
 route '*' do
