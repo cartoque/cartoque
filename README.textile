@@ -1,50 +1,5 @@
-h1. Cartoque: a free & simple CMDB 
+h1. Cartoque: a free & simple CMDB
 
 "!https://secure.travis-ci.org/jbbarth/cartoque.png!":http://travis-ci.org/jbbarth/cartoque "!https://gemnasium.com/jbbarth/cartoque.png!":https://gemnasium.com/jbbarth/cartoque
 
-*Cartoque* is a free, web-based CMDB tool built to replace an existing PHP application we used to have at work. It's built 
-on top of the "Ruby on Rails":http://rubyonrails.org/ web framework.
-
-Since it's used only at my $WORK for the moment, *I don't recommend you use it in a production environment for now*. Actually, 
-it comes with opinionated choices that might not fit your needs (see "Requirements" below). The goal of this project is to make 
-the application evolve in a product generic-enough for use in small to medium datacenters. But we don't want to replace MS Access, 
-we don't believe too generic products are good for this job. If you're searching a generic CMDB tool, you might want to give a 
-try to "iTop":http://www.combodo.com/-Overview-.html.
-
-h2. Installing, populating the CMDB, contributing
-
-See "the website":http://jbbarth.github.com/cartoque/
-
-h2. Extra
-
-If you want to see Cartoque's model dependencies, you can run :
-
-bc. rake erd
-
-It will generate a graph of classes relations in the ERD.pdf file.
-
-h2. Licence
-
-Cartoque is released under the MIT license.
-
-h2. Credits
-
-This application is built using the following technologies :
-* Ruby on Rails framework for server-side logic
-* jQuery and various jQuery plugins for client-side animations
-* some awesome javascript graphic libraries like RaphaelJS or d3.js
-* some icons from famfamfam, fatcow and pc.de-duesseldorf sets
-* some webfonts from Google Webfonts: Ubuntu and LeckerLi One
-
-Many functionalities or techniques used here are inspired by the awesome screencasts by Ryan Bates @ http://www.railscasts.com, including :
-* Site Wide Announcements (Episode 103)
-* PDFs exports with PDFKit (Episode 220)
-* Inherited Resources to DRY up controllers (Episode 230)
-* Simple_form to DRY up forms (Episode 234)
-* Search/Sort with AJAX (Episode 240)
-* Simple authentication with OmniAuth (Episode 241)
-* AJAX history state (Episode 246)
-* Trees with Ancestry (Episode 262)
-* Upgrading to Rails 3.1 (Episode 282)
-
-Not mentionning all the more technical aspects I learned through Railscasts and I cannot list here. Thanks Ryan Bates!
+See: "http://jbbarth.github.com/cartoque/":http://jbbarth.github.com/cartoque/
