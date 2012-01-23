@@ -24,9 +24,15 @@
       </td>
     </tr>
     <%= a.attribute :comment %>
-    <%= a.association :contacts, :collection_tag => :ol do |contact| %>
-      <li><%= ContactDecorator.new(contact).to_html(:long_form) %></li>
-    <% end %>
+    <tr class="wrapper application_contacts">
+      <td colspan="2">
+        <span class="label"><%= t(:contacts) %></span><br />
+        <ol class="contacts">
+        <% @application.contacts.each do |contact| %>
+          <li><%= ContactDecorator.new(contact).to_html(:long_form) %></li>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
 </table>
 </div>
