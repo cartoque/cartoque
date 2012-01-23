@@ -21,7 +21,7 @@
           <label class="select optional" for="application_contacts"><%= t(:contacts) %></label>
         </td>
         <td class="multiselect">
-          <%= f.input_field :contact_ids, :collection => Contact.all.map{|c| [c.to_s, c.id]}, :as => :multiselect %>
+          <%= f.input_field :contact_ids, :collection => ContactDecorator.all.map{|c| [c.long_form, c.id]}, :as => :multiselect %>
         </td>
       </tr>
     </tbody>
