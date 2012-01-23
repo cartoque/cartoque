@@ -7,7 +7,12 @@
 #application_general {
   &>.contextual { padding-top:6px; }
 }
-#application_instances .instance-fields { border:none; border-bottom:1px solid #ddd; padding:0.5em 0; margin-bottom:1em; }
+#application_instances .instance-fields { border:none; padding:0.5em 0; margin:0.5em 0; }
+#application_instances .instance-forms {
+  table:nth-of-type(even) {
+    th, td { background-color:#f4f4f9; }
+  }
+}
 .instance-fields {
   th, tr.th td, th:first-child, td, td:first-child { border:none; margin:0; padding:0.2em; border-bottom:none; vertical-align:top; }
   td.label { width:60px; padding-top:0.6em !important; }

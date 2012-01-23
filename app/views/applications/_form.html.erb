@@ -38,7 +38,7 @@
     </thead>
     <tbody>
       <tr class="input string optional">
-        <td class="content" colspan="2">
+        <td class="content instance-forms" colspan="2">
           <% f.object.application_instances.build if f.object.application_instances.size == 0 %>
           <%= f.simple_fields_for :application_instances, f.object.sorted_application_instances do |instance_form| %>
             <%= render 'application_instance_fields', :f => instance_form %>
