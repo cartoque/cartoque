@@ -24,7 +24,9 @@
       </td>
     </tr>
     <%= a.attribute :comment %>
-    <%= a.association :contacts if @application.contacts.any? %>
+    <%= a.association :contacts, :collection_tag => :ol do |contact| %>
+      <li><%= ContactDecorator.new(contact).to_html(:long_form) %></li>
+    <% end %>
   <% end %>
 </table>
 </div>
