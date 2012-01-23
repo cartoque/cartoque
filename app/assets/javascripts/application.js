@@ -5,9 +5,9 @@
 // the compiled file.
 //
 //= require adapt.min
-//= require jquery/jquery
+//= require jquery
 //= require jquery-ui
-//= require jquery/jquery_ujs
+//= require jquery_ujs
 //= require jquery/jquery.chosen
 //= require jquery/jquery.bind-with-delay
 //= require jquery/jquery.observer
