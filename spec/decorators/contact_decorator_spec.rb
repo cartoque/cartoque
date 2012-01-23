@@ -5,17 +5,24 @@ describe ContactDecorator do
     @contact = Factory(:contact).decorate
   end
 
-  it "return a long form with last name, first name and company" do
-    @contact.decorate.long_form.should == "Doe, John (WorldCompany)"
-    @contact.company = nil
-    @contact.decorate.long_form.should == "Doe, John"
+  it "gives a short form with just last name and first name" do
+    @contact.short_form.should == "Doe, John"
     @contact.first_name = nil
-    @contact.decorate.long_form.should == "Doe"
+    @contact.short_form.should == "Doe"
+  end
+
+  it "return a long form with last name, first name and company" do
+    @contact.long_form.should == "Doe, John (WorldCompany)"
+    @contact.company = nil
+    @contact.long_form.should == "Doe, John"
+    @contact.long_form.should == @contact.short_form
+    @contact.first_name = nil
+    @contact.long_form.should == "Doe"
   end
 
   it "return a clean form for mailing lists" do
-    @contact.decorate.mailing_list_form.should == "Doe, John (WorldCompany) &lt;&gt;"
+    @contact.mailing_list_form.should == "Doe, John (WorldCompany) &lt;&gt;"
     @contact.email_infos << ContactInfo.new(info_type: "email", value: "jdoe@example.net")
-    @contact.decorate.mailing_list_form.should == "Doe, John (WorldCompany) &lt;jdoe@example.net&gt;"
+    @contact.mailing_list_form.should == "Doe, John (WorldCompany) &lt;jdoe@example.net&gt;"
   end
 end
