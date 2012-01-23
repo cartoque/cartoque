@@ -25,4 +25,14 @@ describe ContactDecorator do
     @contact.email_infos << ContactInfo.new(info_type: "email", value: "jdoe@example.net")
     @contact.mailing_list_form.should == "Doe, John (WorldCompany) &lt;jdoe@example.net&gt;"
   end
+
+  describe "#to_html" do
+    it "gives an html version of the contact" do
+      @contact.to_html.should have_selector("a", :text => "Doe, John") 
+    end
+
+    it "accepts a parameter to format the contact name" do
+      @contact.to_html(:long_form).should have_selector("a", :text => "Doe, John (WorldCompany)")
+    end
+  end
 end

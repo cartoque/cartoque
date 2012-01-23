@@ -20,7 +20,7 @@ class ContactDecorator < ResourceDecorator
     html
   end
 
-  def to_html
-    h.link_to short_form, model
+  def to_html(form = :short_form)
+    h.link_to send(form), model
   end
 end
