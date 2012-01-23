@@ -1,6 +1,6 @@
 h1. Cartoque: a free & simple CMDB 
 
-"!https://secure.travis-ci.org/jbbarth/cartoque.png?branch=master!":http://travis-ci.org/jbbarth/cartoque "!https://gemnasium.com/jbbarth/cartoque.png!":https://gemnasium.com/jbbarth/cartoque
+"!https://secure.travis-ci.org/jbbarth/cartoque.png!":http://travis-ci.org/jbbarth/cartoque "!https://gemnasium.com/jbbarth/cartoque.png!":https://gemnasium.com/jbbarth/cartoque
 
 *Cartoque* is a free, web-based CMDB tool built to replace an existing PHP application we used to have at work. It's built 
 on top of the "Ruby on Rails":http://rubyonrails.org/ web framework.
