@@ -317,7 +317,6 @@ en:
   works_at: "Works at"
   with: "with"
   placeholder_for_contacts_search: "Search a contact or a company"
-  actions: "Actions"
   text_new_contact_explanation: "Create a new contact : salesman, expert, project manager or client, etc."
   text_new_company_explanation: "Create a new company, an organization, an internal or support service"
   text_generate_mailinglist_explanation: "Generate a new mailing list from configuration items"
