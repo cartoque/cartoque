@@ -21,7 +21,13 @@
           <label class="select optional" for="application_contacts"><%= t(:contacts) %></label>
         </td>
         <td class="multiselect">
-          <%= f.input_field :contact_ids, :collection => ContactDecorator.all.map{|c| [c.long_form, c.id]}, :as => :multiselect %>
+          <% Role.all.each do |role| %>
+            <%= role.name %><br />
+            <%= select_tag "application[contact_ids_with_role][#{role.id}]",
+                           options_for_select(ContactDecorator.all.map{|c| [c.long_form, c.id]}, :selected => @application.contact_ids_with_role(role.id)),
+                           :multiple => true,
+                           :class => "multiselect chzn-select" %>
+          <% end %>
         </td>
       </tr>
     </tbody>

@@ -26,10 +26,15 @@
     <%= a.attribute :comment %>
     <tr class="wrapper application_contacts">
       <td colspan="2">
-        <span class="label"><%= t(:contacts) %></span><br />
-        <ol class="contacts">
-        <% @application.contacts.each do |contact| %>
-          <li><%= ContactDecorator.new(contact).to_html(:long_form) %></li>
+        <% Role.all.each do |role| %>
+          <% contacts = @application.contacts_with_role(role) %>
+          <% next if contacts.blank? %>
+          <span class="label"><%= t(:contacts) %> <%= role.name %></span><br />
+          <ol class="contacts">
+            <% contacts.each do |contact| %>
+              <li><%= ContactDecorator.new(contact).to_html(:long_form) %></li>
+            <% end %>
+          </ol>
         <% end %>
       </td>
     </tr>

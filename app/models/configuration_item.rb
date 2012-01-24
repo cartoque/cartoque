@@ -25,4 +25,33 @@ class ConfigurationItem < ActiveRecord::Base
   def self.real_object_classes
     ConfigurationItemsObserver.instance.observed_classes.map(&:name)
   end
+
+  def contact_relations_with_role(role)
+    contact_relations.includes(:contact, :role)
+                     .where(role_id: role.to_param)
+  end
+
+  def contacts_with_role(role)
+    contact_relations_with_role(role).map(&:contact)
+  end
+
+  def contact_ids_with_role(role)
+    contact_relations_with_role(role).map(&:contact_id)
+  end
+
+  #"contact_ids_with_role"=>{"2"=>["3", "6"], "3"=>["2"], "4"=>["4"]}
+  def contact_ids_with_role=(hsh)
+    hsh.stringify_keys!
+    Role.pluck(:id).each do |role_id|
+      contact_ids = hsh[role_id.to_s] || []
+      #sanitize array
+      contact_ids = contact_ids.reject(&:blank?).map(&:to_i)
+      #remove old ones
+      contact_relations_with_role(role_id).reject{|cr| cr.contact_id.in?(contact_ids)}.each(&:destroy)
+      #add new ones
+      (contact_ids - contact_relations_with_role(role_id).map(&:contact_id)).each do |contact_id|
+        contact_relations << ContactRelation.create(contact_id: contact_id, role_id: role_id)
+      end
+    end
+  end
 end
