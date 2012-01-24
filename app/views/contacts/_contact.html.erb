@@ -1,8 +1,11 @@
 <div class="contact_card<%= " active" if full_display?(contact) %>" style="background-image:url(<%= asset_path(contact.image_url) %>)">
+<div class="informations">
+
   <div class="contextual action-links">
     <%= link_to_edit edit_contact_path(contact) %><br />
     <%= link_to_delete contact %>
   </div>
+
   <h5><%= link_to contact.full_name, contact %></h5>
   <%= content_tag(:p, full_position(contact, true), :class => "contact_position") if full_position(contact).present? %>
 
@@ -23,6 +26,7 @@
     <% end %>
   <% end %>
 
+</div>
 </div>
 
 <% if contact.comment.present? && full_display?(contact) %>

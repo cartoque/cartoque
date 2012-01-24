@@ -1,4 +1,5 @@
 <div class="company_card<%= " active" if full_display?(company) %>" style="background-image:url(<%= asset_path(company.image_url) %>)">
+<div class="informations">
   <div class="contextual action-links">
     <%= link_to_edit edit_company_path(company) %><br />
     <%= link_to_delete company %>
@@ -26,6 +27,7 @@
     <% end %>
   <% end %>
 
+</div>
 </div>
 
 <% if company.comment.present? && full_display?(company) %>

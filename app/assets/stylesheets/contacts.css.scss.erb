@@ -22,16 +22,19 @@
   }
 }
 .contact_card, .company_card {
-  margin:8px 0; padding:5px 5px 5px 46px; background-color:#fbfbfb; background-repeat:no-repeat; background-position:6px 8px;
-  min-height:3.2em; border:1px solid #ddd; @include transition(all, .1s);
+  margin:8px 0; padding-left:40px; background-repeat:no-repeat; background-position:4px 6px;
+  min-height:44px; @include transition(all, .1s);
+  .informations { min-height:44px; }
+  .action-links { margin-top:4px; }
   .action-links img { opacity:0; }
   &:hover .action-links img { opacity:1; }
   &:hover { border:1px solid #bbb; }
   &.active { border:1px solid #888; }
   h5 { font-size:15px; font-weight:bold; margin:0; padding:0; line-height:20px; }
+  a { color:#00b; }
   .contact_position, .company_members { font-size:100%; font-style:italic; margin-top:1px; }
   p {
-    font-size:90%; color:#666; margin-top:4px;
+    font-size:90%; color:#666; padding:2px;
     a, a:hover { color:#666; }
     a:hover { text-decoration:underline; }
   }
