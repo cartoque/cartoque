@@ -29,6 +29,7 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     acts-as-taggable-on (2.0.6)
+    acts_as_list (0.1.4)
     addressable (2.2.6)
     ancestry (1.2.4)
       activerecord (>= 2.2.2)
@@ -216,6 +217,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  acts_as_list
   ancestry
   capybara
   coffee-script

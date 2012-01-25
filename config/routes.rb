@@ -2,7 +2,9 @@ Cartoque::Application.routes.draw do
   resources :contact_relations
 
   resources :mailing_lists, :except => :show
-  resources :roles, :except => :show
+  resources :roles, :except => :show do
+    collection { post 'sort' }
+  end
   resources :datacenters, :except => :show
   resources :upgrades, :only => :index do
     member { put 'validate' }

@@ -21,6 +21,7 @@
 //= require jquery/jquery.placeholder
 //= require contacts
 //= require mailing_lists
+//= require roles
 //= require upgrades
 //= require users
 //

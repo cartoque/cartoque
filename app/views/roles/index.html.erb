@@ -9,19 +9,21 @@
 <table class="pretty list roles">
 <thead>
   <tr>
+    <th></th>
     <th><%= t(:name) %></th>
     <th></th>
   </tr>
 </thead>
-<tbody class="long-list">
+<tbody class="long-list" id="roles-sortable" data-sort-url="<%= sort_roles_path %>">
 <% @roles.each do |role| %>
-  <tr>
+  <%= content_tag_for :tr, role do %>
+    <td><%= image_tag 'transform_move.png', :size => '16x16' %></td>
     <td><%= role.name %></td>
     <td>
       <%= link_to_edit edit_role_path(role) %>
       <%= link_to_delete role %>
     </td>
-  </tr>
+  <% end %>
 <% end %>
 </tbody>
 </table>
