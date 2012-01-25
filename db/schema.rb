@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120124055108) do
+ActiveRecord::Schema.define(:version => 20120125162417) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20120124055108) do
     t.string  "name",        :default => "",    :null => false
     t.text    "description"
     t.boolean "cerbere",     :default => false, :null => false
-    t.text    "comment",                        :null => false
     t.string  "identifier"
   end
 
