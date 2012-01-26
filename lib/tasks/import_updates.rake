@@ -28,7 +28,7 @@ namespace :import do
         end.compact
       # yum
       else
-        packages = lines.grep(/ => /).map(&:strip).map do |line|
+        packages = lines.grep(/^\S+\s+\d/).map(&:strip).map do |line|
           if line.match /^(\S+)\s+(\S+\.\S+)/
             #puts "server:#{servername}, package:#{$1}, from:#{$2}, to:#{$3}"
             pkg = {name: $1, old: "", new: $2}
