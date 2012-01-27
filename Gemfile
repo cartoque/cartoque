@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.0'
+gem 'rails', '3.2.1'
 gem 'mysql2'
 gem 'rake'
 
@@ -30,8 +30,8 @@ gem 'log_buddy'
 
 # Rails 3.1's asset pipeline
 gem 'json'
-gem 'sass'
-gem 'coffee-script'
+gem 'sass-rails'
+gem 'coffee-rails'
 gem 'uglifier'
 
 # JS Runtime
