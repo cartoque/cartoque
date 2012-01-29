@@ -13,7 +13,9 @@ setup_app = Proc.new do |env|
 end
 
 # tell Rails we use this middleware, with some default value just in case
-Rails.application.config.middleware.use OmniAuth::Strategies::CAS, :host => "localhost",
-                                                                   :port => "9292",
-                                                                   :ssl => false,
-                                                                   :setup => setup_app
+Rails.application.config.middleware.use OmniAuth::Builder do
+  use OmniAuth::Strategies::CAS, :host => "localhost",
+                                 :port => "9292",
+                                 :ssl => false,
+                                 :setup => setup_app
+end
