@@ -29,7 +29,8 @@ This section is not complete for the moment. Basically, if you have the correct 
     cd /path/to/cartoque
     gem install bundler
     bundle install
-    rake db:migrate db:seed
+    cp config/database.yml{.example,}
+    rake db:create db:migrate db:seed
 
 Then you can configure the CAS server (replace the CAS server URL, *without the trailing slash*):
 
