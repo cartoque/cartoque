@@ -32,7 +32,7 @@ This section is not complete for the moment. Basically, if you have the correct 
     cp config/database.yml{.example,}
     rake db:create db:migrate db:seed
 
-Then you can configure the CAS server (replace the CAS server URL, *without the trailing slash*):
+Then you can configure the CAS server (replace the CAS server URL):
 
     rails runner 'Settler.load!; Setting.find_by_key("cas_server").update_attribute(:value, "http://your-cas-server.com")'
 
