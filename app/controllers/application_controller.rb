@@ -72,10 +72,10 @@ class ApplicationController < ActionController::Base
   # locale selection
   # see: http://guides.rubyonrails.org/i18n.html
   def set_locale
-    logger.debug "* Current user: #{current_user.inspect}"
-    logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
+    #logger.debug "* Current user: #{current_user.inspect}"
+    #logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
     I18n.locale = current_user.try(:locale) || extract_locale_from_accept_language_header
-    logger.debug "* Locale set to '#{I18n.locale}'"
+    #logger.debug "* Locale set to '#{I18n.locale}'"
   end
 
   private
