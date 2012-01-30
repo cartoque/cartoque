@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "roles/edit.html.erb" do
+describe "roles/edit" do
   before(:each) do
     @role = assign(:role, stub_model(Role,
       :name => "MyString"

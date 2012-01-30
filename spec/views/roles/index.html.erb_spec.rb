@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "roles/index.html.erb" do
+describe "roles/index" do
   before(:each) do
     assign(:roles, [
       stub_model(Role,
