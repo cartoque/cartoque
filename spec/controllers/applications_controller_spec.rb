@@ -6,7 +6,6 @@ describe ApplicationsController do
     @controller = ApplicationsController.new
     @controller.stubs(:current_user).returns(User.new)
     @request    = ActionController::TestRequest.new
-    @request.stubs(:local?).returns(true)
     @application = Factory(:application)
   end
 
