@@ -7,7 +7,8 @@
     <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/960.css" />
     <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/app.css" />
     <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/pygments.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/fancybox/jquery.fancybox-1.3.4.css" />
+    <!-- this css file is in /images/ since it references images in the same directory and I want to be able to upgrade it... -->
+    <link rel="stylesheet" type="text/css" media="all" href="../images/fancybox/jquery.fancybox-1.3.4.css" />
     <script type="text/javascript" src="../javascripts/jquery-1.4.3.min.js"></script>
     <script type="text/javascript" src="../javascripts/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
     <script type="text/javascript" src="../javascripts/fancybox/jquery.easing-1.3.pack.js"></script>
@@ -89,10 +90,11 @@ be OK)</li>
 <pre><code>cd /path/to/cartoque
 gem install bundler
 bundle install
-rake db:migrate db:seed
+cp config/database.yml{.example,}
+rake db:create db:migrate db:seed
 </code></pre>
 
-<p>Then you can configure the CAS server (replace the CAS server URL, <em>without the trailing slash</em>):</p>
+<p>Then you can configure the CAS server (replace the CAS server URL):</p>
 
 <pre><code>rails runner 'Settler.load!; Setting.find_by_key("cas_server").update_attribute(:value, "http://your-cas-server.com")'
 </code></pre>
