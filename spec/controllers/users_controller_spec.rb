@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe UsersController do
+  login_user
+
   before do
-    controller.session[:user_id] = Factory(:user).id #authentication
     @user = Factory(:bob)
   end
 

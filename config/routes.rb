@@ -1,6 +1,6 @@
 Cartoque::Application.routes.draw do
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :contact_relations
-
   resources :mailing_lists, :except => :show
   resources :roles, :except => :show do
     collection { post 'sort' }
@@ -53,11 +53,6 @@ Cartoque::Application.routes.draw do
   put 'hide_announcement' => 'javascripts#hide_announcement', :as => 'hide_announcement' 
 
   get 'puppet(/:action(.:format))', :to => 'puppet', :as => 'puppet'
-
-  match 'auth/:provider/callback' => 'sessions#create'
-  match 'signout' => 'sessions#destroy', :as => :signout
-  match 'auth/failure' => 'sessions#failure', :as => :auth_failure
-  match 'auth/required' => 'sessions#unprotected', :as => :auth_required
 
   #get "welcome/index"
 

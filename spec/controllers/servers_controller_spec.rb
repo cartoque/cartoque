@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe ServersController do
+  login_user
+
   # ApplicationController tests except those for authentication (tested in authentication_spec.rb)
   # Those tests are here because they're made using other controllers, making sure ApplicationController
   # inherited properties work as expected.
@@ -8,10 +10,6 @@ describe ServersController do
     render_views
 
     describe "catches ActiveRecord::RecordNotFound exceptions" do
-      before do
-        controller.session[:user_id] = Factory(:user).id
-      end
-
       it "and renders a 404 error message when format is html" do
         get :show, :id => 0
         response.status.should == 404
@@ -28,7 +26,6 @@ describe ServersController do
 
   describe "real ServersController" do
     before do
-      controller.session[:user_id] = Factory(:user).id #authentication
       @server = Factory(:server)
     end
 

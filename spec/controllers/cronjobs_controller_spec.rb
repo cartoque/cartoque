@@ -1,11 +1,9 @@
 require 'spec_helper'
 
 describe CronjobsController do
-  render_views
+  login_user
 
-  before do
-    controller.session[:user_id] = Factory(:user).id #authentication
-  end
+  render_views
 
   describe "GET /index" do
     it "should not display any cronjob if no filter set" do

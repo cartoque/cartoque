@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe ConfigurationItemsController do
+  login_user
+
   before do
-    controller.session[:user_id] = Factory(:user).id #authentication
     @configuration_item = Factory(:configuration_item)
   end
 

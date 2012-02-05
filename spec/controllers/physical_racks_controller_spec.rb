@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe PhysicalRacksController do
+  login_user
+
   before do
-    controller.session[:user_id] = Factory(:user).id #authentication
     @physical_rack = Factory(:rack1)
   end
 

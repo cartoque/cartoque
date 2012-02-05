@@ -1,4 +1,12 @@
 class User < ActiveRecord::Base
+  # Some default modules are not included: :registerable, :recoverable, :validatable
+  # Others available are: :encryptable, :confirmable, :lockable, :timeoutable
+  devise :database_authenticatable, :rememberable, :trackable,
+         :token_authenticatable, :omniauthable
+
+  # Setup accessible (or protected) attributes for your model
+  #attr_accessible :email, :password, :password_confirmation, :remember_me
+
   validates_presence_of :name
   validates_uniqueness_of :name
 
@@ -20,8 +28,8 @@ class User < ActiveRecord::Base
     save
   end
 
-  def seen_now!
-    update_attribute(:seen_on, Date.today) unless seen_on == Date.today
+  def seen_on
+    [self.last_sign_in_at, self.current_sign_in_at].compact.max
   end
 
   def locale

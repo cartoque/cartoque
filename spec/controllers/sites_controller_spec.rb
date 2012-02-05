@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe SitesController do
+  login_user
+
   before do
-    controller.session[:user_id] = Factory(:user).id #authentication
     @site = Factory(:room)
   end
 

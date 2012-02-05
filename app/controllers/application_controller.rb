@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_filter :authenticate!
+  before_filter :seek_authentication_token
+  before_filter :authenticate_user!
   before_filter :set_locale
 
   protect_from_forgery
@@ -22,7 +23,7 @@ class ApplicationController < ActionController::Base
     redirect_to("/auth/required") unless logged_in?
   end
 
-  def current_user
+  def zcurrent_user
     return @current_user if @current_user
     # Standard login
     if valid_session_user_id?
@@ -35,7 +36,7 @@ class ApplicationController < ActionController::Base
     @current_user.try(:seen_now!)
     @current_user
   end
-  helper_method :current_user
+  #helper_method :current_user
 
   def logged_in?
     current_user.present?
@@ -60,6 +61,11 @@ class ApplicationController < ActionController::Base
 
   def token
     env["HTTP_X_API_TOKEN"]
+  end
+
+  # This filter allows authentication from a custom http header
+  def seek_authentication_token
+    params[:api_token] ||= token
   end
 
   #for more information on pdfkit + asset pipeline:

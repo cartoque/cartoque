@@ -9,6 +9,9 @@
 #a DB connection
 db = ActiveRecord::Base.connection
 
+#create a first user if none
+User.create!(name: "admin", email: "admin@example.net", password: "admin")
+
 #downcase server names
 #TODO: add a validation on the name
 Server.all.each do |server|

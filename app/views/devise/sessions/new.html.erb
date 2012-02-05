@@ -1,0 +1,36 @@
+<div class="grid_12 center" id="login">
+  <div id="cas-login">
+    <%= link_to t(:click_here_for_authentication), user_omniauth_authorize_path(:cas) %>
+  </div>
+
+  <p class="tiny"><%= t(:or_login_below) %>:</p>
+
+  <% if User.where("sign_in_count > 0").none? %>
+    <p style="margin:1em;">TIP: This is your first login. You can log in with "admin@example.net" / "admin"</p>
+  <% end %>
+
+  <div id="internal-login">
+
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <!--<div style="text-align:right"><%= render "links" %></div>-->
+
+      <div>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+
+      <div>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <%= f.hidden_field :remember_me, :value => 1 %>
+      <% end -%>
+
+      <div class="right"><%= f.submit "Sign in" %></div>
+    <% end %>
+
+  </div>
+
+</div>

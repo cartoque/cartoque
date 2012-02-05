@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe DatabasesController do
+  login_user
+
   
   # This should return the minimal set of attributes required to create a valid
   # Database. As you add validations to Database, be sure to
@@ -10,7 +12,6 @@ describe DatabasesController do
   end
 
   before do
-    controller.session[:user_id] = Factory(:user).id #authentication
     @database = Factory(:database)
   end
 

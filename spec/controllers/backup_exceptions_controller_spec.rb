@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe BackupExceptionsController do
+  login_user
+
   before do
-    controller.session[:user_id] = Factory(:user).id #authentication
     @backup_exception = BackupException.create
   end
 

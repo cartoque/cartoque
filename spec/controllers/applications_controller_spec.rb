@@ -1,11 +1,9 @@
 require 'spec_helper'
 
 describe ApplicationsController do
+  login_user
+
   before do
-    controller.session[:user_id] = Factory(:user).id #authentication
-    @controller = ApplicationsController.new
-    @controller.stubs(:current_user).returns(User.new)
-    @request    = ActionController::TestRequest.new
     @application = Factory(:application)
   end
 

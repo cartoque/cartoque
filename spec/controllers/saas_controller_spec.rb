@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe SaasController do
-  before do
-    controller.session[:user_id] = Factory(:user).id #authentication
-  end
+  login_user
 
   it "should should get show" do
     get :show, :id => :redmine

@@ -15,6 +15,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'capybara/rspec'
   require 'capybara/rails'
+  require 'devise/test_helpers'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -62,12 +63,16 @@ Spork.prefork do
     # automatically mark decorator specs as :type => :decorator
     # TODO: remove it when it's included in Draper
     require 'draper/rspec_integration'
+
     # include capybara matchers in decorator specs
     config.include Capybara::RSpecMatchers, :type => :decorator
+
+    # include devise helpers in controller specs
+    config.include Devise::TestHelpers, :type => :controller
+    config.extend ControllerMacros, :type => :controller
   end
 end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-
 end

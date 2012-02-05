@@ -2,7 +2,7 @@
   <ul class="menu-items contextual">
   <% if logged_in? %>
     <li class="connected-as"><%= link_to current_user.name, edit_user_path(current_user) %></li>
-    <li><%= link_to t(:disconnection), signout_path %></li>
+    <li><%= link_to t(:disconnection), destroy_user_session_path, :method => :delete %></li>
   <% end %>
   </ul>
   <ul class="menu-items">

@@ -19,9 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe RolesController do
-  before do
-    controller.session[:user_id] = Factory(:user).id #authentication
-  end
+  login_user
 
   # This should return the minimal set of attributes required to create a valid
   # Role. As you add validations to Role, be sure to
