@@ -80,13 +80,16 @@ class ApplicationController < ActionController::Base
   def set_locale
     #logger.debug "* Current user: #{current_user.inspect}"
     #logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
-    I18n.locale = current_user.try(:locale) || extract_locale_from_accept_language_header
+    locale_candidate = current_user.try(:locale).presence
+    locale_candidate ||= extract_locale_from_accept_language_header
+    if locale_candidate && I18n.available_locales.include?(locale_candidate.to_sym)
+      I18n.locale = locale_candidate
+    end
     #logger.debug "* Locale set to '#{I18n.locale}'"
   end
 
   private
   def extract_locale_from_accept_language_header
-    locale_candidate = "#{request.env['HTTP_ACCEPT_LANGUAGE']}".scan(/^[a-z]{2}/).first
-    (locale_candidate && I18n.available_locales.include?(locale_candidate.to_sym)) ? locale_candidate : nil
+    "#{request.env['HTTP_ACCEPT_LANGUAGE']}".scan(/^[a-z]{2}/).first
   end
 end
