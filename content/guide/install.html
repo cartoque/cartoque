@@ -19,12 +19,14 @@ If you want to install Cartoque, you need to check the following requirements ar
   [RVM](http://beginrescueend.com/), and [Phusion Passenger](http://www.modrails.com/) 3.0.x in standalone mode
 * **Database server**: MySQL version 5.0 or higher is required (support for Postgresql is untested but might 
   be OK)
-* **Authentication**: a CAS server is required for authentication
+* **Authentication**: you can use a CAS server for authentication, but it's no longer required, there's a minimal
+  internal authentication with login/password implemented
 
 Installing the application
 --------------------------
 
-This section is not complete for the moment. Basically, if you have the correct application stack and you've cloned the repository, it installs like any Rails 3 web app :
+This section is not complete for the moment. Basically, if you have the correct application stack and you've cloned
+the repository, it installs like any Rails 3 web app :
 
     cd /path/to/cartoque
     gem install bundler
@@ -32,12 +34,7 @@ This section is not complete for the moment. Basically, if you have the correct 
     cp config/database.yml{.example,}
     rake db:create db:migrate db:seed
 
-Then you can configure the CAS server (replace the CAS server URL):
-
-    rails runner 'Settler.load!; Setting.find_by_key("cas_server").update_attribute(:value, "http://your-cas-server.com")'
-
-And then add the first user (replace at least the uid):
-
-    rails runner 'User.create(:name => "John", :provider => "cas", :uid => "john.smith")'
-
 Start the server, open your browser in the correct URL, and you're ready to go !
+
+*NB*: the default login/password (admin@example.net/admin) is advertised on the login page the first time you log in.
+Of course, we highly recommend you change it as soon as possible, at least before going into production.
