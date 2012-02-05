@@ -16,7 +16,6 @@
       <%= f.input :uid, :input_html => { :style => "width:400px;" }, :wrapper_class => "hidden-if-internal"+css_cas %>
       <%= f.input :password, :as => :password, :wrapper_class => "hidden-if-cas"+css_cas %>
       <%= f.input :password_confirmation, :as => :password, :wrapper_class => "hidden-if-cas"+css_cas %>
-      <%= f.input :locale, :collection => [%w(Français fr), %w(English en)] %>
       <tr>
         <td class="label"><%= f.label :authentication_token, :class => "input" %></td>
         <td>
@@ -27,6 +26,7 @@
                                      "data-confirm" => t(:text_are_you_sure) %>
         </td>
       </tr>
+      <%= f.input :locale, :collection => [%w(Français fr), %w(English en)] %>
     </tbody>
   </table>
 <% end %>
