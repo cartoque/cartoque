@@ -18,54 +18,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  private
-  def authenticate!
-    redirect_to("/auth/required") unless logged_in?
-  end
-
-  def zcurrent_user
-    return @current_user if @current_user
-    # Standard login
-    if valid_session_user_id?
-      @current_user = User.find_by_id(session_user_id)
-    # API login
-    elsif valid_api_token? && api_request?
-      @current_user = User.find_by_authentication_token(token)
-    end
-    # update User#seen_on if possible
-    @current_user.try(:seen_now!)
-    @current_user
-  end
-  #helper_method :current_user
-
-  def logged_in?
-    current_user.present?
-  end
-  helper_method :logged_in?
-
-  def api_request?
-    %w(csv json xml).include?(params[:format])
-  end
-
-  def valid_session_user_id?
-    session_user_id && session_user_id.to_i > 0
-  end
-
-  def session_user_id
-    session[:user_id]
-  end
-
-  def valid_api_token?
-    token && token.length > 5
-  end
-
-  def token
-    env["HTTP_X_API_TOKEN"]
-  end
-
   # This filter allows authentication from a custom http header
+  private
   def seek_authentication_token
-    params[:api_token] ||= token
+    params[:api_token] ||= env["HTTP_X_API_TOKEN"]
   end
 
   #for more information on pdfkit + asset pipeline:
@@ -88,7 +44,6 @@ class ApplicationController < ActionController::Base
     #logger.debug "* Locale set to '#{I18n.locale}'"
   end
 
-  private
   def extract_locale_from_accept_language_header
     "#{request.env['HTTP_ACCEPT_LANGUAGE']}".scan(/^[a-z]{2}/).first
   end

@@ -45,7 +45,7 @@
     <%= t(:text_please_activate_javascript) %>
   </noscript>
 
-  <% if logged_in? && current_announcement.present? %>
+  <% if user_signed_in? && current_announcement.present? %>
     <div id="announcement" class="hide-when-print <%= Settler[:site_announcement_type].presence || "info" %>">
       <%= link_to "×", hide_announcement_path, :remote => true, :method => :put, :class => "close" %>
       <p><%= current_announcement.html_safe %></p>

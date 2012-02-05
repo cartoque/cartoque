@@ -1,13 +1,13 @@
 <div id="top-menu" class="hide-when-print">
   <ul class="menu-items contextual">
-  <% if logged_in? %>
+  <% if user_signed_in? %>
     <li class="connected-as"><%= link_to current_user.name, edit_user_path(current_user) %></li>
     <li><%= link_to t(:disconnection), destroy_user_session_path, :method => :delete %></li>
   <% end %>
   </ul>
   <ul class="menu-items">
     <li class="home"><%= link_to image_tag("home.png", :alt => t(:home), :size => "16x16"), root_path, :class => "img" %></li>
-  <% if logged_in? %>
+  <% if user_signed_in? %>
     <li class="applications"><%= link_to t(:applications), applications_path %></li>
     <li class="servers"><%= link_to t(:servers), servers_path %></li>
     <li class="platform has-submenu">
