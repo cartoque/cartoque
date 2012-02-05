@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120204141725) do
+ActiveRecord::Schema.define(:version => 20120205162617) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -395,15 +395,15 @@ ActiveRecord::Schema.define(:version => 20120204141725) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "provider"
+    t.string   "provider",               :default => "internal"
     t.string   "uid"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "settings"
     t.string   "authentication_token"
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",         :null => false
+    t.string   "encrypted_password",     :default => "",         :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

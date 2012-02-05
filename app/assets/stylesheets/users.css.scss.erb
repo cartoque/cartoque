@@ -6,3 +6,5 @@
   &:hover { @include box-shadow(#ddd, 0, 0, 2px); border-color:#b22; @include gradient(#d74444, #c73333); @include transition(all, .1s); }
 }
 .users .api { color:#292; font-weight:bold; line-height:12px; padding-bottom:7px; }
+.hidden-if-cas.cas { display:none; }
+.hidden-if-internal:not(.cas) { display:none; }

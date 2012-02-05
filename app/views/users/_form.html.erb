@@ -6,12 +6,16 @@
     <%= t(:or) %> <%= link_to t(:back_to_the_list), users_path %>
   <% end %>
 
-  <table class="show_item">
+  <table class="show_item full">
     <tbody>
+      <%= css_cas = @user.provider=="cas" ? " cas" : "" %>
       <%= tabular_errors @user %>
       <%= f.input :name, :required => true, :wrapper_class => "th" %>
-      <%= f.input :provider, :collection => [["Cerbère CAS", "cas"]] %>
-      <%= f.input :uid, :input_html => { :style => "width:400px;" } %>
+      <%= f.input :provider, :collection => [[t(:user_provider_internal), "internal"], [t(:user_provider_cas), "cas"]],
+                             :include_blank => false %>
+      <%= f.input :uid, :input_html => { :style => "width:400px;" }, :wrapper_class => "hidden-if-internal"+css_cas %>
+      <%= f.input :password, :as => :password, :wrapper_class => "hidden-if-cas"+css_cas %>
+      <%= f.input :password_confirmation, :as => :password, :wrapper_class => "hidden-if-cas"+css_cas %>
       <%= f.input :locale, :collection => [%w(Français fr), %w(English en)] %>
       <tr>
         <td class="label"><%= f.label :authentication_token, :class => "input" %></td>

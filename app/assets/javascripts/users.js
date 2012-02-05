@@ -1,5 +1,11 @@
 //generate token button
 $(function() {
+  //internal VS cas authentication
+  $('#user_provider').live('change', function(e) {
+    $('.hidden-if-internal, .hidden-if-cas').toggleClass("cas");
+  });
+
+  //token
   $("#generate-token").live("click", function(e) {
     $(this).disabled = true;
     $.rails.ajax({

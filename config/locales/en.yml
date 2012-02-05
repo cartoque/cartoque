@@ -219,6 +219,8 @@ en:
   edit_a_user: "Edit a user"
   new_user: "New user"
   user_provider: "Provider"
+  user_provider_internal: "Internal"
+  user_provider_cas: "CAS / SSO"
   user_uid: "UID"
   user_api: "API"
   user_seen: "Seen"

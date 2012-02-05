@@ -376,6 +376,8 @@ fr:
   edit_a_user: "Edition d'un utilisateur"
   new_user: "Nouvel utilisateur"
   user_provider: "Provider"
+  user_provider_internal: "Interne"
+  user_provider_cas: "CAS / SSO"
   user_uid: "UID"
   user_api: "API"
   user_seen: "Seen"
