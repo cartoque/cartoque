@@ -10,7 +10,7 @@
   <tr>
     <%= sortable_th "name" %>
     <th><%= t(:user_provider) %></th>
-    <%= sortable_th "uid", t(:user_uid) %>
+    <th><%= t(:user_uid) %> / <%= t(:email) %></th>
     <th><%= t(:user_api) %></th>
     <%= sortable_th "seen_on", t(:user_seen) %>
     <th></th>
@@ -20,7 +20,7 @@
   <tr>
     <td><%= link_to user.name, edit_user_path(user) %></td>
     <td class="center"><%= user.provider %></td>
-    <td class="center"><%= user.uid %></td>
+    <td class="center"><%= user.provider == "internal" ? user.email : user.uid %></td>
     <td class="api center"><%= "&#149;".html_safe if user.authentication_token? %></td>
     <td class="center"><%= user.seen_on.try(:strftime, "%d/%m/%y") %></td>
     <td><%= link_to_delete(user) unless user == current_user %></td>
