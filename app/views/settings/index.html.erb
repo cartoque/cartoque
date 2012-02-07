@@ -19,7 +19,7 @@
   <tr>
     <th><%= t(:service_message) %></th>
     <td>
-      <%= text_area_tag 'settings[site_announcement_message]', Settler[:site_announcement_message], :size => "70x2" %><br />
+      <%= text_area_tag 'settings[site_announcement_message]', Settler[:site_announcement_message], :size => "60x2" %><br />
       <%= t(:theme) %>: <%= select_tag 'settings[site_announcement_type]',
                             options_for_select(%w(info success warning error).map{|a| [a,a]}, Settler[:site_announcement_type]) %>
     </td>
@@ -27,7 +27,7 @@
   <tr>
     <th><%= t(:dns_domains) %></th>
     <td>
-      <%= text_area_tag 'settings[dns_domains]', Settler[:dns_domains], :size => "70x8" %><br />
+      <%= text_area_tag 'settings[dns_domains]', Settler[:dns_domains], :size => "60x8" %><br />
     </td>
   </tr>
 
