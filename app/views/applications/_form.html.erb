@@ -26,6 +26,7 @@
                            options_for_select(ContactDecorator.all.map{|c| [c.long_form, c.id]}, :selected => @application.contact_ids_with_role(role.id)),
                            :multiple => true,
                            :class => "multiselect chzn-select" %>
+            <%= f.hidden_field "contact_ids_with_role[#{role.id}][]", :value => "0" %>
           <% end %>
         </td>
       </tr>
