@@ -7,7 +7,8 @@
   <% end %>
   </ul>
   <ul class="menu-items">
-    <li class="home"><%= link_to image_tag("home.png", :alt => t(:home), :size => "16x16"), root_path, :class => "img" %></li>
+    <li class="home"><%= link_to image_tag("home.png", :alt => t(:home), :size => "16x16"), root_path,
+                                 :class => "img", :title => t(:home) %></li>
   <% if user_signed_in? %>
     <li class="applications"><%= link_to t(:applications), applications_path %></li>
     <li class="servers"><%= link_to t(:servers), servers_path %></li>
