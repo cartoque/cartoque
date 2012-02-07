@@ -8,7 +8,7 @@
 
   <table class="show_item full">
     <tbody>
-      <%= css_cas = @user.provider=="cas" ? " cas" : "" %>
+      <% css_cas = @user.provider=="cas" ? " cas" : "" %>
       <%= tabular_errors @user %>
       <%= f.input :name, :required => true, :wrapper_class => "th" %>
       <%= f.input :provider, :collection => [[t(:user_provider_internal), "internal"], [t(:user_provider_cas), "cas"]],
