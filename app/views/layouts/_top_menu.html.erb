@@ -2,7 +2,8 @@
   <ul class="menu-items contextual">
   <% if user_signed_in? %>
     <li class="connected-as"><%= link_to current_user.name, edit_user_path(current_user) %></li>
-    <li><%= link_to t(:disconnection), destroy_user_session_path, :method => :delete %></li>
+    <li><%= link_to image_tag("sign-out.png", :alt => t(:disconnection), :size => "16x16"), destroy_user_session_path,
+                    :method => :delete, :class => "img", :title => t(:disconnection) %></li>
   <% end %>
   </ul>
   <ul class="menu-items">
