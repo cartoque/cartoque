@@ -5,6 +5,12 @@
   -moz-box-shadow: $left $top $radius $color;
 }
 
+@mixin box-shadow2($one, $two) {
+  box-shadow: $one, $two;
+  -webkit-box-shadow: $one, $two;
+  -moz-box-shadow: $one, $two;
+}
+
 @mixin transition($property, $duration, $easing: linear) {
   transition: $property $duration $easing;
   -webkit-transition: $property $duration $easing;
