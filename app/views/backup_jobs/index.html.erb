@@ -1,5 +1,11 @@
 <% title t(:backups) %>
 
+<script type="text/javascript">
+  $(function() {
+    Cartoque.highlightNotBackupedServers("<%= params[:by_server] %>");
+  });
+</script>
+
 <div id="backup_jobs" class="items_list grid_12">
   
 <% if @not_backuped_count > 0 %>

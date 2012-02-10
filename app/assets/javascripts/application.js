@@ -19,6 +19,7 @@
 //= require raphael/g.pie-min
 //= require jquery/jquery.facebox
 //= require jquery/jquery.placeholder
+//= require backup_jobs
 //= require contacts
 //= require mailing_lists
 //= require roles
