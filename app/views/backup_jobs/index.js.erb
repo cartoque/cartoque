@@ -1,4 +1,16 @@
 $("#backup_jobs_list").html("<%= escape_javascript(render("list")) %>");
 $("#backup_jobs_counter").html("<%= @backup_jobs.map(&:server_id).uniq.count %>");
+//highlight server in "not-backuped" list
+var term = "<%= escape_javascript(params[:by_server]) %>";
+if (term && term != "") {
+  $("#not-backuped .servers a").each(function() {
+    var $elem = $(this);
+    if ($elem.html().indexOf(term) >= 0) {
+      $elem.addClass("highlighted");
+    } else {
+      $elem.removeClass("highlighted");
+    }
+  });
+}
 fixTableHeaders();
 $("html, body").animate({ scrollTop: 0 }, 200);
