@@ -1,0 +1,32 @@
+<% title t(:components) %>
+
+<div class="grid_9 center">
+
+<%= action_links do %>
+  <%= link_to t(:new_component), new_component_path %>
+<% end %>
+
+<table class="pretty list components">
+<thead>
+  <tr>
+    <th><%= t(:name) %></th>
+    <th><%= t(:website) %></th>
+    <th><%= t(:description) %></th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody class="long-list">
+<% @components.each do |component| %>
+  <tr>
+    <td><%= component.name %></td>
+    <td><%= component.website %></td>
+    <td><%= component.description %></td>
+    <td><%= link_to_edit edit_component_path(component) %></td>
+    <td><%= link_to_delete component %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+</div>

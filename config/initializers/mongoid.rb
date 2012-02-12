@@ -6,7 +6,7 @@
 class String
   def identify
     if Mongoid.parameterize_keys
-      gsub(/[^a-z0-9]+/, ' ').strip.gsub(' ', '-')
+      downcase.gsub(/[^a-z0-9]+/, ' ').strip.gsub(' ', '-')
     else
       self
     end

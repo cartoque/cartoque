@@ -1,4 +1,5 @@
 Cartoque::Application.routes.draw do
+  resources :components
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :contact_relations
   resources :mailing_lists, except: :show
