@@ -39,4 +39,8 @@ class User < ActiveRecord::Base
   def locale=(new_locale)
     update_setting(:locale, new_locale)
   end
+
+  def datacenter
+    @datacenter ||= Datacenter.default
+  end
 end

@@ -12,6 +12,13 @@ describe User do
     other.errors[:name].should == [I18n.t("activerecord.errors.messages.taken")]
   end
 
+  it "should have a contextual datacenter" do
+    Datacenter.count.should == 0
+    @user.datacenter.should_not be_blank
+    @user.datacenter.name.should == "Datacenter"
+    Datacenter.count.should == 1
+  end
+
   it "should have a unique provider+uid" do
 
     
