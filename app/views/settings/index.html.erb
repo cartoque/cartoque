@@ -5,6 +5,14 @@
 <%= form_tag update_all_settings_path, :method => :put do %>
 <table id="settings" class="pretty">
   <tr>
+    <th><%= t(:authentication) %></th>
+    <td>
+      <%= hidden_field_tag 'settings[allow_internal_authentication]', 'no' %>
+      <%= check_box_tag 'settings[allow_internal_authentication]', 'yes', Settler[:allow_internal_authentication] == "yes" %>
+      <label for="settings_allow_internal_authentication"><%= t(:allow_internal_authentication) %></label>
+    </td>
+  </tr>
+  <tr>
     <th><%= t(:cas_server_url) %></th>
     <td>
       <%= text_field_tag 'settings[cas_server]', Settler[:cas_server], :size => 35 %>

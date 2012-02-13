@@ -1,6 +1,25 @@
 require 'spec_helper'
 
 describe "Authentication" do
+  describe "via a browser" do
+    it "redirects on the sign in page if not authenticated" do
+      get servers_path
+      response.should redirect_to new_user_session_path
+    end
+
+    it "displays internal auth depending on settings" do
+      Settler["allow_internal_authentication"].should == "yes"
+      get new_user_session_path
+      response.body.should have_selector("#cas-login")
+      response.body.should have_selector("#internal-login")
+      Settler.allow_internal_authentication.update_attribute(:value, 'no')
+      Settler["allow_internal_authentication"].should == "no"
+      get new_user_session_path
+      response.body.should have_selector("#cas-login")
+      response.body.should_not have_selector("#internal-login")
+    end
+  end
+
   describe "via an API Token" do
     describe "GET /servers.csv", :type => :request do
       it "refuses access if no authentication token given" do

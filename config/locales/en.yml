@@ -298,6 +298,8 @@ en:
   components: "Components"
   services: "Services"
   retry_connection: "Retry connection"
+  authentication: "Authentication"
+  allow_internal_authentication: "Allow internal authentication"
   click_here_for_authentication: "Click here to authenticate with CAS"
   or_login_below: "Or login below"
   tip_first_login: "This is your first login. The default username is 'admin@example.net' and password 'admin'. You should change it once you logged in."

@@ -455,6 +455,8 @@ fr:
   components: "Composants"
   services: "Services"
   retry_connection: "Retenter la connexion"
+  authentication: "Authentification"
+  allow_internal_authentication: "Autoriser l'authentification par login/password"
   click_here_for_authentication: "Cliquez ici pour vous authentifier avec CAS"
   or_login_below: "Ou identifiez-vous ci-dessous"
   tip_first_login: "C'est votre première authentification. Le login par défaut est 'admin@example.net' et le mot de passe 'admin'. Vous devriez changer ces paramètres dès que vous serez connecté."
