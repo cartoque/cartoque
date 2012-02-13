@@ -13,6 +13,6 @@ class SettingsController < ApplicationController
         settings[key].save
       end
     end
-    redirect_to settings_path, :notice => "Paramètres mis à jour"
+    redirect_to settings_path, notice: "Paramètres mis à jour"
   end
 end

@@ -6,7 +6,7 @@ class CreateMailingLists < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :contacts_mailing_lists, :id => false do |t|
+    create_table :contacts_mailing_lists, id: false do |t|
       t.integer :contact_id
       t.integer :mailing_list_id
     end

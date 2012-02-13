@@ -6,7 +6,7 @@ class CreateBackupExceptions < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :backup_exceptions_servers, :id => false do |t|
+    create_table :backup_exceptions_servers, id: false do |t|
       t.integer :backup_exception_id
       t.integer :server_id
     end

@@ -4,7 +4,7 @@
      t[:tomcat].split("_").last.to_s
    end.each do |tomcat| %>
 <div class="related-ci related-tomcats">
-  <%= link_to tomcats_path(:by_server => @server.name) do %>
+  <%= link_to tomcats_path(by_server: @server.name) do %>
   <div class="informations">
     <div class="contextual tinier"><%= "#{tomcat[:java_version]} #{tomcat[:java_xms]}/#{tomcat[:java_xmx]}" %></div>
     <h3><%= tomcat[:tomcat] %></h3>

@@ -6,7 +6,7 @@
   <% end %>
   <div id="contacts_list">
     <% @contacts.each do |contact| %>
-      <%= render :partial => 'contact', :object => contact %>
+      <%= render partial: 'contact', object: contact %>
     <% end %>
   </div>
 </div>
@@ -17,7 +17,7 @@
   <% end %>
   <div id="companies_list">
     <% @companies.each do |company| %>
-      <%= render :partial => 'companies/company', :object => company %>
+      <%= render partial: 'companies/company', object: company %>
     <% end %>
   </div>
 </div>

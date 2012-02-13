@@ -8,30 +8,30 @@ class Server < ActiveRecord::Base
   belongs_to :physical_rack
   belongs_to :operating_system
   belongs_to :media_drive
-  belongs_to :maintainer, :class_name => 'Company'
+  belongs_to :maintainer, class_name: 'Company'
   belongs_to :database
   has_one :storage
-  has_many :ipaddresses, :dependent => :destroy
-  has_many :physical_links, :dependent => :destroy, :class_name => 'PhysicalLink', :foreign_key => 'server_id'
-  has_many :connected_links, :dependent => :destroy, :class_name => 'PhysicalLink', :foreign_key => 'switch_id'
-  has_many :cronjobs, :dependent => :destroy
-  has_many :nss_volumes, :dependent => :destroy
-  has_many :nss_disks, :dependent => :destroy
-  has_many :nss_associations, :dependent => :destroy
-  has_many :used_nss_volumes, :through => :nss_associations, :source => :nss_volume
-  has_many :exported_disks, :class_name => "NetworkDisk", :dependent => :destroy
-  has_many :network_filesystems, :class_name => "NetworkDisk", :foreign_key => "client_id", :dependent => :destroy
-  belongs_to :hypervisor, :class_name => "Server"
-  has_many :virtual_machines, :class_name => "Server", :foreign_key => "hypervisor_id"
+  has_many :ipaddresses, dependent: :destroy
+  has_many :physical_links, dependent: :destroy, class_name: 'PhysicalLink', foreign_key: 'server_id'
+  has_many :connected_links, dependent: :destroy, class_name: 'PhysicalLink', foreign_key: 'switch_id'
+  has_many :cronjobs, dependent: :destroy
+  has_many :nss_volumes, dependent: :destroy
+  has_many :nss_disks, dependent: :destroy
+  has_many :nss_associations, dependent: :destroy
+  has_many :used_nss_volumes, through: :nss_associations, source: :nss_volume
+  has_many :exported_disks, class_name: "NetworkDisk", dependent: :destroy
+  has_many :network_filesystems, class_name: "NetworkDisk", foreign_key: "client_id", dependent: :destroy
+  belongs_to :hypervisor, class_name: "Server"
+  has_many :virtual_machines, class_name: "Server", foreign_key: "hypervisor_id"
   has_and_belongs_to_many :licenses
-  has_many :backup_jobs, :dependent => :destroy
+  has_many :backup_jobs, dependent: :destroy
   has_and_belongs_to_many :backup_exceptions
-  has_one :upgrade, :dependent => :destroy
+  has_one :upgrade, dependent: :destroy
 
-  accepts_nested_attributes_for :ipaddresses, :reject_if => lambda{|a| a[:address].blank? },
-                                              :allow_destroy => true
-  accepts_nested_attributes_for :physical_links, :reject_if => lambda{|a| a[:link_type].blank? || a[:switch_id].blank? },
-                                                 :allow_destroy => true
+  accepts_nested_attributes_for :ipaddresses, reject_if: lambda{|a| a[:address].blank? },
+                                              allow_destroy: true
+  accepts_nested_attributes_for :physical_links, reject_if: lambda{|a| a[:link_type].blank? || a[:switch_id].blank? },
+                                                 allow_destroy: true
 
   attr_accessible :operating_system_id, :physical_rack_id, :media_drive_id, :maintainer_id, :name,
                   :previous_name, :subnet, :lastbyte, :serial_number, :virtual, :description, :model, :memory, :frequency,
@@ -46,10 +46,10 @@ class Server < ActiveRecord::Base
 
   scope :active, where("servers.status" => STATUS_ACTIVE)
   scope :inactive, where("servers.status" => STATUS_INACTIVE)
-  scope :real_servers, where(:network_device => false)
-  scope :network_devices, where(:network_device => true)
-  scope :hypervisor_hosts, where(:is_hypervisor => true)
-  scope :by_rack, proc {|rack_id| { :conditions => { :physical_rack_id => rack_id } } }
+  scope :real_servers, where(network_device: false)
+  scope :network_devices, where(network_device: true)
+  scope :hypervisor_hosts, where(is_hypervisor: true)
+  scope :by_rack, proc {|rack_id| { conditions: { physical_rack_id: rack_id } } }
   scope :by_site, proc {|site_id| joins(:physical_rack).where("physical_racks.site_id" => site_id) }
   scope :by_location, proc {|location|
     if location.match /^site-(\d+)/
@@ -60,16 +60,16 @@ class Server < ActiveRecord::Base
       scoped
     end
   }
-  scope :by_maintainer, proc {|maintainer_id| { :conditions => { :maintainer_id => maintainer_id } } }
-  scope :by_system, proc {|system_id| { :conditions => { :operating_system_id => OperatingSystem.find(system_id).subtree.map(&:id) } } }
-  scope :by_virtual, proc {|virtual| { :conditions => { :virtual => (virtual.to_s == "1") } } }
+  scope :by_maintainer, proc {|maintainer_id| { conditions: { maintainer_id: maintainer_id } } }
+  scope :by_system, proc {|system_id| { conditions: { operating_system_id: OperatingSystem.find(system_id).subtree.map(&:id) } } }
+  scope :by_virtual, proc {|virtual| { conditions: { virtual: (virtual.to_s == "1") } } }
   scope :by_puppet, proc {|puppet| (puppet.to_i != 0) ? where("puppetversion IS NOT NULL") : where("puppetversion IS NULL") }
-  scope :by_osrelease, proc {|version| where(:operatingsystemrelease => version) }
-  scope :by_puppetversion, proc {|version| where(:puppetversion => version) }
-  scope :by_facterversion, proc {|version| where(:facterversion => version) }
-  scope :by_rubyversion, proc {|version| where(:rubyversion => version) }
+  scope :by_osrelease, proc {|version| where(operatingsystemrelease: version) }
+  scope :by_puppetversion, proc {|version| where(puppetversion: version) }
+  scope :by_facterversion, proc {|version| where(facterversion: version) }
+  scope :by_rubyversion, proc {|version| where(rubyversion: version) }
   scope :by_serial_number, proc {|search| where("serial_number like ?", "%#{search}%") }
-  scope :by_arch, proc {|arch| where(:arch => arch) }
+  scope :by_arch, proc {|arch| where(arch: arch) }
   scope :by_fullmodel, proc{|model| where("manufacturer like ? OR model like ?", "%#{model}%", "%#{model}%") }
 
   validates_presence_of :name
@@ -97,7 +97,7 @@ class Server < ActiveRecord::Base
     end
     server = Server.unscoped.find_by_name(servername) || Server.unscoped.find_by_identifier(servername)
     if server.blank?
-      server = Server.create(:name => servername)
+      server = Server.create(name: servername)
       server.just_created = true
     end
     server

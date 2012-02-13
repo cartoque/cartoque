@@ -6,8 +6,8 @@ class RemoveOldFieldsInApplications < ActiveRecord::Migration
   end
 
   def down
-    add_column :applications, :iaw, :string, :limit => 55, :default => "", :null => false
-    add_column :applications, :pe, :string, :limit => 55, :default => "", :null => false
-    add_column :applications, :ams, :string, :limit => 55, :default => "", :null => false
+    add_column :applications, :iaw, :string, limit: 55, default: "", null: false
+    add_column :applications, :pe, :string, limit: 55, default: "", null: false
+    add_column :applications, :ams, :string, limit: 55, default: "", null: false
   end
 end

@@ -1,37 +1,37 @@
 Cartoque::Application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :contact_relations
-  resources :mailing_lists, :except => :show
-  resources :roles, :except => :show do
+  resources :mailing_lists, except: :show
+  resources :roles, except: :show do
     collection { post 'sort' }
   end
-  resources :datacenters, :except => :show
-  resources :upgrades, :only => :index do
+  resources :datacenters, except: :show
+  resources :upgrades, only: :index do
     member { put 'validate' }
   end
   resources :companies do
     collection { get 'autocomplete' }
   end
   resources :contacts
-  resources :backup_exceptions, :except => :show
-  resources :backup_jobs, :only => [:index]
+  resources :backup_exceptions, except: :show
+  resources :backup_jobs, only: [:index]
   resources :licenses
-  resources :nss_disks, :only => [:index]
-  resources :nss_volumes, :only => [:index]
-  resources :cronjobs, :only => [:index]
-  resources :configuration_items, :only => [:index, :show]
-  resources :settings, :only => :index do
-   collection { put 'update_all', :as => 'update_all' }
+  resources :nss_disks, only: [:index]
+  resources :nss_volumes, only: [:index]
+  resources :cronjobs, only: [:index]
+  resources :configuration_items, only: [:index, :show]
+  resources :settings, only: :index do
+   collection { put 'update_all', as: 'update_all' }
   end
-  resources :saas, :only => :show
-  resources :users, :except => :show do
+  resources :saas, only: :show
+  resources :users, except: :show do
     collection { get 'random_token' }
   end
-  resources :physical_racks, :except => :show
-  resources :sites, :except => :show
-  resources :operating_systems, :except => :show
-  resources :tomcats, :only => :index do
-    collection { get 'index_old', :as => 'old' }
+  resources :physical_racks, except: :show
+  resources :sites, except: :show
+  resources :operating_systems, except: :show
+  resources :tomcats, only: :index do
+    collection { get 'index_old', as: 'old' }
   end
   resources :databases do
     collection { get 'distribution' }
@@ -50,9 +50,9 @@ Cartoque::Application.routes.draw do
     mount engine => "/#{engine_name}" unless engine.nil?
   end
 
-  put 'hide_announcement' => 'javascripts#hide_announcement', :as => 'hide_announcement' 
+  put 'hide_announcement' => 'javascripts#hide_announcement', as: 'hide_announcement' 
 
-  get 'puppet(/:action(.:format))', :to => 'puppet', :as => 'puppet'
+  get 'puppet(/:action(.:format))', to: 'puppet', as: 'puppet'
 
   #get "welcome/index"
 
@@ -64,8 +64,8 @@ Cartoque::Application.routes.draw do
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+  #   match 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  # This route can be invoked with purchase_url(id: product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
@@ -92,7 +92,7 @@ Cartoque::Application.routes.draw do
   #   resources :products do
   #     resources :comments
   #     resources :sales do
-  #       get 'recent', :on => :collection
+  #       get 'recent', on: :collection
   #     end
   #   end
 
@@ -105,7 +105,7 @@ Cartoque::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "welcome#index"
+  root to: "welcome#index"
 
   # See how all your routes lay out with "rake routes"
 

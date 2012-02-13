@@ -9,9 +9,9 @@
   <table class="show_item">
     <tbody>
       <%= tabular_errors @datacenter %>
-      <%= f.input :name, :required => true,
-                         :wrapper_class => "th",
-                         :input_html => { :size => 30 } %>
+      <%= f.input :name, required: true,
+                         wrapper_class: "th",
+                         input_html: { size: 30 } %>
     </tbody>
   </table>
 <% end %>

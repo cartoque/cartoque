@@ -20,7 +20,7 @@
   <tr>
     <td><%= link_to mailing_list.name, edit_mailing_list_path(mailing_list) %></td>
     <td><%= mailing_list.contacts.map(&:email_infos).map(&:first).map(&:value).join(", ") %></td>
-    <td><%= mail_to mailing_list.contacts.map(&:email_infos).map(&:first).map(&:value).join(","), t(:use), :class => "button-mail" %></td>
+    <td><%= mail_to mailing_list.contacts.map(&:email_infos).map(&:first).map(&:value).join(","), t(:use), class: "button-mail" %></td>
     <td><%= link_to_delete mailing_list %></td>
   </tr>
 <% end %>

@@ -1,5 +1,5 @@
 class BackupExceptionsController < InheritedResources::Base
-  before_filter :fill_user_id, :only => [:create, :update]
+  before_filter :fill_user_id, only: [:create, :update]
   def create
     create! { backup_exceptions_url }
   end

@@ -1,13 +1,13 @@
 class ConfigurationItem < ActiveRecord::Base
-  belongs_to :item, :polymorphic => true
-  has_many :contact_relations, :dependent => :destroy
-  has_many :contacts, :through => :contact_relations
+  belongs_to :item, polymorphic: true
+  has_many :contact_relations, dependent: :destroy
+  has_many :contacts, through: :contact_relations
 
   validates_presence_of :item
 
   before_validation :update_identifier!
 
-  scope :by_item_type, proc {|type| where(:item_type => type) }
+  scope :by_item_type, proc {|type| where(item_type: type) }
   default_scope order('item_type, identifier')
 
   def self.generate_ci_for(record)

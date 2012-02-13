@@ -4,13 +4,13 @@
 
 <%= action_links do %>
   <div class="contextual">
-    <%= link_to image_tag("file_extension_pdf.png", :size => "16x16"), storages_path(:format => "pdf") %>
+    <%= link_to image_tag("file_extension_pdf.png", size: "16x16"), storages_path(format: "pdf") %>
   </div>
   <%= link_to t(:add_a_storage_device), new_storage_path %>
 <% end %>
 
 <table class="pretty list center" id="storage">
-  <%= form_tag storages_path(params), :id => "filters", :method => :get do -%>
+  <%= form_tag storages_path(params), id: "filters", method: :get do -%>
   <tr class="filters fixed-size">
     <td></td>
     <td><%= select_tag "by_constructor", options_for_select([["",""]] + Storage.supported_types, params[:by_constructor]).html_safe -%></td>

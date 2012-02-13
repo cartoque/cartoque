@@ -13,6 +13,6 @@ class RolesController < InheritedResources::Base
     params[:role].each_with_index do |id, index|
       Role.update_all(['position=?', index+1], ['id=?', id])
     end 
-    render :nothing => true
+    render nothing: true
   end
 end

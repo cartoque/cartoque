@@ -3,6 +3,6 @@ class ApplicationUrl < ActiveRecord::Base
 
   validates_presence_of :url
 
-  scope :public, where(:public => true)
-  scope :private, where(:public => false)
+  scope :public, where(public: true)
+  scope :private, where(public: false)
 end

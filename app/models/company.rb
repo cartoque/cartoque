@@ -1,11 +1,11 @@
 class Company < ActiveRecord::Base
-  has_many :contacts, :dependent => :nullify
-  has_many :maintained_servers, :class_name => 'Server', :foreign_key => 'maintainer_id'
+  has_many :contacts, dependent: :nullify
+  has_many :maintained_servers, class_name: 'Server', foreign_key: 'maintainer_id'
   include Contactable
 
   validates_presence_of :name
 
-  scope :maintainers, where(:is_maintainer => true).order('name asc')
+  scope :maintainers, where(is_maintainer: true).order('name asc')
 
   def to_s
     name

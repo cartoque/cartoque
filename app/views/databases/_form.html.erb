@@ -4,10 +4,10 @@
   <table class="show_item">
     <tbody>
       <%= tabular_errors @database %>
-      <%= f.input :name, :required => true, :wrapper_class => "th" %>
-      <%= f.input :database_type, :collection => %w(postgres oracle),
-                  :required => true, :include_blank => false %>
-      <%= f.association :servers, :collection => Server.order(:name), :as => :multiselect %>
+      <%= f.input :name, required: true, wrapper_class: "th" %>
+      <%= f.input :database_type, collection: %w(postgres oracle),
+                  required: true, include_blank: false %>
+      <%= f.association :servers, collection: Server.order(:name), as: :multiselect %>
     </tbody>
   </table>
 

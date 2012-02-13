@@ -1,7 +1,7 @@
-<%= content_tag(:div, :id => html_id, :style => "display:none;") do %>
-  <%= content_tag(:div, :class => "tomcat-crons") do %>
+<%= content_tag(:div, id: html_id, style: "display:none;") do %>
+  <%= content_tag(:div, class: "tomcat-crons") do %>
     <div class="contextual"><%= context.html_safe %></div>
     <h2><%= title %></h2>
-    <%= render :partial => "cronjobs/cron", :collection => crons %>
+    <%= render partial: "cronjobs/cron", collection: crons %>
   <% end %>
 <% end %>

@@ -1,6 +1,6 @@
 class AddDracCardToMachines < ActiveRecord::Migration
   def self.up
-    add_column :machines, :has_drac, :boolean, :default => false
+    add_column :machines, :has_drac, :boolean, default: false
   end
 
   def self.down

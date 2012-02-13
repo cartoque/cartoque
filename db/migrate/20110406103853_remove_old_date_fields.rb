@@ -5,7 +5,7 @@ class RemoveOldDateFields < ActiveRecord::Migration
   end
 
   def self.down
-    add_column :machines, :fin_garantie, :string, :limit => 100, :default => "", :null => false
-    add_column :machines, :date_mes, :string, :limit => 100, :default => "", :null => false
+    add_column :machines, :fin_garantie, :string, limit: 100, default: "", null: false
+    add_column :machines, :date_mes, :string, limit: 100, default: "", null: false
   end
 end

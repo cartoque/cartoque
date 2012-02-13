@@ -13,25 +13,25 @@ class Tomcat < Hashie::Mash
       jdbc_server.gsub!(%r{[/:]$},"")
     end
     #jvm
-    self.merge!(:server => site[1], :dns => site[2], :vip => site[4],
-                :tomcat => site[5], :dir => site[6], :jdbc_url => site[7],
-                :jdbc_server => jdbc_server, :jdbc_db => jdbc_db, :jdbc_user => jdbc_user)
-    self.merge!(:jdbc_driver => instance[3], :java_version => instance[4],
-                :java_xms => instance[5], :java_xmx => instance[6]) if instance.present?
+    self.merge!(server: site[1], dns: site[2], vip: site[4],
+                tomcat: site[5], dir: site[6], jdbc_url: site[7],
+                jdbc_server: jdbc_server, jdbc_db: jdbc_db, jdbc_user: jdbc_user)
+    self.merge!(jdbc_driver: instance[3], java_version: instance[4],
+                java_xms: instance[5], java_xmx: instance[6]) if instance.present?
     #cerbere
     if Tomcat.cerbere_hsh.has_key?(self[:dns])
-      self.merge!(:cerbere => true)
+      self.merge!(cerbere: true)
       if Tomcat.cerbere_hsh[self[:dns]]
-        self.merge!(:cerbere_csac => true)
+        self.merge!(cerbere_csac: true)
       else
-        self.merge!(:cerbere_csac => false)
+        self.merge!(cerbere_csac: false)
       end
     else
-      self.merge!(:cerbere => false)
-      self.merge!(:cerbere_csac => false)
+      self.merge!(cerbere: false)
+      self.merge!(cerbere_csac: false)
     end
     #crons
-    self.merge!(:crons => Cronjob.joins(:server).where("cronjobs.definition_location like ? AND servers.name = ?",
+    self.merge!(crons: Cronjob.joins(:server).where("cronjobs.definition_location like ? AND servers.name = ?",
                                                        "%/exploit_"+self[:dns].split(".").first.to_s+"%", self[:server]))
   end
 
@@ -62,7 +62,7 @@ class Tomcat < Hashie::Mash
       lines.grep(/^site;/).each do |line|
         site = line.split(";")
         instance = lines.grep(/^instance;/).detect{|i| "#{site[1]};#{site[5]};".in?(i) }
-        all << new(site, { :instance => (instance.present? ? instance.split(";") : []) })
+        all << new(site, { instance: (instance.present? ? instance.split(";") : []) })
       end
     end
     all.reject! do |tomcat|

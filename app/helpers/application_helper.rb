@@ -2,9 +2,9 @@ module ApplicationHelper
   include Storcs::Formatter
 
   def sortable(column, title = nil)
-    title ||= t(column, :default => column.titleize)
+    title ||= t(column, default: column.titleize)
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
-    link_to title, params.merge(:sort => column, :direction => direction)
+    link_to title, params.merge(sort: column, direction: direction)
   end
 
   def sortable_css_class(column)
@@ -12,15 +12,15 @@ module ApplicationHelper
   end
 
   def sortable_th(column, title = nil, html_options = {})
-    content_tag :th, {:class => sortable_css_class(column)}.merge(html_options) do
+    content_tag :th, {class: sortable_css_class(column)}.merge(html_options) do
       sortable(column,title)
     end
   end
 
   def sortable_link(column, title = nil)
-    title ||= t(column, :default => column.titleize)
-    content_tag :span, :class => sortable_css_class(column) do
-      sortable(column, title) + content_tag(:span, "", :class=>"arrow")
+    title ||= t(column, default: column.titleize)
+    content_tag :span, class: sortable_css_class(column) do
+      sortable(column, title) + content_tag(:span, "", class:"arrow")
     end
   end
 
@@ -65,7 +65,7 @@ module ApplicationHelper
   # see ancestry wiki on github
   # usage: <%= f.select :parent_id, @categories %>
   #
-  # @categories = ancestry_options(Category.scoped.arrange(:order => 'name'){|i| "#{'-'*i.depth} #{i.name}"})
+  # @categories = ancestry_options(Category.scoped.arrange(order: 'name'){|i| "#{'-'*i.depth} #{i.name}"})
   def ancestry_options(items, &block)
     result = []
     items.map do |item, sub_items|
@@ -83,7 +83,7 @@ module ApplicationHelper
         <h2>#{pluralize(object.errors.count, "erreur")} :</h2>
         <ul>
         #{object.errors.map do |key,msg|
-            "<li>&#171; #{t(key, :default => key)} &#187; #{msg}</li>"
+            "<li>&#171; #{t(key, default: key)} &#187; #{msg}</li>"
           end.join(" ")}
         </ul>
       </td></tr>
@@ -93,7 +93,7 @@ module ApplicationHelper
   end
 
   def action_links(&block)
-    content_tag(:div, :class => "actions") do
+    content_tag(:div, class: "actions") do
       capture(&block)
     end
   end
@@ -102,9 +102,9 @@ module ApplicationHelper
     html = ""
     if application.identifier?
       html << link_to("R", "#{redmine_url}/projects/#{application.identifier}",
-                      :title => "Redmine #{application.identifier}", :class => "link-to-redmine")
+                      title: "Redmine #{application.identifier}", class: "link-to-redmine")
     end
-    content_tag(:span, html.html_safe, :class => "links")
+    content_tag(:span, html.html_safe, class: "links")
   end
 
   def redmine_url
@@ -114,7 +114,7 @@ module ApplicationHelper
   def context_li(text, url, options = {})
     current = options.delete(:current)
     if current
-      content_tag :li, text, :class => "current"
+      content_tag :li, text, class: "current"
     else
       content_tag :li, link_to(text, url, options)
     end
@@ -130,14 +130,14 @@ module ApplicationHelper
   end
 
   def server_missing(name)
-    name + " " + link_to("+", new_server_path(:server => { :name => name }),
-                         :class => "action create-server",
-                         :title => t(:"helpers.submit.create"))
+    name + " " + link_to("+", new_server_path(server: { name: name }),
+                         class: "action create-server",
+                         title: t(:"helpers.submit.create"))
   end
 
   def link_to_rack(rack)
     return "" if rack.blank?
-    link_to rack, servers_path(:by_location => "rack-#{rack.id}")
+    link_to rack, servers_path(by_location: "rack-#{rack.id}")
   end
 
   def link_to_remove_fields(name, f, options = {})
@@ -146,24 +146,24 @@ module ApplicationHelper
     else
       js = "remove_fields(this)"
     end
-    f.hidden_field(:_destroy) + link_to_function(name, js, {:class => "link-delete"}.merge(options)).html_safe
+    f.hidden_field(:_destroy) + link_to_function(name, js, {class: "link-delete"}.merge(options)).html_safe
   end
 
   def link_to_add_fields(name, f, association, extra_params = {})
     new_object = (extra_params.delete(:klass) || f.object.class.reflect_on_association(association).klass).new
-    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
-      render(association.to_s.singularize + "_fields", {:f => builder}.merge(extra_params))
+    fields = f.fields_for(association, new_object, child_index: "new_#{association}") do |builder|
+      render(association.to_s.singularize + "_fields", {f: builder}.merge(extra_params))
     end
-    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", :class => "link-add")
+    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: "link-add")
   end
 
   def link_to_edit(path)
-    link_to image_tag("edit.png", :size => "16x16", :class => "action"), path
+    link_to image_tag("edit.png", size: "16x16", class: "action"), path
   end
 
   def link_to_delete(resource)
-    confirmation = resource.respond_to?(:name) ? t(:text_confirm_delete, :element => resource.name) : t(:text_are_you_sure)
-    link_to image_tag("delete.png", :size => "16x16", :class => "action"), resource, :confirm => confirmation, :method => :delete
+    confirmation = resource.respond_to?(:name) ? t(:text_confirm_delete, element: resource.name) : t(:text_are_you_sure)
+    link_to image_tag("delete.png", size: "16x16", class: "action"), resource, confirm: confirmation, method: :delete
   end
 
   def current_announcement

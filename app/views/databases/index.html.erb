@@ -4,21 +4,21 @@
 
 <%= action_links do %>
   <div class="contextual before-contextual">
-    <%= link_to image_tag("chart_bar.png", :size => "16x16"), distribution_databases_path %>
-    <%= link_to image_tag("file_extension_pdf.png", :size => "16x16"), databases_path(:format => "pdf") %>
+    <%= link_to image_tag("chart_bar.png", size: "16x16"), distribution_databases_path %>
+    <%= link_to image_tag("file_extension_pdf.png", size: "16x16"), databases_path(format: "pdf") %>
   </div>
   <div class="contextual contextswitch">
-    <span class="toggle"><%= image_tag "3d_glasses.png", :size => "16x16" %></span>
+    <span class="toggle"><%= image_tag "3d_glasses.png", size: "16x16" %></span>
     <ul class="contexts">
-      <%= context_li t(:synthetic_view), databases_path(:view_mode => "normal"), :current => (databases_view_mode == "normal") %>
-      <%= context_li t(:detailed_view), databases_path(:view_mode => "detailed"), :current => (databases_view_mode == "detailed") %>
+      <%= context_li t(:synthetic_view), databases_path(view_mode: "normal"), current: (databases_view_mode == "normal") %>
+      <%= context_li t(:detailed_view), databases_path(view_mode: "detailed"), current: (databases_view_mode == "detailed") %>
     </ul>
   </div>
   <%= link_to t(:add), new_database_path %>
 <% end %>
 
 <table class="pretty list databases">
-  <%= form_tag databases_path(params), :id => "filters", :method => :get do -%>
+  <%= form_tag databases_path(params), id: "filters", method: :get do -%>
   <tr class="filters fixed-size">
     <td style="width:15em;"><%= text_field_tag "by_name", params[:by_name] %></td>
     <td style="width:12em;"><%= select_tag "by_type", options_for_select([["",""], ["PostgreSQL", "postgres"], ["Oracle", "oracle"]], params[:by_type]).html_safe -%></td>

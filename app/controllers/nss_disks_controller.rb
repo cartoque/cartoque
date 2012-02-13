@@ -16,6 +16,6 @@ class NssDisksController < InheritedResources::Base
   end
 
   def find_servers
-    @servers = Server.where(:id => NssDisk.select("distinct(server_id)").map(&:server_id)).order("name asc")
+    @servers = Server.where(id: NssDisk.select("distinct(server_id)").map(&:server_id)).order("name asc")
   end
 end

@@ -3,9 +3,9 @@ module ServersHelper
   def render_maintainer(server, maintainer)
     return "" unless maintainer
     html =  "#{link_to maintainer, maintainer} "
-    html << link_to_function(image_tag("info.gif", :size => "12x12", :class => "inline"),
+    html << link_to_function(image_tag("info.gif", size: "12x12", class: "inline"),
                              %[$("#maintenance-#{server.id}").slideToggle(130); return false;],
-                             :class => "maintainer-infos hide-when-print")
+                             class: "maintainer-infos hide-when-print")
     html << " "
     html << " - #{server.contract_type}" if server.contract_type?
     html << %(<ul style="display:none" class="maintainer" id="maintenance-#{server.id}">)
@@ -35,10 +35,10 @@ module ServersHelper
   end
 
   def render_links(links, type = :physical_links)
-    content_tag :tr, :class => "wrapper server_#{type}" do
-      content_tag :td, :colspan => 2 do
+    content_tag :tr, class: "wrapper server_#{type}" do
+      content_tag :td, colspan: 2 do
         content_tag(:label, t(type)).safe_concat(
-          content_tag(:div, render_link_collection(links, type), :class => "content")
+          content_tag(:div, render_link_collection(links, type), class: "content")
         )
       end
     end

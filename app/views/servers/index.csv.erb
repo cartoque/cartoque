@@ -1,5 +1,5 @@
 <%=
-  CSV.generate :force_quotes => true do |csv|
+  CSV.generate force_quotes: true do |csv|
     csv << %w(name ipaddress operating_system manufacturer model cpu memory disks nb_rj45 fc iscsi has_drac
               site physical_rack serial_number maintainer contract_type delivered_on maintained_until).map{|l| t(l)}
     @servers.each do |m|

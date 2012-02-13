@@ -1,7 +1,7 @@
 class AddAncestryToOperatingSystems < ActiveRecord::Migration
   def self.up
     add_column :operating_systems, :ancestry, :string
-    add_column :operating_systems, :ancestry_depth, :integer, :default => 0
+    add_column :operating_systems, :ancestry_depth, :integer, default: 0
     add_index :operating_systems, :ancestry
   end
 

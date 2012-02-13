@@ -1,8 +1,8 @@
 class PhysicalLink < ActiveRecord::Base
   belongs_to :server
-  belongs_to :switch, :class_name => 'Server'
+  belongs_to :switch, class_name: 'Server'
 
-  validates_inclusion_of :link_type, :in => %w(eth fc)
+  validates_inclusion_of :link_type, in: %w(eth fc)
 
   def to_s
     html = %(<span class="link-#{link_type}">#{server_label || link_type}</span> &rarr; )

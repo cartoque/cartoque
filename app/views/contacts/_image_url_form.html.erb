@@ -1,7 +1,7 @@
 <div class="image_container">
-  <%= content_tag :div, :class => "image", :data => { :image_urls => available_images } do %>
+  <%= content_tag :div, class: "image", data: { image_urls: available_images } do %>
     <%= image_tag entity.image_url %>
   <% end %>
   <%= t(:click_to_change) %>
-  <%= f.hidden_field "image_url", :value => entity.image_url %>
+  <%= f.hidden_field "image_url", value: entity.image_url %>
 </div>

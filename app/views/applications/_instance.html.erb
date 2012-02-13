@@ -2,10 +2,10 @@
   <strong><%= instance.name %></strong>
   <ul class="details">
   <% instance.application_urls.public.sort_by(&:url).each do |app_url| %>
-    <li class="application_url"><%= link_to app_url.url, app_url.url, :class => "icon icon-url" %></li>
+    <li class="application_url"><%= link_to app_url.url, app_url.url, class: "icon icon-url" %></li>
   <% end %>
   <% if instance.servers.active.any? %>
-    <li class="application_instance_servers"><%= instance.servers.active.sort_by(&:name).map{|server| link_to server.name, server, :class => "nocut icon icon-server" }.join(" ").html_safe %></li>
+    <li class="application_instance_servers"><%= instance.servers.active.sort_by(&:name).map{|server| link_to server.name, server, class: "nocut icon icon-server" }.join(" ").html_safe %></li>
   <% end %>
   </ul>
 <% end %>

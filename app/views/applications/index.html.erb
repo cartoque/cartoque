@@ -4,13 +4,13 @@
 
 <%= action_links do %>
   <div class="contextual">
-    <%= link_to image_tag("file_extension_pdf.png", :size => "16x16"), applications_path(params.merge(:format => "pdf")) %>
+    <%= link_to image_tag("file_extension_pdf.png", size: "16x16"), applications_path(params.merge(format: "pdf")) %>
   </div>
   <%= link_to t(:add_an_application), new_application_path %>
 <% end %>
 
 <table class="pretty list center">
-  <%= form_tag applications_path(params), :id => "filters", :method => :get do -%>
+  <%= form_tag applications_path(params), id: "filters", method: :get do -%>
     <%= hidden_sort_fields %>
     <% (controller.scopes_configuration || {}).keys.each do |scope| %>
       <%= hidden_field_tag scope, params[scope] %>

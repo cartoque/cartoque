@@ -1,7 +1,7 @@
 class RemoveUselessNullConstraints < ActiveRecord::Migration
   def up
-    change_column :applications, :info, :string, :null => nil
-    change_column :servers, :description, :string, :null => nil
+    change_column :applications, :info, :string, null: nil
+    change_column :servers, :description, :string, null: nil
   end
 
   def down

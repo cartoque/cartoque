@@ -3,17 +3,17 @@ module Contactable
     base.extend ClassMethods
 
     base.class_eval do
-      has_many :contact_infos, :dependent => :destroy, :as => :entity
-      has_many :email_infos, :class_name => "ContactInfo", :conditions => {:info_type => "email"}, :as => :entity
-      accepts_nested_attributes_for :email_infos, :reject_if => lambda{|a| a[:value].blank? }, :allow_destroy => true
-      has_many :phone_infos, :class_name => "ContactInfo", :conditions => {:info_type => "phone"}, :as => :entity
-      accepts_nested_attributes_for :phone_infos, :reject_if => lambda{|a| a[:value].blank? }, :allow_destroy => true
-      has_many :website_infos, :class_name => "ContactInfo", :conditions => {:info_type => "website"}, :as => :entity
-      accepts_nested_attributes_for :website_infos, :reject_if => lambda{|a| a[:value].blank? }, :allow_destroy => true
-      has_many :address_infos, :class_name => "ContactInfo", :conditions => {:info_type => "address"}, :as => :entity
-      accepts_nested_attributes_for :address_infos, :reject_if => lambda{|a| a[:value].blank? }, :allow_destroy => true
+      has_many :contact_infos, dependent: :destroy, as: :entity
+      has_many :email_infos, class_name: "ContactInfo", conditions: {info_type: "email"}, as: :entity
+      accepts_nested_attributes_for :email_infos, reject_if: lambda{|a| a[:value].blank? }, allow_destroy: true
+      has_many :phone_infos, class_name: "ContactInfo", conditions: {info_type: "phone"}, as: :entity
+      accepts_nested_attributes_for :phone_infos, reject_if: lambda{|a| a[:value].blank? }, allow_destroy: true
+      has_many :website_infos, class_name: "ContactInfo", conditions: {info_type: "website"}, as: :entity
+      accepts_nested_attributes_for :website_infos, reject_if: lambda{|a| a[:value].blank? }, allow_destroy: true
+      has_many :address_infos, class_name: "ContactInfo", conditions: {info_type: "address"}, as: :entity
+      accepts_nested_attributes_for :address_infos, reject_if: lambda{|a| a[:value].blank? }, allow_destroy: true
   
-      scope :with_internals, proc{|show_internals| where(:internal => false) unless show_internals}
+      scope :with_internals, proc{|show_internals| where(internal: false) unless show_internals}
     end
   end
 

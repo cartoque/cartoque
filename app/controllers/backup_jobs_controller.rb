@@ -5,7 +5,7 @@ class BackupJobsController < InheritedResources::Base
   has_scope :by_server
   has_scope :by_client_type
 
-  before_filter :find_not_backuped, :only => :index
+  before_filter :find_not_backuped, only: :index
   
   protected
   def collection

@@ -13,7 +13,7 @@
 
   <div id="internal-login">
 
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <!--<div style="text-align:right"><%= render "links" %></div>-->
 
       <div>
@@ -27,7 +27,7 @@
       </div>
 
       <% if devise_mapping.rememberable? -%>
-        <%= f.hidden_field :remember_me, :value => 1 %>
+        <%= f.hidden_field :remember_me, value: 1 %>
       <% end -%>
 
       <div class="right"><%= f.submit "Sign in" %></div>

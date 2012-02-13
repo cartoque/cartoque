@@ -1,31 +1,31 @@
 <% f.object.application_urls.build if f.object.application_urls.size == 0 %>
 <table class="fields instance-fields full">
   <tr>
-    <td class="label"><%= f.label :name, :class => "input" %></td>
+    <td class="label"><%= f.label :name, class: "input" %></td>
     <td>
-      <%= f.text_field :name, :style => "width:5em; font-weight:bold;" %>
-      <%= link_to_remove_fields image_tag("delete.png", :size => "16x16")+t(:delete_this_application_instance), f, :confirm => true %>
+      <%= f.text_field :name, style: "width:5em; font-weight:bold;" %>
+      <%= link_to_remove_fields image_tag("delete.png", size: "16x16")+t(:delete_this_application_instance), f, confirm: true %>
     </td>
   </tr>
   <tr>
-    <td class="label"><%= f.label :authentication_method, :class => "input" %></td>
+    <td class="label"><%= f.label :authentication_method, class: "input" %></td>
     <td>
-      <%= f.input_field :authentication_method, :as => :select, :collection =>collection_for_authentication_methods, :include_blank => false %>
+      <%= f.input_field :authentication_method, as: :select, collection:collection_for_authentication_methods, include_blank: false %>
     </td>
   </tr>
   <tr>
-    <td class="label"><%= f.label :application_urls, :class => "input" %></td>
+    <td class="label"><%= f.label :application_urls, class: "input" %></td>
     <td>
       <%= f.simple_fields_for :application_urls do |url_form| %>
-        <%= render 'application_url_fields', :f => url_form %>
+        <%= render 'application_url_fields', f: url_form %>
       <% end %>
-      <span class="add-field"><%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+t(:add).downcase, f, :application_urls %></span>
+      <span class="add-field"><%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+t(:add).downcase, f, :application_urls %></span>
     </td>
   </tr>
   <tr>
-    <td class="label"><%= f.label :servers, :class => "input" %></td>
+    <td class="label"><%= f.label :servers, class: "input" %></td>
     <td class="multiselect">
-      <%= f.input_field :server_ids, :collection => Server.active.order(:name), :as => :multiselect %>
+      <%= f.input_field :server_ids, collection: Server.active.order(:name), as: :multiselect %>
     </td>
   </tr>
 </table>

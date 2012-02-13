@@ -34,7 +34,7 @@
     });
   </script>
 <% end %>
-  <%= stylesheet_link_tag "print.css", :media => "print" %>
+  <%= stylesheet_link_tag "print.css", media: "print" %>
   <%= csrf_meta_tag %>
   <%= yield(:head) %>
 </head>
@@ -47,7 +47,7 @@
 
   <% if user_signed_in? && current_announcement.present? %>
     <div id="announcement" class="hide-when-print <%= Settler[:site_announcement_type].presence || "info" %>">
-      <%= link_to "×", hide_announcement_path, :remote => true, :method => :put, :class => "close" %>
+      <%= link_to "×", hide_announcement_path, remote: true, method: :put, class: "close" %>
       <p><%= current_announcement.html_safe %></p>
     </div>
   <% end %>
@@ -55,15 +55,15 @@
   <div id="container" class="container_12 clearfix">
     <%= render 'layouts/top_menu' %>
 
-    <%= content_tag :div, :id => "flash" do %>
+    <%= content_tag :div, id: "flash" do %>
       <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :class => "flash-item flash-#{name}" %>
+        <%= content_tag :div, msg, class: "flash-item flash-#{name}" %>
       <% end %>
     <% end unless flash.empty? %>
 
     <div class="grid_12">
 
-    <%= content_tag(:h1, yield(:title), :class => controller.controller_name) if show_title? %>
+    <%= content_tag(:h1, yield(:title), class: controller.controller_name) if show_title? %>
 
     </div><!-- end-of-grid_12 -->
 

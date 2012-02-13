@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
   def render_404(exception = nil)
     logger.info "Rendering 404 with exception: #{exception.message}" if exception
     respond_to do |format|
-      format.html { render :text => %(<div class="center not_found">These are not the droids you're looking for</div>),
-                           :status => :not_found, :layout => true }
+      format.html { render text: %(<div class="center not_found">These are not the droids you're looking for</div>),
+                           status: :not_found, layout: true }
       format.any(:atom, :xml, :js, :json) { head :not_found }
     end
   end

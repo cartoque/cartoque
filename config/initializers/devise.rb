@@ -5,10 +5,10 @@ require 'omniauth/dynamic_full_host'
 setup_app = Proc.new do |env|
   cas_server = URI.parse(Settler.safe_cas_server) rescue nil
   if cas_server
-    env['omniauth.strategy'].options.merge! :host => cas_server.host,
-                                            :port => cas_server.port,
-                                            :path => (cas_server.path != "/" ? cas_server.path : nil),
-                                            :ssl  => cas_server.scheme == "https"
+    env['omniauth.strategy'].options.merge! host: cas_server.host,
+                                            port: cas_server.port,
+                                            path: (cas_server.path != "/" ? cas_server.path : nil),
+                                            ssl: cas_server.scheme == "https"
   end
 end
 
@@ -86,7 +86,7 @@ Devise.setup do |config|
   # :http_auth and :token_auth by adding those symbols to the array below.
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
-  # passing :skip => :sessions to `devise_for` in your config/routes.rb
+  # passing skip: :sessions to `devise_for` in your config/routes.rb
   config.skip_session_storage = [:http_auth]
 
   # ==> Configuration for :database_authenticatable
@@ -130,7 +130,7 @@ Devise.setup do |config|
   config.use_salt_as_remember_token = true
 
   # Options to be passed to the created cookie. For instance, you can set
-  # :secure => true in order to force SSL only cookies.
+  # secure: true in order to force SSL only cookies.
   # config.cookie_options = {}
 
   # ==> Configuration for :validatable
@@ -226,11 +226,11 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-  config.omniauth :cas, :host => "localhost",
-                        :port => "9292",
-                        :ssl => false,
-                        :setup => setup_app
+  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :cas, host: "localhost",
+                        port: "9292",
+                        ssl: false,
+                        setup: setup_app
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -238,6 +238,6 @@ Devise.setup do |config|
   #
   # config.warden do |manager|
   #   manager.intercept_401 = false
-  #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
+  #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
 end

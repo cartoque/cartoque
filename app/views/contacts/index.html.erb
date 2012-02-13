@@ -3,7 +3,7 @@
 <div class="grid_8">
 
   <div class="filters contacts_filter">
-    <%= form_tag contacts_path(params), :id => "filters", :method => :get do -%>
+    <%= form_tag contacts_path(params), id: "filters", method: :get do -%>
       <label for="search_contacts" class="inline"><%= t(:placeholder_for_contacts_search) %></label>
       <input type="text" name="search" id="search_contacts" zplaceholder="<%= t(:placeholder_for_contacts_search) %>"
              value="<%= params[:search] %>" autocomplete="off" />
@@ -12,7 +12,7 @@
         <%= render 'sort_links' %>
       </div>
       <div class="contextual tiny contacts_view_internals">
-        <%= hidden_field_tag "with_internals", "0", :id => nil %>
+        <%= hidden_field_tag "with_internals", "0", id: nil %>
         <%= check_box_tag "with_internals", "1", view_internals %>
         <label for="with_internals"><%= t(:show_internals) %></label>
       </div>
@@ -36,15 +36,15 @@
 <div class="grid_4" style="position:relative; top:0;">
   <div id="contacts_actions">
     <p>
-      <%= link_to t(:new_contact), new_contact_path, :class => "button-add" %><br />
+      <%= link_to t(:new_contact), new_contact_path, class: "button-add" %><br />
       <%= t(:text_new_contact_explanation) %>
     </p>
     <p>
-      <%= link_to t(:new_company), new_company_path, :class => "button-add" %><br />
+      <%= link_to t(:new_company), new_company_path, class: "button-add" %><br />
       <%= t(:text_new_company_explanation) %>
     </p>
     <p>
-      <%= link_to t(:generate_a_mailing_list), new_mailing_list_path, :class => "button-mail" %><br />
+      <%= link_to t(:generate_a_mailing_list), new_mailing_list_path, class: "button-mail" %><br />
       <%= t(:text_generate_mailinglist_explanation) %>
       <%= t(:or) %> <%= link_to t(:use_an_existing_mailing_list), mailing_lists_path %>
     </p>

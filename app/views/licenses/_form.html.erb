@@ -9,12 +9,12 @@
   <table class="inputs">
     <tbody>
       <%= tabular_errors @license %>
-      <%= f.input :editor, :required => true, :disabled => true %>
-      <%= f.input :key, :required => true, :disabled => true %>
-      <%= f.input :title, :required => true, :disabled => true %>
-      <%= f.input :purshased_on, :include_blank => true %>
-      <%= f.input :renewal_on, :include_blank => true %>
-      <%= f.input :comment, :input_html => {:rows => 6} %>
+      <%= f.input :editor, required: true, disabled: true %>
+      <%= f.input :key, required: true, disabled: true %>
+      <%= f.input :title, required: true, disabled: true %>
+      <%= f.input :purshased_on, include_blank: true %>
+      <%= f.input :renewal_on, include_blank: true %>
+      <%= f.input :comment, input_html: {rows: 6} %>
     </tbody>
   </table>
 <% end %>

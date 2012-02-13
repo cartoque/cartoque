@@ -1,7 +1,7 @@
 <tr class="fix-on-scroll">
-  <%= sortable_th "name", t(:name), :style => "width:14em" %>
+  <%= sortable_th "name", t(:name), style: "width:14em" %>
   <th><%= t(:type) %></th>
-  <%= sortable_th "upgrades.count_total", t(:count), :style => "width:2em" %>
+  <%= sortable_th "upgrades.count_total", t(:count), style: "width:2em" %>
   <th><%= t(:packages_list) %></th>
 </tr>
 <% for upgrade in @upgrades %>
@@ -13,8 +13,8 @@
       <%= format_packages_list(upgrade.packages_list) %>
       <% if upgrade.count_total > 0 %>
         <span class="upgraded" id="upgraded-<%= upgrade.id %>"><%= validated_by(upgrade.upgrader) if upgrade.upgraded_status? %></span>
-        <%= button_tag t(:validate), :id => "upgrade-#{upgrade.id}", :class => "validate",
-                                     :data => { :id => upgrade.id } unless upgrade.upgraded_status? %>
+        <%= button_tag t(:validate), id: "upgrade-#{upgrade.id}", class: "validate",
+                                     data: { id: upgrade.id } unless upgrade.upgraded_status? %>
       <% end %>
     </td>
   </tr>

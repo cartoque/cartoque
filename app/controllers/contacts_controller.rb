@@ -1,5 +1,5 @@
 class ContactsController < InheritedResources::Base
-  before_filter :find_companies_and_contacts_count, :only => :index
+  before_filter :find_companies_and_contacts_count, only: :index
 
   respond_to :html, :js
 

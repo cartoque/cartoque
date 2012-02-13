@@ -1,17 +1,17 @@
 class Application < ActiveRecord::Base
   acts_as_configuration_item
 
-  has_many :application_instances, :dependent => :destroy
+  has_many :application_instances, dependent: :destroy
 
-  accepts_nested_attributes_for :application_instances, :reject_if => lambda{|a| a[:name].blank? },
-                                                        :allow_destroy => true
+  accepts_nested_attributes_for :application_instances, reject_if: lambda{|a| a[:name].blank? },
+                                                        allow_destroy: true
 
   attr_accessible :name, :description, :cerbere, :identifier, :server_ids, :application_instances_attributes, :contact_ids,
                   :contact_ids_with_role
 
   delegate :contacts, :contact_ids, :contact_ids=, :contact_relations,
            :contacts_with_role, :contact_ids_with_role, :contact_ids_with_role=,
-           :to => :configuration_item
+           to: :configuration_item
 
   validates_presence_of :name
 

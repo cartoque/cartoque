@@ -7,6 +7,6 @@ module ApplicationsHelper
 
   def link_to_doc(doc)
     site = "http://dokuwiki.application.ac.centre-serveur.i2"
-    link_to doc.gsub("documentation_generale:",""), "#{site}/doku.php?id=#{doc}", :class => "icon icon-url"
+    link_to doc.gsub("documentation_generale:",""), "#{site}/doku.php?id=#{doc}", class: "icon icon-url"
   end
 end

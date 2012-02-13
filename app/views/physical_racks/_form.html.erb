@@ -9,10 +9,10 @@
   <table class="show_item">
     <tbody>
       <%= tabular_errors @physical_rack %>
-      <%= f.input :name, :required => true, :wrapper_class => "th" %>
+      <%= f.input :name, required: true, wrapper_class: "th" %>
       <%= f.association :site %>
-      <%= f.input :status, :as => :select, :include_blank => false,
-                           :collection => [[t(:rack_real),  PhysicalRack::STATUS_PROD],
+      <%= f.input :status, as: :select, include_blank: false,
+                           collection: [[t(:rack_real),  PhysicalRack::STATUS_PROD],
                                            [t(:rack_stock), PhysicalRack::STATUS_STOCK]] %>
     </tbody>
   </table>

@@ -1,21 +1,21 @@
 <% exploitation_jobs = @server.cronjobs.where("definition_location like ?", "%/exploit%") %>
 <div class="related-ci related-cronjobs">
   <div class="informations<%= " more-child" if exploitation_jobs.count > 0 %>">
-    <h3><%= link_to "#{@server.cronjobs.count} #{t(:crons).downcase}", cronjobs_path(:by_server => @server.id) %></h3>
+    <h3><%= link_to "#{@server.cronjobs.count} #{t(:crons).downcase}", cronjobs_path(by_server: @server.id) %></h3>
     <div class="details"><%= t(:of_which) %>
       <%= link_to_if exploitation_jobs.count > 0, "#{exploitation_jobs.count} #{t(:operation_crons).downcase}",
-                     cronjobs_path(:by_server => @server.id, :by_definition => "exploit") %>
+                     cronjobs_path(by_server: @server.id, by_definition: "exploit") %>
     </div>
     <ul class="hidden">
       <% exploitation_jobs.group_by(&:definition_location).sort.each do |location,jobs| %>
         <% short_location = location.gsub("/etc/cron.d/","") %>
         <%= content_tag :li do %>
           <%= link_to short_location + (jobs.count > 1 ? "(x#{jobs.count})" : ""),
-                      "##{short_location.parameterize}", :rel => "facebox" %>
+                      "##{short_location.parameterize}", rel: "facebox" %>
         <% end %>
-        <%= render :partial => "cronjobs/cron_collection",
-                   :locals => { :title => "#{t(:crons)} #{short_location} #{t(:word_on)} #{@server}", :html_id => short_location.parameterize, :crons => jobs,
-                                :context => t(:all_crons_of) + link_to(@server.name, cronjobs_path(:by_server => @server.id)) } %>
+        <%= render partial: "cronjobs/cron_collection",
+                   locals: { title: "#{t(:crons)} #{short_location} #{t(:word_on)} #{@server}", html_id: short_location.parameterize, crons: jobs,
+                                context: t(:all_crons_of) + link_to(@server.name, cronjobs_path(by_server: @server.id)) } %>
       <% end %>
     </ul>
   </div>

@@ -3,14 +3,14 @@ class Database < ActiveRecord::Base
 
   attr_accessible :name, :database_type, :server_ids
 
-  has_many :database_instances, :dependent => :destroy
+  has_many :database_instances, dependent: :destroy
   has_many :servers
 
   validates_presence_of :name
-  validates_inclusion_of :database_type, :in => %w(postgres oracle)
+  validates_inclusion_of :database_type, in: %w(postgres oracle)
 
   scope :by_name, proc {|name| where("databases.name LIKE ?", "%#{name}%") }
-  scope :by_type, proc {|type| { :conditions => { :database_type => type } } }
+  scope :by_type, proc {|type| { conditions: { database_type: type } } }
 
   def to_s
     name

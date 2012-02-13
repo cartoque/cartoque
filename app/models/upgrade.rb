@@ -1,6 +1,6 @@
 class Upgrade < ActiveRecord::Base
   belongs_to :server
-  belongs_to :upgrader, :class_name => 'User'
+  belongs_to :upgrader, class_name: 'User'
   serialize :packages_list
   before_save :update_counters!
 

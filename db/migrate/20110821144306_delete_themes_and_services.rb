@@ -8,16 +8,16 @@ class DeleteThemesAndServices < ActiveRecord::Migration
   end
 
   def self.down
-    create_table "services", :force => true do |t|
-      t.string "name", :default => "", :null => false
+    create_table "services", force: true do |t|
+      t.string "name", default: "", null: false
     end
-    add_column "machines", "service_id", :integer, :default => 0
-    add_index  "machines", ["service_id"], :name => "index_machines_on_service_id"
+    add_column "machines", "service_id", :integer, default: 0
+    add_index  "machines", ["service_id"], name: "index_machines_on_service_id"
 
-    create_table "themes", :force => true do |t|
-      t.string "name", :default => "", :null => false
+    create_table "themes", force: true do |t|
+      t.string "name", default: "", null: false
     end
-    add_column "machines", "theme_id", :integer, :default => 0
-    add_index  "machines", ["theme_id"], :name => "index_machines_on_theme_id"
+    add_column "machines", "theme_id", :integer, default: 0
+    add_index  "machines", ["theme_id"], name: "index_machines_on_theme_id"
   end
 end

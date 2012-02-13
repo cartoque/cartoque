@@ -1,11 +1,11 @@
 <% @companies.each do |company| %>
-  <%= render :partial => 'companies/company', :object => company %>
+  <%= render partial: 'companies/company', object: company %>
 <% end %>
-<%= content_tag(:p, :class => "more_companies") do %>
-  <%= link_to t(:and_X_others, :value => @companies_count - 25), contacts_path(params.merge(:all_companies=>1))  %>
+<%= content_tag(:p, class: "more_companies") do %>
+  <%= link_to t(:and_X_others, value: @companies_count - 25), contacts_path(params.merge(all_companies:1))  %>
 <% end if @companies_count > 25 && params[:all_companies].blank? %>
 <% if @companies.count == 0 %>
-  <%= content_tag(:p, :class => "no_result") do %>
+  <%= content_tag(:p, class: "no_result") do %>
     <%= t(:no_company_found) %>
     <% if !view_internals %>
       <br /><span class="tiny"><%= t(:text_warning_internal_not_displayed) %></span>

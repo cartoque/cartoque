@@ -7,12 +7,12 @@ phpenvs = []
 if File.exists?(datafile)
   mysqldbs = File.readlines(datafile).grep(/ mysql/).map do |line|
     a = line.chomp.split(/\s+/)
-    {:server=>a[0], :name=>a[3].split("/").last, :size=>a[2].to_i*1024}
+    {server:a[0], name:a[3].split("/").last, size:a[2].to_i*1024}
   end
   phpenvs = File.readlines("data/php/environnements.txt").grep(/ php/).map do |line|
     a = line.chomp.split(/\s+/)
     p = a[3].split("/")
-    {:server=>a[0], :name=>p[-1], :php_version=>p[-2], :size=>a[2].to_i*1024}
+    {server:a[0], name:p[-1], php_version:p[-2], size:a[2].to_i*1024}
   end
 end
 

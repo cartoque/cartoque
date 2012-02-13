@@ -1,11 +1,11 @@
 <tr class="fix-on-scroll">
-  <%= sortable_th "name", nil, :style => "width:10em" %>
+  <%= sortable_th "name", nil, style: "width:10em" %>
   <th style="width:8em"><%= t(:localization) %></th>
-  <%= sortable_th "manufacturer,model", t(:fullmodel), :style => "width:10em" %>
+  <%= sortable_th "manufacturer,model", t(:fullmodel), style: "width:10em" %>
   <th style="width:10em"><%= t(:serial_number) %></th>
   <th><%= t(:maintainer) %> - <%= t(:contract_type) %></th>
-  <%= sortable_th "delivered_on", nil, :style => "width:8em" %>
-  <%= sortable_th "maintained_until", nil, :style => "width:8em" %>
+  <%= sortable_th "delivered_on", nil, style: "width:8em" %>
+  <%= sortable_th "maintained_until", nil, style: "width:8em" %>
 </tr>
 <% for server in @servers %>
 <tr>

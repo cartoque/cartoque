@@ -9,7 +9,7 @@ class CreateNssDisks < ActiveRecord::Migration
       t.string :category
       t.string :guid
       t.string :fsid
-      t.integer :size, :limit => 8
+      t.integer :size, limit: 8
       t.timestamps
     end
   end

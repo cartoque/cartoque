@@ -6,18 +6,18 @@
   <%= link_to t(:back_to_the_list), contacts_path %>
 <% end %>
 
-<%= render :partial => 'contact', :object => @contact %>
+<%= render partial: 'contact', object: @contact %>
 
 </div>
 
 <div class="grid_4 contact_relations">
 <% if @contact.company.present? %>
   <h2><%= t(:works_at) %></h2>
-  <%= render 'companies/company', :company => @contact.company %>
+  <%= render 'companies/company', company: @contact.company %>
 
   <% if @contact.company.contacts.count > 1 %>
     <h2><%= t(:with) %></h2>
-    <%= render :partial => 'contacts/contact', :collection => @contact.company.contacts - [@contact] %>
+    <%= render partial: 'contacts/contact', collection: @contact.company.contacts - [@contact] %>
   <% end %>
 <% end %>
 </div>

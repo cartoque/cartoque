@@ -12,8 +12,8 @@
   <table class="inputs full">
     <tbody>
       <%= tabular_errors @application %>
-      <%= f.input :name, :required => true, :wrapper_class => "th", :input_html => { :style => "width:9em;" } %>
-      <%= f.input :description, :input_html => { :size => "28x6" } %>
+      <%= f.input :name, required: true, wrapper_class: "th", input_html: { style: "width:9em;" } %>
+      <%= f.input :description, input_html: { size: "28x6" } %>
       <%= f.input :identifier %>
       <tr class="input select optional">
         <td class="label">
@@ -23,10 +23,10 @@
           <% Role.all.each do |role| %>
             <%= role.name %><br />
             <%= select_tag "application[contact_ids_with_role][#{role.id}]",
-                           options_for_select(ContactDecorator.all.map{|c| [c.long_form, c.id]}, :selected => @application.contact_ids_with_role(role.id)),
-                           :multiple => true,
-                           :class => "multiselect chzn-select" %>
-            <%= f.hidden_field "contact_ids_with_role[#{role.id}][]", :value => "0" %>
+                           options_for_select(ContactDecorator.all.map{|c| [c.long_form, c.id]}, selected: @application.contact_ids_with_role(role.id)),
+                           multiple: true,
+                           class: "multiselect chzn-select" %>
+            <%= f.hidden_field "contact_ids_with_role[#{role.id}][]", value: "0" %>
           <% end %>
         </td>
       </tr>
@@ -47,10 +47,10 @@
         <td class="content instance-forms" colspan="2">
           <% f.object.application_instances.build if f.object.application_instances.size == 0 %>
           <%= f.simple_fields_for :application_instances, f.object.sorted_application_instances do |instance_form| %>
-            <%= render 'application_instance_fields', :f => instance_form %>
+            <%= render 'application_instance_fields', f: instance_form %>
           <% end %>
           <p class="add-field">
-            <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+t(:add_an_application_instance).downcase, f, :application_instances %>
+            <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+t(:add_an_application_instance).downcase, f, :application_instances %>
           </p>
         </td>
       </tr>

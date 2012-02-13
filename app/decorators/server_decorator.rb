@@ -3,20 +3,20 @@ class ServerDecorator < ResourceDecorator
 
   def virtual_badge
     blank_unless model.virtual? do
-      h.content_tag(:div, "V", :class => "contextual virtual-server")
+      h.content_tag(:div, "V", class: "contextual virtual-server")
     end
   end
 
   def puppet_badge
     blank_unless model.puppetversion.present? do
-      h.content_tag(:div, "P", :class => "contextual has-puppet")
+      h.content_tag(:div, "P", class: "contextual has-puppet")
     end
   end
 
   def network_device_badge
     blank_unless model.network_device? do
-      h.content_tag(:div, h.image_tag("router.png", :title => t(:network_device), :size => "16x16"),
-                    :class => "contextual network-device")
+      h.content_tag(:div, h.image_tag("router.png", title: t(:network_device), size: "16x16"),
+                    class: "contextual network-device")
     end
   end
 
@@ -76,8 +76,8 @@ class ServerDecorator < ResourceDecorator
   end
 
   def short_line
-    h.content_tag(:span, :class => "server-link") do
-      h.link_to(model.name, model) + h.content_tag(:span, :class => "server-details") do
+    h.content_tag(:span, class: "server-link") do
+      h.link_to(model.name, model) + h.content_tag(:span, class: "server-details") do
         [ model.operating_system,
           (model.nb_proc && model.nb_proc > 0 ? cores : ""),
           (model.memory? ? "#{ram}G" : ""),
@@ -88,12 +88,12 @@ class ServerDecorator < ResourceDecorator
 
   def maintenance_limit
     date = model.maintained_until
-    return h.content_tag(:span, t(:word_no), :class => "maintenance-critical") if date.blank?
+    return h.content_tag(:span, t(:word_no), class: "maintenance-critical") if date.blank?
     months_before_end = ((date - Date.today) / 30).to_f
     if months_before_end <= 6
-      h.content_tag(:span, l(date), :class => "maintenance-critical")
+      h.content_tag(:span, l(date), class: "maintenance-critical")
     elsif months_before_end <= 12
-      h.content_tag(:span, l(date), :class => "maintenance-warning")
+      h.content_tag(:span, l(date), class: "maintenance-warning")
     else
       l(date)
     end
@@ -124,6 +124,6 @@ class ServerDecorator < ResourceDecorator
   #   
   #   def created_at
   #     h.content_tag :span, time.strftime("%a %m/%d/%y"), 
-  #                   :class => 'timestamp'
+  #                   class: 'timestamp'
   #   end
 end

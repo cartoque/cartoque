@@ -6,7 +6,7 @@
       <%= pluralize(@server.network_filesystems.map(&:server_id).uniq.count, t(:server)) %>
     </div>
     <ul class="hidden">
-      <% Server.where(:id => @server.network_filesystems.map(&:server_id).uniq).order("name").each do |server| %>
+      <% Server.where(id: @server.network_filesystems.map(&:server_id).uniq).order("name").each do |server| %>
         <li><%= link_to(server,server) %></li>
       <% end %>
     </ul>

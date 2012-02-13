@@ -20,6 +20,6 @@ class CronjobsController < InheritedResources::Base
 
   protected
   def find_servers
-    @servers = Server.where(:id => Cronjob.select("distinct(server_id)").map(&:server_id)).order("name asc")
+    @servers = Server.where(id: Cronjob.select("distinct(server_id)").map(&:server_id)).order("name asc")
   end
 end

@@ -3,9 +3,9 @@
     <th class="center" colspan="2"><%= t(:statistics_databases) %></th>
   </tr>
   <tr>
-    <td><%= link_to "Postgres", databases_path(:by_type => "postgres") %></td>
+    <td><%= link_to "Postgres", databases_path(by_type: "postgres") %></td>
     <td>
-      <% databases = Database.where(:database_type => "postgres") %>
+      <% databases = Database.where(database_type: "postgres") %>
       <%= pluralize(databases.map(&:server_ids).flatten.uniq.count, t(:server).downcase) %>
       <ul class="details">
         <li><%= pluralize databases.map(&:instances).sum, t(:postgres_instance).downcase %></li>
@@ -14,9 +14,9 @@
     </td>
   </tr>
   <tr>
-    <td><%= link_to "Oracle", databases_path(:by_type => "oracle") %></td>
+    <td><%= link_to "Oracle", databases_path(by_type: "oracle") %></td>
     <td>
-      <% databases = Database.where(:database_type => "oracle") %>
+      <% databases = Database.where(database_type: "oracle") %>
       <%= pluralize(databases.map(&:server_ids).flatten.uniq.count, t(:server).downcase) %>
       <ul class="details">
         <li><%= pluralize databases.map(&:instances).sum, t(:oracle_instance).downcase %></li>

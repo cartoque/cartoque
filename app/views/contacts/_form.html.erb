@@ -1,8 +1,8 @@
 <%= simple_form_for(@contact) do |f| %>
 
   <div id="contact_image" class="grid_2 image_url_form">
-    <%= render 'contacts/image_url_form', :entity => @contact, :f => f,
-                                          :available_images => Contact.available_images_hash %>
+    <%= render 'contacts/image_url_form', entity: @contact, f: f,
+                                          available_images: Contact.available_images_hash %>
   </div>
 
   <div id="contact_general" class="grid_6">
@@ -20,8 +20,8 @@
         <%= tabular_errors @contact %>
         <tr id="contact_identity">
           <td colspan="2">
-            <%= f.text_field :first_name, :placeholder => t(:first_name) %>
-            <%= f.text_field :last_name, :placeholder => t(:last_name) %>
+            <%= f.text_field :first_name, placeholder: t(:first_name) %>
+            <%= f.text_field :last_name, placeholder: t(:last_name) %>
           </td>
         </tr>
         <tr class="input boolean optional">
@@ -32,18 +32,18 @@
             <div class="hint"><%= t(:text_internal_tip) %></div>
           </td>
         </tr>
-        <%= f.input :job_position, :input_html => { :class => "long" } %>
-        <%= f.input :company_name, :label => t(:company),
-                    :input_html => { :class => "long", :data => { :autocomplete_source => autocomplete_companies_path } } %>
+        <%= f.input :job_position, input_html: { class: "long" } %>
+        <%= f.input :company_name, label: t(:company),
+                    input_html: { class: "long", data: { autocomplete_source: autocomplete_companies_path } } %>
         <tr>
           <td class="label top"><%= f.label :email %></td>
           <td>
             <% f.object.email_infos.build if f.object.email_infos.size == 0 %>
             <%= f.simple_fields_for :email_infos do |info_form| %>
-              <%= render 'email_info_fields', :f => info_form %>
+              <%= render 'email_info_fields', f: info_form %>
             <% end %>
             <span class="add-field">
-              <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+"ajouter", f, :email_infos %>
+              <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+"ajouter", f, :email_infos %>
             </span>
           </td>
         </tr>
@@ -53,10 +53,10 @@
           <td>
             <% f.object.phone_infos.build if f.object.phone_infos.size == 0 %>
             <%= f.simple_fields_for :phone_infos do |info_form| %>
-              <%= render 'phone_info_fields', :f => info_form %>
+              <%= render 'phone_info_fields', f: info_form %>
             <% end %>
             <span class="add-field">
-              <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+"ajouter", f, :phone_infos %>
+              <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+"ajouter", f, :phone_infos %>
             </span>
           </td>
         </tr>
@@ -66,10 +66,10 @@
           <td>
             <% f.object.address_infos.build if f.object.address_infos.size == 0 %>
             <%= f.simple_fields_for :address_infos do |info_form| %>
-              <%= render 'address_info_fields', :f => info_form %>
+              <%= render 'address_info_fields', f: info_form %>
             <% end %>
             <span class="add-field">
-              <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+"ajouter", f, :address_infos %>
+              <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+"ajouter", f, :address_infos %>
             </span>
           </td>
         </tr>

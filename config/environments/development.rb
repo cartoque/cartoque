@@ -36,5 +36,5 @@ Cartoque::Application.configure do
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # TODO: find how to manage it dynamically
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 end

@@ -1,6 +1,6 @@
 <p class="fields">
-  <%= f.text_field :address, :maxlength => 15, :value => f.object.address, :style => "width:8em;" %>
-  <%= f.input_field :main, :class => "main_ip radio-checkbox" %><label><%= t(:ipaddress_main) %></label>
+  <%= f.text_field :address, maxlength: 15, value: f.object.address, style: "width:8em;" %>
+  <%= f.input_field :main, class: "main_ip radio-checkbox" %><label><%= t(:ipaddress_main) %></label>
   <%= f.input_field :virtual %><label><%= t(:ipaddress_virtual) %></label>
-  <%= link_to_remove_fields image_tag("delete.png", :size => "16x16"), f %>
+  <%= link_to_remove_fields image_tag("delete.png", size: "16x16"), f %>
 </p>

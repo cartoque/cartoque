@@ -14,32 +14,32 @@
   <table class="inputs full">
     <tbody>
       <%= tabular_errors @server %>
-      <%= f.input :name, :required => true, :wrapper_class => 'th', :input_html => { :style => "width:10em;" } %>
+      <%= f.input :name, required: true, wrapper_class: 'th', input_html: { style: "width:10em;" } %>
       <tr class="wrapper server_applications">
-        <td colspan="2"><label for="server[description]" class="input"><%= t(:description) %> :</label><br/><%= f.text_area :description, :size => "30x4" %></td>
+        <td colspan="2"><label for="server[description]" class="input"><%= t(:description) %> :</label><br/><%= f.text_area :description, size: "30x4" %></td>
       </tr>
-      <%= f.association :operating_system, :collection => ancestry_options(
-                                                            OperatingSystem.scoped.arrange(:order => 'name')
+      <%= f.association :operating_system, collection: ancestry_options(
+                                                            OperatingSystem.scoped.arrange(order: 'name')
                                                           ){|i| "#{'-'*i.depth} #{i.name}"} %>
       <tr class="input checkbox optional">
         <td class="label"><%= content_tag :label, t(:server_type) %></td>
         <td class="content tiny checkboxes-as-radio">
-          <%= f.input_field :virtual, :class => "radio-checkbox" %><%= content_tag :label, t(:virtual), :for => "server_virtual" %><br />
-          <%= f.input_field :is_hypervisor, :class => "radio-checkbox" %><%= content_tag :label, t(:hypervisor), :for => "server_is_hypervisor" %><br />
-          <%= f.input_field :network_device, :class => "radio-checkbox" %><%= content_tag :label, t(:network_device), :for => "server_network_device" %>
+          <%= f.input_field :virtual, class: "radio-checkbox" %><%= content_tag :label, t(:virtual), for: "server_virtual" %><br />
+          <%= f.input_field :is_hypervisor, class: "radio-checkbox" %><%= content_tag :label, t(:hypervisor), for: "server_is_hypervisor" %><br />
+          <%= f.input_field :network_device, class: "radio-checkbox" %><%= content_tag :label, t(:network_device), for: "server_network_device" %>
         </td>
       </tr>
-      <%= f.association :hypervisor, :collection => Server.hypervisor_hosts.order(:name) - [@server],
-                                     :wrapper_class => css_classes_virtual %>
+      <%= f.association :hypervisor, collection: Server.hypervisor_hosts.order(:name) - [@server],
+                                     wrapper_class: css_classes_virtual %>
       <tr class="input string optional">
         <td class="content checkboxes-as-radio" colspan="2">
           <label for="server[ipaddresses]" class="input"><%= t(:ipaddresses) %> :</label><br />
           <% f.object.ipaddresses.build if f.object.ipaddresses.size == 0 %>
           <%= f.simple_fields_for :ipaddresses do |ip_form| %>
-            <%= render 'ipaddress_fields', :f => ip_form %>
+            <%= render 'ipaddress_fields', f: ip_form %>
           <% end %>
           <p class="add-field">
-            <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+t(:add).downcase, f, :ipaddresses %>
+            <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+t(:add).downcase, f, :ipaddresses %>
           </p>
         </td>
       </tr>
@@ -48,10 +48,10 @@
           <label for="server[physical_links]" class="input"><%= t(:server_links) %> :</label><br />
           <% f.object.physical_links.build if f.object.physical_links.size == 0 %>
           <%= f.simple_fields_for :physical_links do |pl_form| %>
-            <%= render 'physical_link_fields', :f => pl_form %>
+            <%= render 'physical_link_fields', f: pl_form %>
           <% end %>
           <p class="add-field">
-            <%= link_to_add_fields image_tag("new_button.png", :size => "14x15", :class=>"inline")+t(:add).downcase, f, :physical_links %>
+            <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+t(:add).downcase, f, :physical_links %>
           </p>
         </td>
       </tr>
@@ -60,11 +60,11 @@
     </tbody>
     <tbody id="server-maintenance" class="<%= css_classes_physical %>">
       <tr><th colspan="2" class="secondary"><%= t(:maintenance) %></th></tr>
-      <%= f.association :maintainer, :collection => Company.maintainers %>
-      <%= f.input :delivered_on, :as => :date, :order => [:day, :month, :year], :use_month_numbers => true,
-                                 :start_year => Date.today.year-5, :end_year => Date.today.year+10 %>
-      <%= f.input :maintained_until, :as => :date, :order => [:day, :month, :year], :use_month_numbers => true,
-                                     :start_year => Date.today.year-5, :end_year => Date.today.year+10 %>
+      <%= f.association :maintainer, collection: Company.maintainers %>
+      <%= f.input :delivered_on, as: :date, order: [:day, :month, :year], use_month_numbers: true,
+                                 start_year: Date.today.year-5, end_year: Date.today.year+10 %>
+      <%= f.input :maintained_until, as: :date, order: [:day, :month, :year], use_month_numbers: true,
+                                     start_year: Date.today.year-5, end_year: Date.today.year+10 %>
       <%= f.input :contract_type %>
       <%= f.input :serial_number %>
     </tbody>
@@ -77,30 +77,30 @@
       <tr><th colspan="2" id="server-hardware-title"><%= @server.virtual? ? t(:resources) : t(:hardware) %></th></tr>
     </thead>
     <tbody id="server-physical-hardware" class="<%= css_classes_physical %>">
-      <%= f.association :physical_rack, :collection => PhysicalRack.all.map{|r| [r,r.id]} %>
+      <%= f.association :physical_rack, collection: PhysicalRack.all.map{|r| [r,r.id]} %>
       <%= f.input :manufacturer %>
       <%= f.input :model %>
     </tbody>
     <tbody>
-      <%= f.input :nb_proc, :collection => [1,2,4,6,8,10,12,16,24,32] %>
-      <%= f.input :ref_proc, :wrapper_class => css_classes_physical %>
-      <%= f.input :frequency, :as => :string %>
-      <%= f.input :nb_coeur, :collection => [1,2,4,6,8], :wrapper_class => css_classes_physical %>
+      <%= f.input :nb_proc, collection: [1,2,4,6,8,10,12,16,24,32] %>
+      <%= f.input :ref_proc, wrapper_class: css_classes_physical %>
+      <%= f.input :frequency, as: :string %>
+      <%= f.input :nb_coeur, collection: [1,2,4,6,8], wrapper_class: css_classes_physical %>
       <%= f.input :memory %>
       <%= f.input :disk_type %>
-      <%= f.input :nb_disk, :as => :string %>
-      <%= f.input :disk_size, :as => :string %>
+      <%= f.input :nb_disk, as: :string %>
+      <%= f.input :disk_size, as: :string %>
       <%= f.input :disk_type_alt %>
-      <%= f.input :nb_disk_alt, :as => :string %>
-      <%= f.input :disk_size_alt, :as => :string %>
-      <%= f.association :media_drive, :wrapper_class => css_classes_physical %>
-      <%= f.input :nb_rj45, :collection => 0..32 %>
-      <%= f.input :nb_fc, :collection => 0..12,
-                  :wrapper_class => css_classes_physical %>
-      <%= f.input :nb_iscsi, :collection => 0..12,
-                  :wrapper_class => css_classes_physical %>
-      <%= f.input :has_drac, :as => :select, :include_blank => false,
-                  :wrapper_class => css_classes_physical %>
+      <%= f.input :nb_disk_alt, as: :string %>
+      <%= f.input :disk_size_alt, as: :string %>
+      <%= f.association :media_drive, wrapper_class: css_classes_physical %>
+      <%= f.input :nb_rj45, collection: 0..32 %>
+      <%= f.input :nb_fc, collection: 0..12,
+                  wrapper_class: css_classes_physical %>
+      <%= f.input :nb_iscsi, collection: 0..12,
+                  wrapper_class: css_classes_physical %>
+      <%= f.input :has_drac, as: :select, include_blank: false,
+                  wrapper_class: css_classes_physical %>
     </tbody>
   </table>
   </div>

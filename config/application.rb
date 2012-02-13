@@ -4,7 +4,7 @@ require 'rails/all'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  # (default) Bundler.require(*Rails.groups(:assets => %w(development test)))
+  # (default) Bundler.require(*Rails.groups(assets: %w(development test)))
   # If you want your assets lazily compiled in production, use this line
   Bundler.require(:default, :assets, Rails.env)
 end
@@ -46,8 +46,8 @@ module Cartoque
     # Generators replacement
     # TODO: see if it really works
     config.generators do |g|
-      g.test_framework :rspec, :fixture => false, :views => false
-      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+      g.test_framework :rspec, fixture: false, views: false
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
 
     # Enable the asset pipeline

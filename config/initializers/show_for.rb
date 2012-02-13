@@ -34,5 +34,5 @@ ShowFor.setup do |config|
   # If you want to wrap the text inside a label (e.g. to append a semicolon),
   # specify label_proc - it will be automatically called, passing in the label text.
   # config.label_proc = lambda { |l| c + ":" }
-  config.label_proc = lambda { |text| I18n.t(text.parameterize("_").to_sym, :default => text) }
+  config.label_proc = lambda { |text| I18n.t(text.parameterize("_").to_sym, default: text) }
 end

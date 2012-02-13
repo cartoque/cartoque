@@ -10,24 +10,24 @@
     <tbody>
       <% css_cas = @user.provider=="cas" ? " cas" : "" %>
       <%= tabular_errors @user %>
-      <%= f.input :name, :required => true, :wrapper_class => "th" %>
-      <%= f.input :provider, :collection => [[t(:user_provider_internal), "internal"], [t(:user_provider_cas), "cas"]],
-                             :include_blank => false %>
-      <%= f.input :uid, :input_html => { :style => "width:400px;" }, :wrapper_class => "hidden-if-internal"+css_cas %>
-      <%= f.input :email, :input_html => { :style => "width:400px;" }, :wrapper_class => "hidden-if-cas"+css_cas %>
-      <%= f.input :password, :as => :password, :wrapper_class => "hidden-if-cas"+css_cas %>
-      <%= f.input :password_confirmation, :as => :password, :wrapper_class => "hidden-if-cas"+css_cas %>
+      <%= f.input :name, required: true, wrapper_class: "th" %>
+      <%= f.input :provider, collection: [[t(:user_provider_internal), "internal"], [t(:user_provider_cas), "cas"]],
+                             include_blank: false %>
+      <%= f.input :uid, input_html: { style: "width:400px;" }, wrapper_class: "hidden-if-internal"+css_cas %>
+      <%= f.input :email, input_html: { style: "width:400px;" }, wrapper_class: "hidden-if-cas"+css_cas %>
+      <%= f.input :password, as: :password, wrapper_class: "hidden-if-cas"+css_cas %>
+      <%= f.input :password_confirmation, as: :password, wrapper_class: "hidden-if-cas"+css_cas %>
       <tr>
-        <td class="label"><%= f.label :authentication_token, :class => "input" %></td>
+        <td class="label"><%= f.label :authentication_token, class: "input" %></td>
         <td>
           <span id="authentication_token"><%= @user.authentication_token %></span>
           <%= f.hidden_field :authentication_token %>
-          <%= button_tag t(:generate), :id => "generate-token", :class => "inline", :style => (@user.authentication_token.present? ? "display:none;" : nil) %>
-          <%= button_tag t(:delete), :id => "remove-token", :class => "inline", :style => (@user.authentication_token.blank? ? "display:none;" : nil),
+          <%= button_tag t(:generate), id: "generate-token", class: "inline", style: (@user.authentication_token.present? ? "display:none;" : nil) %>
+          <%= button_tag t(:delete), id: "remove-token", class: "inline", style: (@user.authentication_token.blank? ? "display:none;" : nil),
                                      "data-confirm" => t(:text_are_you_sure) %>
         </td>
       </tr>
-      <%= f.input :locale, :collection => [%w(Français fr), %w(English en)] %>
+      <%= f.input :locale, collection: [%w(Français fr), %w(English en)] %>
     </tbody>
   </table>
 <% end %>

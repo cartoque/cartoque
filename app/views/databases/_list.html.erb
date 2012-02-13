@@ -23,7 +23,7 @@
       </td>
       <td rowspan="<%= height %>" class="multirow center">PostgreSQL</td>
       <% if database.postgres_report.present? %>
-        <%= render :partial => 'postgres_report', :collection => database.postgres_report %>
+        <%= render partial: 'postgres_report', collection: database.postgres_report %>
       <% else %>
         <td colspan="4" class="center"><%= t(:information_not_available) %></td>
       <% end %>
@@ -52,7 +52,7 @@
       </td>
       <td rowspan="<%= height %>" class="multirow center">Oracle</td>
       <% if database.oracle_report.present? %>
-        <%= render :partial => 'oracle_report', :collection => database.oracle_report %>
+        <%= render partial: 'oracle_report', collection: database.oracle_report %>
       <% else %>
         <td colspan="4" class="center"><%= t(:information_not_available) %></td>
       <% end %>

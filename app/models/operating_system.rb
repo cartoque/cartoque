@@ -1,6 +1,6 @@
 class OperatingSystem < ActiveRecord::Base
   has_many :servers
-  has_ancestry :cache_depth => true
+  has_ancestry cache_depth: true
 
   validates_presence_of :name
 

@@ -4,7 +4,7 @@
 
 <%= action_links do %>
   <%= link_to t(:edit), edit_database_path(@database) %> |
-  <%= link_to t(:delete), @database, :confirm => t(:text_are_you_sure), :method => :delete %> |
+  <%= link_to t(:delete), @database, confirm: t(:text_are_you_sure), method: :delete %> |
   <%= link_to t(:back_to_the_list), databases_path %>
 <% end %>
 
@@ -32,8 +32,8 @@
     </tr>
   </thead>
   <tbody>
-    <%= render :partial => "#{@database.database_type}_report",
-               :collection => @database.send(:"#{@database.database_type}_report") %>
+    <%= render partial: "#{@database.database_type}_report",
+               collection: @database.send(:"#{@database.database_type}_report") %>
   </tbody>
   <% end %>
 </table>

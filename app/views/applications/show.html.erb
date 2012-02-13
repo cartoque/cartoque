@@ -4,7 +4,7 @@
 
 <%= action_links do %>
   <%= link_to t(:edit), edit_application_path(@application) %> |
-  <%= link_to t(:delete), @application, :confirm => t(:text_are_you_sure), :method => :delete %> |
+  <%= link_to t(:delete), @application, confirm: t(:text_are_you_sure), method: :delete %> |
   <%= link_to t(:back_to_the_list), applications_path %>
 <% end %>
 
@@ -47,7 +47,7 @@
   <tbody class="show_for">
     <tr class="wrapper application_servers">
       <td colspan="2">
-        <%= render :partial => 'instance', :collection => @application.sorted_application_instances.compact %>
+        <%= render partial: 'instance', collection: @application.sorted_application_instances.compact %>
       </td>
     </tr>
   </tbody>

@@ -1,4 +1,4 @@
-<%= form_tag servers_path(params), :id => "filters", :method => :get do -%>
+<%= form_tag servers_path(params), id: "filters", method: :get do -%>
   <%= hidden_sort_fields %>
   <% (controller.scopes_configuration || {}).keys.each do |scope| %>
     <%= hidden_field_tag scope, params[scope] %>
@@ -6,7 +6,7 @@
 <tr class="filters fixed-size">
   <td><%= text_field_tag "search", params[:search] %></td>
   <td></td>
-  <% @os = ancestry_options(OperatingSystem.scoped.arrange(:order => 'name')){|i| "#{'-'*i.depth} #{i.name}"} %>
+  <% @os = ancestry_options(OperatingSystem.scoped.arrange(order: 'name')){|i| "#{'-'*i.depth} #{i.name}"} %>
   <td><%= select_tag "by_system", options_for_select([["",""]] + @os, params[:by_system]).html_safe -%></td>
   <% @archs = Server.select("distinct(arch)").map(&:arch).compact.sort %>
   <td><%= select_tag "by_arch", options_for_select([["",""]] + @archs, params[:by_arch]).html_safe -%></td>

@@ -1,7 +1,7 @@
 class PhysicalRacksController < InheritedResources::Base
   layout "admin"
 
-  before_filter :count_servers_per_rack, :only => :index
+  before_filter :count_servers_per_rack, only: :index
 
   def create
     create! { physical_racks_url }

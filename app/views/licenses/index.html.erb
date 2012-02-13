@@ -3,14 +3,14 @@
 <div id="licenses" class="items_list grid_12">
 
 <table class="pretty list">
-  <%= form_tag licenses_path(params), :id => "filters", :method => :get do -%>
+  <%= form_tag licenses_path(params), id: "filters", method: :get do -%>
     <%= hidden_sort_fields %>
   <tr class="filters fixed-size">
-    <td><%= select_tag "by_editor", options_for_select(@editors.map{|s| [s, s]}, params[:by_editor]), :include_blank => true %></td>
+    <td><%= select_tag "by_editor", options_for_select(@editors.map{|s| [s, s]}, params[:by_editor]), include_blank: true %></td>
     <td style="min-width:24em"><%= text_field_tag "by_key", params[:by_key] %></td>
     <td style="min-width:10em"><%= text_field_tag "by_title", params[:by_title] %></td>
     <td></td>
-    <td><%= select_tag "by_server", options_for_select(@servers.map{|s| [s.name, s.id]}, params[:by_server]), :include_blank => true %></td>
+    <td><%= select_tag "by_server", options_for_select(@servers.map{|s| [s.name, s.id]}, params[:by_server]), include_blank: true %></td>
     <td></td>
     <td></td>
     <td></td>

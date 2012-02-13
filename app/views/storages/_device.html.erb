@@ -7,8 +7,8 @@
   <%= pretty_size(device.free) %> disponibles
 </p>
 <%= progress_bar(device.percent_used,
-                 :width => 300,
-                 :legend => ('%0.0f%' % device.percent_used)) %>
+                 width: 300,
+                 legend: ('%0.0f%' % device.percent_used)) %>
 
 <% devid = "device-#{device.name.parameterize}" %>
 <% if device.unassigned > 0 %>
@@ -18,7 +18,7 @@
 <% if device.children.any? %>
 <p class="more">
   <%= link_to t(:more), {},
-              :onclick => %($("##{devid}").toggle(); return false;) %>
+              onclick: %($("##{devid}").toggle(); return false;) %>
 </p>
 <% end %>
 
@@ -31,8 +31,8 @@
       <%= " / #{pretty_size(array.free)} free" unless array.free == 0 %>
     </td>
     <td style="width:100%">
-      <%= progress_bar(array.percent_used, :width => 120,
-                       :legend => "#{array.percent_used}%") %>
+      <%= progress_bar(array.percent_used, width: 120,
+                       legend: "#{array.percent_used}%") %>
     </td>
   </tr>
 <% end %>

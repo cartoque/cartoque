@@ -3,8 +3,8 @@
     <table class="show_item full">
       <tbody>
         <%= tabular_errors @mailing_list %>
-        <%= f.input :name, :wrapper_class => "th" %>
-        <%= f.association :contacts, :collection => ContactDecorator.joins(:email_infos).group("contacts.id").map{|c| [c.decorate.mailing_list_form, c.id]}, :as => :multiselect %>
+        <%= f.input :name, wrapper_class: "th" %>
+        <%= f.association :contacts, collection: ContactDecorator.joins(:email_infos).group("contacts.id").map{|c| [c.decorate.mailing_list_form, c.id]}, as: :multiselect %>
       </tbody>
     </table>
     <%= action_links do %>

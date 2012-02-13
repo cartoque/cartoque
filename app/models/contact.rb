@@ -3,8 +3,8 @@ class Contact < ActiveRecord::Base
 
   belongs_to :company
   has_and_belongs_to_many :mailing_lists
-  has_many :contact_relations, :dependent => :destroy
-  has_many :configuration_items, :through => :contact_relations
+  has_many :contact_relations, dependent: :destroy
+  has_many :configuration_items, through: :contact_relations
 
   validates_presence_of :last_name, :image_url
 

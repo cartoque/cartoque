@@ -6,13 +6,13 @@
   <%= link_to t(:back_to_the_list), contacts_path %>
 <% end %>
 
-<%= render :partial => 'company', :object => @company %>
+<%= render partial: 'company', object: @company %>
 
 </div>
 
 <div class="grid_4 company_relations">
   <h2 class="center"><%= t(:members) %></h2>
-  <%= render :partial => 'contacts/contact', :collection => @company.contacts %>
+  <%= render partial: 'contacts/contact', collection: @company.contacts %>
 </div>
 
 <div class="grid_4 company_relations">

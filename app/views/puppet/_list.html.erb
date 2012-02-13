@@ -1,12 +1,12 @@
 <tr class="fix-on-scroll">
-  <%= sortable_th "name", nil, :style => "min-width:10em" %>
-  <%= sortable_th "virtual", nil, :style => "width:2em" %>
+  <%= sortable_th "name", nil, style: "min-width:10em" %>
+  <%= sortable_th "virtual", nil, style: "width:2em" %>
   <th style="width:2em">Puppet</th>
-  <%= sortable_th "operating_systems.name", t(:operating_system), :style => "width:12em" %>
-  <%= sortable_th "operatingsystemrelease", t(:osrelease_facter), :style => "width:9em" %>
-  <%= sortable_th "puppetversion", nil, :style => "width:9em" %>
-  <%= sortable_th "facterversion", nil, :style => "width:9em" %>
-  <%= sortable_th "rubyversion", nil, :style => "width:9em" %>
+  <%= sortable_th "operating_systems.name", t(:operating_system), style: "width:12em" %>
+  <%= sortable_th "operatingsystemrelease", t(:osrelease_facter), style: "width:9em" %>
+  <%= sortable_th "puppetversion", nil, style: "width:9em" %>
+  <%= sortable_th "facterversion", nil, style: "width:9em" %>
+  <%= sortable_th "rubyversion", nil, style: "width:9em" %>
 </tr>
 <% for server in @servers %>
   <tr class="has-opaques">

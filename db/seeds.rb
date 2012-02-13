@@ -3,8 +3,8 @@
 #
 # Examples:
 #
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Mayor.create(:name => 'Daley', :city => cities.first)
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Daley', city: cities.first)
 
 #a DB connection
 db = ActiveRecord::Base.connection
@@ -19,7 +19,7 @@ Server.all.each do |server|
 end
 
 #set servers identifier
-Server.where(:identifier => nil).each do |m|
+Server.where(identifier: nil).each do |m|
   m.update_attribute(:identifier, Server.identifier_for(m.name))
 end
 
@@ -40,4 +40,4 @@ end.each do |klass|
 end
 
 #create a first datacenter if none
-Datacenter.create(:name => "Datacenter") if Datacenter.first.blank?
+Datacenter.create(name: "Datacenter") if Datacenter.first.blank?

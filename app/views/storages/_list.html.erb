@@ -22,6 +22,6 @@
         <% end %>
       </td>
       <td class="top center"><%= storage.constructor %></td>
-      <td class="details"><%= render('device', :device => storage.device) if storage.device %></td>
+      <td class="details"><%= render('device', device: storage.device) if storage.device %></td>
     </tr>
   <% end %>

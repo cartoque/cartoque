@@ -7,11 +7,11 @@ class LicensesController < InheritedResources::Base
   has_scope :by_title
   has_scope :by_server
 
-  before_filter :find_filter_keys, :only => :index
+  before_filter :find_filter_keys, only: :index
 
   private
   def find_filter_keys
     @editors = License.select("distinct(editor)").map(&:editor).sort
-    @servers = Server.where(:id => License.joins(:servers).select("distinct(servers.id)").map(&:id)).sort_by(&:name)
+    @servers = Server.where(id: License.joins(:servers).select("distinct(servers.id)").map(&:id)).sort_by(&:name)
   end
 end

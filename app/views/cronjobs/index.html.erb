@@ -3,15 +3,15 @@
 <div id="cronjobs" class="items_list grid_12">
   
 <table class="pretty list">
-  <%= form_tag cronjobs_path(params), :id => "filters", :method => :get do -%>
+  <%= form_tag cronjobs_path(params), id: "filters", method: :get do -%>
     <%= hidden_sort_fields %>
   <tr class="filters fixed-size">
-    <td style="width:10em"><%= select_tag "by_server", options_for_select(@servers.map{|s| [s.name, s.id]}, params[:by_server]), :include_blank => true %></td>
+    <td style="width:10em"><%= select_tag "by_server", options_for_select(@servers.map{|s| [s.name, s.id]}, params[:by_server]), include_blank: true %></td>
     <td style="width:12em"><%= text_field_tag "by_definition", params[:by_definition] %></td>
     <td></td>
     <td></td>
     <td>
-      <%= text_field_tag "by_command", params[:by_command], :style => "width:80%;" %>
+      <%= text_field_tag "by_command", params[:by_command], style: "width:80%;" %>
       <span id="cronjobs_counter" class="counter"><%= (@cronjobs || []).count %></span>
     </td>
   </tr>

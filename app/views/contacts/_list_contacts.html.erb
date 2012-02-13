@@ -1,11 +1,11 @@
 <% @contacts.each do |contact| %>
-  <%= render :partial => 'contact', :object => contact %>
+  <%= render partial: 'contact', object: contact %>
 <% end %>
-<%= content_tag(:p, :class => "more_contacts") do %>
-  <%= link_to t(:and_X_others, :value => @contacts_count - 25), contacts_path(params.merge(:all_contacts=>1))  %>
+<%= content_tag(:p, class: "more_contacts") do %>
+  <%= link_to t(:and_X_others, value: @contacts_count - 25), contacts_path(params.merge(all_contacts:1))  %>
 <% end if @contacts_count > 25 && params[:all_contacts].blank? %>
 <% if @contacts.count == 0 %>
-  <%= content_tag(:p, :class => "no_result") do %>
+  <%= content_tag(:p, class: "no_result") do %>
     <%= t(:no_contact_found) %>
     <% if !view_internals %>
       <br /><span class="tiny"><%= t(:text_warning_internal_not_displayed) %></span>

@@ -3,7 +3,7 @@
 <div class="grid_12">
 <%= action_links do %>
   <%= link_to t(:edit), edit_server_path(@server) %> |
-  <%= link_to t(:delete), @server, :confirm => t(:text_are_you_sure), :method => :delete %> |
+  <%= link_to t(:delete), @server, confirm: t(:text_are_you_sure), method: :delete %> |
   <%= link_to t(:back_to_the_list), servers_path %>
 <% end %>
 </div>
@@ -59,7 +59,7 @@
     <% unless @server.virtual? %>
       <%= s.association(:physical_rack) do
             link_to_if @server.physical_rack.present?, @server.physical_rack,
-                       servers_path(:by_location => "rack-#{@server.physical_rack_id}")
+                       servers_path(by_location: "rack-#{@server.physical_rack_id}")
           end %>
     <% end %>
     <%= s.attribute :fullmodel unless @server.virtual? %>

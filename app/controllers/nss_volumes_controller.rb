@@ -17,7 +17,7 @@ class NssVolumesController < InheritedResources::Base
   end
 
   def find_servers_and_clients
-    @servers = Server.where(:id => NssVolume.select("distinct(server_id)").map(&:server_id)).order("name asc")
-    @clients = Server.where(:id => NssAssociation.select("distinct(server_id)").map(&:server_id)).order("name asc")
+    @servers = Server.where(id: NssVolume.select("distinct(server_id)").map(&:server_id)).order("name asc")
+    @clients = Server.where(id: NssAssociation.select("distinct(server_id)").map(&:server_id)).order("name asc")
   end
 end

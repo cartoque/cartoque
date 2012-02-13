@@ -3,9 +3,9 @@ module OperatingSystemsHelper
     img = ""
     icon_path = operating_system.icon_path.gsub("images/","")
     if File.file?(Rails.root.join("public","images",icon_path))
-      img << image_tag(icon_path, :size => "12x12", :class => "os-icon")
+      img << image_tag(icon_path, size: "12x12", class: "os-icon")
     else
-      img << image_tag("blank.gif", :size => "12x12", :class => "os-icon")
+      img << image_tag("blank.gif", size: "12x12", class: "os-icon")
     end
     img.html_safe + operating_system.name
   end
@@ -13,8 +13,8 @@ module OperatingSystemsHelper
   def nested_operating_systems(operating_systems)
     operating_systems.map do |operating_system, sub_os|
       subtree_ids = [operating_system.id] + descendant_ids(sub_os)
-      render(operating_system, :subtree => subtree_ids) +
-             content_tag(:div, nested_operating_systems(sub_os), :id => "nested_os_#{operating_system.id}", :class => "nested-os")
+      render(operating_system, subtree: subtree_ids) +
+             content_tag(:div, nested_operating_systems(sub_os), id: "nested_os_#{operating_system.id}", class: "nested-os")
     end.join.html_safe
   end
 

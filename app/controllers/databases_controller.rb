@@ -27,7 +27,7 @@ class DatabasesController < ResourcesController
     end
 
     respond_to do |format|
-      format.json { render :json => @json }
+      format.json { render json: @json }
       format.html
     end
   end

@@ -2,13 +2,13 @@
   <ul class="menu-items contextual">
   <% if user_signed_in? %>
     <li class="connected-as"><%= link_to current_user.name, edit_user_path(current_user) %></li>
-    <li><%= link_to image_tag("sign-out.png", :alt => t(:disconnection), :size => "16x16"), destroy_user_session_path,
-                    :method => :delete, :class => "img", :title => t(:disconnection) %></li>
+    <li><%= link_to image_tag("sign-out.png", alt: t(:disconnection), size: "16x16"), destroy_user_session_path,
+                    method: :delete, class: "img", title: t(:disconnection) %></li>
   <% end %>
   </ul>
   <ul class="menu-items">
-    <li class="home"><%= link_to image_tag("home.png", :alt => t(:home), :size => "16x16"), root_path,
-                                 :class => "img", :title => t(:home) %></li>
+    <li class="home"><%= link_to image_tag("home.png", alt: t(:home), size: "16x16"), root_path,
+                                 class: "img", title: t(:home) %></li>
   <% if user_signed_in? %>
     <li class="applications"><%= link_to t(:applications), applications_path %></li>
     <li class="servers"><%= link_to t(:servers), servers_path %></li>
@@ -31,7 +31,7 @@
           <!--<li><a href="?">Talend / Sunopsis</a></li>-->
           <!--<li><a href="?">FTP VSFTPd</a></li>-->
           <li class="storage-items title"><%= t(:storage) %></li>
-          <li class="nss-virtualization"><%= link_to t(:nss_virtualization), nss_volumes_path(:by_type => "SAN") %></li>
+          <li class="nss-virtualization"><%= link_to t(:nss_virtualization), nss_volumes_path(by_type: "SAN") %></li>
           <li class="storage-devices"><%= link_to t(:storage_devices), storages_path %></li>
         </ul>
         <!--<ul style="float:left">
@@ -46,7 +46,7 @@
         <ul style="float:left">
           <li class="misc-items title"><%= t(:misc_services) %></li>
           <li class="licenses"><%= link_to t(:licenses), licenses_path %></li>
-          <li class="puppet"><%= link_to "Puppet", puppet_path(:servers, :by_puppet => "1") %></li>
+          <li class="puppet"><%= link_to "Puppet", puppet_path(:servers, by_puppet: "1") %></li>
           <li class="backups"><%= link_to t(:backups), backup_jobs_path %></li>
           <li class="upgrades"><%= link_to t(:upgrades), upgrades_path %></li>
           <li class="cron-tasks"><%= link_to t(:cron_tasks), cronjobs_path %></li>

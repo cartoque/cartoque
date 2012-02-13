@@ -11,11 +11,11 @@ module UpgradesHelper
   end
 
   def format_package_upgrade(package)
-    content_tag :span, h(package[:name]), :class => "package package_#{package[:status]}",
-                                          :title => "#{h package[:old]} → #{h package[:new]}".html_safe
+    content_tag :span, h(package[:name]), class: "package package_#{package[:status]}",
+                                          title: "#{h package[:old]} → #{h package[:new]}".html_safe
   end
 
   def validated_by(upgrader)
-    t(:validated_by, :person => upgrader.name)
+    t(:validated_by, person: upgrader.name)
   end
 end
