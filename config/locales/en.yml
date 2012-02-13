@@ -86,7 +86,7 @@ en:
   text_are_you_sure: "Are you sure ?"
   text_confirm_delete: "Do you really want to delete %{element} ?"
   authentication_method: "Authentication"
-  authentication:
+  auth:
     none: "None"
     cerbere: "Cerbere"
     cerbere-cas: "Cerbere-cas"

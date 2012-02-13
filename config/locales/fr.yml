@@ -243,7 +243,7 @@ fr:
   text_are_you_sure: "Etes-vous sûr ?"
   text_confirm_delete: "Voulez-vous vraiment supprimer %{element} ?"
   authentication_method: "Auth"
-  authentication:
+  auth:
     none: "Pas d'authentification"
     cerbere: "Cerbère"
     cerbere-cas: "Cerbère-CAS"

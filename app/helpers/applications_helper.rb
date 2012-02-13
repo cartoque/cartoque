@@ -1,7 +1,7 @@
 module ApplicationsHelper
   def collection_for_authentication_methods
     ApplicationInstance::AVAILABLE_AUTHENTICATION_METHODS.map do |meth|
-      [ t("authentication.#{meth}"), meth ]
+      [ t("auth.#{meth}"), meth ]
     end
   end
 
