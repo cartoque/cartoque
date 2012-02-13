@@ -8,6 +8,7 @@ describe "Authentication" do
     end
 
     it "displays internal auth depending on settings" do
+      Settler.load!
       Settler["allow_internal_authentication"].should == "yes"
       get new_user_session_path
       response.body.should have_selector("#cas-login")
