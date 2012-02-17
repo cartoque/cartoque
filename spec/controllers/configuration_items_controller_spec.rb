@@ -7,13 +7,13 @@ describe ConfigurationItemsController do
     @configuration_item = Factory(:configuration_item)
   end
 
-  it "should should get index" do
+  it "should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:configuration_items)
   end
 
-  it "should should show configuration_item" do
+  it "should show configuration_item" do
     get :show, id: @configuration_item.to_param
     assert_response :success
   end

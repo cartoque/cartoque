@@ -12,7 +12,7 @@ end
 describe TomcatsController do
   login_user
 
-  it "should should get index" do
+  it "should get index" do
     get :index
     assert_response :success
   end
