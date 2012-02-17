@@ -15,8 +15,9 @@ class MongoPhysicalRack
   store_in "physical_racks"
 
   ARPhysicalRack.columns.each do |column|
-    field_name = (column.name == "id" ? "active_record_id" : column.name)
-    field field_name.to_sym, type: AR2Mongoid.mongoid_type(column)
+    unless column.name == "id"
+      field column.name.to_sym, type: AR2Mongoid.mongoid_type(column)
+    end
   end
   field :site_name, type: String
 end
@@ -28,7 +29,6 @@ class MigratePhysicalRacksToMongodb < ActiveRecord::Migration
     cols = ARPhysicalRack.column_names.select{|c| c != "id"}
     ARPhysicalRack.all.each do |rack|
       attrs = rack.attributes.slice(*cols)
-      attrs["active_record_id"] = attrs.delete("id")
       attrs["site_name"] = rack.site.name
       mrack = MongoPhysicalRack.create(attrs)
       ActiveRecord::Base.connection.execute("UPDATE servers SET physical_rack_mongo_id='#{mrack.id}', site_id=#{rack.site_id} WHERE physical_rack_id = #{rack.id}")
