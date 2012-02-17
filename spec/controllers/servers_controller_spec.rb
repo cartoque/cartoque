@@ -49,7 +49,7 @@ describe ServersController do
     end
 
     it "should create server" do
-      lambda{ post :create, :server => @server.attributes.except(:id).merge("name" => "new-server") }.should change(Server, :count).by(+1)
+      lambda{ post :create, :server => {"name" => "new-server"} }.should change(Server, :count).by(+1)
       assert_redirected_to server_path(assigns(:server))
     end
 
@@ -69,7 +69,7 @@ describe ServersController do
     end
 
     it "should update server" do
-      put :update, :id => @server.to_param, :server => @server.attributes.except(:id).merge("ipaddresses_attributes"=>[{"address"=>"192.168.99.99", "main"=>"1"}])
+      put :update, :id => @server.to_param, :server => { "ipaddresses_attributes"=>[{"address"=>"192.168.99.99", "main"=>"1"}] }
       assert_redirected_to server_path(assigns(:server))
       @server.reload
       assert_equal 3232260963, @server.read_attribute(:ipaddress)

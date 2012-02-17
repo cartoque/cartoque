@@ -11,15 +11,9 @@ describe PhysicalRack do
     it "should format correctly with #to_s" do
       @rack.to_s.should eq "Rack 1"
       @site.to_s.should eq "Hosting Room 1"
-      @rack.site = @site
+      @rack.site_id = @site.id
+      @rack.save
       @rack.to_s.should eq "Hosting Room 1 - Rack 1"
-    end
-  end
-
-  describe "#non_stock scope" do
-    it "should see non-stock racks only" do
-      rack = PhysicalRack.create(:name => "stock", :status => PhysicalRack::STATUS_STOCK)
-      PhysicalRack.non_stock.should_not include(rack)
     end
   end
 
