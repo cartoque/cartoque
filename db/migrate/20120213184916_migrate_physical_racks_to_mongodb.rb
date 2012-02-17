@@ -1,12 +1,13 @@
 # some useful helpers
 require 'ar2mongoid'
 
-# temp class for active_record physical_racks
+# temp class for active_record versions of objects
+class ARSite < ActiveRecord::Base; set_table_name "sites"; end
+class ARServer < ActiveRecord::Base; set_table_name "servers"; end
 class ARPhysicalRack < ActiveRecord::Base
   set_table_name "physical_racks"
-
-  has_many :servers, foreign_key: "physical_rack_id"
-  belongs_to :site
+  has_many :servers, foreign_key: "physical_rack_id", class_name: 'ARServer'
+  belongs_to :site, foreign_key: "site_id", class_name: 'ARSite'
 end
 
 # temp class for mongoid physical_racks
