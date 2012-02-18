@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120205162617) do
+ActiveRecord::Schema.define(:version => 20120213184916) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -321,6 +321,8 @@ ActiveRecord::Schema.define(:version => 20120205162617) do
     t.integer "status",                                :default => 1
     t.string  "arch"
     t.integer "maintainer_id"
+    t.string  "physical_rack_mongo_id"
+    t.string  "site_mongo_id"
   end
 
   add_index "servers", ["database_id"], :name => "index_servers_on_database_id"
