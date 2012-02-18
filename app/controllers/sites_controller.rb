@@ -17,6 +17,6 @@ class SitesController < InheritedResources::Base
       memo[rack.site_id] += 1
       memo
     end
-    @servers_count = Server.where("virtual = ?", false).group("site_id").count
+    @servers_count = Server.where("virtual = ?", false).group("site_mongo_id").count
   end
 end

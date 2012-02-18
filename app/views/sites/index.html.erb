@@ -20,7 +20,7 @@
   <tr>
     <td><%= link_to site.name, edit_site_path(site) %></td>
     <td class="center"><%= @racks_count[site.id] || 0 %></td>
-    <td class="center"><%= @servers_count[site.id] || 0 %></td>
+    <td class="center"><%= @servers_count[site.id.to_s] || 0 %></td>
     <td><%= link_to_delete site %></td>
   </tr>
 <% end %>
