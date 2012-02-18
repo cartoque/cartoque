@@ -11,7 +11,7 @@ describe PhysicalRack do
     it "should format correctly with #to_s" do
       @rack.to_s.should eq "Rack 1"
       @site.to_s.should eq "Hosting Room 1"
-      @rack.site_id = @site.id
+      @rack.site = @site
       @rack.save
       @rack.to_s.should eq "Hosting Room 1 - Rack 1"
     end
