@@ -1,5 +1,6 @@
 class Site
   include Mongoid::Document
+  field :name, type: String
 
   attr_accessible :name, :physical_racks
 
