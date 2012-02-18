@@ -38,7 +38,7 @@ class Server < ActiveRecord::Base
                   :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,
                   :nb_disk_alt, :ipaddress, :application_instance_ids, :database_id, :ipaddresses_attributes, :has_drac,
                   :physical_links_attributes, :network_device, :hypervisor_id, :is_hypervisor, :puppetversion,
-                  :rubyversion, :facterversion, :operatingsystemrelease, :status, :identifier, :arch
+                  :rubyversion, :facterversion, :operatingsystemrelease, :status, :identifier, :arch, :site_mongo_id
   attr_accessor   :just_created
 
   acts_as_ipaddress :ipaddress
@@ -49,9 +49,9 @@ class Server < ActiveRecord::Base
   scope :network_devices, where(network_device: true)
   scope :hypervisor_hosts, where(is_hypervisor: true)
   scope :by_rack, proc {|rack_id| where(physical_rack_mongo_id: rack_id) }
-  scope :by_site, proc {|site_id| where(site_id: site_id) }
+  scope :by_site, proc {|site_id| where(site_mongo_id: site_id) }
   scope :by_location, proc {|location|
-    if location.match /^site-(\d+)/
+    if location.match /^site-(\w+)/
       by_site($1)
     elsif location.match /^rack-(\w+)/
       by_rack($1)
@@ -229,7 +229,7 @@ class Server < ActiveRecord::Base
   def physical_rack=(rack)
     if rack.is_a?(PhysicalRack)
       self.physical_rack_mongo_id = rack.id.to_s
-      self.site_id = rack.site_id
+      self.site_mongo_id = rack.site_id.to_s
       @physical_rack = rack
     end
   end
