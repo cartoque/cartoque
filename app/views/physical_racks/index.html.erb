@@ -19,7 +19,7 @@
 <tbody class="long-list">
 <% @physical_racks.each do |physical_rack| %>
   <tr>
-    <td><%= physical_rack.site %></td>
+    <td><%= physical_rack.site_name %></td>
     <td><%= link_to physical_rack.name, edit_physical_rack_path(physical_rack) %></td>
     <td class="center"><%= @servers_count[physical_rack.id.to_s] || 0 %></td>
     <td class="stock center"><%= "&#149;".html_safe if physical_rack.stock? %></td>
