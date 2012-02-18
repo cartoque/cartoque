@@ -1,16 +1,14 @@
-class Site < ActiveRecord::Base
-  attr_accessible :name, :physical_racks
+class Site
+  include Mongoid::Document
 
-  default_scope order('name')
+  attr_accessible :name, :physical_racks
 
   validates_presence_of :name
 
+  has_many :physical_racks
+
   def to_s
     name
-  end
-
-  def physical_racks
-    @physical_racks ||= PhysicalRack.where(:site_id => self.id)
   end
 
   after_save :update_physical_racks_site_name

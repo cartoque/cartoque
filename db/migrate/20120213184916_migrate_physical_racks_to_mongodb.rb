@@ -10,35 +10,34 @@ class ARPhysicalRack < ActiveRecord::Base
   belongs_to :site, foreign_key: "site_id", class_name: 'ARSite'
 end
 
-# temp class for mongoid physical_racks
-class MongoPhysicalRack
-  include Mongoid::Document
-  store_in "physical_racks"
-
-  ARPhysicalRack.columns.each do |column|
-    unless column.name == "id"
-      field column.name.to_sym, type: AR2Mongoid.mongoid_type(column)
-    end
-  end
-  field :site_name, type: String
-end
-
+# migration!
 class MigratePhysicalRacksToMongodb < ActiveRecord::Migration
   def up
     add_column :servers, :physical_rack_mongo_id, :string
-    add_column :servers, :site_id, :integer
-    cols = ARPhysicalRack.column_names.select{|c| c != "id"}
+    add_column :servers, :site_mongo_id, :string
+    #migrate sites
+    cols = ARSite.column_names - %w(id)
+    site_map = {}
+    ARSite.all.each do |site|
+      attrs = site.attributes.slice(*cols)
+      msite = Site.create(attrs)
+      site_map[site.id] = msite
+    end
+    #migrates physical racks
+    cols = ARPhysicalRack.column_names - %w(id)
     ARPhysicalRack.all.each do |rack|
       attrs = rack.attributes.slice(*cols)
       attrs["site_name"] = rack.site.name
-      mrack = MongoPhysicalRack.create(attrs)
-      ActiveRecord::Base.connection.execute("UPDATE servers SET physical_rack_mongo_id='#{mrack.id}', site_id=#{rack.site_id} WHERE physical_rack_id = #{rack.id}")
+      site = site_map.fetch(attrs.delete("site_id"))
+      attrs["site_id"] = site.id if site.present?
+      mrack = PhysicalRack.create(attrs)
+      ActiveRecord::Base.connection.execute("UPDATE servers SET physical_rack_mongo_id='#{mrack.id}', site_mongo_id='#{mrack.site_id}' WHERE physical_rack_id = #{rack.id}")
     end
   end
 
   def down
     #nothing for now! maybe a bit of cleanup later?
     remove_column :servers, :physical_rack_mongo_id
-    remove_column :servers, :site_id
+    remove_column :servers, :site_mongo_id
   end
 end

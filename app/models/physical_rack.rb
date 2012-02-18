@@ -10,15 +10,13 @@ class PhysicalRack
 
   attr_accessible :name, :site_id, :status
 
+  belongs_to :site
+
   STATUS_PROD = 1
   STATUS_STOCK = 2
 
   def servers
     Server.where(physical_rack_mongo_id: self.id.to_s)
-  end
-
-  def site
-    Site.find_by_id(self.site_id)
   end
 
   def to_s
