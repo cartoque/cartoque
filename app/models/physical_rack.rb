@@ -1,7 +1,6 @@
 class PhysicalRack
   include Mongoid::Document
 
-  field :id, type: Integer
   field :name, type: String
   field :site_id, type: Integer
   field :site_name, type: String
