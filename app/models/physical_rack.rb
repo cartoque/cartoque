@@ -2,15 +2,13 @@ class PhysicalRack
   include Mongoid::Document
 
   field :name, type: String
-  field :site_id, type: Integer
   field :site_name, type: String
   field :status, type: Integer
+  belongs_to :site
 
   before_save :fill_in_site_name
 
   attr_accessible :name, :site_id, :status
-
-  belongs_to :site
 
   STATUS_PROD = 1
   STATUS_STOCK = 2
