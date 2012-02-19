@@ -8,18 +8,20 @@
   <%= sortable_th "manufacturer,model", t(:fullmodel), style: "min-width:12em" %>
 </tr>
 <% for server in @servers %>
-  <tr class="has-opaques">
-    <td>
-      <div class="contextual opaque">
-        <%= link_to_delete server %>
-      </div>
-      <%= link_to server.name, server %>
-    </td>
-    <td class="center"><%= server.ipaddress %></td>
-    <td><%= server.operating_system %></td>
-    <td class="center"><%= server.arch %></td>
-    <td class="center"><% if server.virtual? %><span class="virtual-server">V</span><% end %></td>
-    <td class="center"><%= link_to_rack server.physical_rack %></td>
-    <td><%= server.fullmodel %></td>
-  </tr>
+  <% cache ["list-normal", server] do %>
+    <tr class="has-opaques">
+      <td>
+        <div class="contextual opaque">
+          <%= link_to_delete server %>
+        </div>
+        <%= link_to server.name, server %>
+      </td>
+      <td class="center"><%= server.ipaddress %></td>
+      <td><%= server.operating_system %></td>
+      <td class="center"><%= server.arch %></td>
+      <td class="center"><% if server.virtual? %><span class="virtual-server">V</span><% end %></td>
+      <td class="center"><%= link_to_rack server.physical_rack %></td>
+      <td><%= server.fullmodel %></td>
+    </tr>
+  <% end %>
 <% end %>

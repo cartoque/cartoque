@@ -8,17 +8,19 @@
   <%= sortable_th "maintained_until", nil, style: "width:8em" %>
 </tr>
 <% for server in @servers %>
-<tr>
-  <td><%= link_to server.name, server %></td>
-  <td><%= link_to_rack server.physical_rack %></td>
-  <td><%= server.fullmodel %></td>
-  <td class="center"><%= server.serial_number %></td>
-  <td>
-  <% if server.maintainer.present? %>
-    <%= render_maintainer(server, server.maintainer) %>
+  <% cache ["list-maintenance", server] do %>
+    <tr>
+      <td><%= link_to server.name, server %></td>
+      <td><%= link_to_rack server.physical_rack %></td>
+      <td><%= server.fullmodel %></td>
+      <td class="center"><%= server.serial_number %></td>
+      <td>
+      <% if server.maintainer.present? %>
+        <%= render_maintainer(server, server.maintainer) %>
+      <% end %>
+      </td>
+      <td class="center"><%= l(server.delivered_on) if server.delivered_on? %></td>
+      <td class="center"><%= server.maintenance_limit %></td>
+    </tr>
   <% end %>
-  </td>
-  <td class="center"><%= l(server.delivered_on) if server.delivered_on? %></td>
-  <td class="center"><%= server.maintenance_limit %></td>
-</tr>
 <% end %>
