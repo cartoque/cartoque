@@ -11,7 +11,7 @@ class ARPhysicalRack < ActiveRecord::Base
 end
 
 # migration!
-class MigratePhysicalRacksToMongodb < ActiveRecord::Migration
+class MigratePhysicalRacksAndSitesToMongodb < ActiveRecord::Migration
   def up
     add_column :servers, :physical_rack_mongo_id, :string
     add_column :servers, :site_mongo_id, :string
