@@ -3,14 +3,16 @@
   <th><%= t(:description) %></th>
 </tr>
 <% for application in @applications %>
-  <tr class="has-opaques">
-    <td>
-      <div class="contextual opaque">
-        <%= links_for application %>
-        <%= link_to_delete application %>
-      </div>
-      <%= link_to application.name, application %>
-    </td>
-    <td><%= application.description %></td>
-  </tr>
+  <% cache ["list", application] do %>
+    <tr class="has-opaques">
+      <td>
+        <div class="contextual opaque">
+          <%= links_for application %>
+          <%= link_to_delete application %>
+        </div>
+        <%= link_to application.name, application %>
+      </td>
+      <td><%= application.description %></td>
+    </tr>
+  <% end %>
 <% end %>
