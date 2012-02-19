@@ -17,6 +17,6 @@ class UsersController < InheritedResources::Base
   helper_method :sort_column, :sort_direction
 
   def collection
-    @users ||= end_of_association_chain.order(sort_option)
+    @users ||= end_of_association_chain.order_by(mongo_sort_option)
   end
 end

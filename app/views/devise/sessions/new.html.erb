@@ -7,7 +7,7 @@
 
   <p class="tiny"><%= t(:or_login_below) %>:</p>
 
-  <% if User.where("sign_in_count > 0").none? %>
+  <% if User.where(:sign_in_count.gt => 0).none? %>
     <p style="margin:1em;"><%= t(:tip_first_login) %></p>
   <% end %>
 

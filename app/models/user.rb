@@ -1,7 +1,23 @@
-class User < ActiveRecord::Base
-  # Some default modules are not included: :registerable, :recoverable, :validatable
+class User
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :name,                  type: String
+  field :uid,                   type: String
+  field :provider,              type: String,  default: "internal"
+  field :settings,              type: Hash,    default: {}
+  field :authentication_token,  type: String
+  field :email,                 type: String,  default: ""
+  field :encrypted_password,    type: String,  default: ""
+  field :sign_in_count,         type: Integer, default: 0
+  field :current_sign_in_at,    type: DateTime
+  field :last_sign_in_at,       type: DateTime
+  field :current_sign_in_ip,    type: String
+  field :last_sign_in_ip,       type: String
+
+  # Some default modules are not included: :registerable, :recoverable, :validatable, :rememberable
   # Others available are: :encryptable, :confirmable, :lockable, :timeoutable
-  devise :database_authenticatable, :rememberable, :trackable,
+  devise :database_authenticatable, :trackable,
          :token_authenticatable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
@@ -9,12 +25,6 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :name
-
-  serialize :settings
-
-  def settings
-    read_attribute(:settings).presence || {}
-  end
 
   def set_setting(key, value)
     h = settings.dup
@@ -33,11 +43,11 @@ class User < ActiveRecord::Base
   end
 
   def locale
-    settings[:locale] rescue nil
+    settings["locale"] rescue nil
   end
 
   def locale=(new_locale)
-    update_setting(:locale, new_locale)
+    update_setting("locale", new_locale)
   end
 
   def datacenter

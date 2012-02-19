@@ -9,7 +9,7 @@ describe User do
     other = User.new(:name => @user.name)
     other.should_not be_valid
     other.errors.keys.should == [:name]
-    other.errors[:name].should == [I18n.t("activerecord.errors.messages.taken")]
+    other.errors[:name].should == [I18n.t("mongoid.errors.messages.taken")]
   end
 
   it "should have a contextual datacenter" do
@@ -26,12 +26,11 @@ describe User do
 
   describe "#settings" do
     it "should always be a hash" do
-      @user.update_attribute(:settings, nil)
-      @user.reload.settings.should eq Hash.new
+      User.new.settings.should eq Hash.new
     end
 
     it "should serialize settings" do
-      hsh = { :a => "b" }
+      hsh = { "a" => "b" }
       @user.settings = hsh
       @user.save
       @user.reload.settings.should eq hsh
@@ -41,17 +40,17 @@ describe User do
   describe "#set_setting" do
     it "should set a setting (without saving the user)" do
       @user.settings.should be_blank
-      @user.set_setting(:a, "b")
+      @user.set_setting("a", "b")
       @user.save
-      @user.reload.settings[:a].should eq "b"
+      @user.reload.settings["a"].should eq "b"
     end
   end
 
   describe "#update_setting" do
     it "should set a setting and save the user" do
       @user.settings.should be_blank
-      @user.update_setting(:a, "b")
-      @user.reload.settings[:a].should eq "b"
+      @user.update_setting("a", "b")
+      @user.reload.settings["a"].should eq "b"
     end
   end
 end
