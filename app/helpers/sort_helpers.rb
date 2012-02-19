@@ -25,6 +25,7 @@ module SortHelpers
         resource = resource_name.classify.constantize rescue resource
       end
       column.in?(available_fields(resource))
+      column.in?(available_fields)
     end
     columns << "name" if columns.blank?
     columns.join(",")
