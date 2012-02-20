@@ -6,7 +6,7 @@ class Server < ActiveRecord::Base
 
   has_and_belongs_to_many :application_instances
   belongs_to :physical_rack
-  belongs_to :operating_system
+  belongs_to :operating_system, touch: true
   belongs_to :media_drive
   belongs_to :maintainer, class_name: 'Company'
   belongs_to :database

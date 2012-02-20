@@ -11,6 +11,7 @@ class OperatingSystemsController < InheritedResources::Base
     else
       @os_subtree = @operating_systems
     end
+    @last_updated_server = Server.maximum(:updated_at)
   end
 
   def create

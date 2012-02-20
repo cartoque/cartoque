@@ -1,17 +1,19 @@
-<% total_servers = subtree.inject(0){|sum, descendant| sum + @os_servers_count[descendant] } %>
-<%= content_tag_for :div, operating_system do %>
-  <div class="contextual">
-    <%= link_to_delete operating_system %>
-  </div>
-  <div class="contextual servers-count">
-    <%= @os_servers_count[operating_system.id] %>
-  </div>
-  <%= link_to operating_system.to_s, edit_operating_system_path(operating_system) %>
-  <span class="tiny">(<%= total_servers %>)</span>
-  <% if operating_system.managed_with_puppet? %>
-    <span class="tiny puppet">P</span>
+<% cache [@last_updated_server,  operating_system] do %>
+  <% total_servers = subtree.inject(0){|sum, descendant| sum + @os_servers_count[descendant] } %>
+  <%= content_tag_for :div, operating_system do %>
+    <div class="contextual">
+      <%= link_to_delete operating_system %>
+    </div>
+    <div class="contextual servers-count">
+      <%= @os_servers_count[operating_system.id] %>
+    </div>
+    <%= link_to operating_system.to_s, edit_operating_system_path(operating_system) %>
+    <span class="tiny">(<%= total_servers %>)</span>
+    <% if operating_system.managed_with_puppet? %>
+      <span class="tiny puppet">P</span>
+    <% end %>
+    <script type="text/javascript">
+      serversmap[<%= operating_system.id %>] = <%= total_servers %>;
+    </script>
   <% end %>
-  <script type="text/javascript">
-    serversmap[<%= operating_system.id %>] = <%= total_servers %>;
-  </script>
 <% end %>
