@@ -82,10 +82,12 @@ scope of this tutorial, but I personnaly run my production environment with Ruby
 <strong>Database server</strong>: MySQL version 5.0 or higher is required (support for Postgresql is untested but might 
 be OK)</li>
 <li>
-<strong>Authentication</strong>: a CAS server is required for authentication</li>
+<strong>Authentication</strong>: you can use a CAS server for authentication, but it's no longer required, there's a minimal
+internal authentication with login/password implemented</li>
 </ul><h2>Installing the application</h2>
 
-<p>This section is not complete for the moment. Basically, if you have the correct application stack and you've cloned the repository, it installs like any Rails 3 web app :</p>
+<p>This section is not complete for the moment. Basically, if you have the correct application stack and you've cloned
+the repository, it installs like any Rails 3 web app :</p>
 
 <pre><code>cd /path/to/cartoque
 gem install bundler
@@ -94,17 +96,10 @@ cp config/database.yml{.example,}
 rake db:create db:migrate db:seed
 </code></pre>
 
-<p>Then you can configure the CAS server (replace the CAS server URL):</p>
-
-<pre><code>rails runner 'Settler.load!; Setting.find_by_key("cas_server").update_attribute(:value, "http://your-cas-server.com")'
-</code></pre>
-
-<p>And then add the first user (replace at least the uid):</p>
-
-<pre><code>rails runner 'User.create(:name =&gt; "John", :provider =&gt; "cas", :uid =&gt; "john.smith")'
-</code></pre>
-
 <p>Start the server, open your browser in the correct URL, and you're ready to go !</p>
+
+<p><em>NB</em>: the default login/password (admin@example.net/admin) is advertised on the login page the first time you log in.
+Of course, we highly recommend you change it as soon as possible, at least before going into production.</p>
         </div>
       </div>
     </div>
