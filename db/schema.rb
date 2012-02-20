@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120219174355) do
+ActiveRecord::Schema.define(:version => 20120219203640) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20120219174355) do
     t.text     "reason"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user_mongo_id"
   end
 
   create_table "backup_exceptions_servers", :id => false, :force => true do |t|
@@ -398,6 +399,7 @@ ActiveRecord::Schema.define(:version => 20120219174355) do
     t.integer  "count_important"
     t.boolean  "upgraded_status",      :default => false
     t.integer  "upgrader_id"
+    t.string   "upgrader_mongo_id"
   end
 
   create_table "users", :force => true do |t|
