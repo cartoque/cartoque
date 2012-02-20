@@ -24,7 +24,7 @@ module SortHelpers
         resource_name, column = column.split(".")
         resource = resource_name.classify.constantize rescue resource
       end
-      column.in?(available_fields)
+      column.in?(available_fields(resource))
     end
     columns << "name" if columns.blank?
     columns.join(",")
@@ -38,8 +38,8 @@ module SortHelpers
     params[:direction].in?(%w(asc desc)) ? params[:direction] : "asc"
   end
 
-  def available_fields
+  def available_fields(klass)
     #differentiate mongoid and active_record models
-    resource_class.respond_to?(:column_names) ? resource_class.column_names : resource_class.fields.keys
+    klass.respond_to?(:column_names) ? klass.column_names : klass.fields.keys
   end
 end
