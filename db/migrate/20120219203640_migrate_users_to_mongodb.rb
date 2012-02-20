@@ -17,6 +17,7 @@ class MigrateUsersToMongodb < ActiveRecord::Migration
     ARUser.all.each do |user|
       attrs = user.attributes.slice(*cols)
       attrs["settings"] ||= {}
+      attrs["settings"].stringify_keys!
       muser = User.create(attrs)
       ActiveRecord::Base.connection.execute("UPDATE backup_exceptions SET user_mongo_id='#{muser.id}' WHERE user_id = #{user.id}")
       ActiveRecord::Base.connection.execute("UPDATE upgrades SET upgrader_mongo_id='#{muser.id}' WHERE upgrader_id = #{user.id}")

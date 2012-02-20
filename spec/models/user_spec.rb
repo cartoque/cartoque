@@ -52,5 +52,11 @@ describe User do
       @user.update_setting("a", "b")
       @user.reload.settings["a"].should eq "b"
     end
+
+    it "should stringify key" do
+      @user.settings.should be_blank
+      @user.update_setting(:a, "c")
+      @user.reload.settings["a"].should eq "c"
+    end
   end
 end
