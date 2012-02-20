@@ -19,7 +19,7 @@ describe ApplicationsController do
   end
 
   it "should create application" do
-    lambda{ post :create, :application => @application.attributes }.should change(Application, :count)
+    lambda{ post :create, :application => {"name" => "app-01"} }.should change(Application, :count)
     assert_redirected_to application_path(assigns(:application))
   end
 
@@ -52,7 +52,7 @@ describe ApplicationsController do
   end
 
   it "should update application" do
-    put :update, :id => @application.to_param, :application => @application.attributes
+    put :update, :id => @application.to_param, :application => {"name" => "app-02"}
     assert_redirected_to application_path(assigns(:application))
   end
 
