@@ -9,11 +9,24 @@ describe Site do
   end
 
   it "can have one or many racks" do
-    site = Site.new(:name => "room-1")
+    site = Site.create(:name => "room-1")
     rack = Factory(:rack1)
-    site.physical_racks = [ rack ]
-    site.save
+    rack.site = site
+    rack.save
     rack.site.should eq site
-    site.physical_racks.should eq [ rack ]
+    site.physical_racks.to_a.should eq [ rack ]
+  end
+
+  it "updates rack's site_name" do
+    site = Site.create(:name => "room-1")
+    rack = Factory(:rack1)
+    rack.site = site
+    rack.save
+    rack.site_name.should == "room-1"
+    site.name = "room-one"
+    site.save
+    rack.reload.site_name.should == "room-one"
+    site.destroy
+    rack.reload.site_name.should == nil
   end
 end

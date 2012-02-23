@@ -47,7 +47,7 @@ describe ConfigurationItemsObserver do
   end
 
   it "should not bother if a model isn't a concrete-CI-object" do
-    s = Setting.new(:key => "dummy")
+    s = User.new(name: "Buck Danny")
     lambda { s.save! }.should_not change(ConfigurationItem, :count)
   end
 

@@ -50,7 +50,7 @@ class DatabasesController < ResourcesController
     if action_name == "show" || request_from_pdfkit?
       "detailed"
     else
-      current_user.settings[:databases_view_mode] || "normal"
+      current_user.settings["databases_view_mode"] || "normal"
     end
   end
   helper_method :databases_view_mode

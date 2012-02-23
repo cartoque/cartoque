@@ -10,7 +10,7 @@
     <tbody>
       <%= tabular_errors @physical_rack %>
       <%= f.input :name, required: true, wrapper_class: "th" %>
-      <%= f.association :site %>
+      <%= f.input :site_id, :collection => Site.all %>
       <%= f.input :status, as: :select, include_blank: false,
                            collection: [[t(:rack_real),  PhysicalRack::STATUS_PROD],
                                            [t(:rack_stock), PhysicalRack::STATUS_STOCK]] %>

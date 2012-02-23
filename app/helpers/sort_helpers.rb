@@ -1,6 +1,15 @@
 module SortHelpers
   private
 
+  # Mongoid
+  def mongo_sort_option
+    sort_column.split(",").map do |column|
+      full_column_name = (column.include?(".") ? column : sort_column_prefix+column)
+      [full_column_name, sort_direction]
+    end
+  end
+
+  # ActiveRecord
   def sort_option
     sort_column.split(",").map do |column|
       full_column_name = (column.include?(".") ? column : sort_column_prefix+column)
@@ -15,7 +24,7 @@ module SortHelpers
         resource_name, column = column.split(".")
         resource = resource_name.classify.constantize rescue resource
       end
-      column.in?(resource.column_names)
+      column.in?(available_fields(resource))
     end
     columns << "name" if columns.blank?
     columns.join(",")
@@ -27,5 +36,10 @@ module SortHelpers
 
   def sort_direction
     params[:direction].in?(%w(asc desc)) ? params[:direction] : "asc"
+  end
+
+  def available_fields(klass)
+    #differentiate mongoid and active_record models
+    klass.respond_to?(:column_names) ? klass.column_names : klass.fields.keys
   end
 end

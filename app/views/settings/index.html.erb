@@ -8,34 +8,34 @@
     <th><%= t(:authentication) %></th>
     <td>
       <%= hidden_field_tag 'settings[allow_internal_authentication]', 'no' %>
-      <%= check_box_tag 'settings[allow_internal_authentication]', 'yes', Settler[:allow_internal_authentication] == "yes" %>
+      <%= check_box_tag 'settings[allow_internal_authentication]', 'yes', Setting.allow_internal_authentication == "yes" %>
       <label for="settings_allow_internal_authentication"><%= t(:allow_internal_authentication) %></label>
     </td>
   </tr>
   <tr>
     <th><%= t(:cas_server_url) %></th>
     <td>
-      <%= text_field_tag 'settings[cas_server]', Settler[:cas_server], size: 35 %>
+      <%= text_field_tag 'settings[cas_server]', Setting.cas_server, size: 35 %>
     </td>
   </tr>
   <tr>
     <th><%= t(:redmine_url) %></th>
     <td>
-      <%= text_field_tag 'settings[redmine_url]', Settler[:redmine_url], size: 35 %>
+      <%= text_field_tag 'settings[redmine_url]', Setting.redmine_url, size: 35 %>
     </td>
   </tr>
   <tr>
     <th><%= t(:service_message) %></th>
     <td>
-      <%= text_area_tag 'settings[site_announcement_message]', Settler[:site_announcement_message], size: "60x2" %><br />
+      <%= text_area_tag 'settings[site_announcement_message]', Setting.site_announcement_message, size: "60x2" %><br />
       <%= t(:theme) %>: <%= select_tag 'settings[site_announcement_type]',
-                            options_for_select(%w(info success warning error).map{|a| [a,a]}, Settler[:site_announcement_type]) %>
+                            options_for_select(%w(info success warning error).map{|a| [a,a]}, Setting.site_announcement_type) %>
     </td>
   </tr>
   <tr>
     <th><%= t(:dns_domains) %></th>
     <td>
-      <%= text_area_tag 'settings[dns_domains]', Settler[:dns_domains], size: "60x8" %><br />
+      <%= text_area_tag 'settings[dns_domains]', Setting.dns_domains, size: "60x8" %><br />
     </td>
   </tr>
 

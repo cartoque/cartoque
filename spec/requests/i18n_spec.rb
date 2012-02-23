@@ -30,17 +30,17 @@ describe "I18n" do
 
     it "takes the locale if possible" do
       I18n.locale.should_not eq :fr
-      @user.update_setting(:locale, "fr")
+      @user.update_setting("locale", "fr")
       @controller.send(:set_locale)
       I18n.locale.should eq :fr
     end
 
     it "doesn't take user locale if it's invalid" do
       I18n.locale.should eq :en
-      @user.update_setting(:locale, "bl")
+      @user.update_setting("locale", "bl")
       @controller.send(:set_locale)
       I18n.locale.should eq :en
-      @user.update_setting(:locale, "")
+      @user.update_setting("locale", "")
       @controller.send(:set_locale)
       I18n.locale.should eq :en
     end

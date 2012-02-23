@@ -69,7 +69,7 @@ describe ServersController do
     end
 
     it "should update server" do
-      put :update, :id => @server.to_param, :server => {"ipaddresses_attributes"=>[{"address"=>"192.168.99.99", "main"=>"1"}]}
+      put :update, :id => @server.to_param, :server => { "ipaddresses_attributes"=>[{"address"=>"192.168.99.99", "main"=>"1"}] }
       assert_redirected_to server_path(assigns(:server))
       @server.reload
       assert_equal 3232260963, @server.read_attribute(:ipaddress)

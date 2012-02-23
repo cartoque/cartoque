@@ -48,8 +48,9 @@ Spork.prefork do
 
     #a clean state between each spec/test
     config.before(:suite) do
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.clean_with(:truncation)
+      DatabaseCleaner[:active_record].strategy = :transaction
+      DatabaseCleaner[:mongoid].strategy = :truncation
+      DatabaseCleaner.clean_with :truncation
     end
 
     config.before(:each) do
@@ -70,6 +71,9 @@ Spork.prefork do
     # include devise helpers in controller specs
     config.include Devise::TestHelpers, :type => :controller
     config.extend ControllerMacros, :type => :controller
+
+    # include warden helpers in integration specs
+    config.include Warden::Test::Helpers, :type => :request
   end
 end
 

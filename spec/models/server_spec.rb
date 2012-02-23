@@ -81,37 +81,37 @@ describe Server do
     before do
       @site1 = Site.create!(:name => "eu-west")
       @site2 = Site.create!(:name => "us-east")
-      @rack1 = PhysicalRack.create!(:name => "rack-1-eu", :site_id => @site1.id)
-      @rack2 = PhysicalRack.create!(:name => "rack-2-us", :site_id => @site2.id)
+      @rack1 = PhysicalRack.create!(:name => "rack-1-eu", :site_id => @site1.id.to_s)
+      @rack2 = PhysicalRack.create!(:name => "rack-2-us", :site_id => @site2.id.to_s)
       @maint = Company.create!(:name => "Computer shop", :is_maintainer => true)
       @os = OperatingSystem.create!(:name => "Linux")
-      @s1 = Server.create!(:name => "srv-app-01", :physical_rack_id => @rack1.id,
+      @s1 = Server.create!(:name => "srv-app-01", :physical_rack => @rack1,
                            :maintainer_id => @maint.id, :operating_system_id => @os.id)
-      @s2 = Server.create!(:name => "srv-app-02", :physical_rack_id => @rack2.id,
+      @s2 = Server.create!(:name => "srv-app-02", :physical_rack => @rack2,
                            :virtual => true)
-      @s3 = Server.create!(:name => "srv-db-01", :physical_rack_id => @rack1.id,
+      @s3 = Server.create!(:name => "srv-db-01", :physical_rack => @rack1,
                            :puppetversion => "0.24.5")
     end
 
     it "should filter servers by rack" do
       Server.count.should eq 3
-      Server.by_rack(@rack1.id).count.should eq 2
-      Server.by_rack(@rack2.id).count.should eq 1
+      Server.by_rack(@rack1.id.to_s).count.should eq 2
+      Server.by_rack(@rack2.id.to_s).count.should eq 1
     end
 
     it "should filter servers by site" do
       Server.count.should eq 3
-      Server.by_site(@site1.id).count.should eq 2
-      Server.by_site(@site2.id).count.should eq 1
+      Server.by_site(@site1.id.to_s).count.should eq 2
+      Server.by_site(@site2.id.to_s).count.should eq 1
     end
 
     it "should filter servers by location" do
       invalid_result = Server.by_location("invalid location")
       invalid_result.should eq Server.scoped
       invalid_result.should be_a_kind_of ActiveRecord::Relation
-      Server.by_location("site-#{@site1.id}").should eq Server.by_site(@site1.id)
+      Server.by_location("site-#{@site1.id}").should eq Server.by_site(@site1.id.to_s)
       Server.by_location("site-0").should eq []
-      Server.by_location("rack-#{@rack1.id}").should eq Server.by_rack(@rack1.id)
+      Server.by_location("rack-#{@rack1.id}").should eq Server.by_rack(@rack1.id.to_s)
       Server.by_location("rack-0").should eq []
     end
 
@@ -206,8 +206,8 @@ describe Server do
 
     it "should not include stock servers" do
       Server.not_backuped.should include(@server)
-      rack = PhysicalRack.create!(:name => "rack-1", :site_id => Factory(:room).id, :status => PhysicalRack::STATUS_STOCK)
-      @server.physical_rack_id = rack.id
+      rack = PhysicalRack.create!(:name => "rack-1", :site_mongo_id => Factory(:room).id.to_s, :status => PhysicalRack::STATUS_STOCK)
+      @server.physical_rack = rack
       @server.save
       Server.not_backuped.should_not include(@server)
     end

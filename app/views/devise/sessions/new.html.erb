@@ -3,11 +3,11 @@
     <%= link_to t(:click_here_for_authentication), user_omniauth_authorize_path(:cas) %>
   </div>
 
-<% if Settler[:allow_internal_authentication] == "yes" %>
+<% if Setting.allow_internal_authentication == "yes" %>
 
   <p class="tiny"><%= t(:or_login_below) %>:</p>
 
-  <% if User.where("sign_in_count > 0").none? %>
+  <% if User.where(:sign_in_count.gt => 0).none? %>
     <p style="margin:1em;"><%= t(:tip_first_login) %></p>
   <% end %>
 

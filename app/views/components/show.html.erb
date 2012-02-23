@@ -1,0 +1,17 @@
+<% title t(:component) %>
+
+<div class="grid_9 center">
+
+<%= action_links do %>
+  <%= link_to t(:back_to_the_list), components_path %>
+<% end %>
+
+<table class="show_item full">
+  <%= show_for @component do |s| %>
+    <%= s.attribute :name %>
+    <%= s.attribute :website %>
+    <%= s.attribute :description %>
+  <% end %>
+</table>
+
+</div>

@@ -518,3 +518,7 @@ fr:
   overview: "Aperçu"
   more: "Plus"
   contact_relations: "Relations"
+  component: "Composant"
+  components: "Composants"
+  new_component: "Nouveau composant"
+  edit_a_component: "Editer un composant"

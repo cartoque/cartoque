@@ -22,7 +22,7 @@ class ServersController < ResourcesController
 
   def collection
     return @servers if defined?(@servers)
-    @servers = end_of_association_chain.active.includes(:operating_system, :physical_rack).search(params[:search]).order(sort_option)
+    @servers = end_of_association_chain.active.includes(:operating_system).search(params[:search]).order(sort_option)
     if maintenance_mode?
       @servers = @servers.includes(maintainer: :contact_infos).where(virtual: false)
       if params[:sort] == "maintained_until"
@@ -39,7 +39,7 @@ class ServersController < ResourcesController
   end
 
   def maintenance_mode?
-    current_user && current_user.settings[:servers_view_mode] == "maintenance"
+    current_user && current_user.settings["servers_view_mode"] == "maintenance"
   end
   helper_method :maintenance_mode?
 

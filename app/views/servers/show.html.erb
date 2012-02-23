@@ -58,8 +58,7 @@
   <%= show_for @server do |s| %>
     <% unless @server.virtual? %>
       <%= s.association(:physical_rack) do
-            link_to_if @server.physical_rack.present?, @server.physical_rack,
-                       servers_path(by_location: "rack-#{@server.physical_rack_id}")
+            link_to @server.physical_rack, servers_path(by_location: "rack-#{@server.physical_rack.id}") if @server.physical_rack.present?
           end %>
     <% end %>
     <%= s.attribute :fullmodel unless @server.virtual? %>

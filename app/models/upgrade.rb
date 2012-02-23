@@ -1,6 +1,5 @@
 class Upgrade < ActiveRecord::Base
   belongs_to :server
-  belongs_to :upgrader, class_name: 'User'
   serialize :packages_list
   before_save :update_counters!
 
@@ -17,5 +16,13 @@ class Upgrade < ActiveRecord::Base
     self.count_total = self.packages_list.count
     self.count_important = (packages_by_status["important"] || []).count
     self.count_needing_reboot = (packages_by_status["needing_reboot"] || []).count
+  end
+
+  def upgrader_id=(user_id)
+    self.upgrader_mongo_id = user_id.to_s
+  end
+
+  def upgrader
+    User.find(self.upgrader_mongo_id) rescue nil
   end
 end

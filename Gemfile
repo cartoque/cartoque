@@ -51,13 +51,14 @@ gem 'omniauth', '>= 1.0.0'
 gem 'omniauth-cas'
 gem 'devise', '~> 2.0.0'
 gem 'hashie'
-gem 'settler'
 gem 'nokogiri'
 gem 'acts-as-taggable-on'
 gem 'draper'
 gem 'deface'
-gem 'rabl'
+gem 'rabl', '>= 0.5.3'
 gem 'acts_as_list'
+gem 'mongoid'
+gem 'bson_ext'
 
 # Plugins/engines
 Dir.glob(File.expand_path("../vendor/plugins/*/Gemfile",__FILE__)).each do |gemfile|

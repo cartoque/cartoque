@@ -5,8 +5,7 @@ class Server < ActiveRecord::Base
   STATUS_INACTIVE = 2
 
   has_and_belongs_to_many :application_instances
-  belongs_to :physical_rack
-  belongs_to :operating_system, touch: true
+  belongs_to :operating_system
   belongs_to :media_drive
   belongs_to :maintainer, class_name: 'Company'
   belongs_to :database
@@ -33,13 +32,13 @@ class Server < ActiveRecord::Base
   accepts_nested_attributes_for :physical_links, reject_if: lambda{|a| a[:link_type].blank? || a[:switch_id].blank? },
                                                  allow_destroy: true
 
-  attr_accessible :operating_system_id, :physical_rack_id, :media_drive_id, :maintainer_id, :name,
+  attr_accessible :operating_system_id, :physical_rack, :physical_rack_mongo_id, :media_drive_id, :maintainer_id, :name,
                   :previous_name, :subnet, :lastbyte, :serial_number, :virtual, :description, :model, :memory, :frequency,
                   :delivered_on, :maintained_until, :contract_type, :disk_type, :disk_size, :manufacturer, :ref_proc,
                   :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,
                   :nb_disk_alt, :ipaddress, :application_instance_ids, :database_id, :ipaddresses_attributes, :has_drac,
                   :physical_links_attributes, :network_device, :hypervisor_id, :is_hypervisor, :puppetversion,
-                  :rubyversion, :facterversion, :operatingsystemrelease, :status, :identifier, :arch
+                  :rubyversion, :facterversion, :operatingsystemrelease, :status, :identifier, :arch, :site_mongo_id
   attr_accessor   :just_created
 
   acts_as_ipaddress :ipaddress
@@ -49,12 +48,12 @@ class Server < ActiveRecord::Base
   scope :real_servers, where(network_device: false)
   scope :network_devices, where(network_device: true)
   scope :hypervisor_hosts, where(is_hypervisor: true)
-  scope :by_rack, proc {|rack_id| { conditions: { physical_rack_id: rack_id } } }
-  scope :by_site, proc {|site_id| joins(:physical_rack).where("physical_racks.site_id" => site_id) }
+  scope :by_rack, proc {|rack_id| where(physical_rack_mongo_id: rack_id) }
+  scope :by_site, proc {|site_id| where(site_mongo_id: site_id) }
   scope :by_location, proc {|location|
-    if location.match /^site-(\d+)/
+    if location.match /^site-(\w+)/
       by_site($1)
-    elsif location.match /^rack-(\d+)/
+    elsif location.match /^rack-(\w+)/
       by_rack($1)
     else
       scoped
@@ -92,7 +91,7 @@ class Server < ActiveRecord::Base
 
   def self.find_or_generate(name)
     servername = name.dup
-    (Settler[:dns_domains] || "").strip.split(/\n|,/).each do |domain|
+    Setting.dns_domains.strip.split(/\n|,/).each do |domain|
       servername.gsub!(".#{domain.strip}".gsub(/^\.\./, "."), "")
     end
     server = Server.unscoped.find_by_name(servername) || Server.unscoped.find_by_identifier(servername)
@@ -108,7 +107,7 @@ class Server < ActiveRecord::Base
     backuped = BackupJob.includes(:server).where("servers.status" => Server::STATUS_ACTIVE).select("distinct(server_id)").map(&:server_id)
     exceptions = BackupException.includes(:servers).map(&:servers).flatten.map(&:id).uniq
     net_devices = Server.network_devices.select("id").map(&:id)
-    stock_servers = Server.joins(:physical_rack).where('physical_racks.status = ?', PhysicalRack::STATUS_STOCK).map(&:id)
+    stock_servers = Server.all.select{|s| s.physical_rack_mongo_id && s.physical_rack && s.physical_rack.status == PhysicalRack::STATUS_STOCK}.map(&:id)
     dont_need_backup = backuped + exceptions + net_devices + stock_servers
     #now let's search the servers
     servers = Server.where("servers.status" => Server::STATUS_ACTIVE)
@@ -221,5 +220,17 @@ class Server < ActiveRecord::Base
 
   def can_be_managed_with_puppet?
     operating_system.present? && operating_system.managed_with_puppet?
+  end
+
+  def physical_rack
+    @physical_rack ||= PhysicalRack.find(self.physical_rack_mongo_id) rescue nil
+  end
+
+  def physical_rack=(rack)
+    if rack.is_a?(PhysicalRack)
+      self.physical_rack_mongo_id = rack.id.to_s
+      self.site_mongo_id = rack.site_id.to_s
+      @physical_rack = rack
+    end
   end
 end

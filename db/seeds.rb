@@ -38,6 +38,3 @@ end.each do |klass|
     ConfigurationItem.generate_ci_for(item) if item.configuration_item.blank?
   end
 end
-
-#create a first datacenter if none
-Datacenter.create(name: "Datacenter") if Datacenter.first.blank?
