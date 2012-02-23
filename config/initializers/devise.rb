@@ -3,7 +3,7 @@ require 'omniauth/dynamic_full_host'
 
 # a setup app that handles dynamic config of CAS server
 setup_app = Proc.new do |env|
-  cas_server = URI.parse(Settler.safe_cas_server) rescue nil
+  cas_server = URI.parse(Setting.safe_cas_server) rescue nil
   if cas_server
     env['omniauth.strategy'].options.merge! host: cas_server.host,
                                             port: cas_server.port,

@@ -91,7 +91,7 @@ class Server < ActiveRecord::Base
 
   def self.find_or_generate(name)
     servername = name.dup
-    (Settler[:dns_domains] || "").strip.split(/\n|,/).each do |domain|
+    Setting.dns_domains.strip.split(/\n|,/).each do |domain|
       servername.gsub!(".#{domain.strip}".gsub(/^\.\./, "."), "")
     end
     server = Server.unscoped.find_by_name(servername) || Server.unscoped.find_by_identifier(servername)

@@ -8,13 +8,12 @@ describe "Authentication" do
     end
 
     it "displays internal auth depending on settings" do
-      Settler.load!
-      Settler["allow_internal_authentication"].should == "yes"
+      Setting.allow_internal_authentication.should == "yes"
       get new_user_session_path
       response.body.should have_selector("#cas-login")
       response.body.should have_selector("#internal-login")
-      Settler.allow_internal_authentication.update_attribute(:value, 'no')
-      Settler["allow_internal_authentication"].should == "no"
+      Setting.update_attribute(:allow_internal_authentication, 'no')
+      Setting.allow_internal_authentication.should == "no"
       get new_user_session_path
       response.body.should have_selector("#cas-login")
       response.body.should_not have_selector("#internal-login")

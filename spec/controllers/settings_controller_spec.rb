@@ -11,11 +11,11 @@ describe SettingsController do
   it "should get update_all" do
     put :update_all, :settings => { "site_announcement_message" => "Site in maintenance mode" }
     assert_redirected_to settings_path
-    assert_equal "Site in maintenance mode", Setting.find_by_key("site_announcement_message").value
+    assert_equal "Site in maintenance mode", Setting.site_announcement_message
 
     put :update_all, :settings => { "site_announcement_message" => "" }
     assert_redirected_to settings_path
-    assert_equal "", Setting.find_by_key("site_announcement_message").value
+    assert_equal "", Setting.site_announcement_message
   end
 
 end

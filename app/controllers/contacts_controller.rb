@@ -47,7 +47,7 @@ class ContactsController < InheritedResources::Base
   end
 
   def view_internals
-    current_user && current_user.settings[:contacts_view_internals].to_i == 1
+    current_user && current_user.settings["contacts_view_internals"].to_i == 1
   end
   helper_method :view_internals
 end

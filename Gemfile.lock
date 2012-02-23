@@ -201,7 +201,6 @@ GEM
       ffi (~> 1.0.9)
       multi_json (~> 1.0.4)
       rubyzip
-    settler (1.2.2)
     show_for (0.2.4)
     simple_form (1.5.2)
       actionpack (~> 3.0)
@@ -277,7 +276,6 @@ DEPENDENCIES
   rb-inotify
   rspec-rails
   sass-rails
-  settler
   show_for
   simple_form (>= 1.4.1)
   spork (> 0.9.0.rc)

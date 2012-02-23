@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120219203640) do
+ActiveRecord::Schema.define(:version => 20120220085327) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -244,12 +244,14 @@ ActiveRecord::Schema.define(:version => 20120219203640) do
   end
 
   create_table "operating_systems", :force => true do |t|
-    t.string  "name",                :limit => 55, :default => "",    :null => false
-    t.string  "icon_path",                         :default => "",    :null => false
-    t.string  "ancestry"
-    t.integer "ancestry_depth",                    :default => 0
-    t.boolean "managed_with_puppet",               :default => false
-    t.string  "codename"
+    t.string   "name",                :limit => 55, :default => "",    :null => false
+    t.string   "icon_path",                         :default => "",    :null => false
+    t.string   "ancestry"
+    t.integer  "ancestry_depth",                    :default => 0
+    t.boolean  "managed_with_puppet",               :default => false
+    t.string   "codename"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "operating_systems", ["ancestry"], :name => "index_operating_systems_on_ancestry"

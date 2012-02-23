@@ -34,7 +34,7 @@ class User
   end
 
   def update_setting(key, value)
-    set_setting(key, value)
+    set_setting(key.to_s, value)
     save
   end
 

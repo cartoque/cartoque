@@ -8,27 +8,10 @@ describe ApplicationHelper do
   end 
 
   describe "#links_for" do
-    before do
-      Settler.load!
-    end
-
     it "should render some links to external applications" do
-      render :text => links_for(Factory(:application))
-      redmine = "http://redmine.test.host/projects/appli-01"
-      assert_select "a.link-to-redmine[href=#{redmine}]", "R"
-    end
-
-    it "should accept custom value for redmine_url" do
-      Settler.redmine_url.update_attribute(:value, "http://redmine.org")
-      render :text => links_for(Factory(:application))
-      assert_select "a.link-to-redmine[href=http://redmine.org/projects/appli-01]", "R"
-    end
-
-    it "should not fail if redmine_url is blank (default value in this case)" do
-      Settler.redmine_url = ""
-      render :text => links_for(Factory(:application))
-      redmine = "http://redmine.test.host/projects/appli-01"
-      assert_select "a.link-to-redmine[href=#{redmine}]", "R"
+      Setting.redmine_url = "http://redmine.org"
+      text = links_for(Factory(:application))
+      text.should have_selector "a", :class => "link-to-redmine", :href => "http://redmine.org/projects/appli-01", :content => "R"
     end
   end
 

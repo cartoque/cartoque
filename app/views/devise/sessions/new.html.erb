@@ -3,7 +3,7 @@
     <%= link_to t(:click_here_for_authentication), user_omniauth_authorize_path(:cas) %>
   </div>
 
-<% if Settler[:allow_internal_authentication] == "yes" %>
+<% if Setting.allow_internal_authentication == "yes" %>
 
   <p class="tiny"><%= t(:or_login_below) %>:</p>
 

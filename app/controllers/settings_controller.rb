@@ -6,13 +6,15 @@ class SettingsController < ApplicationController
   end
 
   def update_all
-    settings = Settler.load!.inject({}){|memo,s| memo[s.key] = s; memo}
-    params[:settings].each do |key,value|
-      if settings[key].value != value
-        settings[key].value = value
-        settings[key].save
-      end
+    keys = Setting.fields.keys - %w(_id _type)
+    attrs = params[:settings].select{|k,v| k.in?(keys)}
+    if Setting.site_announcement_message != attrs["site_announcement_message"]
+      attrs["site_announcement_updated_at"] = Time.now
     end
-    redirect_to settings_path, notice: "Paramètres mis à jour"
+    if Setting.update_attributes(attrs)
+      redirect_to settings_path, notice: "Paramètres mis à jour"
+    else
+      render "index"
+    end
   end
 end

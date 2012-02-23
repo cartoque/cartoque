@@ -39,7 +39,7 @@ class ServersController < ResourcesController
   end
 
   def maintenance_mode?
-    current_user && current_user.settings[:servers_view_mode] == "maintenance"
+    current_user && current_user.settings["servers_view_mode"] == "maintenance"
   end
   helper_method :maintenance_mode?
 
