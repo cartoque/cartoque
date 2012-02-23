@@ -71,6 +71,9 @@ Spork.prefork do
     # include devise helpers in controller specs
     config.include Devise::TestHelpers, :type => :controller
     config.extend ControllerMacros, :type => :controller
+
+    # include warden helpers in integration specs
+    config.include Warden::Test::Helpers, :type => :request
   end
 end
 
