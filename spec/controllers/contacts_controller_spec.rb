@@ -48,7 +48,7 @@ describe ContactsController do
         assigns(:contacts).should include @bob
         assigns(:companies).should include @team
         #and keep it in session...
-        controller.send(:current_user).settings[:contacts_view_internals].should eq "1"
+        controller.send(:current_user).settings["contacts_view_internals"].should eq "1"
         get :index
         assigns(:contacts).should include @bob
         assigns(:companies).should include @team
