@@ -15,7 +15,7 @@ class ApplicationsController < InheritedResources::Base
   end
 
   def collection
-    @applications ||= end_of_association_chain.search(params[:search]).order(sort_column + " " + sort_direction)
+    @applications ||= end_of_association_chain.search(params[:search]).order_by(mongo_sort_option)
   end
 end
 

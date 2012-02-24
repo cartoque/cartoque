@@ -29,20 +29,20 @@ describe ApplicationsController do
   end
 
   it "should access the rest/xml API" do
-    app_inst = ApplicationInstance.new(:name => "prod", :authentication_method => "none")
+    app_inst = ApplicationInstance.new(name: "prod", authentication_method: "none", application_mongo_id: @application.id.to_s)
     app_inst.servers = [ Factory(:server), Factory(:virtual) ]
-    @application.application_instances = [ app_inst ]
-    @application.save
+    app_inst.save
     get :show, :id => @application.to_param, :format => :xml
-    assert_select "application>id", "#{@application.id}"
+    response.body.should have_selector :css, "application>_id", @application.id.to_s
     assert_equal 1, @application.application_instances.count
-    assert_select "application>application-instances>application-instance", 1
+    response.body.should have_selector :css, "application>application-instances>application-instance", 1
     assert_equal 2, @application.application_instances.first.servers.count
-    assert_select "application>application-instances>application-instance>servers>server", 2
+    response.body.should have_selector :css, "application>application-instances>application-instance>servers>server", 2
   end
 
-  it "should access an application through its identifier" do
-    get :show, :id => @application.identifier, :format => :xml
+  #TODO: restore find by slug
+  pending "should access an application through its identifier" do
+    get :show, :id => @application.ci_identifier, :format => :xml
     assert_select "application>id", "#{@application.id}"
   end
 
@@ -61,7 +61,7 @@ describe ApplicationsController do
     assert_redirected_to applications_path
   end
 
-  it "allows creation with contacts" do
+  pending "allows creation with contacts" do
     contacts_count = Contact.count
     contact_relations_count = ContactRelation.count
 
@@ -77,7 +77,7 @@ describe ApplicationsController do
     ContactRelation.count.should eq contact_relations_count
   end
 
-  it "allows update with contacts" do
+  pending "allows update with contacts" do
     app = Application.create!(name: "webapp-01")
     c = Factory(:contact)
 

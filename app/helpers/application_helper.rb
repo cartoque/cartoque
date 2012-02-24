@@ -100,9 +100,9 @@ module ApplicationHelper
 
   def links_for(application)
     html = ""
-    if application.identifier?
-      html << link_to("R", "#{redmine_url}/projects/#{application.identifier}",
-                      title: "Redmine #{application.identifier}", class: "link-to-redmine")
+    if application.ci_identifier.present?
+      html << link_to("R", "#{redmine_url}/projects/#{application.ci_identifier}",
+                      title: "Redmine #{application.ci_identifier}", class: "link-to-redmine")
     end
     content_tag(:span, html.html_safe, class: "links")
   end

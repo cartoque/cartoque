@@ -10,7 +10,7 @@ describe ConfigurationItemsObserver do
     s.reload.configuration_item.should be_present
   end
 
-  it "should preserve associations defined before save" do
+  pending "should preserve associations defined before save" do
     a = Application.new(:name => "webapp-01")
     c = Contact.create(:last_name => "Doe")
     a.contact_ids = [c.id]

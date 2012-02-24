@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220085327) do
+ActiveRecord::Schema.define(:version => 20120223164301) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20120220085327) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "authentication_method"
+    t.string   "application_mongo_id"
   end
 
   add_index "application_instances", ["application_id"], :name => "index_application_instances_on_application_id"

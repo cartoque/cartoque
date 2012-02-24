@@ -13,7 +13,7 @@ describe Application do
     Application.new(:name => "fakeapp").should be_valid
   end
 
-  describe "Application.like" do
+  describe "Application.search" do
     before do
       Application.create!(:name => "app-01")
       Application.create!(:name => "app-02")
@@ -24,17 +24,9 @@ describe Application do
       Application.search(nil).length.should eq(Application.count)
       Application.search("").length.should eq(Application.count)
     end
-  end
 
-  describe "Application#application_instances" do
-    it "should update #cerbere from #application_instances when saved" do
-      app = Factory(:application)
-      app.application_instances.size.should eq(0)
-      app.cerbere.should be_false
-      app.application_instances << ApplicationInstance.new(:name => "prod", :authentication_method => "cerbere")
-      app.save.should be
-      app.should have(1).application_instance
-      app.reload.cerbere.should be_true
+    it "shouldn't be case sensitive" do
+      Application.search("App-01").length.should eq 1
     end
   end
 

@@ -1,49 +1,33 @@
-class Application < ActiveRecord::Base
-  acts_as_configuration_item
+class Application
+  include Mongoid::Document
+  include Mongoid::Timestamps
+    
+  field :name, type: String
+  field :description, type: String
+  field :ci_identifier, type: String
 
-  has_many :application_instances, dependent: :destroy
+  validates_presence_of :name
+
+  #acts_as_configuration_item
+
+  #has_many :application_instances, dependent: :destroy
 
   accepts_nested_attributes_for :application_instances, reject_if: lambda{|a| a[:name].blank? },
                                                         allow_destroy: true
 
-  attr_accessible :name, :description, :cerbere, :identifier, :server_ids, :application_instances_attributes, :contact_ids,
+  attr_accessible :name, :description, :ci_identifier, :server_ids, :application_instances_attributes, :contact_ids,
                   :contact_ids_with_role
 
-  delegate :contacts, :contact_ids, :contact_ids=, :contact_relations,
-           :contacts_with_role, :contact_ids_with_role, :contact_ids_with_role=,
-           to: :configuration_item
-
-  validates_presence_of :name
-
-  before_save :update_cerbere_from_instances
-
-  def self.search(search)
-    if search
-      where("name LIKE ?", "%#{search}%")
-    else
-      scoped
-    end
-  end
-
-  def self.find(*args)
-    if args.first && args.first.is_a?(String) && !args.first.match(/^\d*$/)
-      application = find_by_identifier(*args)
-      raise ActiveRecord::RecordNotFound, "Couldn't find Application with identifier=#{args.first}" if application.nil?
-      application
-    else
-      super
-    end
-  end
+###  delegate :contacts, :contact_ids, :contact_ids=, :contact_relations,
+###           :contacts_with_role, :contact_ids_with_role, :contact_ids_with_role=,
+###           to: :configuration_item
+  
+  #THIS IS TEMPORARY
+  def contacts_with_role(role=nil); []; end
+  def contact_ids_with_role(role=nil); []; end
 
   def to_s
     name
-  end
-
-  def update_cerbere_from_instances
-    self.cerbere = self.application_instances.inject(false) do |memo,app_instance|
-      memo || app_instance.authentication_method == "cerbere"
-    end
-    true
   end
 
   def sorted_application_instances
@@ -74,5 +58,29 @@ class Application < ActiveRecord::Base
       end
     end
     docs.uniq
+  end
+
+  def application_instances
+    @application_instances ||= ApplicationInstance.where(application_mongo_id: self.id.to_s)
+  end
+
+  class << self
+    def find(*args)
+###      if args.first && args.first.is_a?(String) && !args.first.match(/^[a-f0-9]*$/)
+###        application = find_by_identifier(*args)
+###        raise ActiveRecord::RecordNotFound, "Couldn't find Application with identifier=#{args.first}" if application.nil?
+###        application
+###      else
+        super
+###      end
+    end
+
+    def search(term)
+      if term
+        where(name: Regexp.new(Regexp.escape(term), Regexp::IGNORECASE))
+      else
+        all
+      end
+    end
   end
 end
