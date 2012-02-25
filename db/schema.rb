@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120223164301) do
+ActiveRecord::Schema.define(:version => 20120224203820) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -25,8 +25,9 @@ ActiveRecord::Schema.define(:version => 20120223164301) do
   add_index "application_instances", ["application_id"], :name => "index_application_instances_on_application_id"
 
   create_table "application_instances_servers", :id => false, :force => true do |t|
-    t.integer "application_instance_id", :default => 0, :null => false
-    t.integer "server_id",               :default => 0, :null => false
+    t.integer "application_instance_id",       :default => 0, :null => false
+    t.integer "server_id",                     :default => 0, :null => false
+    t.string  "application_instance_mongo_id"
   end
 
   add_index "application_instances_servers", ["application_instance_id"], :name => "index_appinstances_servers_on_appinstance"

@@ -1,8 +1,11 @@
-class ApplicationUrl < ActiveRecord::Base
-  belongs_to :application_instance
+class ApplicationUrl
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :url, type: String
+  field :public, type: Boolean
+  embedded_in :application_instance
 
   validates_presence_of :url
-
-  scope :public, where(public: true)
-  scope :private, where(public: false)
+  validates_presence_of :application_instance
 end

@@ -4,7 +4,7 @@ class Server < ActiveRecord::Base
   STATUS_ACTIVE = 1
   STATUS_INACTIVE = 2
 
-  has_and_belongs_to_many :application_instances
+  #has_and_belongs_to_many :application_instances
   belongs_to :operating_system
   belongs_to :media_drive
   belongs_to :maintainer, class_name: 'Company'

@@ -1,5 +1,5 @@
 class ConfigurationItemsObserver < ActiveRecord::Observer
-  observe [ApplicationInstance, Database, Server, Storage]
+  observe [Database, Server, Storage]
 
   def after_save(record)
     if record.respond_to?(:configuration_item_with_auto_creation)

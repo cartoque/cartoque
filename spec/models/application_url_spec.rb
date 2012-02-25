@@ -1,22 +1,17 @@
 require 'spec_helper'
 
 describe ApplicationUrl do
-  it "should create a standard url" do
-    ApplicationUrl.new(:url => "http://www.example.com/").should be_valid
+  before do
+    @app = Application.create(name: "app-01")
+    @inst = ApplicationInstance.new(name: "prod", application: @app)
+  end
+
+  it "shouldn't be valid if not in an ApplicationInstance" do
+    ApplicationUrl.new(url: "http://www.example.com/").should_not be_valid
+    ApplicationUrl.new(url: "http://www.example.com/", application_instance: @inst).should be_valid
   end
 
   it "shouldn't create an empty url" do
-    ApplicationUrl.new(:url => "").should_not be_valid
-  end
-
-  it "scopes public/private ApplicationUrls correctly" do
-    app = ApplicationUrl.create(:url => "http://www.example.com/")
-    ApplicationUrl.public.all.should include(app)
-    ApplicationUrl.private.should_not include(app)
-    app.public = false
-    app.save
-    app.reload
-    ApplicationUrl.public.should_not include(app)
-    ApplicationUrl.private.should include(app)
+    ApplicationUrl.new(url: "", application_instance: @inst).should_not be_valid
   end
 end

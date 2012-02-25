@@ -5,6 +5,7 @@ class Application
   field :name, type: String
   field :description, type: String
   field :ci_identifier, type: String
+  has_many :application_instances, autosave: true, dependent: :destroy
 
   validates_presence_of :name
 
@@ -58,10 +59,6 @@ class Application
       end
     end
     docs.uniq
-  end
-
-  def application_instances
-    @application_instances ||= ApplicationInstance.where(application_mongo_id: self.id.to_s)
   end
 
   class << self

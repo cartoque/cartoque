@@ -38,15 +38,13 @@ describe Application do
     end
 
     it "should be ordered with prod, ecole, preprod first" do
-      app = Factory(:application)
-      app.application_instances << ApplicationInstance.new(:name => "ecole", :authentication_method => "none")
-      app.application_instances << ApplicationInstance.new(:name => "aaaa", :authentication_method => "none")
-      app.application_instances << ApplicationInstance.new(:name => "ffff", :authentication_method => "none")
-      app.application_instances << ApplicationInstance.new(:name => "zzzz", :authentication_method => "none")
-      app.application_instances << ApplicationInstance.new(:name => "prod", :authentication_method => "none")
-      app.application_instances << ApplicationInstance.new(:name => "preprod", :authentication_method => "none")
-      app.save.should be_true
-      app.reload
+      app = FactoryGirl.create(:application)
+      ApplicationInstance.create!(name: "ecole", authentication_method: "none", application_id: app.id)
+      ApplicationInstance.create!(name: "aaaa", authentication_method: "none", application_id: app.id)
+      ApplicationInstance.create!(name: "ffff", authentication_method: "none", application_id: app.id)
+      ApplicationInstance.create!(name: "zzzz", authentication_method: "none", application_id: app.id)
+      ApplicationInstance.create!(name: "prod", authentication_method: "none", application_id: app.id)
+      ApplicationInstance.create!(name: "preprod", authentication_method: "none", application_id: app.id)
       app.should have(6).application_instances
       app.sorted_application_instances.map(&:name).should eq %w(prod ecole preprod aaaa ffff zzzz)
     end
