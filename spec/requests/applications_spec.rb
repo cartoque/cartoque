@@ -8,6 +8,7 @@ describe "Applications" do
     @app = Application.create!(name: "app-01")
     Application.create!(name: "app-03")
     Application.create!(name: "app-02")
+    ApplicationInstance.create!(name: "prod", authentication_method: "none", application_id: @app.id)
     Role.create(name: "Developer")
   end
 
