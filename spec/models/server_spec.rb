@@ -225,4 +225,12 @@ describe Server do
       srv.reload.can_be_managed_with_puppet?.should be_true
     end
   end
+
+  describe "#application_instances" do
+    it "can have many application instance ids" do
+      srv = FactoryGirl.create(:server)
+      srv.application_instance_ids.should eq []
+      srv.application_instances.should eq []
+    end
+  end
 end

@@ -115,6 +115,18 @@ class Server < ActiveRecord::Base
     servers.order("name asc")
   end
 
+  #TEMPORARY
+  def application_instance_ids
+    @application_instance_ids ||= ActiveRecord::Base.connection.execute(
+      "SELECT application_instance_mongo_id FROM application_instances_servers WHERE server_id = '#{self.id}';"
+    ).to_a.flatten
+  end
+
+  #TEMPORARY
+  def application_instances
+    @application_instances ||= ApplicationInstance.find(application_instance_ids)
+  end
+
   def just_created
     @just_created || false
   end

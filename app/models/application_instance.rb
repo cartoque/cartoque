@@ -37,8 +37,4 @@ class ApplicationInstance
     "#{application.name} (#{name})"
   end
   alias :to_s :fullname
-
-  def application
-    @application ||= Application.find(self.application_mongo_id)
-  end
 end
