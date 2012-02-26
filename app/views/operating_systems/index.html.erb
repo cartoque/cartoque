@@ -47,7 +47,7 @@
 
         var subtree = [];
         <% @os_subtree.each do |os,subos| %>
-        subtree.push({ value: serversmap[<%= os.id %>], legend: "<%= %(%% #{os} [#{os.id}]) %>",
+        subtree.push({ value: serversmap['<%= os.id %>'], legend: "<%= %(%% #{os} [#{os.id}]) %>",
                        href: "<%= subos.any? ? operating_systems_path(graph_subtree: os.id) : "" %>" });
         <% end %>
         subtree.sort(function(a,b){return b.value - a.value});
@@ -55,7 +55,7 @@
                     { legend: $.map(subtree, function(os,i){ return os.legend}), legendmark: "disc", legendpos: "south", 
                       href: $.map(subtree, function(os,i){ return os.href}), colors: ["#57f", "#5c5", "#f83", "#d49", "#fc4", "#f55"] });
 
-        var legend_regex = /(.+) \[(\d+)\]$/;
+        var legend_regex = /(.+) \[(\w+)\]$/;
         $.each(pie.labels, function() {
           var label = this[1].attrs.text;
           this.osId = label.replace(legend_regex, "$2");

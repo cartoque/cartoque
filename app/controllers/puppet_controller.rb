@@ -10,7 +10,7 @@ class PuppetController < ApplicationController
   has_scope :by_rubyversion
 
   def servers
-    @servers = apply_scopes(Server).includes(:operating_system).active.real_servers.search(params[:search]).order(sort_option)
+    @servers = apply_scopes(Server).active.real_servers.search(params[:search]).order(sort_option)
     for column in %w(puppetversion facterversion rubyversion operatingsystemrelease) do
       instance_variable_set("@#{column}s",
                             Server.select("distinct(#{column})").map(&:"#{column}").map(&:to_s).sort)

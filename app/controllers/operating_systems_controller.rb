@@ -2,12 +2,12 @@ class OperatingSystemsController < InheritedResources::Base
   layout "admin"
 
   def index
-    @operating_systems = OperatingSystem.arrange(order: "name")
-    @os_servers_count = Server.group("operating_system_id").count
+    @operating_systems = OperatingSystem.arrange(order: [:name, :asc])
+    @os_servers_count = Server.group("operating_system_mongo_id").count
     @os_servers_count.default = 0
     if params[:graph_subtree]
-      @root_os = OperatingSystem.find(params[:graph_subtree].to_i)
-      @os_subtree = @root_os.descendants.arrange(order: :name) if @root_os.present?
+      @root_os = OperatingSystem.find(params[:graph_subtree].to_s)
+      @os_subtree = @root_os.descendants.arrange(order: [:name, :asc]) if @root_os.present?
     else
       @os_subtree = @operating_systems
     end

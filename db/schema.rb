@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120224203820) do
+ActiveRecord::Schema.define(:version => 20120225211233) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -284,54 +284,55 @@ ActiveRecord::Schema.define(:version => 20120224203820) do
   end
 
   create_table "servers", :force => true do |t|
-    t.integer  "operating_system_id",                   :default => 0
-    t.integer  "physical_rack_id",                      :default => 0
-    t.integer  "media_drive_id",                        :default => 0
-    t.string   "name",                   :limit => 150, :default => "",    :null => false
-    t.string   "previous_name",                         :default => "",    :null => false
-    t.string   "subnet",                 :limit => 23,  :default => "",    :null => false
-    t.string   "lastbyte",               :limit => 9,   :default => "",    :null => false
-    t.string   "serial_number",          :limit => 100, :default => "",    :null => false
-    t.boolean  "virtual",                               :default => false, :null => false
-    t.string   "description",                           :default => ""
-    t.string   "model",                  :limit => 100, :default => "",    :null => false
-    t.string   "memory",                 :limit => 50,  :default => "",    :null => false
-    t.float    "frequency",                             :default => 0.0,   :null => false
-    t.string   "contract_type",          :limit => 100, :default => "",    :null => false
-    t.string   "disk_type",              :limit => 50,  :default => "",    :null => false
-    t.integer  "disk_size",                             :default => 0
-    t.string   "manufacturer",           :limit => 50,  :default => "",    :null => false
-    t.string   "ref_proc",               :limit => 100, :default => "",    :null => false
-    t.string   "server_type",            :limit => 50,  :default => "",    :null => false
-    t.integer  "nb_proc",                               :default => 0
-    t.integer  "nb_coeur",                              :default => 0
-    t.integer  "nb_rj45",                               :default => 0
-    t.integer  "nb_fc",                                 :default => 0
-    t.integer  "nb_iscsi",                              :default => 0
-    t.string   "disk_type_alt",          :limit => 50,  :default => "",    :null => false
-    t.integer  "disk_size_alt",                         :default => 0
-    t.integer  "nb_disk",                               :default => 0
-    t.integer  "nb_disk_alt",                           :default => 0
+    t.integer  "operating_system_id",                      :default => 0
+    t.integer  "physical_rack_id",                         :default => 0
+    t.integer  "media_drive_id",                           :default => 0
+    t.string   "name",                      :limit => 150, :default => "",    :null => false
+    t.string   "previous_name",                            :default => "",    :null => false
+    t.string   "subnet",                    :limit => 23,  :default => "",    :null => false
+    t.string   "lastbyte",                  :limit => 9,   :default => "",    :null => false
+    t.string   "serial_number",             :limit => 100, :default => "",    :null => false
+    t.boolean  "virtual",                                  :default => false, :null => false
+    t.string   "description",                              :default => ""
+    t.string   "model",                     :limit => 100, :default => "",    :null => false
+    t.string   "memory",                    :limit => 50,  :default => "",    :null => false
+    t.float    "frequency",                                :default => 0.0,   :null => false
+    t.string   "contract_type",             :limit => 100, :default => "",    :null => false
+    t.string   "disk_type",                 :limit => 50,  :default => "",    :null => false
+    t.integer  "disk_size",                                :default => 0
+    t.string   "manufacturer",              :limit => 50,  :default => "",    :null => false
+    t.string   "ref_proc",                  :limit => 100, :default => "",    :null => false
+    t.string   "server_type",               :limit => 50,  :default => "",    :null => false
+    t.integer  "nb_proc",                                  :default => 0
+    t.integer  "nb_coeur",                                 :default => 0
+    t.integer  "nb_rj45",                                  :default => 0
+    t.integer  "nb_fc",                                    :default => 0
+    t.integer  "nb_iscsi",                                 :default => 0
+    t.string   "disk_type_alt",             :limit => 50,  :default => "",    :null => false
+    t.integer  "disk_size_alt",                            :default => 0
+    t.integer  "nb_disk",                                  :default => 0
+    t.integer  "nb_disk_alt",                              :default => 0
     t.integer  "database_id"
     t.date     "delivered_on"
     t.date     "maintained_until"
-    t.integer  "ipaddress",              :limit => 8
-    t.boolean  "has_drac",                              :default => false
+    t.integer  "ipaddress",                 :limit => 8
+    t.boolean  "has_drac",                                 :default => false
     t.string   "identifier"
-    t.boolean  "network_device",                        :default => false, :null => false
+    t.boolean  "network_device",                           :default => false, :null => false
     t.integer  "hypervisor_id"
-    t.boolean  "is_hypervisor",                         :default => false, :null => false
+    t.boolean  "is_hypervisor",                            :default => false, :null => false
     t.string   "puppetversion"
     t.string   "facterversion"
     t.string   "rubyversion"
     t.string   "operatingsystemrelease"
-    t.integer  "status",                                :default => 1
+    t.integer  "status",                                   :default => 1
     t.string   "arch"
     t.integer  "maintainer_id"
     t.string   "physical_rack_mongo_id"
     t.string   "site_mongo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "operating_system_mongo_id"
   end
 
   add_index "servers", ["database_id"], :name => "index_servers_on_database_id"

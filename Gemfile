@@ -46,7 +46,6 @@ gem 'jquery-rails', '>= 1.0.12'
 gem 'yaml_db'
 gem 'pdfkit', '0.5.2'
 gem 'storcs', '>= 0.0.2'
-gem 'ancestry'
 gem 'omniauth', '>= 1.0.0'
 gem 'omniauth-cas'
 gem 'devise', '~> 2.0.0'
@@ -59,6 +58,7 @@ gem 'rabl', '>= 0.5.3'
 gem 'acts_as_list'
 gem 'mongoid'
 gem 'bson_ext'
+gem 'mongoid-ancestry'
 
 # Plugins/engines
 Dir.glob(File.expand_path("../vendor/plugins/*/Gemfile",__FILE__)).each do |gemfile|

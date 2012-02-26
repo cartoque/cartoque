@@ -19,22 +19,22 @@ describe OperatingSystemsController do
   end
 
   it "should create operating_system" do
-    lambda{ post :create, :operating_system => @operating_system.attributes }.should change(OperatingSystem, :count)
+    lambda{ post :create, operating_system: { name: "Minix" } }.should change(OperatingSystem, :count)
     assert_redirected_to operating_systems_path
   end
 
   it "should get edit" do
-    get :edit, :id => @operating_system.to_param
+    get :edit, id: @operating_system.to_param
     assert_response :success
   end
 
   it "should update operating_system" do
-    put :update, :id => @operating_system.to_param, :operating_system => @operating_system.attributes
+    put :update, id: @operating_system.to_param, operating_system: @operating_system.attributes
     assert_redirected_to operating_systems_path
   end
 
   it "should destroy operating_system" do
-    lambda{ delete :destroy, :id => @operating_system.to_param }.should change(OperatingSystem, :count).by(-1)
+    lambda{ delete :destroy, id: @operating_system.to_param }.should change(OperatingSystem, :count).by(-1)
     assert_redirected_to operating_systems_path
   end
 end

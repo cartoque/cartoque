@@ -86,7 +86,7 @@ describe Server do
       @maint = Company.create!(:name => "Computer shop", :is_maintainer => true)
       @os = OperatingSystem.create!(:name => "Linux")
       @s1 = Server.create!(:name => "srv-app-01", :physical_rack => @rack1,
-                           :maintainer_id => @maint.id, :operating_system_id => @os.id)
+                           :maintainer_id => @maint.id, :operating_system_mongo_id => @os.to_param)
       @s2 = Server.create!(:name => "srv-app-02", :physical_rack => @rack2,
                            :virtual => true)
       @s3 = Server.create!(:name => "srv-db-01", :physical_rack => @rack1,
@@ -120,7 +120,7 @@ describe Server do
     end
 
     it "should filter servers by system" do
-      Server.by_system(@os.id).should eq [@s1]
+      Server.by_system(@os.to_param).should eq [@s1]
     end
 
     it "should filter servers by virtual" do
@@ -219,7 +219,7 @@ describe Server do
       srv.operating_system.should be_blank
       srv.can_be_managed_with_puppet?.should be_false
       sys = OperatingSystem.create(:name => "Ubuntu 11.10")
-      srv.update_attribute(:operating_system_id, sys.id)
+      srv.update_attribute(:operating_system_mongo_id, sys.to_param)
       srv.reload.can_be_managed_with_puppet?.should be_false
       sys.update_attribute(:managed_with_puppet, true)
       srv.reload.can_be_managed_with_puppet?.should be_true
