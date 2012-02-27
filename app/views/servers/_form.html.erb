@@ -18,9 +18,7 @@
       <tr class="wrapper server_applications">
         <td colspan="2"><label for="server[description]" class="input"><%= t(:description) %> :</label><br/><%= f.text_area :description, size: "30x4" %></td>
       </tr>
-      <%= f.association :operating_system, collection: ancestry_options(
-                                                            OperatingSystem.scoped.arrange(order: 'name')
-                                                          ){|i| "#{'-'*i.depth} #{i.name}"} %>
+      <%= f.input :operating_system, collection: ancestry_options(OperatingSystem.scoped.arrange(order: [:name, :asc])){|i| "#{'-'*i.depth} #{i.name}"}, as: "select" %>
       <tr class="input checkbox optional">
         <td class="label"><%= content_tag :label, t(:server_type) %></td>
         <td class="content tiny checkboxes-as-radio">
@@ -77,7 +75,7 @@
       <tr><th colspan="2" id="server-hardware-title"><%= @server.virtual? ? t(:resources) : t(:hardware) %></th></tr>
     </thead>
     <tbody id="server-physical-hardware" class="<%= css_classes_physical %>">
-      <%= f.association :physical_rack, collection: PhysicalRack.all.map{|r| [r,r.id]} %>
+      <%= f.input :physical_rack, collection: PhysicalRack.all.map{|r| [r,r.id]}, as: "select" %>
       <%= f.input :manufacturer %>
       <%= f.input :model %>
     </tbody>
@@ -111,7 +109,7 @@
       <tr><th colspan="2"><%= t(:application_instances) %></th></tr>
     </thead>
     <tbody>
-      <%= f.association :application_instances, collection: ApplicationInstance.all.map{|i| [i.fullname, i.id]}, as: "multiselect" %>
+      <%= f.input :application_instances, collection: ApplicationInstance.all.map{|i| [i.fullname, i.id]}, as: "multiselect" %>
     </tbody>
   </table>
   </div>
