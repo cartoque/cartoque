@@ -3,8 +3,8 @@ Cartoque =
     $("#not-backuped .servers a").each ->
       $elem = $(@)
       if term != "" && $elem.html().indexOf(term) >= 0
-        $elem.addClass("highlighted")
+        $elem.addClass("item-highlighted")
       else
-        $elem.removeClass("highlighted")
+        $elem.removeClass("item-highlighted")
 
 window.Cartoque = Cartoque
