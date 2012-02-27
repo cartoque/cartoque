@@ -20,7 +20,7 @@ class ApplicationInstance
 
   AVAILABLE_AUTHENTICATION_METHODS = %w(none cerbere cerbere-cas cerbere-bouchon ldap-minequip internal other)
 
-  validates_presence_of :name, :authentication_method
+  validates_presence_of :name, :authentication_method, :application
   validates_inclusion_of :authentication_method, in: AVAILABLE_AUTHENTICATION_METHODS
 
   def server_ids
@@ -34,7 +34,7 @@ class ApplicationInstance
   end
 
   def fullname
-    "#{application.name} (#{name})"
+    "#{application.try(:name)} (#{name})"
   end
   alias :to_s :fullname
 end
