@@ -4,9 +4,10 @@ describe ApplicationInstance do
   it "should have a name, an authentication method and an application" do
     instance = ApplicationInstance.new
     instance.should_not be_valid
-    instance.should have(3).errors
+    instance.errors.messages.keys.sort.should == [:application, :authentication_method, :name]
+    instance.should have(4).errors
     instance.name = "prod"
-    instance.application_id = Factory(:application).id
+    instance.application = Factory(:application)
     instance.authentication_method = "none"
     instance.should be_valid
   end
