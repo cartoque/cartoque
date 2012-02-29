@@ -1,5 +1,7 @@
 <% @contacts.each do |contact| %>
-  <%= render partial: 'contact', object: contact %>
+  <% cache ["simple", contact] do %>
+    <%= render partial: 'contact', object: contact %>
+  <% end %>
 <% end %>
 <%= content_tag(:p, class: "more_contacts") do %>
   <%= link_to t(:and_X_others, value: @contacts_count - 25), contacts_path(params.merge(all_contacts:1))  %>

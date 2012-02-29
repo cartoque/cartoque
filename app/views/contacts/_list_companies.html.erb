@@ -1,5 +1,7 @@
 <% @companies.each do |company| %>
-  <%= render partial: 'companies/company', object: company %>
+  <% cache ["simple", company] do %>
+    <%= render partial: 'companies/company', object: company %>
+  <% end %>
 <% end %>
 <%= content_tag(:p, class: "more_companies") do %>
   <%= link_to t(:and_X_others, value: @companies_count - 25), contacts_path(params.merge(all_companies:1))  %>
