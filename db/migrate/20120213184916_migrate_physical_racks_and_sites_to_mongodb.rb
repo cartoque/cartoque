@@ -13,6 +13,8 @@ end
 # migration!
 class MigratePhysicalRacksAndSitesToMongodb < ActiveRecord::Migration
   def up
+    PhysicalRack.destroy_all
+    Site.destroy_all
     add_column :servers, :physical_rack_mongo_id, :string
     add_column :servers, :site_mongo_id, :string
     #migrate sites

@@ -10,6 +10,7 @@ end
 # migration!
 class MigrateUsersToMongodb < ActiveRecord::Migration
   def up
+    User.destroy_all
     add_column :backup_exceptions, :user_mongo_id, :string
     add_column :upgrades, :upgrader_mongo_id, :string
     #migrate sites

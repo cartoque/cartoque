@@ -9,6 +9,7 @@ end
 # migration!
 class MigrateDatacentersToMongodb < ActiveRecord::Migration
   def up
+    Datacenter.destroy_all
     cols = ARDatacenter.column_names - %w(id)
     ARDatacenter.all.each do |datacenter|
       attrs = datacenter.attributes.slice(*cols)
