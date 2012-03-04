@@ -15,3 +15,4 @@ extra
 output
 vendor/plugins/*
 **.rbc
+**/.*.swp
