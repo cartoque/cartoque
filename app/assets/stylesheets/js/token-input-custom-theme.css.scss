@@ -1,0 +1,125 @@
+@import "mixins";
+
+$jquery_tokeninput_width: 300px;
+
+/* Example tokeninput style #2: custom style */
+ul.token-input-list-custom { /* container */
+  overflow: hidden; 
+  height: auto !important; 
+  height: 1%;
+  width: $jquery_tokeninput_width;
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  cursor: text;
+  font-size: 12px;
+  font-family: Verdana;
+  min-height: 1px;
+  z-index: 999;
+  margin: 0;
+  padding: 1px 1px 2px 2px;
+  background-color: #fff;
+  list-style-type: none;
+  clear: left;
+  li input { /* input (where use types) */
+    border: 0;
+    @include box-shadow(none, 0, 0, 0);
+    @include gradient(#fff, #fff);
+    width: 100px;
+    padding: 1px 4px;
+    background-color: white;
+    margin: 2px 0;
+    -webkit-appearance: caret;
+  }
+}
+
+
+li.token-input-token-custom { /* token, not selected */
+  overflow: hidden; 
+  height: auto !important; 
+  height: 16px;
+  margin: 3px 3px 2px 2px;
+  padding: 1px 3px 2px 4px;
+  color: #222;
+  cursor: default;
+  border: 1px solid #b4b4b4;
+  font-size: 11px;
+  background-clip: padding-box;
+  @include border-radius(3px);
+  @include gradient(#eee, #e4e4e4);
+  float: left;
+  white-space: nowrap;
+  p {
+    display: inline;
+    padding: 0;
+    margin: 0;
+  }
+  span { /* close icon */
+    color: #666;
+    margin-left: 5px;
+    font-weight: bold;
+    font-size:12px;
+    cursor: pointer;
+    text-shadow: 0 1px 1px #fff;
+    &:hover { /* close icon, hover */
+      color:#444;
+    }
+  }
+}
+
+li.token-input-selected-token-custom { /* token, selected */
+  @include gradient(#ddd, #d4d4d4);
+}
+
+li.token-input-input-token-custom {
+  float: left;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+div.token-input-dropdown-custom { /* search drop down */
+  position: absolute;
+  width: $jquery_tokeninput_width;
+  background-color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  cursor: default;
+  font-size: 11px;
+  font-family: Verdana;
+  z-index: 1;
+  p {
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+    color: #777;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      background-color: #fff;
+      padding: 3px;
+      margin: 0;
+      list-style-type: none;
+    }
+    li.token-input-dropdown-item-custom, li.token-input-dropdown-item2-custom {
+      background-color: #fff;
+      padding: 6px 8px;
+    }
+    li.token-input-selected-dropdown-item-custom { /* item to select, when it has focus */
+      background-color: #3875D7;
+      color: #fff;
+      padding: 6px 8px;
+    }
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+    b {
+      font-weight: normal;
+    }
+  }
+}

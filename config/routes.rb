@@ -13,7 +13,9 @@ Cartoque::Application.routes.draw do
   resources :companies do
     collection { get 'autocomplete' }
   end
-  resources :contacts
+  resources :contacts do
+    collection { get 'autocomplete' }
+  end
   resources :backup_exceptions, except: :show
   resources :backup_jobs, only: [:index]
   resources :licenses

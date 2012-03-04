@@ -8,6 +8,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require jquery.tokeninput/jquery.tokeninput
 //= require jquery/jquery.chosen
 //= require jquery/jquery.bind-with-delay
 //= require jquery/jquery.observer
@@ -247,4 +248,24 @@ $(function() {
 function enableChosenFields() {
   $(".chzn-select").chosen();
   $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+  $(".token-input-select").each(function() {
+    $(this).tokenInput( $(this).data('updateUrl'), {
+        theme: "custom", 
+        hintText: $(this).data('hintText'),
+        noResultsText: $(this).data('noResultsText'),
+        searchingText: $(this).data('searchingText'),
+        preventDuplicates: true,
+        prePopulate: $(this).data('prePopulate'),
+        onResult: function(rawResults) {
+          var results = []
+          var selected = $(this).val().split(",")
+          $.each(rawResults, function(idx, result) {
+            if ($.inArray(result.id+"", selected) < 0) {
+              results.push(result)
+            }
+          })
+          return results
+        }
+    });
+  });
 }

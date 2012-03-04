@@ -15,6 +15,10 @@ class ContactsController < InheritedResources::Base
     index!
   end
 
+  def autocomplete
+    render js: Contact.search(params[:q]).limit(25).map{|contact| { id: contact.id, name: contact.full_name } }.to_json
+  end
+
   private
   def collection
     @contacts ||= end_of_association_chain.with_internals(view_internals)

@@ -21,12 +21,10 @@
         </td>
         <td class="multiselect">
           <% Role.all.each do |role| %>
-            <%= role.name %><br />
-            <%= select_tag "application[contact_ids_with_role][#{role.id}]",
-                           options_for_select(ContactDecorator.all.map{|c| [c.long_form, c.id]}, selected: @application.contact_ids_with_role(role.id)),
-                           multiple: true,
-                           class: "multiselect chzn-select" %>
-            <%= f.hidden_field "contact_ids_with_role[#{role.id}][]", value: "0" %>
+            <div class="control-label" style="margin-top:6px;"><%= role.name %></div>
+            <%= text_field_tag "application[contact_ids_with_role][#{role.id}]", nil, class: "token-input-select",
+                               data: { update_url: autocomplete_contacts_path,
+                                       pre_populate: @application.contacts_with_role(role).map{|c| {id: c.id, name: c.full_name} } } %>
           <% end %>
         </td>
       </tr>
