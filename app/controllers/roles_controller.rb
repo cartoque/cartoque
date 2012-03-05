@@ -11,7 +11,7 @@ class RolesController < InheritedResources::Base
 
   def sort
     params[:role].each_with_index do |id, index|
-      Role.update_all(['position=?', index+1], ['id=?', id])
+      Role.where(_id: id).update_all(position: index+1)
     end 
     render nothing: true
   end

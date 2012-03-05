@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120304220253) do
+ActiveRecord::Schema.define(:version => 20120304222230) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
