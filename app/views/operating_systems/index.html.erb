@@ -1,5 +1,7 @@
 <% title t(:operating_systems) %>
 
+<% cache [@last_updated_system, @last_updated_server] do %>
+
 <div id="operating_systems" class="grid_5 center">
   
 <%= action_links do %>
@@ -19,9 +21,7 @@
   </tr>
   <tr>
     <td>
-      <% cache [@last_updated_system, @last_updated_server] do %>
-        <%= nested_operating_systems @operating_systems %>
-      <% end %>
+      <%= nested_operating_systems @operating_systems %>
     </td>
   </tr>
 </table>
@@ -92,3 +92,5 @@
   </div>
 <% end %>
 </div>
+
+<% end %>
