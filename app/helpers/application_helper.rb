@@ -59,7 +59,7 @@ module ApplicationHelper
   end
 
   def show_version
-    "<i>Cartoque v#{Cartoque::VERSION}</i>".html_safe
+    link_to("Cartoque", "http://jbbarth.github.com/cartoque/", target: "_blank") + " v#{Cartoque::VERSION}"
   end
 
   # see ancestry wiki on github
