@@ -1,18 +1,18 @@
 <% content_for :sidebar  do %>
   <h2><%= image_tag "settings.png", size: "16x16", class: "inline" %> <%= t(:configuration) %></h2>
   <ul class="simple-list">
-    <li><%= link_to t(:datacenters), datacenters_path %></li>
-    <li><%= link_to t(:hosting_rooms), sites_path %></li>
-    <li><%= link_to t(:physical_racks_long), physical_racks_path %></li>
+    <li><%= sidebar_item t(:datacenters), datacenters_path, Datacenter.count %></li>
+    <li><%= sidebar_item t(:hosting_rooms), sites_path, Site.count %></li>
+    <li><%= sidebar_item t(:physical_racks_long), physical_racks_path, PhysicalRack.count %></li>
   </ul>
   <ul class="simple-list">
-    <li><%= link_to t(:roles_for_contacts), roles_path %></li>
-    <li><%= link_to t(:operating_systems), operating_systems_path %></li>
-    <li><%= link_to t(:components), components_path %></li>
+    <li><%= sidebar_item t(:roles_for_contacts), roles_path, Role.count %></li>
+    <li><%= sidebar_item t(:operating_systems), operating_systems_path, OperatingSystem.count %></li>
+    <li><%= sidebar_item t(:components), components_path, Component.count %></li>
   </ul>
   <ul class="simple-list">
-    <li><%= link_to t(:global_parameters), settings_path %></li>
-    <li><%= link_to t(:users), users_path %></li>
+    <li><%= sidebar_item t(:global_parameters), settings_path %></li>
+    <li><%= sidebar_item t(:users), users_path, User.count %></li>
   </ul>
 <% end %>
 

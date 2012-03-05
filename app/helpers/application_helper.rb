@@ -58,6 +58,12 @@ module ApplicationHelper
     o.html_safe
   end
 
+  def sidebar_item(title, url, num = nil)
+    html = "".html_safe
+    html << content_tag(:div, num, class: "contextual") if num
+    html << link_to(title, url)
+  end
+
   def show_version
     link_to("Cartoque", "http://jbbarth.github.com/cartoque/", target: "_blank") + " v#{Cartoque::VERSION}"
   end

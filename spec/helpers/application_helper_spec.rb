@@ -61,4 +61,14 @@ describe ApplicationHelper do
       link_to_website(website).should eq %(<a href="http://#{website}">#{website}</a>)
     end
   end
+
+  describe "#sidebar_item" do
+    it "displays a link by default" do
+      sidebar_item("title", "url").should == %(<a href="url">title</a>)
+    end
+
+    it "optionnally includes a contextual tip" do
+      sidebar_item("title", "url", 5).should include %(<div class="contextual">5</div>)
+    end
+  end
 end
