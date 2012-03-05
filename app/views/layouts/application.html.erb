@@ -53,31 +53,33 @@
   <% end %>
 
   <div id="container" class="container_12 clearfix">
-    <%= render 'layouts/top_menu' %>
+    <div id="wrap">
+      <div id="main">
+        <%= render 'layouts/top_menu' %>
 
-    <%= content_tag :div, id: "flash" do %>
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, class: "flash-item flash-#{name}" %>
-      <% end %>
-    <% end unless flash.empty? %>
+        <%= content_tag :div, id: "flash" do %>
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, class: "flash-item flash-#{name}" %>
+          <% end %>
+        <% end unless flash.empty? %>
 
-    <div class="grid_12">
+        <div class="grid_12">
 
-    <%= content_tag(:h1, yield(:title), class: controller.controller_name) if show_title? %>
+        <%= content_tag(:h1, yield(:title), class: controller.controller_name) if show_title? %>
 
-    </div><!-- end-of-grid_12 -->
+        </div><!-- end-of-grid_12 -->
 
-    <div class="clear"></div>
+        <div class="clear"></div>
 
-    <% if content_for?(:sidebar) %>
-      <div class="grid_3 hide-when-print">
-        <div id="sidebar"><%= yield(:sidebar) %></div>
+        <% if content_for?(:sidebar) %>
+          <div class="grid_3 hide-when-print">
+            <div id="sidebar"><%= yield(:sidebar) %></div>
+          </div>
+        <% end %>
+
+        <%= yield %>
       </div>
-    <% end %>
-
-    <%= yield %>
-
-    <div class="clear"></div>
+    </div>
 
     <div id="footer" class="grid_12 hide-when-print">
       <%= show_version %>
