@@ -64,7 +64,7 @@ describe ApplicationHelper do
 
   describe "#sidebar_item" do
     it "displays a link by default" do
-      sidebar_item("title", "url").should == %(<a href="url">title</a>)
+      sidebar_item("title", "url").should == %(<li><a href="url">title</a></li>)
     end
 
     it "optionnally includes a contextual tip" do

@@ -59,9 +59,11 @@ module ApplicationHelper
   end
 
   def sidebar_item(title, url, num = nil)
-    html = "".html_safe
-    html << content_tag(:div, num, class: "contextual") if num
-    html << link_to(title, url)
+    css = request && request.path && request.path.include?(url) ? "active" : nil
+    content = "".html_safe
+    content << content_tag(:div, num, class: "contextual") if num
+    content << link_to(title, url)
+    content_tag :li, content, class: css
   end
 
   def show_version
