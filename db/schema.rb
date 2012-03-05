@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120304222230) do
+ActiveRecord::Schema.define(:version => 20120305172415) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -356,15 +356,6 @@ ActiveRecord::Schema.define(:version => 20120304222230) do
   create_table "sites", :force => true do |t|
     t.string "name", :limit => 50, :default => "", :null => false
   end
-
-  create_table "sousreseaux", :force => true do |t|
-    t.string "cidr_mask",        :limit => 23, :default => "", :null => false
-    t.string "name",                           :default => "", :null => false
-    t.string "background_color", :limit => 7,  :default => "", :null => false
-    t.string "color",            :limit => 7,  :default => "", :null => false
-  end
-
-  add_index "sousreseaux", ["cidr_mask"], :name => "sousreseau_ip"
 
   create_table "storages", :force => true do |t|
     t.integer  "server_id"
