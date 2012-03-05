@@ -18,7 +18,11 @@
     </th>
   </tr>
   <tr>
-    <td><%= nested_operating_systems @operating_systems %></td>
+    <td>
+      <% cache [@last_updated_system, @last_updated_server] do %>
+        <%= nested_operating_systems @operating_systems %>
+      <% end %>
+    </td>
   </tr>
 </table>
 
