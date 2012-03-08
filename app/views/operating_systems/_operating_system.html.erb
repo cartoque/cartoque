@@ -6,10 +6,12 @@
   <div class="contextual servers-count">
     <%= @os_servers_count[operating_system.id.to_s] %>
   </div>
-  <%= link_to operating_system.to_s, edit_operating_system_path(operating_system) %>
-  <span class="tiny">(<%= total_servers %>)</span>
-  <% if operating_system.managed_with_puppet? %>
-    <span class="tiny puppet">P</span>
+  <%= content_tag :div, style:"padding-left:#{15 * operating_system.depth - 10}px" do %>
+    <%= link_to operating_system.to_s, edit_operating_system_path(operating_system), class: (operating_system.depth > 0 ? "nested-os" : nil) %>
+    <span class="tiny">(<%= total_servers %>)</span>
+    <% if operating_system.managed_with_puppet? %>
+      <span class="tiny puppet">P</span>
+    <% end %>
   <% end %>
   <script type="text/javascript">
     serversmap['<%= operating_system.id %>'] = <%= total_servers %>;

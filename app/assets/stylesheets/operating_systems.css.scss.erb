@@ -5,13 +5,12 @@
   .puppet { font-weight:bolder; color:#a3a; }
 }
 .operating_system {
-  margin:0; padding:5px 3px 5px 8px; min-width:250px;
+  margin:0; padding:5px 3px 5px 8px; min-width:270px;
   > .contextual { margin-left:10px; }
-  .servers-count { width:50px; margin:0 0 0 20px; padding:0; text-align:right; }
+  .servers-count { min-width:30px; margin:0 0 0 10px; padding:0; text-align:right; }
 }
 .nested-os {
-  margin-left:10px;
-  .operating_system { padding-left:16px; background-image: url(<%= asset_path 'bullet_arrow_right.png' %>);
-                      background-position:left center; background-repeat:no-repeat; }
+  padding-left:16px; background-image: url(<%= asset_path 'bullet_arrow_right.png' %>);
+  background-position:left center; background-repeat:no-repeat;
 }
 .os-icon { margin:0 2px -2px 0; }
