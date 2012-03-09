@@ -36,7 +36,7 @@ var div = d3.select("#chart").append("div")
     .style("width", w + "px")
     .style("height", h + "px");
 
-d3.json("<%= distribution_databases_path(format::json) %>", function(json) {
+d3.json("<%= distribution_databases_path(format: :json) %>", function(json) {
   div.data([json]).selectAll("div")
       .data(treemap.nodes)
     .enter().append("div")
