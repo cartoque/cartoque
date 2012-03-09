@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120305172415) do
+ActiveRecord::Schema.define(:version => 20120309074336) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -131,16 +131,6 @@ ActiveRecord::Schema.define(:version => 20120305172415) do
     t.string   "frequency"
     t.string   "user"
     t.text     "command"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "database_instances", :force => true do |t|
-    t.string   "name"
-    t.string   "ipaddress",        :limit => 8
-    t.integer  "port"
-    t.string   "database_version"
-    t.integer  "database_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
