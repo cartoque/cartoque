@@ -11,7 +11,8 @@ class LicensesController < InheritedResources::Base
 
   private
   def find_filter_keys
-    @editors = License.select("distinct(editor)").map(&:editor).sort
-    @servers = Server.where(id: License.joins(:servers).select("distinct(servers.id)").map(&:id)).sort_by(&:name)
+    @editors = License.all.map(&:editor).uniq.sort
+    @servers = Server.where(id: ActiveRecord::Base.connection.execute("SELECT distinct(server_id) FROM licenses_servers;").to_a.flatten)
+                     .sort_by(&:name)
   end
 end

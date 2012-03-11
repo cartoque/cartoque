@@ -14,7 +14,7 @@ describe LicensesController do
   end
 
   it "should create license" do
-    lambda{ post :create, license: @license.attributes }.should change(License, :count)
+    lambda{ post :create, license: { editor: "WorldSoft", key: "123456" } }.should change(License, :count)
     assert_redirected_to licenses_path
   end
 

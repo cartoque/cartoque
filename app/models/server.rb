@@ -20,7 +20,6 @@ class Server < ActiveRecord::Base
   has_many :network_filesystems, class_name: "NetworkDisk", foreign_key: "client_id", dependent: :destroy
   belongs_to :hypervisor, class_name: "Server"
   has_many :virtual_machines, class_name: "Server", foreign_key: "hypervisor_id"
-  has_and_belongs_to_many :licenses
   has_many :backup_jobs, dependent: :destroy
   has_and_belongs_to_many :backup_exceptions
   has_one :upgrade, dependent: :destroy
@@ -247,5 +246,15 @@ class Server < ActiveRecord::Base
       self.site_mongo_id = rack.site_id.to_s
       @physical_rack = rack
     end
+  end
+
+  #TEMPORARY
+  def license_ids
+    ActiveRecord::Base.connection.execute("SELECT license_mongo_id FROM licenses_servers WHERE server_id=#{self.id};").to_a.flatten
+  end
+
+  #TEMPORARY
+  def licenses
+    License.where(id: license_ids)
   end
 end
