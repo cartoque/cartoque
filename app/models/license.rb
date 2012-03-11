@@ -16,7 +16,7 @@ class License < ActiveRecord::Base
   scope :by_editor, proc {|editor| where(editor: editor) }
   scope :by_key, proc { |search| where(key: Regexp.new(Regexp.escape(search), Regexp::IGNORECASE)) }
   scope :by_title, proc { |search| where(title: Regexp.new(Regexp.escape(search), Regexp::IGNORECASE)) }
-  #scope :by_server, proc { |id| joins(:servers).where("servers.id" => id) }
+  scope :by_server, proc { |id| where(:_id.in => ActiveRecord::Base.connection.execute("SELECT license_mongo_id FROM licenses_servers WHERE server_id = #{id.to_i};").to_a.flatten) }
 
   validates_presence_of :editor
 
@@ -28,5 +28,10 @@ class License < ActiveRecord::Base
   #TEMPORARY
   def servers
     Server.where(id: server_ids)
+  end
+
+  #TEMPORARY
+  def server_ids=(*args)
+    raise NotImplementedError, "should be implemented when Server is a Mongoid::Document"
   end
 end

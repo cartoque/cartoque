@@ -26,10 +26,15 @@ describe License do
       licenses.should_not include(@license2)
     end
 
-    pending "should filter licenses by server id" do
+    it "should filter licenses by server id" do
+      ActiveRecord::Base.connection.execute("INSERT INTO licenses_servers (server_id, license_mongo_id) VALUES(#{@server.id}, '#{@license2.to_param}');")
       licenses = License.by_server(@server.id)
       licenses.should include(@license2)
       licenses.should_not include(@license1)
     end
+  end
+
+  pending "should have servers" do
+    license.server_ids = [@server.to_param]
   end
 end
