@@ -1,4 +1,4 @@
-class License < ActiveRecord::Base
+class License
   include Mongoid::Document
   include Mongoid::Timestamps
 
