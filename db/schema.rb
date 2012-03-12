@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120309174643) do
+ActiveRecord::Schema.define(:version => 20120311210454) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20120309174643) do
   create_table "backup_exceptions_servers", :id => false, :force => true do |t|
     t.integer "backup_exception_id"
     t.integer "server_id"
+    t.string  "backup_exception_mongo_id"
   end
 
   create_table "backup_jobs", :force => true do |t|

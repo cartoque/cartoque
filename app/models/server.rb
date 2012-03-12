@@ -21,7 +21,6 @@ class Server < ActiveRecord::Base
   belongs_to :hypervisor, class_name: "Server"
   has_many :virtual_machines, class_name: "Server", foreign_key: "hypervisor_id"
   has_many :backup_jobs, dependent: :destroy
-  has_and_belongs_to_many :backup_exceptions
   has_one :upgrade, dependent: :destroy
 
   accepts_nested_attributes_for :ipaddresses, reject_if: lambda{|a| a[:address].blank? },
@@ -256,5 +255,15 @@ class Server < ActiveRecord::Base
   #TEMPORARY
   def licenses
     License.where(id: license_ids)
+  end
+
+  #TEMPORARY
+  def backup_exception_ids
+    ActiveRecord::Base.connection.execute("SELECT backup_exception_mongo_id FROM backup_exceptions_servers WHERE server_id=#{self.id};").to_a.flatten
+  end
+
+  #TEMPORARY
+  def backup_exceptions
+    BackupException.where(id: backup_exception_ids)
   end
 end

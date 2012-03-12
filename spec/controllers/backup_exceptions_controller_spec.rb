@@ -19,7 +19,7 @@ describe BackupExceptionsController do
   end
 
   it "should create backup_exception" do
-    lambda{ post :create, backup_exception: @backup_exception.attributes }.should change(BackupException, :count)
+    lambda{ post :create, backup_exception: { reason: "Here a good reason" } }.should change(BackupException, :count)
     assert_redirected_to backup_exceptions_path
   end
 
