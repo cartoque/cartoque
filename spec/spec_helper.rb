@@ -6,6 +6,14 @@ Spork.prefork do
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
 
+  #reload routes for devise
+  require 'rails/application'
+  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+
+  #reload mongoid models
+  require 'rails/mongoid'
+  Spork.trap_class_method(Rails::Mongoid, :load_models)
+
   # Coverage tool for ruby 1.9
   require 'cover_me'
 
@@ -78,5 +86,5 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  # This code will be run each time you run your specs.
+  #ActiveSupport::Dependencies.clear
 end
