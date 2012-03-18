@@ -79,6 +79,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'rspec'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'sqlite3'
