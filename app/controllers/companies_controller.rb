@@ -6,7 +6,7 @@ class CompaniesController < InheritedResources::Base
   end
 
   def autocomplete
-    @companies = Company.order(:name).where("name like ?", "%#{params[:term]}%")
+    @companies = Company.order_by([:name, :asc]).where(name: Regexp.new(params[:term], Regexp::IGNORECASE))
     render json: @companies.map(&:name)
   end
 

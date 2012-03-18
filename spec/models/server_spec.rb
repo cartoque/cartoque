@@ -86,7 +86,7 @@ describe Server do
       @maint = Company.create!(:name => "Computer shop", :is_maintainer => true)
       @os = OperatingSystem.create!(:name => "Linux")
       @s1 = Server.create!(:name => "srv-app-01", :physical_rack => @rack1,
-                           :maintainer_id => @maint.id, :operating_system_mongo_id => @os.to_param)
+                           :maintainer_mongo_id => @maint.id.to_s, :operating_system_mongo_id => @os.to_param)
       @s2 = Server.create!(:name => "srv-app-02", :physical_rack => @rack2,
                            :virtual => true)
       @s3 = Server.create!(:name => "srv-db-01", :physical_rack => @rack1,
@@ -116,7 +116,7 @@ describe Server do
     end
 
     it "should filter servers by maintainer" do
-      Server.by_maintainer(@maint.id).should eq [@s1]
+      Server.by_maintainer(@maint.id.to_s).should eq [@s1]
     end
 
     it "should filter servers by system" do

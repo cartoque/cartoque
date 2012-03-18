@@ -28,7 +28,7 @@
           <td class="label"><label class="boolean optional" for="contact_internal"><%= t(:internal) %></label></td>
           <td class="content">
             <% #WARNING: this field should stay ahead of 'company_name', otherwise 'internal' property would not be propagated to a new company %>
-            <div class="lefty"><%= f.input_field :internal %></div>
+            <div class="lefty"><%= f.input_field :internal, as: :boolean %></div>
             <div class="hint"><%= t(:text_internal_tip) %></div>
           </td>
         </tr>
@@ -38,12 +38,12 @@
         <tr>
           <td class="label top"><%= f.label :email %></td>
           <td>
-            <% f.object.email_infos.build if f.object.email_infos.size == 0 %>
+            <% f.object.email_infos << EmailInfo.new if f.object.email_infos.none? %>
             <%= f.simple_fields_for :email_infos do |info_form| %>
               <%= render 'email_info_fields', f: info_form %>
             <% end %>
             <span class="add-field">
-              <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+"ajouter", f, :email_infos %>
+              <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+"ajouter", f, :email_infos, klass: EmailInfo %>
             </span>
           </td>
         </tr>
@@ -51,12 +51,12 @@
         <tr>
           <td class="label top"><%= f.label :phone %></td>
           <td>
-            <% f.object.phone_infos.build if f.object.phone_infos.size == 0 %>
+            <% f.object.phone_infos << PhoneInfo.new if f.object.phone_infos.none? %>
             <%= f.simple_fields_for :phone_infos do |info_form| %>
               <%= render 'phone_info_fields', f: info_form %>
             <% end %>
             <span class="add-field">
-              <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+"ajouter", f, :phone_infos %>
+              <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+"ajouter", f, :phone_infos, klass: PhoneInfo %>
             </span>
           </td>
         </tr>
@@ -64,12 +64,12 @@
         <tr>
           <td class="label top"><%= f.label :address %></td>
           <td>
-            <% f.object.address_infos.build if f.object.address_infos.size == 0 %>
+            <% f.object.address_infos << AddressInfo.new if f.object.address_infos.none? %>
             <%= f.simple_fields_for :address_infos do |info_form| %>
               <%= render 'address_info_fields', f: info_form %>
             <% end %>
             <span class="add-field">
-              <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+"ajouter", f, :address_infos %>
+              <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+"ajouter", f, :address_infos, klass: AddressInfo %>
             </span>
           </td>
         </tr>

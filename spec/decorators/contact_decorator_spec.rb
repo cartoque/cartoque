@@ -22,7 +22,7 @@ describe ContactDecorator do
 
   it "return a clean form for mailing lists" do
     @contact.mailing_list_form.should == "Doe, John (WorldCompany) &lt;&gt;"
-    @contact.email_infos << ContactInfo.new(info_type: "email", value: "jdoe@example.net")
+    EmailInfo.create(value: "jdoe@example.net", entity: @contact)
     @contact.mailing_list_form.should == "Doe, John (WorldCompany) &lt;jdoe@example.net&gt;"
   end
 

@@ -28,7 +28,7 @@ class Server < ActiveRecord::Base
   accepts_nested_attributes_for :physical_links, reject_if: lambda{|a| a[:link_type].blank? || a[:switch_id].blank? },
                                                  allow_destroy: true
 
-  attr_accessible :operating_system_mongo_id, :physical_rack, :physical_rack_mongo_id, :media_drive_id, :maintainer_id, :name,
+  attr_accessible :operating_system_mongo_id, :physical_rack, :physical_rack_mongo_id, :media_drive_id, :maintainer_mongo_id, :name,
                   :previous_name, :subnet, :lastbyte, :serial_number, :virtual, :description, :model, :memory, :frequency,
                   :delivered_on, :maintained_until, :contract_type, :disk_type, :disk_size, :manufacturer, :ref_proc,
                   :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,
@@ -55,7 +55,7 @@ class Server < ActiveRecord::Base
       scoped
     end
   }
-  scope :by_maintainer, proc {|maintainer_id| { conditions: { maintainer_id: maintainer_id } } }
+  scope :by_maintainer, proc {|maintainer_id| { conditions: { maintainer_mongo_id: maintainer_id } } }
   scope :by_system, proc {|system_id| { conditions: { operating_system_mongo_id: OperatingSystem.find(system_id).subtree.map(&:to_param) } } }
   scope :by_virtual, proc {|virtual| { conditions: { virtual: (virtual.to_s == "1") } } }
   scope :by_puppet, proc {|puppet| (puppet.to_i != 0) ? where("puppetversion IS NOT NULL") : where("puppetversion IS NULL") }

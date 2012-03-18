@@ -1,12 +1,22 @@
-class Contact < ActiveRecord::Base
-  include Contactable
+class Contact < Contactable
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
+  field :first_name,   type: String
+  field :last_name,    type: String
+  field :job_position, type: String
   belongs_to :company
-  has_and_belongs_to_many :mailing_lists
-  has_many :contact_relations, dependent: :destroy
-  has_many :configuration_items, through: :contact_relations
+
+  #TODO: has_and_belongs_to_many :mailing_lists
+  #TODO: has_many :configuration_items, through: :contact_relations
 
   validates_presence_of :last_name, :image_url
+
+  #TEMPORARY
+  #TODO: has_many :contact_relations, dependent: :destroy
+  def contact_relations
+    []
+  end
 
   def to_s
     "#{first_name} #{last_name}"
@@ -18,7 +28,7 @@ class Contact < ActiveRecord::Base
 
   def company_name=(name)
     if name.present?
-      self.company = Company.find_by_name(name) || Company.create(name: name, internal: self.internal)
+      self.company = Company.where(name: name).first || Company.create(name: name, internal: self.internal)
     end
   end
 
@@ -43,10 +53,10 @@ class Contact < ActiveRecord::Base
        user_batman.png)
   end
 
-  def self.search(search)
-    if search
-      s = "%#{search}%"
-      includes("company").where("first_name LIKE ? OR last_name LIKE ? OR job_position LIKE ? OR companies.name LIKE ?", s, s, s, s)
+  def self.like(term)
+    if term
+      mask = Regexp.new(term, Regexp::IGNORECASE)
+      any_of({ first_name: mask }, { last_name: mask }, { job_position: mask }, { company_name: mask })
     else
       scoped
     end

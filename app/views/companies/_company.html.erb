@@ -7,7 +7,7 @@
   <h5><%= link_to company.name, company %></h5>
   <% if company.contacts.any? %>
   <p class="company_members">
-     <%= company.contacts.first(2).map{|c| link_to(c.short_name,c)}.join(", ").html_safe %>
+     <%= company.contacts.limit(2).map{|c| link_to(c.short_name,c)}.join(", ").html_safe %>
      <%= t(:and_X_others, value: company.contacts.count - 2) if company.contacts.count > 2 %>
   </p>
   <% end %>

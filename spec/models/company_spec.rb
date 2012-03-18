@@ -4,6 +4,7 @@ describe Company do
   it "should have a name to be valid" do
     Company.new.should_not be_valid
     Company.new(:name => "WorldCompany").should be_valid
+    Company.new(:name => "WorldCompany").image_url.should == "building.png"
   end
 
   describe "#search" do
@@ -13,13 +14,13 @@ describe Company do
     end
 
     it "should return everything if parameter is blank" do
-      Company.search("").should eq [@company1, @company2]
+      Company.like("").to_a.should =~ [@company1, @company2]
     end
     
     it "should filter companys by name" do
-      Company.search("World").should eq [@company1]
-      Company.search("Tiny").should eq [@company2]
-      Company.search("Comp").should eq [@company1, @company2]
+      Company.like("World").to_a.should =~ [@company1]
+      Company.like("Tiny").to_a.should =~ [@company2]
+      Company.like("Comp").to_a.should =~ [@company1, @company2]
     end
   end
 
@@ -30,19 +31,19 @@ describe Company do
     end
 
     it "should return maintainers only" do
-      Company.maintainers.should eq [ @company2 ]
+      Company.maintainers.to_a.should =~ [ @company2 ]
     end
   end
 
   describe "#maintained_servers" do
     before do
       @company = Company.create(:name => "Wolrd company", :is_maintainer => true)
-      @server1 = Server.create(:name => "srv-01", :maintainer_id => @company.id) 
-      @server2 = Server.create(:name => "srv-01", :maintainer_id => nil) 
+      @server1 = Server.create(:name => "srv-01", :maintainer_mongo_id => @company.id.to_s)
+      @server2 = Server.create(:name => "srv-01", :maintainer_mongo_id => nil) 
     end
 
     it "has some maintained servers" do
-      @company.maintained_servers.should eq [ @server1 ]
+      @company.maintained_servers.to_a.should =~ [ @server1 ]
     end
   end
 end

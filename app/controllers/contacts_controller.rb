@@ -6,31 +6,29 @@ class ContactsController < InheritedResources::Base
   def index
     params[:sort] ||= "updated_at"
     params[:direction] ||= "desc"
-    companies_sort_option = sort_option.gsub(/(last|first)_name/, "name").gsub("contacts.", "companies.")
+    companies_sort_option = mongo_sort_option.inject([]) { |memo, ary| memo = [ary[0].gsub(/(last|first)_name/, "name"), ary[1]]}
     @companies = Company.with_internals(view_internals)
-                        .search(params[:search])
+                        .like(params[:search])
                         .limit(params[:all_companies].blank? ? 25 : nil)
-                        .includes(:email_infos, :phone_infos, :contacts)
-                        .order(companies_sort_option)
+                        .order_by(companies_sort_option)
     index!
   end
 
   def autocomplete
-    render js: Contact.search(params[:q]).limit(25).map{|contact| { id: contact.id, name: contact.full_name } }.to_json
+    render js: Contact.like(params[:q]).limit(25).map{|contact| { id: contact.id, name: contact.full_name } }.to_json
   end
 
   private
   def collection
     @contacts ||= end_of_association_chain.with_internals(view_internals)
-                                          .search(params[:search])
+                                          .like(params[:search])
                                           .limit(params[:all_contacts].blank? ? 25 : nil)
-                                          .includes(:email_infos, :phone_infos, :company)
-                                          .order(sort_option)
+                                          .order_by(mongo_sort_option)
   end
 
   def find_companies_and_contacts_count
-    @companies_count = Company.search(params[:search]).count
-    @contacts_count  = Contact.search(params[:search]).count
+    @companies_count = Company.like(params[:search]).count
+    @contacts_count  = Contact.like(params[:search]).count
   end
 
   def full_display?(contact)
@@ -39,10 +37,6 @@ class ContactsController < InheritedResources::Base
   helper_method :full_display?
   
   include SortHelpers
-
-  def sort_column_prefix
-    "contacts."
-  end
   helper_method :sort_column, :sort_direction, :sort_column_prefix
 
   before_filter :select_view_mode

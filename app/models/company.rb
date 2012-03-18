@@ -1,7 +1,9 @@
-class Company < ActiveRecord::Base
+class Company < Contactable
+  field :name, type: String
+  field :is_maintainer, type: Boolean
+
   has_many :contacts, dependent: :nullify
-  has_many :maintained_servers, class_name: 'Server', foreign_key: 'maintainer_id'
-  include Contactable
+  #TODO: has_many :maintained_servers, class_name: 'Server', foreign_key: 'maintainer_id'
 
   validates_presence_of :name
 
@@ -18,11 +20,15 @@ class Company < ActiveRecord::Base
        agp.png)
   end
 
-  def self.search(search)
-    if search
-      where("name LIKE ?", "%#{search}%")
+  def self.like(term)
+    if term
+      where(name: Regexp.new(term, Regexp::IGNORECASE))
     else
       scoped
     end
+  end
+
+  def maintained_servers
+    Server.where(maintainer_mongo_id: self.id.to_s)
   end
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ConfigurationItemsObserver do
-  it "should have a CI object" do
+  pending "should have a CI object" do
     s = Server.new(:name => "my-new-server")
     s.should be_valid
     s.configuration_item.should_not be_blank
@@ -18,7 +18,7 @@ describe ConfigurationItemsObserver do
     a.reload.contact_ids.should eq [c.id]
   end
 
-  it "should add a CI when #ci method is called" do
+  pending "should add a CI when #ci method is called" do
     s = Server.new(:name => "my-new-server")
     s.should be_valid
     s.configuration_item.should_not be_blank
