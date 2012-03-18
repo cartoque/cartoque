@@ -3,9 +3,9 @@ require 'spec_helper'
 describe "components/show" do
   before(:each) do
     @component = assign(:component, stub_model(Component,
-      :name => "Name",
-      :website => "Website",
-      :description => "Description"
+      name: "Name",
+      website: "Website",
+      description: "Description"
     ))
   end
 

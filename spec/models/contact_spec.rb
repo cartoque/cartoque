@@ -4,18 +4,18 @@ require 'spec_helper'
 describe Contact do
   it "should have a first name, a last name and an image url to be valid" do
     Contact.new.should_not be_valid
-    Contact.new(:last_name => "Doe", :image_url => "").should_not be_valid
-    Contact.new(:last_name => "Doe", :image_url => "ceo.png").should be_valid
-    Contact.new(:last_name => "Doe").image_url.should == "ceo.png"
+    Contact.new(last_name: "Doe", image_url: "").should_not be_valid
+    Contact.new(last_name: "Doe", image_url: "ceo.png").should be_valid
+    Contact.new(last_name: "Doe").image_url.should == "ceo.png"
   end
 
   it "should return the full name of a person" do
-    contact = Contact.new(:first_name => "John", :last_name => "Doe")
+    contact = Contact.new(first_name: "John", last_name: "Doe")
     contact.full_name.should == "John Doe"
   end
 
   it "should return a shortened version of the name of a person" do
-    contact = Contact.new(:first_name => "John-Mitchel Charles", :last_name => "Doe")
+    contact = Contact.new(first_name: "John-Mitchel Charles", last_name: "Doe")
     contact.short_name.should == "JMC Doe"
     contact.first_name = "Jérémy"
     contact.short_name.should == "J Doe"
@@ -25,20 +25,20 @@ describe Contact do
   end
 
   it "should shorten long email addresses" do
-    c = Contact.create!(:last_name => "Doe")
-    EmailInfo.create!(:value => "john.doe@example.com", :entity => c)
+    c = Contact.create!(last_name: "Doe")
+    EmailInfo.create!(value: "john.doe@example.com", entity: c)
     c.reload.short_email.should == "john.doe@example.com"
     c.contact_infos.first.destroy
-    EmailInfo.create!(:value => "john.doe@very.long-subdomain.example.com", :entity => c)
+    EmailInfo.create!(value: "john.doe@very.long-subdomain.example.com", entity: c)
     c.reload.short_email.should == "john.doe@...example.com"
   end
 
   it "should destroy the associated contact infos when deleted" do
-    c = Contact.create(:first_name => "John", :last_name => "Doe")
+    c = Contact.create(first_name: "John", last_name: "Doe")
     c.should be_persisted
     c.should have(0).contact_infos
-    EmailInfo.create(:value => "blah@example.com", :entity => c)
-    EmailInfo.create(:value => "555-123456", :entity => c)
+    EmailInfo.create(value: "blah@example.com", entity: c)
+    EmailInfo.create(value: "555-123456", entity: c)
     c.reload.should have(2).contact_infos
   end
 
@@ -59,8 +59,8 @@ describe Contact do
 
   describe "#search" do
     before do
-      @contact1 = Contact.create(:first_name => "John", :last_name => "Doe", :job_position => "Commercial")
-      @contact2 = Contact.create(:first_name => "James", :last_name => "Dean", :job_position => "Director")
+      @contact1 = Contact.create(first_name: "John", last_name: "Doe", job_position: "Commercial")
+      @contact2 = Contact.create(first_name: "James", last_name: "Dean", job_position: "Director")
     end
 
     it "should return everything if parameter is blank" do
@@ -78,8 +78,8 @@ describe Contact do
   #TODO: move it to a dedicated spec on Contactable module
   describe "#with_internals scope" do
     it "retrieve internal users only if param is truthy" do
-      bob = Contact.create!(:last_name => "Smith", :internal => true)
-      alice = Contact.create!(:last_name => "Smith", :internal => false)
+      bob = Contact.create!(last_name: "Smith", internal: true)
+      alice = Contact.create!(last_name: "Smith", internal: false)
       Contact.all.should include bob
       Contact.all.should include alice
       Contact.with_internals(false).to_a.should_not include bob

@@ -21,29 +21,29 @@ describe "Authentication" do
   end
 
   describe "via an API Token" do
-    describe "GET /servers.csv", :type => :request do
+    describe "GET /servers.csv", type: :request do
       it "refuses access if no authentication token given" do
         get servers_path(format: "csv")
         response.status.should == 401
       end
 
       it "refuses access if the given authentication token is wrong (blank, too short)" do
-        get servers_path(:format => "csv").to_s, {}, "HTTP_X_API_TOKEN" => "blah"
+        get servers_path(format: "csv").to_s, {}, "HTTP_X_API_TOKEN" => "blah"
         response.status.should == 401
 
-        get servers_path(:format => "csv").to_s, {}, "HTTP_X_API_TOKEN" => ""
+        get servers_path(format: "csv").to_s, {}, "HTTP_X_API_TOKEN" => ""
         response.status.should == 401
       end
 
       it "grants access if authentication token is valid" do
         u = Factory(:user)
-        get servers_path(:format => "csv").to_s, {}, "HTTP_X_API_TOKEN" => u.authentication_token
+        get servers_path(format: "csv").to_s, {}, "HTTP_X_API_TOKEN" => u.authentication_token
         response.status.should == 200
       end
 
       it "allows access even if not using csv/xml/json formats (changed with devise)" do
         u = Factory(:user)
-        get servers_path(:format => "html").to_s, {}, "HTTP_X_API_TOKEN" => u.authentication_token
+        get servers_path(format: "html").to_s, {}, "HTTP_X_API_TOKEN" => u.authentication_token
         response.status.should == 200
       end
     end
@@ -57,7 +57,7 @@ describe "Authentication" do
 
     it "updates when using 'current_user' and returns the current user" do
       u = Factory(:user)
-      get servers_path(:format => "csv").to_s, {}, "HTTP_X_API_TOKEN" => u.authentication_token
+      get servers_path(format: "csv").to_s, {}, "HTTP_X_API_TOKEN" => u.authentication_token
       response.status.should == 200
       u.reload.seen_on.should_not be_blank
       (u.seen_on.to_date - Date.today).should be < 2

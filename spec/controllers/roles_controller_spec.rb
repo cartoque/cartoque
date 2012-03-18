@@ -25,7 +25,7 @@ describe RolesController do
   # Role. As you add validations to Role, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {:name => "Expert"}
+    {name: "Expert"}
   end
 
   describe "GET index" do
@@ -46,7 +46,7 @@ describe RolesController do
   describe "GET edit" do
     it "assigns the requested role as @role" do
       role = Role.create! valid_attributes
-      get :edit, :id => role.id
+      get :edit, id: role.id
       assigns(:role).should eq(role)
     end
   end
@@ -55,18 +55,18 @@ describe RolesController do
     describe "with valid params" do
       it "creates a new Role" do
         expect {
-          post :create, :role => valid_attributes
+          post :create, role: valid_attributes
         }.to change(Role, :count).by(1)
       end
 
       it "assigns a newly created role as @role" do
-        post :create, :role => valid_attributes
+        post :create, role: valid_attributes
         assigns(:role).should be_a(Role)
         assigns(:role).should be_persisted
       end
 
       it "redirects to the created role" do
-        post :create, :role => valid_attributes
+        post :create, role: valid_attributes
         response.should redirect_to(roles_url)
       end
     end
@@ -75,7 +75,7 @@ describe RolesController do
       it "assigns a newly created but unsaved role as @role" do
         # Trigger the behavior that occurs when invalid params are submitted
         Role.any_instance.stub(:save).and_return(false)
-        post :create, :role => {}
+        post :create, role: {}
         assigns(:role).should be_a_new(Role)
       end
 
@@ -83,7 +83,7 @@ describe RolesController do
 ###      it "re-renders the 'new' template" do
 ###        # Trigger the behavior that occurs when invalid params are submitted
 ###        Role.any_instance.stub(:save).and_return(false)
-###        post :create, :role => {}
+###        post :create, role: {}
 ###        response.should render_template("new")
 ###      end
     end
@@ -98,18 +98,18 @@ describe RolesController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Role.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => role.id, :role => {'these' => 'params'}
+        put :update, id: role.id, role: {'these' => 'params'}
       end
 
       it "assigns the requested role as @role" do
         role = Role.create! valid_attributes
-        put :update, :id => role.id, :role => valid_attributes
+        put :update, id: role.id, role: valid_attributes
         assigns(:role).should eq(role)
       end
 
       it "redirects to the role" do
         role = Role.create! valid_attributes
-        put :update, :id => role.id, :role => valid_attributes
+        put :update, id: role.id, role: valid_attributes
         response.should redirect_to(roles_url)
       end
     end
@@ -119,7 +119,7 @@ describe RolesController do
         role = Role.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Role.any_instance.stub(:save).and_return(false)
-        put :update, :id => role.id, :role => {}
+        put :update, id: role.id, role: {}
         assigns(:role).should eq(role)
       end
 
@@ -128,7 +128,7 @@ describe RolesController do
 ###        role = Role.create! valid_attributes
 ###        # Trigger the behavior that occurs when invalid params are submitted
 ###        Role.any_instance.stub(:save).and_return(false)
-###        put :update, :id => role.id, :role => {}
+###        put :update, id: role.id, role: {}
 ###        response.should render_template("edit")
 ###      end
     end
@@ -138,13 +138,13 @@ describe RolesController do
     it "destroys the requested role" do
       role = Role.create! valid_attributes
       expect {
-        delete :destroy, :id => role.id
+        delete :destroy, id: role.id
       }.to change(Role, :count).by(-1)
     end
 
     it "redirects to the roles list" do
       role = Role.create! valid_attributes
-      delete :destroy, :id => role.id
+      delete :destroy, id: role.id
       response.should redirect_to(roles_url)
     end
   end

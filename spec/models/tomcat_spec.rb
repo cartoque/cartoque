@@ -13,7 +13,7 @@ describe Tomcat do
   before do
     site1 = "site;vm-01;app01.example.com;;vip-00.example.com;TC60_01;/apps/j2ee/app01;jndi01:jdbc:postgresql://app01.db:5433/db01:app01"
     site2 = "site;vm-01;app02.example.com;;vip-01.example.com;TC60_02;/apps/j2ee/app02;jndi02:jdbc:postgresql://app02.db:1521/db02:app02"
-    @app01 = Tomcat.new(site1.split(";"), { :instance => "instance;vm-01;TC60_01;jdbc9;Java160;512;1024".split(";") })
+    @app01 = Tomcat.new(site1.split(";"), { instance: "instance;vm-01;TC60_01;jdbc9;Java160;512;1024".split(";") })
     @app02 = Tomcat.new(site2.split(";"))
   end
 
@@ -77,7 +77,7 @@ describe Tomcat do
     end
 
     it "should reduce 'tomcat' key to the first part before an underscore" do
-      tomcats = [{:tomcat => "TC60_01"}, {:tomcat => "TC60_02"}]
+      tomcats = [{tomcat: "TC60_01"}, {tomcat: "TC60_02"}]
       Tomcat.filters_from(tomcats).should eq({"tomcat" => ["TC60"]})
     end
 
@@ -92,19 +92,19 @@ describe Tomcat do
     end
 
     it "should filter nothing if no params by_* given" do
-      Tomcat.filter_collection(@tomcats, {:key => "value"}).should eq @tomcats
+      Tomcat.filter_collection(@tomcats, {key: "value"}).should eq @tomcats
     end
 
     it "should apply filters" do
       #beginning of vip
-      Tomcat.filter_collection(@tomcats, {:by_vip => "vip-0"}).should eq @tomcats
-      Tomcat.filter_collection(@tomcats, {:by_vip => "vip-00"}).should eq [@app01]
+      Tomcat.filter_collection(@tomcats, {by_vip: "vip-0"}).should eq @tomcats
+      Tomcat.filter_collection(@tomcats, {by_vip: "vip-00"}).should eq [@app01]
       #server
-      Tomcat.filter_collection(Tomcat.all, {:by_server => "vm-01"}).should eq [@app01, @app02]
+      Tomcat.filter_collection(Tomcat.all, {by_server: "vm-01"}).should eq [@app01, @app02]
       #beginning of tomcat
-      Tomcat.filter_collection(Tomcat.all, {:by_tomcat => "TC60_02"}).should eq [@app02]
+      Tomcat.filter_collection(Tomcat.all, {by_tomcat: "TC60_02"}).should eq [@app02]
       #beginning of java_version
-      Tomcat.filter_collection(@tomcats, {:by_java => "Java160"}).should eq [@app01]
+      Tomcat.filter_collection(@tomcats, {by_java: "Java160"}).should eq [@app01]
     end
   end
 end

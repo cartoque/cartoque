@@ -3,14 +3,14 @@ require 'spec_helper'
 describe Company do
   it "should have a name to be valid" do
     Company.new.should_not be_valid
-    Company.new(:name => "WorldCompany").should be_valid
-    Company.new(:name => "WorldCompany").image_url.should == "building.png"
+    Company.new(name: "WorldCompany").should be_valid
+    Company.new(name: "WorldCompany").image_url.should == "building.png"
   end
 
   describe "#search" do
     before do
-      @company1 = Company.create(:name => "WorldCompany")
-      @company2 = Company.create(:name => "TinyCompany")
+      @company1 = Company.create(name: "WorldCompany")
+      @company2 = Company.create(name: "TinyCompany")
     end
 
     it "should return everything if parameter is blank" do
@@ -26,8 +26,8 @@ describe Company do
 
   describe "scopes" do
     before do
-      @company1 = Company.create(:name => "WorldCompany", :is_maintainer => false)
-      @company2 = Company.create(:name => "TinyCompany", :is_maintainer => true)
+      @company1 = Company.create(name: "WorldCompany", is_maintainer: false)
+      @company2 = Company.create(name: "TinyCompany", is_maintainer: true)
     end
 
     it "should return maintainers only" do
@@ -37,9 +37,9 @@ describe Company do
 
   describe "#maintained_servers" do
     before do
-      @company = Company.create(:name => "Wolrd company", :is_maintainer => true)
-      @server1 = Server.create(:name => "srv-01", :maintainer_mongo_id => @company.id.to_s)
-      @server2 = Server.create(:name => "srv-01", :maintainer_mongo_id => nil) 
+      @company = Company.create(name: "Wolrd company", is_maintainer: true)
+      @server1 = Server.create(name: "srv-01", maintainer_mongo_id: @company.id.to_s)
+      @server2 = Server.create(name: "srv-01", maintainer_mongo_id: nil) 
     end
 
     it "has some maintained servers" do

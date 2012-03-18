@@ -19,7 +19,7 @@ describe PhysicalRack do
 
   describe "#stock?" do
     it "should return true only if rack is marked as stock" do
-      PhysicalRack.new(:name => "stock", :status => PhysicalRack::STATUS_STOCK).stock?.should be_true
+      PhysicalRack.new(name: "stock", status: PhysicalRack::STATUS_STOCK).stock?.should be_true
     end
   end
 end

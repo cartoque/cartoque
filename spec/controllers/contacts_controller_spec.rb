@@ -5,8 +5,8 @@ describe ContactsController do
 
   describe "GET /index" do
     before do
-      @doe = Contact.create!(:last_name => "Doe")
-      @smith = Contact.create!(:last_name => "Smith")
+      @doe = Contact.create!(last_name: "Doe")
+      @smith = Contact.create!(last_name: "Smith")
     end
 
     it "assigns @contacts" do
@@ -20,20 +20,20 @@ describe ContactsController do
     end
 
     it "should filter contacts by name" do
-      get :index, :search => "smi"
+      get :index, search: "smi"
       assigns(:contacts).to_a.should eq [@smith]
     end
 
     it "should sort contacts correctly" do
-      get :index, :sort => "last_name", :direction => "desc"
+      get :index, sort: "last_name", direction: "desc"
       assigns(:contacts).to_a.should eq [@smith, @doe]
     end
 
     describe "with internal visibility" do
       before do
-        @bob = Contact.create!(:last_name => "Bob", :internal => true)
-        @vendor = Company.create!(:name => "Manufacturer inc.")
-        @team = Company.create!(:name => "Our team (internal)", :internal => true)
+        @bob = Contact.create!(last_name: "Bob", internal: true)
+        @vendor = Company.create!(name: "Manufacturer inc.")
+        @team = Company.create!(name: "Our team (internal)", internal: true)
       end
 
       it "shouldn't display internal contacts/companies by default" do
@@ -44,7 +44,7 @@ describe ContactsController do
       end
 
       it "should display internal contacts/companies with some more params or session" do
-        get :index, :with_internals => "1"
+        get :index, with_internals: "1"
         assigns(:contacts).to_a.should include @bob
         assigns(:companies).to_a.should include @team
         #and keep it in session...

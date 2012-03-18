@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Upgrade do
   before do
     @server = Factory(:server)
-    @upgrade = Upgrade.create!(:server_id => @server.id)
+    @upgrade = Upgrade.create!(server_id: @server.id)
   end
 
   it "belongs to one server" do
@@ -13,7 +13,7 @@ describe Upgrade do
 
   it "should have a server" do
     Upgrade.new.should_not be_valid
-    Upgrade.new(:server_id => Factory(:virtual).id).should be_valid
+    Upgrade.new(server_id: Factory(:virtual).id).should be_valid
   end
 
   it "should serialize #packages_list" do

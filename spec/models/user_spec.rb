@@ -6,7 +6,7 @@ describe User do
   end
 
   it "should have a unique name" do
-    other = User.new(:name => @user.name)
+    other = User.new(name: @user.name)
     other.should_not be_valid
     other.errors.keys.should == [:name]
     other.errors[:name].should == [I18n.t("mongoid.errors.messages.taken")]

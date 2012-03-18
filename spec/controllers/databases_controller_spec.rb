@@ -8,7 +8,7 @@ describe DatabasesController do
   # Database. As you add validations to Database, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {:name => "db-01", :database_type => "postgres"}
+    {name: "db-01", database_type: "postgres"}
   end
 
   before do
@@ -25,7 +25,7 @@ describe DatabasesController do
   end
   
   def test_show
-    get :show, :id => @database
+    get :show, id: @database
     assert_template 'show'
   end
   
@@ -47,12 +47,12 @@ describe DatabasesController do
 
   def test_create_valid
     Database.any_instance.stubs(:valid?).returns(true)
-    post :create, :database => { :name => "database", :database_type => "postgres", :server_ids => [] }
+    post :create, database: { name: "database", database_type: "postgres", server_ids: [] }
     assert_redirected_to databases_url #database_url(assigns(:database))
   end
   
   def test_edit
-    get :edit, :id => @database
+    get :edit, id: @database
     assert_template 'edit'
   end
   
@@ -62,19 +62,19 @@ describe DatabasesController do
 ###
 ###  def test_update_invalid
 ###    Database.any_instance.stubs(:valid?).returns(false)
-###    put :update, :id => @database
+###    put :update, id: @database
 ###    assert_template 'edit'
 ###  end
 
   def test_update_valid
     Database.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @database
+    put :update, id: @database
     assert_redirected_to databases_url #database_url(assigns(:database))
   end
   
   def test_destroy
     database = Database.first
-    delete :destroy, :id => database
+    delete :destroy, id: database
     assert_redirected_to databases_url
     assert !Database.exists?(database.id)
   end

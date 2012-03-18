@@ -19,12 +19,12 @@ describe ApplicationsController do
   end
 
   it "should create application" do
-    lambda{ post :create, :application => {"name" => "app-01"} }.should change(Application, :count)
+    lambda{ post :create, application: {"name" => "app-01"} }.should change(Application, :count)
     assert_redirected_to application_path(assigns(:application))
   end
 
   it "should show application" do
-    get :show, :id => @application.to_param
+    get :show, id: @application.to_param
     assert_response :success
   end
 
@@ -32,7 +32,7 @@ describe ApplicationsController do
     app_inst = ApplicationInstance.new(name: "prod", authentication_method: "none", application_mongo_id: @application.id.to_s)
     app_inst.servers = [ Factory(:server), Factory(:virtual) ]
     app_inst.save
-    get :show, :id => @application.to_param, :format => :xml
+    get :show, id: @application.to_param, format: :xml
     response.body.should have_selector :css, "application>_id", @application.id.to_s
     assert_equal 1, @application.application_instances.count
     response.body.should have_selector :css, "application>application-instances>application-instance", 1
@@ -42,22 +42,22 @@ describe ApplicationsController do
 
   #TODO: restore find by slug
   pending "should access an application through its identifier" do
-    get :show, :id => @application.ci_identifier, :format => :xml
+    get :show, id: @application.ci_identifier, format: :xml
     assert_select "application>id", "#{@application.id}"
   end
 
   it "should get edit" do
-    get :edit, :id => @application.to_param
+    get :edit, id: @application.to_param
     assert_response :success
   end
 
   it "should update application" do
-    put :update, :id => @application.to_param, :application => {"name" => "app-02"}
+    put :update, id: @application.to_param, application: {"name" => "app-02"}
     assert_redirected_to application_path(assigns(:application))
   end
 
   it "should destroy application" do
-    lambda{ delete :destroy, :id => @application.to_param }.should change(Application, :count).by(-1)
+    lambda{ delete :destroy, id: @application.to_param }.should change(Application, :count).by(-1)
     assert_redirected_to applications_path
   end
 
@@ -81,10 +81,10 @@ describe ApplicationsController do
     app = Application.create!(name: "webapp-01")
     c = Factory(:contact)
 
-    put :update, :id => app.id, application: { name: "webapp-01", contact_ids: [] }
+    put :update, id: app.id, application: { name: "webapp-01", contact_ids: [] }
     app.reload.contact_ids.should == []
 
-    put :update, :id => app.id, application: { name: "webapp-01", contact_ids: [c.id] }
+    put :update, id: app.id, application: { name: "webapp-01", contact_ids: [c.id] }
     app.reload.contact_ids.should == [c.id]
   end
 end

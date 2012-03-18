@@ -25,7 +25,7 @@ describe ComponentsController do
   # Component. As you add validations to Component, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {:name => "Nginx web server"}
+    {name: "Nginx web server"}
   end
   
   describe "GET index" do
@@ -39,7 +39,7 @@ describe ComponentsController do
   describe "GET show" do
     it "assigns the requested component as @component" do
       component = Component.create! valid_attributes
-      get :show, {:id => component.to_param}
+      get :show, {id: component.to_param}
       assigns(:component).should eq(component)
     end
   end
@@ -54,7 +54,7 @@ describe ComponentsController do
   describe "GET edit" do
     it "assigns the requested component as @component" do
       component = Component.create! valid_attributes
-      get :edit, {:id => component.to_param}
+      get :edit, {id: component.to_param}
       assigns(:component).should eq(component)
     end
   end
@@ -64,18 +64,18 @@ describe ComponentsController do
     describe "with valid params" do
       it "creates a new Component" do
         expect {
-          post :create, {:component => valid_attributes}
+          post :create, {component: valid_attributes}
         }.to change(Component, :count).by(1)
       end
 
       it "assigns a newly created component as @component" do
-        post :create, {:component => valid_attributes}
+        post :create, {component: valid_attributes}
         assigns(:component).should be_a(Component)
         assigns(:component).should be_persisted
       end
 
       it "redirects to the created component" do
-        post :create, {:component => valid_attributes}
+        post :create, {component: valid_attributes}
         response.should redirect_to(Component.last)
       end
     end
@@ -84,7 +84,7 @@ describe ComponentsController do
       it "assigns a newly created but unsaved component as @component" do
         # Trigger the behavior that occurs when invalid params are submitted
         Component.any_instance.stub(:save).and_return(false)
-        post :create, {:component => {}}
+        post :create, {component: {}}
         assigns(:component).should be_a_new(Component)
       end
 
@@ -92,7 +92,7 @@ describe ComponentsController do
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Component.any_instance.stub(:save).and_return(false)
-        post :create, {:component => {}}
+        post :create, {component: {}}
         #response.should render_template("new")
       end
     end
@@ -107,18 +107,18 @@ describe ComponentsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Component.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => component.to_param, :component => {'these' => 'params'}}
+        put :update, {id: component.to_param, component: {'these' => 'params'}}
       end
 
       it "assigns the requested component as @component" do
         component = Component.create! valid_attributes
-        put :update, {:id => component.to_param, :component => valid_attributes}
+        put :update, {id: component.to_param, component: valid_attributes}
         assigns(:component).should eq(component)
       end
 
       it "redirects to the component" do
         component = Component.create! valid_attributes
-        put :update, {:id => component.to_param, :component => valid_attributes}
+        put :update, {id: component.to_param, component: valid_attributes}
         response.should redirect_to(component)
       end
     end
@@ -128,7 +128,7 @@ describe ComponentsController do
         component = Component.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Component.any_instance.stub(:save).and_return(false)
-        put :update, {:id => component.to_param, :component => {}}
+        put :update, {id: component.to_param, component: {}}
         assigns(:component).should eq(component)
       end
 
@@ -137,7 +137,7 @@ describe ComponentsController do
         component = Component.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Component.any_instance.stub(:save).and_return(false)
-        put :update, {:id => component.to_param, :component => {}}
+        put :update, {id: component.to_param, component: {}}
         #response.should render_template("edit")
       end
     end
@@ -147,13 +147,13 @@ describe ComponentsController do
     it "destroys the requested component" do
       component = Component.create! valid_attributes
       expect {
-        delete :destroy, {:id => component.to_param}
+        delete :destroy, {id: component.to_param}
       }.to change(Component, :count).by(-1)
     end
 
     it "redirects to the components list" do
       component = Component.create! valid_attributes
-      delete :destroy, {:id => component.to_param}
+      delete :destroy, {id: component.to_param}
       response.should redirect_to(components_url)
     end
   end

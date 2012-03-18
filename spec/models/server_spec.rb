@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Server do
   it "should be valid with just a name" do
     Server.new.should_not be_valid
-    Server.new(:name => "my-server").should be_valid
+    Server.new(name: "my-server").should be_valid
   end
 
   describe "#ipaddresses" do
@@ -12,7 +12,7 @@ describe Server do
     end
 
     it "should update with an address as a string" do
-      @server.ipaddresses = [ Ipaddress.new(:address => "192.168.99.99", :main => true) ]
+      @server.ipaddresses = [ Ipaddress.new(address: "192.168.99.99", main: true) ]
       @server.save
       @server.reload
       @server.read_attribute(:ipaddress).should eq 3232260963
@@ -20,7 +20,7 @@ describe Server do
     end
 
     it "should update with an address as a number between 1 and 32" do
-      @server.ipaddresses = [ Ipaddress.new(:address => "24", :main => true) ]
+      @server.ipaddresses = [ Ipaddress.new(address: "24", main: true) ]
       @server.save
       @server.reload.should have(1).ipaddresses
       @server.ipaddresses.first.address.should eq "255.255.255.0"
@@ -29,10 +29,10 @@ describe Server do
     end
 
     it "should leave ip empty if no main ipaddress" do
-      @server.ipaddresses = [ Ipaddress.new(:address => "24", :main => true) ]
+      @server.ipaddresses = [ Ipaddress.new(address: "24", main: true) ]
       @server.save
       @server.reload.ipaddress.should_not be_nil
-      @server.ipaddresses = [ Ipaddress.new(:address => "24") ]
+      @server.ipaddresses = [ Ipaddress.new(address: "24") ]
       @server.save
       @server.reload.ipaddress.should be_nil
       @server.ipaddresses = [ ]
@@ -43,15 +43,15 @@ describe Server do
 
   describe "#identifier" do
     it "should automatically generate an identifier" do
-      m = Server.create(:name => "blah")
+      m = Server.create(name: "blah")
       m.identifier.should eq "blah"
-      m = Server.create(:name => "( bizarr# n@me )")
+      m = Server.create(name: "( bizarr# n@me )")
       m.identifier.should eq "bizarr-n-me"
     end
 
     it "should prevent from having 2 servers with the same identifier" do
-      m1 = Server.create(:name => "srv1")
-      m2 = Server.new(:name => "(srv1)")
+      m1 = Server.create(name: "srv1")
+      m2 = Server.new(name: "(srv1)")
       m2.should_not be_valid
       m2.identifier.should eq m1.identifier
       m2.errors.keys.should include(:identifier)
@@ -79,18 +79,18 @@ describe Server do
 
   describe "scopes" do
     before do
-      @site1 = Site.create!(:name => "eu-west")
-      @site2 = Site.create!(:name => "us-east")
-      @rack1 = PhysicalRack.create!(:name => "rack-1-eu", :site_id => @site1.id.to_s)
-      @rack2 = PhysicalRack.create!(:name => "rack-2-us", :site_id => @site2.id.to_s)
-      @maint = Company.create!(:name => "Computer shop", :is_maintainer => true)
-      @os = OperatingSystem.create!(:name => "Linux")
-      @s1 = Server.create!(:name => "srv-app-01", :physical_rack => @rack1,
-                           :maintainer_mongo_id => @maint.id.to_s, :operating_system_mongo_id => @os.to_param)
-      @s2 = Server.create!(:name => "srv-app-02", :physical_rack => @rack2,
-                           :virtual => true)
-      @s3 = Server.create!(:name => "srv-db-01", :physical_rack => @rack1,
-                           :puppetversion => "0.24.5")
+      @site1 = Site.create!(name: "eu-west")
+      @site2 = Site.create!(name: "us-east")
+      @rack1 = PhysicalRack.create!(name: "rack-1-eu", site_id: @site1.id.to_s)
+      @rack2 = PhysicalRack.create!(name: "rack-2-us", site_id: @site2.id.to_s)
+      @maint = Company.create!(name: "Computer shop", is_maintainer: true)
+      @os = OperatingSystem.create!(name: "Linux")
+      @s1 = Server.create!(name: "srv-app-01", physical_rack: @rack1,
+                           maintainer_mongo_id: @maint.id.to_s, operating_system_mongo_id: @os.to_param)
+      @s2 = Server.create!(name: "srv-app-02", physical_rack: @rack2,
+                           virtual: true)
+      @s3 = Server.create!(name: "srv-db-01", physical_rack: @rack1,
+                           puppetversion: "0.24.5")
     end
 
     it "should filter servers by rack" do
@@ -133,7 +133,7 @@ describe Server do
 
     describe "#find_or_generate" do
       before do
-        @server = Server.create(:name => "rake-server")
+        @server = Server.create(name: "rake-server")
       end
 
       it "should find server by name in priority" do
@@ -188,13 +188,13 @@ describe Server do
 
     it "should not include active servers which have an associated backup job" do
       Server.not_backuped.should include(@server)
-      @server.backup_jobs << BackupJob.create(:hierarchy => "/")
+      @server.backup_jobs << BackupJob.create(hierarchy: "/")
       Server.not_backuped.should_not include(@server)
     end
 
     pending "should not include servers which have a backup_exception" do
       Server.not_backuped.should include(@server)
-      BackupException.create!(:reason => "backuped an other way", :servers => [@server])
+      BackupException.create!(reason: "backuped an other way", servers: [@server])
       Server.not_backuped.should_not include(@server)
     end
 
@@ -206,7 +206,7 @@ describe Server do
 
     it "should not include stock servers" do
       Server.not_backuped.should include(@server)
-      rack = PhysicalRack.create!(:name => "rack-1", :site_mongo_id => Factory(:room).id.to_s, :status => PhysicalRack::STATUS_STOCK)
+      rack = PhysicalRack.create!(name: "rack-1", site_mongo_id: Factory(:room).id.to_s, status: PhysicalRack::STATUS_STOCK)
       @server.physical_rack = rack
       @server.save
       Server.not_backuped.should_not include(@server)
@@ -218,7 +218,7 @@ describe Server do
       srv = Factory(:server)
       srv.operating_system.should be_blank
       srv.can_be_managed_with_puppet?.should be_false
-      sys = OperatingSystem.create(:name => "Ubuntu 11.10")
+      sys = OperatingSystem.create(name: "Ubuntu 11.10")
       srv.update_attribute(:operating_system_mongo_id, sys.to_param)
       srv.reload.can_be_managed_with_puppet?.should be_false
       sys.update_attribute(:managed_with_puppet, true)

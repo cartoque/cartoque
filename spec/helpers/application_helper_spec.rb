@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe ApplicationHelper do
   it "should display action links" do
-    render :text => action_links { "blah" }
+    render text: action_links { "blah" }
     assert_select "div.actions", "blah" 
   end 
 
@@ -11,19 +11,19 @@ describe ApplicationHelper do
     it "should render some links to external applications" do
       Setting.redmine_url = "http://redmine.org"
       text = links_for(Factory(:application))
-      text.should have_selector "a", :class => "link-to-redmine", :href => "http://redmine.org/projects/appli-01", :content => "R"
+      text.should have_selector "a", class: "link-to-redmine", href: "http://redmine.org/projects/appli-01", content: "R"
     end
   end
 
   describe "#context_li" do
     it "should display a li.current if item is the current one" do
-      render :text => context_li("blah", "url", :current => true)
+      render text: context_li("blah", "url", current: true)
       assert_select "li.current", "blah"
       assert select "li a", false, "shouldn't contain a link"
     end
 
     it "should display normal li with link inside otherwise" do
-      render :text => context_li("blah", "url", :current => false)
+      render text: context_li("blah", "url", current: false)
       assert_select "li > a[href=url]", "blah"
       assert_select "li.current", false, "shouldn't be the current li"
     end
@@ -33,19 +33,19 @@ describe ApplicationHelper do
     it "should return server name if no server found" do
       link = link_to_server_if_exists("blah")
       assert link.include?("blah")
-      render :text => link
+      render text: link
       assert_select "a", "+"
     end
 
     it "should return a link to the server if a server with that name exists" do
-      render :text => link_to_server_if_exists(Factory(:server).name)
+      render text: link_to_server_if_exists(Factory(:server).name)
       assert_select "a", "server-01"
     end
   end
 
   describe "#link_to_servername" do
     it "should return a link to /servers/<server identifier>" do
-      render :text => link_to_servername(Factory(:server).name)
+      render text: link_to_servername(Factory(:server).name)
       assert_select "a[href=/servers/server-01]"
     end
   end

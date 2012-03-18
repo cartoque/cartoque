@@ -69,19 +69,19 @@ Spork.prefork do
       DatabaseCleaner.clean
     end
 
-    # automatically mark decorator specs as :type => :decorator
+    # automatically mark decorator specs as type: :decorator
     # TODO: remove it when it's included in Draper
     require 'draper/rspec_integration'
 
     # include capybara matchers in decorator specs
-    config.include Capybara::RSpecMatchers, :type => :decorator
+    config.include Capybara::RSpecMatchers, type: :decorator
 
     # include devise helpers in controller specs
-    config.include Devise::TestHelpers, :type => :controller
-    config.extend ControllerMacros, :type => :controller
+    config.include Devise::TestHelpers, type: :controller
+    config.extend ControllerMacros, type: :controller
 
     # include warden helpers in integration specs
-    config.include Warden::Test::Helpers, :type => :request
+    config.include Warden::Test::Helpers, type: :request
   end
 end
 

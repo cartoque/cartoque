@@ -9,7 +9,7 @@ describe Site do
   end
 
   it "can have one or many racks" do
-    site = Site.create(:name => "room-1")
+    site = Site.create(name: "room-1")
     rack = Factory(:rack1)
     rack.site = site
     rack.save
@@ -18,7 +18,7 @@ describe Site do
   end
 
   it "updates rack's site_name" do
-    site = Site.create(:name => "room-1")
+    site = Site.create(name: "room-1")
     rack = Factory(:rack1)
     rack.site = site
     rack.save

@@ -29,18 +29,18 @@ describe SortHelpers do
   end
 
   it "should sort_option should only accept attributes among model column_names" do
-    @controller.params = {:sort => "manufacturer"}
+    @controller.params = {sort: "manufacturer"}
     assert_equal "manufacturer", @controller.column
-    @controller.params = {:sort => "namez"}
+    @controller.params = {sort: "namez"}
     assert_equal "name", @controller.column
-    @controller.params = {:sort => ["test"]}
+    @controller.params = {sort: ["test"]}
     assert_equal "name", @controller.column
   end
 
   it "should sort_option should accept coma separated values" do
-    @controller.params = {:sort => "name,manufacturer"}
+    @controller.params = {sort: "name,manufacturer"}
     assert_equal "name,manufacturer", @controller.column
-    @controller.params = {:sort => "name,manufacturer,not_a_column"}
+    @controller.params = {sort: "name,manufacturer,not_a_column"}
     assert_equal "name,manufacturer", @controller.column
   end
 
@@ -50,27 +50,27 @@ describe SortHelpers do
   end
 
   it "should sort_direction should only accept values among asc/desc" do
-    @controller.params = {:direction => "desc"}
+    @controller.params = {direction: "desc"}
     assert_equal "desc", @controller.direction
-    @controller.params = {:direction => "asc"}
+    @controller.params = {direction: "asc"}
     assert_equal "asc", @controller.direction
-    @controller.params = {:direction => "blah"}
+    @controller.params = {direction: "blah"}
     assert_equal "asc", @controller.direction
-    @controller.params = {:direction => ["test","blah"]}
+    @controller.params = {direction: ["test","blah"]}
     assert_equal "asc", @controller.direction
   end
 
   it "should sort_option should be a correct mix between sort_column and sort_direction" do
     @controller.params = {}
     assert_equal "prefix.name asc", @controller.option
-    @controller.params = {:sort => "name,manufacturer", :direction => "desc"}
+    @controller.params = {sort: "name,manufacturer", direction: "desc"}
     assert_equal "prefix.name desc, prefix.manufacturer desc", @controller.option
   end
 
   it "should authorize prefix from an other resource if existent" do
-    @controller.params = {:sort => "licenses.key", :direction => "asc"}
+    @controller.params = {sort: "licenses.key", direction: "asc"}
     @controller.option.should eq "licenses.key asc"
-    @controller.params = {:sort => "licenzes.key", :direction => "asc"}
+    @controller.params = {sort: "licenzes.key", direction: "asc"}
     @controller.option.should eq "prefix.name asc"
   end
 end

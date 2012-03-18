@@ -12,11 +12,11 @@ describe ComponentsController do
     end
 
     it "routes to #show" do
-      get("/components/1").should route_to("components#show", :id => "1")
+      get("/components/1").should route_to("components#show", id: "1")
     end
 
     it "routes to #edit" do
-      get("/components/1/edit").should route_to("components#edit", :id => "1")
+      get("/components/1/edit").should route_to("components#edit", id: "1")
     end
 
     it "routes to #create" do
@@ -24,11 +24,11 @@ describe ComponentsController do
     end
 
     it "routes to #update" do
-      put("/components/1").should route_to("components#update", :id => "1")
+      put("/components/1").should route_to("components#update", id: "1")
     end
 
     it "routes to #destroy" do
-      delete("/components/1").should route_to("components#destroy", :id => "1")
+      delete("/components/1").should route_to("components#destroy", id: "1")
     end
 
   end

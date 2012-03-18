@@ -4,7 +4,7 @@ Factory.define :database do |s|
   s.server_ids { [Factory(:server).id] }
 end
 
-Factory.define :oracle, :parent => :database do |s|
+Factory.define :oracle, parent: :database do |s|
   s.name "database-02"
   s.database_type "oracle"
   s.server_ids { [Factory(:virtual).id] }

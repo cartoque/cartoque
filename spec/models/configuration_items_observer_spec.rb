@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ConfigurationItemsObserver do
   pending "should have a CI object" do
-    s = Server.new(:name => "my-new-server")
+    s = Server.new(name: "my-new-server")
     s.should be_valid
     s.configuration_item.should_not be_blank
     lambda { s.save }.should change(ConfigurationItem, :count).by(+1)
@@ -11,15 +11,15 @@ describe ConfigurationItemsObserver do
   end
 
   pending "should preserve associations defined before save" do
-    a = Application.new(:name => "webapp-01")
-    c = Contact.create(:last_name => "Doe")
+    a = Application.new(name: "webapp-01")
+    c = Contact.create(last_name: "Doe")
     a.contact_ids = [c.id]
     a.save
     a.reload.contact_ids.should eq [c.id]
   end
 
   pending "should add a CI when #ci method is called" do
-    s = Server.new(:name => "my-new-server")
+    s = Server.new(name: "my-new-server")
     s.should be_valid
     s.configuration_item.should_not be_blank
     s.configuration_item.should_not be_persisted
@@ -30,7 +30,7 @@ describe ConfigurationItemsObserver do
   end
 
   it "should update its CI when a concrete-CI-object with an existing CI is updated" do
-    s = Server.create(:name => "my-new-server")
+    s = Server.create(name: "my-new-server")
     s.should be_persisted
     s.reload.configuration_item.should_not be_nil
     s.configuration_item.identifier.should eq "server::my-new-server" 
@@ -40,7 +40,7 @@ describe ConfigurationItemsObserver do
   end
 
   it "should destroy its CI if real-CI-object is destroyed" do
-    s = Server.create(:name => "my-new-server")
+    s = Server.create(name: "my-new-server")
     s.should be_persisted
     s.reload.configuration_item.should_not be_nil
     lambda { s.destroy }.should change(ConfigurationItem, :count).by(-1)
@@ -52,7 +52,7 @@ describe ConfigurationItemsObserver do
   end
 
   it "should not generate the CI twice, in any case" do
-    s = Server.new(:name => "my-new-server")
+    s = Server.new(name: "my-new-server")
     lambda { s.save! }.should change(ConfigurationItem, :count).by(+1)
     lambda { s.save! }.should_not change(ConfigurationItem, :count)
   end

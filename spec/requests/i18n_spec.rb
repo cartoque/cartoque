@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "I18n" do
   describe "when not authenticated" do
-    it "leaves I18n.locale to 'en' if no HTTP header available", :type => :request do
+    it "leaves I18n.locale to 'en' if no HTTP header available", type: :request do
       I18n.default_locale.should eq :en
       get "/users/sign_in"
       controller.current_user.should be_blank

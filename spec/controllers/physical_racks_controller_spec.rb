@@ -19,22 +19,22 @@ describe PhysicalRacksController do
   end
 
   it "should create physical_rack" do
-    lambda{ post :create, :physical_rack => @physical_rack.attributes }.should change(PhysicalRack, :count)
+    lambda{ post :create, physical_rack: @physical_rack.attributes }.should change(PhysicalRack, :count)
     assert_redirected_to physical_racks_path
   end
 
   it "should get edit" do
-    get :edit, :id => @physical_rack.to_param
+    get :edit, id: @physical_rack.to_param
     assert_response :success
   end
 
   it "should update physical_rack" do
-    put :update, :id => @physical_rack.to_param, :physical_rack => @physical_rack.attributes
+    put :update, id: @physical_rack.to_param, physical_rack: @physical_rack.attributes
     assert_redirected_to physical_racks_path
   end
 
   it "should destroy physical_rack" do
-    lambda{ delete :destroy, :id => @physical_rack.to_param }.should change(PhysicalRack, :count).by(-1)
+    lambda{ delete :destroy, id: @physical_rack.to_param }.should change(PhysicalRack, :count).by(-1)
     assert_redirected_to physical_racks_path
   end
 end

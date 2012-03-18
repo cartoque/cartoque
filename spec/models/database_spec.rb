@@ -13,15 +13,15 @@ end
 
 describe Database do
   it "should have at least a name and a database_type" do
-    Database.new(:name => "blah").should_not be_valid
-    Database.new(:name => "blah", :database_type => "postgres").should be_valid
+    Database.new(name: "blah").should_not be_valid
+    Database.new(name: "blah", database_type: "postgres").should be_valid
   end
 
   context "scopes" do
     it "should filter databases by name" do
-      Database.create(:name => "one", :database_type => "postgres")
-      Database.create(:name => "two", :database_type => "postgres")
-      Database.create(:name => "three", :database_type => "oracle")
+      Database.create(name: "one", database_type: "postgres")
+      Database.create(name: "two", database_type: "postgres")
+      Database.create(name: "three", database_type: "oracle")
       Database.by_name("one").map(&:name).should eq ["one"]
       Database.by_name("t").map(&:name).should eq ["two", "three"]
     end

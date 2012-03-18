@@ -4,8 +4,8 @@ describe License do
   describe "scopes" do
     before do
       @server = Factory(:server)
-      @license1 = License.create(:editor=>"softcompany1", :key => "XCDEZF", :title => "Soft1 license")
-      @license2 = License.create(:editor=>"softcompany2", :key => "ADFRTG") #, :server_ids => [@server.to_param])
+      @license1 = License.create(editor:"softcompany1", key: "XCDEZF", title: "Soft1 license")
+      @license2 = License.create(editor:"softcompany2", key: "ADFRTG") #, server_ids: [@server.to_param])
     end
 
     it "should filter licenses by editor" do

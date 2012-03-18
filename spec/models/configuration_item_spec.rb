@@ -3,12 +3,12 @@ require 'spec_helper'
 describe ConfigurationItem do
   it "should be valid" do
     ConfigurationItem.new.should_not be_valid
-    ConfigurationItem.new(:item => Factory(:server)).should be_valid
+    ConfigurationItem.new(item: Factory(:server)).should be_valid
   end
 
   describe "ConfigurationItem#identifier" do
     it "should generate the identifier before validations" do
-      ci = ConfigurationItem.new(:item => Factory(:server))
+      ci = ConfigurationItem.new(item: Factory(:server))
       ci.should be_valid
       ci.identifier.should be_present
       ci.save.should be_true
@@ -18,7 +18,7 @@ describe ConfigurationItem do
       s = Factory(:server)
       s.stub!(:to_s).and_return(nil)
       s.to_s.should be_nil
-      ci = ConfigurationItem.new(:item => s)
+      ci = ConfigurationItem.new(item: s)
       ci.should be_valid
       ci.identifier.should_not be_nil
     end

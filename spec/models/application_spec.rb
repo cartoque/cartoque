@@ -10,13 +10,13 @@ end
 describe Application do
   it "should have a name" do
     Application.new.should_not be_valid
-    Application.new(:name => "fakeapp").should be_valid
+    Application.new(name: "fakeapp").should be_valid
   end
 
   describe "Application.search" do
     before do
-      Application.create!(:name => "app-01")
-      Application.create!(:name => "app-02")
+      Application.create!(name: "app-01")
+      Application.create!(name: "app-02")
     end
 
     it "should return every application when query is blank or is not a string" do
@@ -52,21 +52,21 @@ describe Application do
 
   describe "#dokuwiki_pages" do
     it "should return no doc" do
-      app = Application.new(:name => "app-03")
+      app = Application.new(name: "app-03")
       app.dokuwiki_pages.should eq []
     end
 
     it "should return doc corresponding to */app_name/* or */app_name.txt" do
-      app = Application.new(:name => "app-01")
+      app = Application.new(name: "app-01")
       app.dokuwiki_pages.should have(2).docs
       app.dokuwiki_pages.should include("app-01")
       app.dokuwiki_pages.should include("app-01:doc")
     end
 
     it "should return doc depending on linked application_urls" do
-      app = Application.new(:name => "application-02")
-      app_instance = ApplicationInstance.new(:name => "prod")
-      app_url = ApplicationUrl.new(:url => "http://app-02.example.com/index.php")
+      app = Application.new(name: "application-02")
+      app_instance = ApplicationInstance.new(name: "prod")
+      app_url = ApplicationUrl.new(url: "http://app-02.example.com/index.php")
       app_instance.application_urls << app_url
       app.application_instances << app_instance
       app.dokuwiki_pages.should eq ["app-02.example.com"]

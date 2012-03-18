@@ -19,22 +19,22 @@ describe UsersController do
   end
 
   it "should create user" do
-    lambda{ post :create, :user => {"name"=>"john"} }.should change(User, :count)
+    lambda{ post :create, user: {"name"=>"john"} }.should change(User, :count)
     assert_redirected_to users_path
   end
 
   it "should get edit" do
-    get :edit, :id => @user.to_param
+    get :edit, id: @user.to_param
     assert_response :success
   end
 
   it "should update user" do
-    put :update, :id => @user.to_param, :user => @user.attributes
+    put :update, id: @user.to_param, user: @user.attributes
     assert_redirected_to users_path
   end
 
   it "should destroy user" do
-    lambda{ delete :destroy, :id => @user.to_param }.should change(User, :count).by(-1)
+    lambda{ delete :destroy, id: @user.to_param }.should change(User, :count).by(-1)
     assert_redirected_to users_path
   end
 end

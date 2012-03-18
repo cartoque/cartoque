@@ -15,7 +15,7 @@ describe ServerDecorator do
       @server.virtual = true
       @server.puppetversion = "2.6"
       badges = @server.badges
-      badges.should have_selector("div", :count => 3)
+      badges.should have_selector("div", count: 3)
     end
   end
 
@@ -37,7 +37,7 @@ describe ServerDecorator do
 
     it "displays a P if puppetversion is present" do
       @server.puppetversion = "2.6"
-      @server.puppet_badge.should have_selector("div", :text => "P")
+      @server.puppet_badge.should have_selector("div", text: "P")
     end
   end
   
@@ -48,7 +48,7 @@ describe ServerDecorator do
 
     it "displays a V for virtual machines" do
       @server.virtual = true
-      @server.virtual_badge.should have_selector("div", :text => "V")
+      @server.virtual_badge.should have_selector("div", text: "V")
     end
   end
 
@@ -73,24 +73,24 @@ describe ServerDecorator do
   describe "#short_line" do
     it "should display server with full details" do
       line = @server.short_line
-      line.should have_selector(:css, "span.server-link a", :text => "server-01")
-      line.should have_selector(:css, "span.server-details", :text => "4 * 4 cores, 3.2 GHz | 42G | 5 * 13G (SAS)")
+      line.should have_selector(:css, "span.server-link a", text: "server-01")
+      line.should have_selector(:css, "span.server-details", text: "4 * 4 cores, 3.2 GHz | 42G | 5 * 13G (SAS)")
     end
 
     it "should display server without raising an exception if no details" do
-      line = Server.new(:name => "server-03").decorate.short_line
-      line.should have_selector(:css, "span.server-link a", :text => "server-03")
+      line = Server.new(name: "server-03").decorate.short_line
+      line.should have_selector(:css, "span.server-link a", text: "server-03")
     end
 
     it "should display nothing in server details if no details available" do
-      line = Server.new(:name => "srv").decorate.short_line
-      line.should have_selector(:css, "span.server-details", :text => "")
+      line = Server.new(name: "srv").decorate.short_line
+      line.should have_selector(:css, "span.server-details", text: "")
     end
   end
 
   describe "#maintenance_limit" do
     it "returns 'no' if maintenance end date is blank" do
-      @server.maintenance_limit.should have_selector(:css, "span.maintenance-critical", :text => I18n.t(:word_no))
+      @server.maintenance_limit.should have_selector(:css, "span.maintenance-critical", text: I18n.t(:word_no))
     end
 
     it "returns the date if server is maintained until the next 2 years" do

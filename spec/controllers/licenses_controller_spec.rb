@@ -4,7 +4,7 @@ describe LicensesController do
   login_user
 
   before do
-    @license = License.create(:editor => "WorldSoft")
+    @license = License.create(editor: "WorldSoft")
   end
 
   it "should get index" do
