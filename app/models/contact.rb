@@ -6,8 +6,8 @@ class Contact < Contactable
   field :last_name,    type: String
   field :job_position, type: String
   belongs_to :company
+  has_and_belongs_to_many :mailing_lists
 
-  #TODO: has_and_belongs_to_many :mailing_lists
   #TODO: has_many :configuration_items, through: :contact_relations
 
   validates_presence_of :last_name, :image_url

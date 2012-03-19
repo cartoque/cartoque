@@ -11,6 +11,6 @@ class MailingListsController < InheritedResources::Base
 
 protected
   def collection
-    @mailing_lists ||= end_of_association_chain.order("updated_at desc")
+    @mailing_lists ||= end_of_association_chain.order_by([:updated_at.desc])
   end
 end
