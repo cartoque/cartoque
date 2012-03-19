@@ -171,8 +171,6 @@ en:
   hierarchy: "Hierarchy"
   exceptions: "Exceptions"
   physical: "Physical"
-  configuration_items: "CI (configuration items)"
-  configuration_item: "Configuration item"
   item_identifier: "Item identifier"
   edit_a_contact: "Edit a contact"
   contacts: "Contacts"

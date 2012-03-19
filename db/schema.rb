@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120318092717) do
+ActiveRecord::Schema.define(:version => 20120319114607) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -84,14 +84,6 @@ ActiveRecord::Schema.define(:version => 20120318092717) do
     t.string   "image_url",     :default => "building.png"
     t.boolean  "is_maintainer", :default => false
     t.boolean  "internal",      :default => false
-  end
-
-  create_table "configuration_items", :force => true do |t|
-    t.string   "item_type"
-    t.integer  "item_id"
-    t.string   "identifier"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "contact_infos", :force => true do |t|

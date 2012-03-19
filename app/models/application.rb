@@ -9,8 +9,6 @@ class Application
 
   validates_presence_of :name
 
-  #acts_as_configuration_item
-
   #has_many :application_instances, dependent: :destroy
 
   accepts_nested_attributes_for :application_instances, reject_if: lambda{|a| a[:name].blank? },
@@ -19,6 +17,7 @@ class Application
   attr_accessible :name, :description, :ci_identifier, :server_ids, :application_instances_attributes, :contact_ids,
                   :contact_ids_with_role
 
+  #TODO:
 ###  delegate :contacts, :contact_ids, :contact_ids=, :contact_relations,
 ###           :contacts_with_role, :contact_ids_with_role, :contact_ids_with_role=,
 ###           to: :configuration_item

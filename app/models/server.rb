@@ -1,6 +1,4 @@
 class Server < ActiveRecord::Base
-  acts_as_configuration_item
-
   STATUS_ACTIVE = 1
   STATUS_INACTIVE = 2
 

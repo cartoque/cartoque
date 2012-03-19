@@ -1,7 +1,0 @@
-<% controller.scopes_configuration.keys.each do |scope| %>
-  $("#configuration_items_search #<%= scope %>").attr("value","<%= escape_javascript(params[scope]) %>");
-<% end %>
-$("#configuration_items_list").html("<%= escape_javascript(render("list")) %>");
-$("#configuration_items_counter").html("<%= @configuration_items.count %>");
-fixTableHeaders();
-$("html, body").animate({ scrollTop: 0 }, 200);

@@ -1,6 +1,4 @@
 class Storage < ActiveRecord::Base
-  acts_as_configuration_item
-
   belongs_to :server
 
   validates_presence_of :server

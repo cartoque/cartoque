@@ -25,7 +25,8 @@
 <div class="grid_4 contact_relations">
 <% if @contact.contact_relations.any? %>
   <h2><%= t(:contact_relations) %></h2>
-  <% @contact.contact_relations.each do |cr| %>
+  <% #TODO: restore CI and CI informations %>
+  <% ([] || @contact.contact_relations).each do |cr| %>
     <div class="related-ci related-ci-big related-application-instances">
       <%= link_to cr.configuration_item.item do %>
         <div class="informations">

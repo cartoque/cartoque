@@ -22,7 +22,6 @@ Cartoque::Application.routes.draw do
   resources :nss_disks, only: [:index]
   resources :nss_volumes, only: [:index]
   resources :cronjobs, only: [:index]
-  resources :configuration_items, only: [:index, :show]
   resources :settings, only: :index do
    collection { put 'update_all', as: 'update_all' }
   end

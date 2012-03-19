@@ -328,8 +328,6 @@ fr:
   hierarchy: "Arborescence"
   exceptions: "Exceptions"
   physical: "Physique"
-  configuration_items: "CI (Configuration Items)"
-  configuration_item: "Configuration Item"
   item_identifier: "Identifiant"
   edit_a_contact: "Edition d'un contact"
   contacts: "Contacts"

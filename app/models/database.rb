@@ -1,6 +1,4 @@
 class Database < ActiveRecord::Base
-  acts_as_configuration_item
-
   attr_accessible :name, :database_type, :server_ids
 
   has_many :servers
