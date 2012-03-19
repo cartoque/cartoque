@@ -26,12 +26,11 @@ class Server < ActiveRecord::Base
                                                  allow_destroy: true
 
   attr_accessible :operating_system_mongo_id, :physical_rack, :physical_rack_mongo_id, :media_drive_mongo_id, :maintainer_mongo_id, :name,
-                  :previous_name, :subnet, :lastbyte, :serial_number, :virtual, :description, :model, :memory, :frequency,
-                  :delivered_on, :maintained_until, :contract_type, :disk_type, :disk_size, :manufacturer, :ref_proc,
-                  :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,
-                  :nb_disk_alt, :ipaddress, :application_instance_ids, :database_id, :ipaddresses_attributes, :has_drac,
-                  :physical_links_attributes, :network_device, :hypervisor_id, :is_hypervisor, :puppetversion,
-                  :rubyversion, :facterversion, :operatingsystemrelease, :status, :identifier, :arch, :site_mongo_id
+                  :serial_number, :virtual, :description, :model, :memory, :frequency, :delivered_on, :maintained_until, :contract_type,
+                  :disk_type, :disk_size, :manufacturer, :ref_proc, :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi,
+                  :disk_type_alt, :disk_size_alt, :nb_disk, :nb_disk_alt, :ipaddress, :application_instance_ids, :database_id,
+                  :ipaddresses_attributes, :has_drac, :physical_links_attributes, :network_device, :hypervisor_id, :is_hypervisor,
+                  :puppetversion, :rubyversion, :facterversion, :operatingsystemrelease, :status, :identifier, :arch, :site_mongo_id
   attr_accessor   :just_created
 
   acts_as_ipaddress :ipaddress

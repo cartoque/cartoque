@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319123152) do
+ActiveRecord::Schema.define(:version => 20120319152204) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -267,9 +267,6 @@ ActiveRecord::Schema.define(:version => 20120319123152) do
     t.integer  "physical_rack_id",                         :default => 0
     t.integer  "media_drive_id",                           :default => 0
     t.string   "name",                      :limit => 150, :default => "",    :null => false
-    t.string   "previous_name",                            :default => "",    :null => false
-    t.string   "subnet",                    :limit => 23,  :default => "",    :null => false
-    t.string   "lastbyte",                  :limit => 9,   :default => "",    :null => false
     t.string   "serial_number",             :limit => 100, :default => "",    :null => false
     t.boolean  "virtual",                                  :default => false, :null => false
     t.string   "description",                              :default => ""
