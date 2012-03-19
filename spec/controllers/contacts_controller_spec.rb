@@ -11,7 +11,7 @@ describe ContactsController do
 
     it "assigns @contacts" do
       get :index
-      assigns(:contacts).to_a.should eq [@doe, @smith]
+      assigns(:contacts).to_a.should =~ [@doe, @smith]
     end
 
     it "renders the index template" do
