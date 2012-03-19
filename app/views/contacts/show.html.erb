@@ -10,7 +10,7 @@
 
 </div>
 
-<div class="grid_4 contact_relations">
+<div class="grid_4 contact_company">
 <% if @contact.company.present? %>
   <h2><%= t(:works_at) %></h2>
   <%= render 'companies/company', company: @contact.company %>
@@ -23,7 +23,8 @@
 </div>
 
 <div class="grid_4 contact_relations">
-<% if @contact.contact_relations.any? %>
+<% #TODO: restore contact relations system %>
+<% if false && @contact.contact_relations.any? %>
   <h2><%= t(:contact_relations) %></h2>
   <% #TODO: restore CI and CI informations %>
   <% ([] || @contact.contact_relations).each do |cr| %>
