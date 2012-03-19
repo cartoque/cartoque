@@ -91,7 +91,7 @@
       <%= f.input :disk_type_alt %>
       <%= f.input :nb_disk_alt, as: :string %>
       <%= f.input :disk_size_alt, as: :string %>
-      <%= f.association :media_drive, wrapper_class: css_classes_physical %>
+      <%= f.input :media_drive_mongo_id, wrapper_class: css_classes_physical, collection: MediaDrive.all, as: "select" %>
       <%= f.input :nb_rj45, collection: 0..32 %>
       <%= f.input :nb_fc, collection: 0..12,
                   wrapper_class: css_classes_physical %>

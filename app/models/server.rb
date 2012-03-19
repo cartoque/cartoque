@@ -2,7 +2,6 @@ class Server < ActiveRecord::Base
   STATUS_ACTIVE = 1
   STATUS_INACTIVE = 2
 
-  belongs_to :media_drive
   belongs_to :maintainer, class_name: 'Company'
   belongs_to :database
   has_one :storage
@@ -26,7 +25,7 @@ class Server < ActiveRecord::Base
   accepts_nested_attributes_for :physical_links, reject_if: lambda{|a| a[:link_type].blank? || a[:switch_id].blank? },
                                                  allow_destroy: true
 
-  attr_accessible :operating_system_mongo_id, :physical_rack, :physical_rack_mongo_id, :media_drive_id, :maintainer_mongo_id, :name,
+  attr_accessible :operating_system_mongo_id, :physical_rack, :physical_rack_mongo_id, :media_drive_mongo_id, :maintainer_mongo_id, :name,
                   :previous_name, :subnet, :lastbyte, :serial_number, :virtual, :description, :model, :memory, :frequency,
                   :delivered_on, :maintained_until, :contract_type, :disk_type, :disk_size, :manufacturer, :ref_proc,
                   :server_type, :nb_proc, :nb_coeur, :nb_rj45, :nb_fc, :nb_iscsi, :disk_type_alt, :disk_size_alt, :nb_disk,
@@ -263,5 +262,10 @@ class Server < ActiveRecord::Base
   #TEMPORARY
   def backup_exceptions
     BackupException.where(id: backup_exception_ids)
+  end
+
+  #TEMPORARY
+  def media_drive
+    MediaDrive.find(self.media_drive_mongo_id) if self.media_drive_mongo_id.present?
   end
 end

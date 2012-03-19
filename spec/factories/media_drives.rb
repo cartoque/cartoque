@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :media_drive do
-    name "MyString"
+    name "CD-ROM"
   end
 end
