@@ -12,9 +12,6 @@ describe Role do
   end
 
   it "is sorted by position asc by default" do
-    Role.class_eval do
-      attr_accessible :position
-    end
     Role.create!(name: "Two", position: 2)
     Role.create!(name: "One", position: 1)
     Role.all.to_a.map(&:name).should == %w(One Two)

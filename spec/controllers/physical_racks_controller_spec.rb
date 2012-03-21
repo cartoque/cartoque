@@ -19,7 +19,7 @@ describe PhysicalRacksController do
   end
 
   it "should create physical_rack" do
-    lambda{ post :create, physical_rack: @physical_rack.attributes }.should change(PhysicalRack, :count)
+    lambda{ post :create, physical_rack: { name: "rack-01" } }.should change(PhysicalRack, :count)
     assert_redirected_to physical_racks_path
   end
 

@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "Roles" do
   let(:user) { FactoryGirl.create(:user) }
+  let!(:role) { Role.create! valid_attributes }
 
   before do
     login_as user
@@ -14,7 +15,6 @@ describe "Roles" do
 
   describe "GET /roles" do
     it "list all roles" do
-      role = Role.create! valid_attributes
       visit roles_path
       page.status_code.should == 200
       page.should have_content "Expert"
@@ -32,7 +32,6 @@ describe "Roles" do
     end
 
     it "doesn't create a new role if invalid attributes" do
-      Role.create! valid_attributes
       visit roles_path
       page.should have_content "Expert"
       visit new_role_path
@@ -50,7 +49,6 @@ describe "Roles" do
 
   describe "GET /roles/:id/edit & PUT /roles/:id" do
     it "edits a role with valid attributes" do
-      role = Role.create! valid_attributes
       visit edit_role_path(role.id)
       page.status_code.should == 200
       fill_in "role_name", with: "Senior Expert"
@@ -60,11 +58,10 @@ describe "Roles" do
     end
 
     it "doesn't update a role if invalid attributes" do
-      Role.create! valid_attributes
-      role = Role.create! valid_attributes.merge(name: "Manager")
+      role2 = Role.create! valid_attributes.merge(name: "Manager")
       visit roles_path
       page.should have_content "Expert"
-      visit edit_role_path(role.id)
+      visit edit_role_path(role2.id)
       page.status_code.should == 200
       fill_in "role_name", with: "Expert"
       click_button "Apply modifications"
@@ -77,7 +74,6 @@ describe "Roles" do
 
   describe "DELETE /roles/:id" do
     it "destroys the requested role" do
-      role = Role.create! valid_attributes
       Role.count.should == 1
       visit roles_path
       click_link "Delete role #{role.to_param}"
@@ -89,6 +85,7 @@ describe "Roles" do
 
   describe "POST /roles/sort" do
     it "sorts roles given an array of ordered role ids" do
+      Role.destroy_all
       one = Role.create! valid_attributes.merge(name: "One")
       two = Role.create! valid_attributes.merge(name: "Two")
       Role.all.to_a.map(&:name).should == %w(One Two)

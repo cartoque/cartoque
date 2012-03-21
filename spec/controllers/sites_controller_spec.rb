@@ -19,7 +19,7 @@ describe SitesController do
   end
 
   it "should create site" do
-    lambda{ post :create, site: @site.attributes }.should change(Site, :count)
+    lambda{ post :create, site: { name: "site-01" } }.should change(Site, :count)
     assert_redirected_to sites_path
   end
 
