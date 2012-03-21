@@ -2,8 +2,6 @@ class Site
   include Mongoid::Document
   field :name, type: String
 
-  attr_accessible :name, :physical_racks
-
   validates_presence_of :name
 
   has_many :physical_racks

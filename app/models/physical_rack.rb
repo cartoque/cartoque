@@ -8,8 +8,6 @@ class PhysicalRack
 
   before_save :fill_in_site_name
 
-  attr_accessible :name, :site_id, :status
-
   STATUS_PROD = 1
   STATUS_STOCK = 2
 

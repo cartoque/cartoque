@@ -1,6 +1,4 @@
 class Database < ActiveRecord::Base
-  attr_accessible :name, :database_type, :server_ids
-
   has_many :servers
 
   validates_presence_of :name

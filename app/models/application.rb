@@ -14,9 +14,6 @@ class Application
   accepts_nested_attributes_for :application_instances, reject_if: lambda{|a| a[:name].blank? },
                                                         allow_destroy: true
 
-  attr_accessible :name, :description, :ci_identifier, :server_ids, :application_instances_attributes, :contact_ids,
-                  :contact_ids_with_role
-
   #TODO:
 ###  delegate :contacts, :contact_ids, :contact_ids=, :contact_relations,
 ###           :contacts_with_role, :contact_ids_with_role, :contact_ids_with_role=,
