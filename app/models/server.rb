@@ -138,19 +138,6 @@ class Server < ActiveRecord::Base
     identifier
   end
 
-  def ip
-    i = subnet.to_s.split(".")
-    i << lastbyte.to_s.gsub(".","")
-    i.compact.join(".")
-  end
-
-  def ip=(value)
-    if value.match(/^((?:\d+\.){3})(\d+)/)
-      self.subnet = $1.first(-1)
-      self.lastbyte = $2
-    end
-  end
-
   def sanitize_attributes
     self.name = self.name.strip
   end
