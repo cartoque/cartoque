@@ -31,8 +31,6 @@
     <%= s.association :ipaddresses %>
     <%= render_physical_links_association @server if @server.physical_links.any? %>
     <%= render_connected_links_association @server if @server.connected_links.any? %>
-    <!--<%= s.attribute :server_type %>-->
-    <!--<%= s.attribute :previous_name %>-->
   <% end %>
 </table>
 

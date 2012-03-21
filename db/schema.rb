@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319152204) do
+ActiveRecord::Schema.define(:version => 20120321094256) do
 
   create_table "application_instances", :force => true do |t|
     t.string   "name"
@@ -278,7 +278,6 @@ ActiveRecord::Schema.define(:version => 20120319152204) do
     t.integer  "disk_size",                                :default => 0
     t.string   "manufacturer",              :limit => 50,  :default => "",    :null => false
     t.string   "ref_proc",                  :limit => 100, :default => "",    :null => false
-    t.string   "server_type",               :limit => 50,  :default => "",    :null => false
     t.integer  "nb_proc",                                  :default => 0
     t.integer  "nb_coeur",                                 :default => 0
     t.integer  "nb_rj45",                                  :default => 0
