@@ -27,36 +27,36 @@
           <%= f.input_field :network_device, class: "radio-checkbox" %><%= content_tag :label, t(:network_device), for: "server_network_device" %>
         </td>
       </tr>
-      <%= f.association :hypervisor, collection: Server.hypervisor_hosts.order(:name) - [@server],
-                                     wrapper_class: css_classes_virtual %>
+      <%= f.input :hypervisor_id, collection: MongoServer.hypervisor_hosts.order_by([:name.asc]) - [@server],
+                                  wrapper_class: css_classes_virtual %>
       <tr class="input string optional">
         <td class="content checkboxes-as-radio" colspan="2">
           <label for="server[ipaddresses]" class="input"><%= t(:ipaddresses) %> :</label><br />
-          <% f.object.ipaddresses.build if f.object.ipaddresses.size == 0 %>
+          <% f.object.ipaddresses << Ipaddress.new if f.object.ipaddresses.none? %>
           <%= f.simple_fields_for :ipaddresses do |ip_form| %>
             <%= render 'ipaddress_fields', f: ip_form %>
           <% end %>
           <p class="add-field">
-            <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+t(:add).downcase, f, :ipaddresses %>
+            <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+t(:add).downcase, f, :ipaddresses, klass: Ipaddress %>
           </p>
         </td>
       </tr>
       <tr class="input string optional">
         <td class="content" colspan="2">
           <label for="server[physical_links]" class="input"><%= t(:server_links) %> :</label><br />
-          <% f.object.physical_links.build if f.object.physical_links.size == 0 %>
+          <% f.object.physical_links << Ipaddress.new if f.object.physical_links.none? %>
           <%= f.simple_fields_for :physical_links do |pl_form| %>
             <%= render 'physical_link_fields', f: pl_form %>
           <% end %>
           <p class="add-field">
-            <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+t(:add).downcase, f, :physical_links %>
+            <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+t(:add).downcase, f, :physical_links, klass: PhysicalLink %>
           </p>
         </td>
       </tr>
     </tbody>
     <tbody id="server-maintenance" class="<%= css_classes_physical %>">
       <tr><th colspan="2" class="secondary"><%= t(:maintenance) %></th></tr>
-      <%= f.association :maintainer, collection: Company.maintainers %>
+      <%= f.input :maintainer_id, collection: Company.maintainers %>
       <%= f.input :delivered_on, as: :date, order: [:day, :month, :year], use_month_numbers: true,
                                  start_year: Date.today.year-5, end_year: Date.today.year+10 %>
       <%= f.input :maintained_until, as: :date, order: [:day, :month, :year], use_month_numbers: true,
@@ -73,7 +73,7 @@
       <tr><th colspan="2" id="server-hardware-title"><%= @server.virtual? ? t(:resources) : t(:hardware) %></th></tr>
     </thead>
     <tbody id="server-physical-hardware" class="<%= css_classes_physical %>">
-      <%= f.input :physical_rack, collection: PhysicalRack.all.map{|r| [r,r.id]}, as: "select" %>
+      <%= f.input :physical_rack_id, collection: PhysicalRack.all %>
       <%= f.input :manufacturer %>
       <%= f.input :model %>
     </tbody>
@@ -89,7 +89,7 @@
       <%= f.input :disk_type_alt %>
       <%= f.input :nb_disk_alt, as: :string %>
       <%= f.input :disk_size_alt, as: :string %>
-      <%= f.input :media_drive_mongo_id, wrapper_class: css_classes_physical, collection: MediaDrive.all, as: "select" %>
+      <%= f.input :media_drive_id, wrapper_class: css_classes_physical, collection: MediaDrive.all, as: "select" %>
       <%= f.input :nb_rj45, collection: 0..32 %>
       <%= f.input :nb_fc, collection: 0..12,
                   wrapper_class: css_classes_physical %>

@@ -3,11 +3,11 @@ class Company < Contactable
   field :is_maintainer, type: Boolean
 
   has_many :contacts, dependent: :nullify
-  #TODO: has_many :maintained_servers, class_name: 'Server', foreign_key: 'maintainer_id'
+  has_many :maintained_servers, class_name: 'MongoServer'
 
   validates_presence_of :name
 
-  scope :maintainers, where(is_maintainer: true).order('name asc')
+  scope :maintainers, where(is_maintainer: true).order_by([:name.asc])
 
   def to_s
     name
@@ -26,9 +26,5 @@ class Company < Contactable
     else
       scoped
     end
-  end
-
-  def maintained_servers
-    Server.where(maintainer_mongo_id: self.id.to_s)
   end
 end

@@ -5,15 +5,12 @@ class PhysicalRack
   field :site_name, type: String
   field :status, type: Integer
   belongs_to :site
+  has_many :servers, class_name: 'MongoServer'
 
   before_save :fill_in_site_name
 
   STATUS_PROD = 1
   STATUS_STOCK = 2
-
-  def servers
-    Server.where(physical_rack_mongo_id: self.id.to_s)
-  end
 
   def to_s
     [site_name, name].compact.join(" - ")

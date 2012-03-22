@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   # Save user from seeing exceptions when trying to retrieve an undefined ActiveRecord or Mongoid object
-  rescue_from ActiveRecord::RecordNotFound, Mongoid::Errors::DocumentNotFound, with: :render_404
+  rescue_from ActiveRecord::RecordNotFound, Mongoid::Errors::DocumentNotFound, BSON::InvalidObjectId, with: :render_404
   def render_404(exception = nil)
     logger.info "Rendering 404 with exception: #{exception.message}" if exception
     respond_to do |format|

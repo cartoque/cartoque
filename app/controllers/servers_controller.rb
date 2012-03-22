@@ -1,6 +1,8 @@
 require 'csv'
 
 class ServersController < ResourcesController
+  defaults :resource_class => MongoServer
+
   respond_to :html, :js, :xml, :csv, :json
 
   has_scope :by_location
@@ -14,15 +16,11 @@ class ServersController < ResourcesController
   before_filter :select_view_mode
 
   include SortHelpers
-
-  def sort_column_prefix
-    "servers."
-  end
   helper_method :sort_column, :sort_direction, :sort_column_prefix
 
   def collection
     return @servers if defined?(@servers)
-    @servers = end_of_association_chain.active.search(params[:search]).order(sort_option)
+    @servers = end_of_association_chain.active.like(params[:search]).order_by(mongo_sort_option)
     if maintenance_mode?
       @servers = @servers.where(virtual: false)
       if params[:sort] == "maintained_until"

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Servers" do
   let(:user) { FactoryGirl.create(:user) }
-  let!(:server) { Server.create(name: "srv-01") }
+  let!(:server) { MongoServer.create!(name: "srv-01") }
   let(:application) { Application.create!(name: "app-01") }
   let(:app_instance) { ApplicationInstance.create!(name: "prod", application: application) }
 

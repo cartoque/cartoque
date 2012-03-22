@@ -9,15 +9,14 @@ describe ServersController do
   describe "ApplicationController" do
     render_views
 
-    describe "catches ActiveRecord::RecordNotFound exceptions" do
-      it "and renders a 404 error message when format is html" do
-        get :show, id: 0
+    it "catches exceptions raised when document is not found" do
+      # 0             => invalid ObjectId                    => BSON::InvalidObjectId
+      # 0000000000000 => valid ObjectId but no document      => Mongoid::Errors::DocumentNotFound
+      %w(0 0000000000000).each do |invalid_id|
+        get :show, id: invalid_id
         response.status.should == 404
         response.body.should include("These are not the droids you're looking for")
-      end
-
-      it "and returns just a head not found for other formats" do
-        get :show, id: 0, format: "json"
+        get :show, id: invalid_id, format: "json"
         response.status.should == 404
         response.body.should be_blank
       end
@@ -25,9 +24,7 @@ describe ServersController do
   end
 
   describe "real ServersController" do
-    before do
-      @server = Factory(:server)
-    end
+    let!(:server) { Factory.create(:mongo_server) }
 
     it "should get index" do
       get :index
@@ -49,35 +46,35 @@ describe ServersController do
     end
 
     it "should create server" do
-      lambda{ post :create, server: {"name" => "new-server"} }.should change(Server, :count).by(+1)
+      lambda{ post :create, server: {"name" => "new-server"} }.should change(MongoServer, :count).by(+1)
       assert_redirected_to server_path(assigns(:server))
     end
 
     it "should show server" do
-      get :show, id: @server.to_param
+      get :show, id: server.id.to_s
       assert_response :success
     end
 
     it "should access the xml output" do
-      get :show, id: @server.to_param, format: :xml
-      assert_select "server"
+      get :show, id: server.id.to_s, format: :xml
+      assert_select "mongo-server"
     end
 
     it "should get edit" do
-      get :edit, id: @server.to_param
+      get :edit, id: server.id.to_s
       assert_response :success
     end
 
-    it "should update server" do
-      put :update, id: @server.to_param, server: { "ipaddresses_attributes"=>[{"address"=>"192.168.99.99", "main"=>"1"}] }
+    pending "should update server" do
+      put :update, id: server.id.to_s, server: { "ipaddresses_attributes"=>[{"address"=>"192.168.99.99", "main"=>"1"}] }
       assert_redirected_to server_path(assigns(:server))
-      @server.reload
-      assert_equal 3232260963, @server.read_attribute(:ipaddress)
-      assert_equal "192.168.99.99", @server.ipaddress
+      server.reload
+      assert_equal 3232260963, server.read_attribute(:ipaddress)
+      assert_equal "192.168.99.99", server.ipaddress
     end
 
     it "should destroy server" do
-      lambda{ delete :destroy, id: @server.to_param }.should change(Server, :count).by(-1)
+      lambda{ delete :destroy, id: server.id.to_s }.should change(MongoServer, :count).by(-1)
       assert_redirected_to servers_path
     end
   end

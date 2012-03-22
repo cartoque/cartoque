@@ -6,6 +6,7 @@ class ApplicationInstance
   field :authentication_method, type: String
   embeds_many :application_urls
   belongs_to :application
+  has_and_belongs_to_many :servers, class_name: 'MongoServer'
 
   accepts_nested_attributes_for :application_urls, reject_if: lambda{|a| a[:url].blank? },
                                                    allow_destroy: true
@@ -16,16 +17,6 @@ class ApplicationInstance
 
   validates_presence_of :name, :authentication_method, :application
   validates_inclusion_of :authentication_method, in: AVAILABLE_AUTHENTICATION_METHODS
-
-  def server_ids
-    @server_ids ||= ActiveRecord::Base.connection.execute(
-      "SELECT server_id FROM application_instances_servers WHERE application_instance_mongo_id = '#{self.id}';"
-    ).to_a.flatten
-  end
-
-  def servers
-    @servers ||= Server.find(server_ids)
-  end
 
   def fullname
     "#{application.try(:name)} (#{name})"

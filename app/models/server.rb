@@ -75,19 +75,6 @@ class Server < ActiveRecord::Base
     end
   end
 
-  def self.find_or_generate(name)
-    servername = name.dup
-    Setting.dns_domains.strip.split(/\n|,/).each do |domain|
-      servername.gsub!(".#{domain.strip}".gsub(/^\.\./, "."), "")
-    end
-    server = Server.unscoped.find_by_name(servername) || Server.unscoped.find_by_identifier(servername)
-    if server.blank?
-      server = Server.create(name: servername)
-      server.just_created = true
-    end
-    server
-  end
-
   def self.not_backuped
     #first list the ones that don't need backups
     backuped = BackupJob.includes(:server).where("servers.status" => Server::STATUS_ACTIVE).select("distinct(server_id)").map(&:server_id)
@@ -99,23 +86,6 @@ class Server < ActiveRecord::Base
     servers = Server.where("servers.status" => Server::STATUS_ACTIVE)
     servers = servers.where("id not in (?)", dont_need_backup) unless dont_need_backup.empty?
     servers.order("name asc")
-  end
-
-  #TEMPORARY
-  def application_instance_ids
-    @application_instance_ids ||= ActiveRecord::Base.connection.execute(
-      "SELECT application_instance_mongo_id FROM application_instances_servers WHERE server_id = '#{self.id}';"
-    ).to_a.flatten
-  end
-
-  #TEMPORARY
-  def application_instances
-    @application_instances ||= ApplicationInstance.find(application_instance_ids)
-  end
-
-  #TEMPORARY
-  def operating_system
-    OperatingSystem.find(self.operating_system_mongo_id) rescue nil
   end
 
   def just_created
@@ -210,42 +180,5 @@ class Server < ActiveRecord::Base
 
   def can_be_managed_with_puppet?
     operating_system.present? && operating_system.managed_with_puppet?
-  end
-
-  def physical_rack
-    @physical_rack ||= PhysicalRack.find(self.physical_rack_mongo_id) rescue nil
-  end
-
-  def physical_rack=(rack)
-    if rack.is_a?(PhysicalRack)
-      self.physical_rack_mongo_id = rack.id.to_s
-      self.site_mongo_id = rack.site_id.to_s
-      @physical_rack = rack
-    end
-  end
-
-  #TEMPORARY
-  def license_ids
-    ActiveRecord::Base.connection.execute("SELECT license_mongo_id FROM licenses_servers WHERE server_id=#{self.id};").to_a.flatten
-  end
-
-  #TEMPORARY
-  def licenses
-    License.where(id: license_ids)
-  end
-
-  #TEMPORARY
-  def backup_exception_ids
-    ActiveRecord::Base.connection.execute("SELECT backup_exception_mongo_id FROM backup_exceptions_servers WHERE server_id=#{self.id};").to_a.flatten
-  end
-
-  #TEMPORARY
-  def backup_exceptions
-    BackupException.where(id: backup_exception_ids)
-  end
-
-  #TEMPORARY
-  def media_drive
-    MediaDrive.find(self.media_drive_mongo_id) if self.media_drive_mongo_id.present?
   end
 end
