@@ -3,7 +3,7 @@ class Company < Contactable
   field :is_maintainer, type: Boolean
 
   has_many :contacts, dependent: :nullify
-  has_many :maintained_servers, class_name: 'MongoServer'
+  has_many :maintained_servers, class_name: 'MongoServer', foreign_key: 'maintainer_id'
 
   validates_presence_of :name
 

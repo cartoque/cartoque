@@ -37,13 +37,13 @@ describe Company do
 
   describe "#maintained_servers" do
     before do
-      @company = Company.create(name: "Wolrd company", is_maintainer: true)
-      @server1 = Server.create(name: "srv-01", maintainer_mongo_id: @company.id.to_s)
-      @server2 = Server.create(name: "srv-01", maintainer_mongo_id: nil) 
+      @company = Company.create(name: "World 1st company", is_maintainer: true)
+      @server1 = MongoServer.create(name: "srv-01", maintainer_id: @company.id.to_s)
+      @server2 = MongoServer.create(name: "srv-02", maintainer_id: nil) 
     end
 
     it "has some maintained servers" do
-      @company.maintained_servers.to_a.should =~ [ @server1 ]
+      @company.maintained_servers.to_a.should == [ @server1 ]
     end
   end
 end
