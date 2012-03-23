@@ -14,12 +14,12 @@ class CronjobsController < InheritedResources::Base
   def index
     @cronjobs = []
     if (params[:by_server].to_i > 0) || params[:by_command].present? || params[:by_definition].present?
-      @cronjobs = apply_scopes(Cronjob).joins(:server).order(sort_option).first(100)
+      @cronjobs = apply_scopes(Cronjob).order_by(mongo_sort_option).limit(100)
     end
   end
 
   protected
   def find_servers
-    @servers = Server.where(id: Cronjob.select("distinct(server_id)").map(&:server_id)).order("name asc")
+    @servers = MongoServer.where(:_id.in => Cronjob.all.distinct("server_id")).order_by([:name.asc])
   end
 end

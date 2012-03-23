@@ -31,15 +31,15 @@ class Tomcat < Hashie::Mash
       self.merge!(cerbere_csac: false)
     end
     #crons
-    self.merge!(crons: Cronjob.joins(:server).where("cronjobs.definition_location like ? AND servers.name = ?",
-                                                       "%/exploit_"+self[:dns].split(".").first.to_s+"%", self[:server]))
+    definition_mask = Regexp.new("/exploit_"+self[:dns].split(".").first.to_s) 
+    self.merge!(crons: Cronjob.all_of(server_name: self[:server], definition_location: definition_mask))
   end
 
   def parse_crons(cron_lines)
     return [] if cron_lines.blank?
     cron_lines.compact.map do |cron_line|
       elems = "#{cron_line}".split(";")
-      cron_line.size >= 7 ? Cron.from_array(elems) : nil
+      cron_line.size >= 7 ? Cronjob.from_array(elems) : nil
     end.compact
   end
 
@@ -92,7 +92,7 @@ class Tomcat < Hashie::Mash
     tomcats.inject(filters_from) do |filters,tomcat|
       tomcat.each do |key,value|
         key = key.to_sym
-        server = Server.find_by_name(value)
+        server = MongoServer.where(name: value).first
         next if key == :cerbere || key == :cerbere_csac || key == :crons
         next if key == :server && server && !server.active?
         filters[key] ||= []

@@ -53,6 +53,7 @@ class MongoServer
   has_and_belongs_to_many :application_instances
   has_and_belongs_to_many :backup_exceptions
   has_and_belongs_to_many :licenses
+  has_many :cronjobs, dependent: :destroy, foreign_key: "server_id"
 
   #TODO: belongs_to :database
   #field :database_id, type: Integer
@@ -60,7 +61,6 @@ class MongoServer
   #TODO: has_one :storage
   #TODO: has_many :physical_links, dependent: :destroy, class_name: 'PhysicalLink', foreign_key: 'server_id'
   #TODO: has_many :connected_links, dependent: :destroy, class_name: 'PhysicalLink', foreign_key: 'switch_id'
-  #TODO: has_many :cronjobs, dependent: :destroy
   #TODO: has_many :nss_volumes, dependent: :destroy
   #TODO: has_many :nss_disks, dependent: :destroy
   #TODO: has_many :nss_associations, dependent: :destroy
@@ -260,7 +260,7 @@ class MongoServer
   end
 
   #TEMPORARY
-  %w(physical_links connected_links nss_volumes used_nss_volumes network_filesystems exported_disks cronjobs).each do |field|
+  %w(physical_links connected_links nss_volumes used_nss_volumes network_filesystems exported_disks).each do |field|
     class_eval <<-"SRC"
       def #{field}; []; end
     SRC

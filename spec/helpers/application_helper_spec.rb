@@ -38,7 +38,7 @@ describe ApplicationHelper do
     end
 
     it "should return a link to the server if a server with that name exists" do
-      render text: link_to_server_if_exists(Factory(:server).name)
+      render text: link_to_server_if_exists(Factory(:mongo_server).name)
       assert_select "a", "server-01"
     end
   end

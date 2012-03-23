@@ -1,11 +1,21 @@
-class Cronjob < ActiveRecord::Base
-  belongs_to :server
+class Cronjob
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :user, type: String
+  field :frequency, type: String
+  field :command, type: String
+  field :definition_location, type: String
+  field :server_name, type: String
+  belongs_to :server, class_name: 'MongoServer'
+
+  before_save :cache_associations_fields
 
   validates_presence_of :server, :frequency, :command
 
   scope :by_server, proc { |server_id| where(server_id: server_id) }
-  scope :by_command, proc { |search| where("cronjobs.command LIKE ?", "%#{search}%") }
-  scope :by_definition, proc { |place| where("cronjobs.definition_location LIKE ?", "%#{place}%") }
+  scope :by_command, proc { |term| where(command: Regexp.new(term, Regexp::IGNORECASE)) }
+  scope :by_definition, proc { |place| where(definition_location: Regexp.new(place, Regexp::IGNORECASE)) }
 
   SPECIAL_FREQUENCIES = {
     "@reboot"   => "Run once, at startup.",
@@ -39,5 +49,10 @@ class Cronjob < ActiveRecord::Base
     cron.user = elems.shift
     cron.command = elems.join(" ")
     cron
+  end
+
+  private
+  def cache_associations_fields
+    self.server_name = self.server.try(:name)
   end
 end
