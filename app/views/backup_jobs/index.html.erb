@@ -28,7 +28,7 @@
     <%= hidden_sort_fields %>
   <tr class="filters fixed-size">
     <td style="width:8em;"><%= text_field_tag "by_server", params[:by_server] %></td>
-    <td><%= select_tag "by_client_type", options_for_select(BackupJob.select("distinct(client_type)").map(&:client_type).reject(&:blank?).sort, params[:by_client_type]), include_blank: true %></td>
+    <td><%= select_tag "by_client_type", options_for_select(BackupJob.all.distinct(:client_type).reject(&:blank?).sort, params[:by_client_type]), include_blank: true %></td>
     <td></td>
     <td></td>
     <td><span id="backup_jobs_counter" class="counter"><%= @backup_jobs.map(&:server_id).uniq.count %></span></td>

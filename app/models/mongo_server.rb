@@ -134,6 +134,8 @@ class MongoServer
   end
 
   def self.not_backuped
+    #TODO: fix it !
+    return []
     #first list the ones that don't need backups
     #TODO: make it efficient! (we shouldn't query all servers all the time)
     backuped = BackupJob.all.select{|job| job.server.status == MongoServer::STATUS_ACTIVE}.map(&:server_id).uniq
