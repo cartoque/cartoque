@@ -58,6 +58,7 @@ class MongoServer
   has_and_belongs_to_many :backup_exceptions
   has_and_belongs_to_many :licenses
   has_many :cronjobs, dependent: :destroy, foreign_key: "server_id"
+  has_one :upgrade, dependent: :destroy, foreign_key: "server_id"
 
   #TODO: belongs_to :database
   #field :database_id, type: Integer
