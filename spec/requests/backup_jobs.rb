@@ -11,6 +11,7 @@ describe "BackupJobs" do
       visit backup_jobs_path
       page.status_code.should be 200
       page.should have_content "srv-01"
+      page.should have_content "Manage exceptions"
     end
   end
 end

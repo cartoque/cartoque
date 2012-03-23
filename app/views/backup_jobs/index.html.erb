@@ -8,18 +8,18 @@
 
 <div id="backup_jobs" class="items_list grid_12">
   
-<% if @not_backuped_count > 0 %>
 <div id="not-backuped">
   <div class="contextual">
     <%= link_to t(:manage_exceptions), backup_exceptions_path %>
   </div>
   <h2><%= t(:not_backuped) %> (<%= @not_backuped_count %>)</h2>
+  <% if @not_backuped_count > 0 %>
   <div class="servers">
     <%= render partial: 'not_backuped', locals: { server_type: t(:physical), servers: @physical_not_backuped } %>
     <%= render partial: 'not_backuped', locals: { server_type: t(:virtual), servers: @virtual_not_backuped } %>
   </div>
+  <% end %>
 </div>
-<% end %>
 
 <div class="clear"></div>
 
