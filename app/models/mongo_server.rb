@@ -60,16 +60,15 @@ class MongoServer
   has_and_belongs_to_many :licenses
   has_many :cronjobs, dependent: :destroy, foreign_key: "server_id"
   has_one :upgrade, dependent: :destroy, foreign_key: "server_id"
-
-  #TODO: has_one :storage
+  #has_one :storage
+  has_many :exported_disks,      class_name: "NetworkDisk", foreign_key: "server_id", dependent: :destroy
+  has_many :network_filesystems, class_name: "NetworkDisk", foreign_key: "client_id", dependent: :destroy
   #TODO: has_many :physical_links, dependent: :destroy, class_name: 'PhysicalLink', foreign_key: 'server_id'
   #TODO: has_many :connected_links, dependent: :destroy, class_name: 'PhysicalLink', foreign_key: 'switch_id'
   #TODO: has_many :nss_volumes, dependent: :destroy
   #TODO: has_many :nss_disks, dependent: :destroy
   #TODO: has_many :nss_associations, dependent: :destroy
   #TODO: has_many :used_nss_volumes, through: :nss_associations, source: :nss_volume
-  #TODO: has_many :exported_disks, class_name: "NetworkDisk", dependent: :destroy
-  #TODO: has_many :network_filesystems, class_name: "NetworkDisk", foreign_key: "client_id", dependent: :destroy
   #TODO: has_many :backup_jobs, dependent: :destroy
 
   before_save :update_site!
