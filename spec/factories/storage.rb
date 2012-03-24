@@ -1,4 +1,4 @@
 Factory.define :storage do |s|
-  s.server_id { Factory(:server).id }
+  s.server { Factory(:mongo_server) }
   s.constructor "IBM"
 end
