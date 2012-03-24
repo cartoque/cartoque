@@ -1,13 +1,18 @@
-class Storage < ActiveRecord::Base
-  belongs_to :server
+class Storage
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :constructor, type: String
+  field :details, type: String
+  belongs_to :server, class_name: 'MongoServer'
 
   validates_presence_of :server
   validates_presence_of :constructor
 
-  scope :by_constructor, proc {|constructor| { conditions: { constructor: constructor } } }
+  scope :by_constructor, proc { |constructor| where(constructor: constructor) }
 
   def self.supported_types
-    ["IBM", "NetApp", "Equalogic"]
+    %w(IBM NetApp Equalogic)
   end
 
   def to_s
@@ -30,9 +35,9 @@ class Storage < ActiveRecord::Base
                   Storcs::Parsers::Equalogic.new(server.name, file).device
                 end
     rescue Errno::ENOENT
-      @device = "Pas de fichier .#{file.gsub(Rails.root.to_s,"")}"
+      @device = "Not file found .#{file.gsub(Rails.root.to_s,"")}"
     rescue
-      @device = "Erreur: #{$!}"
+      @device = "Error: #{$!}"
     end
     @device
   end

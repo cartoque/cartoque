@@ -5,7 +5,7 @@
     <tbody>
       <%= tabular_errors @storage %>
       <%= f.association :server, required: true, wrapper_class: "th",
-                        collection: Server.order("name").map{|m| [m.name, m.id]} %>
+                        collection: MongoServer.order_by([:name.asc]).map{|m| [m.name, m.id]} %>
       <%= f.input :constructor, collection: Storage.supported_types %>
     </tbody>
   </table>
