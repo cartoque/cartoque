@@ -12,10 +12,10 @@ class NssDisksController < InheritedResources::Base
 
   protected
   def collection
-    @nss_disks ||= end_of_association_chain.joins(:server).order("servers.name asc, nss_disks.name asc")
+    @nss_disks ||= end_of_association_chain.order_by([:server_name.asc, :name.asc])
   end
 
   def find_servers
-    @servers = Server.where(id: NssDisk.select("distinct(server_id)").map(&:server_id)).order("name asc")
+    @servers = MongoServer.where(:_id.in => NssDisk.all.distinct(:server_id)).order_by([:name.asc])
   end
 end

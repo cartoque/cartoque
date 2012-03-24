@@ -5,7 +5,7 @@ describe NssDisk do
     disk = NssDisk.new
     disk.should_not be_valid
     disk.should have(2).errors
-    disk.server = Factory(:server)
+    disk.server = Factory(:mongo_server)
     disk.name = "nss-disk-01"
     disk.should be_valid
   end
