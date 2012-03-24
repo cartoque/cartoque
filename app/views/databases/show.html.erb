@@ -32,8 +32,8 @@
     </tr>
   </thead>
   <tbody>
-    <%= render partial: "#{@database.database_type}_report",
-               collection: @database.send(:"#{@database.database_type}_report") %>
+    <%= render partial: "#{@database.type}_report",
+               collection: @database.send(:"#{@database.type}_report") %>
   </tbody>
   <% end %>
 </table>

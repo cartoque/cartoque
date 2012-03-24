@@ -11,7 +11,7 @@ class DatabasesController < ResourcesController
       @databases = Database.all
       map = {"oracle" => [], "postgres" => []}
       @databases.each do |database|
-        dbtype = database.database_type
+        dbtype = database.type
         dbmap = {"name" => database.name, "children" => []}
         database.report.each do |report|
           name = report["ora_instance"].presence || report["pg_cluster"]

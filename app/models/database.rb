@@ -1,11 +1,31 @@
-class Database < ActiveRecord::Base
-  has_many :servers
+class Database
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :name, type: String
+  field :type, type: String
+  has_many :servers, class_name: 'MongoServer'
 
   validates_presence_of :name
-  validates_inclusion_of :database_type, in: %w(postgres oracle)
+  validates_inclusion_of :type, in: %w(postgres oracle)
 
-  scope :by_name, proc {|name| where("databases.name LIKE ?", "%#{name}%") }
-  scope :by_type, proc {|type| { conditions: { database_type: type } } }
+  scope :by_name, proc { |term| where(name: Regexp.new(term, Regexp::IGNORECASE)) }
+  scope :by_type, proc { |term| where(type: term) }
+
+  #TODO: see why Mongoid doesn't generate that for us
+  def server_ids=(ids)
+    actual_ids = self.servers.map(&:_id).map(&:to_s)
+    new_ids = ids.map(&:to_s)
+    #deletions
+    self.servers -= MongoServer.where(:_id.in => actual_ids - new_ids).to_a
+    #additions
+    self.servers << MongoServer.where(:_id.in => new_ids - actual_ids).to_a
+  end
+
+  #TODO: see why Mongoid doesn't generate that for us
+  def server_ids
+    self.servers.map(&:_id)
+  end
 
   def to_s
     name
@@ -28,7 +48,7 @@ class Database < ActiveRecord::Base
   end
 
   def report
-    method = :"#{database_type}_report"
+    method = :"#{type}_report"
     respond_to?(method) ? send(method) : []
   end
 
@@ -37,7 +57,7 @@ class Database < ActiveRecord::Base
   end
 
   def size
-    case database_type
+    case type
     when "postgres"
       report.inject(0) do |memo,instance|
         memo += instance["databases"].values.sum

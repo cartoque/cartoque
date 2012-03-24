@@ -1,5 +1,5 @@
-<% postgres_databases = @databases.select{|db| db.database_type == 'postgres'} %>
-<% oracle_databases   = @databases.select{|db| db.database_type == 'oracle'} %>
+<% postgres_databases = @databases.select{|db| db.type == 'postgres'} %>
+<% oracle_databases   = @databases.select{|db| db.type == 'oracle'} %>
 
   <% unless postgres_databases.empty? %>
   <tr class="fix-on-scroll">

@@ -51,6 +51,7 @@ class MongoServer
   belongs_to :physical_rack
   belongs_to :site
   belongs_to :media_drive
+  belongs_to :database
   belongs_to :maintainer,       class_name: "Company", inverse_of: :maintained_servers
   belongs_to :hypervisor,       class_name: "MongoServer",  inverse_of: :virtual_machines
   has_many   :virtual_machines, class_name: "MongoServer", inverse_of: :hypervisor
@@ -59,9 +60,6 @@ class MongoServer
   has_and_belongs_to_many :licenses
   has_many :cronjobs, dependent: :destroy, foreign_key: "server_id"
   has_one :upgrade, dependent: :destroy, foreign_key: "server_id"
-
-  #TODO: belongs_to :database
-  #field :database_id, type: Integer
 
   #TODO: has_one :storage
   #TODO: has_many :physical_links, dependent: :destroy, class_name: 'PhysicalLink', foreign_key: 'server_id'

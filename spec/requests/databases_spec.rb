@@ -4,7 +4,7 @@ describe "Databases" do
   let(:user) { FactoryGirl.create(:user) }
   before { login_as user }
 
-  let!(:database) { Database.create!(name: "db-01", database_type: "postgres") }
+  let!(:database) { Database.create!(name: "db-01", type: "postgres") }
 
   describe "GET /databases" do
     it "gets all databases" do

@@ -5,9 +5,9 @@
     <tbody>
       <%= tabular_errors @database %>
       <%= f.input :name, required: true, wrapper_class: "th" %>
-      <%= f.input :database_type, collection: %w(postgres oracle),
+      <%= f.input :type, collection: %w(postgres oracle),
                   required: true, include_blank: false %>
-      <%= f.association :servers, collection: Server.order(:name), as: :multiselect %>
+      <%= f.association :servers, collection: MongoServer.order_by([:name.asc]), as: :multiselect %>
     </tbody>
   </table>
 

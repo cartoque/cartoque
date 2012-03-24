@@ -8,7 +8,7 @@ describe DatabasesController do
   # Database. As you add validations to Database, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {name: "db-01", database_type: "postgres"}
+    {name: "db-01", type: "postgres"}
   end
 
   before do
@@ -47,7 +47,7 @@ describe DatabasesController do
 
   def test_create_valid
     Database.any_instance.stubs(:valid?).returns(true)
-    post :create, database: { name: "database", database_type: "postgres", server_ids: [] }
+    post :create, database: { name: "database", type: "postgres", server_ids: [] }
     assert_redirected_to databases_url #database_url(assigns(:database))
   end
   

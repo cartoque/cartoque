@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'server'
+require 'mongo_server'
 
-class Server
+class MongoServer
   def postgres_file
     Rails.root.join("spec/data/postgres/#{name.downcase}.txt").to_s
   end
@@ -12,16 +12,16 @@ class Server
 end
 
 describe Database do
-  it "should have at least a name and a database_type" do
+  it "should have at least a name and a type" do
     Database.new(name: "blah").should_not be_valid
-    Database.new(name: "blah", database_type: "postgres").should be_valid
+    Database.new(name: "blah", type: "postgres").should be_valid
   end
 
   context "scopes" do
     it "should filter databases by name" do
-      Database.create(name: "one", database_type: "postgres")
-      Database.create(name: "two", database_type: "postgres")
-      Database.create(name: "three", database_type: "oracle")
+      Database.create(name: "one", type: "postgres")
+      Database.create(name: "two", type: "postgres")
+      Database.create(name: "three", type: "oracle")
       Database.by_name("one").map(&:name).should eq ["one"]
       Database.by_name("t").map(&:name).should eq ["two", "three"]
     end
@@ -49,7 +49,7 @@ describe Database do
     Database.new.instances.should eq 0
   end
 
-  it "should return a postgres_report if postgres, oracle if oracle, empty array if no database_type" do
+  it "should return a postgres_report if postgres, oracle if oracle, empty array if no type" do
     d = Factory(:database)
     d.postgres_report.size.should eq 2
     d.report.size.should eq 2
