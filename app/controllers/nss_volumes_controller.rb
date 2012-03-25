@@ -13,11 +13,11 @@ class NssVolumesController < InheritedResources::Base
 
   protected
   def collection
-    @nss_volumes ||= end_of_association_chain.joins(:server).includes(:clients).order("servers.name asc, nss_volumes.name asc")
+    @nss_volumes ||= end_of_association_chain.order_by([:server_name.asc, :name.asc])
   end
 
   def find_servers_and_clients
-    @servers = Server.where(id: NssVolume.select("distinct(server_id)").map(&:server_id)).order("name asc")
-    @clients = Server.where(id: NssAssociation.select("distinct(server_id)").map(&:server_id)).order("name asc")
+    @servers = MongoServer.where(id: NssVolume.all.distinct(:server_id)).order_by([:name.asc])
+    @clients = MongoServer.where(id: NssVolume.all.distinct(:client_ids).flatten.uniq).order_by([:name.asc])
   end
 end

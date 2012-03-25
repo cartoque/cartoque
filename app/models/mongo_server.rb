@@ -56,6 +56,7 @@ class MongoServer
   belongs_to :hypervisor,       class_name: "MongoServer",  inverse_of: :virtual_machines
   has_many   :virtual_machines, class_name: "MongoServer", inverse_of: :hypervisor
   has_and_belongs_to_many :application_instances
+  #has_many :backup_jobs, dependent: :destroy
   has_and_belongs_to_many :backup_exceptions
   has_and_belongs_to_many :licenses
   has_many :cronjobs, dependent: :destroy, foreign_key: 'server_id'
@@ -66,10 +67,9 @@ class MongoServer
   #has_many :nss_disks, dependent: :destroy
   has_many :physical_links,      class_name: 'PhysicalLink', foreign_key: 'server_id', dependent: :destroy
   has_many :connected_links,     class_name: 'PhysicalLink', foreign_key: 'switch_id', dependent: :destroy
-  #TODO: has_many :nss_volumes, dependent: :destroy
-  #TODO: has_many :nss_associations, dependent: :destroy
-  #TODO: has_many :used_nss_volumes, through: :nss_associations, source: :nss_volume
-  #TODO: has_many :backup_jobs, dependent: :destroy
+  has_and_belongs_to_many :nss_volumes, inverse_of: :clients
+  has_many :nss_volumes, dependent: :destroy
+  has_and_belongs_to_many :used_nss_volumes, class_name: 'NssVolume', inverse_of: :clients
 
   before_save :update_site!
 
@@ -262,7 +262,7 @@ class MongoServer
   end
 
   #TEMPORARY
-  %w(physical_links connected_links nss_volumes used_nss_volumes network_filesystems exported_disks).each do |field|
+  %w(physical_links connected_links network_filesystems exported_disks).each do |field|
     class_eval <<-"SRC"
       def #{field}; []; end
     SRC
