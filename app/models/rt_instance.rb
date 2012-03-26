@@ -1,4 +1,4 @@
-class RTInstance < Hashie::Mash
+class RtInstance < Hashie::Mash
   def initialize(server, hash)
     self.default = ""
     self.server = server
