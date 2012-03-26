@@ -4,7 +4,7 @@ class OperatingSystemsController < InheritedResources::Base
   def index
     @operating_systems = OperatingSystem.arrange(order: [:name, :asc])
     @os_servers_count = Server.all.group_by(&:operating_system_id)
-                                   .inject({}) { |memo,(k,v)| memo[k] = v.count; memo }
+                                  .inject({}) { |memo,(k,v)| memo[k.to_s] = v.count; memo }
     @os_servers_count.default = 0
     if params[:graph_subtree]
       @root_os = OperatingSystem.find(params[:graph_subtree].to_s)
