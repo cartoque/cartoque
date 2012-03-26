@@ -12,16 +12,12 @@ class UpgradesController < InheritedResources::Base
     end
   end
 
-  include SortHelpers
-
   protected
 
-  def sort_column_prefix
-    "servers."
-  end
+  include SortHelpers
   helper_method :sort_column, :sort_direction, :sort_column_prefix
 
   def collection
-    @upgrades ||= end_of_association_chain.includes(:server).order(sort_option)
+    @upgrades ||= end_of_association_chain.order_by(mongo_sort_option)
   end
 end
