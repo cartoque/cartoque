@@ -22,9 +22,9 @@
       <tr class="input checkbox optional">
         <td class="label"><%= content_tag :label, t(:server_type) %></td>
         <td class="content tiny checkboxes-as-radio">
-          <%= f.input_field :virtual, class: "radio-checkbox" %><%= content_tag :label, t(:virtual), for: "server_virtual" %><br />
-          <%= f.input_field :is_hypervisor, class: "radio-checkbox" %><%= content_tag :label, t(:hypervisor), for: "server_is_hypervisor" %><br />
-          <%= f.input_field :network_device, class: "radio-checkbox" %><%= content_tag :label, t(:network_device), for: "server_network_device" %>
+          <%= f.input_field :virtual, as: :boolean, class: "radio-checkbox" %><%= content_tag :label, t(:virtual), for: "server_virtual" %><br />
+          <%= f.input_field :is_hypervisor, as: :boolean, class: "radio-checkbox" %><%= content_tag :label, t(:hypervisor), for: "server_is_hypervisor" %><br />
+          <%= f.input_field :network_device, as: :boolean, class: "radio-checkbox" %><%= content_tag :label, t(:network_device), for: "server_network_device" %>
         </td>
       </tr>
       <%= f.input :hypervisor_id, collection: Server.hypervisor_hosts.order_by([:name.asc]) - [@server],

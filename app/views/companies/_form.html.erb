@@ -33,7 +33,7 @@
         <tr>
           <td class="label top"><%= f.label :roles %></td>
           <td>
-            <%= f.input_field :is_maintainer, class: "radio-checkbox" %>
+            <%= f.input_field :is_maintainer, as: :boolean, class: "radio-checkbox" %>
             <%= content_tag :label, t(:maintainer), for: "company_is_maintainer" %>
           </td>
         </tr>
