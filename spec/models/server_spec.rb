@@ -7,7 +7,7 @@ describe Server do
   end
 
   describe "#ipaddresses" do
-    let(:server) { Factory(:server) }
+    let(:server) { Factory(:mongo_server) }
 
     it "should update with an address as a string" do
       server.ipaddresses = [ Ipaddress.new(address: "192.168.99.99", main: true) ]
@@ -173,8 +173,8 @@ describe Server do
   end
 
   pending ".not_backuped" do
-    let!(:server) { Factory(:server) }
-    let!(:vm)     { Factory(:virtual) }
+    let!(:server) { Factory(:mongo_server) }
+    let!(:vm)     { Factory(:mongo_virtual) }
 
     it "should include everything by default" do
       Server.not_backuped.should include(server)

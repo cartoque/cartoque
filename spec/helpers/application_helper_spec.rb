@@ -45,7 +45,7 @@ describe ApplicationHelper do
 
   describe "#link_to_servername" do
     it "should return a link to /servers/<server identifier>" do
-      render text: link_to_servername(Factory(:server).name)
+      render text: link_to_servername(Factory(:mongo_server).name)
       assert_select "a[href=/servers/server-01]"
     end
   end

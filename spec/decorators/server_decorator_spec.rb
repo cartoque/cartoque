@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 describe ServerDecorator do
-  let(:server) { Factory.create(:server).decorate }
-  let(:mongo_server) { ServerDecorator.decorate(Factory.create(:mongo_server)) }
+  let(:server) { ServerDecorator.decorate(Factory.create(:mongo_server)) }
 
   describe "#badges" do
     it "is empty if the server has no badge" do
@@ -71,7 +70,7 @@ describe ServerDecorator do
 
   describe "#short_line" do
     it "should display server with full details" do
-      line = mongo_server.short_line
+      line = server.short_line
       line.should have_selector(:css, "span.server-link a", text: "server-01")
       line.should have_selector(:css, "span.server-details", text: "4 * 4 cores, 3.2 GHz | 42G | 5 * 13G (SAS)")
     end

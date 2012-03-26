@@ -14,7 +14,7 @@ module Acts
             end
 
             def #{attr}=(value)
-              raise "Can't write attribute since there is no '#{attr}' column" unless column_for_attribute(:#{attr})
+              raise "Can't write attribute since there is no '#{attr}' column" unless fields.keys.include?("#{attr}")
               if value == value.to_i.to_s && value.to_i <= 32 #netmask!
                 value = IPAddr.new("255.255.255.255/"+value.to_s).to_s
               end
@@ -26,4 +26,4 @@ module Acts
     end
   end
 end
-ActiveRecord::Base.send(:include, Acts::Ipaddress)
+!ActiveRecord::Base.send(:include, Acts::Ipaddress)

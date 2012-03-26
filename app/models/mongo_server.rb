@@ -1,6 +1,7 @@
 class MongoServer
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Acts::Ipaddress
 
   #some constants for status codes
   STATUS_ACTIVE = 1
@@ -36,6 +37,7 @@ class MongoServer
   field :delivered_on, type: Date
   field :maintained_until, type: Date
   field :ipaddress, type: Integer
+  acts_as_ipaddress :ipaddress
   field :has_drac, type: Boolean
   field :ci_identifier, type: String
   field :network_device, type: Boolean
@@ -70,6 +72,7 @@ class MongoServer
   has_and_belongs_to_many :nss_volumes, inverse_of: :clients
   has_many :nss_volumes, dependent: :destroy
   has_and_belongs_to_many :used_nss_volumes, class_name: 'NssVolume', inverse_of: :clients
+  has_many :ipaddresses, foreign_key: 'server_id', dependent: :destroy
 
   before_save :update_site!
 
@@ -80,7 +83,6 @@ class MongoServer
 
   attr_accessor :just_created
 
-  #TODO: acts_as_ipaddress :ipaddress
 
   scope :active, where(status: STATUS_ACTIVE)
   scope :inactive, where(status: STATUS_INACTIVE)
@@ -248,17 +250,6 @@ class MongoServer
 
   def update_site!
     self.site = self.physical_rack.try(:site)
-  end
-
-  #TEMPORARY
-  def ipaddress_ids
-    []
-    #ActiveRecord::Base.connection.execute("SELECT id FROM ipaddresses WHERE server_mongo_id='#{self.id}';").to_a.flatten
-  end
-
-  #TEMPORARY
-  def ipaddresses
-    Ipaddress.find(ipaddress_ids)
   end
 
   #TEMPORARY
