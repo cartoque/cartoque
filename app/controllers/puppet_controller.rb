@@ -18,6 +18,7 @@ class PuppetController < ApplicationController
                                .where(puppetversion: nil)
                                .order_by([:name.asc])
     @puppetized_count = Server.by_puppet(1).count
+    @systems = OperatingSystem.scoped.arrange(order: :name.asc)
   end
 
   def classes

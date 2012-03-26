@@ -21,8 +21,7 @@
     <td><%= text_field_tag "search", params[:search] %></td>
     <td><%= select_tag "by_virtual", options_for_select([[t(:word_yes), "1"], [t(:word_no), 0]], params[:by_virtual]).html_safe, include_blank: true -%></td>
     <td><%= select_tag "by_puppet", options_for_select([[t(:word_yes), "1"], [t(:word_no), 0]], params[:by_puppet]).html_safe, include_blank: true -%></td>
-    <% @os = ancestry_options(OperatingSystem.scoped.arrange(order: 'name')){|i| "#{'-'*i.depth} #{i.name}"} %>
-    <td><%= select_tag "by_system", options_for_select(@os, params[:by_system]).html_safe, include_blank: true -%></td>
+    <td><%= select_tag "by_system", options_for_select(ancestry_options(@systems){|i| "#{'-'*i.depth} #{i.name}"}, params[:by_system]).html_safe, include_blank: true -%></td>
     <td><%= select_tag "by_osrelease", options_for_select(@operatingsystemreleases.map{|v|[v,v]}, params[:by_osrelease]).html_safe, include_blank: true -%></td>
     <td><%= select_tag "by_puppetversion", options_for_select(@puppetversions.map{|v|[v,v]}, params[:by_puppetversion]).html_safe, include_blank: true -%></td>
     <td><%= select_tag "by_facterversion", options_for_select(@facterversions.map{|v|[v,v]}, params[:by_facterversion]).html_safe, include_blank: true -%></td>

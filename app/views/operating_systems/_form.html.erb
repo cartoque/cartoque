@@ -12,7 +12,7 @@
       <%= f.input :name, required: true, wrapper_class: 'th' %>
       <%= f.input :codename %>
       <%= f.input :managed_with_puppet, as: :boolean %>
-      <% @os = OperatingSystem.scoped.arrange(order: 'name') %>
+      <% @os = OperatingSystem.scoped.arrange(order: :name.asc) %>
       <% exclusions_for_future_versions = @operating_system.subtree unless @operating_system.blank? || @operating_system.new_record? %>
       <%= f.input :parent_id, as: :select, collection: ancestry_options(@os){|i| "#{'-'*i.depth} #{i.name}"} %>
     </tbody>
