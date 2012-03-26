@@ -130,6 +130,13 @@ describe Server do
       Server.by_puppet(1).to_a.should eq [s3]
     end
 
+    it "should return real servers only" do
+      s4 = Server.create!(name: "just-a-name")
+      s5 = Server.create!(name: "switch-01", network_device: true)
+      s6 = Server.create!(name: "fw-01", network_device: false)
+      Server.real_servers.to_a.should =~ [s1, s2, s3, s4, s6]
+    end
+
     describe "#find_or_generate" do
       let!(:server) { Server.create(name: "rake-server") }
 

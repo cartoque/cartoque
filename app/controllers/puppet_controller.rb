@@ -12,9 +12,9 @@ class PuppetController < ApplicationController
   def servers
     @servers = apply_scopes(Server).active.real_servers.like(params[:search]).order_by(mongo_sort_option)
     for column in %w(puppetversion facterversion rubyversion operatingsystemrelease) do
-      instance_variable_set("@#{column}s", Server.all.distinct(column).sort)
+      instance_variable_set("@#{column}s", Server.all.distinct(column).compact.sort)
     end
-    @to_puppetize = Server.where(operating_system_id: OperatingSystem.where(managed_with_puppet: true))
+    @to_puppetize = Server.where(operating_system_id: OperatingSystem.where(managed_with_puppet: true).distinct(:_id))
                                .where(puppetversion: nil)
                                .order_by([:name.asc])
     @puppetized_count = Server.by_puppet(1).count

@@ -86,7 +86,7 @@ class Server
 
   scope :active, where(status: STATUS_ACTIVE)
   scope :inactive, where(status: STATUS_INACTIVE)
-  scope :real_servers, where(network_device: false)
+  scope :real_servers, where(:network_device.ne => true)
   scope :network_devices, where(network_device: true)
   scope :hypervisor_hosts, where(is_hypervisor: true)
   scope :by_rack, proc {|rack_id| where(physical_rack_id: rack_id) }
