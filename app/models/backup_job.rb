@@ -8,7 +8,7 @@ class BackupJob
   field :exclusion_patterns, type: String
   field :server_name, type: String
   field :server_status, type: Integer
-  belongs_to :server, class_name: 'MongoServer'
+  belongs_to :server
 
   scope :by_server, proc{ |term| includes(:server).where(server_name: Regexp.new(term, Regexp::IGNORECASE)) }
   scope :by_client_type, proc{ |client_type| where(client_type: client_type) }

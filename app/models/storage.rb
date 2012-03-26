@@ -4,7 +4,7 @@ class Storage
 
   field :constructor, type: String
   field :details, type: String
-  belongs_to :server, class_name: 'MongoServer'
+  belongs_to :server
 
   validates_presence_of :server
   validates_presence_of :constructor

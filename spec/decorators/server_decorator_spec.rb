@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ServerDecorator do
-  let(:server) { ServerDecorator.decorate(Factory.create(:mongo_server)) }
+  let(:server) { ServerDecorator.decorate(Factory.create(:server)) }
 
   describe "#badges" do
     it "is empty if the server has no badge" do
@@ -77,15 +77,15 @@ describe ServerDecorator do
 
     it "should display server without raising an exception if no details" do
       #TODO: restore this when switching back to "Server"
-      #line = MongoServer.new(name: "server-03").decorate.short_line
-      line = ServerDecorator.decorate(MongoServer.new(name: "server-03")).short_line
+      #line = Server.new(name: "server-03").decorate.short_line
+      line = ServerDecorator.decorate(Server.new(name: "server-03")).short_line
       line.should have_selector(:css, "span.server-link a", text: "server-03")
     end
 
     it "should display nothing in server details if no details available" do
       #TODO: restore this when switching back to "Server"
-      #line = MongoServer.new(name: "srv").decorate.short_line
-      line = ServerDecorator.decorate(MongoServer.new(name: "srv")).short_line
+      #line = Server.new(name: "srv").decorate.short_line
+      line = ServerDecorator.decorate(Server.new(name: "srv")).short_line
       line.should have_selector(:css, "span.server-details", text: "")
     end
   end

@@ -1,7 +1,3 @@
-#TEMPORARY
-require 'mongo_server'
-Server = MongoServer
-
 class ServerDecorator < ResourceDecorator
   decorates :server
 

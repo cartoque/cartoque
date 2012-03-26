@@ -9,7 +9,7 @@ class License
   field :purshased_on, type: Date
   field :renewal_on, type: Date
   field :comment, type: String
-  has_and_belongs_to_many :servers, class_name: 'MongoServer', foreign_key: 'server_ids'
+  has_and_belongs_to_many :servers
 
   scope :by_editor, proc {|editor| where(editor: editor) }
   scope :by_key, proc { |search| where(key: Regexp.new(Regexp.escape(search), Regexp::IGNORECASE)) }

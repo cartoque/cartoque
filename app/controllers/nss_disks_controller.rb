@@ -16,6 +16,6 @@ class NssDisksController < InheritedResources::Base
   end
 
   def find_servers
-    @servers = MongoServer.where(:_id.in => NssDisk.all.distinct(:server_id)).order_by([:name.asc])
+    @servers = Server.where(:_id.in => NssDisk.all.distinct(:server_id)).order_by([:name.asc])
   end
 end

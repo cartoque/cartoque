@@ -4,7 +4,7 @@
   </tr>
   <tr>
     <td>
-      <% physical = MongoServer.active.where(virtual: false, network_device: false) %>
+      <% physical = Server.active.where(virtual: false, network_device: false) %>
       <%= t(:x_physical_servers_of_which, count: physical.count) %> :
       <ul class="details">
         <li><%= physical.dup.where(:maintained_until.lt => Date.today).count %> <%= t(:maintenance_over) %></li>

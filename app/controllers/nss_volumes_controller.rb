@@ -17,7 +17,7 @@ class NssVolumesController < InheritedResources::Base
   end
 
   def find_servers_and_clients
-    @servers = MongoServer.where(:_id.in => NssVolume.all.distinct(:server_id)).order_by([:name.asc])
-    @clients = MongoServer.where(:_id.in => NssVolume.all.distinct(:client_ids).flatten.uniq).order_by([:name.asc])
+    @servers = Server.where(:_id.in => NssVolume.all.distinct(:server_id)).order_by([:name.asc])
+    @clients = Server.where(:_id.in => NssVolume.all.distinct(:client_ids).flatten.uniq).order_by([:name.asc])
   end
 end

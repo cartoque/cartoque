@@ -24,7 +24,7 @@
   <tr>
     <td class="label"><%= f.label :servers, class: "input" %></td>
     <td class="multiselect">
-      <%= f.input_field :server_ids, collection: MongoServer.active.order_by(:name.asc), as: :multiselect %>
+      <%= f.input_field :server_ids, collection: Server.active.order_by(:name.asc), as: :multiselect %>
     </td>
   </tr>
 </table>

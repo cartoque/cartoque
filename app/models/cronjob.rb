@@ -7,7 +7,7 @@ class Cronjob
   field :command, type: String
   field :definition_location, type: String
   field :server_name, type: String
-  belongs_to :server, class_name: 'MongoServer'
+  belongs_to :server
 
   before_save :cache_associations_fields
 

@@ -12,7 +12,7 @@ describe CronjobsController do
     end
 
     it "should display cronjobs if server is set" do
-      server = MongoServer.create!(name: "my-server")
+      server = Server.create!(name: "my-server")
       Cronjob.create!(definition_location: "/etc/cron.d/crontask", hierarchy: "/",
                       frequency: "* * * * *", server_id: server.id.to_s, command: "/bin/ls")
       server.reload.cronjobs.count.should == 1

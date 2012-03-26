@@ -21,7 +21,7 @@ begin; MongoServer; rescue NameError; MongoServer = Server; end
 # migration!
 class MigrateServersToMongoid < ActiveRecord::Migration
   def up
-    add_column :servers, :mongo_id, :string
+    add_column(:servers, :mongo_id, :string) unless column_exists?(:servers, :mongo_id)
     MongoServer.destroy_all
     cols = ARServer.column_names.select{|name| !name.ends_with?("id") || name.ends_with?("mongo_id") }
     ARServer.all.each do |srv|

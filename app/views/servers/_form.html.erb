@@ -27,7 +27,7 @@
           <%= f.input_field :network_device, class: "radio-checkbox" %><%= content_tag :label, t(:network_device), for: "server_network_device" %>
         </td>
       </tr>
-      <%= f.input :hypervisor_id, collection: MongoServer.hypervisor_hosts.order_by([:name.asc]) - [@server],
+      <%= f.input :hypervisor_id, collection: Server.hypervisor_hosts.order_by([:name.asc]) - [@server],
                                   wrapper_class: css_classes_virtual %>
       <tr class="input string optional">
         <td class="content checkboxes-as-radio" colspan="2">

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe License do
-  let!(:server) { Factory(:mongo_server) }
+  let!(:server) { Factory(:server) }
   let!(:license1) { License.create(editor:"softcompany1", key: "XCDEZF", title: "Soft1 license") }
   let!(:license2) { License.create(editor:"softcompany2", key: "ADFRTG", server_ids: [server.id]) }
 
@@ -11,7 +11,7 @@ describe License do
     license1.reload
     license1.servers.should include server
     #inverse
-    vm = MongoServer.create!(name: "vm-blah", license_ids: [license2.id])
+    vm = Server.create!(name: "vm-blah", license_ids: [license2.id])
     vm.license_ids.should include license2.id
     license2.reload.server_ids.should include vm.id
   end

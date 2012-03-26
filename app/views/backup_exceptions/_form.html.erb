@@ -13,7 +13,7 @@
       <tr>
         <td class="label"><%= f.label :servers, class: "input" %></td>
         <td class="multiselect">
-          <%= f.input_field :server_ids, collection: MongoServer.not_backuped.order_by(:name.asc) + @backup_exception.servers, as: :multiselect %>
+          <%= f.input_field :server_ids, collection: Server.not_backuped.order_by(:name.asc) + @backup_exception.servers, as: :multiselect %>
         </td>
       </tr>
     </tbody>

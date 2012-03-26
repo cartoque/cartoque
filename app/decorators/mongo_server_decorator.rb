@@ -1,2 +1,0 @@
-#TEMPORARY
-MongoServerDecorator = ServerDecorator

@@ -1,4 +1,4 @@
-class MongoServer
+class Server
   include Mongoid::Document
   include Mongoid::Timestamps
   include Acts::Ipaddress
@@ -55,8 +55,8 @@ class MongoServer
   belongs_to :media_drive
   belongs_to :database
   belongs_to :maintainer,       class_name: "Company", inverse_of: :maintained_servers
-  belongs_to :hypervisor,       class_name: "MongoServer",  inverse_of: :virtual_machines
-  has_many   :virtual_machines, class_name: "MongoServer", inverse_of: :hypervisor
+  belongs_to :hypervisor,       class_name: "Server",  inverse_of: :virtual_machines
+  has_many   :virtual_machines, class_name: "Server", inverse_of: :hypervisor
   has_and_belongs_to_many :application_instances
   has_many :backup_jobs, dependent: :destroy
   has_and_belongs_to_many :backup_exceptions
@@ -129,9 +129,9 @@ class MongoServer
     Setting.dns_domains.strip.split(/\n|,/).each do |domain|
       servername.gsub!(".#{domain.strip}".gsub(/^\.\./, "."), "")
     end
-    server = MongoServer.where(name: servername).first || MongoServer.where(ci_identifier: servername).first
+    server = Server.where(name: servername).first || Server.where(ci_identifier: servername).first
     if server.blank?
-      server = MongoServer.create(name: servername)
+      server = Server.create(name: servername)
       server.just_created = true
     end
     server
@@ -142,13 +142,13 @@ class MongoServer
     return []
     #first list the ones that don't need backups
     #TODO: make it efficient! (we shouldn't query all servers all the time)
-    backuped = BackupJob.all.select{|job| job.server.status == MongoServer::STATUS_ACTIVE}.map(&:server_id).uniq
+    backuped = BackupJob.all.select{|job| job.server.status == Server::STATUS_ACTIVE}.map(&:server_id).uniq
     exceptions = BackupException.includes(:servers).map(&:servers).flatten.map(&:id).uniq
-    net_devices = MongoServer.network_devices.select("id").map(&:id)
-    stock_servers = MongoServer.all.select{|s| s.physical_rack && s.physical_rack.status == PhysicalRack::STATUS_STOCK}.map(&:id)
+    net_devices = Server.network_devices.select("id").map(&:id)
+    stock_servers = Server.all.select{|s| s.physical_rack && s.physical_rack.status == PhysicalRack::STATUS_STOCK}.map(&:id)
     dont_need_backup = backuped + exceptions + net_devices + stock_servers
     #now let's search the servers
-    servers = MongoServer.where(status: MongoServer::STATUS_ACTIVE)
+    servers = Server.where(status: Server::STATUS_ACTIVE)
     servers = servers.where("id not in (?)", dont_need_backup) unless dont_need_backup.empty?
     servers.order_by([:name.asc])
   end
@@ -179,7 +179,7 @@ class MongoServer
   end
 
   def update_ci_identifier
-    self.ci_identifier = MongoServer.ci_identifier_for(self.name)
+    self.ci_identifier = Server.ci_identifier_for(self.name)
   end
 
   def self.ci_identifier_for(name)

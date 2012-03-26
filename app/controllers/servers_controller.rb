@@ -1,8 +1,6 @@
 require 'csv'
 
 class ServersController < ResourcesController
-  defaults :resource_class => MongoServer
-
   respond_to :html, :js, :xml, :csv, :json
 
   has_scope :by_location

@@ -5,7 +5,7 @@ describe BackupJob do
     job = BackupJob.new
     job.should_not be_valid
     job.hierarchy = "/"
-    job.server = Factory(:mongo_server)
+    job.server = Factory(:server)
     job.should be_valid
   end
 end

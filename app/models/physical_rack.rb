@@ -5,7 +5,7 @@ class PhysicalRack
   field :site_name, type: String
   field :status, type: Integer
   belongs_to :site
-  has_many :servers, class_name: 'MongoServer'
+  has_many :servers
 
   before_save :fill_in_site_name
 

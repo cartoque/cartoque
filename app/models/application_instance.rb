@@ -6,7 +6,7 @@ class ApplicationInstance
   field :authentication_method, type: String
   embeds_many :application_urls
   belongs_to :application
-  has_and_belongs_to_many :servers, class_name: 'MongoServer', foreign_key: 'server_ids'
+  has_and_belongs_to_many :servers
 
   accepts_nested_attributes_for :application_urls, reject_if: lambda{|a| a[:url].blank? },
                                                    allow_destroy: true

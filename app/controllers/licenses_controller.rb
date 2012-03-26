@@ -12,6 +12,6 @@ class LicensesController < InheritedResources::Base
   private
   def find_filter_keys
     @editors = License.all.map(&:editor).uniq.sort
-    @servers = MongoServer.where(:_id.in => License.all.distinct(:server_ids).flatten.uniq).order_by(:name.asc)
+    @servers = Server.where(:_id.in => License.all.distinct(:server_ids).flatten.uniq).order_by(:name.asc)
   end
 end

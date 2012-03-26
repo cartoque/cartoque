@@ -4,7 +4,7 @@ class Database
 
   field :name, type: String
   field :type, type: String
-  has_many :servers, class_name: 'MongoServer'
+  has_many :servers
 
   validates_presence_of :name
   validates_inclusion_of :type, in: %w(postgres oracle)
@@ -17,9 +17,9 @@ class Database
     actual_ids = self.servers.map(&:_id).map(&:to_s)
     new_ids = ids.map(&:to_s)
     #deletions
-    self.servers -= MongoServer.where(:_id.in => actual_ids - new_ids).to_a
+    self.servers -= Server.where(:_id.in => actual_ids - new_ids).to_a
     #additions
-    self.servers << MongoServer.where(:_id.in => new_ids - actual_ids).to_a
+    self.servers << Server.where(:_id.in => new_ids - actual_ids).to_a
   end
 
   #TODO: see why Mongoid doesn't generate that for us

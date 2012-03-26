@@ -30,7 +30,7 @@ class TomcatOld < Hashie::Mash
     filters = Hashie::Mash.new
     filters.tomcat = %w(tomcat4 tomcat5)
     filters.server = tomcats_old.map do |t|
-      server = MongoServer.where(name: t.server).first
+      server = Server.where(name: t.server).first
       t.server if server.try(:active?) || server.blank?
     end.compact.sort.uniq
     filters

@@ -11,8 +11,8 @@ class NssVolume
   field :falcontstor_type, type: String
   field :dataset_guid, type: String
   field :server_name, type: String
-  belongs_to :server, class_name: 'MongoServer'
-  has_and_belongs_to_many :clients, class_name: 'MongoServer', foreign_key: 'client_ids'
+  belongs_to :server, class_name: 'Server'
+  has_and_belongs_to_many :clients, class_name: 'Server', foreign_key: 'client_ids'
 
   validates_presence_of :name
 

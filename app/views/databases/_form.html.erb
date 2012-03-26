@@ -7,7 +7,7 @@
       <%= f.input :name, required: true, wrapper_class: "th" %>
       <%= f.input :type, collection: %w(postgres oracle),
                   required: true, include_blank: false %>
-      <%= f.association :servers, collection: MongoServer.order_by([:name.asc]), as: :multiselect %>
+      <%= f.association :servers, collection: Server.order_by([:name.asc]), as: :multiselect %>
     </tbody>
   </table>
 

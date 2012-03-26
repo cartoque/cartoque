@@ -11,7 +11,7 @@ class NssDisk
   field :guid, type: String
   field :fsid, type: String
   field :size, type: Integer
-  belongs_to :server, class_name: 'MongoServer'
+  belongs_to :server
 
   before_save :cache_associations_fields
 

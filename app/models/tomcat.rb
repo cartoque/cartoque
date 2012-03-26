@@ -92,7 +92,7 @@ class Tomcat < Hashie::Mash
     tomcats.inject(filters_from) do |filters,tomcat|
       tomcat.each do |key,value|
         key = key.to_sym
-        server = MongoServer.where(name: value).first
+        server = Server.where(name: value).first
         next if key == :cerbere || key == :cerbere_csac || key == :crons
         next if key == :server && server && !server.active?
         filters[key] ||= []

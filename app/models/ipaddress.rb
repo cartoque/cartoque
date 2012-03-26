@@ -10,7 +10,7 @@ class Ipaddress
   field :macaddress, type: String
   field :netmask, type: String
   field :interface, type: String 
-  belongs_to :server, class_name: 'MongoServer'
+  belongs_to :server
   acts_as_ipaddress :address
 
   validates_presence_of :server

@@ -7,7 +7,7 @@ class OperatingSystem
   field :codename, type: String
   field :managed_with_puppet, type: Boolean
   has_ancestry cache_depth: true
-  has_many :servers, class_name: 'MongoServer'
+  has_many :servers
 
   validates_presence_of :name
 

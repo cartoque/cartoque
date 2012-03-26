@@ -29,8 +29,8 @@ describe ApplicationsController do
   end
 
   pending "should access the rest/xml API" do
-    app_inst = ApplicationInstance.new(name: "prod", authentication_method: "none", application_mongo_id: @application.id.to_s)
-    app_inst.servers = [ Factory(:mongo_server), Factory(:mongo_virtual) ]
+    app_inst = ApplicationInstance.new(name: "prod", authentication_method: "none", application_id: @application.id.to_s)
+    app_inst.servers = [ Factory(:server), Factory(:virtual) ]
     app_inst.save
     get :show, id: @application.to_param, format: :xml
     response.body.should have_selector :css, "application>_id", @application.id.to_s

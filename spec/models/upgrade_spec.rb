@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Upgrade do
-  let(:server) { Factory.create(:mongo_server) }
+  let(:server) { Factory.create(:server) }
   let(:upgrade) { Upgrade.create!(server_id: server.id) }
 
   it "belongs to one server" do
@@ -11,7 +11,7 @@ describe Upgrade do
 
   it "should have a server" do
     Upgrade.new.should_not be_valid
-    Upgrade.new(server: Factory(:mongo_virtual)).should be_valid
+    Upgrade.new(server: Factory(:virtual)).should be_valid
   end
 
   it "should store #packages_list as a Hash" do

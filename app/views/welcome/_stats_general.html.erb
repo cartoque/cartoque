@@ -9,11 +9,11 @@
   <tr>
     <td><%= link_to t(:servers), servers_path %></td>
     <td>
-      <%= MongoServer.active.count %> <%= t(:servers).downcase %>
+      <%= Server.active.count %> <%= t(:servers).downcase %>
       <ul class="details">
-        <li><%= MongoServer.active.where(virtual: true, network_device: false).count %> <%= t(:virtual).downcase.pluralize %></li>
-        <li><%= MongoServer.active.where(virtual: false, network_device: false).count %> <%= t(:physical).downcase.pluralize %></li>
-        <li><%= MongoServer.active.where(network_device: true).count %> <%= t(:network_devices).downcase %></li>
+        <li><%= Server.active.where(virtual: true, network_device: false).count %> <%= t(:virtual).downcase.pluralize %></li>
+        <li><%= Server.active.where(virtual: false, network_device: false).count %> <%= t(:physical).downcase.pluralize %></li>
+        <li><%= Server.active.where(network_device: true).count %> <%= t(:network_devices).downcase %></li>
       </ul>
     </td>
   </tr>

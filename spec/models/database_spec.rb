@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'mongo_server'
+require 'server'
 
-class MongoServer
+class Server
   def postgres_file
     Rails.root.join("spec/data/postgres/#{name.downcase}.txt").to_s
   end

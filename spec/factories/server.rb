@@ -1,4 +1,4 @@
-Factory.define :mongo_server do |m|
+Factory.define :server do |m|
   m.name 'server-01'
   m.virtual false
   m.nb_proc 4
@@ -11,7 +11,7 @@ Factory.define :mongo_server do |m|
   m.disk_type "SAS"
 end
 
-Factory.define :mongo_virtual, parent: :mongo_server do |m|
+Factory.define :virtual, parent: :server do |m|
   m.name 'v-server-01'
   m.virtual true
 end

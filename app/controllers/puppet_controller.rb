@@ -10,14 +10,14 @@ class PuppetController < ApplicationController
   has_scope :by_rubyversion
 
   def servers
-    @servers = apply_scopes(MongoServer).active.real_servers.like(params[:search]).order_by(mongo_sort_option)
+    @servers = apply_scopes(Server).active.real_servers.like(params[:search]).order_by(mongo_sort_option)
     for column in %w(puppetversion facterversion rubyversion operatingsystemrelease) do
-      instance_variable_set("@#{column}s", MongoServer.all.distinct(column).sort)
+      instance_variable_set("@#{column}s", Server.all.distinct(column).sort)
     end
-    @to_puppetize = MongoServer.where(operating_system_id: OperatingSystem.where(managed_with_puppet: true))
+    @to_puppetize = Server.where(operating_system_id: OperatingSystem.where(managed_with_puppet: true))
                                .where(puppetversion: nil)
                                .order_by([:name.asc])
-    @puppetized_count = MongoServer.by_puppet(1).count
+    @puppetized_count = Server.by_puppet(1).count
   end
 
   def classes
@@ -28,6 +28,6 @@ class PuppetController < ApplicationController
 
   protected
   def resource_class
-    MongoServer
+    Server
   end
 end

@@ -20,6 +20,6 @@ class CronjobsController < InheritedResources::Base
 
   protected
   def find_servers
-    @servers = MongoServer.where(:_id.in => Cronjob.all.distinct("server_id")).order_by([:name.asc])
+    @servers = Server.where(:_id.in => Cronjob.all.distinct("server_id")).order_by([:name.asc])
   end
 end

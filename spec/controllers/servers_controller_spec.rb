@@ -24,7 +24,7 @@ describe ServersController do
   end
 
   describe "real ServersController" do
-    let!(:server) { Factory.create(:mongo_server) }
+    let!(:server) { Factory.create(:server) }
 
     it "should get index" do
       get :index
@@ -46,7 +46,7 @@ describe ServersController do
     end
 
     it "should create server" do
-      lambda{ post :create, server: {"name" => "new-server"} }.should change(MongoServer, :count).by(+1)
+      lambda{ post :create, server: {"name" => "new-server"} }.should change(Server, :count).by(+1)
       assert_redirected_to server_path(assigns(:server))
     end
 
@@ -57,7 +57,7 @@ describe ServersController do
 
     it "should access the xml output" do
       get :show, id: server.id.to_s, format: :xml
-      assert_select "mongo-server"
+      assert_select "server"
     end
 
     it "should get edit" do
@@ -74,7 +74,7 @@ describe ServersController do
     end
 
     it "should destroy server" do
-      lambda{ delete :destroy, id: server.id.to_s }.should change(MongoServer, :count).by(-1)
+      lambda{ delete :destroy, id: server.id.to_s }.should change(Server, :count).by(-1)
       assert_redirected_to servers_path
     end
   end

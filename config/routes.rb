@@ -41,10 +41,6 @@ Cartoque::Application.routes.draw do
   resources :servers do
     collection { get 'maintenance' }
   end
-  #TEMPORARY
-  resources :mongo_servers do
-    collection { get 'maintenance' }
-  end
   resources :applications
 
   # Plugins/engines

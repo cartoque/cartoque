@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BackupException do
   pending "has many servers" do
-    srv = Factory.create(:mongo_server)
+    srv = Factory.create(:server)
     exception = BackupException.create(reason: "Here's why !")
     exception.server_ids = [srv.id]
     exception.save

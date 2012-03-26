@@ -3,7 +3,7 @@ require 'spec_helper'
 describe NssVolume do
   it "should have a name at least" do
     disk = NssVolume.new
-    server = Factory(:mongo_server)
+    server = Factory(:server)
     disk.should_not be_valid
     disk.should have(1).error
     disk.name = "nss-vol-01"

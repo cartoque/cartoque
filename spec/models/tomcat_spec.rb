@@ -58,7 +58,7 @@ describe Tomcat do
     end
 
     it "should be retrieved with Server#tomcats" do
-      tomcats = MongoServer.find_or_create_by(name: "vm-01").tomcats
+      tomcats = Server.find_or_create_by(name: "vm-01").tomcats
       tomcats.size.should eq 2
       tomcats.should include(@app01)
       tomcats.should include(@app02)

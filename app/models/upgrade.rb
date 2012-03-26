@@ -9,7 +9,7 @@ class Upgrade
   field :count_important, type: Integer
   field :upgraded_status, type: Boolean
   field :server_name, type: String
-  belongs_to :server, class_name: 'MongoServer'
+  belongs_to :server
   belongs_to :upgrader, class_name: 'User'
 
   before_save :cache_associations_fields

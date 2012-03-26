@@ -17,7 +17,7 @@ class PhysicalRacksController < InheritedResources::Base
   end
 
   def count_servers_per_rack
-    @servers_count = MongoServer.where(virtual: false)
+    @servers_count = Server.where(virtual: false)
                                 .group_by(&:physical_rack_id)
                                 .inject({}) { |memo,(k,v)| memo[k] = v.count; memo }
   end

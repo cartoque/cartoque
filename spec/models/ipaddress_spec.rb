@@ -15,12 +15,12 @@ describe Ipaddress do
     ip = Ipaddress.new(address: "192.168.1.1")
     ip.should_not be_valid
     ip.should have(1).error_on(:server)
-    ip.server = Factory(:mongo_server)
+    ip.server = Factory(:server)
     ip.should be_valid
   end
 
   it "should leave ipaddress blank if invalid" do
-    ip = Ipaddress.new(address: "abcd", server: Factory(:mongo_server))
+    ip = Ipaddress.new(address: "abcd", server: Factory(:server))
     ip.should be_valid
     ip.address.should be_blank
     ip.address = "192.168.1.1"

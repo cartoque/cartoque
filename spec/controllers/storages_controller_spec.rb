@@ -17,7 +17,7 @@ describe StoragesController do
   end
 
   it "should create storage" do
-    lambda{ post :create, storage: { constructor: "IBM", server_id: Factory.create(:mongo_virtual).id.to_s } }.should change(Storage, :count)
+    lambda{ post :create, storage: { constructor: "IBM", server_id: Factory.create(:virtual).id.to_s } }.should change(Storage, :count)
     assert_redirected_to storages_path
   end
 

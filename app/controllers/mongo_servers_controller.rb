@@ -1,2 +1,0 @@
-#TEMPORARY
-MongoServersController = ServersController
