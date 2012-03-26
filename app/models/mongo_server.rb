@@ -58,15 +58,15 @@ class MongoServer
   belongs_to :hypervisor,       class_name: "MongoServer",  inverse_of: :virtual_machines
   has_many   :virtual_machines, class_name: "MongoServer", inverse_of: :hypervisor
   has_and_belongs_to_many :application_instances
-  #has_many :backup_jobs, dependent: :destroy
+  has_many :backup_jobs, dependent: :destroy
   has_and_belongs_to_many :backup_exceptions
   has_and_belongs_to_many :licenses, inverse_of: :servers
   has_many :cronjobs, dependent: :destroy, foreign_key: 'server_id'
   has_one :upgrade, dependent: :destroy, foreign_key: 'server_id'
-  #has_one :storage
+  has_one :storage
   has_many :exported_disks,      class_name: 'NetworkDisk', foreign_key: 'server_id', dependent: :destroy
   has_many :network_filesystems, class_name: 'NetworkDisk', foreign_key: 'client_id', dependent: :destroy
-  #has_many :nss_disks, dependent: :destroy
+  has_many :nss_disks, dependent: :destroy
   has_many :physical_links,      class_name: 'PhysicalLink', foreign_key: 'server_id', dependent: :destroy
   has_many :connected_links,     class_name: 'PhysicalLink', foreign_key: 'switch_id', dependent: :destroy
   has_and_belongs_to_many :nss_volumes, inverse_of: :clients
@@ -250,12 +250,5 @@ class MongoServer
 
   def update_site!
     self.site = self.physical_rack.try(:site)
-  end
-
-  #TEMPORARY
-  %w(physical_links connected_links network_filesystems exported_disks).each do |field|
-    class_eval <<-"SRC"
-      def #{field}; []; end
-    SRC
   end
 end

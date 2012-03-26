@@ -4,13 +4,13 @@
   </tr>
   <tr>
     <td>
-      <% physical = Server.active.where(virtual: false, network_device: false) %>
+      <% physical = MongoServer.active.where(virtual: false, network_device: false) %>
       <%= t(:x_physical_servers_of_which, count: physical.count) %> :
       <ul class="details">
-        <li><%= physical.dup.where("maintained_until < ?", Date.today).count %> <%= t(:maintenance_over) %></li>
-        <li><%= physical.dup.where("maintained_until <= ?", Date.today + 6.months).count %> <%= t(:maintenance_renewal_in_6_months) %></li>
-        <li><%= physical.dup.where("maintained_until <= ?", Date.today + 12.months).count %> <%= t(:maintenance_renewal_in_12_months) %></li>
-        <li><%= physical.dup.where(maintained_until: nil).count %> <%= t(:not_maintained) %></li>
+        <li><%= physical.dup.where(:maintained_until.lt => Date.today).count %> <%= t(:maintenance_over) %></li>
+        <li><%= physical.dup.where(:maintained_until.lte => Date.today + 6.months).count %> <%= t(:maintenance_renewal_in_6_months) %></li>
+        <li><%= physical.dup.where(:maintained_until.lte => Date.today + 12.months).count %> <%= t(:maintenance_renewal_in_12_months) %></li>
+        <li><%= physical.dup.where(:maintained_until => nil).count %> <%= t(:not_maintained) %></li>
       </ul>
     </td>
   </tr>

@@ -3,7 +3,8 @@ class OperatingSystemsController < InheritedResources::Base
 
   def index
     @operating_systems = OperatingSystem.arrange(order: [:name, :asc])
-    @os_servers_count = Server.group("operating_system_mongo_id").count
+    @os_servers_count = MongoServer.all.group_by(&:operating_system_id)
+                                   .inject({}) { |memo,(k,v)| memo[k] = v.count; memo }
     @os_servers_count.default = 0
     if params[:graph_subtree]
       @root_os = OperatingSystem.find(params[:graph_subtree].to_s)
@@ -11,7 +12,7 @@ class OperatingSystemsController < InheritedResources::Base
     else
       @os_subtree = @operating_systems
     end
-    @last_updated_server = Server.maximum(:updated_at)
+    @last_updated_server = MongoServer.order_by(:updated_at.desc).first
     @last_updated_system = OperatingSystem.order_by(:updated_at.desc).first
   end
 

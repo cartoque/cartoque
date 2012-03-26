@@ -1,5 +1,9 @@
 require 'spec_helper'
 
+#TEMPORARY
+require 'mongo_server'
+Server = MongoServer
+
 describe Server do
   it "should be valid with just a name" do
     Server.new.should_not be_valid

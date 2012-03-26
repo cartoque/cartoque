@@ -44,7 +44,7 @@
       <tr class="input string optional">
         <td class="content" colspan="2">
           <label for="server[physical_links]" class="input"><%= t(:server_links) %> :</label><br />
-          <% f.object.physical_links << Ipaddress.new if f.object.physical_links.none? %>
+          <% f.object.physical_links << PhysicalLink.new if f.object.physical_links.none? %>
           <%= f.simple_fields_for :physical_links do |pl_form| %>
             <%= render 'physical_link_fields', f: pl_form %>
           <% end %>
