@@ -14,7 +14,7 @@
       <% if upgrade.count_total > 0 %>
         <span class="upgraded" id="upgraded-<%= upgrade.id %>"><%= validated_by(upgrade.upgrader) if upgrade.upgraded_status? %></span>
         <%= button_tag t(:validate), id: "upgrade-#{upgrade.id}", class: "validate",
-                                     data: { id: upgrade.id } unless upgrade.upgraded_status? %>
+                                     data: { id: upgrade.id.to_s } unless upgrade.upgraded_status? %>
       <% end %>
     </td>
   </tr>

@@ -16,6 +16,6 @@ module UpgradesHelper
   end
 
   def validated_by(upgrader)
-    t(:validated_by, person: upgrader)
+    t(:validated_by, person: upgrader.name)
   end
 end
