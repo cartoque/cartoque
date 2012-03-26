@@ -14,7 +14,7 @@ class License
   scope :by_editor, proc {|editor| where(editor: editor) }
   scope :by_key, proc { |search| where(key: Regexp.new(Regexp.escape(search), Regexp::IGNORECASE)) }
   scope :by_title, proc { |search| where(title: Regexp.new(Regexp.escape(search), Regexp::IGNORECASE)) }
-  scope :by_server, proc { |id| where(:_id.in => ActiveRecord::Base.connection.execute("SELECT license_mongo_id FROM licenses_servers WHERE server_id = #{id.to_i};").to_a.flatten) }
+  scope :by_server, proc { |id| where(server_ids: id) }
 
   validates_presence_of :editor
 end

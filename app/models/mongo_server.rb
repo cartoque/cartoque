@@ -60,7 +60,7 @@ class MongoServer
   has_and_belongs_to_many :application_instances
   #has_many :backup_jobs, dependent: :destroy
   has_and_belongs_to_many :backup_exceptions
-  has_and_belongs_to_many :licenses
+  has_and_belongs_to_many :licenses, inverse_of: :servers
   has_many :cronjobs, dependent: :destroy, foreign_key: 'server_id'
   has_one :upgrade, dependent: :destroy, foreign_key: 'server_id'
   #has_one :storage
