@@ -75,7 +75,7 @@
     <tbody id="server-physical-hardware" class="<%= css_classes_physical %>">
       <%= f.input :physical_rack_id, collection: PhysicalRack.all %>
       <%= f.input :manufacturer %>
-      <%= f.input :model %>
+      <%= f.input :model, input_html: { value: @server.model.try(:model) } %>
     </tbody>
     <tbody>
       <%= f.input :nb_proc, collection: [1,2,4,6,8,10,12,16,24,32] %>
@@ -107,7 +107,7 @@
       <tr><th colspan="2"><%= t(:application_instances) %></th></tr>
     </thead>
     <tbody>
-      <%= f.input :application_instances, collection: ApplicationInstance.all.map{|i| [i.fullname, i.id]}, as: "multiselect" %>
+      <%= f.input :application_instance_ids, collection: ApplicationInstance.all.map{|i| [i.fullname, i.id]}, as: "multiselect" %>
     </tbody>
   </table>
   </div>

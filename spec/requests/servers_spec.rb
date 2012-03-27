@@ -34,6 +34,10 @@ describe "Servers" do
   describe "GET /servers/:id/edit" do
     it "edits a server" do
       visit edit_server_path(server)
+      fill_in "server_name", with: "server-01"
+      click_button "Apply modifications"
+      current_path.should == server_path(server.reload)
+      page.should have_content "Server SERVER-01"
     end
   end
 end
