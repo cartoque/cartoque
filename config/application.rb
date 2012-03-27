@@ -1,7 +1,16 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+# Selectively require frameworks within rails
+# (replaces the common line: require 'rails/all')
+require "rails"
+%w(action_controller action_mailer sprockets).each do |framework|
+  begin
+    require "#{framework}/railtie"
+  rescue LoadError
+  end
+end
 
+# Setup bundler
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   # (default) Bundler.require(*Rails.groups(assets: %w(development test)))

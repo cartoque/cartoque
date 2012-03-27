@@ -15,7 +15,7 @@ class FakeController
 
   def direction; sort_direction; end
   def column; sort_column; end
-  def option; sort_option; end
+  def option; mongo_sort_option; end
 end
 
 describe SortHelpers do
@@ -62,15 +62,15 @@ describe SortHelpers do
 
   it "should sort_option should be a correct mix between sort_column and sort_direction" do
     @controller.params = {}
-    assert_equal "prefix.name asc", @controller.option
+    assert_equal [["prefix.name", "asc"]], @controller.option
     @controller.params = {sort: "name,manufacturer", direction: "desc"}
-    assert_equal "prefix.name desc, prefix.manufacturer desc", @controller.option
+    assert_equal [["prefix.name", "desc"], ["prefix.manufacturer", "desc"]], @controller.option
   end
 
   it "should authorize prefix from an other resource if existent" do
     @controller.params = {sort: "licenses.key", direction: "asc"}
-    @controller.option.should eq "licenses.key asc"
+    @controller.option.should eq [["licenses.key", "asc"]]
     @controller.params = {sort: "licenzes.key", direction: "asc"}
-    @controller.option.should eq "prefix.name asc"
+    @controller.option.should eq [["prefix.name", "asc"]]
   end
 end

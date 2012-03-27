@@ -56,7 +56,7 @@ Spork.prefork do
 
     #a clean state between each spec/test
     config.before(:suite) do
-      DatabaseCleaner[:active_record].strategy = :transaction
+      #DatabaseCleaner[:active_record].strategy = :transaction
       DatabaseCleaner[:mongoid].strategy = :truncation
       DatabaseCleaner.clean_with :truncation
     end

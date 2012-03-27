@@ -7,8 +7,8 @@ describe ApplicationDecorator do
 
   describe "I18n methods" do
     it "aliases I18n.t()" do
-      key = "activerecord.messages.less_than"
-      @a.t(key, count: 2).should eq I18n.t(key, count: 2)
+      key = "mongoid.error.messages.invalid_time"
+      @a.t(key, value: "blah").should eq I18n.t(key, value: "blah")
     end
 
     it "aliases I18n.l()" do

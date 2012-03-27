@@ -9,14 +9,6 @@ module SortHelpers
     end
   end
 
-  # ActiveRecord
-  def sort_option
-    sort_column.split(",").map do |column|
-      full_column_name = (column.include?(".") ? column : sort_column_prefix+column)
-      "#{full_column_name} #{sort_direction}"
-    end.join(", ")
-  end
-
   def sort_column
     columns = "#{params[:sort]}".split(",").select do |column|
       resource = resource_class
