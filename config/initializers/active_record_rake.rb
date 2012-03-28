@@ -5,7 +5,7 @@
 #
 # The trick is a bit ugly but I didn't manage to have the tasks working
 # with just a rake task defined in lib/. So ...
-if ARGV.first.match(/^db:/)
+if ARGV.first && ARGV.first.match(/^db:/)
   env = Rails.env || 'development'
   config = Rails.application.config.database_configuration[env]
   ActiveRecord::Base.establish_connection(config)
