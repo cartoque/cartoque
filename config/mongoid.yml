@@ -1,6 +1,6 @@
 development:
   host: localhost
-  database: cartoque_development
+  database: cartoque
 
 test:
   host: localhost
