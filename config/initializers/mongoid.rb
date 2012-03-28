@@ -19,4 +19,9 @@ class Regexp
   def self.mask(pattern)
     Regexp.new(Regexp.escape(pattern), Regexp::IGNORECASE)
   end
+
+  # Regexp.strict_mask("blah") = /^blah$/i + with regexp escaping
+  def self.strict_mask(pattern)
+    Regexp.new("^"+Regexp.escape(pattern)+"$", Regexp::IGNORECASE)
+  end
 end
