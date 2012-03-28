@@ -31,7 +31,7 @@ namespace :import do
       server = Server.find_or_generate(servername)
       jobs.each do |attributes|
         attributes[:files].each do |fs|
-          job = BackupJob.find_or_create_by_server_id_and_hierarchy(server.id, fs)
+          job = BackupJob.find_or_create_by(server_id: server.id, hierarchy: fs)
           job.client_type = "TiNa"
           job.exclusion_patterns = attributes[:excluded]
           job.catalog = attributes[:catalog]

@@ -9,7 +9,7 @@ namespace :import do
       server = Server.find_or_generate(server_name)
       puts "Successfully created Server: #{server.name}" if server.just_created
       Nokogiri::XML.parse(File.read(file)).search("//PhysicalDev").each do |dev|
-        disk = NssDisk.find_or_create_by_name_and_server_id(dev["name"], server.id)
+        disk = NssDisk.find_or_create_by(name: dev["name"], server_id: server.id)
         disk.wwid = dev["wwid"]
         disk.falconstor_type = dev["type"]
         disk.owner = dev["owner"]

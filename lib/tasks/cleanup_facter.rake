@@ -12,7 +12,7 @@ namespace :cleanup do
         facts[key]
       end
       #destroy old IPs
-      Ipaddress.where(:server_id => server.id).each do |addr|
+      Ipaddress.where(server_id: server.id).each do |addr|
         addr.destroy if !addr.address.in?(addresses)
       end
     end

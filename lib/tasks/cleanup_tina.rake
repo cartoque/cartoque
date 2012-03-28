@@ -26,7 +26,7 @@ namespace :cleanup do
       end
     end
     #compare with existing jobs
-    BackupJob.where(:client_type => "TiNa").includes(:server).each do |job|
+    BackupJob.where(client_type: "TiNa").includes(:server).each do |job|
       #don't do anything if catalog file was not present (this doesn't mean the catalog doesn't exist!)
       next unless job.catalog.in?(catalogs)
       #remove job if server doesn't exist in bacjup jobs OR hierarchy is not listed as backuped

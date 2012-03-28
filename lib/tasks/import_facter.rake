@@ -1,9 +1,7 @@
 desc "Imports cron jobs from tomcats' csv files"
 namespace :import do
   task :facter => :environment do
-    Settler.load!
-    dns_domains_setting = Settler.dns_domains
-    dns_domains_values = dns_domains_setting.value.to_s.split(/\n|,/).map(&:strip)
+    dns_domains = Setting.dns_domains.split(/\n|,/).map(&:strip)
     existing_operating_systems = OperatingSystem.all
     Dir.glob("data/system/*.yml").each do |file|
       #server
@@ -49,16 +47,15 @@ namespace :import do
       #save server
       server.save if server.changed?
       #dns domains
-      if dns_domains_setting.present? && facts["domain"].present? && !dns_domains_values.include?(facts["domain"])
-        dns_domains_setting.value = (dns_domains_values << facts["domain"]).join("\n")
-        dns_domains_setting.save
+      if facts["domain"].present? && !dns_domains.include?(facts["domain"])
+        dns_domains += facts["domain"]
+        Setting.dns_domains=(dns_domains)
       end
       #update IPs
       facts.keys.grep(/^ipaddress_/).each do |key|
         iface_key = key.gsub(/^ipaddress_/,"")
         addr = facts[key]
-        ip = Ipaddress.find_by_address_and_server_id(IPAddr.new(addr).to_i, server.id) ||
-               Ipaddress.new(:address => addr, :server_id => server.id)
+        ip = Ipaddress.find_or_initialize_by(address: IPAddr.new(addr).to_i, server_id: server.id)
         ip.main = (addr == facts["ipaddress"])
         ip.interface = iface_key.gsub("_",":")
         ip.netmask = facts["netmask_#{iface_key}"]

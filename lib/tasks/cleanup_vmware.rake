@@ -13,7 +13,7 @@ namespace :cleanup do
       end
     end
     #then compare it to virtual servers
-    Server.where(:virtual => true).includes(:hypervisor).each do |vm|
+    Server.where(virtual: true).includes(:hypervisor).each do |vm|
       #don't do anything if we don't know the host
       next if vm.hypervisor.blank?
       #if hypervisor is in "hosts" list and vm is not in "vms", it should be deleted

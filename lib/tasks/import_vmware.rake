@@ -24,7 +24,7 @@ namespace :import do
       File.readlines("data/vmware/snapshoted_vms.txt").each do |servername|
         servername.chomp!
         server = Server.find_or_generate(servername)
-        job = BackupJob.find_or_create_by_server_id_and_hierarchy(server.id, "/")
+        job = BackupJob.find_or_create_by(server_id: server.id, hierarchy: "/")
         job.client_type = "VDR"
         job.save if job.changed?
       end

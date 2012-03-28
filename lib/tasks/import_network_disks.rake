@@ -16,7 +16,7 @@ namespace :import do
         server_name = disk.split(":").first
         #if ip address
         if server_name.match(/^\d/)
-          server = Server.joins(:ipaddresses).where("ipaddresses.address" => IPAddr.new(server_name).to_i).first
+          server = Ipaddress.where(address: IPAddr.new(server_name).to_i).first.try(:server)
         else
         #if clientname
           server = Server.find_or_generate(server_name)

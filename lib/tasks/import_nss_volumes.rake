@@ -17,13 +17,13 @@ namespace :import do
         a.search("FibreChannelDevice").each do |v|
           #v["vdevname"]
           hsh[v["id"]] ||= []
-          hsh[v["id"]] << Server.find_or_create_by_name(a["name"].split(".").first).id
+          hsh[v["id"]] << Server.find_or_create_by(name: a["name"].split(".").first).id.to_s
         end
         hsh
       end
       #nss volume
       xml.search("//VirtualDev").each do |dev|
-        volume = NssVolume.find_or_create_by_name_and_server_id(dev["name"], server.id)
+        volume = NssVolume.find_or_create_by(name: dev["name"], server_id: server.id)
         volume.snapshot_enabled = (dev["snapshotEnabled"] == "true")
         volume.timemark_enabled = (dev["timemarkEnabled"] == "true")
         volume.falconstor_id = dev["id"]

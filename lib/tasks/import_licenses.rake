@@ -7,13 +7,12 @@ namespace :import do
       next if json.blank?
       json.each do |hsh|
         editor = hsh["editor"] || type
-        license = License.find_or_create_by_editor_and_key(editor, hsh["key"])
+        license = License.find_or_create_by(editor: editor, key: hsh["key"])
         license.update_attributes(hsh.slice("title", "quantity"))
         license.servers = hsh["servers"].map do |server_name|
           Server.find_or_generate(server_name)
         end
         license.save if license.changed?
-
       end
     end
   end
