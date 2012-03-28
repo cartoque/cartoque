@@ -1,4 +1,4 @@
-<% exploitation_jobs = @server.cronjobs.where(definition_location: Regexp.new("/exploit")) %>
+<% exploitation_jobs = @server.cronjobs.where(definition_location: Regexp.mask("/exploit")) %>
 <div class="related-ci related-cronjobs">
   <div class="informations<%= " more-child" if exploitation_jobs.count > 0 %>">
     <h3><%= link_to "#{@server.cronjobs.count} #{t(:crons).downcase}", cronjobs_path(by_server: @server.id) %></h3>

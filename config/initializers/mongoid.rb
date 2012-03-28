@@ -12,3 +12,11 @@ class String
     end
   end
 end
+
+# Regexp convenience method to define search masks
+class Regexp
+  # Regexp.mask("blah") = /blah/i + with regexp escaping
+  def self.mask(pattern)
+    Regexp.new(Regexp.escape(pattern), Regexp::IGNORECASE)
+  end
+end

@@ -9,7 +9,7 @@ class Database
   validates_presence_of :name
   validates_inclusion_of :type, in: %w(postgres oracle)
 
-  scope :by_name, proc { |term| where(name: Regexp.new(term, Regexp::IGNORECASE)) }
+  scope :by_name, proc { |term| where(name: Regexp.mask(term)) }
   scope :by_type, proc { |term| where(type: term) }
 
   #TODO: see why Mongoid doesn't generate that for us

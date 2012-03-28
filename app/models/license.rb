@@ -12,8 +12,8 @@ class License
   has_and_belongs_to_many :servers
 
   scope :by_editor, proc {|editor| where(editor: editor) }
-  scope :by_key, proc { |search| where(key: Regexp.new(Regexp.escape(search), Regexp::IGNORECASE)) }
-  scope :by_title, proc { |search| where(title: Regexp.new(Regexp.escape(search), Regexp::IGNORECASE)) }
+  scope :by_key, proc { |term| where(key: Regexp.mask(term)) }
+  scope :by_title, proc { |term| where(title: Regexp.mask(term)) }
   scope :by_server, proc { |id| where(server_ids: id) }
 
   validates_presence_of :editor

@@ -22,7 +22,7 @@ class Company < Contactable
 
   def self.like(term)
     if term
-      where(name: Regexp.new(term, Regexp::IGNORECASE))
+      where(name: Regexp.mask(term))
     else
       scoped
     end

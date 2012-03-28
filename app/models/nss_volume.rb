@@ -19,10 +19,10 @@ class NssVolume
   before_save :cache_associations_fields
 
   scope :by_server, proc { |server_id| where(server_id: server_id) }
-  scope :by_name, proc { |term| where(name: Regexp.new(term, Regexp::IGNORECASE)) }
+  scope :by_name, proc { |term| where(name: Regexp.mask(term)) }
   scope :by_client, proc { |client_id| any_in(client_ids: client_id) }
   scope :by_type, proc { |type| where(falconstor_type: type) }
-  scope :by_guid, proc { |term| where(guid: Regexp.new(term, Regexp::IGNORECASE)) }
+  scope :by_guid, proc { |term| where(guid: Regexp.mask(term)) }
   scope :by_snapshot_status, proc { |status| where(snapshot_enabled: status) }
 
   private

@@ -14,8 +14,8 @@ class Cronjob
   validates_presence_of :server, :frequency, :command
 
   scope :by_server, proc { |server_id| where(server_id: server_id) }
-  scope :by_command, proc { |term| where(command: Regexp.new(term, Regexp::IGNORECASE)) }
-  scope :by_definition, proc { |place| where(definition_location: Regexp.new(place, Regexp::IGNORECASE)) }
+  scope :by_command, proc { |term| where(command: Regexp.mask(term)) }
+  scope :by_definition, proc { |place| where(definition_location: Regexp.mask(place)) }
 
   SPECIAL_FREQUENCIES = {
     "@reboot"   => "Run once, at startup.",

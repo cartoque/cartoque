@@ -19,9 +19,9 @@ class NssDisk
 
   scope :by_server, proc { |server_id| where(server_id: server_id) }
   scope :by_owner, proc { |owner| where(owner: owner) }
-  scope :by_name, proc { |term| where(name: Regexp.new(term, Regexp::IGNORECASE)) }
+  scope :by_name, proc { |term| where(name: Regexp.mask(term)) }
   scope :by_type, proc { |type| where(falconstor_type: type) }
-  scope :by_guid, proc { |term| where(guid: Regexp.new(term, Regexp::IGNORECASE)) }
+  scope :by_guid, proc { |term| where(guid: Regexp.mask(term)) }
 
   private
   def cache_associations_fields

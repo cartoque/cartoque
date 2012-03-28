@@ -53,7 +53,7 @@ class Contact < Contactable
 
   def self.like(term)
     if term
-      mask = Regexp.new(term, Regexp::IGNORECASE)
+      mask = Regexp.mask(term)
       any_of({ first_name: mask }, { last_name: mask }, { job_position: mask }, { company_name: mask })
     else
       scoped

@@ -31,7 +31,7 @@ class Tomcat < Hashie::Mash
       self.merge!(cerbere_csac: false)
     end
     #crons
-    definition_mask = Regexp.new("/exploit_"+self[:dns].split(".").first.to_s) 
+    definition_mask = Regexp.mask("/exploit_"+self[:dns].split(".").first.to_s) 
     self.merge!(crons: Cronjob.all_of(server_name: self[:server], definition_location: definition_mask))
   end
 

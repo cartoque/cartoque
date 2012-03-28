@@ -108,9 +108,9 @@ class Server
   scope :by_puppetversion, proc {|version| where(puppetversion: version) }
   scope :by_facterversion, proc {|version| where(facterversion: version) }
   scope :by_rubyversion, proc {|version| where(rubyversion: version) }
-  scope :by_serial_number, proc {|term| where(serial_number: Regexp.new(term, Regexp::IGNORECASE)) }
+  scope :by_serial_number, proc {|term| where(serial_number: Regexp.mask(term)) }
   scope :by_arch, proc {|arch| where(arch: arch) }
-  scope :by_fullmodel, proc{|model| mask = Regexp.new(model, Regexp::IGNORECASE); any_of({ manufacturer: mask }, { model: mask }) }
+  scope :by_fullmodel, proc{|model| mask = Regexp.mask(model); any_of({ manufacturer: mask }, { model: mask }) }
 
   validates_presence_of :name
   validates_uniqueness_of :name
@@ -198,7 +198,7 @@ class Server
 
   def self.like(term)
     if term
-      where(name: Regexp.new(term, Regexp::IGNORECASE))
+      where(name: Regexp.mask(term))
     else
       scoped
     end

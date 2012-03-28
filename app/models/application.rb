@@ -70,7 +70,7 @@ class Application
 
     def search(term)
       if term
-        where(name: Regexp.new(Regexp.escape(term), Regexp::IGNORECASE))
+        where(name: Regexp.mask(term))
       else
         all
       end
