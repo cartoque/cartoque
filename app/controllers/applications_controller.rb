@@ -18,11 +18,3 @@ class ApplicationsController < InheritedResources::Base
     @applications ||= end_of_association_chain.search(params[:search]).order_by(mongo_sort_option)
   end
 end
-
-#super dirty patch for rails ticket #4840
-#TODO: remove it when Rails 3.0.5 is here...
-class NilClass
-  def type
-    nil
-  end
-end
