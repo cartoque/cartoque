@@ -9,7 +9,6 @@ class BackupJobsController < InheritedResources::Base
   
   protected
   def collection
-    #TODO: fix the sort+select in ruby, make it via mongo
     @backup_jobs ||= end_of_association_chain.where(server_status: Server::STATUS_ACTIVE).includes(:server).order_by([:server_name.asc])
   end
 
