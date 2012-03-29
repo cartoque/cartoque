@@ -138,19 +138,16 @@ class Server
   end
 
   def self.not_backuped
-    #TODO: fix it !
-    return []
     #first list the ones that don't need backups
-    #TODO: make it efficient! (we shouldn't query all servers all the time)
-    backuped = BackupJob.all.select{|job| job.server.status == Server::STATUS_ACTIVE}.map(&:server_id).uniq
-    exceptions = BackupException.includes(:servers).map(&:servers).flatten.map(&:id).uniq
-    net_devices = Server.network_devices.select("id").map(&:id)
+    backuped = BackupJob.where(server_status: Server::STATUS_ACTIVE).distinct(:server_id).uniq
+    exceptions = BackupException.only(:server_ids).map(&:server_ids).flatten.uniq
+    net_devices = Server.network_devices.distinct(:_id)
     stock_servers = Server.all.select{|s| s.physical_rack && s.physical_rack.status == PhysicalRack::STATUS_STOCK}.map(&:id)
     dont_need_backup = backuped + exceptions + net_devices + stock_servers
     #now let's search the servers
     servers = Server.where(status: Server::STATUS_ACTIVE)
-    servers = servers.where("id not in (?)", dont_need_backup) unless dont_need_backup.empty?
-    servers.order_by([:name.asc])
+    servers = servers.where(:_id.nin => dont_need_backup) if dont_need_backup.any?
+    servers.order_by(:name.asc)
   end
 
   def just_created
