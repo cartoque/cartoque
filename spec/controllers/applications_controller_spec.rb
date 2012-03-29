@@ -28,7 +28,7 @@ describe ApplicationsController do
     assert_response :success
   end
 
-  pending "should access the rest/xml API" do
+  it "should access the rest/xml API" do
     app_inst = ApplicationInstance.new(name: "prod", authentication_method: "none", application_id: @application.id.to_s)
     app_inst.servers = [ Factory(:server), Factory(:virtual) ]
     app_inst.save

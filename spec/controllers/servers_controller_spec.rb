@@ -65,7 +65,7 @@ describe ServersController do
       assert_response :success
     end
 
-    pending "should update server" do
+    it "should update server" do
       put :update, id: server.id.to_s, server: { "ipaddresses_attributes"=>[{"address"=>"192.168.99.99", "main"=>"1"}] }
       assert_redirected_to server_path(assigns(:server))
       server.reload
