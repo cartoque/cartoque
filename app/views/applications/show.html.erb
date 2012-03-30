@@ -1,11 +1,10 @@
-<% title "#{t(:application)} #{@application.name.upcase}" %>
+<% title link_to(t(:applications), applications_path) + " &rsaquo; ".html_safe + @application.name.upcase %>
 
 <div class="span12 center">
 
 <%= action_links do %>
   <%= link_to t(:edit), edit_application_path(@application) %> |
-  <%= link_to t(:delete), @application, confirm: t(:text_are_you_sure), method: :delete %> |
-  <%= link_to t(:back_to_the_list), applications_path %>
+  <%= link_to t(:delete), @application, confirm: t(:text_are_you_sure), method: :delete %>
 <% end %>
 
 </div>

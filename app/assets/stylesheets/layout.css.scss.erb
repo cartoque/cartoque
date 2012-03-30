@@ -27,8 +27,9 @@ input:focus, input:active, textarea:focus, textarea:active { @include box-shadow
 
 /* titles */
 h1, h2 { font-weight:bold; font-family:Ubuntu,verdana,arial,sans-serif; letter-spacing:1px; }
-h1 { color:#222; font-size:2em; margin:0.3em -10px 0; padding:0.3em 1.2em 0.5em 1.2em; text-shadow:1px 1px 0px #aaa; }
+h1 { color:#222; font-size:24px; line-height:30px; margin:12px -10px 8px; padding:8px 30px 6px 30px; text-shadow:1px 1px 0px #aaa; }
 h2 { font-size:15px; color:#223; text-align:center; margin:6px auto 8px; }
+h1 a, h2 a { color:#446; }
 
 /* tables */
 table { padding:0; margin-top:0; margin-bottom:2px; border-collapse:collapse; margin-left:auto; margin-right:auto; }
@@ -266,9 +267,13 @@ tr.filters {
 }
 
 /* generic items */
+.items_list { position:relative; }
 .items_list h1 { text-align:center; margin-top:0.3em; font-family:Verdana, Helvetica, Arial; color:#333; text-transform:uppercase; letter-spacing:1px; font-size:1.2em; }
 .items_list>table { width:100%; }
 .counter { font-style:italic; font-size:150%; float:right; font-weight:bold; }
+.action-box { box-sizing:border-box; position:absolute; background-color:#fff; padding:10px 5px; border-color:#ddd; border-style:solid; }
+.action-box-right { right:-40px; padding:10px 7px 10px 4px; border-width:1px 1px 1px 0; }
+.action-box-left { left:-40px; padding:10px 3px 10px 8px; border-width:1px 0 1px 1px; }
 
 /* ajax loading */
 #loading { min-width:300px; text-align:center; background-position:0% 60%; background-repeat:no-repeat; background-image:url(..<%= asset_path 'dots-white.gif' %>); display:none; }

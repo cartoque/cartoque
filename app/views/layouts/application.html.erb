@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title><%= content_for?(:title) ? yield(:title) : t(:default_title) %></title>
+  <title><%= content_for?(:title) ? strip_tags(yield(:title)) : t(:default_title) %></title>
   <meta charset="UTF-8">
 <% if ! request_from_pdfkit? %>
   <%= stylesheet_link_tag "application" %>
