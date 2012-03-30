@@ -58,6 +58,7 @@ gem 'acts_as_list'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'mongoid-ancestry'
+gem 'bootstrap-sass'
 
 # Plugins/engines
 Dir.glob(File.expand_path("../vendor/plugins/*/Gemfile",__FILE__)).each do |gemfile|

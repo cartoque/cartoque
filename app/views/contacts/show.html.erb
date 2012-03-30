@@ -1,6 +1,6 @@
 <% title "#{t(:contact)}: #{@contact.full_name}" %>
 
-<div id="contact_informations" class="grid_4">
+<div id="contact_informations" class="span4">
 
 <%= action_links do %>
   <%= link_to t(:back_to_the_list), contacts_path %>
@@ -10,7 +10,7 @@
 
 </div>
 
-<div class="grid_4 contact_company">
+<div class="span4 contact_company">
 <% if @contact.company.present? %>
   <h2><%= t(:works_at) %></h2>
   <%= render 'companies/company', company: @contact.company %>
@@ -22,7 +22,7 @@
 <% end %>
 </div>
 
-<div class="grid_4 contact_relations">
+<div class="span4 contact_relations">
 <% #TODO: restore contact relations system %>
 <% if false && @contact.contact_relations.any? %>
   <h2><%= t(:contact_relations) %></h2>

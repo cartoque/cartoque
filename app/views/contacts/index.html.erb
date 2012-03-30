@@ -1,12 +1,11 @@
 <% title t(:contacts) %>
 
-<div class="grid_8">
-
+<div class="span8">
   <div class="filters contacts_filter">
     <%= form_tag contacts_path(params), id: "filters", method: :get do -%>
       <label for="search_contacts" class="inline"><%= t(:placeholder_for_contacts_search) %></label>
       <input type="text" name="search" id="search_contacts" zplaceholder="<%= t(:placeholder_for_contacts_search) %>"
-             value="<%= params[:search] %>" autocomplete="off" />
+            value="<%= params[:search] %>" autocomplete="off" />
       <%= hidden_sort_fields %>
       <div id="sort_links" class="contextual tiny sort_by contacts_sort_by">
         <%= render 'sort_links' %>
@@ -19,21 +18,24 @@
     <% end %>
   </div>
 
-  <div class="grid_4" style="margin-left:0;">
-    <div id="contacts_list">
-      <%= render 'list_contacts' %>
-    </div>
-  </div>
+  <div class="row">
 
-  <div class="grid_4" style="margin-right:0;">
-    <div id="companies_list">
-      <%= render 'list_companies' %>
+    <div class="span4">
+      <div id="contacts_list">
+        <%= render 'list_contacts' %>
+      </div>
     </div>
-  </div>
 
+    <div class="span4">
+      <div id="companies_list">
+        <%= render 'list_companies' %>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<div class="grid_4" style="position:relative; top:0;">
+<div class="span4" style="position:relative; top:0;">
   <div id="contacts_actions">
     <p>
       <%= link_to t(:new_contact), new_contact_path, class: "button-add" %><br />
@@ -50,4 +52,3 @@
     </p>
   </div>
 </div>
-

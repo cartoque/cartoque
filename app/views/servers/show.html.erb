@@ -1,6 +1,6 @@
 <% title "#{t(:server)} #{@server.name.upcase}" %>
 
-<div class="grid_12">
+<div class="span12">
 <%= action_links do %>
   <%= link_to t(:edit), edit_server_path(@server) %> |
   <%= link_to t(:delete), @server, confirm: t(:text_are_you_sure), method: :delete %> |
@@ -10,7 +10,7 @@
 
 <div class="clear"></div>
 
-<div id="server_general" class="grid_3 show">
+<div id="server_general" class="span3 show">
 <%= @server.badges %>
 <h2><%= t(:main_informations) %></h2>
 <table class="show_item full">
@@ -50,7 +50,7 @@
 </table>
 </div>
 
-<div id="server_hardware" class="grid_3 show">
+<div id="server_hardware" class="span3 show">
 <h2><%= @server.virtual? ? t(:resources) : t(:hardware) %></h2>
 <table class="show_item full">
   <%= show_for @server do |s| %>
@@ -72,7 +72,7 @@
 </table>
 </div>
 
-<div id="server-technical-relations" class="grid_3 show">
+<div id="server-technical-relations" class="span3 show">
   <h2><%= t(:components) %></h2>
   <%= render 'related_vms' if @server.virtual_machines.any? %>
   <%= render 'related_licenses' if @server.licenses.any? %>
@@ -84,7 +84,7 @@
   <%= render 'related_cronjobs' if @server.cronjobs.any? %>
 </div>
 
-<div id="server-application-relations" class="grid_3 show">
+<div id="server-application-relations" class="span3 show">
   <h2><%= t(:services) %></h2>
   <%= render 'related_application_instances' if @server.application_instances.any? %>
 </div>

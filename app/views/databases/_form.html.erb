@@ -1,4 +1,4 @@
-<div class="grid_12 center">
+<div class="span12 center">
 
 <%= simple_form_for(@database) do |f| %>
   <table class="show_item">
@@ -12,7 +12,7 @@
   </table>
 
   <%= action_links do %>
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-primary" %>
     <%= t(:or) %> <%= link_to t(:back_to_the_list), databases_path %>
     <% unless true || @database.new_record? %>
       | <%= link_to t(:show), @database %>

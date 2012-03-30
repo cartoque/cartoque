@@ -1,14 +1,14 @@
 <%= simple_form_for(@application) do |f| %>
 
   <%= action_links do %>
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-primary" %>
     <%= t(:or) %> <%= link_to t(:back_to_the_list), applications_path %>
     <% unless @application.new_record? %>
       | <%= link_to t(:show), @application %>
     <% end %>
   <% end %>
 
-  <div id="application_general" class="grid_5">
+  <div id="application_general" class="span5">
   <table class="inputs full">
     <tbody>
       <%= tabular_errors @application %>
@@ -33,7 +33,7 @@
   </div>
 
 
-  <div id="application_instances" class="grid_7">
+  <div id="application_instances" class="span7">
   <table class="inputs full">
     <thead>
       <tr>

@@ -1,14 +1,14 @@
 <%= simple_form_for(@contact) do |f| %>
 
-  <div id="contact_image" class="grid_2 image_url_form">
+  <div id="contact_image" class="span2 image_url_form">
     <%= render 'contacts/image_url_form', entity: @contact, f: f,
                                           available_images: Contact.available_images_hash %>
   </div>
 
-  <div id="contact_general" class="grid_6">
+  <div id="contact_general" class="span6">
     
     <%= action_links do %>
-      <%= f.button :submit %>
+      <%= f.button :submit, class: "btn btn-primary" %>
       <%= t(:or) %> <%= link_to t(:back_to_the_list), contacts_path %>
       <% unless @contact.new_record? %>
         | <%= link_to t(:show), @contact %>

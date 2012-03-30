@@ -1,8 +1,8 @@
-<div class="grid_9 center">
+<div class="span9 center">
 
 <%= simple_form_for(@component) do |f| %>
   <%= action_links do %>
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-primary" %>
     <%= t(:or) %> <%= link_to t(:back_to_the_list), components_path %>
   <% end %>
 

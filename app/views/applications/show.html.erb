@@ -1,6 +1,6 @@
 <% title "#{t(:application)} #{@application.name.upcase}" %>
 
-<div class="grid_12 center">
+<div class="span12 center">
 
 <%= action_links do %>
   <%= link_to t(:edit), edit_application_path(@application) %> |
@@ -10,7 +10,7 @@
 
 </div>
 
-<div id="application_general" class="grid_4 show">
+<div id="application_general" class="span4 show">
 <div class="contextual">
   <%= links_for @application %>
 </div>
@@ -41,7 +41,7 @@
 </table>
 </div>
 
-<div class="grid_5 show">
+<div class="span5 show">
 <h2><%= t(:application_instances) %></h2>
 <table class="show_item full">
   <tbody class="show_for">
@@ -54,7 +54,7 @@
 </table>
 </div>
 
-<div class="grid_3 show">
+<div class="span3 show">
 <h2><%= t(:links) %></h2>
 <table class="show_item full">
   <tr class="wrapper application_links">

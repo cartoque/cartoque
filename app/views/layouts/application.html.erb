@@ -5,19 +5,6 @@
   <title><%= content_for?(:title) ? yield(:title) : t(:default_title) %></title>
   <meta charset="UTF-8">
 <% if ! request_from_pdfkit? %>
-  <noscript><%= stylesheet_link_tag "adapt/mobile.min.css" %></noscript>
-  <script>
-    var ADAPT_CONFIG = {
-      path: '/assets/adapt/', dynamic: true,
-      range: [ '0px    to 760px  = mobile.min.css',
-               '760px  to 980px  = 720.min.css',
-               '980px  to 1280px = 960.min.css',
-               '1280px           = 1200.min.css']
-               //'1280px to 1600px = 1200.min.css',
-               //'1600px to 1920px = 1560.min.css',
-               //'1920px           = fluid.min.css' ]
-    };
-  </script>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <script type="text/javascript">
@@ -53,7 +40,7 @@
     </div>
   <% end %>
 
-  <div id="container" class="container_12 clearfix">
+  <div id="container" class="container">
     <div id="wrap">
       <div id="main">
         <%= render 'layouts/top_menu' %>
@@ -64,26 +51,29 @@
           <% end %>
         <% end unless flash.empty? %>
 
-        <div class="grid_12">
-
-        <%= content_tag(:h1, yield(:title), class: controller.controller_name) if show_title? %>
-
-        </div><!-- end-of-grid_12 -->
-
-        <div class="clear"></div>
-
-        <% if content_for?(:sidebar) %>
-          <div class="grid_3 hide-when-print">
-            <div id="sidebar"><%= yield(:sidebar) %></div>
+        <% if show_title? %>
+          <div class="row">
+            <div class="span12"><%= content_tag(:h1, yield(:title), class: controller.controller_name) %></div>
           </div>
         <% end %>
 
-        <%= yield %>
+        <% if content_for?(:sidebar) %>
+          <div class="row">
+            <div class="span3 hide-when-print">
+              <div id="sidebar"><%= yield(:sidebar) %></div>
+            </div>
+            <%= yield %>
+          </div>
+        <% else %>
+          <div class="row">
+            <%= yield %>
+          </div>
+        <% end %>
       </div>
     </div>
 
-    <div id="footer" class="grid_12 hide-when-print">
-      <%= show_version %>
+    <div id="footer" class="row hide-when-print">
+      <div class="span12"><%= show_version %></div>
     </div>
   </div>
 

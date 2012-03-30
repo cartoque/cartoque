@@ -1,6 +1,6 @@
 <% title "#{t(:company)}: #{@company}" %>
 
-<div id="company_informations" class="grid_4">
+<div id="company_informations" class="span4">
 
 <%= action_links do %>
   <%= link_to t(:back_to_the_list), contacts_path %>
@@ -10,12 +10,12 @@
 
 </div>
 
-<div class="grid_4 company_relations">
+<div class="span4 company_relations">
   <h2 class="center"><%= t(:members) %></h2>
   <%= render partial: 'contacts/contact', collection: @company.contacts %>
 </div>
 
-<div class="grid_4 company_relations">
+<div class="span4 company_relations">
 <% if @company.maintained_servers.any? %>
   <h2 class="center"><%= t(:maintains) %> <%= @company.maintained_servers.count %> <%= t(:servers) %></h2>
   <ul class="comparison">

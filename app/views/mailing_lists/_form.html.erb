@@ -1,4 +1,4 @@
-<div id="mailing_list_result" class="grid_12 center">
+<div id="mailing_list_result" class="span12 center">
   <%= simple_form_for(@mailing_list) do |f| %>
     <table class="show_item full">
       <tbody>
@@ -9,7 +9,7 @@
       </tbody>
     </table>
     <%= action_links do %>
-      <%= f.button :submit %>
+      <%= f.button :submit, class: "btn btn-primary" %>
       <%= t(:or) %> <%= link_to t(:use_an_existing_mailing_list), mailing_lists_path %>
     <% end %>
   <% end %>

@@ -3,14 +3,14 @@
 
 <%= simple_form_for(@server) do |f| %>
   <%= action_links do %>
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-primary" %>
     <%= t(:or) %> <%= link_to t(:back_to_the_list), servers_path %>
     <% unless @server.new_record? %>
       | <%= link_to t(:show), @server %>
     <% end %>
   <% end %>
 
-  <div id="server_general" class="grid_4">
+  <div id="server_general" class="span4">
   <table class="inputs full">
     <tbody>
       <%= tabular_errors @server %>
@@ -67,7 +67,7 @@
   </table>
   </div>
 
-  <div id="server_hardware" class="grid_4">
+  <div id="server_hardware" class="span4">
   <table class="inputs full">
     <thead>
       <tr><th colspan="2" id="server-hardware-title"><%= @server.virtual? ? t(:resources) : t(:hardware) %></th></tr>
@@ -101,7 +101,7 @@
   </table>
   </div>
 
-  <div id="server_applications" class="grid_4">
+  <div id="server_applications" class="span4">
   <table class="inputs full">
     <thead>
       <tr><th colspan="2"><%= t(:application_instances) %></th></tr>

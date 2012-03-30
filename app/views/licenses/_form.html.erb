@@ -1,8 +1,8 @@
-<div class="grid_12 center">
+<div class="span12 center">
 
 <%= simple_form_for(@license) do |f| %>
   <%= action_links do %>
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-primary" %>
     <%= t(:or) %> <%= link_to t(:back_to_the_list), licenses_path %>
   <% end %>
 

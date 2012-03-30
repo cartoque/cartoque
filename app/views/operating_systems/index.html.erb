@@ -2,7 +2,7 @@
 
 <% cache [@last_updated_system, @last_updated_server] do %>
 
-<div id="operating_systems" class="grid_5 center">
+<div id="operating_systems" class="span5 center">
   
 <%= action_links do %>
   <%= link_to t(:new_operating_system), new_operating_system_path %>
@@ -29,7 +29,7 @@
 </div>
 <% end %><!-- end caching ; we cannot cache graphs below cause they're somehow dynamic -->
 
-<div class="grid_4 center">
+<div class="span4 center">
 <% if @os_subtree.present? %>
   <div class="graph-links tiny">
   <% if @root_os.present? %>
