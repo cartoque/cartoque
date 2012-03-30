@@ -103,7 +103,7 @@ class Server
   scope :by_maintainer, proc {|maintainer_id| where(maintainer_id: maintainer_id) }
   scope :by_system, proc {|system_id| where(:operating_system_id.in => OperatingSystem.find(system_id).subtree.map(&:to_param)) }
   scope :by_virtual, proc {|virtual| where(virtual: (virtual.to_s == "1")) }
-  scope :by_puppet, proc {|puppet| where(:puppetversion.exists => (puppet.to_i != 0)) }
+  scope :by_puppet, proc {|puppet| puppet.to_i != 0 ? where(:puppetversion.exists => true).and(:puppetversion.ne => nil) : where(:puppetversion => nil) }
   scope :by_osrelease, proc {|version| where(operatingsystemrelease: version) }
   scope :by_puppetversion, proc {|version| where(puppetversion: version) }
   scope :by_facterversion, proc {|version| where(facterversion: version) }

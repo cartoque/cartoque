@@ -85,7 +85,7 @@ describe Server do
                                        maintainer_id: maint.id.to_s,
                                        operating_system_id: os.id.to_s) }
     let!(:s2)    { Server.create!(name: "srv-app-02", physical_rack_id: rack2.id.to_s,
-                                       virtual: true) }
+                                       virtual: true, puppetversion: nil) }
     let!(:s3)    { Server.create!(name: "srv-db-01", physical_rack_id: rack1.id.to_s,
                                        puppetversion: "0.24.5") }
 
