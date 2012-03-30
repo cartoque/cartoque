@@ -1,5 +1,11 @@
 <% title "Puppet - #{t(:servers)}" %>
 
+<script type="text/javascript">
+  $(function() {
+    Cartoque.highlightNotPuppetServers("<%= params[:by_server] %>");
+  });
+</script>
+
 <div id="puppet_servers" class="items_list span12">
 
 <div id="to-puppetize">
@@ -18,7 +24,7 @@
   <%= form_tag puppet_path(:servers), id: "filters", method: :get do -%>
     <%= hidden_sort_fields %>
   <tr class="filters fixed-size">
-    <td><%= text_field_tag "search", params[:search] %></td>
+    <td><%= text_field_tag "by_server", params[:by_server] %></td>
     <td><%= select_tag "by_virtual", options_for_select([[t(:word_yes), "1"], [t(:word_no), 0]], params[:by_virtual]).html_safe, include_blank: true -%></td>
     <td><%= select_tag "by_puppet", options_for_select([[t(:word_yes), "1"], [t(:word_no), 0]], params[:by_puppet]).html_safe, include_blank: true -%></td>
     <td><%= select_tag "by_system", options_for_select(ancestry_options(@systems){|i| "#{'-'*i.depth} #{i.name}"}, params[:by_system]).html_safe, include_blank: true -%></td>

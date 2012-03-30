@@ -22,6 +22,7 @@
 //= require backup_jobs
 //= require contacts
 //= require mailing_lists
+//= require puppet
 //= require roles
 //= require upgrades
 //= require users

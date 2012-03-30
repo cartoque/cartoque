@@ -2,5 +2,6 @@ $('input[type="hidden"]#sort').attr("value","<%= escape_javascript(sort_column) 
 $('input[type="hidden"]#direction').attr("value","<%= escape_javascript(sort_direction) %>");
 $("#puppet_servers_list").html("<%= escape_javascript(render("list")) %>");
 $("#puppet_servers_counter").html("<%= @servers.count %>");
+Cartoque.highlightNotPuppetServers("<%= escape_javascript(params[:by_server]) %>");
 fixTableHeaders();
 $("html, body").animate({ scrollTop: 0 }, 200);
