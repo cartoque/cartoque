@@ -14,9 +14,9 @@ class PuppetController < ApplicationController
     for column in %w(puppetversion facterversion rubyversion operatingsystemrelease) do
       instance_variable_set("@#{column}s", Server.all.distinct(column).compact.sort)
     end
-    @to_puppetize = Server.where(operating_system_id: OperatingSystem.where(managed_with_puppet: true).distinct(:_id))
-                               .where(puppetversion: nil)
-                               .order_by([:name.asc])
+    @to_puppetize = Server.where(:operating_system_id.in => OperatingSystem.where(managed_with_puppet: true).distinct(:_id))
+                          .where(puppetversion: nil)
+                          .order_by(:name.asc)
     @puppetized_count = Server.by_puppet(1).count
     @systems = OperatingSystem.scoped.arrange(order: :name.asc)
   end

@@ -2,17 +2,17 @@
 
 <div id="puppet_servers" class="items_list span12">
 
-<% if @to_puppetize.present? %>
 <div id="to-puppetize">
   <div class="contextual puppet_rate">
     <%= t(:puppet_deployment_rate) %>: <%= 100 * @puppetized_count / (@to_puppetize.count + @puppetized_count) %>%
   </div>
   <h2><%= t(:to_puppetize) %> (<%= @to_puppetize.count %>)</h2>
+  <% if @to_puppetize.present? %>
   <div class="servers">
     <%= @to_puppetize.map{|server| link_to server, server}.join(", ").html_safe %>
   </div>
+  <% end %>
 </div>
-<% end %>
 
 <table class="pretty list">
   <%= form_tag puppet_path(:servers), id: "filters", method: :get do -%>
