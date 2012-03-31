@@ -129,7 +129,6 @@ ul.comparison {
 /* wrappers */
 noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; font-size:150%; padding-top:100px;
            background:#f00; font-weight:bold; color:#fff; text-align:center }
-#container { background-color:#fff; text-align:left; min-height:100%; }
 .column_wrapper { float:left; margin:0 15px 0 5px; }
 #footer {
   font-size:90%; border-top:1px solid #ddd; padding-top:5px;
@@ -141,7 +140,7 @@ noscript { z-index:200; position:fixed; top:0; left:0; width:100%; height:100%; 
 /* sticky footer ; adapted from: http://css-tricks.com/snippets/css/sticky-footer/ */
 $footer_height: 50px;
 html, body, #wrap, #container { height: 100%; }
-#container > #wrap {height: auto; min-height: 100%;}
+#container > #wrap { height:auto; min-height:100%; }
 #wrap { background-color:#fff; @include box-shadow2(5px 0 15px -5px #bbb, -5px 0 15px -5px #bbb); }
 #main { padding-bottom: $footer_height; }
 #footer { position: relative; margin-top: -$footer_height + 10px; height: $footer_height - 15px; clear:both; } 
@@ -280,31 +279,32 @@ tr.filters {
 
 /* top menu */
 #top-menu {
-  font:13px/22px Arial,sans-serif; background-color:#ececec; /*color:#3366CC;*/ height:24px;
-  margin:0 0 5px 0; background-color:#ececec; text-shadow:1px 1px 0 #fff;
-  border-bottom:1px solid #ccc; padding-right:4px;
+  $top_menu_height: 26px; $top_menu_color1: #f0f0f0; $top_menu_color2: #e5e5e5;
+
+  font:13px/22px Arial,sans-serif; text-shadow:1px 1px 0 #fff; margin:0 0 5px 0; padding-right:4px;
+  @include gradient($top_menu_color1, $top_menu_color2); height:$top_menu_height; border-bottom:1px solid #ddd;
 
   a { text-decoration:none; color:#000; }
   a.tiny { display:block; margin-top:0; padding-top:1px; padding-bottom:1px; }
   a.img { padding-right:2px !important; }
   a.img img { margin-top:-3px; padding:0; }
   .has-submenu > a { padding:0 4px 2px 4px; display:inline-block; outline:none; }
-  .has-submenu:hover, .menu-items > li:hover { background-color:#e7e7e7; }
+  .has-submenu:hover, .menu-items > li:hover { background-color:darken($top_menu_color1, 5%); }
   .active:hover { background-color:#f5f5f5; }
-  .connected-as { font-weight:bold; padding-right:0.4em; }
+  .connected-as { padding-right:0.4em; }
   .connected-as:hover { background-color:#ececec; }
   ul { list-style-type:none; margin:0; }
   .menu-items { list-style-type:none; margin:0; padding:0 0 0 2px; }
-  .menu-items > li { padding:0 1px; margin:0; float:left; height:24px; line-height:24px; }
+  .menu-items > li { padding:0 1px; margin:0; float:left; height:$top_menu_height; line-height:$top_menu_height; }
   .menu-items > li > a { display:inline-block; padding:0 4px 0 4px; }
-  .menu-items .large-submenu { position:absolute; border:1px solid /*#C3D1EC*/#ccc; @include box-shadow(0, 1px, 5px, #bbb); margin-top:-1px; margin-left:-10px;
-                                       display:none; background-color:#f5f5f5; padding:0; left:0; }
+  .menu-items .large-submenu { position:absolute; @include box-shadow(0, 1px, 3px, #bbb); margin-top:-1px; margin-left:-10px;
+                               display:none; background-color:#f5f5f5; padding:0; left:0; }
   .submenu-1 { width:150px; }
   .submenu-2 { width:300px; }
   .submenu-3 { width:450px; }
   .submenu-4 { width:600px; }
-  .active { position:relative; padding:0 !important; border:1px solid #ccc; border-top:0; border-bottom:0; }
-  .active > a { background-color:#f5f5f5; display:inline-block; height:24px; position:relative; z-index:15; }
+  .active { position:relative; padding:0 !important; border:1px solid #ddd; border-top:0; border-bottom:0; }
+  .active > a { background-color:#f5f5f5; display:inline-block; height:$top_menu_height; position:relative; z-index:15; }
   .active .large-submenu { display:block !important; }
   .active .large-submenu a { border:0 !important; display:inline-block; padding:0.3em 0.4em 0.3em 0.6em !important; width:100%;
                                      -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
@@ -313,7 +313,7 @@ tr.filters {
   .large-submenu ul { padding:0.5em 0; list-style-type:none; width:150px; }
   .large-submenu li { padding:0em 1em; margin:0; }
   .large-submenu li.title { margin-top:0.4em; margin-bottom:0.2em; font-weight:bold; }
-  li.tiny { height:24px; line-height:24px; }
+  li.tiny { height:$top_menu_height; line-height:$top_menu_height; }
   li.tiny > a { position:relative; bottom:-1px; font-size:12px; }
   li.tiny .large-submenu { font-size:13px; }
   .arrow { /* http://hedgerwow.appspot.com/demo/arrows */ border-style:dashed; border-color:transparent; border-width:0.5em;
