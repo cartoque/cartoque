@@ -351,7 +351,10 @@ tr.filters {
   &.navbar {
     li.dropdown, ul.nav > li {
       list-style-type:none; margin:0; display:inline;
-      & > a { float:left; padding:1px 5px; }
+      & > a { padding:1px 3px; }
+    }
+    li.dropdown {
+      & > a { padding:1px 6px !important; }
     }
     .dropdown-menu {
       top: 26px;
@@ -382,7 +385,7 @@ tr.filters {
 
 td.actions div.actions { font-size:90%; margin:0; }
 #container>.actions, .items_list>.actions, .grid_12>.actions { 
-  position:relative; margin-bottom:4px; padding:4px 5px 3px; height:20px; line-height:20px;
+  position:relative; margin-bottom:4px; padding:4px 0px 3px 3px; height:20px; line-height:20px;
   text-align:left; color:#666;
   ul.select-buttons {
     list-style-type:none; margin:0; padding:0;
