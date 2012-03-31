@@ -2,13 +2,12 @@
 
 <div id="applications" class="span12 items_list">
 
-<div class="action-box action-box-left">
-  <%= link_to image_tag("add.png", size: "16x16"), new_application_path, title: t(:add_an_application) %>
-</div>
-
-<div class="action-box action-box-right">
-  <%= link_to image_tag("file_extension_pdf.png", size: "16x16"), applications_path(params.merge(format: "pdf")) %>
-</div>
+<%= action_links do %>
+  <div class="contextual">
+    <%= link_to image_tag("file_extension_pdf.png", size: "16x16"), applications_path(params.merge(format: "pdf")) %>
+  </div>
+  <%= link_to t(:add_an_application), new_application_path %>
+<% end %>
 
 <table class="pretty list center">
   <%= form_tag applications_path(params), id: "filters", method: :get do -%>
