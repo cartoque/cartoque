@@ -3,18 +3,22 @@
 <div id="databases" class="items_list span12">
 
 <%= action_links do %>
-  <div class="contextual before-contextual">
-    <%= link_to image_tag("chart_bar.png", size: "16x16"), distribution_databases_path %>
-    <%= link_to image_tag("file_extension_pdf.png", size: "16x16"), databases_path(format: "pdf") %>
-  </div>
-  <div class="contextual contextswitch">
-    <span class="toggle"><%= image_tag "3d_glasses.png", size: "16x16" %></span>
-    <ul class="contexts">
-      <%= context_li t(:synthetic_view), databases_path(view_mode: "normal"), current: (databases_view_mode == "normal") %>
-      <%= context_li t(:detailed_view), databases_path(view_mode: "detailed"), current: (databases_view_mode == "detailed") %>
+  <div class="navbar-inner" style="padding:0">
+    <ul class="nav">
+      <%= link_to t(:add), new_database_path %>
+    </ul>
+    <ul class="nav pull-right">
+      <li><%= link_to image_tag("chart_bar.png", size: "16x16"), distribution_databases_path %></li>
+      <li><%= link_to image_tag("file_extension_pdf.png", size: "16x16"), databases_path(format: "pdf") %></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag "3d_glasses.png", size: "16x16" %><b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <%= context_li t(:synthetic_view), databases_path(view_mode: "normal"), current: (databases_view_mode == "normal") %>
+          <%= context_li t(:detailed_view), databases_path(view_mode: "detailed"), current: (databases_view_mode == "detailed") %>
+        </ul>
+      </li>
     </ul>
   </div>
-  <%= link_to t(:add), new_database_path %>
 <% end %>
 
 <table class="pretty list databases">

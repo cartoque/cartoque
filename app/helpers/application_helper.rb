@@ -101,7 +101,7 @@ module ApplicationHelper
   end
 
   def action_links(&block)
-    content_tag(:div, class: "actions") do
+    content_tag(:div, class: "actions navbar navbar-static") do
       capture(&block)
     end
   end
@@ -122,7 +122,7 @@ module ApplicationHelper
   def context_li(text, url, options = {})
     current = options.delete(:current)
     if current
-      content_tag :li, text, class: "current"
+      content_tag :li, content_tag(:span, text, class: "current")
     else
       content_tag :li, link_to(text, url, options)
     end

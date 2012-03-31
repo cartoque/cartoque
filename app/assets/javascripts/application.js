@@ -14,6 +14,7 @@
 //= require jquery/jquery.inline-labels
 //= require jquery/jquery.elastic
 //= require jquery/jquery.reject.min
+//= require bootstrap-dropdown
 //= require raphael/raphael-min
 //= require raphael/g.raphael-min
 //= require raphael/g.pie-min
@@ -120,20 +121,6 @@ $(function() {
 
   //faceboxes
   $('a[rel*=facebox]').facebox();
-});
-
-// context
-$(function(){
-  $(".contextswitch").click(function(e){
-    var a=$(this), d=a.closest(".toggle");
-    if (a.hasClass("activated")) {
-      a.removeClass("activated");
-    } else {
-      a.addClass("activated");
-      e.stopPropagation();
-      $(document).one("click", {contextSwitch: a}, function(e){ e.data.contextSwitch.removeClass("activated"); });
-    }
-  })
 });
 
 // treat radio buttons for server type as checkboxes
@@ -244,6 +231,10 @@ $(function() {
   }
 });
 
+//dropdowns with twitter's bootstrap-dropdown.js
+$(function() {
+  $('.dropdown-toggle').dropdown()
+})
 //enable multiselects with harvesthq's chosen
 function enableChosenFields() {
   $(".chzn-select").chosen();

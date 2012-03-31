@@ -39,7 +39,7 @@ $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth 
 
 // Components: common
 //@import "bootstrap/sprites";
-//@import "bootstrap/dropdowns";
+@import "bootstrap/dropdowns";
 //@import "bootstrap/wells";
 //@import "bootstrap/component-animations";
 //@import "bootstrap/close";
@@ -50,8 +50,8 @@ $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth 
 //@import "bootstrap/alerts"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
 
 // Components: Nav
-//@import "bootstrap/navs";
-//@import "bootstrap/navbar";
+@import "bootstrap/navs";
+@import "bootstrap/navbar";
 //@import "bootstrap/breadcrumbs";
 //@import "bootstrap/pagination";
 //@import "bootstrap/pager";

@@ -3,20 +3,24 @@
 <div id="servers" class="items_list span12">
 
 <%= action_links do %>
-  <div class="contextual before-contextual">
-    <%= link_to image_tag("file_extension_xls.png", size: "16x16"), servers_path(params.merge(format: "csv")) %>
-    <%= link_to image_tag("file_extension_pdf.png", size: "16x16"), servers_path(params.merge(format: "pdf")) %>
-  </div>
-  <div class="contextual contextswitch">
-    <span class="toggle"><%= image_tag "3d_glasses.png", size: "16x16" %></span>
-    <ul class="contexts">
-      <%= context_li "Vue serveurs", servers_path(view_mode: "normal"), current: !maintenance_mode? %>
-      <%= context_li "Vue maintenance", servers_path(view_mode: "maintenance"), current: maintenance_mode? %>
+  <div class="navbar-inner" style="padding:0">
+    <ul class="nav">
+      <%= link_to t(:add_a_server), new_server_path %>
+    </ul>
+    <ul class="nav pull-right">
+      <li><%= link_to image_tag("file_extension_xls.png", size: "16x16"), servers_path(params.merge(format: "csv")) %></li>
+      <li><%= link_to image_tag("file_extension_pdf.png", size: "16x16"), servers_path(params.merge(format: "pdf")) %></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag "3d_glasses.png", size: "16x16" %><b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <%= context_li "Vue serveurs", servers_path(view_mode: "normal"), current: !maintenance_mode? %>
+          <%= context_li "Vue maintenance", servers_path(view_mode: "maintenance"), current: maintenance_mode? %>
+          <!--<li class="divider"></li>-->
+        </ul>
+      </li>
     </ul>
   </div>
-  <%= link_to t(:add_a_server), new_server_path %>
 <% end %>
-
 
 <table class="pretty list">
   <%= render "filters_#{view_mode}" %>
