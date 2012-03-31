@@ -16,16 +16,16 @@ describe ApplicationHelper do
   end
 
   describe "#context_li" do
-    it "should display a li.current if item is the current one" do
+    it "should display a li>span.current if item is the current one" do
       render text: context_li("blah", "url", current: true)
-      assert_select "li.current", "blah"
+      assert_select "li span.current", "blah"
       assert select "li a", false, "shouldn't contain a link"
     end
 
     it "should display normal li with link inside otherwise" do
       render text: context_li("blah", "url", current: false)
       assert_select "li > a[href=url]", "blah"
-      assert_select "li.current", false, "shouldn't be the current li"
+      assert_select "li span.current", false, "shouldn't be the current li"
     end
   end
 
