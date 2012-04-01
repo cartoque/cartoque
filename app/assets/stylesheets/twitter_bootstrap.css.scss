@@ -38,7 +38,7 @@ $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth 
 //@import "bootstrap/tables";
 
 // Components: common
-//@import "bootstrap/sprites";
+//@import "bootstrap/sprites"; //=>REPLACED by font-awesome webfont below
 @import "bootstrap/dropdowns";
 //@import "bootstrap/wells";
 //@import "bootstrap/component-animations";
@@ -74,6 +74,10 @@ $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth 
 
 //Responsive goodness
 //@import "bootstrap-responsive"; //BE CAREFUL IT BREAKS $grid* VARIABLES
+
+//Font-Awesome webfont
+//see: http://fortawesome.github.com/Font-Awesome
+@import "font-awesome";
 
 //hacks
 .row { margin-left:0; box-sizing: border-box; }
