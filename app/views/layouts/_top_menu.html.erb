@@ -2,12 +2,12 @@
   <ul class="menu-items contextual">
   <% if user_signed_in? %>
     <li class="connected-as"><%= link_to current_user.name, edit_user_path(current_user) %></li>
-    <li><%= link_to image_tag("sign-out.png", alt: t(:disconnection), size: "16x16"), destroy_user_session_path,
+    <li><%= link_to content_tag(:i, nil, class: "icon-signout"), destroy_user_session_path,
                     method: :delete, class: "img", title: t(:disconnection) %></li>
   <% end %>
   </ul>
   <ul class="menu-items">
-    <li class="home"><%= link_to image_tag("home.png", alt: t(:home), size: "16x16"), root_path,
+    <li class="home"><%= link_to content_tag(:i, nil, class: "icon-home"), root_path,
                                  class: "img", title: t(:home) %></li>
   <% if user_signed_in? %>
     <li class="applications"><%= link_to t(:applications), applications_path %></li>
