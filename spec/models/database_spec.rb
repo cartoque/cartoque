@@ -30,6 +30,7 @@ describe Database do
   it "should return a postgres report" do
     d = Factory(:database)
     d.should_not be_nil
+    d.servers.size.should eq 1
     d.oracle_report.should be_blank
     d.postgres_report.should be_present
     d.postgres_report.size.should eq 2
@@ -39,6 +40,7 @@ describe Database do
   it "should return an oracle report" do
     d = Factory(:oracle)
     d.should_not be_nil
+    d.servers.size.should eq 1
     d.oracle_report.should be_present
     d.postgres_report.should be_blank
     d.oracle_report.size.should eq 1
@@ -60,5 +62,36 @@ describe Database do
     Database.new.size.should eq 0
     Factory(:database).size.should eq 29313348516
     Factory(:oracle).size.should eq 12091260928
+  end
+
+  describe "#distriution" do
+    before do
+      srv = Factory.create(:server)
+      vm  = Factory.create(:virtual)
+      Database.create!(name: "pg-cluster",  type: "postgres", servers: [srv])
+      Database.create!(name: "ora-cluster", type: "oracle",   servers: [vm])
+    end
+
+    it "returns a distribution compatible with d3.js source" do
+      Database.all.map(&:servers).map(&:size).should eq [1, 1]
+      distrib = Database.distribution
+      #top key
+      distrib.keys.should =~ %w(name children)
+      distrib["children"].should have_exactly(2).items
+      #grouped by server type
+      distrib["children"].inject([]){|memo,h| memo << h["name"]}.should =~ %w(postgres oracle)
+      #grouped by clusters
+      pg = distrib["children"].detect{|h| h["name"] == "postgres"}["children"]
+      pg.should have_exactly(1).item
+      pg.first["name"].should == "pg-cluster"
+      #grouped by db engines
+      dbs = pg.first["children"].first["children"]
+      dbs_str = dbs.map{|h| "#{h["name"]}:#{h["size"]}"}.sort.join(" ")
+      dbs_str.should == "app01:6054180 app02:293962020 app03:5341476 app04:292479268 app05:11149754660"
+    end
+
+    it "defaults to Database.all" do
+      Database.distribution.should eq Database.distribution(Database.includes(:servers))
+    end
   end
 end

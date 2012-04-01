@@ -7,27 +7,8 @@ class DatabasesController < ResourcesController
   has_scope :by_type
 
   def distribution
-    if params[:format] == "json"
-      @databases = Database.all
-      map = {"oracle" => [], "postgres" => []}
-      @databases.each do |database|
-        dbtype = database.type
-        dbmap = {"name" => database.name, "children" => []}
-        database.report.each do |report|
-          name = report["ora_instance"].presence || report["pg_cluster"]
-          subdbs = report["schemas"].presence || report["databases"]
-          if name.present? && subdbs.present?
-            schemas = subdbs.map{|schema,size| {"name"=>schema, "size"=>size}}
-            dbmap["children"] << {"name" => name, "children" => schemas}
-          end
-        end
-        map[dbtype] << dbmap
-      end
-      @json = {"name"=>"databases", "children"=>[{"name" => "postgres", "children" => map["postgres"]}, {"name" => "oracle", "children" => map["oracle"]}]}
-    end
-
     respond_to do |format|
-      format.json { render json: @json }
+      format.json { render json: Database.distribution }
       format.html
     end
   end
