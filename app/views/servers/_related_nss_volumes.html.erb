@@ -1,8 +1,0 @@
-<div class="related-ci related-nss-volumes">
-  <%= link_to nss_volumes_path(by_server: @server.id) do %>
-  <div class="informations">
-    <h3><%= t(:nss_server) %> - <%= pluralize(@server.nss_volumes.count, t(:volume).downcase) %></h3>
-    <div class="details"><%= t(:word_on) %> <%= "#{@server.nss_disks.count} #{t(:network_disks)}".downcase %></div>
-  </div>
-  <% end %>
-</div>

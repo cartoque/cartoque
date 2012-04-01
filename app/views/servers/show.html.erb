@@ -77,8 +77,6 @@
   <%= render 'related_vms' if @server.virtual_machines.any? %>
   <%= render 'related_licenses' if @server.licenses.any? %>
   <%= render 'related_tomcats' if @server.tomcats.any? %>
-  <%= render 'related_nss_volumes' if @server.nss_volumes.any? %>
-  <%= render 'related_used_nss_volumes' if @server.used_nss_volumes.any? %>
   <%= render 'related_network_filesystems' if @server.network_filesystems.any? %>
   <%= render 'related_exported_disks' if @server.exported_disks.any? %>
   <%= render 'related_cronjobs' if @server.cronjobs.any? %>

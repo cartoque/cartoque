@@ -1,5 +1,0 @@
-$("#nss_volumes_list").html("<%= escape_javascript(render("list")) %>");
-$("#nss_volumes_counter").html("<%= @nss_volumes.count %>");
-$("#nss_volumes_size_counter").html("<%= pretty_size(@nss_volumes.map(&:size).sum).sub(/b(ytes)?$/,"o") %>");
-fixTableHeaders();
-$("html, body").animate({ scrollTop: 0 }, 200);

@@ -18,8 +18,6 @@ Cartoque::Application.routes.draw do
   resources :backup_exceptions, except: :show
   resources :backup_jobs, only: [:index]
   resources :licenses
-  resources :nss_disks, only: [:index]
-  resources :nss_volumes, only: [:index]
   resources :cronjobs, only: [:index]
   resources :settings, only: :index do
    collection { put 'update_all', as: 'update_all' }

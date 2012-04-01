@@ -66,12 +66,8 @@ class Server
   has_one :storage
   has_many :exported_disks,      class_name: 'NetworkDisk', foreign_key: 'server_id', dependent: :destroy
   has_many :network_filesystems, class_name: 'NetworkDisk', foreign_key: 'client_id', dependent: :destroy
-  has_many :nss_disks, dependent: :destroy
   has_many :physical_links,      class_name: 'PhysicalLink', foreign_key: 'server_id', dependent: :destroy
   has_many :connected_links,     class_name: 'PhysicalLink', foreign_key: 'switch_id', dependent: :destroy
-  has_and_belongs_to_many :nss_volumes, inverse_of: :clients
-  has_many :nss_volumes, dependent: :destroy
-  has_and_belongs_to_many :used_nss_volumes, class_name: 'NssVolume', inverse_of: :clients
   has_many :ipaddresses, foreign_key: 'server_id', dependent: :destroy
 
   before_save :update_site!
