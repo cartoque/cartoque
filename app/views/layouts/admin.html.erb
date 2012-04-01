@@ -1,5 +1,5 @@
 <% content_for :sidebar  do %>
-  <h2><%= image_tag "settings.png", size: "16x16", class: "inline" %> <%= t(:configuration) %></h2>
+  <h2><%= content_tag :i, nil, class: "icon-cog" %> <%= t(:configuration) %></h2>
   <ul class="simple-list">
     <%= sidebar_item t(:datacenters), datacenters_path, Datacenter.count %>
     <%= sidebar_item t(:hosting_rooms), sites_path, Site.count %>
