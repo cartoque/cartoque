@@ -46,7 +46,7 @@ describe "Contacts, Companies" do
       end
       click_button 'Apply modifications'
       current_path.should == contact_path(contact)
-      click_link 'Back to the list'
+      click_link 'Contacts'
       page.should have_selector "a", text: "Wagner Charles", href: contact_path(contact)
     end
   end
@@ -60,7 +60,7 @@ describe "Contacts, Companies" do
       end
       click_button 'Create'
       page.should have_content 'Tiny Company'
-      click_link 'Back to the list'
+      click_link 'Contact'
       page.should have_selector "a", text: "Tiny Company"
     end
   end

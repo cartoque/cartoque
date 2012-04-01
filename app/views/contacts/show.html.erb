@@ -1,10 +1,6 @@
-<% title "#{t(:contact)}: #{@contact.full_name}" %>
+<% title link_to(t(:contacts), contacts_path) + " &rsaquo; ".html_safe + @contact.full_name %>
 
 <div id="contact_informations" class="span4">
-
-<%= action_links do %>
-  <%= link_to t(:back_to_the_list), contacts_path %>
-<% end %>
 
 <%= render partial: 'contact', object: @contact %>
 

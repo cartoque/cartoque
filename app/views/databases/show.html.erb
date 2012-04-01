@@ -1,11 +1,10 @@
-<% title "#{t(:database)} #{@database.name.upcase}" %>
+<% title link_to(t(:databases), databases_path) + " &rsaquo; ".html_safe + @database.name.upcase %>
 
 <div class="span12 center">
 
 <%= action_links do %>
   <%= link_to t(:edit), edit_database_path(@database) %> |
-  <%= link_to t(:delete), @database, confirm: t(:text_are_you_sure), method: :delete %> |
-  <%= link_to t(:back_to_the_list), databases_path %>
+  <%= link_to t(:delete), @database, confirm: t(:text_are_you_sure), method: :delete %>
 <% end %>
 
 <table class="pretty list database">

@@ -17,7 +17,7 @@ describe "Databases" do
   describe "GET /databases/:id" do
     it "shows a database page" do
       visit database_path(database.to_param)
-      page.should have_selector "h1", text: "Database DB-01"
+      page.should have_selector "h1", text: /Databases.*DB-01/
     end
   end
 

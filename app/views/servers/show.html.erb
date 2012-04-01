@@ -1,10 +1,9 @@
-<% title "#{t(:server)} #{@server.name.upcase}" %>
+<% title link_to(t(:servers), servers_path) + " &rsaquo; ".html_safe + @server.name.upcase %>
 
 <div class="span12">
 <%= action_links do %>
   <%= link_to t(:edit), edit_server_path(@server) %> |
-  <%= link_to t(:delete), @server, confirm: t(:text_are_you_sure), method: :delete %> |
-  <%= link_to t(:back_to_the_list), servers_path %>
+  <%= link_to t(:delete), @server, confirm: t(:text_are_you_sure), method: :delete %>
 <% end %>
 </div>
 
