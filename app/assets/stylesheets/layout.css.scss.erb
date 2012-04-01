@@ -205,7 +205,7 @@ html, body, #wrap, #container { height: 100%; }
 input[type="text"], input[type="password"], input[type="tel"], input[type="email"], input[type="url"], input[type="search"], textarea {
   padding:2px; box-sizing: border-box; border: 1px solid #aaa; overflow: hidden;
   @include complex-gradient(#fff, 85, #eee, 99);
-  &:focus, &:active { @include box-shadow(rgba(0,0,0,.3), 0, 0, 5px); border: 1px solid #5897FB; }
+  &:focus, &:active { @include box-shadow(rgba(0,0,0,.3), 0, 0, 5px); border: 1px solid #5897FB; outline:none; }
 }
 textarea {
   margin-top:3px;
