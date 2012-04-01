@@ -1,5 +1,10 @@
 desc "Imports every assets from files in data/*"
 namespace :import do
-  task :all => [:cronjobs, :nss_volumes, :nss_disks, :network_disks,
-                :facter, :licenses, :vmware, :tina, :updates]
+  task :all do
+    Rake.application.tasks.select do |task|
+      task.name.starts_with?("import:") && task.name != "import:all"
+    end.each do |task|
+      task.invoke
+    end
+  end
 end
