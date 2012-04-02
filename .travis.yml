@@ -6,8 +6,4 @@ branches:
     - master
     - stable
 env: RAILS_ENV=test
-before_script:
-  - "mysql -e 'create database cartoque_test;'"
-  - "cp config/database.yml.travis config/database.yml"
-  - "bundle exec rake db:schema:load db:seed"
 script: "bundle exec rspec spec"
