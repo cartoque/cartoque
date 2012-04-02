@@ -78,6 +78,18 @@ $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth 
 //Font-Awesome webfont
 //see: http://fortawesome.github.com/Font-Awesome
 @import "font-awesome";
+//use the fonts outside the asset pipeline for now
+//it seems files are not found in production mode, even if the directory is in the assets.paths
+//TODO: understand why the asset pipeline doesn't find webfonts
+@font-face {
+  font-family:'MyFontAwesome';
+  src:local('MyFontAwesome'), local('FontAwesome'), url('fontawesome-webfont.ttf') format('truetype');
+  font-style:normal;
+  font-weight:normal;
+}
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    font-family: MyFontAwesome;
+}
 
 //hacks
 .row { margin-left:0; box-sizing: border-box; }
