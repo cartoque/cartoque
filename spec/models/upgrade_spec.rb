@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Upgrade do
-  let(:server) { Factory.create(:server) }
+  let(:server) { FactoryGirl.create(:server) }
   let(:upgrade) { Upgrade.create!(server_id: server.id) }
 
   it "belongs to one server" do
@@ -11,7 +11,7 @@ describe Upgrade do
 
   it "should have a server" do
     Upgrade.new.should_not be_valid
-    Upgrade.new(server: Factory(:virtual)).should be_valid
+    Upgrade.new(server: FactoryGirl.create(:virtual)).should be_valid
   end
 
   it "should store #packages_list as a Hash" do
@@ -28,7 +28,7 @@ describe Upgrade do
   end
 
   it "has an upgrader" do
-    user = Factory(:user)
+    user = FactoryGirl.create(:user)
     upgrade.upgrader_id = user.id
     upgrade.save
     upgrade.reload.upgrader.should eq user

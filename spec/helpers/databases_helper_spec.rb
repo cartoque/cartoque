@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe DatabasesHelper do
   before do
-    @database = Factory(:database)
+    @database = FactoryGirl.create(:database)
   end
 
   it "should display pretty size" do

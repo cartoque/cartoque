@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ContactDecorator do
   before do
-    @contact = Factory(:contact).decorate
+    @contact = FactoryGirl.create(:contact).decorate
   end
 
   it "gives a short form with just last name and first name" do

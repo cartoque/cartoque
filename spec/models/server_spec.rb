@@ -7,7 +7,7 @@ describe Server do
   end
 
   describe "#ipaddresses" do
-    let(:server) { Factory(:server) }
+    let(:server) { FactoryGirl.create(:server) }
 
     it "should update with an address as a string" do
       server.ipaddresses = [ Ipaddress.new(address: "192.168.99.99", main: true) ]
@@ -57,7 +57,7 @@ describe Server do
   end
 
   describe "#find" do
-    let(:server) { Factory(:server) }
+    let(:server) { FactoryGirl.create(:server) }
 
     it "should work normally with ids" do
       Server.find(server.id).should eq server
@@ -167,8 +167,8 @@ describe Server do
 
   describe "#stock?" do
     it "should be truthy only if it's in a rack that is marked as stock" do
-      server = Factory(:server)
-      rack = Factory(:rack1)
+      server = FactoryGirl.create(:server)
+      rack = FactoryGirl.create(:rack1)
       server.stock?.should be_false
       server.physical_rack = rack
       rack.stock?.should be_false
@@ -180,8 +180,8 @@ describe Server do
   end
 
   describe ".not_backuped" do
-    let!(:server) { Factory(:server) }
-    let!(:vm)     { Factory(:virtual) }
+    let!(:server) { FactoryGirl.create(:server) }
+    let!(:vm)     { FactoryGirl.create(:virtual) }
 
     it "should include everything by default" do
       Server.not_backuped.should include(server)
@@ -208,7 +208,7 @@ describe Server do
 
     it "should not include stock servers" do
       Server.not_backuped.should include(server)
-      rack = PhysicalRack.create!(name: "rack-1", site_id: Factory(:room).id.to_s, status: PhysicalRack::STATUS_STOCK)
+      rack = PhysicalRack.create!(name: "rack-1", site_id: FactoryGirl.create(:room).id.to_s, status: PhysicalRack::STATUS_STOCK)
       server.physical_rack = rack
       server.save
       Server.not_backuped.should_not include(server)
@@ -217,7 +217,7 @@ describe Server do
 
   describe "#can_be_managed_with_puppet?" do
     it "should require having an compatible os defined" do
-      srv = Factory(:server)
+      srv = FactoryGirl.create(:server)
       srv.operating_system.should be_blank
       srv.can_be_managed_with_puppet?.should be_false
       sys = OperatingSystem.create(name: "Ubuntu 11.10")

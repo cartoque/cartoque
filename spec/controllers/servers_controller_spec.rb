@@ -24,7 +24,7 @@ describe ServersController do
   end
 
   describe "real ServersController" do
-    let!(:server) { Factory.create(:server) }
+    let!(:server) { FactoryGirl.create(:server) }
 
     it "should get index" do
       get :index

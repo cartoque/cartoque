@@ -4,7 +4,7 @@ describe ApplicationsController do
   login_user
 
   before do
-    @application = Factory(:application)
+    @application = FactoryGirl.create(:application)
   end
 
   it "should get index" do
@@ -30,7 +30,7 @@ describe ApplicationsController do
 
   it "should access the rest/xml API" do
     app_inst = ApplicationInstance.new(name: "prod", authentication_method: "none", application_id: @application.id.to_s)
-    app_inst.servers = [ Factory(:server), Factory(:virtual) ]
+    app_inst.servers = [ FactoryGirl.create(:server), FactoryGirl.create(:virtual) ]
     app_inst.save
     get :show, id: @application.to_param, format: :xml
     response.body.should have_selector :css, "application>_id", @application.id.to_s
@@ -66,7 +66,7 @@ describe ApplicationsController do
     contact_relations_count = ContactRelation.count
 
     Application.find_by_name("webapp-01").should be_blank
-    c = Factory(:contact)
+    c = FactoryGirl.create(:contact)
 
     post :create, application: { name: "webapp-01", contact_ids: [c.id] }
     app = Application.find_by_name("webapp-01")
@@ -79,7 +79,7 @@ describe ApplicationsController do
 
   pending "allows update with contacts" do
     app = Application.create!(name: "webapp-01")
-    c = Factory(:contact)
+    c = FactoryGirl.create(:contact)
 
     put :update, id: app.id, application: { name: "webapp-01", contact_ids: [] }
     app.reload.contact_ids.should == []

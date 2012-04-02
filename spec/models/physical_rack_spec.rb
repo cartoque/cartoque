@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe PhysicalRack do
   before do
-    @rack = Factory(:rack1)
-    @site = Factory(:room)
+    @rack = FactoryGirl.create(:rack1)
+    @site = FactoryGirl.create(:room)
   end
 
   #TODO: move it to a presenter

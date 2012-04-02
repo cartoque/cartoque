@@ -36,13 +36,13 @@ describe "Authentication" do
       end
 
       it "grants access if authentication token is valid" do
-        u = Factory(:user)
+        u = FactoryGirl.create(:user)
         get servers_path(format: "csv").to_s, {}, "HTTP_X_API_TOKEN" => u.authentication_token
         response.status.should == 200
       end
 
       it "allows access even if not using csv/xml/json formats (changed with devise)" do
-        u = Factory(:user)
+        u = FactoryGirl.create(:user)
         get servers_path(format: "html").to_s, {}, "HTTP_X_API_TOKEN" => u.authentication_token
         response.status.should == 200
       end
@@ -51,12 +51,12 @@ describe "Authentication" do
 
   describe "should update User#seen_on (max of #current_sign_in_at and #last_sign_in_at)" do
     it "is unset by default" do
-      u = Factory(:user)
+      u = FactoryGirl.create(:user)
       u.seen_on.should be_blank
     end
 
     it "updates when using 'current_user' and returns the current user" do
-      u = Factory(:user)
+      u = FactoryGirl.create(:user)
       get servers_path(format: "csv").to_s, {}, "HTTP_X_API_TOKEN" => u.authentication_token
       response.status.should == 200
       u.reload.seen_on.should_not be_blank

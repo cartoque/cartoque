@@ -12,7 +12,7 @@ describe DatabasesController do
   end
 
   before do
-    @database = Factory(:database)
+    @database = FactoryGirl.create(:database)
   end
 
   describe "GET index" do

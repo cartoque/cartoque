@@ -1,3 +1,5 @@
-Factory.define :company do |m|
-  m.name 'WorldCompany'
+FactoryGirl.define do
+  factory :company do |m|
+    m.name 'WorldCompany'
+  end
 end

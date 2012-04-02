@@ -4,7 +4,7 @@ describe UsersController do
   login_user
 
   before do
-    @user = Factory(:bob)
+    @user = FactoryGirl.create(:bob)
   end
 
   it "should get index" do

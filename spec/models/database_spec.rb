@@ -28,7 +28,7 @@ describe Database do
   end
 
   it "should return a postgres report" do
-    d = Factory(:database)
+    d = FactoryGirl.create(:database)
     d.should_not be_nil
     d.servers.size.should eq 1
     d.oracle_report.should be_blank
@@ -38,7 +38,7 @@ describe Database do
   end
 
   it "should return an oracle report" do
-    d = Factory(:oracle)
+    d = FactoryGirl.create(:oracle)
     d.should_not be_nil
     d.servers.size.should eq 1
     d.oracle_report.should be_present
@@ -52,7 +52,7 @@ describe Database do
   end
 
   it "should return a postgres_report if postgres, oracle if oracle, empty array if no type" do
-    d = Factory(:database)
+    d = FactoryGirl.create(:database)
     d.postgres_report.size.should eq 2
     d.report.size.should eq 2
     Database.new.report.should eq []
@@ -60,14 +60,14 @@ describe Database do
 
   it "should return total size handled by a database cluster server" do
     Database.new.size.should eq 0
-    Factory(:database).size.should eq 29313348516
-    Factory(:oracle).size.should eq 12091260928
+    FactoryGirl.create(:database).size.should eq 29313348516
+    FactoryGirl.create(:oracle).size.should eq 12091260928
   end
 
   describe "#distriution" do
     before do
-      srv = Factory.create(:server)
-      vm  = Factory.create(:virtual)
+      srv = FactoryGirl.create(:server)
+      vm  = FactoryGirl.create(:virtual)
       Database.create!(name: "pg-cluster",  type: "postgres", servers: [srv])
       Database.create!(name: "ora-cluster", type: "oracle",   servers: [vm])
     end

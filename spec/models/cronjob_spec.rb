@@ -6,7 +6,7 @@ describe Cronjob do
       line = "00  05  *  *  *  root  /opt/scripts/my-own-script"
       cron = Cronjob.parse_line(line)
       cron.should_not be_valid
-      cron.server = Factory(:server)
+      cron.server = FactoryGirl.create(:server)
       cron.should be_valid
       cron.frequency.should eq "00 05 * * *"
       cron.user.should eq "root"
@@ -17,7 +17,7 @@ describe Cronjob do
       line = "/etc/crontab 00  05  *  *  *  root  /opt/scripts/my-own-script"
       cron = Cronjob.parse_line(line)
       cron.should_not be_valid
-      cron.server = Factory(:server)
+      cron.server = FactoryGirl.create(:server)
       cron.should be_valid
       cron.definition_location.should eq "/etc/crontab"
       cron.frequency.should eq "00 05 * * *"
@@ -28,7 +28,7 @@ describe Cronjob do
     it "should parse a cron line with a special frequency" do
       line = "@reboot root  /opt/scripts/my-own-script"
       cron = Cronjob.parse_line(line)
-      cron.server_id = Factory(:server).id
+      cron.server_id = FactoryGirl.create(:server).id
       cron.save!
       cron.frequency.should eq "@reboot"
       cron.user.should eq "root"

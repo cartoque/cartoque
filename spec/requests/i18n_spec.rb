@@ -21,7 +21,7 @@ describe "I18n" do
 
   describe "when authenticated" do
     before do
-      @user = Factory(:user)
+      @user = FactoryGirl.create(:user)
       @controller = ApplicationsController.new
       @controller.request    = ActionController::TestRequest.new
       @controller.stub(:current_user).and_return(@user)

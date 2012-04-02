@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BackupException do
   it "has many servers" do
-    srv = Factory.create(:server)
+    srv = FactoryGirl.create(:server)
     exception = BackupException.create(reason: "Here's why !")
     exception.server_ids = [srv.id]
     exception.save

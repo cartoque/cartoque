@@ -10,7 +10,7 @@ describe Site do
 
   it "can have one or many racks" do
     site = Site.create(name: "room-1")
-    rack = Factory(:rack1)
+    rack = FactoryGirl.create(:rack1)
     rack.site = site
     rack.save
     rack.site.should eq site
@@ -19,7 +19,7 @@ describe Site do
 
   it "updates rack's site_name" do
     site = Site.create(name: "room-1")
-    rack = Factory(:rack1)
+    rack = FactoryGirl.create(:rack1)
     rack.site = site
     rack.save
     rack.site_name.should == "room-1"

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ServerDecorator do
-  let(:server) { ServerDecorator.decorate(Factory.create(:server)) }
+  let(:server) { ServerDecorator.decorate(FactoryGirl.create(:server)) }
 
   describe "#badges" do
     it "is empty if the server has no badge" do

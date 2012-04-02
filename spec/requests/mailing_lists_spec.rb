@@ -4,8 +4,8 @@ describe "Mailing Lists" do
   let(:user) { FactoryGirl.create(:user) }
   before { login_as user }
 
-  let!(:contact) { Factory.create(:contact) }
-  let!(:company) { Factory.create(:company) }
+  let!(:contact) { FactoryGirl.create(:contact) }
+  let!(:company) { FactoryGirl.create(:company) }
 
   describe "GET /mailing_lists" do
     it "gets all mailing lists" do

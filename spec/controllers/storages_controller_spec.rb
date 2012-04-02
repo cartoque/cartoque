@@ -3,7 +3,7 @@ require 'spec_helper'
 describe StoragesController do
   login_user
 
-  let!(:storage) { Factory.create(:storage) }
+  let!(:storage) { FactoryGirl.create(:storage) }
 
   it "should get index" do
     get :index
@@ -17,7 +17,7 @@ describe StoragesController do
   end
 
   it "should create storage" do
-    lambda{ post :create, storage: { constructor: "IBM", server_id: Factory.create(:virtual).id.to_s } }.should change(Storage, :count)
+    lambda{ post :create, storage: { constructor: "IBM", server_id: FactoryGirl.create(:virtual).id.to_s } }.should change(Storage, :count)
     assert_redirected_to storages_path
   end
 

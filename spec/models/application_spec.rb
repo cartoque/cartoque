@@ -32,7 +32,7 @@ describe Application do
 
   describe "Application#sorted_application_instances" do
     it "should resist to empty arrays" do
-      app = Factory(:application)
+      app = FactoryGirl.create(:application)
       app.application_instances.should eq []
       app.sorted_application_instances.should eq []
     end

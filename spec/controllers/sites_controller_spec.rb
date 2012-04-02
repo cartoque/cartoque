@@ -4,7 +4,7 @@ describe SitesController do
   login_user
 
   before do
-    @site = Factory(:room)
+    @site = FactoryGirl.create(:room)
   end
 
   it "should get index" do

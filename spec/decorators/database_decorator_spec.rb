@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe DatabaseDecorator do
   before do
-    @database = Factory(:database).decorate
+    @database = FactoryGirl.create(:database).decorate
   end
 
   it "should display nodes under a database" do

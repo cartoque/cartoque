@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe License do
-  let!(:server) { Factory(:server) }
+  let!(:server) { FactoryGirl.create(:server) }
   let!(:license1) { License.create(editor:"softcompany1", key: "XCDEZF", title: "Soft1 license") }
   let!(:license2) { License.create(editor:"softcompany2", key: "ADFRTG", server_ids: [server.id]) }
 

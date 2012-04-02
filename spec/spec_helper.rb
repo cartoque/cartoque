@@ -51,7 +51,7 @@ Spork.prefork do
     #OmniAuth.config.test_mode = true
     #OmniAuth.config.mock_auth[:cas] = {
     #  'provider' => 'cas',
-    #  'uid'      => Factory(:user).uid
+    #  'uid'      => create(:user).uid
     #}
 
     #a clean state between each spec/test
@@ -72,6 +72,9 @@ Spork.prefork do
     # automatically mark decorator specs as type: :decorator
     # TODO: remove it when it's included in Draper
     require 'draper/rspec_integration'
+
+    # factory girl invocation methods
+    config.include FactoryGirl::Syntax::Methods
 
     # include capybara matchers in decorator specs
     config.include Capybara::RSpecMatchers, type: :decorator

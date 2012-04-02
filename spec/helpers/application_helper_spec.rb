@@ -10,7 +10,7 @@ describe ApplicationHelper do
   describe "#links_for" do
     it "should render some links to external applications" do
       Setting.redmine_url = "http://redmine.org"
-      text = links_for(Factory(:application))
+      text = links_for(FactoryGirl.create(:application))
       text.should have_selector "a", class: "link-to-redmine", href: "http://redmine.org/projects/appli-01", content: "R"
     end
   end
@@ -38,14 +38,14 @@ describe ApplicationHelper do
     end
 
     it "should return a link to the server if a server with that name exists" do
-      render text: link_to_server_if_exists(Factory(:server).name)
+      render text: link_to_server_if_exists(FactoryGirl.create(:server).name)
       assert_select "a", "server-01"
     end
   end
 
   describe "#link_to_servername" do
     it "should return a link to /servers/<server identifier>" do
-      render text: link_to_servername(Factory(:server).name)
+      render text: link_to_servername(FactoryGirl.create(:server).name)
       assert_select "a[href=/servers/server-01]"
     end
   end

@@ -4,7 +4,7 @@ describe OperatingSystemsController do
   login_user
 
   before do
-    @operating_system = Factory(:operating_system)
+    @operating_system = FactoryGirl.create(:operating_system)
   end
 
   it "should get index" do

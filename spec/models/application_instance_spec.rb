@@ -7,7 +7,7 @@ describe ApplicationInstance do
     instance.errors.messages.keys.sort.should == [:application, :authentication_method, :name]
     instance.should have(4).errors
     instance.name = "prod"
-    instance.application = Factory(:application)
+    instance.application = FactoryGirl.create(:application)
     instance.authentication_method = "none"
     instance.should be_valid
   end

@@ -4,7 +4,7 @@ describe PhysicalRacksController do
   login_user
 
   before do
-    @physical_rack = Factory(:rack1)
+    @physical_rack = FactoryGirl.create(:rack1)
   end
 
   it "should get index" do

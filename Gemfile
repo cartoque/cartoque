@@ -67,7 +67,7 @@ Dir.glob(File.expand_path("../vendor/plugins/*/Gemfile",__FILE__)).each do |gemf
 end
 
 group :test do
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '~> 3.0'
   gem 'mocha'
   gem 'database_cleaner'
   gem 'guard-rspec'

@@ -1,4 +1,6 @@
-Factory.define :storage do |s|
-  s.server { Factory(:server) }
-  s.constructor "IBM"
+FactoryGirl.define do
+  factory :storage do |s|
+    s.server { FactoryGirl.create(:server) }
+    s.constructor "IBM"
+  end
 end
