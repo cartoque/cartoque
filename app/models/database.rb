@@ -1,3 +1,5 @@
+require 'd3_utils'
+
 class Database
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -86,6 +88,6 @@ class Database
       end
       map[dbtype] << dbmap
     end
-    {"name"=>"databases", "children"=>[{"name" => "postgres", "children" => map["postgres"]}, {"name" => "oracle", "children" => map["oracle"]}]}
+    D3Utils.hash_to_d3format({databases: { postgres: map["postgres"], oracle: map["oracle"] } }).first
   end
 end
