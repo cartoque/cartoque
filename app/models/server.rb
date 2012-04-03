@@ -244,4 +244,9 @@ class Server
   def update_site!
     self.site = self.physical_rack.try(:site)
   end
+
+  #TODO: migrate it definitely to a better structure
+  def hardware_model
+    self.model
+  end
 end

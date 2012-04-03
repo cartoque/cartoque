@@ -235,4 +235,11 @@ describe Server do
       srv.application_instances.should eq []
     end
   end
+
+  describe "#hardware_model" do
+    it "gets #model (but model is a reserved word for draper)" do
+      srv = Server.create!(name: "srv-01", model: "Dell PE 2950")
+      srv.hardware_model.should == "Dell PE 2950"
+    end
+  end
 end

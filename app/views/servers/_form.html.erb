@@ -75,7 +75,7 @@
     <tbody id="server-physical-hardware" class="<%= css_classes_physical %>">
       <%= f.input :physical_rack_id, collection: PhysicalRack.all %>
       <%= f.input :manufacturer %>
-      <%= f.input :model, input_html: { value: @server.model.try(:model) } %>
+      <%= f.input :model, input_html: { value: @server.hardware_model } %>
     </tbody>
     <tbody>
       <%= f.input :nb_proc, collection: [1,2,4,6,8,10,12,16,24,32] %>
