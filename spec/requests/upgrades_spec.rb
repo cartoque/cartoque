@@ -30,5 +30,9 @@ describe "Upgrades" do
       current_path.should == upgrades_path
       page.body.should match /server-02.*server-01/m
     end
+
+    it "validates an upgrade" do
+      put validate_upgrade_path(upgrade1, format: :js)
+    end
   end
 end

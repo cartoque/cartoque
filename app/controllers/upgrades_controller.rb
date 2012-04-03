@@ -5,7 +5,7 @@ class UpgradesController < InheritedResources::Base
   has_scope :by_server
 
   def validate
-    @upgrade = Upgrade.find_by_id(params[:id])
+    @upgrade = Upgrade.find(params[:id]) rescue nil
     if @upgrade
       @upgrade.update_attribute(:upgrader_id, current_user.id)
       @upgrade.update_attribute(:upgraded_status, true)
