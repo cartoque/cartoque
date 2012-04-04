@@ -8,7 +8,7 @@ class DatabasesController < ResourcesController
 
   def distribution
     respond_to do |format|
-      format.json { render json: Database.distribution }
+      format.json { render json: Database.d3_distribution }
       format.html
     end
   end

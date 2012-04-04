@@ -73,7 +73,7 @@ class Database
     end
   end
 
-  def self.distribution(databases = Database.includes(:servers))
+  def self.hash_distribution(databases = Database.includes(:servers))
     map = {"oracle" => {}, "postgres" => {}}
     databases.each do |db|
       dbmap = {}
@@ -86,6 +86,10 @@ class Database
       end
       map[db.type][db.name] = dbmap
     end
-    D3Utils.hash_to_d3format({ databases: map }).first
+    { databases: map }
+  end
+
+  def self.d3_distribution(*args)
+    D3Utils.hash_to_d3format(self.hash_distribution(*args)).first
   end
 end

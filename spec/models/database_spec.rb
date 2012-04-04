@@ -74,7 +74,7 @@ describe Database do
 
     it "returns a distribution compatible with d3.js source" do
       Database.all.map(&:servers).map(&:size).should eq [1, 1]
-      distrib = Database.distribution
+      distrib = Database.d3_distribution
       #top key
       distrib.keys.should =~ %w(name children)
       distrib["children"].should have_exactly(2).items
@@ -91,7 +91,7 @@ describe Database do
     end
 
     it "defaults to Database.all" do
-      Database.distribution.should eq Database.distribution(Database.includes(:servers))
+      Database.d3_distribution.should eq Database.d3_distribution(Database.includes(:servers))
     end
   end
 end
