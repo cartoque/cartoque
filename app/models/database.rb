@@ -74,20 +74,18 @@ class Database
   end
 
   def self.distribution(databases = Database.includes(:servers))
-    map = {"oracle" => [], "postgres" => []}
-    databases.each do |database|
-      dbtype = database.type
-      dbmap = {"name" => database.name, "children" => []}
-      database.report.each do |report|
+    map = {"oracle" => {}, "postgres" => {}}
+    databases.each do |db|
+      dbmap = {}
+      db.report.each do |report|
         name = report["ora_instance"].presence || report["pg_cluster"]
-        subdbs = report["schemas"].presence || report["databases"]
-        if name.present? && subdbs.present?
-          schemas = subdbs.map{|schema,size| {"name"=>schema, "size"=>size}}
-          dbmap["children"] << {"name" => name, "children" => schemas}
+        schemas = report["schemas"].presence || report["databases"]
+        if name.present? && schemas.present?
+          dbmap[name] = schemas
         end
       end
-      map[dbtype] << dbmap
+      map[db.type][db.name] = dbmap
     end
-    D3Utils.hash_to_d3format({databases: { postgres: map["postgres"], oracle: map["oracle"] } }).first
+    D3Utils.hash_to_d3format({ databases: map }).first
   end
 end
