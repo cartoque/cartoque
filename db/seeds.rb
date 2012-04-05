@@ -6,8 +6,5 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Daley', city: cities.first)
 
-#a DB connection
-db = ActiveRecord::Base.connection
-
 #create a first user if none
 User.create!(name: "admin", email: "admin@example.net", password: "admin") if User.count == 0
