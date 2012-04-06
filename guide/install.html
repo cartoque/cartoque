@@ -79,11 +79,9 @@ application server that supports Rails applications ; the installation of these 
 scope of this tutorial, but I personnaly run my production environment with Ruby 1.9.2-p290 installed with 
 <a href="http://beginrescueend.com/">RVM</a>, and <a href="http://www.modrails.com/">Phusion Passenger</a> 3.0.x in standalone mode</li>
 <li>
-<strong>Database server</strong>: MySQL version 5.0 or higher is required (support for Postgresql is untested but might 
-be OK)</li>
+<strong>Database server</strong>: MongoDB version 2.0 or higher is required (support for relational databases has been dropped)</li>
 <li>
-<strong>Authentication</strong>: you can use a CAS server for authentication, but it's no longer required, there's a minimal
-internal authentication with login/password implemented</li>
+<strong>Authentication</strong>: you can use the internal authentication with login/password or a CAS server</li>
 </ul><h2>Installing the application</h2>
 
 <p>This section is not complete for the moment. Basically, if you have the correct application stack and you've cloned
@@ -92,14 +90,13 @@ the repository, it installs like any Rails 3 web app :</p>
 <pre><code>cd /path/to/cartoque
 gem install bundler
 bundle install
-cp config/database.yml{.example,}
-rake db:create db:migrate db:seed
+rake cartoque:seed
 </code></pre>
 
 <p>Start the server, open your browser in the correct URL, and you're ready to go !</p>
 
 <p><em>NB</em>: the default login/password (admin@example.net/admin) is advertised on the login page the first time you log in.
-Of course, we highly recommend you change it as soon as possible, at least before going into production.</p>
+We highly recommend you change it as soon as possible, at least before going into production.</p>
         </div>
       </div>
     </div>
