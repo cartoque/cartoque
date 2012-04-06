@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  //screenshots on welcome page
 	$("#screenshots a").fancybox({
 		'overlayShow'	: false,
 		'transitionIn'	: 'elastic',
@@ -7,4 +8,10 @@ $(document).ready(function() {
     'easingOut'     : 'easeInBack',
 		'titlePosition'	: 'over'
 	});
+
+  //syntax highlighting
+  function showHiddenParagraphs() {
+    $("p.hidden").fadeIn(500);
+  }
+  setTimeout(showHiddenParagraphs, 1000);
 });

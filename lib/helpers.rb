@@ -9,7 +9,7 @@ module Cartoque
     def json_block(&block)
       raise "Gimme a block" unless block_given?
       html = json_pretty(capture(&block).strip)
-      html = %(<pre><code class="highlight language-javascript">)+html+%(</code></pre>)
+      html = %(<pre><code data-language="javascript">)+html+%(</code></pre>)
       buffer = eval('_erbout', block.binding)
       buffer << html
     end
