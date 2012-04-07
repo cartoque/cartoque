@@ -7,6 +7,8 @@ API Endpoints for Applications
 
 <%= link_to "&#171; Back to the list of API endpoints", "/api/endpoints.html" %>
 
+<a name="get_applications"></a>
+
 Get a list of all applications
 ------------------------------
 
@@ -19,4 +21,33 @@ Example with curl:
 
     curl -H "X-Api-Token: abcde123456" http://my-cartoque-server/applications.json
 
+Expected response:
+
+<% json_block do %>
+{"applications":[{"id":"4abc33","name":"Main Webapp","description":"A shiny application description."}]}
+<% end %>
+
+Parameters:
+
+* `search=[term]` : filters on servers which name include [term]
+
 Other formats: **xml** and **csv** formats used to be there but will be removed in a future release. Don't use them!
+
+<a name="get_application"></a>
+
+Show a specific server
+----------------------
+
+    GET /applications/:id.json
+
+Example with curl:
+
+    curl -sLH "X-Api-Token: abcde123456" http://my-cartoque-server/applications/4abc33.json
+
+Expected response:
+
+<% json_block do %>
+{"application":{"id":"4abc33","name":"Main Webapp","description":"A shiny application description."}}
+<% end %>
+
+Parameters: none.
