@@ -6,10 +6,11 @@
     <link rel="stylesheet" type="text/css" media="all" href="../../stylesheets/text.css" />
     <link rel="stylesheet" type="text/css" media="all" href="../../stylesheets/960.css" />
     <link rel="stylesheet" type="text/css" media="all" href="../../stylesheets/app.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../../stylesheets/pygments.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../stylesheets/rainbow/github.css" />
     <!-- this css file is in /images/ since it references images in the same directory and I want to be able to upgrade it... -->
     <link rel="stylesheet" type="text/css" media="all" href="../../images/fancybox/jquery.fancybox-1.3.4.css" />
     <script type="text/javascript" src="../../javascripts/jquery-1.4.3.min.js"></script>
+    <script type="text/javascript" src="../../javascripts/rainbow-custom.min.js"></script>
     <script type="text/javascript" src="../../javascripts/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
     <script type="text/javascript" src="../../javascripts/fancybox/jquery.easing-1.3.pack.js"></script>
     <script type="text/javascript" src="../../javascripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
@@ -69,7 +70,7 @@
         <div id="content">
           <h1>API Endpoints for Servers</h1>
 
-<p><a href="../endpoints.html">« Back to the list of API endpoints</a></p>
+<p><a href="../endpoints.html">&#171; Back to the list of API endpoints</a></p>
 
 <p><a name="get_servers"></a></p>
 
@@ -80,46 +81,40 @@
 
 <p>Example with curl:</p>
 
-<pre><code>curl -sLH "X-Api-Token: abcde123456" http://my-cartoque-server/servers.json
+<pre><code>curl -sLH &quot;X-Api-Token: abcde123456&quot; http://my-cartoque-server/servers.json
 </code></pre>
 
 <p>Expected response:</p>
 
-<pre><code class="highlight language-javascript"><span class="p">{</span>
-  <span class="s2">"servers"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">433</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"server-01"</span><span class="p">,</span>
-      <span class="s2">"hypervisor_name"</span><span class="o">:</span> <span class="s2">"xenhost-01"</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">434</span><span class="p">,</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"server-02"</span><span class="p">,</span>
-      <span class="s2">"hypervisor_name"</span><span class="o">:</span> <span class="kc">null</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
-<span class="p">}</span></code></pre>
+<pre><code data-language="javascript">{
+  "servers": [
+    {
+      "id": 433,
+      "name": "server-01",
+      "hypervisor_name": "xenhost-01"
+    },
+    {
+      "id": 434,
+      "name": "server-02",
+      "hypervisor_name": null
+    }
+  ]
+}</code></pre>
 
 <p>Parameters:</p>
 
 <ul>
-<li>
-<code>search=[term]</code> : filters on servers which name include [term]</li>
-<li>
-<code>by_location=[site:id|room:id]</code> : filters on site (room) or physical rack id = [id]</li>
-<li>
-<code>by_maintainer=id</code> : filters on maintainer with id = [id]</li>
-<li>
-<code>by_system=id</code> : filters on operating system id = [id] + its descendants (i.e. filtering on Linux will also search sub-operating systems, for instance Debian, etc.)</li>
-<li>
-<code>by_virtual=[0|1]</code> : filters on whether the servers are virtual or not ; "1" means virtual, "0" means not virtual</li>
-<li>
-<code>by_serial_number=[serial]</code> : filters server by serial number</li>
-<li>
-<code>by_arch=[arch]</code> : filters by server architecture if available</li>
-<li>
-<code>by_fullmodel=[term]</code> : filters on manufacturer or model containing [term]</li>
-</ul><p><a name="get_server"></a></p>
+<li><code>search=[term]</code> : filters on servers which name include [term]</li>
+<li><code>by_location=[site:id|room:id]</code> : filters on site (room) or physical rack id = [id]</li>
+<li><code>by_maintainer=id</code> : filters on maintainer with id = [id]</li>
+<li><code>by_system=id</code> : filters on operating system id = [id] + its descendants (i.e. filtering on Linux will also search sub-operating systems, for instance Debian, etc.)</li>
+<li><code>by_virtual=[0|1]</code> : filters on whether the servers are virtual or not ; &quot;1&quot; means virtual, &quot;0&quot; means not virtual</li>
+<li><code>by_serial_number=[serial]</code> : filters server by serial number</li>
+<li><code>by_arch=[arch]</code> : filters by server architecture if available</li>
+<li><code>by_fullmodel=[term]</code> : filters on manufacturer or model containing [term]</li>
+</ul>
+
+<p><a name="get_server"></a></p>
 
 <h2>Show a specific server</h2>
 
@@ -128,21 +123,22 @@
 
 <p>Example with curl:</p>
 
-<pre><code>curl -sLH "X-Api-Token: abcde123456" http://my-cartoque-server/servers/433.json
+<pre><code>curl -sLH &quot;X-Api-Token: abcde123456&quot; http://my-cartoque-server/servers/433.json
 </code></pre>
 
 <p>Expected response:</p>
 
-<pre><code class="highlight language-javascript"><span class="p">{</span>
-  <span class="s2">"server"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">433</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"server-01"</span><span class="p">,</span>
-    <span class="s2">"ip"</span><span class="o">:</span> <span class="s2">"192.168.1.1"</span><span class="p">,</span>
-    <span class="s2">"hypervisor_name"</span><span class="o">:</span> <span class="s2">"xenhost-01"</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
+<pre><code data-language="javascript">{
+  "server": {
+    "id": 433,
+    "name": "server-01",
+    "ip": "192.168.1.1",
+    "hypervisor_name": "xenhost-01"
+  }
+}</code></pre>
 
 <p>Parameters: none.</p>
+
         </div>
       </div>
     </div>

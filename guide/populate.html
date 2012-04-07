@@ -6,10 +6,11 @@
     <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/text.css" />
     <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/960.css" />
     <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/app.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/pygments.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/rainbow/github.css" />
     <!-- this css file is in /images/ since it references images in the same directory and I want to be able to upgrade it... -->
     <link rel="stylesheet" type="text/css" media="all" href="../images/fancybox/jquery.fancybox-1.3.4.css" />
     <script type="text/javascript" src="../javascripts/jquery-1.4.3.min.js"></script>
+    <script type="text/javascript" src="../javascripts/rainbow-custom.min.js"></script>
     <script type="text/javascript" src="../javascripts/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
     <script type="text/javascript" src="../javascripts/fancybox/jquery.easing-1.3.pack.js"></script>
     <script type="text/javascript" src="../javascripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
@@ -77,7 +78,9 @@
 <li>applications &amp; application instances</li>
 <li>definition of databases</li>
 <li>contacts</li>
-</ul><h2>Via rake tasks</h2>
+</ul>
+
+<h2>Via rake tasks</h2>
 
 <p>This is the method I currently use at work. My CMDB is populated through file transfers and custom rake tasks. Some of these tasks are versionned in the current repository. There are 2 global tasks that I run every 10 minutes on my production environment for loading new items from files and cleaning up old stuff :</p>
 
@@ -95,6 +98,7 @@
 <h2>Via a Mongodb client on the database itself</h2>
 
 <p>We <em>DO NOT</em> recommend this at all. Such method can break the database or some application constraints, and there's no warranty at all that something working today will work with future releases of Cartoque. <strong>Be careful!</strong></p>
+
         </div>
       </div>
     </div>
