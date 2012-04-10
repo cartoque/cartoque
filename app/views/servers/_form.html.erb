@@ -18,7 +18,7 @@
       <tr class="wrapper server_applications">
         <td colspan="2"><label for="server[description]" class="input"><%= t(:description) %> :</label><br/><%= f.text_area :description, size: "30x4" %></td>
       </tr>
-      <%= f.input :operating_system, collection: ancestry_options(OperatingSystem.scoped.arrange(order: [:name, :asc])){|i| "#{'-'*i.depth} #{i.name}"}, as: "select" %>
+      <%= f.input :operating_system_id, collection: ancestry_options(OperatingSystem.scoped.arrange(order: [:name, :asc])){|i| "#{'-'*i.depth} #{i.name}"}, as: "select" %>
       <tr class="input checkbox optional">
         <td class="label"><%= content_tag :label, t(:server_type) %></td>
         <td class="content tiny checkboxes-as-radio">
