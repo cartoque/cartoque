@@ -117,7 +117,7 @@ $(function() {
   enableChosenFields();
 
   //hide alert messages
-  $('#flash').delay(4000).slideUp(300); 
+  $('#flash').delay(5000).fadeOut(300); 
 
   //faceboxes
   $('a[rel*=facebox]').facebox();

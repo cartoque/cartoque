@@ -151,10 +151,10 @@ html, body, #wrap, #container { height: 100%; }
 
 /* errors, warnings */
 #flash {
-  padding:0; margin:0 auto; text-align:center; max-width:400px; font-weight:bold;
-  .flash-item { padding:6px 10px; margin:2px; @include border-radius(4px); }
-  .flash-notice { background-color:#ff9; color:#222; }
-  .flash-error, .flash-alert { background-color:#FCC; color:#222; }
+  position:absolute; top:22px; left:30%; width:40%; text-align:center; font-size:11px;
+  .flash-item { padding:4px 6px; margin:2px; border-width:1px; border-style:solid; @include box-shadow(#ddd, 0, 0, 5px); }
+  .flash-notice { background-color:#ffc; color:#444; border-color:#fa0; }
+  .flash-error, .flash-alert { background-color:#fde; color:#222; border-color:#f21; }
 }
 .field_with_errors *, #error_explanation * { color:#f00; }
 .field_with_errors input, #error_explanation td { border:2px solid #f00; }
