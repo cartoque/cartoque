@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'mysql2'
 gem 'rake'
 
 # Bundle edge Rails instead:
@@ -68,7 +67,6 @@ end
 
 group :test do
   gem 'factory_girl_rails', '~> 3.0'
-  gem 'mocha'
   gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'spork', '> 0.9.0.rc'
@@ -78,15 +76,12 @@ group :test do
   # the cover_me gem is not compatible with rbx and jruby
   # but only need this on one environment...
   gem 'cover_me', :platforms => :mri_19
-end
-
-group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'capybara'
-  gem 'sqlite3'
-  gem 'thin'
+end
+
+group :development, :test do
   gem 'pry'
-  gem 'rails-erd' #graphviz of classes
   gem 'i18n-verify'
 end
