@@ -14,8 +14,9 @@ caption { padding:0 0 5px 0; margin:0 auto; width:auto; font:italic 11px "Trebuc
 ul { margin:0.5em 0.5em 0.5em 2em; list-style-type:none; }
 small { font-size:90%; }
 
-/* input styles taken from formalize */
+/* input styles, sometimes taken from formalize.css */
 input:focus, input:active, textarea:focus, textarea:active { @include box-shadow(rgba(0,0,0,.3), 0, 0, 5px); border: 1px solid #5897FB; }
+input[type="checkbox"] { margin:0 3px; position:relative; top:-2px; }
 
 /* fonts */
 @font-face { font-family:'Lobster'; font-style:normal; font-weight:normal; src:local('Lobster1.4'), local('Lobster'), url('../fonts/Lobster.ttf') format('truetype'); }
@@ -90,6 +91,7 @@ button, a.button, input[type=submit], a.button-add, a.button-mail {
   &:hover { color:#333; @include gradient(#fff, #ddd); box-shadow:0 0 2px #e5e5e5; border:1px solid #888; }
   &:active { position:relative; top:1px; }
 }
+div.actions > input[type=submit] { position:relative; top:-4px; margin-right:4px; }
 button.inline { padding:2px 4px; font-size:11px; font-weight:normal; position:relative; bottom:1px; }
 a.button-mail {
   @include background-image-gradient('..<%= asset_path 'email.png' %>', #fff, #e3e3e3);
@@ -224,7 +226,6 @@ textarea {
     a { color:#000; }
     a:hover { color:#e06; text-decoration:none; }
   }
-  input[type="checkbox"] { margin:0 3px; position:relative; top:2px; }
   .fields {
     padding:0;
     input { margin:1px 0; }

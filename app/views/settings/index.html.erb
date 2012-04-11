@@ -28,8 +28,8 @@
     <th><%= t(:service_message) %></th>
     <td>
       <%= text_area_tag 'settings[site_announcement_message]', Setting.site_announcement_message, size: "60x2" %><br />
-      <%= t(:theme) %>: <%= select_tag 'settings[site_announcement_type]',
-                            options_for_select(%w(info success warning error).map{|a| [a,a]}, Setting.site_announcement_type) %>
+      <label class=select><%= t(:theme) %>:</label>
+      <%= select_tag 'settings[site_announcement_type]', options_for_select(%w(info success warning error).map{|a| [a,a]}, Setting.site_announcement_type) %>
     </td>
   </tr>
   <tr>
