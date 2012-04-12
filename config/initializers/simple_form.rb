@@ -54,6 +54,9 @@ SimpleForm.setup do |config|
   # Default size for text inputs.
   config.default_input_size = 20
 
+  # Don't validate html5 fields through browser
+  config.browser_validations = false
+
   # Specific addition (see: lib/simple_form_label_input_patch)
   config.label_input_builder = Proc.new do |label,input|
     %(<td class="label">#{label}</td><td class="content">#{input}</td>)
