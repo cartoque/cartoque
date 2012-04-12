@@ -122,6 +122,11 @@ GEM
     mongoid-ancestry (0.2.2)
       bson_ext (~> 1.3)
       mongoid (~> 2.0)
+    mongoid_rails_migrations (0.0.14)
+      activesupport (>= 3.0.0)
+      bundler (>= 1.0.0)
+      rails (>= 3.0.0)
+      railties (>= 3.0.0)
     multi_json (1.0.4)
     nokogiri (1.5.0)
     omniauth (1.0.2)
@@ -250,6 +255,7 @@ DEPENDENCIES
   log_buddy
   mongoid
   mongoid-ancestry
+  mongoid_rails_migrations
   nokogiri
   omniauth (>= 1.0.0)
   omniauth-cas

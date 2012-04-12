@@ -57,6 +57,7 @@ gem 'acts_as_list'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'mongoid-ancestry'
+gem 'mongoid_rails_migrations'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass-rails'
 
