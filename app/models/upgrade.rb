@@ -15,7 +15,7 @@ class Upgrade
   before_save :cache_associations_fields
   before_save :update_counters!
 
-  scope :by_server, proc { |name| where(servers_name: Regexp.mask(name)) }
+  scope :by_server, proc { |name| where(server_name: Regexp.mask(name)) }
   scope :by_package, proc { |name| where(:packages_list.matches => { name: Regexp.mask(name) }) }
 
   validates_presence_of :server
