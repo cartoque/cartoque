@@ -1,11 +1,10 @@
 desc "Remove system packages to update when none"
 namespace :cleanup do
   task :updates => :environment do
-    # ONLY APT FILES FOR NOW !!!!!!
-    update_files = Dir.glob("data/update/*.apt").select do |file|
+    update_files = Dir.glob("data/update/*").select do |file|
       File.readlines(file).count >= 2
     end.map do |file|
-      File.basename(file).gsub(/\.apt$/, "")
+      File.basename(file).gsub(/\.(apt|yum)$/, "")
     end
     # destroy if no update file or server is nil
     Upgrade.includes(:server).each do |upgrade|
