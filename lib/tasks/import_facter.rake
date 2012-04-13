@@ -44,6 +44,16 @@ namespace :import do
       end
       #hardware
       server.arch = facts["hardwaremodel"] if facts["hardwaremodel"].present?
+      #processor
+      if facts["processorcount"].present?
+        facts["physicalprocessorcount"] ||= facts["processorcount"]
+        server.processor_physical_count = facts["physicalprocessorcount"].to_i
+        server.processor_physical_count = 1 if server.processor_physical_count == 0
+        server.processor_system_count   = facts["processorcount"].to_i
+        server.processor_cores_per_cpu  = server.processor_system_count / server.processor_physical_count
+        server.processor_reference      = facts["processor0"].split("@").first.strip.gsub(/\s+/, ' ')
+        server.processor_frequency_GHz  = facts["processor0"].split("@").last.gsub('GHz', '').strip.to_f
+      end
       #save server
       server.save if server.changed?
       #dns domains
