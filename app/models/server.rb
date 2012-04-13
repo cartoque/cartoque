@@ -18,15 +18,11 @@ class Server
   field :description, type: String
   field :model, type: String
   field :memory, type: String
-  field :frequency, type: Float
   field :contract_type, type: String
   field :disk_type, type: String
   field :disk_size, type: Integer
   field :manufacturer, type: String
-  field :ref_proc, type: String
   field :server_type, type: String
-  field :nb_proc, type: Integer
-  field :nb_coeur, type: Integer
   field :nb_rj45, type: Integer
   field :nb_fc, type: Integer
   field :nb_iscsi, type: Integer
@@ -48,6 +44,11 @@ class Server
   field :operatingsystemrelease, type: String
   field :status, type: Integer, default: STATUS_ACTIVE
   field :arch, type: String
+  field :processor_reference, type: String
+  field :processor_frequency_GHz, type: Float, default: 0
+  field :processor_system_count, type: Integer, default: -> { default_processor_system_count }
+  field :processor_physical_count, type: Integer, default: 1
+  field :processor_cores_per_cpu, type: Integer, default: 1
   #associations
   belongs_to :operating_system
   belongs_to :physical_rack
@@ -248,5 +249,18 @@ class Server
   #TODO: migrate it definitely to a better structure
   def hardware_model
     self.model
+  end
+
+  private
+  def default_processor_system_count
+    if processor_physical_count.to_i > 0
+      if processor_cores_per_cpu.to_i > 0
+        processor_cores_per_cpu * processor_physical_count
+      else
+        processor_physical_count
+      end
+    else
+      1
+    end
   end
 end

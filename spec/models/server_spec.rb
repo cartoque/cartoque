@@ -6,6 +6,15 @@ describe Server do
     Server.new(name: "my-server").should be_valid
   end
 
+  describe "#processor_*" do
+    it "should have a intelligent default value for #processor_system_count" do
+      Server.new(name: "srv-01", processor_system_count: 36).processor_system_count.should == 36
+      Server.new(name: "srv-01", processor_physical_count: 5).processor_system_count.should == 5
+      Server.new(name: "srv-01", processor_physical_count: 5, processor_cores_per_cpu: 3).processor_system_count.should == 15
+      Server.new(name: "srv-01").processor_system_count.should == 1
+    end
+  end
+
   describe "#ipaddresses" do
     let(:server) { FactoryGirl.create(:server) }
 

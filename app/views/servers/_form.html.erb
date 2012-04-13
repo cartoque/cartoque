@@ -78,10 +78,10 @@
       <%= f.input :model, input_html: { value: @server.hardware_model } %>
     </tbody>
     <tbody>
-      <%= f.input :nb_proc, collection: [1,2,4,6,8,10,12,16,24,32] %>
-      <%= f.input :ref_proc, wrapper_class: css_classes_physical %>
-      <%= f.input :frequency, as: :string %>
-      <%= f.input :nb_coeur, collection: [1,2,4,6,8], wrapper_class: css_classes_physical %>
+      <%= f.input :processor_physical_count, collection: [1,2,4,6,8,10,12,16,24,32] %>
+      <%= f.input :processor_reference, wrapper_class: css_classes_physical %>
+      <%= f.input :processor_frequency_GHz, as: :string %>
+      <%= f.input :processor_cores_per_cpu, collection: [1,2,4,6,8], wrapper_class: css_classes_physical %>
       <%= f.input :memory %>
       <%= f.input :disk_type %>
       <%= f.input :nb_disk, as: :string %>

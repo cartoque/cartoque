@@ -30,17 +30,17 @@ class ServerDecorator < ResourceDecorator
 
   def cores
     html = ""
-    html << "#{model.nb_proc} * " unless model.nb_proc == 1
-    html << "#{model.nb_coeur} cores, " unless model.nb_coeur.blank? || model.nb_coeur <= 1
-    html << "#{model.frequency} GHz"
+    html << "#{model.processor_physical_count} * " unless model.processor_physical_count == 1
+    html << "#{model.processor_cores_per_cpu} cores, " unless model.processor_cores_per_cpu.blank? || model.processor_cores_per_cpu <= 1
+    html << "#{model.processor_frequency_GHz} GHz"
     html.html_safe
   end
 
   def cpu
     html = ""
-    if model.nb_proc.present? && model.nb_proc > 0
+    if model.processor_physical_count.present? && model.processor_physical_count > 0
       html << cores
-      html << "<br />(#{model.ref_proc})" if model.ref_proc.present?
+      html << "<br />(#{model.processor_reference})" if model.processor_reference.present?
     else
       html << "?"
     end
@@ -79,7 +79,7 @@ class ServerDecorator < ResourceDecorator
     h.content_tag(:span, class: "server-link") do
       h.link_to(model.name, model) + h.content_tag(:span, class: "server-details") do
         [ model.operating_system,
-          (model.nb_proc && model.nb_proc > 0 ? cores : ""),
+          (model.processor_physical_count && model.processor_physical_count > 0 ? cores : ""),
           (model.memory? ? "#{ram}G" : ""),
           (model.disk_size && model.disk_size > 0 ? disks : "") ].reject(&:blank?).join(" | ")
       end
