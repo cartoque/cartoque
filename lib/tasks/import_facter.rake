@@ -54,6 +54,16 @@ namespace :import do
         server.processor_reference      = facts["processor0"].split("@").first.strip.gsub(/\s+/, ' ')
         server.processor_frequency_GHz  = facts["processor0"].split("@").last.gsub('GHz', '').strip.to_f
       end
+      #memory
+      if facts["memorysize"].present?
+        if facts["memorysize"].match /GB$/
+          server.memory_GB = facts["memorysize"].to_f
+        elsif facts["memorysize"].match /MB$/
+          server.memory_GB = facts["memorysize"].to_f / 1024
+        else
+          puts "Unable to parse memory for #{server.name}: #{facts["memorysize"]}" if ENV['DEBUG'].present?
+        end
+      end
       #save server
       server.save if server.changed?
       #dns domains
