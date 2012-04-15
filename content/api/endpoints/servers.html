@@ -21,7 +21,11 @@ Example with curl:
 Expected response:
 
 <% json_block do %>
-{"servers":[{"id":433,"name":"server-01","hypervisor_name":"xenhost-01"},{"id":434,"name":"server-02","hypervisor_name":null}]}
+{"servers":[
+  {"id":433,"name":"server-01","hypervisor_name":"xenhost-01","memory_GB":2.0,
+   "processor_system_count":4,"processor_reference":"Intel Xeon","processor_frequency_GHz":2.60},
+  {"id":434,"name":"server-02","hypervisor_name":null}
+]}
 <% end %>
 
 Parameters:
@@ -49,7 +53,10 @@ Example with curl:
 Expected response:
 
 <% json_block do %>
-  {"server":{"id":433,"name":"server-01","ip":"192.168.1.1","hypervisor_name":"xenhost-01"}}
+{"server":
+  {"id":433,"name":"server-01","hypervisor_name":"xenhost-01","ip":"192.168.1.1","memory_GB":2.0,
+   "processor_system_count":4,"processor_reference":"Intel Xeon","processor_frequency_GHz":2.60}
+}
 <% end %>
 
 Parameters: none.
