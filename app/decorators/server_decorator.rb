@@ -32,13 +32,13 @@ class ServerDecorator < ResourceDecorator
     html = ""
     html << "#{model.processor_physical_count} * " unless model.processor_physical_count == 1
     html << "#{model.processor_cores_per_cpu} cores, " unless model.processor_cores_per_cpu.blank? || model.processor_cores_per_cpu <= 1
-    html << "#{model.processor_frequency_GHz} GHz"
+    html << "#{model.processor_frequency_GHz} GHz" unless model.processor_frequency_GHz == 0
     html.html_safe
   end
 
   def cpu
     html = ""
-    if model.processor_physical_count.present? && model.processor_physical_count > 0
+    if model.processor_physical_count.present? && model.processor_physical_count > 0 && model.processor_frequency_GHz > 0
       html << cores
       html << "<br />(#{model.processor_reference})" if model.processor_reference.present?
     else
