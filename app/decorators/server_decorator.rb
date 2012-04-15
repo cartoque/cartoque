@@ -65,10 +65,11 @@ class ServerDecorator < ResourceDecorator
     html.html_safe
   end
 
-  def ram
+  def memory
     html = ""
-    if model.memory.present? && model.memory.to_f > 0
-      html = model.memory.to_s + (model.memory.to_s.match(/[MG]/) ? "Go" : "")
+    if model.memory_MB.present? && model.memory_MB > 0
+      memory_num, memory_unit = ( model.memory_GB.to_f > 1 ?  [model.memory_GB, "GB"] : [model.memory_MB, "MB"] )
+      html = memory_num.to_s.gsub(/\.0*$/,'') + memory_unit
     else
       html << "?"
     end
@@ -80,7 +81,7 @@ class ServerDecorator < ResourceDecorator
       h.link_to(model.name, model) + h.content_tag(:span, class: "server-details") do
         [ model.operating_system,
           (model.processor_physical_count && model.processor_physical_count > 0 ? cores : ""),
-          (model.memory? ? "#{ram}G" : ""),
+          (model.memory_MB.present? ? memory : ""),
           (model.disk_size && model.disk_size > 0 ? disks : "") ].reject(&:blank?).join(" | ")
       end
     end

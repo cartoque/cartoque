@@ -60,7 +60,7 @@ describe ServerDecorator do
     end
 
     it "should display ram" do
-      server.ram.should eq "42"
+      server.memory.should eq "42GB"
     end
 
     it "should display disks" do
@@ -72,7 +72,7 @@ describe ServerDecorator do
     it "should display server with full details" do
       line = server.short_line
       line.should have_selector(:css, "span.server-link a", text: "server-01")
-      line.should have_selector(:css, "span.server-details", text: "4 * 4 cores, 3.2 GHz | 42G | 5 * 13G (SAS)")
+      line.should have_selector(:css, "span.server-details", text: "4 * 4 cores, 3.2 GHz | 42GB | 5 * 13G (SAS)")
     end
 
     it "should display server without raising an exception if no details" do

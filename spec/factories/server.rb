@@ -6,7 +6,7 @@ FactoryGirl.define do
     m.processor_reference "Xeon 2300"
     m.processor_cores_per_cpu 4
     m.processor_frequency_GHz 3.2
-    m.memory 42
+    m.memory_GB 42
     m.nb_disk 5
     m.disk_size 13
     m.disk_type "SAS"

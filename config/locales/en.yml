@@ -37,6 +37,7 @@ en:
   previous_name: "Previous name"
   manufacturer: "Manufacturer"
   memory: "Memory"
+  memory_GB: "Memory (GB)"
   model: "Model"
   fullmodel: "Model"
   disks: "Disks"

@@ -192,7 +192,8 @@ fr:
   has_drac: Carte DRAC
   previous_name: "Ancien nom"
   manufacturer: "Marque"
-  memory: "Mémoire RAM (Go)"
+  memory: "Mémoire RAM"
+  memory_GB: "Mémoire RAM (Go)"
   model: "Modèle"
   fullmodel: "Modèle"
   disks: "Disques"

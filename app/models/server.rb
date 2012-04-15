@@ -17,7 +17,6 @@ class Server
   field :virtual, type: Boolean
   field :description, type: String
   field :model, type: String
-  field :memory, type: String
   field :contract_type, type: String
   field :disk_type, type: String
   field :disk_size, type: Integer
@@ -49,6 +48,7 @@ class Server
   field :processor_system_count, type: Integer, default: -> { default_processor_system_count }
   field :processor_physical_count, type: Integer, default: 1
   field :processor_cores_per_cpu, type: Integer, default: 1
+  field :memory_GB, type: Float, default: 0
   #associations
   belongs_to :operating_system
   belongs_to :physical_rack
@@ -249,6 +249,10 @@ class Server
   #TODO: migrate it definitely to a better structure
   def hardware_model
     self.model
+  end
+
+  def memory_MB
+    memory_GB.to_f * 1024
   end
 
   private

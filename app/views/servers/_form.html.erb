@@ -82,7 +82,7 @@
       <%= f.input :processor_reference, wrapper_class: css_classes_physical %>
       <%= f.input :processor_frequency_GHz, as: :string %>
       <%= f.input :processor_cores_per_cpu, collection: [1,2,4,6,8], wrapper_class: css_classes_physical %>
-      <%= f.input :memory %>
+      <%= f.input :memory_GB %>
       <%= f.input :disk_type %>
       <%= f.input :nb_disk, as: :string %>
       <%= f.input :disk_size, as: :string %>
