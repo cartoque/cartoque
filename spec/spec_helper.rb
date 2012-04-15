@@ -69,9 +69,10 @@ Spork.prefork do
       DatabaseCleaner.clean
     end
 
-    # automatically mark decorator specs as type: :decorator
-    # TODO: remove it when it's included in Draper
-    require 'draper/rspec_integration'
+    # some patches to draper's rspec integration
+    # otherwise link_to's in decorator don't work in specs,
+    # return "undefined method `host' for nil:NilClass"
+    require 'draper/rspec_better_integration'
 
     # factory girl invocation methods
     config.include FactoryGirl::Syntax::Methods
