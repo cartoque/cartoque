@@ -94,3 +94,4 @@ $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth 
 //hacks
 .row { margin-left:0; box-sizing: border-box; }
 .row .row { margin-left: -$gridGutterWidth; }
+.container { width:$gridRowWidth; }
