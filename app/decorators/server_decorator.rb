@@ -38,7 +38,7 @@ class ServerDecorator < ResourceDecorator
 
   def cpu
     html = ""
-    if model.processor_physical_count.present? && model.processor_physical_count > 0 && model.processor_frequency_GHz > 0
+    if model.known_processor?
       html << cores
       html << "<br />(#{model.processor_reference})" if model.processor_reference.present?
     else
@@ -67,7 +67,7 @@ class ServerDecorator < ResourceDecorator
 
   def memory
     html = ""
-    if model.memory_MB.present? && model.memory_MB > 0
+    if model.known_memory?
       memory_num, memory_unit = ( model.memory_GB.to_f > 1 ?  [model.memory_GB, "GB"] : [model.memory_MB, "MB"] )
       html = memory_num.to_s.gsub(/\.0*$/,'') + memory_unit
     else

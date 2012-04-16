@@ -255,6 +255,14 @@ class Server
     memory_GB.to_f * 1024
   end
 
+  def known_memory?
+    memory_GB.to_i > 0
+  end
+
+  def known_processor?
+    processor_physical_count.to_i > 0 && processor_frequency_GHz > 0
+  end
+
   private
   def default_processor_system_count
     if processor_physical_count.to_i > 0
