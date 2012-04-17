@@ -49,6 +49,7 @@ end
 # Debugging tools
 gem 'log_buddy'
 group :development, :test do
+  gem 'quiet_assets'
   gem 'pry'
   gem 'i18n-verify'
 end

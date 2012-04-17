@@ -148,6 +148,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.7.1)
       slop (>= 2.4.4, < 3)
+    quiet_assets (1.0.0)
+      rails (~> 3.1)
     rabl (0.6.9)
       activesupport (>= 2.3.14)
       multi_json (~> 1.0)
@@ -269,6 +271,7 @@ DEPENDENCIES
   omniauth-cas (>= 0.0.6)
   pdfkit (= 0.5.2)
   pry
+  quiet_assets
   rabl (>= 0.5.3)
   rails (= 3.2.3)
   rake
