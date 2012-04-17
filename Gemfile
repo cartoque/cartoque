@@ -60,6 +60,7 @@ gem 'mongoid-ancestry'
 gem 'mongoid_rails_migrations'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass-rails'
+gem 'lograge'
 
 # Plugins/engines
 Dir.glob(File.expand_path("../vendor/plugins/*/Gemfile",__FILE__)).each do |gemfile|
