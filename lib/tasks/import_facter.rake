@@ -51,7 +51,7 @@ namespace :import do
         server.processor_physical_count = 1 if server.processor_physical_count == 0
         server.processor_system_count   = facts["processorcount"].to_i
         server.processor_cores_per_cpu  = server.processor_system_count / server.processor_physical_count
-        server.processor_reference      = facts["processor0"].split("@").first.strip.gsub(/\s+/, ' ')
+        server.processor_reference      = facts["processor0"].split("@").first.strip.gsub(/\s+/, ' ').gsub(/ CPU /, ' ').gsub('(R)', '')
         server.processor_frequency_GHz  = facts["processor0"].split("@").last.gsub('GHz', '').strip.to_f
       end
       #memory
