@@ -75,6 +75,7 @@ namespace :import do
       facts.keys.grep(/^ipaddress_/).each do |key|
         iface_key = key.gsub(/^ipaddress_/,"")
         addr = facts[key]
+        next if iface_key == "lo" && addr == "127.0.0.1"
         ip = Ipaddress.find_or_initialize_by(address: IPAddr.new(addr).to_i, server_id: server.id)
         ip.main = (addr == facts["ipaddress"])
         ip.interface = iface_key.gsub("_",":")
