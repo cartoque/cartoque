@@ -1,8 +1,3 @@
-# encoding: utf-8
-
-#TODO: move it to database_decorator when it's here
-require 'server_decorator'
-
 module DatabasesHelper
   include SizeHelper
 
