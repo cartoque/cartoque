@@ -11,4 +11,10 @@ class ResourceDecorator < ApplicationDecorator
   def update_attributes(*args)
     model.update_attributes(*args)
   end
+
+  #TODO: understand why this method isn't passed to model
+  # -> occurred when displaying crontasks in a modal box
+  def to_s
+    model.to_s
+  end
 end
