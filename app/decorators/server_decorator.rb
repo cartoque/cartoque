@@ -3,20 +3,20 @@ class ServerDecorator < ResourceDecorator
 
   def virtual_badge
     blank_unless model.virtual? do
-      h.content_tag(:div, "V", class: "contextual virtual-server")
+      h.content_tag(:div, "V", class: "contextual server-badge virtual-server")
     end
   end
 
   def puppet_badge
     blank_unless model.puppetversion.present? do
-      h.content_tag(:div, "P", class: "contextual has-puppet")
+      h.content_tag(:div, "P", class: "contextual server-badge has-puppet")
     end
   end
 
   def network_device_badge
     blank_unless model.network_device? do
       h.content_tag(:div, h.image_tag("router.png", title: t(:network_device), size: "16x16"),
-                    class: "contextual network-device")
+                    class: "contextual server-badge network-device")
     end
   end
 
@@ -40,7 +40,7 @@ class ServerDecorator < ResourceDecorator
     html = ""
     if model.known_processor?
       html << cores
-      html << "<br />(#{model.processor_reference})" if model.processor_reference.present?
+      html << h.content_tag(:span, model.processor_reference, class: "processor-reference") if model.processor_reference.present?
     else
       html << "?"
     end
@@ -78,7 +78,7 @@ class ServerDecorator < ResourceDecorator
 
   def short_line
     h.content_tag(:span, class: "server-link") do
-      h.link_to(model.name, model) + h.content_tag(:span, class: "server-details") do
+      h.link_to(model.name, model) + h.content_tag(:span, class: "server-summary") do
         [ model.operating_system,
           (model.processor_physical_count && model.processor_physical_count > 0 ? cores : ""),
           (model.memory_MB.present? ? memory : ""),

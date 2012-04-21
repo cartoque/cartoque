@@ -52,11 +52,11 @@ describe ServerDecorator do
 
   describe "hardware details" do
     it "should display cpu" do
-      server.cpu.should eq "4 * 4 cores, 3.2 GHz<br />(Xeon 2300)"
+      server.cpu.should eq %(4 * 4 cores, 3.2 GHz<span class="processor-reference">Xeon 2300</span>)
       server.processor_cores_per_cpu = nil
-      server.cpu.should eq "4 * 3.2 GHz<br />(Xeon 2300)"
+      server.cpu.should eq %(4 * 3.2 GHz<span class="processor-reference">Xeon 2300</span>)
       server.processor_cores_per_cpu = 1
-      server.cpu.should eq "4 * 3.2 GHz<br />(Xeon 2300)"
+      server.cpu.should eq %(4 * 3.2 GHz<span class="processor-reference">Xeon 2300</span>)
     end
 
     it "should display ram" do
@@ -72,7 +72,7 @@ describe ServerDecorator do
     it "should display server with full details" do
       line = server.short_line
       line.should have_selector(:css, "span.server-link a", text: "server-01")
-      line.should have_selector(:css, "span.server-details", text: "4 * 4 cores, 3.2 GHz | 42GB | 5 * 13G (SAS)")
+      line.should have_selector(:css, "span.server-summary", text: "4 * 4 cores, 3.2 GHz | 42GB | 5 * 13G (SAS)")
     end
 
     it "should display server without raising an exception if no details" do
@@ -86,7 +86,7 @@ describe ServerDecorator do
       #TODO: restore this when switching back to "Server"
       #line = Server.new(name: "srv").decorate.short_line
       line = ServerDecorator.decorate(Server.new(name: "srv")).short_line
-      line.should have_selector(:css, "span.server-details", text: "")
+      line.should have_selector(:css, "span.server-summary", text: "")
     end
   end
 

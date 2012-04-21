@@ -1,78 +1,116 @@
 <% title link_to(t(:servers), servers_path) + " &rsaquo; ".html_safe + @server.name.upcase %>
 
-<div class="span12">
-<%= action_links do %>
-  <%= link_to t(:edit), edit_server_path(@server) %> |
-  <%= link_to t(:delete), @server, confirm: t(:text_are_you_sure), method: :delete %>
-<% end %>
-</div>
+<div class="span6">
+  <div class="server-card">
+    <div class="server-title">
+      <%= @server.badges %>
 
-<div class="clear"></div>
+      <% if @server.virtual? || @server.fullmodel.present? %>
+      <h2>
+        <% if @server.virtual? %>
+          <%= t(:virtual_machine) %>
+        <% else %>
+          <%= @server.fullmodel %>
+        <% end %>
+      </h2>
+      <% end %>
 
-<div id="server_general" class="span3 show">
-<%= @server.badges %>
-<h2><%= t(:main_informations) %></h2>
-<table class="show_item full">
-  <%= show_for @server do |s| %>
-    <% if @server.description.present? %>
-    <tr class="wrapper server_description">
-      <td colspan="2">
-        <span class="label"><%= t(:description) %></span><br />
-        <div class="description"><%= @server.description.capitalize %></div>
-      </td>
-    </tr>
-    <% end %>
-    <%= s.association :hypervisor do
-          link_to @server.hypervisor, @server.hypervisor
-        end if @server.hypervisor.present? %>
-    <%= s.attribute :operating_system %>
-    <%= s.attribute :arch if @server.arch.present? %>
-    <%= s.association :ipaddresses %>
-    <%= render_physical_links_association @server if @server.physical_links.any? %>
-    <%= render_connected_links_association @server if @server.connected_links.any? %>
-  <% end %>
-</table>
+      <% if @server.physical_rack.present? || @server.hypervisor %>
+      <div class="server-location">
+        <i class="icon-map-marker"></i>
+        <% if @server.virtual? %>
+          <%= link_to @server.hypervisor, @server.hypervisor %>
+        <% else %>
+          <%= link_to(@server.physical_rack, servers_path(by_location: "rack-#{@server.physical_rack.id}")) %>
+        <% end %>
+      </div>
+      <% end %>
 
-<% unless @server.virtual? %>
-<h2><%= t(:maintenance) %></h2>
-<table class="show_item full">
-  <%= show_for @server do |s| %>
-    <%= s.association :maintainer do
-          link_to_if @server.maintainer.present?, @server.maintainer, @server.maintainer
-        end %>
-    <%= s.attribute :delivered_on %>
-    <%= s.attribute :maintained_until %>
-    <%= s.attribute :contract_type %>
-    <%= s.attribute :serial_number %>
-  <% end %>
-  <% end %>
-</table>
-</div>
+      <% if @server.operating_system.present? %>
+      <div class="server-system">
+        <i class="icon-cog"></i>
+        <%= @server.operating_system %>
+        <%= content_tag(:span, @server.arch, class: "server-arch") if @server.arch.present? %>
+      </div>
+      <% end %>
+    </div>
 
-<div id="server_hardware" class="span3 show">
-<h2><%= @server.virtual? ? t(:resources) : t(:hardware) %></h2>
-<table class="show_item full">
-  <%= show_for @server do |s| %>
-    <% unless @server.virtual? %>
-      <%= s.association(:physical_rack) do
-            link_to @server.physical_rack, servers_path(by_location: "rack-#{@server.physical_rack.id}") if @server.physical_rack.present?
-          end %>
-    <% end %>
-    <%= s.attribute :fullmodel unless @server.virtual? %>
-    <%= s.attribute :cpu %>
-    <%= s.attribute :memory %>
-    <%= s.attribute :disks %>
-    <%= s.attribute :media_drive unless @server.virtual? %>
-    <%= s.attribute :nb_rj45 %>
-    <%= s.attribute :nb_fc %>
-    <%= s.attribute :nb_iscsi %>
-    <%= s.attribute :has_drac %>
+    <div class="server-informations">
+      <div class="action-links">
+        <%= link_to_edit edit_server_path(@server) %>
+        <%= link_to_delete @server %>
+      </div>
+      <% if @server.description.present? %>
+        <div class="description"><%= @server.description %></div>
+      <% end %>
+      <div class="server-details server-hardware">
+        <div style="width:32%;">
+          <span class=label><%= t(:cpu) %></span>
+          <div class="details"><%= @server.cpu %></div>
+        </div>
+        <div style="width:28%;">
+          <span class=label><%= t(:memory) %></span>
+          <div class="details"><%= @server.memory %></div>
+        </div>
+        <div style="width:28%;">
+          <span class=label><%= t(:disks) %></span>
+          <div class="details"><%= @server.disks %></div>
+        </div>
+      </div>
+
+      <div class="server-details server-configuration">
+        <div style="width:32%;">
+          <span class=label><%= t(:components) %></span>
+          <ul class="collection">
+            <%= content_tag(:li, "#{t(:media_drive)} : #{@server.media_drive.name}") unless @server.virtual? || @server.media_drive.blank? %>
+            <%= content_tag(:li, "#{t(:nb_rj45)} : #{@server.nb_rj45.to_i}") %>
+            <%= content_tag(:li, "#{t(:nb_fc)} : #{@server.nb_fc.to_i}") %>
+            <%= content_tag(:li, "#{t(:nb_iscsi)} : #{@server.nb_iscsi.to_i}") %>
+            <%= content_tag(:li, t(:has_drac)) if @server.has_drac %>
+          </ul>
+        </div>
+        <div style="width:28%;">
+          <span class=label><%= t(:networking) %></span>
+          <ul class=collection>
+          <% @server.ipaddresses.each do |ip| %>
+            <li><%= ip %></li>
+          <% end %>
+          </ul>
+        </div>
+        <div style="width:28%;">
+          <%= render_physical_links_association @server if @server.physical_links.any? %>
+          <%= render_connected_links_association @server if @server.connected_links.any? %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <% unless @server.virtual? %>
+  <div class="server-maintenance">
+    <div class="server-details">
+      <div style="width:42%;">
+        <span class=label><%= t(:contract_type) %></span>
+        <div class="details">
+          <%= @server.contract_type %><br />
+          <%= @server.delivered_on %> &rarr; <%= @server.maintained_until %>
+        </div>
+      </div>
+      <div style="width:28%;">
+        <span class=label><%= t(:serial_number) %></span>
+        <div class="details"><%= @server.serial_number %></div>
+      </div>
+      <div style="width:18%;">
+        <span class=label><%= t(:maintainer) %></span>
+        <div class="details"><%= link_to_if @server.maintainer.present?, @server.maintainer, @server.maintainer %></div>
+      </div>
+    </div>
+  </div>
   <% end %>
-</table>
+
 </div>
 
 <div id="server-technical-relations" class="span3 show">
-  <h2><%= t(:components) %></h2>
   <%= render 'related_vms' if @server.virtual_machines.any? %>
   <%= render 'related_licenses' if @server.licenses.any? %>
   <%= render 'related_tomcats' if @server.tomcats.any? %>
@@ -82,6 +120,5 @@
 </div>
 
 <div id="server-application-relations" class="span3 show">
-  <h2><%= t(:services) %></h2>
   <%= render 'related_application_instances' if @server.application_instances.any? %>
 </div>

@@ -78,3 +78,15 @@
   -webkit-box-sizing: $type;
   box-sizing: $type;
 }
+
+@mixin square-box($size) {
+  height: $size;
+  width: $size;
+  line-height: $size;
+  text-align: center;
+}
+
+@mixin disc-box($size) {
+  @include square-box($size);
+  @include border-radius($size / 2);
+}

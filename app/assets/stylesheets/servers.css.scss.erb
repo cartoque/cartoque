@@ -1,8 +1,9 @@
 @import 'mixins';
 .virtual-server { font-weight:bolder; font-size:15px; color:#3a3; margin-right:5px; }
-.has-puppet { font-weight:bolder; font-size:15px; color:#a3a; margin-right:5px; }
-.puppetized-server { font-weight:bolder; font-size:15px; color:#a3a; margin-right:5px; }
-.network-device { margin-right:5px; margin-top:2px; }
+.server-badge { margin:6px 5px 0 3px; font-weight:bolder; font-size:12px; }
+.has-puppet { background-color:#a3a; color:#fff; font-size:11px; margin-top:7px; margin-right:6px; @include disc-box(15px); @include box-shadow(#bbb, 0, 0, 2px); }
+.puppetized-server { color:#a3a; }
+.network-device { margin-top:2px; }
 .hidden-if-virtual.virtual { display:none; }
 .hidden-if-physical:not(.virtual) { display:none; }
 .maintenance-warning, .renewal-warning { color:#f80; }
@@ -11,16 +12,51 @@
 .maintainer-infos ul { font-size:90%; margin:0.5em; }
 ul.maintainer { font-size:90%; margin:0.2em 0.5em; }
 .database_servers li { margin:4px auto; }
-.server-details { font-size:90%; display:inline-block; background-color:#eee; color:#335;
-                   padding:1px 6px; margin:0 6px; border:1px solid #ccd; @include border-radius(10px); }
-#server_general {
-  ul.collection { text-align:left; margin-left:0; margin-top:0; font-size:90%; }
-  .link-arrow { font-size:150%; }
-  .link-fc .link-arrow { color:#ea0; }
-  .link-eth .link-arrow { color:#00a; }
-}
+.server-summary { font-size:90%; display:inline-block; background-color:#eee; color:#335;
+                  padding:1px 6px; margin:0 6px; border:1px solid #ccd; @include border-radius(10px); }
 #server_general th.server_name, #application_general th.application_name { text-transform:uppercase; font-size:150%; }
 #server_name, #application_name { font-weight:bold; }
 .server_description {
   border-bottom:1px solid #ddd;
+}
+
+.server-card {
+  margin-top:2px; position:relative; border:1px solid #ccc; background-color:#fcfcfc; border-radius:2px;
+  &:hover { border:1px solid #bbb; @include box-shadow(#ccc, 0, 0, 5px); }
+  .server-informations {
+    @include complex-gradient(#fcfcfc, 80, #fefefe, 97);
+  }
+  .action-links { opacity:0; position:absolute; top:5px; right:2px; }
+  &:hover .action-links { opacity:1; }
+}
+.server-title {
+  min-height:28px; background-color:#eaeaea; border-bottom:1px solid #ccc;
+  h2 { display:inline-block; color:#444; text-align:left; margin:0 4px 0 8px; line-height:28px; }
+  .server-location, .server-system {
+    display:inline-block; margin:0 4px 0 10px; line-height:24px; font-size:12px; color:#446;
+    i { font-size:13px; display:inline-block; width:10px !important; }
+    a { color:#446; padding:0; }
+    a:hover { text-decoration:underline; }
+  }
+  .server-arch { display:inline-block; padding-left:2px; font-size:10px; }
+}
+.server-informations {
+  position:relative; padding:8px;
+  .description { color:#666; text-shadow:0 1px 1px #fff; font-size:11px; font-style:italic; }
+}
+.processor-reference { display:inline-block; }
+.server-details {
+  font-size:11px; margin-top:10px; margin-bottom:5px;
+  .label { font-size:10px; font-weight:bold; color:#446; display:block; text-shadow:0 1px 1px #fff; }
+  & > div { vertical-align:top; display:inline-block; }
+  & > div:not(:first-child) { border-left:1px solid #eee; padding-left:2%; }
+  .processor-reference { display:block; font-size:10px; }
+  .collection, .details { text-align:left; margin:0; padding:0 0 0 8px; }
+  .link-arrow { font-size:150%; }
+  .link-fc .link-arrow { color:#ea0; }
+  .link-eth .link-arrow { color:#00a; }
+}
+.server-maintenance {
+  padding:8px; margin-top:6px; border:1px solid #ccc; background-color:#fdfdfd; border-radius:2px;
+  .server-details { margin-top:0; margin-bottom:0; }
 }
