@@ -110,7 +110,7 @@ module ApplicationHelper
     html = ""
     if application.ci_identifier.present?
       html << link_to("R", "#{redmine_url}/projects/#{application.ci_identifier}",
-                      title: "Redmine #{application.ci_identifier}", class: "link-to-redmine")
+                      title: "Redmine #{application.ci_identifier}", class: "item-badge link-to-redmine")
     end
     content_tag(:span, html.html_safe, class: "links")
   end

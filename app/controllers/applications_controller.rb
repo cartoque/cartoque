@@ -1,4 +1,4 @@
-class ApplicationsController < InheritedResources::Base
+class ApplicationsController < ResourcesController
   include SortHelpers
 
   respond_to :html, :js, :xml, :json

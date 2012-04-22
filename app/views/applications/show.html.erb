@@ -1,75 +1,57 @@
 <% title link_to(t(:applications), applications_path) + " &rsaquo; ".html_safe + @application.name.upcase %>
 
-<div class="span12 center">
+<div class="span8">
+  <div id="application-card" class="item-card">
+    <div class="item-title">
+      <div class="contextual">
+        <%= links_for @application %>
+      </div>
+      <%= @application.title %>
+    </div>
 
-<%= action_links do %>
-  <%= link_to t(:edit), edit_application_path(@application) %> |
-  <%= link_to t(:delete), @application, confirm: t(:text_are_you_sure), method: :delete %>
-<% end %>
+    <div class="item-informations server-informations">
+      <div class="action-links">
+        <%= link_to_edit edit_application_path(@application) %>
+        <%= link_to_delete @application %>
+      </div>
+      <%= @application.description_if_present %>
 
-</div>
-
-<div id="application_general" class="span4 show">
-<div class="contextual">
-  <%= links_for @application %>
-</div>
-<h2><%= t(:overview) %></h2>
-<table class="show_item full">
-  <%= show_for @application do |a| %>
-    <tr class="wrapper application_description">
-      <td colspan="2">
-        <span class="label"><%= t(:description) %></span><br />
-        <div class="description"><%= @application.description %></div>
-      </td>
-    </tr>
-    <tr class="wrapper application_contacts">
-      <td colspan="2">
-        <% Role.all.each do |role| %>
-          <% contacts = @application.contacts_with_role(role) %>
-          <% next if contacts.blank? %>
-          <span class="label"><%= t(:contacts) %> <%= role.name %></span><br />
-          <ol class="contacts">
-            <% contacts.each do |contact| %>
-              <li><%= ContactDecorator.new(contact).to_html(:long_form) %></li>
-            <% end %>
-          </ol>
+      <div class="item-details">
+        <%= details_box :application_instances, style: "width:60%" do %>
+          <%= render partial: 'instance', collection: @application.sorted_application_instances.compact %>
         <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+
+        <%= details_box :contacts, style: "width:36%" do %>
+          <% Role.all.each do |role| %>
+            <% contacts = @application.contacts_with_role(role) %>
+            <% next if contacts.blank? %>
+            <span class="label"><%= t(:contacts) %> <%= role.name %></span><br />
+            <ol class="contacts">
+              <% contacts.each do |contact| %>
+                <li><%= ContactDecorator.new(contact).to_html(:long_form) %></li>
+              <% end %>
+            </ol>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="span5 show">
-<h2><%= t(:application_instances) %></h2>
-<table class="show_item full">
-  <tbody class="show_for">
-    <tr class="wrapper application_servers">
-      <td colspan="2">
-        <%= render partial: 'instance', collection: @application.sorted_application_instances.compact %>
-      </td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-<div class="span3 show">
-<h2><%= t(:links) %></h2>
-<table class="show_item full">
-  <tr class="wrapper application_links">
-    <td>
-      <% docs = @application.dokuwiki_pages %>
-      <strong>Dokuwiki</strong>
-      <ul class="details">
-    <% if docs.any? %>
-      <% docs.each do |doc| %>
-        <li class="application_doc"><%= link_to_doc doc %></li>
+<div class="span4 show">
+  <% docs = @application.dokuwiki_pages %>
+  <div class="related-ci related-documentation-pages">
+    <div class="informations">
+      <h3>Dokuwiki</h3>
+      <% if docs.any? %>
+        <ul class="details">
+          <% docs.each do |doc| %>
+            <li class="application_doc"><%= link_to_doc doc %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <%= t(:no_documentation_page_found) %>.
       <% end %>
-    <% else %>
-      <li><%= t(:no_documentation_page_found) %>.</li>
-    <% end %>
-      </ul>
-    </td>
-  </tr>
-</table>
+    </div>
+  </div>
 </div>

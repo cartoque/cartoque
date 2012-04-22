@@ -120,9 +120,9 @@ ul.comparison {
 }
 
 /* icons */
-.icon { background-position: 0% 50%; background-repeat: no-repeat; padding-left: 20px; padding-top: 2px; padding-bottom: 3px; }
-.icon-url { background-image: url(..<%= asset_path 'external.png' %>); padding-left:15px; }
-.icon-server { background-image: url(..<%= asset_path 'server_12.png' %>); padding-left:15px; }
+@mixin image-icon { background-position: 0% 50%; background-repeat: no-repeat; padding:3px 4px 2px 14px; }
+.image-url { @include image-icon; background-image: url(..<%= asset_path 'external.png' %>); }
+.image-server { @include image-icon; background-image: url(..<%= asset_path 'server_12.png' %>); }
 .action {
   width:16px; height:16px; @include opacity(0.8); position:relative; top:-2px;
   &:hover { @include opacity(1); }

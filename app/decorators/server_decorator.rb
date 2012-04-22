@@ -3,20 +3,20 @@ class ServerDecorator < ResourceDecorator
 
   def virtual_badge
     blank_unless model.virtual? do
-      h.content_tag(:div, "V", class: "contextual server-badge virtual-server")
+      h.content_tag(:div, "V", class: "contextual item-badge virtual-server")
     end
   end
 
   def puppet_badge
     blank_unless model.puppetversion.present? do
-      h.content_tag(:div, "P", class: "contextual server-badge has-puppet")
+      h.content_tag(:div, "P", class: "contextual item-badge has-puppet")
     end
   end
 
   def network_device_badge
     blank_unless model.network_device? do
       h.content_tag(:div, h.image_tag("router.png", title: t(:network_device), size: "16x16"),
-                    class: "contextual server-badge network-device")
+                    class: "contextual item-badge network-device")
     end
   end
 
@@ -134,15 +134,6 @@ class ServerDecorator < ResourceDecorator
       end
     end
   end
-
-  def description_if_present
-    if model.description.present?
-      h.content_tag :div, class: 'description' do
-        model.description
-      end
-    end
-  end
-
 
   # Accessing Helpers
   #   You can access any helper via a proxy
