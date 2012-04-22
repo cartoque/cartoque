@@ -99,6 +99,51 @@ class ServerDecorator < ResourceDecorator
       l(date)
     end
   end
+
+  def title
+    if model.virtual? || model.fullmodel.present?
+      h.content_tag :h2 do
+        if model.virtual?
+          t(:virtual_machine)
+        else
+          model.fullmodel
+        end
+      end
+    end
+  end
+
+  def location
+    if model.physical_rack.present? || model.hypervisor
+      h.content_tag :div, class: "server-location" do
+        h.content_tag(:i, '', class: "icon-map-marker") +
+          if model.virtual?
+            h.link_to model.hypervisor, model.hypervisor
+          else
+            h.link_to(model.physical_rack, h.servers_path(by_location: "rack-#{model.physical_rack.id}"))
+          end
+      end
+    end
+  end
+
+  def system
+    if model.operating_system.present?
+      h.content_tag :div, class: 'server-system' do
+        h.content_tag(:i, '', class: 'icon-cog') +
+          model.operating_system +
+          (model.arch.present? ? h.content_tag(:span, model.arch, class: 'server-arch') : '')
+      end
+    end
+  end
+
+  def description_if_present
+    if model.description.present?
+      h.content_tag :div, class: 'description' do
+        model.description
+      end
+    end
+  end
+
+
   # Accessing Helpers
   #   You can access any helper via a proxy
   #

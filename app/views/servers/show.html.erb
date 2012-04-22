@@ -4,35 +4,9 @@
   <div class="server-card">
     <div class="server-title">
       <%= @server.badges %>
-
-      <% if @server.virtual? || @server.fullmodel.present? %>
-      <h2>
-        <% if @server.virtual? %>
-          <%= t(:virtual_machine) %>
-        <% else %>
-          <%= @server.fullmodel %>
-        <% end %>
-      </h2>
-      <% end %>
-
-      <% if @server.physical_rack.present? || @server.hypervisor %>
-      <div class="server-location">
-        <i class="icon-map-marker"></i>
-        <% if @server.virtual? %>
-          <%= link_to @server.hypervisor, @server.hypervisor %>
-        <% else %>
-          <%= link_to(@server.physical_rack, servers_path(by_location: "rack-#{@server.physical_rack.id}")) %>
-        <% end %>
-      </div>
-      <% end %>
-
-      <% if @server.operating_system.present? %>
-      <div class="server-system">
-        <i class="icon-cog"></i>
-        <%= @server.operating_system %>
-        <%= content_tag(:span, @server.arch, class: "server-arch") if @server.arch.present? %>
-      </div>
-      <% end %>
+      <%= @server.title %>
+      <%= @server.location %>
+      <%= @server.system %>
     </div>
 
     <div class="server-informations">
@@ -40,22 +14,17 @@
         <%= link_to_edit edit_server_path(@server) %>
         <%= link_to_delete @server %>
       </div>
-      <% if @server.description.present? %>
-        <div class="description"><%= @server.description %></div>
-      <% end %>
+      <%= @server.description_if_present %>
       <div class="server-details server-hardware">
-        <div style="width:32%;">
-          <span class=label><%= t(:cpu) %></span>
-          <div class="details"><%= @server.cpu %></div>
-        </div>
-        <div style="width:28%;">
-          <span class=label><%= t(:memory) %></span>
-          <div class="details"><%= @server.memory %></div>
-        </div>
-        <div style="width:28%;">
-          <span class=label><%= t(:disks) %></span>
-          <div class="details"><%= @server.disks %></div>
-        </div>
+        <%= details_box :cpu, style: "width:32%" do %>
+          <%= @server.cpu %>
+        <% end %>
+        <%= details_box :memory, style: "width:28%" do %>
+          <%= @server.memory %>
+        <% end %>
+        <%= details_box :disks, style: "width:28%" do %>
+          <%= @server.disks %>
+        <% end %>
       </div>
 
       <div class="server-details server-configuration">

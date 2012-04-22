@@ -19,4 +19,13 @@ module LayoutHelper
   def javascript(*args)
     content_for(:head) { javascript_include_tag(*args) }
   end
+
+  def details_box(title, options = {}, &block)
+    content_tag :div, style: options[:style] do
+      content_tag(:span, (title.is_a?(Symbol) ? t(title) : title), class: 'label') +
+        content_tag(:div, class: 'details') do
+          capture(&block) if block_given?
+        end
+    end
+  end
 end
