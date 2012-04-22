@@ -1,21 +1,21 @@
 <% title link_to(t(:servers), servers_path) + " &rsaquo; ".html_safe + @server.name.upcase %>
 
 <div class="span6">
-  <div class="server-card">
-    <div class="server-title">
+  <div id="server-card" class="item-card">
+    <div class="item-title">
       <%= @server.badges %>
       <%= @server.title %>
       <%= @server.location %>
       <%= @server.system %>
     </div>
 
-    <div class="server-informations">
+    <div class="item-informations server-informations">
       <div class="action-links">
         <%= link_to_edit edit_server_path(@server) %>
         <%= link_to_delete @server %>
       </div>
       <%= @server.description_if_present %>
-      <div class="server-details server-hardware">
+      <div class="item-details server-hardware">
         <%= details_box :cpu, style: "width:32%" do %>
           <%= @server.cpu %>
         <% end %>
@@ -27,7 +27,7 @@
         <% end %>
       </div>
 
-      <div class="server-details server-configuration">
+      <div class="item-details server-configuration">
         <div style="width:32%;">
           <span class=label><%= t(:components) %></span>
           <ul class="collection">
@@ -57,7 +57,7 @@
 
   <% unless @server.virtual? %>
   <div class="server-maintenance">
-    <div class="server-details">
+    <div class="item-details">
       <div style="width:42%;">
         <span class=label><%= t(:contract_type) %></span>
         <div class="details">

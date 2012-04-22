@@ -20,7 +20,7 @@ ul.maintainer { font-size:90%; margin:0.2em 0.5em; }
   border-bottom:1px solid #ddd;
 }
 
-.server-card {
+.item-card {
   margin-top:2px; position:relative; border:1px solid #ccc; background-color:#fcfcfc; border-radius:2px;
   &:hover { border:1px solid #bbb; @include box-shadow(#ccc, 0, 0, 5px); }
   .server-informations {
@@ -29,7 +29,7 @@ ul.maintainer { font-size:90%; margin:0.2em 0.5em; }
   .action-links { opacity:0; position:absolute; top:0; right:0; padding:5px 3px 3px 6px; background-color:#fcfcfc; }
   &:hover .action-links { opacity:1; }
 }
-.server-title {
+.item-title {
   min-height:28px; background-color:#eaeaea; border-bottom:1px solid #ccc;
   h2 { display:inline-block; color:#444; text-align:left; margin:0 4px 0 8px; line-height:28px; }
   .server-location, .server-system {
@@ -40,12 +40,12 @@ ul.maintainer { font-size:90%; margin:0.2em 0.5em; }
   }
   .server-arch { display:inline-block; padding-left:2px; font-size:10px; }
 }
-.server-informations {
+.item-informations {
   position:relative; padding:8px;
   .description { color:#666; text-shadow:0 1px 1px #fff; font-size:11px; font-style:italic; }
 }
 .processor-reference { display:inline-block; }
-.server-details {
+.item-details {
   font-size:11px; margin-top:10px; margin-bottom:5px;
   .label { font-size:10px; font-weight:bold; color:#446; display:block; text-shadow:0 1px 1px #fff; }
   & > div { vertical-align:top; display:inline-block; }
@@ -58,5 +58,5 @@ ul.maintainer { font-size:90%; margin:0.2em 0.5em; }
 }
 .server-maintenance {
   padding:8px; margin-top:6px; border:1px solid #ccc; background-color:#fdfdfd; border-radius:2px;
-  .server-details { margin-top:0; margin-bottom:0; }
+  .item-details { margin-top:0; margin-bottom:0; }
 }
