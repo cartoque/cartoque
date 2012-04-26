@@ -69,7 +69,7 @@ class Server
   has_many :network_filesystems, class_name: 'NetworkDisk', foreign_key: 'client_id', dependent: :destroy
   has_many :physical_links,      class_name: 'PhysicalLink', foreign_key: 'server_id', dependent: :destroy
   has_many :connected_links,     class_name: 'PhysicalLink', foreign_key: 'switch_id', dependent: :destroy
-  has_many :ipaddresses, foreign_key: 'server_id', dependent: :destroy
+  has_many :ipaddresses, foreign_key: 'server_id', dependent: :destroy, autosave: true
 
   before_save :update_site!
 
