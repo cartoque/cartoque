@@ -73,7 +73,8 @@ namespace :import do
                                                       listen_address: report["ip"],
                                                       listen_port: report["port"].to_i)
         dbi.host_alias = report["host"]
-        dbi.databases = report["schemas"] || report["databases"] || {}
+        dbs = report["schemas"].presence || report["databases"].presence
+        dbi.databases = dbs if dbs.present?
         dbi.set_updated_at
         dbi.save
       end
