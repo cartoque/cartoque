@@ -79,7 +79,7 @@ namespace :import do
         dbi.save
       end
       #remove old ones if older than 1 week
-      db.database_instances.where(:updated_at.gt => Date.today - 1.week).each(&:destroy)
+      db.database_instances.where(:updated_at.lt => Date.today - 1.week).each(&:destroy)
     end
   end
 end
