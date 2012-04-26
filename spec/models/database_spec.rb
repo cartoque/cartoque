@@ -27,49 +27,23 @@ describe Database do
     end
   end
 
-  it "should return a postgres report" do
-    d = FactoryGirl.create(:database)
-    d.should_not be_nil
-    d.servers.size.should eq 1
-    d.oracle_report.should be_blank
-    d.postgres_report.should be_present
-    d.postgres_report.size.should eq 2
-    d.instances.should eq 2
-  end
-
-  it "should return an oracle report" do
-    d = FactoryGirl.create(:oracle)
-    d.should_not be_nil
-    d.servers.size.should eq 1
-    d.oracle_report.should be_present
-    d.postgres_report.should be_blank
-    d.oracle_report.size.should eq 1
-    d.instances.should eq 1
-  end
-
-  it "should return 0 if no report at all" do
-    Database.new.instances.should eq 0
-  end
-
-  it "should return a postgres_report if postgres, oracle if oracle, empty array if no type" do
-    d = FactoryGirl.create(:database)
-    d.postgres_report.size.should eq 2
-    d.report.size.should eq 2
-    Database.new.report.should eq []
-  end
-
   it "should return total size handled by a database cluster server" do
     Database.new.size.should eq 0
-    FactoryGirl.create(:database).size.should eq 29313348516
-    FactoryGirl.create(:oracle).size.should eq 12091260928
+    pg  = Database.create!(name: "pg-cluster",  type: "postgres")
+    pg.database_instances.create(name: '8.4', databases:{'app01'=>1, 'app02'=>2})
+    pg.database_instances.create(name: '9.0', databases:{'app01-dev'=>4, 'app02-dev'=>8})
+    pg.size.should == 15
   end
 
-  describe "#distriution" do
+  describe "#distribution" do
     before do
       srv = FactoryGirl.create(:server)
       vm  = FactoryGirl.create(:virtual)
-      Database.create!(name: "pg-cluster",  type: "postgres", servers: [srv])
-      Database.create!(name: "ora-cluster", type: "oracle",   servers: [vm])
+      pg  = Database.create!(name: "pg-cluster",  type: "postgres", servers: [srv])
+      pg.database_instances.create(name: '8.4', databases:{'app01'=>6054180, 'app02'=>293962020, 'app03'=>5341476, 'app04'=>292479268, 'app05'=>11149754660})
+      pg.database_instances.create(name: '9.0', databases:{'app01-dev'=>5311356, 'app02-dev'=>6073212, 'app03-dev'=>11152252, 'app04-dev'=>17543220092})
+      ora = Database.create!(name: "ora-cluster", type: "oracle",   servers: [vm])
+      ora.database_instances.create(name: 'dev03', databases:{'app101'=>8755412992, 'app102'=>2144600064, 'app103'=>1191247872})
     end
 
     it "returns a distribution compatible with d3.js source" do

@@ -206,34 +206,6 @@ class Server
     [manufacturer, model].join(" ")
   end
 
-  def postgres_file
-    File.expand_path("data/postgres/#{name.downcase}.txt", Rails.root)
-  end
-
-  def postgres_report
-    safe_json_parse(postgres_file)
-  end
-
-  def oracle_file
-    File.expand_path("data/oracle/#{name.downcase}.txt", Rails.root)
-  end
-
-  def oracle_report
-    safe_json_parse(oracle_file, [])
-  end
-
-  def safe_json_parse(file, default_value = [])
-    if File.exists?(file)
-      begin
-        JSON.parse(File.read(file))
-      rescue JSON::ParserError => e
-        default_value
-      end
-    else
-      default_value
-    end
-  end
-
   def tomcats
     @tomcats ||= Tomcat.find_for_server(self.name)
   end

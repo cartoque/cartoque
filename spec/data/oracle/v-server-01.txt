@@ -1,4 +1,0 @@
-[
-  { "cluster":"database-02", "ora_instance":"dev03", "host":"v-server-01", "ip": "v-server-01", "port":"1521",
-    "schemas":{"app101":8755412992, "app102":2144600064, "app103":1191247872} }
-]

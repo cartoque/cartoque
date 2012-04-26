@@ -1,0 +1,83 @@
+class DatabaseInstanceImporter
+  attr_accessor :name
+
+  def initialize(server_name)
+    @name = server_name
+  end
+
+###  def postgres_report
+###    servers.inject([]) do |memo,server|
+###      memo.concat(server.postgres_report)
+###    end.sort_by do |report|
+###      [report["port"].to_i, report["pg_cluster"]]
+###    end
+###  end
+
+###  def oracle_report
+###    servers.inject([]) do |memo,server|
+###      memo.concat(server.oracle_report)
+###    end.sort_by do |report|
+###      report["ora_instance"]
+###    end
+###  end
+
+###  def instances
+###    report.size
+###  end
+
+###  def size
+###    case type
+###    when "postgres"
+###      report.inject(0) do |memo,instance|
+###        memo += instance["databases"].values.sum
+###      end
+###    when "oracle"
+###      report.inject(0) do |memo,instance|
+###        memo += instance["schemas"].values.sum
+###      end
+###    else
+###      0
+###    end
+###  end
+###  end
+
+  def self.safe_json_parse(file, default_value = [])
+    if File.exists?(file)
+      begin
+        JSON.parse(File.read(file))
+      rescue JSON::ParserError => e
+        default_value
+      end
+    else
+      default_value
+    end
+  end
+end
+
+desc "Imports databases from data/(oracle|postgres)/* files"
+namespace :import do
+  task :databases => :environment do
+    Database.all.each do |db|
+      files = db.servers.map(&:name).map do |server_name|
+        File.expand_path("data/#{db.type}/#{server_name.downcase}.txt", Rails.root)
+      end.select do |file|
+        File.exists?(file)
+      end
+      reports = files.map do |file|
+        DatabaseInstanceImporter.safe_json_parse(file, [])
+      end.flatten
+      #NB: in a DatabaseInstance, listen ip+listen port+name is unique
+      #add non existing reports / update existing
+      reports.each do |report|
+        dbi = db.database_instances.find_or_create_by(name: report["pg_cluster"] || report["ora_instance"],
+                                                      listen_address: report["ip"],
+                                                      listen_port: report["port"].to_i)
+        dbi.host_alias = report["host"]
+        dbi.databases = report["schemas"] || report["databases"] || {}
+        dbi.set_updated_at
+        dbi.save
+      end
+      #remove old ones if older than 1 week
+    end
+  end
+end

@@ -24,15 +24,14 @@
       </td>
     </tr>
   <% end if @database.servers.any? %>
-  <% if @database.postgres_report.present? or @database.oracle_report.present? %>
+  <% if @database.database_instances.any? %>
   <thead>
     <tr>
       <%= @database.table_headers %>
     </tr>
   </thead>
   <tbody>
-    <%= render partial: "#{@database.type}_report",
-               collection: @database.send(:"#{@database.type}_report") %>
+    <%= render partial: 'database_instance', collection: @database.database_instances %>
   </tbody>
   <% end %>
 </table>

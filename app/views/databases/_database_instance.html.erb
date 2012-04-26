@@ -1,0 +1,34 @@
+<% if database_instance_counter != 0 %><tr><% end %>
+<td class="database-ip center">
+  <%= database_instance.listen_address %>
+</td>
+<td class="database-port center">
+  <%= database_instance.listen_port %>
+</td>
+<td class="database-instance center">
+  <abbr title="<%= database_instance.host_alias %>"><%= database_instance.name %></abbr>
+</td>
+<td>
+  <% if database_instance.present? %>
+  <% if databases_view_mode == "normal" %>
+  <span class="databases-summary">
+    <%= databases_summary(database_instance.databases) %>
+  </span>
+  <% elsif databases_view_mode == "detailed" %>
+  <ul class="databases-details">
+  <% database_instance.databases.keys.sort.each do |db| %>
+    <% size = database_instance.databases[db] %>
+    <li><%= db %><span style="float:right; padding-left:1em"><%= display_size(size) %></span></li>
+  <% end %>
+    <% if database_instance.databases.any? %>
+      <li style="font-weight:bold;">
+        Total <span style="float:right; padding-left:1em"><%= display_size(database_instance.databases.values.sum) %></span>
+      </li>
+    <% else %>
+      <li><%= t(:information_not_available) %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <% end %>
+</td>
+<% if database_instance_counter != 0 %></tr><% end %>

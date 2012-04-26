@@ -7,6 +7,7 @@ class Database
   field :name, type: String
   field :type, type: String
   has_many :servers
+  has_many :database_instances, dependent: :destroy
 
   validates_presence_of :name
   validates_inclusion_of :type, in: %w(postgres oracle)
@@ -33,55 +34,24 @@ class Database
     name
   end
 
-  def postgres_report
-    servers.inject([]) do |memo,server|
-      memo.concat(server.postgres_report)
-    end.sort_by do |report|
-      [report["port"].to_i, report["pg_cluster"]]
-    end
-  end
-
-  def oracle_report
-    servers.inject([]) do |memo,server|
-      memo.concat(server.oracle_report)
-    end.sort_by do |report|
-      report["ora_instance"]
-    end
-  end
-
-  def report
-    method = :"#{type}_report"
-    respond_to?(method) ? send(method) : []
-  end
-
   def instances
+    raise "Shouldn't be used, not explicit method name"
     report.size
   end
 
   def size
-    case type
-    when "postgres"
-      report.inject(0) do |memo,instance|
-        memo += instance["databases"].values.sum
-      end
-    when "oracle"
-      report.inject(0) do |memo,instance|
-        memo += instance["schemas"].values.sum
-      end
-    else
-      0
-    end
+    database_instances.map(&:size).sum
   end
 
-  def self.hash_distribution(databases = Database.includes(:servers))
+  def self.hash_distribution(dbs = Database.includes(:servers))
     map = {"oracle" => {}, "postgres" => {}}
-    databases.each do |db|
+    dbs.each do |db|
       dbmap = {}
-      db.report.each do |report|
-        name = report["ora_instance"].presence || report["pg_cluster"]
-        schemas = report["schemas"].presence || report["databases"]
-        if name.present? && schemas.present?
-          dbmap[name] = schemas
+      db.database_instances.each do |db_instance|
+        name = db_instance.name
+        subdbs = db_instance.databases
+        if name.present? && subdbs.present?
+          dbmap[name] = subdbs
         end
       end
       map[db.type][db.name] = dbmap
