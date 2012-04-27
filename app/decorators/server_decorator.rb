@@ -139,9 +139,9 @@ class ServerDecorator < ResourceDecorator
     if [model.contract_type, model.delivered_on, model.maintained_until].compact.any?
       html = "#{model.contract_type.presence || "?"}"
       if model.delivered_on.present? || model.maintained_until.present?
-        html << "<br>#{model.delivered_on} &rarr; #{model.maintained_until}".html_safe
+        html << "<br>#{model.delivered_on} &rarr; #{model.maintained_until}"
       end
-      html
+      html.html_safe
     else
       "?"
     end
