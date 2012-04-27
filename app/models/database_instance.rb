@@ -11,7 +11,7 @@ class DatabaseInstance
   belongs_to :database
 
   validates_presence_of :name
-  validates_uniqueness_of :name, scope: :database_id
+  validates_uniqueness_of :name, scope: [:database_id, :listen_address, :listen_port]
   validate :databases_cant_be_nil
 
   def databases_cant_be_nil
