@@ -61,8 +61,7 @@
       <div style="width:42%;">
         <span class=label><%= t(:contract_type) %></span>
         <div class="details">
-          <%= @server.contract_type %><br />
-          <%= @server.delivered_on %> &rarr; <%= @server.maintained_until %>
+          <%= @server.maintenance_contract %>
         </div>
       </div>
       <div style="width:28%;">

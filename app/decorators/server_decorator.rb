@@ -135,6 +135,13 @@ class ServerDecorator < ResourceDecorator
     end
   end
 
+  def maintenance_contract
+    if [model.contract_type, model.delivered_on, model.maintained_until].compact.any?
+      "#{model.contract_type} <br>#{model.delivered_on} &rarr; #{model.maintained_until}".html_safe
+    else
+      "?"
+    end
+  end
   # Accessing Helpers
   #   You can access any helper via a proxy
   #
