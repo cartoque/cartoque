@@ -21,8 +21,12 @@ class DatabasesController < ResourcesController
     update! { databases_url }
   end
 
-  private
+  protected
+  def collection
+    @databases ||= decorate_resource_or_collection(end_of_association_chain.order_by(:name.asc))
+  end
 
+  private
   def select_view_mode
     current_user.update_setting(:databases_view_mode, params[:view_mode]) if params[:view_mode]
   end
