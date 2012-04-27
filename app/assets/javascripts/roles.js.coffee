@@ -1,5 +1,5 @@
 jQuery ->
-  $(".long-list").sortable
+  $(".sortable-table").sortable
 	  axis: 'y'
 	  handle: 'td:eq(0)'
 	  opacity: 0.6

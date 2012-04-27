@@ -14,7 +14,7 @@
     <th></th>
   </tr>
 </thead>
-<tbody class="long-list" id="roles-sortable" data-sort-url="<%= sort_roles_path %>">
+<tbody class="long-list sortable-table" id="roles-sortable" data-sort-url="<%= sort_roles_path %>">
 <% @roles.each do |role| %>
   <%= content_tag_for :tr, role do %>
     <td><%= image_tag 'grippy.png', size: '6x14' %></td>
