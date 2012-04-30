@@ -7,10 +7,6 @@ class Server
   STATUS_ACTIVE = 1
   STATUS_INACTIVE = 2
 
-  #specify the mongodb collection for now..
-  #TODO: remove it when this class is renamed Server
-  store_in :servers
-
   #standard fields
   field :name, type: String
   field :serial_number, type: String
