@@ -7,13 +7,28 @@ describe PhysicalRack do
   end
 
   #TODO: move it to a presenter
-  describe "#to_s" do
-    it "should format correctly with #to_s" do
+  describe "#fullname" do
+    it "should format correctly with #fullname or #to_s" do
       @rack.to_s.should eq "Rack 1"
       @site.to_s.should eq "Hosting Room 1"
       @rack.site = @site
       @rack.save
       @rack.to_s.should eq "Hosting Room 1 - Rack 1"
+    end
+  end
+
+  describe "#site_name" do
+    it "is a denormalized version of #site.try(:name)" do
+      @rack.site_name.should be_blank
+
+      @rack.update_attribute(:site_id, @site.id)
+      @rack.reload.site_name.should == "Hosting Room 1"
+
+      @site.reload.update_attribute(:name, "Room 1")
+      @rack.reload.site_name.should == "Room 1"
+
+      @site.destroy
+      @rack.reload.site_name.should be_blank
     end
   end
 

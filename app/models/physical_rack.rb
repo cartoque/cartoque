@@ -9,9 +9,9 @@ class PhysicalRack
   belongs_to :site
   has_many :servers, dependent: :nullify
   #denormalized fields
+  denormalize :name, from: :site
   denormalize :fullname, to: :servers
 
-  before_save :fill_in_site_name
   before_destroy :nullify_denormalized_fields
 
   STATUS_PROD = 1
@@ -27,10 +27,6 @@ class PhysicalRack
   end
 
   protected
-  def fill_in_site_name
-    self.site_name = self.site.try(:name)
-  end
-
   #TODO: remove it when https://github.com/logandk/mongoid_denormalize/pull/10 is merged and released
   def nullify_denormalized_fields
     servers.each do |server|
