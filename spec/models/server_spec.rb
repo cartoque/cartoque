@@ -251,4 +251,25 @@ describe Server do
       srv.hardware_model.should == "Dell PE 2950"
     end
   end
+
+  describe "mongoid_denormalized" do
+    it "updates #physical_rack_fullname correctly" do
+      srv = Server.find_or_create_by(name: "srv-01")
+      rack = PhysicalRack.create!(name: "Rack-01", site: Site.create!(name: "Room-A"))
+      rack2 = PhysicalRack.create!(name: "Rack-02")
+      srv.physical_rack_fullname.should be_blank
+
+      srv.update_attribute(:physical_rack_id, rack2.id)
+      srv.reload.physical_rack_fullname.should == "Rack-02"
+
+      srv.update_attribute(:physical_rack_id, rack.id)
+      srv.reload.physical_rack_fullname.should == "Room-A - Rack-01"
+
+      rack.reload.update_attribute(:name, "RCK01")
+      srv.reload.physical_rack_fullname.should == "Room-A - RCK01"
+
+      rack.destroy
+      srv.reload.physical_rack_fullname.should be_blank
+    end
+  end
 end

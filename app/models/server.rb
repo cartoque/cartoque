@@ -1,6 +1,7 @@
 class Server
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Denormalize
   include Acts::Ipaddress
 
   #some constants for status codes
@@ -45,6 +46,8 @@ class Server
   field :processor_physical_count, type: Integer, default: 1
   field :processor_cores_per_cpu, type: Integer, default: 1
   field :memory_GB, type: Float, default: 0
+  #denormalized fields
+  denormalize :fullname, from: :physical_rack
   #associations
   belongs_to :operating_system
   belongs_to :physical_rack
