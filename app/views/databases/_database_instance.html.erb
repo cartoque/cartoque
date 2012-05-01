@@ -21,8 +21,8 @@
     <li><%= db %><span style="float:right; padding-left:1em"><%= display_size(size) %></span></li>
   <% end %>
     <% if database_instance.databases.any? %>
-      <li style="font-weight:bold;">
-        Total <span style="float:right; padding-left:1em"><%= display_size(database_instance.databases.values.sum) %></span>
+      <li class="total-size">
+        <%= t(:total) %><span style="float:right; padding-left:1em"><%= display_size(database_instance.databases.values.sum) %></span>
       </li>
     <% else %>
       <li><%= t(:information_not_available) %></li>
