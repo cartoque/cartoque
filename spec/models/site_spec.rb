@@ -18,15 +18,18 @@ describe Site do
   end
 
   it "updates rack's site_name" do
-    site = Site.create(name: "room-1")
-    rack = FactoryGirl.create(:rack1)
-    rack.site = site
-    rack.save
+    site = Site.create!(name: "room-1")
+    rack = PhysicalRack.create!(name: "rack-one", site: site)
+    srv =  Server.create!(name: "srv", physical_rack: rack)
     rack.site_name.should == "room-1"
+
     site.name = "room-one"
     site.save
     rack.reload.site_name.should == "room-one"
+    srv.reload.physical_rack_fullname.should == "room-one - rack-one"
+
     site.destroy
     rack.reload.site_name.should == nil
+    srv.reload.physical_rack_fullname.should == "room-one"
   end
 end
