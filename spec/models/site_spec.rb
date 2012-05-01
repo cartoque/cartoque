@@ -30,6 +30,6 @@ describe Site do
 
     site.destroy
     rack.reload.site_name.should == nil
-    srv.reload.physical_rack_fullname.should == "room-one"
+    srv.reload.physical_rack_fullname.should == "rack-one"
   end
 end
