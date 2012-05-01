@@ -143,9 +143,9 @@ module ApplicationHelper
                          title: t(:"helpers.submit.create"))
   end
 
-  def link_to_rack(rack)
-    return "" if rack.blank?
-    link_to rack, servers_path(by_location: "rack-#{rack.id}")
+  def link_to_rack(rack_name, rack_id)
+    return "" if rack_name.blank?
+    link_to rack_name, servers_path(by_location: "rack-#{rack_id}")
   end
 
   def link_to_remove_fields(name, f, options = {})

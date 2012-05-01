@@ -11,7 +11,7 @@
   <% cache ["list-maintenance", server] do %>
     <tr>
       <td><%= link_to server.name, server %></td>
-      <td><%= link_to_rack server.physical_rack %></td>
+      <td><%= link_to_rack server.physical_rack_full_name, server.physical_rack_id %></td>
       <td><%= server.fullmodel %></td>
       <td class="center"><%= server.serial_number %></td>
       <td>
