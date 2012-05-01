@@ -17,7 +17,7 @@
         <%= link_to server.name, server %>
       </td>
       <td class="center"><%= server.ipaddress %></td>
-      <td><%= server.operating_system_name %></td>
+      <td class="center"><%= server.operating_system_name %></td>
       <td class="center"><%= server.arch %></td>
       <td class="center"><% if server.virtual? %><span class="virtual-server">V</span><% end %></td>
       <td class="center"><%= link_to_rack server.physical_rack_full_name, server.physical_rack_id %></td>
