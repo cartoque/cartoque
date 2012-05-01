@@ -18,7 +18,7 @@
     </td>
     <td class="center"><% if server.virtual? %><span class="virtual-server">V</span><% end %></td>
     <td class="center"><% if server.puppetversion? %><span class="puppetized-server">P</span><% end %></td>
-    <td><%= server.operating_system %></td>
+    <td><%= server.operating_system_name %></td>
     <td class="center"><%= server.operatingsystemrelease %></td>
     <td class="center"><%= server.puppetversion %></td>
     <td class="center"><%= server.facterversion %></td>

@@ -48,6 +48,7 @@ class Server
   field :memory_GB, type: Float, default: 0
   #denormalized fields
   denormalize :full_name, from: :physical_rack
+  denormalize :name, from: :operating_system
   #associations
   belongs_to :operating_system
   belongs_to :physical_rack

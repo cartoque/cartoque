@@ -1,11 +1,16 @@
 class OperatingSystem
   include Mongoid::Document
   include Mongoid::Ancestry
+  include Mongoid::Denormalize
   include Mongoid::Timestamps
 
+  #standard fields
   field :name, type: String
   field :codename, type: String
   field :managed_with_puppet, type: Boolean
+  #denormalized fields
+  denormalize :name, to: :servers
+  #associations
   has_ancestry cache_depth: true
   has_many :servers
 

@@ -271,5 +271,20 @@ describe Server do
       rack.destroy
       srv.reload.physical_rack_full_name.should be_blank
     end
+
+    it "updates #operating_system_name correctly" do
+      srv = Server.find_or_create_by(name: "srv-01")
+      sys = OperatingSystem.create!(name: "Linux")
+      srv.operating_system_name.should be_blank
+
+      srv.update_attribute(:operating_system_id, sys.id)
+      srv.reload.operating_system_name.should == "Linux"
+
+      sys.reload.update_attribute(:name, "GNU/Linux")
+      srv.reload.operating_system_name.should == "GNU/Linux"
+
+      sys.destroy
+      srv.reload.operating_system_name.should be_blank
+    end
   end
 end

@@ -79,7 +79,7 @@ class ServerDecorator < ResourceDecorator
   def short_line
     h.content_tag(:span, class: "server-link") do
       h.link_to(model.name, model) + h.content_tag(:span, class: "server-summary") do
-        [ model.operating_system,
+        [ model.operating_system_name,
           (model.processor_physical_count && model.processor_physical_count > 0 ? cores : ""),
           (model.memory_MB.present? ? memory : ""),
           (model.disk_size && model.disk_size > 0 ? disks : "") ].reject(&:blank?).join(" | ")
