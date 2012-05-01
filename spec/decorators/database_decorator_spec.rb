@@ -6,9 +6,9 @@ describe DatabaseDecorator do
   end
 
   it "should display nodes under a database" do
-    assert @database.servers.present?
-    assert_equal "database-01", @database.name
-    assert_equal "server-01", @database.servers.map(&:name).join(" ")
+    @database.servers.should be_present
+    @database.name.should == "database-01"
+    @database.servers.map(&:name).should == %w(server-01)
     pretty = @database.pretty_nodes
     pretty.should have_selector('strong > a', text: @database.name)
     pretty.should have_selector('ul > li', text: @database.servers.first.name)
