@@ -7,8 +7,8 @@ describe PhysicalRack do
   end
 
   #TODO: move it to a presenter
-  describe "#fullname" do
-    it "should format correctly with #fullname or #to_s" do
+  describe "#full_name" do
+    it "should format correctly with #full_name or #to_s" do
       @rack.to_s.should eq "Rack 1"
       @site.to_s.should eq "Hosting Room 1"
       @rack.site = @site

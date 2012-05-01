@@ -253,23 +253,23 @@ describe Server do
   end
 
   describe "mongoid_denormalized" do
-    it "updates #physical_rack_fullname correctly" do
+    it "updates #physical_rack_full_name correctly" do
       srv = Server.find_or_create_by(name: "srv-01")
       rack = PhysicalRack.create!(name: "Rack-01", site: Site.create!(name: "Room-A"))
       rack2 = PhysicalRack.create!(name: "Rack-02")
-      srv.physical_rack_fullname.should be_blank
+      srv.physical_rack_full_name.should be_blank
 
       srv.update_attribute(:physical_rack_id, rack2.id)
-      srv.reload.physical_rack_fullname.should == "Rack-02"
+      srv.reload.physical_rack_full_name.should == "Rack-02"
 
       srv.update_attribute(:physical_rack_id, rack.id)
-      srv.reload.physical_rack_fullname.should == "Room-A - Rack-01"
+      srv.reload.physical_rack_full_name.should == "Room-A - Rack-01"
 
       rack.reload.update_attribute(:name, "RCK01")
-      srv.reload.physical_rack_fullname.should == "Room-A - RCK01"
+      srv.reload.physical_rack_full_name.should == "Room-A - RCK01"
 
       rack.destroy
-      srv.reload.physical_rack_fullname.should be_blank
+      srv.reload.physical_rack_full_name.should be_blank
     end
   end
 end

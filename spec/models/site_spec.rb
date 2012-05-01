@@ -26,10 +26,10 @@ describe Site do
     site.name = "room-one"
     site.save
     rack.reload.site_name.should == "room-one"
-    srv.reload.physical_rack_fullname.should == "room-one - rack-one"
+    srv.reload.physical_rack_full_name.should == "room-one - rack-one"
 
     site.destroy
     rack.reload.site_name.should == nil
-    srv.reload.physical_rack_fullname.should == "rack-one"
+    srv.reload.physical_rack_full_name.should == "rack-one"
   end
 end

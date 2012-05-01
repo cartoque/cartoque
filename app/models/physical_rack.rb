@@ -10,17 +10,17 @@ class PhysicalRack
   has_many :servers, dependent: :nullify
   #denormalized fields
   denormalize :name, from: :site
-  denormalize :fullname, to: :servers
+  denormalize :full_name, to: :servers
 
   before_destroy :nullify_denormalized_fields
 
   STATUS_PROD = 1
   STATUS_STOCK = 2
 
-  def fullname
+  def full_name
     [site_name, name].compact.join(" - ")
   end
-  alias :to_s :fullname
+  alias :to_s :full_name
 
   def stock?
     status == STATUS_STOCK

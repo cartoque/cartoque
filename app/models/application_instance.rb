@@ -18,8 +18,8 @@ class ApplicationInstance
   validates_presence_of :name, :authentication_method, :application
   validates_inclusion_of :authentication_method, in: AVAILABLE_AUTHENTICATION_METHODS
 
-  def fullname
+  def full_name
     "#{application.try(:name)} (#{name})"
   end
-  alias :to_s :fullname
+  alias :to_s :full_name
 end

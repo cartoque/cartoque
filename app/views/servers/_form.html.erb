@@ -107,7 +107,7 @@
       <tr><th colspan="2"><%= t(:application_instances) %></th></tr>
     </thead>
     <tbody>
-      <%= f.input :application_instance_ids, collection: ApplicationInstance.all.map{|i| [i.fullname, i.id]}, as: "multiselect" %>
+      <%= f.input :application_instance_ids, collection: ApplicationInstance.all.map{|i| [i.full_name, i.id]}, as: "multiselect" %>
     </tbody>
   </table>
   </div>
