@@ -5,7 +5,9 @@
 <td colspan="3" class="database-params">
   <ul class="databases-details">
   <% if database_instance.config.present? %>
-    <li>test</li>
+  <% database_instance.config.keys.sort.each do |param| %>
+    <li><%= param %><span style="float:right; padding-left:1em"><%= database_instance.config[param] %></span></li>
+  <% end %>
   <% else %>
     <li><%= t(:information_not_available) %></li>
   <% end %>
