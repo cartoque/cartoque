@@ -56,12 +56,13 @@ namespace :import do
       end
       #memory
       if facts["memorysize"].present?
-        if facts["memorysize"].match /GB$/
-          server.memory_GB = facts["memorysize"].to_f
-        elsif facts["memorysize"].match /MB$/
-          server.memory_GB = facts["memorysize"].to_f / 1024
+        memory = facts["memoryreal"].presence || memory["size"]
+        if memory.match /GB$/
+          server.memory_GB = memory.to_f
+        elsif memory.match /MB$/
+          server.memory_GB = memory.to_f / 1024
         else
-          puts "Unable to parse memory for #{server.name}: #{facts["memorysize"]}" if ENV['DEBUG'].present?
+          puts "Unable to parse memory for #{server.name}: memorysize=#{facts["memorysize"]}, memoryreal=#{facts["memoryreal"]}" if ENV['DEBUG'].present?
         end
       end
       #save server
