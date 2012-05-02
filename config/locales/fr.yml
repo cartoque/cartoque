@@ -355,6 +355,8 @@ fr:
   synthetic_view: "Vue synthétique"
   detailed_view: "Vue détaillée"
   parameters_view: "Vue paramètres"
+  parameter: "Paramètre"
+  value: "Valeur"
   information_not_available: "Information non disponible"
   configuration: "Configuration"
   maintenance: "Maintenance"

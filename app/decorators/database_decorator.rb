@@ -40,7 +40,7 @@ class DatabaseDecorator < ResourceDecorator
     html = "".html_safe
     html << h.content_tag(:th, t("#{model.type}_instance"))
     html << h.content_tag(:th, colspan: 3, style: "text-align:left;") do
-      "Param".html_safe + h.content_tag(:span, "Value", style: "float:right;padding-left:1em")
+      t(:parameter).html_safe + h.content_tag(:span, t(:value), style: "float:right;padding-left:1em")
     end 
     html
   end

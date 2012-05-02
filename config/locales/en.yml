@@ -198,6 +198,8 @@ en:
   synthetic_view: "Synthetic view"
   detailed_view: "Detailed view"
   parameters_view: "Parameters view"
+  parameter: "Parameter"
+  value: "Value"
   information_not_available: "Information not available"
   configuration: "Configuration"
   maintenance: "Maintenance"
