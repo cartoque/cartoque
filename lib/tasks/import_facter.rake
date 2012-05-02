@@ -46,10 +46,13 @@ namespace :import do
       server.arch = facts["hardwaremodel"] if facts["hardwaremodel"].present?
       #processor
       if facts["processorcount"].present?
-        facts["physicalprocessorcount"] ||= facts["processorcount"]
-        server.processor_physical_count = facts["physicalprocessorcount"].to_i
-        server.processor_physical_count = 1 if server.processor_physical_count == 0
-        server.processor_system_count   = facts["processorcount"].to_i
+        system   = facts["processorcountreal"].presence || facts["processorcount"]
+        system   = "1" if system.to_i == 0
+        physical = facts["physicalprocessorcountreal"].presence || facts["physicalprocessorcount"]
+        physical ||= system
+        physical = "1" if physical.to_i == 0
+        server.processor_physical_count = physical.to_i
+        server.processor_system_count   = system.to_i
         server.processor_cores_per_cpu  = server.processor_system_count / server.processor_physical_count
         server.processor_reference      = facts["processor0"].split("@").first.strip.gsub(/\s+/, ' ').gsub(/ CPU /, ' ').gsub('(R)', '')
         server.processor_frequency_GHz  = facts["processor0"].split("@").last.gsub('GHz', '').strip.to_f
