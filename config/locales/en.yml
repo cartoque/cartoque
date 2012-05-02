@@ -197,6 +197,7 @@ en:
   new_database: "New database"
   synthetic_view: "Synthetic view"
   detailed_view: "Detailed view"
+  parameters_view: "Parameters view"
   information_not_available: "Information not available"
   configuration: "Configuration"
   maintenance: "Maintenance"

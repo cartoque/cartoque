@@ -11,7 +11,17 @@ class DatabaseDecorator < ResourceDecorator
     html.html_safe
   end
 
-  def table_headers
+  def table_headers(view_mode = "normal")
+    if view_mode == "normal" || view_mode == "detailed"
+      normal_table_headers
+    elsif view_mode == "parameters"
+      parameters_table_headers
+    else
+      raise ArgumentError, "should be among 'detailed', 'normal', 'parameters'"
+    end
+  end
+
+  def normal_table_headers
     labels = table_column_names
     if labels
       html = "".html_safe
@@ -24,6 +34,14 @@ class DatabaseDecorator < ResourceDecorator
       end 
       html
     end
+  end
+
+  def parameters_table_headers
+    html = "".html_safe
+    html << h.content_tag(:th, colspan: 4, style: "text-align:left;") do
+      "Param".html_safe + h.content_tag(:span, "Value", style: "float:right;padding-left:1em")
+    end 
+    html
   end
 
   def table_column_names

@@ -15,6 +15,7 @@
         <ul class="dropdown-menu">
           <%= context_li t(:synthetic_view), databases_path(view_mode: "normal"), current: (databases_view_mode == "normal") %>
           <%= context_li t(:detailed_view), databases_path(view_mode: "detailed"), current: (databases_view_mode == "detailed") %>
+          <%= context_li t(:parameters_view), databases_path(view_mode: "parameters"), current: (databases_view_mode == "parameters") %>
         </ul>
       </li>
     </ul>

@@ -1,0 +1,11 @@
+<% if database_instance_counter != 0 %><tr><% end %>
+<td colspan="4" class="database-params">
+  <ul class="databases-details">
+  <% if database_instance.config.present? %>
+    <li>test</li>
+  <% else %>
+    <li><%= t(:information_not_available) %></li>
+  <% end %>
+  </ul>
+</td>
+<% if database_instance_counter != 0 %></tr><% end %>

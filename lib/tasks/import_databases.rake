@@ -75,6 +75,7 @@ namespace :import do
         dbi.host_alias = report["host"]
         dbs = report["schemas"].presence || report["databases"].presence
         dbi.databases = dbs if dbs.present?
+        dbi.config = report["config"] if report["config"].present?
         dbi.set_updated_at
         dbi.save
       end

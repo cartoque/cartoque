@@ -8,6 +8,7 @@ class DatabaseInstance
   field :host_alias, type: String
   field :version, type: String
   field :databases, type: Hash, default: {}
+  field :config, type: Hash, default: {}
   belongs_to :database
 
   validates_presence_of :name

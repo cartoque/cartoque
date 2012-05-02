@@ -354,6 +354,7 @@ fr:
   new_database: "Nouveau cluster/serveur de base de données"
   synthetic_view: "Vue synthétique"
   detailed_view: "Vue détaillée"
+  parameters_view: "Vue paramètres"
   information_not_available: "Information non disponible"
   configuration: "Configuration"
   maintenance: "Maintenance"

@@ -5,7 +5,7 @@
   <tr class="fix-on-scroll">
     <th><%= t(:server) %></th>
     <th><%= t(:type) %></th>
-    <%= postgres_databases.first.table_headers %>
+    <%= postgres_databases.first.table_headers(databases_view_mode) %>
   </tr>
   <% end %>
   <% for database in postgres_databases %>
@@ -22,10 +22,15 @@
         <%= database.pretty_nodes %>
       </td>
       <td rowspan="<%= height %>" class="multirow center">PostgreSQL</td>
-      <% if database.database_instances.any? %>
-        <%= render partial: 'database_instance', collection: database.database_instances.sort_by{|dbi| [dbi.listen_port, dbi.name]} %>
+      <% if databases_view_mode.in? %w(normal detailed) %>
+        <% if database.database_instances.any? %>
+          <%= render partial: 'database_instance', collection: database.database_instances.sort_by{|dbi| [dbi.listen_port, dbi.name]} %>
+        <% else %>
+          <td colspan="4" class="center"><%= t(:information_not_available) %></td>
+        <% end %>
       <% else %>
-        <td colspan="4" class="center"><%= t(:information_not_available) %></td>
+        <%= render partial: 'database_parameters', collection: database.database_instances.sort_by{|dbi| [dbi.listen_port, dbi.name]},
+                                                   as: 'database_instance' %>
       <% end %>
     </tr>
    <% end %>
@@ -34,7 +39,7 @@
   <tr class="fix-on-scroll">
     <th><%= t(:server) %></th>
     <th><%= t(:type) %></th>
-    <%= oracle_databases.first.table_headers %>
+    <%= oracle_databases.first.table_headers(databases_view_mode) %>
   </tr>
   <% end %>
   <% for database in oracle_databases %>
@@ -51,10 +56,15 @@
         <%= database.pretty_nodes %>
       </td>
       <td rowspan="<%= height %>" class="multirow center">Oracle</td>
-      <% if database.database_instances.any? %>
-        <%= render partial: 'database_instance', collection: database.database_instances.sort_by{|dbi| [dbi.listen_port, dbi.name]} %>
+      <% if databases_view_mode.in? %w(normal detailed) %>
+        <% if database.database_instances.any? %>
+          <%= render partial: 'database_instance', collection: database.database_instances.sort_by{|dbi| [dbi.listen_port, dbi.name]} %>
+        <% else %>
+          <td colspan="4" class="center"><%= t(:information_not_available) %></td>
+        <% end %>
       <% else %>
-        <td colspan="4" class="center"><%= t(:information_not_available) %></td>
+        <%= render partial: 'database_parameters', collection: database.database_instances.sort_by{|dbi| [dbi.listen_port, dbi.name]},
+                                                   as: 'database_instance' %>
       <% end %>
     </tr>
   <% end %>
