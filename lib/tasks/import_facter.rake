@@ -56,7 +56,7 @@ namespace :import do
       end
       #memory
       if facts["memorysize"].present?
-        memory = facts["memoryreal"].presence || facts["size"]
+        memory = facts["memoryreal"].presence || facts["memorysize"].to_f
         if memory.match /GB$/
           server.memory_GB = memory.to_f
         elsif memory.match /MB$/
