@@ -38,7 +38,8 @@ class DatabaseDecorator < ResourceDecorator
 
   def parameters_table_headers
     html = "".html_safe
-    html << h.content_tag(:th, colspan: 4, style: "text-align:left;") do
+    html << h.content_tag(:th, "Version")
+    html << h.content_tag(:th, colspan: 3, style: "text-align:left;") do
       "Param".html_safe + h.content_tag(:span, "Value", style: "float:right;padding-left:1em")
     end 
     html

@@ -1,5 +1,8 @@
 <% if database_instance_counter != 0 %><tr><% end %>
-<td colspan="4" class="database-params">
+<td class="database-version">
+  <%= database_instance.version %>
+</td>
+<td colspan="3" class="database-params">
   <ul class="databases-details">
   <% if database_instance.config.present? %>
     <li>test</li>
