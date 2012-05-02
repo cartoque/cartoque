@@ -228,7 +228,7 @@ class Server
   end
 
   def known_memory?
-    memory_GB.to_i > 0
+    memory_GB.to_f > 0
   end
 
   def known_processor?
