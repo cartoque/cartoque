@@ -8,9 +8,9 @@ namespace :import do
       format = $1
       server = Server.find_or_generate(servername)
       lines = File.readlines(file)
-      next if lines.count < 2
       # apt
       if format == "apt"
+        next if lines.count < 2
         packages = lines.grep(/ => /).map(&:strip).map do |line|
           if line.match /^(\S+)\s+\((\S+) => (\S+)\)/
             #puts "server:#{servername}, package:#{$1}, from:#{$2}, to:#{$3}"
