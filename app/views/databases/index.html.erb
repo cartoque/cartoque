@@ -4,9 +4,9 @@
 
 <%= action_links do %>
   <div class="navbar-inner" style="padding:0">
-    <ul class="nav">
+    <div class="nav">
       <%= link_to t(:add), new_database_path %>
-    </ul>
+    </div>
     <ul class="nav pull-right">
       <li><%= link_to image_tag("chart_bar.png", size: "16x16"), distribution_databases_path %></li>
       <li><%= link_to image_tag("file_extension_pdf.png", size: "16x16"), databases_path(format: "pdf") %></li>
