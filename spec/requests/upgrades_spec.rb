@@ -17,18 +17,17 @@ describe "Upgrades" do
       page.should have_content "kernel-3.0"
     end
 
-    #TODO: fix this ! and understand why it fails.....
-    pending "sorts upgrades by server name and packages count" do
+    it "sorts upgrades by server name and packages count" do
       visit upgrades_path
       click_link "Name"
       current_path.should == upgrades_path
       page.body.should match /server-01.*server-02/m
       click_link "Count"
       current_path.should == upgrades_path
-      page.body.should match /server-01.*server-02/m
+      page.body.should match /server-02.*server-01/m #count asc, server2=>1, server1=>2
       click_link "Count"
       current_path.should == upgrades_path
-      page.body.should match /server-02.*server-01/m
+      page.body.should match /server-01.*server-02/m #count desc, server1=>2, server2=>1
     end
 
     it "validates an upgrade" do
