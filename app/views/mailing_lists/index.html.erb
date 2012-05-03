@@ -3,7 +3,11 @@
 <div class="span12 center">
 
 <%= action_links do %>
-  <%= link_to t(:new_mailing_list), new_mailing_list_path %>
+  <div class="navbar-inner">
+    <div class="nav">
+      <%= link_to t(:new_mailing_list), new_mailing_list_path %>
+    </div>
+  </div>
 <% end %>
 
 <table class="pretty list full mailing_lists">
