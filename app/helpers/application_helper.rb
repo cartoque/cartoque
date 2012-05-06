@@ -129,7 +129,7 @@ module ApplicationHelper
   end
 
   def link_to_servername(name)
-    link_to name, server_path(Server.ci_identifier_for(name))
+    link_to name, server_path(Server.identifier_for(name))
   end
 
   def link_to_server_if_exists(name)

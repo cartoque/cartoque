@@ -2,6 +2,7 @@ class Server
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Denormalize
+  include Mongoid::Slug
   include Acts::Ipaddress
 
   #some constants for status codes
@@ -31,7 +32,6 @@ class Server
   field :ipaddress, type: Integer
   acts_as_ipaddress :ipaddress
   field :has_drac, type: Boolean
-  field :ci_identifier, type: String
   field :network_device, type: Boolean
   field :is_hypervisor, type: Boolean
   field :puppetversion, type: String
@@ -70,6 +70,10 @@ class Server
   has_many :physical_links,      class_name: 'PhysicalLink', foreign_key: 'server_id', dependent: :destroy
   has_many :connected_links,     class_name: 'PhysicalLink', foreign_key: 'switch_id', dependent: :destroy
   has_many :ipaddresses, foreign_key: 'server_id', dependent: :destroy, autosave: true
+  #slug
+  slug  :name do |doc|
+    Server.identifier_for(doc.name)
+  end
 
   before_save :update_site!
 
@@ -111,40 +115,46 @@ class Server
 
   validates_presence_of :name
   validates_uniqueness_of :name
-  validates_uniqueness_of :ci_identifier
 
   before_validation :sanitize_attributes
-  before_validation :update_ci_identifier
   before_save :update_main_ipaddress
 
-  def self.find(*args)
-    where(ci_identifier: args.first).first || super(*args)
-  end
-
-  def self.find_or_generate(name)
-    servername = name.dup
-    Setting.dns_domains.strip.split(/\n|,/).each do |domain|
-      servername.gsub!(".#{domain.strip}".gsub(/^\.\./, "."), "")
+  class << self
+    def find(*args)
+      find_by_slug(args.first) || super(*args)
     end
-    server = Server.where(name: servername).first || Server.where(ci_identifier: servername).first
-    if server.blank?
-      server = Server.create(name: servername)
-      server.just_created = true
-    end
-    server
-  end
 
-  def self.not_backuped
-    #first list the ones that don't need backups
-    backuped = BackupJob.where(server_status: Server::STATUS_ACTIVE).distinct(:server_id).uniq
-    exceptions = BackupException.only(:server_ids).map(&:server_ids).flatten.uniq
-    net_devices = Server.network_devices.distinct(:_id)
-    stock_servers = Server.all.select{|s| s.physical_rack && s.physical_rack.status == PhysicalRack::STATUS_STOCK}.map(&:id)
-    dont_need_backup = backuped + exceptions + net_devices + stock_servers
-    #now let's search the servers
-    servers = Server.where(status: Server::STATUS_ACTIVE)
-    servers = servers.where(:_id.nin => dont_need_backup) if dont_need_backup.any?
-    servers.order_by(:name.asc)
+    def find_or_generate(name)
+      servername = name.dup
+      Setting.dns_domains.strip.split(/\n|,/).each do |domain|
+        servername.gsub!(".#{domain.strip}".gsub(/^\.\./, "."), "")
+      end
+      server = where(name: servername).first || find_by_slug(servername)
+      if server.blank?
+        server = create(name: servername)
+        server.just_created = true
+      end
+      server
+    end
+
+    def not_backuped
+      #first list the ones that don't need backups
+      backuped = BackupJob.where(server_status: Server::STATUS_ACTIVE).distinct(:server_id).uniq
+      exceptions = BackupException.only(:server_ids).map(&:server_ids).flatten.uniq
+      net_devices = network_devices.distinct(:_id)
+      stock_servers = all.select{|s| s.physical_rack && s.physical_rack.status == PhysicalRack::STATUS_STOCK}.map(&:id)
+      dont_need_backup = backuped + exceptions + net_devices + stock_servers
+      #now let's search the servers
+      servers = where(status: Server::STATUS_ACTIVE)
+      servers = servers.where(:_id.nin => dont_need_backup) if dont_need_backup.any?
+      servers.order_by(:name.asc)
+    end
+
+    def identifier_for(name)
+      name.downcase.gsub(/[^a-z0-9_-]/,"-")
+                   .gsub(/--+/, "-")
+                   .gsub(/^-|-$/,"")
+    end
   end
 
   def just_created
@@ -163,23 +173,9 @@ class Server
     name
   end
 
-  def to_param
-    ci_identifier
-  end
-
   #TODO: make it better!
   def sanitize_attributes
     self.name = "#{self.name}".strip
-  end
-
-  def update_ci_identifier
-    self.ci_identifier = Server.ci_identifier_for(self.name)
-  end
-
-  def self.ci_identifier_for(name)
-    name.downcase.gsub(/[^a-z0-9_-]/,"-")
-                 .gsub(/--+/, "-")
-                 .gsub(/^-|-$/,"")
   end
 
   def update_main_ipaddress

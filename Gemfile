@@ -32,6 +32,7 @@ gem 'mongoid-ancestry'
 gem 'mongoid_rails_migrations'
 #TODO: use the gem instead of our version in lib/ when fixes are merged in master
 #gem 'mongoid_denormalize'
+gem 'mongoid_slug'
 # Styles
 gem 'bootstrap-sass'
 gem 'font-awesome-sass-rails'

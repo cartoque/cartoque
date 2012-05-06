@@ -48,20 +48,20 @@ describe Server do
     end
   end
 
-  describe "#ci_identifier" do
-    it "should automatically generate an ci_identifier" do
+  describe "#slug" do
+    it "should automatically generate a slug" do
       m = Server.create(name: "blah")
-      m.ci_identifier.should eq "blah"
+      m.slug.should eq "blah"
       m = Server.create(name: "( bizarr# n@me )")
-      m.ci_identifier.should eq "bizarr-n-me"
+      m.slug.should eq "bizarr-n-me"
     end
 
-    it "should prevent from having 2 servers with the same identifier" do
+    pending "should prevent from having 2 servers with the same identifier" do
       m1 = Server.create(name: "srv1")
       m2 = Server.new(name: "(srv1)")
       m2.should_not be_valid
-      m2.ci_identifier.should eq m1.ci_identifier
-      m2.errors.keys.should include(:ci_identifier)
+      m2.slug.should eq m1.slug
+      m2.errors.keys.should include(:slug)
     end
   end
 
@@ -74,7 +74,7 @@ describe Server do
     end
 
     it "should work with identifiers too" do
-      Server.find(server.ci_identifier).should eq server
+      Server.find(server.slug).should eq server
     end
 
     it "should raise an exception if no existing record with this identifier" do
@@ -155,10 +155,10 @@ describe Server do
         srv.just_created.should be_false
       end
 
-      it "should find server by ci_identifier if no name corresponds" do
+      it "should find server by its slug if no name corresponds" do
         server.update_attribute(:name, "rake.server")
         server.name.should eq "rake.server"
-        server.ci_identifier.should eq "rake-server"
+        server.slug.should eq "rake-server"
         server = Server.find_or_generate("rake-server")
         server.should eq server
         server.just_created.should be_false

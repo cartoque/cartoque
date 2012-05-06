@@ -1,15 +1,22 @@
 class Application
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Slug
     
+  #standard fields
   field :name, type: String
   field :description, type: String
   field :ci_identifier, type: String
+  #associations
   has_many :application_instances, autosave: true, dependent: :destroy
+  #slug
+  slug :name do |doc|
+    doc.name.downcase.gsub(/[^a-z0-9_-]/,"-")
+            .gsub(/--+/, "-")
+            .gsub(/^-|-$/,"")
+  end
 
   validates_presence_of :name
-
-  #has_many :application_instances, dependent: :destroy
 
   accepts_nested_attributes_for :application_instances, reject_if: lambda{|a| a[:name].blank? },
                                                         allow_destroy: true
@@ -59,13 +66,7 @@ class Application
 
   class << self
     def find(*args)
-###      if args.first && args.first.is_a?(String) && !args.first.match(/^[a-f0-9]*$/)
-###        application = find_by_identifier(*args)
-###        raise ActiveRecord::RecordNotFound, "Couldn't find Application with identifier=#{args.first}" if application.nil?
-###        application
-###      else
-        super
-###      end
+      find_by_slug(*args) || super
     end
 
     def search(term)
