@@ -366,3 +366,6 @@ en:
   new_component: "New component"
   edit_a_component: "Edit a component"
   total: "Total"
+  edit_an_upgrade_exclusion: "Edit an upgrade exception"
+  upgrade_exclusions: "Upgrade exceptions"
+  new_upgrade_exclusion: "New upgrade exception"

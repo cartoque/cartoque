@@ -1,0 +1,2 @@
+class UpgradeExclusion < Exclusion
+end

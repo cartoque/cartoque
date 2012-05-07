@@ -2,6 +2,14 @@
 
 <div id="upgrades" class="items_list span12">
 
+<%= action_links do %>
+  <div class="navbar-inner">
+    <ul class="nav">
+      <%= link_to t(:manage_exceptions), upgrade_exclusions_path %>
+    </ul>
+  </div>
+<% end %>
+
 <table class="pretty list">
   <%= form_tag upgrades_path, id: "filters", method: :get do -%>
     <%= hidden_sort_fields %>

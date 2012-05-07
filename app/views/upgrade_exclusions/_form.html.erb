@@ -1,0 +1,23 @@
+<div class="span12 center">
+
+<%= simple_form_for(@upgrade_exclusion) do |f| %>
+  <%= action_links do %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+    <%= t(:or) %> <%= link_to t(:back_to_the_list), upgrade_exclusions_path %>
+  <% end %>
+
+  <table class="show_item" style="width:100%">
+    <tbody>
+      <%= tabular_errors @upgrade_exclusion %>
+      <%= f.input :reason, input_html: { size: "60x5" } %>
+      <tr>
+        <td class="label"><%= f.label :servers, class: "input" %></td>
+        <td class="multiselect">
+          <%= f.input_field :server_ids, as: :multiselect, collection: Server.where(:id.nin => UpgradeExclusion.all.map(&:user_id).flatten).order_by(:name.asc) + @upgrade_exclusion.servers %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+
+</div>

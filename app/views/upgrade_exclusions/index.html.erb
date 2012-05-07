@@ -1,0 +1,34 @@
+<% title t(:upgrade_exclusions) %>
+
+<div id="upgrade_exclusions" class="items_list span12">
+  
+<%= action_links do %>
+  <%= link_to t(:add_an_exception), new_upgrade_exclusion_path %> | 
+  <%= link_to t(:back_to_the_list), upgrades_path %>
+<% end %>
+
+<table class="pretty list">
+  <thead>
+    <tr>
+      <th class="left" style="width:11em;"><%= t(:user) %></th>
+      <th class="left"><%= t(:reason) %></th>
+      <th class="left" style="width:40%;"><%= t(:server_ids) %></th>
+      <th style="width:38px"></th>
+    </tr>
+  </thead>
+  <tbody id="upgrade_exclusions_list" class="long-list">
+  <% @upgrade_exclusions.each do |upgrade_exclusion| %>
+    <tr>
+      <td class="tiny"><%= upgrade_exclusion.user.try(:name) %></td>
+      <td><%= upgrade_exclusion.reason %></td>
+      <td><%= upgrade_exclusion.servers.sort_by(&:name).map{|s| link_to s,s}.join(", ").html_safe %></td>
+      <td>
+        <%= link_to_edit edit_upgrade_exclusion_path(upgrade_exclusion) %>
+        <%= link_to_delete upgrade_exclusion %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+</div>
