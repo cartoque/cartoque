@@ -25,6 +25,11 @@ describe Upgrade do
   it "updates counts when updating packages list" do
     upgrade.packages_list.should be_blank
     upgrade.count_total.should eq 0
+    upgrade.packages_list = [{"name"=>"kernel", "status"=>"important"}, {"name"=>"libX", "status"=>"normal"}]
+    upgrade.save!
+    upgrade.reload
+    upgrade.count_total.should eq 2
+    upgrade.count_normal.should eq 1
   end
 
   it "has an upgrader" do
