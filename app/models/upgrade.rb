@@ -7,6 +7,7 @@ class Upgrade
   field :count_total, type: Integer
   field :count_needing_reboot, type: Integer
   field :count_important, type: Integer
+  field :count_normal, type: Integer
   field :upgraded_status, type: Boolean
   field :server_name, type: String
   belongs_to :server
@@ -24,11 +25,12 @@ class Upgrade
   def update_counters!
     self.packages_list ||= []
     packages_by_status = self.packages_list.group_by do |package|
-      package[:status]
+      package["status"]
     end
     self.count_total = self.packages_list.count
-    self.count_important = (packages_by_status["important"] || []).count
     self.count_needing_reboot = (packages_by_status["needing_reboot"] || []).count
+    self.count_important = (packages_by_status["important"] || []).count
+    self.count_normal = (packages_by_status["normal"] || []).count
   end
 
   private
