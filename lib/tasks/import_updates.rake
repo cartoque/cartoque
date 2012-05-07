@@ -45,7 +45,7 @@ namespace :import do
         end.compact
       end
       upgrade = Upgrade.find_or_create_by(server_id: server.id, strategy: format)
-      upgrade.packages_list = packages
+      upgrade.packages_list = packages.stringify_keys
       if upgrade.changed?
         upgrade.upgraded_status = false
         upgrade.upgrader = nil
