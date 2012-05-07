@@ -4,7 +4,7 @@
   
 <%= action_links do %>
   <%= link_to t(:add_an_exception), new_upgrade_exclusion_path %> | 
-  <%= link_to t(:back_to_the_list), upgrades_path %>
+  <%= link_to t(:back_to_the_list), upgrades_path(by_any_package: "1", sort: "server_name") %>
 <% end %>
 
 <table class="pretty list">
