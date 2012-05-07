@@ -11,6 +11,9 @@
     <td class="center"><%= upgrade.count_total %></td>
     <td>
       <%= format_packages_list(upgrade.packages_list) %>
+      <% if upgrade.count_normal > 0 %>
+        <%= link_to_function t(:more), '$(this).parent().find(".package_normal").toggle(); $(this).hide()', class: 'more' %>
+      <% end %>
       <% if upgrade.count_total > 0 %>
         <span class="upgraded" id="upgraded-<%= upgrade.id %>"><%= validated_by(upgrade.upgrader) if upgrade.upgraded_status? %></span>
         <%= button_tag t(:validate), id: "upgrade-#{upgrade.id}", class: "validate",

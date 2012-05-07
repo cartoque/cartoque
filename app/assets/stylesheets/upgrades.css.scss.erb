@@ -6,13 +6,14 @@
     &:hover { background-color:#aaa; }
     &.package_needing_reboot { color:#d11; }
     &.package_important { color:#00b; }
-    &.package_normal { color:#555; font-size:90%; }
+    &.package_normal { color:#555; font-size:90%; display:none; }
   }
   .validate {
     margin:3px 0; padding:1px 4px; text-shadow:0 1px 1px #777; font-size:90%;
     color:#fff; background-color:#78cc01; @include gradient(#78cc01,#78cc01);
     &:hover { background-color:#70c600; @include gradient(#70c600, #70c600); }
   }
+  .more { color:#555; }
   .upgraded { color:#6a0; font-size:90%; font-style:italic; }
   tr.grey td { background-color:#f4f4f4; }
 }
