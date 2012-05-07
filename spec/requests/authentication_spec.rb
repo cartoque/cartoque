@@ -46,6 +46,13 @@ describe "Authentication" do
         get servers_path(format: "html").to_s, {}, "HTTP_X_API_TOKEN" => u.authentication_token
         response.status.should == 200
       end
+
+      it "returns an empty body if authorized + RoutingError + json format" do
+        u = FactoryGirl.create(:user)
+        get "/serverz.json", {}, "HTTP_X_API_TOKEN" => u.authentication_token
+        response.status.should == 404
+        response.body.try(&:strip).should be_empty
+      end
     end
   end
 
