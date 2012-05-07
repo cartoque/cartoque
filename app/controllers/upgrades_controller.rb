@@ -19,6 +19,6 @@ class UpgradesController < InheritedResources::Base
   helper_method :sort_column, :sort_direction, :sort_column_prefix
 
   def collection
-    @upgrades ||= end_of_association_chain.order_by(mongo_sort_option)
+    @upgrades ||= end_of_association_chain.where(:server_id.nin => UpgradeExclusion.only('server_ids').map(&:server_ids).flatten).order_by(mongo_sort_option)
   end
 end

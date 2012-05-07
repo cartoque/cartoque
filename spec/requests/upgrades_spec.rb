@@ -26,6 +26,14 @@ describe "Upgrades" do
       page.should have_content "server-03"
     end
 
+    it "doesn't list upgrades if an exception exists" do
+      visit upgrades_path
+      page.should have_content "server-01"
+      UpgradeExclusion.create!(reason: "Do not upgrade!", server_ids: [server1.id])
+      visit upgrades_path
+      page.should_not have_content "server-01"
+    end
+
     it "sorts upgrades by server name and packages count" do
       visit upgrades_path
       click_link "Name"
