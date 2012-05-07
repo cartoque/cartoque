@@ -49,8 +49,8 @@ namespace :import do
       if upgrade.changed?
         upgrade.upgraded_status = false
         upgrade.upgrader = nil
-        upgrade.save
       end
+      upgrade.save
     end
   end
 end
