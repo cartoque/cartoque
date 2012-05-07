@@ -4,10 +4,10 @@ class Upgrade
 
   field :packages_list, type: Array
   field :strategy, type: String
-  field :count_total, type: Integer
-  field :count_needing_reboot, type: Integer
-  field :count_important, type: Integer
-  field :count_normal, type: Integer
+  field :count_total, type: Integer, default: 0
+  field :count_needing_reboot, type: Integer, default: 0
+  field :count_important, type: Integer, default: 0
+  field :count_normal, type: Integer, default: 0
   field :upgraded_status, type: Boolean
   field :server_name, type: String
   belongs_to :server
