@@ -3,6 +3,7 @@ class UpgradesController < InheritedResources::Base
 
   has_scope :by_package
   has_scope :by_server
+  has_scope :by_any_package
 
   def validate
     @upgrade = Upgrade.find(params[:id]) rescue nil

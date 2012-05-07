@@ -6,8 +6,10 @@ describe "Upgrades" do
 
   let!(:server1) { Server.create!(name: "server-01") }
   let!(:server2) { Server.create!(name: "server-02") }
+  let!(:server3) { Server.create!(name: "server-03") }
   let!(:upgrade1) { Upgrade.create!(server: server1, packages_list: [{ name: "libc" }, { name: "apache2" }]) }
   let!(:upgrade2) { Upgrade.create!(server: server2, packages_list: [{ name: "kernel-3.0" }]) }
+  let!(:upgrade3) { Upgrade.create!(server: server3, packages_list: []) }
 
   describe "GET /upgrades" do
     it "list all upgrades" do
@@ -15,6 +17,13 @@ describe "Upgrades" do
       page.status_code.should == 200
       page.should have_content "server-01"
       page.should have_content "kernel-3.0"
+    end
+
+    it "list upgrades depending on upgrade count" do
+      visit upgrades_path(by_any_package: "1")
+      page.should_not have_content "server-03"
+      visit upgrades_path
+      page.should have_content "server-03"
     end
 
     it "sorts upgrades by server name and packages count" do

@@ -47,7 +47,7 @@
           <li class="licenses"><%= link_to t(:licenses), licenses_path %></li>
           <li class="puppet"><%= link_to "Puppet", puppet_path(:servers, by_puppet: "1") %></li>
           <li class="backups"><%= link_to t(:backups), backup_jobs_path %></li>
-          <li class="upgrades"><%= link_to t(:upgrades), upgrades_path(sort: "server_name") %></li>
+          <li class="upgrades"><%= link_to t(:upgrades), upgrades_path(by_any_package: "1", sort: "server_name") %></li>
           <li class="cron-tasks"><%= link_to t(:cron_tasks), cronjobs_path %></li>
           <!--<li><a href="?">DNS Bind</a></li>
           <li class="title"><%= t(:infrastructure) %></li>

@@ -17,6 +17,7 @@ class Upgrade
 
   scope :by_server, proc { |name| where(server_name: Regexp.mask(name)) }
   scope :by_package, proc { |name| where(:packages_list.matches => { name: Regexp.mask(name) }) }
+  scope :by_any_package, proc { |yes| yes == "1" ? where(:count_total.gt => 0) : scoped }
 
   validates_presence_of :server
 
