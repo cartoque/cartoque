@@ -23,7 +23,7 @@ namespace :import do
             status = "important" if name.match(/^openssh-server|^php5|^postfix|^postgresql-\d/)
             status = "important" if name.match(/^puppet$/)
             pkg[:status] = status
-            pkg
+            pkg.stringify_keys
           end
         end.compact
       # yum
@@ -40,12 +40,12 @@ namespace :import do
             status = "important" if name.match(/^openssh-server/)
             status = "important" if name.match(/^puppet$/)
             pkg[:status] = status
-            pkg
+            pkg.stringify_keys
           end
         end.compact
       end
       upgrade = Upgrade.find_or_create_by(server_id: server.id, strategy: format)
-      upgrade.packages_list = packages.stringify_keys
+      upgrade.packages_list = packages
       if upgrade.changed?
         upgrade.upgraded_status = false
         upgrade.upgrader = nil
