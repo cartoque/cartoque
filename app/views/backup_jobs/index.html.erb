@@ -10,7 +10,7 @@
   
 <div id="not-backuped">
   <div class="contextual">
-    <%= link_to t(:manage_exceptions), backup_exceptions_path %>
+    <%= link_to t(:manage_exceptions), backup_exclusions_path %>
   </div>
   <h2><%= t(:not_backuped) %> (<%= @not_backuped_count %>)</h2>
   <% if @not_backuped_count > 0 %>

@@ -1,0 +1,34 @@
+<% title t(:backup_exclusions) %>
+
+<div id="backup_exclusions" class="items_list span12">
+  
+<%= action_links do %>
+  <%= link_to t(:add_an_exception), new_backup_exclusion_path %> | 
+  <%= link_to t(:back_to_backup_jobs), backup_jobs_path %>
+<% end %>
+
+<table class="pretty list">
+  <thead>
+    <tr>
+      <th class="left" style="width:11em;"><%= t(:user) %></th>
+      <th class="left"><%= t(:reason) %></th>
+      <th class="left" style="width:40%;"><%= t(:server_ids) %></th>
+      <th style="width:38px"></th>
+    </tr>
+  </thead>
+  <tbody id="backup_exclusions_list" class="long-list">
+  <% @backup_exclusions.each do |backup_exclusion| %>
+    <tr>
+      <td class="tiny"><%= backup_exclusion.user.try(:name) %></td>
+      <td><%= backup_exclusion.reason %></td>
+      <td><%= backup_exclusion.servers.sort_by(&:name).map{|s| link_to s,s}.join(", ").html_safe %></td>
+      <td>
+        <%= link_to_edit edit_backup_exclusion_path(backup_exclusion) %>
+        <%= link_to_delete backup_exclusion %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+</div>

@@ -60,7 +60,7 @@ class Server
   has_many   :virtual_machines, class_name: "Server", inverse_of: :hypervisor
   has_and_belongs_to_many :application_instances
   has_many :backup_jobs, dependent: :destroy
-  has_and_belongs_to_many :backup_exceptions
+  has_and_belongs_to_many :backup_exclusions
   has_and_belongs_to_many :licenses, inverse_of: :servers
   has_many :cronjobs, dependent: :destroy, foreign_key: 'server_id'
   has_one :upgrade, dependent: :destroy, foreign_key: 'server_id'
@@ -140,7 +140,7 @@ class Server
     def not_backuped
       #first list the ones that don't need backups
       backuped = BackupJob.where(server_status: Server::STATUS_ACTIVE).distinct(:server_id).uniq
-      exceptions = BackupException.only(:server_ids).map(&:server_ids).flatten.uniq
+      exceptions = BackupExclusion.only(:server_ids).map(&:server_ids).flatten.uniq
       net_devices = network_devices.distinct(:_id)
       stock_servers = all.select{|s| s.physical_rack && s.physical_rack.status == PhysicalRack::STATUS_STOCK}.map(&:id)
       dont_need_backup = backuped + exceptions + net_devices + stock_servers

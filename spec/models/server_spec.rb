@@ -203,9 +203,9 @@ describe Server do
       Server.not_backuped.should_not include(server)
     end
 
-    it "should not include servers which have a backup_exception" do
+    it "should not include servers which have a backup_exclusion" do
       Server.not_backuped.should include(server)
-      BackupException.create!(reason: "backuped an other way", servers: [server])
+      BackupExclusion.create!(reason: "backuped an other way", servers: [server])
       Server.not_backuped.to_a.should_not include(server)
     end
 
