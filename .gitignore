@@ -13,6 +13,6 @@ tmp/**/*
 data/*
 extra
 output
-plugins/*
+vendor/plugins/*
 **.rbc
 */**/.*.swp

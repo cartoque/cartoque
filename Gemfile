@@ -43,7 +43,7 @@ gem 'omniauth-cas', '>= 0.0.6'
 gem 'devise', '~> 2.0.0'
 
 # Plugins/engines
-Dir.glob(File.expand_path("../plugins/*/Gemfile",__FILE__)).each do |gemfile|
+Dir.glob(File.expand_path("../vendor/plugins/*/Gemfile",__FILE__)).each do |gemfile|
   instance_eval File.read(gemfile)
 end
 
