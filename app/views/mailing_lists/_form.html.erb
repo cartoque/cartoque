@@ -6,6 +6,7 @@
         <%= f.input :name, wrapper_class: "th" %>
         <% #TODO: don't use .select{} here, use a cache for email_infos' size and query > 0 %>
         <%= f.input :contact_ids, collection: ContactDecorator.all.select{|c|c.email_infos.any?}.map{|c| [c.decorate.mailing_list_form, c.id]}, as: :multiselect %>
+        <%= f.input :company_ids, collection: CompanyDecorator.all.select{|c|c.email_infos.any?}.map{|c| [c.decorate.mailing_list_form, c.id]}, as: :multiselect %>
       </tbody>
     </table>
     <%= action_links do %>

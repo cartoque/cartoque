@@ -34,6 +34,12 @@ class Contact < Contactable
     "#{first_name} #{last_name}"
   end
 
+  def name
+    html = last_name.dup
+    html << ", #{first_name}" if first_name.present?
+    html
+  end
+
   def short_name
     initials = first_name.gsub(/(?:^|[ -.])(.)[^ -.]*/){ $1.upcase }
     "#{initials} #{last_name.capitalize}"

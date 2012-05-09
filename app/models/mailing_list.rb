@@ -5,6 +5,11 @@ class MailingList
   field :name, type: String
   field :comment, type: String
   has_and_belongs_to_many :contacts
+  has_and_belongs_to_many :companies
 
   validates_presence_of :name
+
+  def contactables
+    contacts + companies
+  end
 end
