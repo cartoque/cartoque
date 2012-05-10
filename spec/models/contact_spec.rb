@@ -75,6 +75,14 @@ describe Contact do
     end
   end
 
+  describe "#emailable" do
+    it "returns only people/companies with some email_infos" do
+      c1 = Contact.create(last_name: "Doe", email_infos: [ EmailInfo.new(value: "a@b.com") ])
+      c2 = Contact.create(last_name: "Grinch")
+      Contact.emailable.should == [ c1 ]
+    end
+  end
+
   #TODO: move it to a dedicated spec on Contactable module
   describe "#with_internals scope" do
     it "retrieve internal users only if param is truthy" do
