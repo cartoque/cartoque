@@ -12,4 +12,8 @@ class MailingList
   def contactables
     contacts + companies
   end
+
+  def email_addresses
+    contactables.map(&:email_infos).map(&:first).map(&:value)
+  end
 end
