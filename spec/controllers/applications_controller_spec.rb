@@ -40,10 +40,9 @@ describe ApplicationsController do
     response.body.should have_selector :css, "application>application-instances>application-instance>servers>server", 2
   end
 
-  #TODO: restore find by slug
-  pending "should access an application through its identifier" do
-    get :show, id: @application.ci_identifier, format: :xml
-    assert_select "application>id", "#{@application.id}"
+  it "should access an application through its identifier" do
+    get :show, id: @application.slug, format: :xml
+    response.body.should include "<_id>#{@application.id}</_id>"
   end
 
   it "should get edit" do
