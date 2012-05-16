@@ -17,9 +17,10 @@ class Application
   end
 
   validates_presence_of :name
+  validates_associated :application_instances
 
-  accepts_nested_attributes_for :application_instances, reject_if: lambda{|a| a[:name].blank? },
-                                                        allow_destroy: true
+  accepts_nested_attributes_for :application_instances, allow_destroy: true,
+                                reject_if: lambda{|a| a[:name].blank? && !a[:server_ids].detect(&:present?) }
 
   #TODO:
 ###  delegate :contacts, :contact_ids, :contact_ids=, :contact_relations,
