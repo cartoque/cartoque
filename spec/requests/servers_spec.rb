@@ -21,7 +21,7 @@ describe "Servers" do
   describe "GET /servers/:id" do
     it "shows a server page" do
       visit server_path(server)
-      page.should have_selector "h1", text: /Server.* SRV-01/
+      page.should have_selector "h1", text: /Server.* srv-01/
     end
   end
 
@@ -37,7 +37,7 @@ describe "Servers" do
       fill_in "server_name", with: "server-01"
       click_button "Apply modifications"
       current_path.should == server_path(server.reload)
-      page.should have_content "SERVER-01"
+      page.should have_content "server-01"
     end
   end
 end

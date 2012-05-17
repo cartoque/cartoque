@@ -23,7 +23,7 @@ describe "Applications" do
   describe "GET /applications/:id" do
     it "shows an application page" do
       get application_path(@app)
-      response.body.should have_selector "h2", content: "Application APP-01"
+      response.body.should have_selector "h2", content: "Application app-01"
     end
   end
 
