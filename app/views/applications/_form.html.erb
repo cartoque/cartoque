@@ -22,7 +22,7 @@
         <td class="multiselect">
           <% Role.all.each do |role| %>
             <div class="control-label" style="margin-top:6px;"><%= role.name %></div>
-            <%= text_field_tag "application[contact_ids_with_role][#{role.id}]", nil, class: "token-input-select",
+            <%= text_field_tag "application[relationships_map][#{role.id}]", nil, class: "token-input-select",
                                data: { update_url: autocomplete_contacts_path,
                                        pre_populate: @application.contacts_with_role(role).map{|c| {id: c.id, name: c.full_name} } } %>
           <% end %>

@@ -9,6 +9,7 @@ class Application
   field :ci_identifier, type: String
   #associations
   has_many :application_instances, autosave: true, dependent: :destroy
+  has_many :relationships, as: :item, dependent: :destroy
   #slug
   slug :name do |doc|
     doc.name.downcase.gsub(/[^a-z0-9_-]/,"-")
@@ -22,14 +23,26 @@ class Application
   accepts_nested_attributes_for :application_instances, allow_destroy: true,
                                 reject_if: lambda{|a| a[:name].blank? && !a[:server_ids].detect(&:present?) }
 
-  #TODO:
-###  delegate :contacts, :contact_ids, :contact_ids=, :contact_relations,
-###           :contacts_with_role, :contact_ids_with_role, :contact_ids_with_role=,
-###           to: :configuration_item
-  
-  #THIS IS TEMPORARY
-  def contacts_with_role(role=nil); []; end
-  def contact_ids_with_role(role=nil); []; end
+  def relationships_map
+    map = relationships.group_by do |relation|
+      relation.role_id.to_s
+    end
+    map.default = []
+    map
+  end
+
+  def relationships_map=(map)
+    relationships = Role.all.map do |role|
+      rel = Relationship.find_or_initialize_by(role_id: role.id, item_type: self.class, item_id: self.id)
+      rel.contact_ids = Array(map[role.id.to_s].try(:split, ","))
+      rel.save
+    end
+  end
+
+  def contacts_with_role(role)
+    #TODO: be sure we have only one relationship per role, then use Enumerable#detect()
+    relationships_map[role.id.to_s].map(&:contacts).flatten
+  end
 
   def to_s
     name

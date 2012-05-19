@@ -72,4 +72,17 @@ describe Application do
       app.dokuwiki_pages.should eq ["app-02.example.com"]
     end
   end
+
+  describe "#relationships" do
+    let!(:app)  { Application.create(name: "Skynet") }
+    let!(:role) { Role.create(name: "Developer") }
+    let!(:user) { Contact.create(last_name: "Mitnick", first_name: "Kevin") }
+    let!(:rel)  { Relationship.create(item: app, role: role, contacts: [user]) }
+
+    it "returns a map of relationships grouped by role" do
+      map = app.relationships_map
+      map["not-a-key"].should == []
+      map[role.id.to_s].should == [ rel ]
+    end
+  end
 end

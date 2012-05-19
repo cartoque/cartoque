@@ -25,7 +25,7 @@
           <% Role.all.each do |role| %>
             <% contacts = @application.contacts_with_role(role) %>
             <% next if contacts.blank? %>
-            <span class="label"><%= t(:contacts) %> <%= role.name %></span><br />
+            <span class="label"><%= role.name %></span>
             <ol class="contacts">
               <% contacts.each do |contact| %>
                 <li><%= ContactDecorator.new(contact).to_html(:long_form) %></li>

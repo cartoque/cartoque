@@ -60,30 +60,37 @@ describe ApplicationsController do
     assert_redirected_to applications_path
   end
 
-  pending "allows creation with contacts" do
-    contacts_count = Contact.count
-    contact_relations_count = ContactRelation.count
+  describe "contact relations" do
+    let!(:app)   { Application.create(name: "Skynet") }
+    let!(:role)  { Role.create(name: "Developer") }
+    let!(:user1) { Contact.create(last_name: "Mitnick", first_name: "Kevin") }
+    let!(:user2) { Contact.create(last_name: "Hoffman", first_name: "Milo") }
 
-    Application.find_by_name("webapp-01").should be_blank
-    c = FactoryGirl.create(:contact)
+    it "allows creation with contacts" do
+      contacts_count = Contact.count
+      relations_count = Relationship.count
 
-    post :create, application: { name: "webapp-01", contact_ids: [c.id] }
-    app = Application.find_by_name("webapp-01")
-    app.contact_ids.should == [c.id]
+      Application.where(name: "webapp-01").first.should be_blank
 
-    ContactRelation.count.should eq contact_relations_count+1
-    app.destroy
-    ContactRelation.count.should eq contact_relations_count
-  end
+      post :create, application: { name: "webapp-01", relationships_map: { role.id.to_s => "#{user1.id},#{user2.id}" } }
+      webapp = Application.where(name: "webapp-01").first
 
-  pending "allows update with contacts" do
-    app = Application.create!(name: "webapp-01")
-    c = FactoryGirl.create(:contact)
 
-    put :update, id: app.id, application: { name: "webapp-01", contact_ids: [] }
-    app.reload.contact_ids.should == []
+      webapp.contacts_with_role(role).should =~ [user1, user2]
+      Relationship.count.should eq relations_count + 1
 
-    put :update, id: app.id, application: { name: "webapp-01", contact_ids: [c.id] }
-    app.reload.contact_ids.should == [c.id]
+      webapp.destroy
+      Relationship.count.should eq relations_count
+    end
+
+    it "allows update with contacts" do
+      put :update, id: app.id, application: { name: "Skynet", relationships_map: { role.id.to_s => "#{user1.id},#{user2.id}" } }
+
+      app.reload.contacts_with_role(role).should =~ [user1, user2]
+
+      put :update, id: app.id, application: { name: "webapp-01", relationships_map: { } }
+
+      app.reload.contacts_with_role(role).should be_blank
+    end
   end
 end
