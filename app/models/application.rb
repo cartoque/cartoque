@@ -1,5 +1,6 @@
 class Application
   include Mongoid::Document
+  include Mongoid::Denormalize
   include Mongoid::Timestamps
   include Mongoid::Slug
     
@@ -16,6 +17,8 @@ class Application
             .gsub(/--+/, "-")
             .gsub(/^-|-$/,"")
   end
+  #denormalized fields
+  denormalize :name, to: :application_instances
 
   validates_presence_of :name
   validates_associated :application_instances

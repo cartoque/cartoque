@@ -1,12 +1,17 @@
 class ApplicationInstance
   include Mongoid::Document
+  include Mongoid::Denormalize
   include Mongoid::Timestamps
 
+  #standard fields
   field :name, type: String
   field :authentication_method, type: String
+  #associations
   embeds_many :application_urls
   belongs_to :application
   has_and_belongs_to_many :servers
+  #denormalized fields
+  denormalize :name, from: :application
 
   accepts_nested_attributes_for :application_urls, reject_if: lambda{|a| a[:url].blank? },
                                                    allow_destroy: true
@@ -19,7 +24,7 @@ class ApplicationInstance
   validates_inclusion_of :authentication_method, in: AVAILABLE_AUTHENTICATION_METHODS
 
   def full_name
-    "#{application.try(:name)} (#{name})"
+    "#{application_name} (#{name})"
   end
   alias :to_s :full_name
 end
