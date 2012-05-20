@@ -2,19 +2,19 @@
 require 'spec_helper'
 
 describe Contact do
-  it "should have a first name, a last name and an image url to be valid" do
+  it "has a first name, a last name and an image url to be valid" do
     Contact.new.should_not be_valid
     Contact.new(last_name: "Doe", image_url: "").should_not be_valid
     Contact.new(last_name: "Doe", image_url: "ceo.png").should be_valid
     Contact.new(last_name: "Doe").image_url.should == "ceo.png"
   end
 
-  it "should return the full name of a person" do
+  it "returns the full name of a person" do
     contact = Contact.new(first_name: "John", last_name: "Doe")
     contact.full_name.should == "John Doe"
   end
 
-  it "should return a shortened version of the name of a person" do
+  it "returns a shortened version of the name of a person" do
     contact = Contact.new(first_name: "John-Mitchel Charles", last_name: "Doe")
     contact.short_name.should == "JMC Doe"
     contact.first_name = "Jérémy"
@@ -24,7 +24,7 @@ describe Contact do
     contact.short_name.should == "J Doe"
   end
 
-  it "should shorten long email addresses" do
+  it "shortens long email addresses" do
     c = Contact.create!(last_name: "Doe")
     EmailInfo.create!(value: "john.doe@example.com", entity: c)
     c.reload.short_email.should == "john.doe@example.com"
@@ -33,7 +33,7 @@ describe Contact do
     c.reload.short_email.should == "john.doe@...example.com"
   end
 
-  it "should destroy the associated contact infos when deleted" do
+  it "destroys the associated contact infos when deleted" do
     c = Contact.create(first_name: "John", last_name: "Doe")
     c.should be_persisted
     c.should have(0).contact_infos
@@ -43,11 +43,11 @@ describe Contact do
   end
 
   describe "#available_images and #available_images_index" do
-    it "should be an array of available images" do
+    it "is an array of available images" do
       Contact.available_images.should be_a(Array)
     end
 
-    it "should generate a hash" do
+    it "generates a hash" do
       hsh = Contact.available_images_hash
       images = Contact.available_images
       hsh.should be_a(Hash)
@@ -63,11 +63,11 @@ describe Contact do
       @contact2 = Contact.create(first_name: "James", last_name: "Dean", job_position: "Director")
     end
 
-    it "should return everything if parameter is blank" do
+    it "returns everything if parameter is blank" do
       Contact.like("").to_a.should =~ [@contact1, @contact2]
     end
     
-    it "should filter contacts by first_name, last_name, and job_position" do
+    it "filters contacts by first_name, last_name, and job_position" do
       Contact.like("James").to_a.should =~ [@contact2]
       Contact.like("Doe").to_a.should =~ [@contact1]
       Contact.like("D").to_a.should =~ [@contact1, @contact2]
@@ -107,7 +107,7 @@ describe Contact do
       Company.where(name: "Universe Company").count.should eq 1
     end
 
-    it "should propagate #internal value when auto-creating a company" do
+    it "propagates #internal value when auto-creating a company" do
       company = Company.create(name: "World Company")
       Contact.create(last_name: "Smith", company_name: "World Company", internal: true)
       company.reload.internal.should be_false

@@ -12,7 +12,7 @@ describe DatabaseInstance do
     lambda { database.database_instances.create!(name: "bleh", databases: {}) }.should_not raise_error
   end
 
-  it "should guarantee uniqueness of name in a single database" do
+  it "guarantees uniqueness of name in a single database" do
     lambda { database.database_instances.create!(name: "blah", databases: {}) }.should_not raise_error
     lambda { database.database_instances.create!(name: "blah", databases: {}) }.should raise_error
     lambda { database2.database_instances.create!(name: "blah", databases: {}) }.should_not raise_error

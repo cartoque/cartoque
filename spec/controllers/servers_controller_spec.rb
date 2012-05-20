@@ -26,13 +26,13 @@ describe ServersController do
   describe "real ServersController" do
     let!(:server) { FactoryGirl.create(:server) }
 
-    it "should get index" do
+    it "gets index" do
       get :index
       assert_response :success
       assert_not_nil assigns(:servers)
     end
     
-    it "should get physical nodes for maintenance" do
+    it "gets physical nodes for maintenance" do
       get :index, view_mode: "maintenance"
       assert_response :success
       assert_not_nil assigns(:servers)
@@ -40,32 +40,32 @@ describe ServersController do
     end
     
 
-    it "should get new" do
+    it "gets new" do
       get :new
       assert_response :success
     end
 
-    it "should create server" do
+    it "creates server" do
       lambda{ post :create, server: {"name" => "new-server"} }.should change(Server, :count).by(+1)
       assert_redirected_to server_path(assigns(:server))
     end
 
-    it "should show server" do
+    it "shows server" do
       get :show, id: server.id.to_s
       assert_response :success
     end
 
-    it "should access the xml output" do
+    it "accesss the xml output" do
       get :show, id: server.id.to_s, format: :xml
       assert_select "server"
     end
 
-    it "should get edit" do
+    it "gets edit" do
       get :edit, id: server.id.to_s
       assert_response :success
     end
 
-    it "should update server" do
+    it "updates server" do
       put :update, id: server.id.to_s, server: { "ipaddresses_attributes"=>[{"address"=>"192.168.99.99", "main"=>"1"}] }
       assert_redirected_to server_path(assigns(:server))
       server.reload
@@ -73,7 +73,7 @@ describe ServersController do
       assert_equal "192.168.99.99", server.ipaddress
     end
 
-    it "should destroy server" do
+    it "destroys server" do
       lambda{ delete :destroy, id: server.id.to_s }.should change(Server, :count).by(-1)
       assert_redirected_to servers_path
     end

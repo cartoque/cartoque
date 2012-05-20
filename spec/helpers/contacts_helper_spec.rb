@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ContactsHelper do
   describe "#full_position" do
-    it "should return the full job position of a person" do
+    it "returns the full job position of a person" do
       person = FactoryGirl.create(:contact)
       full_position(person).should eq "CEO, WorldCompany"
       person.company = nil
@@ -12,7 +12,7 @@ describe ContactsHelper do
       full_position(person).should eq "Blah Inc."
     end
 
-    it "should return a linkified version of the company" do
+    it "returns a linkified version of the company" do
       person = FactoryGirl.create(:contact)
       full_position(person, true).should match %r(CEO, <a href=".*">WorldCompany</a>)
       person.company = nil

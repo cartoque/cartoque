@@ -6,12 +6,12 @@ describe CronjobsController do
   render_views
 
   describe "GET /index" do
-    it "should not display any cronjob if no filter set" do
+    it "does not display any cronjob if no filter set" do
       get :index
       assert_select "td[colspan=5]", 1
     end
 
-    it "should display cronjobs if server is set" do
+    it "displays cronjobs if server is set" do
       server = Server.create!(name: "my-server")
       Cronjob.create!(definition_location: "/etc/cron.d/crontask", hierarchy: "/",
                       frequency: "* * * * *", server_id: server.id.to_s, command: "/bin/ls")

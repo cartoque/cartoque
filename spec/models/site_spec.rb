@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Site do
-  it "should be valid with just a name" do
+  it "is valid with just a name" do
     site = Site.new
     site.should_not be_valid
     site.name = "room-1"

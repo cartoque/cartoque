@@ -5,7 +5,7 @@ describe DatabaseDecorator do
     @database = FactoryGirl.create(:database).decorate
   end
 
-  it "should display nodes under a database" do
+  it "displays nodes under a database" do
     @database.servers.should be_present
     @database.name.should == "database-01"
     @database.servers.map(&:name).should == %w(server-01)
@@ -14,7 +14,7 @@ describe DatabaseDecorator do
     pretty.should have_selector('ul > li', text: @database.servers.first.name)
   end
 
-  it "should return <th> headers depending on the database type" do
+  it "returns <th> headers depending on the database type" do
     Database.new(type: "postgres").decorate.table_headers.should have_selector('th', text: I18n.t(:postgres_instance))
     Database.new(type: "postgres").decorate.table_headers.should include '</span>' #let's be sure our content is not escaped
     Database.new(type: "oracle").decorate.table_headers.should have_selector('th', text: I18n.t(:oracle_instance))

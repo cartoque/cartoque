@@ -7,28 +7,28 @@ describe LicensesController do
     @license = License.create(editor: "WorldSoft")
   end
 
-  it "should get index" do
+  it "gets index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:licenses)
   end
 
-  it "should create license" do
+  it "creates license" do
     lambda{ post :create, license: { editor: "WorldSoft", key: "123456" } }.should change(License, :count)
     assert_redirected_to licenses_path
   end
 
-  it "should get edit" do
+  it "gets edit" do
     get :edit, id: @license.to_param
     assert_response :success
   end
 
-  it "should update license" do
+  it "updates license" do
     put :update, id: @license.to_param, license: @license.attributes
     assert_redirected_to licenses_path
   end
 
-  it "should destroy license" do
+  it "destroys license" do
     lambda{ delete :destroy, id: @license.to_param }.should change(License, :count).by(-1)
     assert_redirected_to licenses_path
   end

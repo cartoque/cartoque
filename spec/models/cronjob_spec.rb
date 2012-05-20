@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Cronjob do
   describe "Cronjob#parse" do
-    it "should parse a simple, standard cron line" do
+    it "parses a simple, standard cron line" do
       line = "00  05  *  *  *  root  /opt/scripts/my-own-script"
       cron = Cronjob.parse_line(line)
       cron.should_not be_valid
@@ -13,7 +13,7 @@ describe Cronjob do
       cron.command.should eq "/opt/scripts/my-own-script"
     end
 
-    it "should parse a cron line with the definition location in first column" do
+    it "parses a cron line with the definition location in first column" do
       line = "/etc/crontab 00  05  *  *  *  root  /opt/scripts/my-own-script"
       cron = Cronjob.parse_line(line)
       cron.should_not be_valid
@@ -25,7 +25,7 @@ describe Cronjob do
       cron.command.should eq "/opt/scripts/my-own-script"
     end
 
-    it "should parse a cron line with a special frequency" do
+    it "parses a cron line with a special frequency" do
       line = "@reboot root  /opt/scripts/my-own-script"
       cron = Cronjob.parse_line(line)
       cron.server_id = FactoryGirl.create(:server).id
@@ -35,7 +35,7 @@ describe Cronjob do
       cron.command.should eq "/opt/scripts/my-own-script"
     end
 
-    it "should not be valid with 'strongly' invalid cron lines" do
+    it "is not valid with 'strongly' invalid cron lines" do
       [ "",
         "      ",
         "less than six elements in line",
@@ -47,7 +47,7 @@ describe Cronjob do
       end
     end
 
-    it "should be able to parse a cron file correctly" do
+    it "is able to parse a cron file correctly" do
       server = Server.find_or_create_by(name: "server-01")
       crons = File.readlines(File.expand_path("../../data/crons/server-01.cron", __FILE__)).map do |line|
         c = Cronjob.parse_line(line)

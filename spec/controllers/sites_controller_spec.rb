@@ -7,33 +7,33 @@ describe SitesController do
     @site = FactoryGirl.create(:room)
   end
 
-  it "should get index" do
+  it "gets index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:sites)
   end
 
-  it "should get new" do
+  it "gets new" do
     get :new
     assert_response :success
   end
 
-  it "should create site" do
+  it "creates site" do
     lambda{ post :create, site: { name: "site-01" } }.should change(Site, :count)
     assert_redirected_to sites_path
   end
 
-  it "should get edit" do
+  it "gets edit" do
     get :edit, id: @site.to_param
     assert_response :success
   end
 
-  it "should update site" do
+  it "updates site" do
     put :update, id: @site.to_param, site: @site.attributes
     assert_redirected_to sites_path
   end
 
-  it "should destroy site" do
+  it "destroys site" do
     lambda{ delete :destroy, id: @site.to_param }.should change(Site, :count).by(-1)
     assert_redirected_to sites_path
   end

@@ -51,7 +51,7 @@ describe ServerDecorator do
   end
 
   describe "hardware details" do
-    it "should display cpu" do
+    it "displays cpu" do
       server.cpu.should eq %(4 * 4 cores, 3.2 GHz<span class="processor-reference">Xeon 2300</span>)
       server.processor_cores_per_cpu = nil
       server.cpu.should eq %(4 * 3.2 GHz<span class="processor-reference">Xeon 2300</span>)
@@ -59,30 +59,30 @@ describe ServerDecorator do
       server.cpu.should eq %(4 * 3.2 GHz<span class="processor-reference">Xeon 2300</span>)
     end
 
-    it "should display ram" do
+    it "displays ram" do
       server.memory.should eq "42GB"
     end
 
-    it "should display disks" do
+    it "displays disks" do
       server.disks.should eq "5 * 13G (SAS)"
     end
   end
 
   describe "#short_line" do
-    it "should display server with full details" do
+    it "displays server with full details" do
       line = server.short_line
       line.should have_selector(:css, "span.server-link a", text: "server-01")
       line.should have_selector(:css, "span.server-summary", text: "4 * 4 cores, 3.2 GHz | 42GB | 5 * 13G (SAS)")
     end
 
-    it "should display server without raising an exception if no details" do
+    it "displays server without raising an exception if no details" do
       #TODO: restore this when switching back to "Server"
       #line = Server.new(name: "server-03").decorate.short_line
       line = ServerDecorator.decorate(Server.new(name: "server-03")).short_line
       line.should have_selector(:css, "span.server-link a", text: "server-03")
     end
 
-    it "should display nothing in server details if no details available" do
+    it "displays nothing in server details if no details available" do
       #TODO: restore this when switching back to "Server"
       #line = Server.new(name: "srv").decorate.short_line
       line = ServerDecorator.decorate(Server.new(name: "srv")).short_line

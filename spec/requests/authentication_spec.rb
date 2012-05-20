@@ -56,7 +56,7 @@ describe "Authentication" do
     end
   end
 
-  describe "should update User#seen_on (max of #current_sign_in_at and #last_sign_in_at)" do
+  describe "updates User#seen_on (max of #current_sign_in_at and #last_sign_in_at)" do
     it "is unset by default" do
       u = FactoryGirl.create(:user)
       u.seen_on.should be_blank

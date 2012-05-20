@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe NetworkDisk do
-  it "should have a server and a client" do
+  it "has a server and a client" do
     netdisk = NetworkDisk.new
     netdisk.should_not be_valid
     netdisk.should have(2).errors

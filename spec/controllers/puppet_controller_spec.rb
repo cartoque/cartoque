@@ -3,12 +3,12 @@ require 'spec_helper'
 describe PuppetController do
   login_user
 
-  it "should get servers" do
+  it "gets servers" do
     get :servers
     assert_response :success
   end
 
-  it "should get classes" do
+  it "gets classes" do
     get :classes
     assert_response :success
   end

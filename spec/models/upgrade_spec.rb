@@ -9,12 +9,12 @@ describe Upgrade do
     server.reload.upgrade.should eq upgrade
   end
 
-  it "should have a server" do
+  it "has a server" do
     Upgrade.new.should_not be_valid
     Upgrade.new(server: FactoryGirl.create(:virtual)).should be_valid
   end
 
-  it "should store #packages_list as a Hash" do
+  it "stores #packages_list as a Hash" do
     obj = [ {"name" => "libc6"}, {"name" => "kernel"}]
     upgrade.packages_list = obj
     upgrade.save

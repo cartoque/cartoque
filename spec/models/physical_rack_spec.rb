@@ -8,7 +8,7 @@ describe PhysicalRack do
 
   #TODO: move it to a presenter
   describe "#full_name" do
-    it "should format correctly with #full_name or #to_s" do
+    it "formats correctly with #full_name or #to_s" do
       @rack.to_s.should eq "Rack 1"
       @site.to_s.should eq "Hosting Room 1"
       @rack.site = @site
@@ -33,7 +33,7 @@ describe PhysicalRack do
   end
 
   describe "#stock?" do
-    it "should return true only if rack is marked as stock" do
+    it "returns true only if rack is marked as stock" do
       PhysicalRack.new(name: "stock", status: PhysicalRack::STATUS_STOCK).stock?.should be_true
     end
   end

@@ -12,14 +12,14 @@ end
 describe TomcatsController do
   login_user
 
-  it "should get index" do
+  it "gets index" do
     get :index
     assert_response :success
   end
 
   describe "/index.csv" do
     render_views
-    it "should return tomcats in csv style" do
+    it "returns tomcats in csv style" do
       get :index, format: "csv"
       assert_response :success
       response.body.should include("vm-01,TC60_01,app01.example.com,Java160")

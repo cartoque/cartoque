@@ -9,17 +9,17 @@ end
 
 describe RedmineInstance do
   describe "RedmineInstance.all" do
-    it "should return fake directory" do
+    it "returns fake directory" do
       RedmineInstance.dir.should include("spec/data/redmine")
     end
 
-    it "should return content of files" do
+    it "returns content of files" do
       files = RedmineInstance.files
       assert_equal 1, files.size
       assert files.first.is_a?(String)
     end
 
-    it "should return all redmine instances" do
+    it "returns all redmine instances" do
       instances = RedmineInstance.all
       assert_equal 3, instances.size
       instance = instances.detect{|i| i.name == "redmine-01"}

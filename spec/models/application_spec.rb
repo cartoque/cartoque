@@ -8,7 +8,7 @@ class Application
 end
 
 describe Application do
-  it "should have a name" do
+  it "has a name" do
     Application.new.should_not be_valid
     Application.new(name: "fakeapp").should be_valid
   end
@@ -19,7 +19,7 @@ describe Application do
       Application.create!(name: "app-02")
     end
 
-    it "should return every application when query is blank or is not a string" do
+    it "returns every application when query is blank or is not a string" do
       Application.count.should_not eq(0)
       Application.search(nil).length.should eq(Application.count)
       Application.search("").length.should eq(Application.count)
@@ -31,13 +31,13 @@ describe Application do
   end
 
   describe "Application#sorted_application_instances" do
-    it "should resist to empty arrays" do
+    it "resists to empty arrays" do
       app = FactoryGirl.create(:application)
       app.application_instances.should eq []
       app.sorted_application_instances.should eq []
     end
 
-    it "should be ordered with prod, ecole, preprod first" do
+    it "is ordered with prod, ecole, preprod first" do
       app = FactoryGirl.create(:application)
       ApplicationInstance.create!(name: "ecole", authentication_method: "none", application_id: app.id)
       ApplicationInstance.create!(name: "aaaa", authentication_method: "none", application_id: app.id)
@@ -52,19 +52,19 @@ describe Application do
   end
 
   describe "#dokuwiki_pages" do
-    it "should return no doc" do
+    it "returns no doc" do
       app = Application.new(name: "app-03")
       app.dokuwiki_pages.should eq []
     end
 
-    it "should return doc corresponding to */app_name/* or */app_name.txt" do
+    it "returns doc corresponding to */app_name/* or */app_name.txt" do
       app = Application.new(name: "app-01")
       app.dokuwiki_pages.should have(2).docs
       app.dokuwiki_pages.should include("app-01")
       app.dokuwiki_pages.should include("app-01:doc")
     end
 
-    it "should return doc depending on linked application_urls" do
+    it "returns doc depending on linked application_urls" do
       app = Application.new(name: "application-02")
       app_instance = ApplicationInstance.new(name: "prod")
       app_url = ApplicationUrl.new(url: "http://app-02.example.com/index.php")

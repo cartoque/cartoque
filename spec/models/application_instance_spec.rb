@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ApplicationInstance do
-  it "should have a name, an authentication method and an application" do
+  it "has a name, an authentication method and an application" do
     instance = ApplicationInstance.new
     instance.should_not be_valid
     instance.errors.messages.keys.sort.should == [:application, :authentication_method, :name]

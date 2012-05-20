@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe Server do
-  it "should be valid with just a name" do
+  it "is valid with just a name" do
     Server.new.should_not be_valid
     Server.new(name: "my-server").should be_valid
   end
 
   describe "#processor_*" do
-    it "should have a intelligent default value for #processor_system_count" do
+    it "has a intelligent default value for #processor_system_count" do
       Server.new(name: "srv-01", processor_system_count: 36).processor_system_count.should == 36
       Server.new(name: "srv-01", processor_physical_count: 5).processor_system_count.should == 5
       Server.new(name: "srv-01", processor_physical_count: 5, processor_cores_per_cpu: 3).processor_system_count.should == 15
@@ -18,7 +18,7 @@ describe Server do
   describe "#ipaddresses" do
     let(:server) { FactoryGirl.create(:server) }
 
-    it "should update with an address as a string" do
+    it "updates with an address as a string" do
       server.ipaddresses = [ Ipaddress.new(address: "192.168.99.99", main: true) ]
       server.save
       server.reload
@@ -26,7 +26,7 @@ describe Server do
       server.ipaddress.should eq "192.168.99.99"
     end
 
-    it "should update with an address as a number between 1 and 32" do
+    it "updates with an address as a number between 1 and 32" do
       server.ipaddresses = [ Ipaddress.new(address: "24", main: true) ]
       server.save
       server.reload.should have(1).ipaddresses
@@ -35,7 +35,7 @@ describe Server do
       server.ipaddress.should eq "255.255.255.0"
     end
 
-    it "should leave ip empty if no main ipaddress" do
+    it "leaves ip empty if no main ipaddress" do
       server.ipaddresses = [ Ipaddress.new(address: "24", main: true) ]
       server.save
       server.reload.ipaddress.should_not be_nil
@@ -49,14 +49,14 @@ describe Server do
   end
 
   describe "#slug" do
-    it "should automatically generate a slug" do
+    it "automaticallys generate a slug" do
       m = Server.create(name: "blah")
       m.slug.should eq "blah"
       m = Server.create(name: "( bizarr# n@me )")
       m.slug.should eq "bizarr-n-me"
     end
 
-    pending "should prevent from having 2 servers with the same identifier" do
+    pending "prevents from having 2 servers with the same identifier" do
       m1 = Server.create(name: "srv1")
       m2 = Server.new(name: "(srv1)")
       m2.should_not be_valid
@@ -68,16 +68,16 @@ describe Server do
   describe "#find" do
     let(:server) { FactoryGirl.create(:server) }
 
-    it "should work normally with ids" do
+    it "works normally with ids" do
       Server.find(server.id).should eq server
       Server.find(server.id.to_s).should eq server
     end
 
-    it "should work with identifiers too" do
+    it "works with identifiers too" do
       Server.find(server.slug).should eq server
     end
 
-    it "should raise an exception if no existing record with this identifier" do
+    it "raises an exception if no existing record with this identifier" do
       lambda { Server.find(0) }.should raise_error Mongoid::Errors::DocumentNotFound
       lambda { Server.find("non-existent") }.should raise_error BSON::InvalidObjectId
     end
@@ -98,48 +98,48 @@ describe Server do
     let!(:s3)    { Server.create!(name: "srv-db-01", physical_rack_id: rack1.id.to_s,
                                        puppetversion: "0.24.5") }
 
-    it "should filter servers by rack" do
+    it "filters servers by rack" do
       Server.count.should eq 3
       Server.by_rack(rack1.id.to_s).count.should eq 2
       Server.by_rack(rack2.id.to_s).count.should eq 1
     end
 
-    it "should filter servers by site" do
+    it "filters servers by site" do
       Server.count.should eq 3
       Server.by_site(site1.id.to_s).count.should eq 2
       Server.by_site(site2.id.to_s).count.should eq 1
     end
 
-    it "should filter servers by location" do
+    it "filters servers by location" do
       Server.by_location("site-#{site1.id}").should eq Server.by_site(site1.id.to_s)
       Server.by_location("site-0").should eq []
       Server.by_location("rack-#{rack1.id}").should eq Server.by_rack(rack1.id.to_s)
       Server.by_location("rack-0").should eq []
     end
 
-    it "should ignore the filter by location if the parameter is invalid" do
+    it "ignores the filter by location if the parameter is invalid" do
       invalid_result = Server.by_location("invalid location")
       invalid_result.should eq Server.scoped
       invalid_result.count.should eq 3
     end
 
-    it "should filter servers by maintainer" do
+    it "filters servers by maintainer" do
       Server.by_maintainer(maint.id.to_s).should eq [s1]
     end
 
-    it "should filter servers by system" do
+    it "filters servers by system" do
       Server.by_system(os.id.to_s).to_a.should eq [s1]
     end
 
-    it "should filter servers by virtual" do
+    it "filters servers by virtual" do
       Server.by_virtual(1).to_a.should eq [s2]
     end
 
-    it "should return server with puppet installed" do
+    it "returns server with puppet installed" do
       Server.by_puppet(1).to_a.should eq [s3]
     end
 
-    it "should return real servers only" do
+    it "returns real servers only" do
       s4 = Server.create!(name: "just-a-name")
       s5 = Server.create!(name: "switch-01", network_device: true)
       s6 = Server.create!(name: "fw-01", network_device: false)
@@ -149,13 +149,13 @@ describe Server do
     describe "#find_or_generate" do
       let!(:server) { Server.create(name: "rake-server") }
 
-      it "should find server by name in priority" do
+      it "finds server by name in priority" do
         srv = Server.find_or_generate("rake-server")
         srv.should eq server
         srv.just_created.should be_false
       end
 
-      it "should find server by its slug if no name corresponds" do
+      it "finds server by its slug if no name corresponds" do
         server.update_attribute(:name, "rake.server")
         server.name.should eq "rake.server"
         server.slug.should eq "rake-server"
@@ -164,7 +164,7 @@ describe Server do
         server.just_created.should be_false
       end
 
-      it "should generate a new server if no match with name and identifier" do
+      it "generates a new server if no match with name and identifier" do
         server = Server.where(name: "rake-server3").first
         server.should be_nil
         lambda { server = Server.find_or_generate("rake-server3") }.should change(Server, :count).by(+1)
@@ -175,7 +175,7 @@ describe Server do
   end
 
   describe "#stock?" do
-    it "should be truthy only if it's in a rack that is marked as stock" do
+    it "is truthy only if it's in a rack that is marked as stock" do
       server = FactoryGirl.create(:server)
       rack = FactoryGirl.create(:rack1)
       server.stock?.should be_false
@@ -192,30 +192,30 @@ describe Server do
     let!(:server) { FactoryGirl.create(:server) }
     let!(:vm)     { FactoryGirl.create(:virtual) }
 
-    it "should include everything by default" do
+    it "includes everything by default" do
       Server.not_backuped.should include(server)
       Server.not_backuped.should include(vm)
     end
 
-    it "should not include active servers which have an associated backup job" do
+    it "does not include active servers which have an associated backup job" do
       Server.not_backuped.should include(server)
       server.backup_jobs << BackupJob.create(hierarchy: "/")
       Server.not_backuped.should_not include(server)
     end
 
-    it "should not include servers which have a backup_exclusion" do
+    it "does not include servers which have a backup_exclusion" do
       Server.not_backuped.should include(server)
       BackupExclusion.create!(reason: "backuped an other way", servers: [server])
       Server.not_backuped.to_a.should_not include(server)
     end
 
-    it "should not include net devices" do
+    it "does not include net devices" do
       Server.not_backuped.should include(server)
       server.update_attribute(:network_device, true)
       Server.not_backuped.should_not include(server)
     end
 
-    it "should not include stock servers" do
+    it "does not include stock servers" do
       Server.not_backuped.should include(server)
       rack = PhysicalRack.create!(name: "rack-1", site_id: FactoryGirl.create(:room).id.to_s, status: PhysicalRack::STATUS_STOCK)
       server.physical_rack = rack
@@ -225,7 +225,7 @@ describe Server do
   end
 
   describe "#can_be_managed_with_puppet?" do
-    it "should require having an compatible os defined" do
+    it "requires having an compatible os defined" do
       srv = FactoryGirl.create(:server)
       srv.operating_system.should be_blank
       srv.can_be_managed_with_puppet?.should be_false

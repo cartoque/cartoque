@@ -12,13 +12,13 @@ class Server
 end
 
 describe Database do
-  it "should have at least a name and a type" do
+  it "has at least a name and a type" do
     Database.new(name: "blah").should_not be_valid
     Database.new(name: "blah", type: "postgres").should be_valid
   end
 
   context "scopes" do
-    it "should filter databases by name" do
+    it "filters databases by name" do
       Database.create(name: "one", type: "postgres")
       Database.create(name: "two", type: "postgres")
       Database.create(name: "three", type: "oracle")
@@ -27,7 +27,7 @@ describe Database do
     end
   end
 
-  it "should return total size handled by a database cluster server" do
+  it "returns total size handled by a database cluster server" do
     Database.new.size.should eq 0
     pg  = Database.create!(name: "pg-cluster",  type: "postgres")
     pg.database_instances.create(name: '8.4', databases:{'app01'=>1, 'app02'=>2})

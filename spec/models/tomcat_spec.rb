@@ -17,7 +17,7 @@ describe Tomcat do
     @app02 = Tomcat.new(site2.split(";"))
   end
 
-  it "should parse site and instance lines correctly" do
+  it "parses site and instance lines correctly" do
     expected01 = { "server" => "vm-01", "dns" => "app01.example.com", "vip" => "vip-00.example.com",
                    "tomcat" => "TC60_01", "dir" => "/apps/j2ee/app01", "jdbc_url" => "jndi01:jdbc:postgresql://app01.db:5433/db01:app01",
                    "jdbc_server" => "app01.db:5433", "jdbc_db" => "db01", "jdbc_user" => "app01",
@@ -33,11 +33,11 @@ describe Tomcat do
   end
 
   context "Tomcat.all" do
-    it "should return fake directory" do
+    it "returns fake directory" do
       Tomcat.dir.to_s.should include("spec/data/tomcat")
     end
 
-    it "should return all tomcats" do
+    it "returns all tomcats" do
       tomcats = Tomcat.all
       tomcats.size.should eq 3
       tomcats.should include(@app01)
@@ -46,18 +46,18 @@ describe Tomcat do
   end
 
   context "Tomcat.find_for_server" do
-    it "should return an empty array if no tomcat found" do
+    it "returns an empty array if no tomcat found" do
       Tomcat.find_for_server("not-a-tomcat-server").should eq []
     end
 
-    it "should return tomcats for a specific server" do
+    it "returns tomcats for a specific server" do
       tomcats = Tomcat.find_for_server("vm-01")
       tomcats.size.should eq 2
       tomcats.should include(@app01)
       tomcats.should include(@app02)
     end
 
-    it "should be retrieved with Server#tomcats" do
+    it "is retrieved with Server#tomcats" do
       tomcats = Server.find_or_create_by(name: "vm-01").tomcats
       tomcats.size.should eq 2
       tomcats.should include(@app01)
@@ -66,22 +66,22 @@ describe Tomcat do
   end
 
   context "Tomcat.filters_from" do
-    it "should return values from hashes" do
+    it "returns values from hashes" do
       tomcats = [{"key" => "value1"}, {"key" => "value2"}]
       Tomcat.filters_from(tomcats).should eq({"key" => ["value1", "value2"]})
     end
 
-    it "should avoid 'cerbere' and 'cerbere_csac' keys" do
+    it "avoids 'cerbere' and 'cerbere_csac' keys" do
       tomcats = [{"cerbere" => true, "cerbere_csac" => false}]
       Tomcat.filters_from(tomcats).should eq({})
     end
 
-    it "should reduce 'tomcat' key to the first part before an underscore" do
+    it "reduces 'tomcat' key to the first part before an underscore" do
       tomcats = [{tomcat: "TC60_01"}, {tomcat: "TC60_02"}]
       Tomcat.filters_from(tomcats).should eq({"tomcat" => ["TC60"]})
     end
 
-    it "should return an array if key doesn't exist" do
+    it "returns an array if key doesn't exist" do
       Tomcat.filters_from([]).non_existent_key.should eq []
     end
   end
@@ -91,11 +91,11 @@ describe Tomcat do
       @tomcats = [ @app01, @app02 ]
     end
 
-    it "should filter nothing if no params by_* given" do
+    it "filters nothing if no params by_* given" do
       Tomcat.filter_collection(@tomcats, {key: "value"}).should eq @tomcats
     end
 
-    it "should apply filters" do
+    it "applys filters" do
       #beginning of vip
       Tomcat.filter_collection(@tomcats, {by_vip: "vip-0"}).should eq @tomcats
       Tomcat.filter_collection(@tomcats, {by_vip: "vip-00"}).should eq [@app01]

@@ -30,7 +30,7 @@ describe MailingList do
   end
 
   describe "#email_addresses" do
-    it "should fail silently if an user no more has email address" do
+    it "fails silently if an user no more has email address" do
       ml.update_attributes(contact_ids: [contact.id.to_s], company_ids: [company.id.to_s])
       contact.email_infos.first.destroy
       ml.reload

@@ -9,11 +9,11 @@ end
 
 describe RtInstance do
   describe "RedmineInstance.all" do
-    it "should return fake directory" do
+    it "returns fake directory" do
       RtInstance.dir.should include("spec/data/rt")
     end
 
-    it "should return all rt instances" do
+    it "returns all rt instances" do
       instances = RtInstance.all
       instances.size.should eq 2
       instance = instances.detect{|i| i.name == "rt_client_01"}

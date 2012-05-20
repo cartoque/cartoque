@@ -5,38 +5,38 @@ describe StoragesController do
 
   let!(:storage) { FactoryGirl.create(:storage) }
 
-  it "should get index" do
+  it "gets index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:storages)
   end
 
-  it "should get new" do
+  it "gets new" do
     get :new
     assert_response :success
   end
 
-  it "should create storage" do
+  it "creates storage" do
     lambda{ post :create, storage: { constructor: "IBM", server_id: FactoryGirl.create(:virtual).id.to_s } }.should change(Storage, :count)
     assert_redirected_to storages_path
   end
 
-  it "should show storage" do
+  it "shows storage" do
     get :show, id: storage.to_param
     assert_response :success
   end
 
-  it "should get edit" do
+  it "gets edit" do
     get :edit, id: storage.to_param
     assert_response :success
   end
 
-  it "should update storage" do
+  it "updates storage" do
     put :update, id: storage.to_param, storage: storage.attributes
     assert_redirected_to storages_path
   end
 
-  it "should destroy storage" do
+  it "destroys storage" do
     lambda{ delete :destroy, id: storage.to_param }.should change(Storage, :count).by(-1)
     assert_redirected_to storages_path
   end

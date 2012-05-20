@@ -20,7 +20,7 @@ describe Datacenter do
       Datacenter.default.name.should == "Hosterz"
     end
 
-    it "should generate a default datacenter if none" do
+    it "generates a default datacenter if none" do
       Datacenter.count.should == 0
       dc = Datacenter.default
       dc.should_not be_blank

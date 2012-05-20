@@ -7,30 +7,30 @@ describe ApplicationsController do
     @application = FactoryGirl.create(:application)
   end
 
-  it "should get index" do
+  it "gets index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:applications)
   end
 
-  it "should get new" do
+  it "gets new" do
     get :new
     assert_response :success
   end
 
-  it "should create application" do
+  it "creates application" do
     lambda{ post :create, application: {"name" => "app-01"} }.should change(Application, :count)
     assert_redirected_to application_path(assigns(:application))
   end
 
-  it "should show application" do
+  it "shows application" do
     get :show, id: @application.to_param
     assert_response :success
   end
 
   #TODO: refactor it
   #TODO: move it to a request spec
-  it "should access the rest/xml API" do
+  it "accesss the rest/xml API" do
     app_inst = ApplicationInstance.new(name: "prod", authentication_method: "none", application_id: @application.id.to_s)
     app_inst.servers = [ FactoryGirl.create(:server), FactoryGirl.create(:virtual) ]
     app_inst.save
@@ -43,22 +43,22 @@ describe ApplicationsController do
     response.body.should have_selector :css, "application>application-instances>application-instance>servers>server", 2
   end
 
-  it "should access an application through its identifier" do
+  it "accesss an application through its identifier" do
     get :show, id: @application.slug, format: :xml
     response.body.should include "<_id>#{@application.id}</_id>"
   end
 
-  it "should get edit" do
+  it "gets edit" do
     get :edit, id: @application.to_param
     assert_response :success
   end
 
-  it "should update application" do
+  it "updates application" do
     put :update, id: @application.to_param, application: {"name" => "app-02"}
     assert_redirected_to application_path(assigns(:application))
   end
 
-  it "should destroy application" do
+  it "destroys application" do
     lambda{ delete :destroy, id: @application.to_param }.should change(Application, :count).by(-1)
     assert_redirected_to applications_path
   end

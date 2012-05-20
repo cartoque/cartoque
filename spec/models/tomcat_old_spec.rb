@@ -14,18 +14,18 @@ describe TomcatOld do
   end
 
   describe "Tomcat.all" do
-    it "should return fake directory" do
+    it "returns fake directory" do
       TomcatOld.dir.to_s.should include("spec/data/tomcat_old")
     end
 
-    it "should return all tomcats" do
+    it "returns all tomcats" do
       tomcats = TomcatOld.all
       tomcats.size.should eq 2
       tomcats.should include(@app) #"#{tomcats.inspect} does not include #{@app.inspect}"
     end
   end
 
-  it "should parse line correctly" do
+  it "parses line correctly" do
     expected = { "server" => "srv-tomcat-01", "tomcat" => "tomcat4-app-stable", "pid" => "4286", "java" => "j2sdk1.4.2_06",
                  "xms" => "256m", "xmx" => "256m", "home" => "jakarta-tomcat-4.1.31", "apps" => "app01, app02" }
     @app.should eq expected

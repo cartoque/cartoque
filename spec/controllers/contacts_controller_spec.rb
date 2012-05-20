@@ -19,12 +19,12 @@ describe ContactsController do
       response.should render_template("index")
     end
 
-    it "should filter contacts by name" do
+    it "filters contacts by name" do
       get :index, search: "smi"
       assigns(:contacts).to_a.should eq [@smith]
     end
 
-    it "should sort contacts correctly" do
+    it "sorts contacts correctly" do
       get :index, sort: "last_name", direction: "desc"
       assigns(:contacts).to_a.should eq [@smith, @doe]
     end
@@ -43,7 +43,7 @@ describe ContactsController do
         assigns(:companies).to_a.should_not include @team
       end
 
-      it "should display internal contacts/companies with some more params or session" do
+      it "displays internal contacts/companies with some more params or session" do
         get :index, with_internals: "1"
         assigns(:contacts).to_a.should include @bob
         assigns(:companies).to_a.should include @team

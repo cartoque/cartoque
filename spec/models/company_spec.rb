@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Company do
-  it "should have a name to be valid" do
+  it "has a name to be valid" do
     Company.new.should_not be_valid
     Company.new(name: "WorldCompany").should be_valid
     Company.new(name: "WorldCompany").image_url.should == "building.png"
@@ -13,11 +13,11 @@ describe Company do
       @company2 = Company.create(name: "TinyCompany")
     end
 
-    it "should return everything if parameter is blank" do
+    it "returns everything if parameter is blank" do
       Company.like("").to_a.should =~ [@company1, @company2]
     end
     
-    it "should filter companys by name" do
+    it "filters companys by name" do
       Company.like("World").to_a.should =~ [@company1]
       Company.like("Tiny").to_a.should =~ [@company2]
       Company.like("Comp").to_a.should =~ [@company1, @company2]
@@ -30,7 +30,7 @@ describe Company do
       @company2 = Company.create(name: "TinyCompany", is_maintainer: true)
     end
 
-    it "should return maintainers only" do
+    it "returns maintainers only" do
       Company.maintainers.to_a.should =~ [ @company2 ]
     end
   end

@@ -6,7 +6,7 @@ describe Role do
     Role.new(name: "Blah").should be_valid
   end
 
-  it "should be unique by name" do
+  it "is unique by name" do
     Role.create!(name: "Blah")
     Role.new(name: "Blah").should_not be_valid
   end
