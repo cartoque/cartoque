@@ -28,10 +28,13 @@ describe ApplicationsController do
     assert_response :success
   end
 
+  #TODO: refactor it
+  #TODO: move it to a request spec
   it "should access the rest/xml API" do
     app_inst = ApplicationInstance.new(name: "prod", authentication_method: "none", application_id: @application.id.to_s)
     app_inst.servers = [ FactoryGirl.create(:server), FactoryGirl.create(:virtual) ]
     app_inst.save
+    @application.reload
     get :show, id: @application.to_param, format: :xml
     response.body.should have_selector :css, "application>_id", @application.id.to_s
     assert_equal 1, @application.application_instances.count

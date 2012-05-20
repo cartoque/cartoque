@@ -45,6 +45,7 @@ describe Application do
       ApplicationInstance.create!(name: "zzzz", authentication_method: "none", application_id: app.id)
       ApplicationInstance.create!(name: "prod", authentication_method: "none", application_id: app.id)
       ApplicationInstance.create!(name: "preprod", authentication_method: "none", application_id: app.id)
+      app.reload
       app.should have(6).application_instances
       app.sorted_application_instances.map(&:name).should eq %w(prod ecole preprod aaaa ffff zzzz)
     end
