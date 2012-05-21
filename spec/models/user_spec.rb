@@ -14,8 +14,10 @@ describe User do
 
   it "has a contextual datacenter" do
     Datacenter.destroy_all
+    User.destroy_all
     Datacenter.count.should == 0
-    @user.reload.preferred_datacenter.name.should == "Datacenter"
+
+    FactoryGirl.create(:user).preferred_datacenter.name.should == "Datacenter"
     Datacenter.count.should == 1
   end
 
