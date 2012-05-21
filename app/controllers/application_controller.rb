@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_filter :seek_authentication_token
   before_filter :authenticate_user!
   before_filter :set_locale
+  before_filter :set_datacenter
 
   protect_from_forgery
 
@@ -44,5 +45,11 @@ class ApplicationController < ActionController::Base
 
   def extract_locale_from_accept_language_header
     "#{request.env['HTTP_ACCEPT_LANGUAGE']}".scan(/^[a-z]{2}/).first
+  end
+
+  def set_datacenter
+    if current_user && current_user.preferred_datacenter.present?
+      Datacenter.default = current_user.preferred_datacenter
+    end
   end
 end

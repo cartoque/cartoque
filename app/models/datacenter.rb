@@ -7,7 +7,11 @@ class Datacenter
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  def self.default
-    Datacenter.first || Datacenter.create(name: "Datacenter")
+  class << self
+    attr_accessor :default
+
+    def default
+      @default || first || create(name: "Datacenter")
+    end
   end
 end

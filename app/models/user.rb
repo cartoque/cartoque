@@ -14,6 +14,7 @@ class User
   field :last_sign_in_at,       type: DateTime
   field :current_sign_in_ip,    type: String
   field :last_sign_in_ip,       type: String
+  belongs_to :preferred_datacenter, class_name: 'Datacenter'
 
   # Some default modules are not included: :registerable, :recoverable, :validatable, :rememberable
   # Others available are: :encryptable, :confirmable, :lockable, :timeoutable
@@ -47,7 +48,7 @@ class User
     update_setting("locale", new_locale)
   end
 
-  def datacenter
-    @datacenter ||= Datacenter.default
+  def preferred_datacenter
+    @preferred_datacenter ||= Datacenter.where(_id: self.preferred_datacenter_id).first || Datacenter.default
   end
 end

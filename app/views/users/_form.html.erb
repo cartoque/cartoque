@@ -28,6 +28,8 @@
         </td>
       </tr>
       <%= f.input :locale, collection: [%w(Français fr), %w(English en)] %>
+      <%= f.input :preferred_datacenter_id, collection: Datacenter.all.map{|d| [d.name, d.id] },
+                                            label: t(:datacenter), include_blank: false %>
     </tbody>
   </table>
 <% end %>

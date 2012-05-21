@@ -13,7 +13,11 @@ describe Datacenter do
     dc.errors.keys.should == [:name]
   end
 
-  describe "#default" do
+  describe ".default" do
+    before do
+      Datacenter.default = nil
+    end
+
     it "returns first datacenter if any" do
       Datacenter.count.should == 0
       Datacenter.create!(name: "Hosterz")
@@ -25,6 +29,13 @@ describe Datacenter do
       dc = Datacenter.default
       dc.should_not be_blank
       dc.name.should == "Datacenter"
+    end
+
+    it "allows changing default datacenter in controller" do
+      Datacenter.create!(name: "Hosterz")
+      Datacenter.default.name.should == "Hosterz"
+      Datacenter.default = Datacenter.create(name: "Phoenix")
+      Datacenter.default.name.should == "Phoenix"
     end
   end
 end
