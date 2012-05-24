@@ -17,8 +17,9 @@ describe User do
     User.destroy_all
     Datacenter.count.should == 0
 
-    FactoryGirl.create(:user).preferred_datacenter.name.should == "Datacenter"
-    Datacenter.count.should == 1
+    user = FactoryGirl.create(:user)
+    user.preferred_datacenter.should be_present
+    user.preferred_datacenter.should be_persisted
   end
 
   it "has a unique provider+uid" do
