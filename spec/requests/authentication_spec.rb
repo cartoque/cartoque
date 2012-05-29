@@ -82,4 +82,37 @@ describe "Authentication" do
     response.status.should == 200
     Datacenter.default.name.should == "Equinix"
   end
+
+  describe "redirection after sign in" do
+    let!(:user) { FactoryGirl.create(:user, email: "john@example.net", password: "foobar") }
+
+    before do
+      Setting.update_attribute(:allow_internal_authentication, 'yes')
+    end
+
+    it "redirects back to root path if no back url given" do
+      visit new_user_session_path
+
+      within "#internal-login" do
+        fill_in 'user_email', with: 'john@example.net'
+        fill_in 'user_password', with: 'foobar'
+        click_button 'Sign in'
+      end
+
+      current_path.should == root_path
+    end
+
+    it "redirects back to stored location if any" do
+      visit servers_path
+      current_path.should == new_user_session_path
+
+      within "#internal-login" do
+        fill_in 'user_email', with: 'john@example.net'
+        fill_in 'user_password', with: 'foobar'
+        click_button 'Sign in'
+      end
+
+      current_path.should == servers_path
+    end
+  end
 end

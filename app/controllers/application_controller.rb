@@ -52,4 +52,11 @@ class ApplicationController < ActionController::Base
       Datacenter.default = current_user.preferred_datacenter
     end
   end
+
+  #https://github.com/plataformatec/devise/wiki/How-To:-redirect-to-a-specific-page-on-successful-sign-in
+  def after_sign_in_path_for(resource)
+    #return request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+    #=> with our setup, omniauth.origin always contain sign_in page since user was first redirected on it
+    return stored_location_for(resource) || root_path
+  end
 end
