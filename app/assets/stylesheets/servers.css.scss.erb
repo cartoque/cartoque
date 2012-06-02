@@ -52,11 +52,15 @@ ul.maintainer { font-size:90%; margin:0.2em 0.5em; }
   & > div:not(:first-child) { border-left:1px solid #eee; padding-left:2%; }
   .processor-reference { display:block; font-size:10px; }
   .collection, .details { text-align:left; margin:0; padding:0 0 0 8px; }
+  table.details {
+    margin-left:5px; width:100%;
+    th { font-size:10px; color:#777; text-align:left; }
+  }
   .link-arrow { font-size:150%; }
   .link-fc .link-arrow { color:#ea0; }
   .link-eth .link-arrow { color:#00a; }
 }
-.server-maintenance {
+.server-maintenance, .server-extensions {
   padding:8px; margin-top:6px; border:1px solid #ccc; background-color:#fdfdfd; border-radius:2px;
   .item-details { margin-top:0; margin-bottom:0; }
 }

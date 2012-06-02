@@ -70,17 +70,23 @@ class Server
   has_many :physical_links,      class_name: 'PhysicalLink', foreign_key: 'server_id', dependent: :destroy
   has_many :connected_links,     class_name: 'PhysicalLink', foreign_key: 'switch_id', dependent: :destroy
   has_many :ipaddresses, foreign_key: 'server_id', dependent: :destroy, autosave: true
-  #slug
+  has_many :server_extensions, dependent: :destroy, autosave: true
+  
   slug  :name do |doc|
     Server.identifier_for(doc.name)
   end
 
   before_save :update_site!
 
-  accepts_nested_attributes_for :ipaddresses, reject_if: lambda{|a| a[:address].blank? },
-                                              allow_destroy: true
-  accepts_nested_attributes_for :physical_links, reject_if: lambda{|a| a[:link_type].blank? || a[:switch_id].blank? },
-                                                 allow_destroy: true
+  accepts_nested_attributes_for :ipaddresses,
+                                reject_if: lambda{|a| a[:address].blank? },
+                                allow_destroy: true
+  accepts_nested_attributes_for :physical_links,
+                                reject_if: lambda{|a| a[:link_type].blank? || a[:switch_id].blank? },
+                                allow_destroy: true
+  accepts_nested_attributes_for :server_extensions,
+                                reject_if: lambda{|a| a[:name].blank? },
+                                allow_destroy: true
 
   attr_accessor :just_created
 
@@ -114,7 +120,7 @@ class Server
   scope :by_fullmodel, proc{|model| mask = Regexp.mask(model); any_of({ manufacturer: mask }, { model: mask }) }
 
   validates_presence_of :name
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, scope: :extended_server_id
 
   before_validation :sanitize_attributes
   before_save :update_main_ipaddress

@@ -99,6 +99,7 @@ en:
     internal: "Internal"
     other: "Other"
   server_links: "Server links"
+  server_extensions: "Extensions"
   physical_links: "Physical links"
   connected_links: "Connected links"
   network_device: "Network device"

@@ -54,27 +54,46 @@
     </div>
   </div>
 
-
   <% unless @server.virtual? %>
   <div class="server-maintenance">
     <div class="item-details">
-      <div style="width:42%;">
-        <span class=label><%= t(:contract_type) %></span>
-        <div class="details">
-          <%= @server.maintenance_contract %>
-        </div>
-      </div>
-      <div style="width:28%;">
-        <span class=label><%= t(:serial_number) %></span>
-        <div class="details"><%= @server.serial_number %></div>
-      </div>
-      <div style="width:18%;">
-        <span class=label><%= t(:maintainer) %></span>
-        <div class="details"><%= link_to_if @server.maintainer.present?, @server.maintainer, @server.maintainer %></div>
-      </div>
+      <span class=label><%= t(:maintenance) %></span>
+      <table class="details">
+        <tr>
+          <th style="width:40%"><%= t(:contract_type) %></th>
+          <th><%= t(:serial_number) %></th>
+          <th><%= t(:maintainer) %></th>
+        </tr>
+        <tr>
+          <td><%= @server.maintenance_contract %></td>
+          <td><%= @server.serial_number %></td>
+          <td><%= link_to_if @server.maintainer.present?, @server.maintainer, @server.maintainer %></td>
+        </tr>
+      </table>
     </div>
   </div>
   <% end %>
+
+  <% if @server.server_extensions.any? %>
+  <div class="server-extensions">
+    <div class="item-details">
+      <span class=label><%= t(:server_extensions) %></span>
+      <table class="details">
+        <tr>
+          <th style="width:40%"><%= t(:name) %></th>
+          <th><%= t(:serial_number) %></th>
+        </tr>
+        <% @server.server_extensions.each do |ext| %>
+          <tr>
+            <td><%= ext.name %></td>
+            <td><%= ext.serial_number %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <% end %>
+
 
 </div>
 

@@ -77,6 +77,19 @@
       <%= f.input :manufacturer %>
       <%= f.input :model, input_html: { value: @server.hardware_model } %>
     </tbody>
+    <tbody class="<%= css_classes_physical %>">
+      <tr>
+        <td class="content" colspan="2">
+          <label for="server[server_extensions]" class="input"><%= t(:server_extensions) %> :</label><br />
+          <%= f.simple_fields_for :server_extensions do |se_form| %>
+            <%= render 'server_extension_fields', f: se_form %>
+          <% end %>
+          <p class="add-field">
+            <%= link_to_add_fields image_tag("new_button.png", size: "14x15", class:"inline")+t(:add).downcase, f, :server_extensions %>
+          </p>
+        </td>
+      </tr>
+    </tbody>
     <tbody>
       <%= f.input :processor_physical_count, collection: [1,2,4,6,8,10,12,16,24,32] %>
       <%= f.input :processor_reference, wrapper_class: css_classes_physical %>

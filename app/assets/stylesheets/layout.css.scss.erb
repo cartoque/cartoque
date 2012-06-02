@@ -59,6 +59,7 @@ tbody.long-list tr:hover {
   td { @extend .hover; }
   td.multirow { background-color:inherit !important; }
 }
+tbody + tbody { border-top: 1px solid #ddd; }
 td.multirow+td.hidden { border-bottom:0; border-top:0; height:0; padding:0; }
 
 /* commodities */
@@ -249,6 +250,8 @@ table.inputs, .show_item, .simple_form table, table.list { border:1px solid #ccc
 }
 .list tr th:last-child, .list tr.th td:last-child { border-right:1px solid #ccc; }
 label.required abbr { color:red; border-bottom:none; }
+.subform label { display:inline-block; min-width:80px; font-size:80% !important; color:#444; padding-left:10px; }
+.subform:nth-of-type(even) { padding:4px 0; background-color:#f4f4f9; }
 
 /* show_for */
 .show_for td.content { min-width:50%; }

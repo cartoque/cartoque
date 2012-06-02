@@ -255,6 +255,7 @@ fr:
     internal: "Interne"
     other: "Autre"
   server_links: "Connectique"
+  server_extensions: "Extensions"
   physical_links: "Se connecte à"
   connected_links: "Connectés"
   network_device: "Elément réseau"

@@ -28,6 +28,10 @@ class ServersController < ResourcesController
     @servers = decorate_resource_or_collection(@servers)
   end
 
+  def updatez
+    binding.pry
+    update!
+  end
   private
 
   def select_view_mode
