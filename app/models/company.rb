@@ -1,9 +1,16 @@
 class Company < Contactable
+  include Mongoid::Denormalize
+
+  #standard fields
   field :name, type: String
   field :is_maintainer, type: Boolean
-
+  #associations
   has_many :contacts, dependent: :nullify
   has_many :maintained_servers, class_name: 'Server', foreign_key: 'maintainer_id'
+  #denormalized
+  denormalize :name, to: :maintained_servers
+  denormalize :email, to: :maintained_servers
+  denormalize :phone, to: :maintained_servers
 
   validates_presence_of :name
 

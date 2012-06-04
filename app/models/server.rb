@@ -49,6 +49,9 @@ class Server
   #denormalized fields
   denormalize :full_name, from: :physical_rack
   denormalize :name, from: :operating_system
+  denormalize :name, from: :maintainer
+  denormalize :email, from: :maintainer
+  denormalize :phone, from: :maintainer
   #associations
   belongs_to :operating_system
   belongs_to :physical_rack

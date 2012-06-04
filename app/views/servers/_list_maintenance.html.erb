@@ -15,8 +15,8 @@
       <td><%= server.fullmodel %></td>
       <td class="center"><%= server.serial_number %></td>
       <td>
-      <% if server.maintainer.present? %>
-        <%= render_maintainer(server, server.maintainer) %>
+      <% if server.maintainer_name.present? %>
+        <%= render_maintainer(server) %>
       <% end %>
       </td>
       <td class="center"><%= l(server.delivered_on) if server.delivered_on? %></td>

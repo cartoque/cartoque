@@ -1,16 +1,16 @@
 # encoding: utf-8
 module ServersHelper
-  def render_maintainer(server, maintainer)
-    return "" unless maintainer
-    html =  "#{link_to maintainer, maintainer} "
+  def render_maintainer(server)
+    return "" if server.maintainer_name.blank?
+    html =  "#{link_to server.maintainer_name, company_path(server.maintainer_id)} "
     html << link_to_function(image_tag("info.gif", size: "12x12", class: "inline"),
                              %[$("#maintenance-#{server.id}").slideToggle(130); return false;],
                              class: "maintainer-infos hide-when-print")
     html << " "
     html << " - #{server.contract_type}" if server.contract_type?
     html << %(<ul style="display:none" class="maintainer" id="maintenance-#{server.id}">)
-    html << %(<li>Téléphone: #{maintainer.phone}</li>)
-    html << %(<li>Mail: #{mail_to maintainer.email}</li>)
+    html << %(<li>Téléphone: #{server.maintainer_phone}</li>)
+    html << %(<li>Mail: #{mail_to server.maintainer_email}</li>)
     html << "</ul>"
     html.html_safe
   end
