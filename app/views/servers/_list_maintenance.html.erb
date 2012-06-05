@@ -13,7 +13,11 @@
       <td><%= link_to server.name, server %></td>
       <td><%= link_to_rack server.physical_rack_full_name, server.physical_rack_id %></td>
       <td><%= server.fullmodel %></td>
-      <td class="center"><%= server.serial_number %></td>
+      <td class="center">
+        <div class="nocut">
+          <%= server.serial_numbers_list %>
+        </div>
+      </td>
       <td>
       <% if server.maintainer_name.present? %>
         <%= render_maintainer(server) %>

@@ -146,6 +146,24 @@ class ServerDecorator < ResourceDecorator
       "?"
     end
   end
+
+  def serial_numbers
+    ary = []
+    ary << model.serial_number if model.serial_number.present?
+    ary += model.server_extensions.map do |extension|
+      "#{extension.serial_number} (#{extension.name})" if extension.serial_number.present?
+    end.compact
+    ary
+  end
+
+  def serial_numbers_list
+    serial_numbers.map do |sn|
+      a = ERB::Util.html_escape(sn)
+      a = h.content_tag(:span, a, class: 'tiny') if sn.include?("(")
+      a
+    end.join("<br />").html_safe
+  end
+
   # Accessing Helpers
   #   You can access any helper via a proxy
   #

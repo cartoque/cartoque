@@ -109,4 +109,15 @@ describe ServerDecorator do
       server.maintenance_limit.should have_selector(:css, "span.maintenance-warning")
     end
   end
+
+  describe "#serial_numbers" do
+    it "outputs machine serial_number if no extension" do
+      Server.new.decorate.serial_numbers.should == []
+      server.serial_numbers.should == [ "12345" ]
+    end
+
+    it "includes server extensions' serial numbers if any" do
+      Factory.build(:server_with_extensions).decorate.serial_numbers.should == [ "12345", "54321 (storage)" ]
+    end
+  end
 end

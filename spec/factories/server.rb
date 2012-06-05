@@ -10,10 +10,18 @@ FactoryGirl.define do
     m.nb_disk 5
     m.disk_size 13
     m.disk_type "SAS"
+    m.serial_number "12345"
   end
 
   factory :virtual, parent: :server do |m|
     m.name 'v-server-01'
     m.virtual true
+  end
+
+  factory :server_with_extensions, parent: :server do
+    server_extensions {
+      [ Factory.create(:server_extension),
+        Factory.create(:server_extension_without_serial) ]
+    }
   end
 end
