@@ -1,0 +1,63 @@
+--- 
+title: API Endpoints for Databases
+---
+
+API Endpoints for Databases
+===========================
+
+<%= link_to "&#171; Back to the list of API endpoints", "/api/endpoints.html" %>
+
+<a name="get_databases"></a>
+
+Get a list of all databases
+-------------------------
+
+    GET /databases.json
+
+Example with curl:
+
+    curl -sLH "X-Api-Token: abcde123456" http://my-cartoque-database/databases.json
+
+Expected response:
+
+<% json_block do %>
+{"databases":[
+  { "id":"ab433","name":"database-01","type": "postgres", "server_names": [ "server-db-01","server-db-02" ],
+    "instances": [ { "id":"bc123","name":"pg90","listen_address":"192.168.0.23","listen_port":5432,"host_alias":"sgbd.local","version":"9.0.4"},{"...":"..."} ] },
+  { "id":"ab434", "name":"database-02", "...":"..." }
+]}
+<% end %>
+
+Parameters:
+
+* `by_name=[term]` : filters on databases which name includes [term]
+* `by_type=<oracle|postgres>` : filters on database type
+
+<a name="get_database"></a>
+
+Show a specific database
+----------------------
+
+    GET /databases/:id.json
+
+Example with curl:
+
+    curl -sLH "X-Api-Token: abcde123456" http://my-cartoque-database/databases/ab433.json
+
+Expected response:
+
+<% json_block do %>
+{"database":
+  { "id":"ab433","name":"database-01","type": "postgres", "server_names": [ "server-db-01","server-db-02" ],
+    "servers": [ {"id": "ab533", "name": "server-db-01"}, {"id": "ab534", "name":"server-db-02"} ],
+    "instances": [
+    { "id":"bc123","name":"pg90","listen_address":"192.168.0.23","listen_port":5432,
+      "host_alias":"sgbd.local","version":"9.0.4", "config": {"max_connections":2000, "shared_mem":"20M"},
+      "databases": { "project1": 54123, "project2": 10000 } },
+    {"...":"..."} ] }
+}
+<% end %>
+
+Parameters: none.
+
+NB: the "databases" item in an instance is a hash containing databases names (key) and its size in bytes (value).
