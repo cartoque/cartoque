@@ -56,6 +56,7 @@
           
           <ul>
             <li><a href="applications.html">Applications</a></li>
+            <li><a href="databases.html">Databases</a></li>
             <li><span class="active" title="You're here.">Servers</span></li>
           </ul>
           
@@ -89,14 +90,22 @@
 <pre><code data-language="javascript">{
   "servers": [
     {
-      "id": 433,
+      "id": "ab433",
       "name": "server-01",
-      "hypervisor_name": "xenhost-01"
+      "hypervisor_name": "xenhost-01",
+      "memory_GB": 2.0,
+      "processor_system_count": 4,
+      "processor_reference": "Intel Xeon",
+      "processor_frequency_GHz": 2.6
     },
     {
-      "id": 434,
+      "id": "ab434",
       "name": "server-02",
-      "hypervisor_name": null
+      "hypervisor_name": null,
+      "memory_GB": 1.0,
+      "processor_system_count": 2,
+      "processor_reference": "Intel Xeon",
+      "processor_frequency_GHz": 2.4
     }
   ]
 }</code></pre>
@@ -130,10 +139,14 @@
 
 <pre><code data-language="javascript">{
   "server": {
-    "id": 433,
+    "id": "ab433",
     "name": "server-01",
+    "hypervisor_name": "xenhost-01",
     "ip": "192.168.1.1",
-    "hypervisor_name": "xenhost-01"
+    "memory_GB": 2.0,
+    "processor_system_count": 4,
+    "processor_reference": "Intel Xeon",
+    "processor_frequency_GHz": 2.6
   }
 }</code></pre>
 
