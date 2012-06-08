@@ -117,7 +117,7 @@ describe ServerDecorator do
     end
 
     it "includes server extensions' serial numbers if any" do
-      Factory.build(:server_with_extensions).decorate.serial_numbers.should == [ "12345", "54321 (storage)" ]
+      FactoryGirl.build(:server_with_extensions).decorate.serial_numbers.should == [ "12345", "54321 (storage)" ]
     end
   end
 end

@@ -20,8 +20,8 @@ FactoryGirl.define do
 
   factory :server_with_extensions, parent: :server do
     server_extensions {
-      [ Factory.create(:server_extension),
-        Factory.create(:server_extension_without_serial) ]
+      [ FactoryGirl.create(:server_extension),
+        FactoryGirl.create(:server_extension_without_serial) ]
     }
   end
 end
