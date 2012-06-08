@@ -43,6 +43,7 @@ describe Company do
     end
 
     it "has some maintained servers" do
+      @company.reload
       @company.maintained_servers.to_a.should == [ @server1 ]
     end
   end
