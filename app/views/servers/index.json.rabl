@@ -1,4 +1,4 @@
-collection @servers => :servers
+collection @servers, root: :servers, object_root: false
 
 attributes :id, :name
 node(:hypervisor_name) { |server| server.hypervisor.try(:name) }

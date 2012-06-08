@@ -1,4 +1,4 @@
-collection @databases => :databases
+collection @databases, root: :databases, object_root: false
 
 attributes :id, :name, :type
 
