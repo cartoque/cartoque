@@ -72,6 +72,7 @@ describe "Authentication" do
   end
 
   it "sets the default datacenter for the next actions" do
+    Datacenter.delete_all && Datacenter.default=(nil)
     Datacenter.create!(name: "Datacenter")
     d = Datacenter.create!(name: "Equinix")
     u = FactoryGirl.create(:user, preferred_datacenter: d)
