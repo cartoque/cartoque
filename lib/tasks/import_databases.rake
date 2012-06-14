@@ -5,42 +5,6 @@ class DatabaseInstanceImporter
     @name = server_name
   end
 
-###  def postgres_report
-###    servers.inject([]) do |memo,server|
-###      memo.concat(server.postgres_report)
-###    end.sort_by do |report|
-###      [report["port"].to_i, report["pg_cluster"]]
-###    end
-###  end
-
-###  def oracle_report
-###    servers.inject([]) do |memo,server|
-###      memo.concat(server.oracle_report)
-###    end.sort_by do |report|
-###      report["ora_instance"]
-###    end
-###  end
-
-###  def instances
-###    report.size
-###  end
-
-###  def size
-###    case type
-###    when "postgres"
-###      report.inject(0) do |memo,instance|
-###        memo += instance["databases"].values.sum
-###      end
-###    when "oracle"
-###      report.inject(0) do |memo,instance|
-###        memo += instance["schemas"].values.sum
-###      end
-###    else
-###      0
-###    end
-###  end
-###  end
-
   def self.safe_json_parse(file, default_value = [])
     if File.exists?(file)
       begin
