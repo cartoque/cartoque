@@ -8,6 +8,7 @@ class Cronjob
   field :definition_location, type: String
   field :server_name, type: String
   belongs_to :server
+  has_and_belongs_to_many :tomcats
 
   before_save :cache_associations_fields
 

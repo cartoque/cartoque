@@ -52,6 +52,7 @@ class Server
   denormalize :name, from: :maintainer
   denormalize :email, from: :maintainer
   denormalize :phone, from: :maintainer
+  denormalize :name, to: :tomcats
   #associations
   belongs_to :operating_system
   belongs_to :physical_rack
@@ -74,6 +75,7 @@ class Server
   has_many :connected_links,     class_name: 'PhysicalLink', foreign_key: 'switch_id', dependent: :destroy
   has_many :ipaddresses, foreign_key: 'server_id', dependent: :destroy, autosave: true
   has_many :server_extensions, dependent: :destroy, autosave: true
+  has_many :tomcats, dependent: :destroy
   
   slug  :name do |doc|
     Server.identifier_for(doc.name)
@@ -209,10 +211,6 @@ class Server
 
   def fullmodel
     [manufacturer, model].join(" ")
-  end
-
-  def tomcats
-    @tomcats ||= Tomcat.find_for_server(self.name)
   end
 
   def can_be_managed_with_puppet?

@@ -9,11 +9,11 @@
     <th><%= t(:database_short) %></th>
   </tr>
   <% @tomcats.sort_by do |t|
-       [ t.dns, t.server.split("-").last.to_i, t.tomcat.split("_").last.to_i ]
+       [ t.dns, t.server.name.split("-").last.to_i, t.name.split("_").last.to_i ]
      end.group_by(&:dns).each do |dns,tomcats|%>
   <tr>
     <% tomcat = tomcats.first %>
-    <% crons = tomcats.map(&:crons).flatten %>
+    <% cronjobs = tomcats.map(&:cronjobs).flatten %>
     <td>
       <%= tomcat.dns %>
       <ul class="tomcat_vips">
@@ -24,7 +24,7 @@
       <%= tomcats.map{|t| link_to_server_if_exists t.server}.sort.uniq.join("<br/>").html_safe %>
     </td>
     <td class="center">
-      <%= tomcats.map(&:tomcat).sort.uniq.join("<br/>").html_safe %>
+      <%= tomcats.map(&:name).sort.uniq.join("<br/>").html_safe %>
     </td>
     <td class="center">
       <%= tomcats.map(&:java_version).sort.uniq.join("<br/>").html_safe %>
@@ -39,13 +39,13 @@
       <% end %>
     </td>
     <td class="center">
-      <% if crons.any? %>
+      <% if cronjobs.any? %>
         <%= link_to image_tag("stopwatch_start.png", size: "16x16", class: "inline"),
-                    "##{tomcat.dns.parameterize}", rel: "facebox" %><%= content_tag(:span, "×#{crons.size}", class: "tinier") if crons.size > 1 %>
+                    "##{tomcat.dns.parameterize}", rel: "facebox" %><%= content_tag(:span, "×#{cronjobs.size}", class: "tinier") if cronjobs.size > 1 %>
        <%= render partial: "cronjobs/cron_collection",
-                  locals: {title: "Crons #{tomcat.dns}", html_id: tomcat.dns.parameterize, crons: crons,
+                  locals: {title: "Crons #{tomcat.dns}", html_id: tomcat.dns.parameterize, crons: cronjobs,
                               context: "Tous les crons: " +
-                                          crons.map(&:server).uniq.sort_by(&:name).map do |s|
+                                          cronjobs.map(&:server).uniq.sort_by(&:name).map do |s|
                                             link_to(s.name, cronjobs_path(by_server: s.id))
                                           end.join(" ").html_safe } %>
       <% end %>
