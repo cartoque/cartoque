@@ -30,9 +30,10 @@
     </td>
     <td class="center">
       <%= tomcats.map(&:java_version).sort.uniq.join("<br/>").html_safe %>
-      <p class="details">
-        <%= tomcats.map{|t| "#{t.java_xms} / #{t.java_xmx}"}.sort.uniq.join("<br/>").html_safe %>
-      </p>
+      <% jvm_params = tomcats.map{|t| "#{t.java_xms} / #{t.java_xmx}" if t.java_xms.present? || t.java_xmx.present? }.sort.uniq.join("<br/>").html_safe %>
+      <% if jvm_params.present? %>
+        <p class="details"><%= jvm_params %></p>
+      <% end %>
     </td>
     <td class="center">
       <% if tomcat.cerbere %>
