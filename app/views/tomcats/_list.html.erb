@@ -16,9 +16,11 @@
     <% cronjobs = tomcats.map(&:cronjobs).flatten %>
     <td>
       <%= tomcat.dns %>
-      <ul class="tomcat_vips">
-        <%= tomcats.map(&:vip).sort.uniq.map{|n| "<li>via #{n}</li>"}.join("\n").html_safe %>
-      </ul>
+      <% if vips = tomcats.map(&:vip).compact && vips.present? %>
+        <ul class="tomcat_vips">
+          <%= vips.sort.uniq.map{|n| "<li>via #{n}</li>"}.join("\n").html_safe %>
+        </ul>
+      <% end %>
     </td>
     <td class="center">
       <%= tomcats.map{|t| link_to_server_if_exists t.server}.sort.uniq.join("<br/>").html_safe %>
@@ -50,8 +52,12 @@
                                           end.join(" ").html_safe } %>
       <% end %>
     </td>
-    <td><%= tomcat.jdbc_server %><br />
-        <%= tomcat.jdbc_user %> @ <%= tomcat.jdbc_db %></td>
+    <td>
+      <% if tomcat.jdbc_url %>
+        <%= tomcat.jdbc_server %><br />
+        <%= tomcat.jdbc_user %> @ <%= tomcat.jdbc_db %>
+      <% end %>
+    </td>
     <!--<td class="links center">
       <%= link_to "Nagios", "#", title: "Nagios #{tomcat.dns}", class: "link-to-nagios" %>
       <%= link_to "Munin", "#", title: "Munin #{tomcat.dns}", class: "link-to-munin" %>

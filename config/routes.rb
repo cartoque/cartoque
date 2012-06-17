@@ -30,9 +30,7 @@ Cartoque::Application.routes.draw do
   resources :physical_racks, except: :show
   resources :sites, except: :show
   resources :operating_systems, except: :show
-  resources :tomcats, only: :index do
-    collection { get 'index_old', as: 'old' }
-  end
+  resources :tomcats, only: :index
   resources :databases do
     collection { get 'distribution' }
   end
