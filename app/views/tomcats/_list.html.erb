@@ -3,7 +3,6 @@
     <th><%= t(:servers) %></th>
     <th><%= t(:applicaiton_instances) %></th>
     <th>JVM</th>
-    <th>Xms / Xmx</th>
     <th><%= t(:cerbere) %></th>
     <th><%= t(:crons) %></th>
     <th><%= t(:database_short) %></th>
@@ -31,9 +30,9 @@
     </td>
     <td class="center">
       <%= tomcats.map(&:java_version).sort.uniq.join("<br/>").html_safe %>
-    </td>
-    <td class="center">
-      <%= tomcats.map{|t| "#{t.java_xms} / #{t.java_xmx}"}.sort.uniq.join("<br/>").html_safe %>
+      <p class="details">
+        <%= tomcats.map{|t| "#{t.java_xms} / #{t.java_xmx}"}.sort.uniq.join("<br/>").html_safe %>
+      </p>
     </td>
     <td class="center">
       <% if tomcat.cerbere %>
