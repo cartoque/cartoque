@@ -16,7 +16,8 @@
     <% cronjobs = tomcats.map(&:cronjobs).flatten %>
     <td>
       <%= tomcat.dns %>
-      <% if vips = tomcats.map(&:vip).compact && vips.present? %>
+      <% vips = tomcats.map(&:vip).compact %>
+      <% if vips.present? %>
         <ul class="tomcat_vips">
           <%= vips.sort.uniq.map{|n| "<li>via #{n}</li>"}.join("\n").html_safe %>
         </ul>
