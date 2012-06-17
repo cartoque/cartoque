@@ -5,10 +5,10 @@
 <table class="pretty list">
   <%= form_tag tomcats_path(params), id: "filters", method: :get do -%>
   <tr class="filters fixed-size">
-    <td><%= select_tag "by_vip", options_for_select([["",""]] + Tomcat.all.distinct(:vip).sort, params[:by_vip]).html_safe -%></td>
+    <td><%= text_field_tag 'by_dns', params[:by_dns] %></td>
     <td><%= text_field_tag 'by_server_name', params[:by_server_name] %></td>
-    <td><%= select_tag "by_name", options_for_select([["",""]] + Tomcat.all.distinct(:name), params[:by_name]).html_safe -%></td>
-    <td><%= select_tag "by_java_version", options_for_select([["",""]] + Tomcat.all.distinct(:java_version), params[:by_java_version]).html_safe -%></td>
+    <td><%= text_field_tag 'by_name', params[:by_name] %></td>
+    <td><%= text_field_tag 'by_java_version', params[:by_java_version] %></td>
     <td></td>
     <td></td>
     <td></td>

@@ -4,7 +4,7 @@ class TomcatsController < ResourcesController
   respond_to :html, :js, :csv
 
   has_scope :by_name
-  has_scope :by_vip
+  has_scope :by_dns
   has_scope :by_java_version
   has_scope :by_server_name
 

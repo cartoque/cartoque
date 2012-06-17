@@ -27,7 +27,7 @@ class Tomcat
 
   #scopes
   scope :by_name, proc { |term| where(name: Regexp.mask(term)) }
-  scope :by_vip, proc { |term| where(vip: Regexp.mask(term)) }
-  scope :by_java_version, proc { |version| where(java_version: version) }
+  scope :by_dns, proc { |term| where(dns: Regexp.mask(term)) }
+  scope :by_java_version, proc { |term| where(java_version: Regexp.mask(term)) }
   scope :by_server_name, proc { |term| where(server_name: Regexp.mask(term)) }
 end
