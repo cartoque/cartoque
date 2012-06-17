@@ -61,31 +61,4 @@ namespace :import do
       end
     end
   end
-
-  def self.filters_from(tomcats)
-    filters_from = Hashie::Mash.new
-    tomcats.inject(filters_from) do |filters,tomcat|
-      tomcat.each do |key,value|
-        key = key.to_sym
-        server = Server.where(name: value).first
-        next if key == :cerbere || key == :cerbere_csac || key == :crons
-        next if key == :server && server && !server.active?
-        filters[key] ||= []
-        value = value.split("_").first if key == :tomcat
-        filters[key] << value unless filters[key].include?(value)
-        filters[key] = filters[key].compact.sort
-      end
-      filters
-    end
-    filters_from.default = []
-    filters_from
-  end
-
-  def self.filter_collection(tomcats, params)
-    tomcats = tomcats.select{|t| t.vip.starts_with?(params[:by_vip]) } if params[:by_vip].present?
-    tomcats = tomcats.select{|t| t.server == params[:by_server]} if params[:by_server].present?
-    tomcats = tomcats.select{|t| t.tomcat.starts_with?(params[:by_tomcat]) } if params[:by_tomcat].present?
-    tomcats = tomcats.select{|t| t.java_version.starts_with?(params[:by_java]) } if params[:by_java].present?
-    tomcats
-  end
 end
