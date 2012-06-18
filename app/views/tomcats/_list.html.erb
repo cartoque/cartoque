@@ -15,31 +15,20 @@
     <% cronjobs = tomcats.map(&:cronjobs).flatten %>
     <td>
       <%= tomcat.dns %>
-      <% vips = tomcats.map(&:vip).compact %>
-      <% if vips.present? %>
-        <ul class="tomcat_vips">
-          <%= vips.sort.uniq.map{|n| "<li>via #{n}</li>"}.join("\n").html_safe %>
-        </ul>
-      <% end %>
+      <%= tomcat_vips_if_any(tomcats) %>
     </td>
     <td class="center">
-      <%= tomcats.map{|t| link_to_server_if_exists t.server}.sort.uniq.join("<br/>").html_safe %>
+      <%= tomcat_links_to_servers(tomcats) %>
     </td>
     <td class="center">
-      <%= tomcats.map(&:name).sort.uniq.join("<br/>").html_safe %>
+      <%= tomcat_names(tomcats) %>
     </td>
     <td class="center">
-      <%= tomcats.map(&:java_version).sort.uniq.join("<br/>").html_safe %>
-      <% jvm_params = tomcats.map{|t| "#{t.java_xms} / #{t.java_xmx}" if t.java_xms.present? || t.java_xmx.present? }.sort.uniq.join("<br/>").html_safe %>
-      <% if jvm_params.present? %>
-        <p class="details"><%= jvm_params %></p>
-      <% end %>
+      <%= tomcat_java_versions(tomcats) %>
+      <%= tomcat_jvm_params_if_any(tomcats) %>
     </td>
     <td class="center">
-      <% if tomcat.cerbere %>
-        <%= image_tag("lock.png", size: "16x16") %><br />
-        <span class="<%= tomcat.cerbere_csac ? "csacok" : "csacko" %>">csac</span>
-      <% end %>
+      <%= tomcat_cerbere(tomcat) %>
     </td>
     <td class="center">
       <% if cronjobs.any? %>
@@ -54,17 +43,7 @@
       <% end %>
     </td>
     <td>
-      <% if tomcat.jdbc_url %>
-        <%= tomcat.jdbc_server %><br />
-        <%= tomcat.jdbc_user %> @ <%= tomcat.jdbc_db %>
-      <% end %>
+      <%= tomcat_datasource(tomcat) %>
     </td>
-    <!--<td class="links center">
-      <%= link_to "Nagios", "#", title: "Nagios #{tomcat.dns}", class: "link-to-nagios" %>
-      <%= link_to "Munin", "#", title: "Munin #{tomcat.dns}", class: "link-to-munin" %>
-      <br />
-      <%= link_to "Redmine", "#", title: "Redmine #{tomcat.dns}", class: "link-to-redmine" %>
-      <%= link_to "Doku", "#", title: "Dokuwiki #{tomcat.dns}", class: "link-to-dokuwiki" %>
-    </td>-->
   </tr>
   <% end %>
