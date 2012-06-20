@@ -46,6 +46,7 @@ class Server
   field :processor_physical_count, type: Integer, default: 1
   field :processor_cores_per_cpu, type: Integer, default: 1
   field :memory_GB, type: Float, default: 0
+  field :extended_attributes, type: Hash, default: {}
   #denormalized fields
   denormalize :full_name, from: :physical_rack
   denormalize :name, from: :operating_system

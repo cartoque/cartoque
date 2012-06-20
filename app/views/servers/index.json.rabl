@@ -8,3 +8,6 @@ attributes :memory_GB
 attributes :processor_system_count,
            :processor_reference,
            :processor_frequency_GHz
+
+#extended
+attributes :extended_attributes

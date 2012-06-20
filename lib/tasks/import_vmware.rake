@@ -16,6 +16,8 @@ namespace :import do
         vm = Server.find_or_generate(vmhsh["hostname"])
         vm.virtual = true
         vm.hypervisor = host
+        attrs = vm.extended_attributes 
+        attrs["vmware"] = {"tools" => vmhsh["tools"], "status" => vmhsh["status"]}
         vm.save if vm.changed?
       end
     end
