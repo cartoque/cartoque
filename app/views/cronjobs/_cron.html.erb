@@ -1,5 +1,5 @@
 <p class="cron">
-  <%= link_to_if cron.server.present?, cron.server.to_s, cron.server %>
+  <%= link_to_if cron.server_name.present?, cron.server_name, server_path(cron.server_id) %>
   <%= cron.definition_location %> &rarr; <%= t(:user).downcase %>: <code><%= cron.user %></code>, <%= t(:frequency).downcase %>: <code><%= cron.frequency %></code>
   <br />
   <pre><%= cron.command %></pre>

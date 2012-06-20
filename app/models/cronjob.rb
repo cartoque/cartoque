@@ -1,14 +1,19 @@
 class Cronjob
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Denormalize
 
+  #standard fields
   field :user, type: String
   field :frequency, type: String
   field :command, type: String
   field :definition_location, type: String
   field :server_name, type: String
+  #associations
   belongs_to :server
   has_and_belongs_to_many :tomcats
+  #denormalized 
+  denormalize :name, from: :server
 
   before_save :cache_associations_fields
 

@@ -52,7 +52,7 @@ class Server
   denormalize :name, from: :maintainer
   denormalize :email, from: :maintainer
   denormalize :phone, from: :maintainer
-  denormalize :name, to: :tomcats
+  denormalize :name, to: [:tomcats, :cronjobs]
   #associations
   belongs_to :operating_system
   belongs_to :physical_rack
