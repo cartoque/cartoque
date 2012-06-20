@@ -1,0 +1,65 @@
+--- 
+title: API Endpoints for Tomcats
+---
+
+API Endpoints for Tomcats
+=========================
+
+<%= link_to "&#171; Back to the list of API endpoints", "/api/endpoints.html" %>
+
+<a name="get_tomcats"></a>
+
+Get a list of all tomcats
+-------------------------
+
+    GET /tomcats.json
+
+Example with curl:
+
+    curl -sLH "X-Api-Token: abcde123456" http://my-cartoque-server/tomcats.json
+
+Expected response:
+
+<% json_block do %>
+{ "tomcats":[
+  { "id":"4f1234","name":"tomcat-01","vip":"virtual-ip-app-01.local", "dns":"app-01.local",
+    "directory":"/home/app-01/tomcat", "tomcat_version":"6.0.18","java_version":"jdk1.5.0_02",
+    "java_xms":"256m","java_xmx":"256m","jdbc_url":"jdbc://postgres@blah","jdbc_server":"blah",
+    "jdbc_db":"foo","jdbc_user":"postgres","jdbc_driver":"postgres-1.5.jar", "cerbere":false,
+    "cerbere_csac":false,"server_id":"4f72f5262989b338090002f7","server_name":"srv-tomcat-01" },
+  { "id":"ab434", "name":"tomcat-02", "...":"..." }
+  ]
+}
+<% end %>
+
+Parameters:
+
+* `by_name=[term]` : filters on tomcats which name includes [term]
+* `by_dns=[term]` : filters on tomcats which dns includes [term]
+* `by_java_version=[term]` : filters on tomcats which java_version includes [term]
+* `by_server_name=[term]` : filters on tomcats which server_name includes [term]
+
+<a name="get_tomcat"></a>
+
+Show a specific tomcat
+----------------------
+
+    GET /tomcats/:id.json
+
+Example with curl:
+
+    curl -sLH "X-Api-Token: abcde123456" http://my-cartoque-server/tomcats/ab433.json
+
+Expected response:
+
+<% json_block do %>
+{ "tomcat":
+  { "id":"4f1234","name":"tomcat-01","vip":"virtual-ip-app-01.local", "dns":"app-01.local",
+    "directory":"/home/app-01/tomcat", "tomcat_version":"6.0.18","java_version":"jdk1.5.0_02",
+    "java_xms":"256m","java_xmx":"256m","jdbc_url":"jdbc://postgres@blah","jdbc_server":"blah",
+    "jdbc_db":"foo","jdbc_user":"postgres","jdbc_driver":"postgres-1.5.jar", "cerbere":false,
+    "cerbere_csac":false,"server_id":"4f72f5262989b338090002f7","server_name":"srv-tomcat-01" }
+}
+<% end %>
+
+Parameters: none.
