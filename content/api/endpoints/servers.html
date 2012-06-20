@@ -21,12 +21,15 @@ Example with curl:
 Expected response:
 
 <% json_block do %>
-{"servers":[
-  {"id":"ab433","name":"server-01","hypervisor_name":"xenhost-01","memory_GB":2.0,
-   "processor_system_count":4,"processor_reference":"Intel Xeon","processor_frequency_GHz":2.60},
-  {"id":"ab434","name":"server-02","hypervisor_name":null, "memory_GB":1.0,
-   "processor_system_count":2,"processor_reference":"Intel Xeon","processor_frequency_GHz":2.40}
-]}
+{ "servers": [
+  { "id":"ab433","name":"server-01","hypervisor_name":"xenhost-01","memory_GB":2.0,
+    "processor_system_count":4,"processor_reference":"Intel Xeon","processor_frequency_GHz":2.60,
+    "extended_attributes": { "foo": "bar" } },
+  { "id":"ab434","name":"server-02","hypervisor_name":null, "memory_GB":1.0,
+    "processor_system_count":2,"processor_reference":"Intel Xeon","processor_frequency_GHz":2.40,
+    "extended_attributes": { "foo": "bar" } }
+  ]
+}
 <% end %>
 
 Parameters:
@@ -54,9 +57,10 @@ Example with curl:
 Expected response:
 
 <% json_block do %>
-{"server":
-  {"id":"ab433","name":"server-01","hypervisor_name":"xenhost-01","ip":"192.168.1.1","memory_GB":2.0,
-   "processor_system_count":4,"processor_reference":"Intel Xeon","processor_frequency_GHz":2.60}
+{ "server":
+  { "id":"ab433","name":"server-01","hypervisor_name":"xenhost-01","ip":"192.168.1.1","memory_GB":2.0,
+    "processor_system_count":4,"processor_reference":"Intel Xeon","processor_frequency_GHz":2.60,
+    "extended_attributes": { "foo": "bar" } }
 }
 <% end %>
 
