@@ -1,9 +1,0 @@
-# Test setup for use with http://travis-ci.org/
-test:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: cartoque_test
-  pool: 5
-  username:
-  password:
