@@ -1,7 +1,8 @@
-source 'http://rubygems.org'
+#source 'http://rubygems.org'
+source 'file:///home/jbbarth/.rubygems'
 
 # Core framework
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.6'
 gem 'rake'
 
 # Rails 3's asset pipeline
