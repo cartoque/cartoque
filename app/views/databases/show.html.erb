@@ -4,7 +4,7 @@
 
 <%= action_links do %>
   <%= link_to t(:edit), edit_database_path(@database) %> |
-  <%= link_to t(:delete), @database, confirm: t(:text_are_you_sure), method: :delete %>
+  <%= link_to t(:delete), @database, method: :delete, data: { confirm: t(:text_are_you_sure) } %>
 <% end %>
 
 <table class="pretty list database">
