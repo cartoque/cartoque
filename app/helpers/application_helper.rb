@@ -128,6 +128,18 @@ module ApplicationHelper
     end
   end
 
+  # extracted from Rails source since link_to_javascript will be removed in Rails 4.0
+  # TODO: extract occurences in clean, unobstrusive javascript
+  def link_to_javascript(name, *args, &block)
+    html_options = args.extract_options!.symbolize_keys
+
+    function = block_given? ? update_page(&block) : args[0] || ''
+    onclick = "#{"#{html_options[:onclick]}; " if html_options[:onclick]}#{function}; return false;"
+    href = html_options[:href] || '#'
+
+    content_tag(:a, name, html_options.merge(:href => href, :onclick => onclick))
+  end
+
   def link_to_servername(name)
     link_to name, server_path(Server.identifier_for(name))
   end
@@ -154,7 +166,7 @@ module ApplicationHelper
     else
       js = "remove_fields(this)"
     end
-    f.hidden_field(:_destroy) + link_to_function(name, js, {class: "link-delete"}.merge(options)).html_safe
+    f.hidden_field(:_destroy) + link_to_javascript(name, js, {class: "link-delete"}.merge(options)).html_safe
   end
 
   def link_to_add_fields(name, f, association, extra_params = {})
@@ -162,7 +174,7 @@ module ApplicationHelper
     fields = f.fields_for(association, new_object, child_index: "new_#{association}") do |builder|
       render(association.to_s.singularize + "_fields", {f: builder}.merge(extra_params))
     end
-    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: "link-add")
+    link_to_javascript(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: "link-add")
   end
 
   def link_to_edit(path)

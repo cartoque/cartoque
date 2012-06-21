@@ -3,7 +3,7 @@ module ServersHelper
   def render_maintainer(server)
     return "" if server.maintainer_name.blank?
     html =  "#{link_to server.maintainer_name, company_path(server.maintainer_id)} "
-    html << link_to_function(image_tag("info.gif", size: "12x12", class: "inline"),
+    html << link_to_javascript(image_tag("info.gif", size: "12x12", class: "inline"),
                              %[$("#maintenance-#{server.id}").slideToggle(130); return false;],
                              class: "maintainer-infos hide-when-print")
     html << " "
