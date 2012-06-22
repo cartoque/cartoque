@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :seek_authentication_token
   before_filter :authenticate_user!
+  before_filter :set_format
   before_filter :set_locale
   before_filter :set_datacenter
 
@@ -41,6 +42,11 @@ class ApplicationController < ActionController::Base
       I18n.locale = locale_candidate
     end
     #logger.debug "* Locale set to '#{I18n.locale}'"
+  end
+
+  # keeps good format accross request for API calls
+  def set_format
+    request.format = :json if params[:api_token].present? && params[:format].blank?
   end
 
   def extract_locale_from_accept_language_header
