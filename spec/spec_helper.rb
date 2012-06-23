@@ -15,7 +15,7 @@ Spork.prefork do
   Spork.trap_class_method(Rails::Mongoid, :load_models)
 
   # Coverage tool for ruby 1.9
-  require 'cover_me'
+  require 'cover_me' if File.exists?('/etc/debian_version')
 
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
