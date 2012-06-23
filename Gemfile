@@ -1,5 +1,4 @@
-#source 'http://rubygems.org'
-source 'file:///home/jbbarth/.rubygems'
+source 'http://rubygems.org'
 
 # Core framework
 gem 'rails', '3.2.6'
