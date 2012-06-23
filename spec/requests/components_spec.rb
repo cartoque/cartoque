@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe "Components" do
-  describe "GET /components" do
-    before do
-      get "/", {}, "HTTP_X_API_TOKEN" => FactoryGirl.create(:user).authentication_token
-    end
+  let(:user) { FactoryGirl.create(:user) }
+  before { login_as user }
 
+  describe "GET /components" do
     it "list all components" do
       get components_path
       response.status.should be(200)
