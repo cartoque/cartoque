@@ -2,7 +2,7 @@ desc "Imports cron jobs from tomcats' csv files"
 namespace :import do
   task :facter => :environment do
     dns_domains = Setting.dns_domains.split(/\n|,/).map(&:strip)
-    existing_operating_systems = OperatingSystem.all
+    existing_operating_systems = OperatingSystem.all.to_a
     Dir.glob("data/system/*.yml").each do |file|
       #server
       server_name = file.split("/").last.gsub(/\.yml$/,"")
@@ -25,9 +25,17 @@ namespace :import do
         #TODO: document it !!!
         candidates = existing_operating_systems.dup
         candidates.select!{|sys| "#{sys.name}".start_with?(facts["operatingsystem"]) }
-        candidates.reject!{|sys| sys.name == facts["operatingsystem"] }
+        candidates.reject!{|sys| sys.name == facts["operatingsystem"] } if facts["operatingsystemrelease"].present?
         candidates.select!{|sys| os.start_with?(sys.name) }
-        server.operating_system_id = candidates.first.id if candidates.count == 1
+        if candidates.count == 1
+          server.operating_system_id = candidates.first.id
+        elsif candidates.count == 0
+          sys = OperatingSystem.create!(name: "#{facts["operatingsystem"]} #{facts["operatingsystemrelease"].split(".").first}")
+          existing_operating_systems << sys
+          server.operating_system_id = sys.id
+        else
+          $stderr.puts "WARNING: strange, #{server.name} has multiple operating systems possible: #{candidates.map(&:name)}"
+        end
       end
       #virtual or not ?
       if facts["virtual"].present?
