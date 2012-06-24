@@ -13,6 +13,7 @@ class Ipaddress
   belongs_to :server
   acts_as_ipaddress :address
 
+  validates_presence_of :address
   validates_presence_of :server
 
   def to_s
