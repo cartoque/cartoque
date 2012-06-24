@@ -18,7 +18,11 @@ module Acts
               if value == value.to_i.to_s && value.to_i <= 32 #netmask!
                 value = IPAddr.new("255.255.255.255/"+value.to_s).to_s
               end
-              write_attribute(:#{attr}, IPAddr.new(value).to_i) if IPAddr.valid?(value)
+              if IPAddr.valid?(value)
+                write_attribute(:#{attr}, IPAddr.new(value, Socket::AF_INET).to_i)
+              else
+                # $stderr.puts "Invalid address: "+value.to_s
+              end
             end
           SRC
         end

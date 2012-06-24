@@ -3,7 +3,7 @@ require 'ipaddr'
 class IPAddr
   def self.valid?(addr)
     begin
-      new(addr)
+      new(addr, Socket::AF_INET)
     rescue ArgumentError
       false
     end
