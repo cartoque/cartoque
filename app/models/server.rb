@@ -12,7 +12,7 @@ class Server
   #standard fields
   field :name, type: String
   field :serial_number, type: String
-  field :virtual, type: Boolean
+  field :virtual, type: Boolean, default: false
   field :description, type: String
   field :model, type: String
   field :contract_type, type: String
@@ -32,7 +32,7 @@ class Server
   field :ipaddress, type: Integer
   acts_as_ipaddress :ipaddress
   field :has_drac, type: Boolean
-  field :network_device, type: Boolean
+  field :network_device, type: Boolean, default: false
   field :is_hypervisor, type: Boolean
   field :puppetversion, type: String
   field :facterversion, type: String
