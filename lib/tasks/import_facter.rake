@@ -72,7 +72,7 @@ namespace :import do
       server.save if server.changed?
       #dns domains
       if facts["domain"].present? && !dns_domains.include?(facts["domain"])
-        dns_domains += facts["domain"]
+        dns_domains << facts["domain"]
         Setting.dns_domains=(dns_domains)
       end
       #update IPs
