@@ -63,7 +63,7 @@ group :test do
   gem 'spork', '> 0.9.0.rc'
   gem 'guard-spork'
   gem 'libnotify'
-  gem 'rb-inotify'
+  gem 'listen'
   # the cover_me gem is not compatible with rbx and jruby
   # but only need this on one environment...
   gem 'cover_me', :platforms => :mri_19
