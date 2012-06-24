@@ -191,8 +191,8 @@ class Server
   end
 
   def update_main_ipaddress
-    if ip = self.ipaddresses.detect{|ip| ip.main?}
-      self.ipaddress = ip.address
+    if mainip = self.ipaddresses.detect{|ip| ip.main?}
+      self.ipaddress = mainip.address
     else
       self.send(:write_attribute, :ipaddress, nil)
     end
