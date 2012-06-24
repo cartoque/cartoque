@@ -21,7 +21,7 @@ describe Ipaddress do
 
   it "leaves ipaddress blank if invalid" do
     ip = Ipaddress.new(address: "abcd", server: FactoryGirl.create(:server))
-    ip.should be_valid
+    ip.should_not be_valid
     ip.address.should be_blank
     ip.address = "192.168.1.1"
     ip.should be_valid
