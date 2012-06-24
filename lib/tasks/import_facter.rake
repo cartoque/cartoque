@@ -76,6 +76,7 @@ namespace :import do
         Setting.dns_domains=(dns_domains)
       end
       #update IPs
+      ips_changed = false
       facts.keys.grep(/^ipaddress_/).each do |key|
         iface_key = key.gsub(/^ipaddress_/,"")
         addr = facts[key]
@@ -86,9 +87,16 @@ namespace :import do
         ip.netmask = facts["netmask_#{iface_key}"]
         ip.macaddress = facts["macaddress_#{iface_key}"]
         if ip.changed?
+          ips_changed = true
           puts "Updating IP=#{addr} for Server #{server}" if ENV['DEBUG'].present?
           ip.save
         end
+      end
+      #re-caluculate main IP address if some IP changed
+      if ips_changed || (server.ipaddress.blank? && facts["ipaddress"].present?)
+        server.reload
+        server.update_main_ipaddress
+        server.save if server.changed?
       end
     end
   end

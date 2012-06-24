@@ -36,9 +36,9 @@ describe Server do
     end
 
     it "leaves ip empty if no main ipaddress" do
-      server.ipaddresses = [ Ipaddress.new(address: "24", main: true) ]
+      server.ipaddresses = [ Ipaddress.new(address: "10.0.0.1", main: true) ]
       server.save
-      server.reload.ipaddress.should_not be_nil
+      server.reload.ipaddress.should == "10.0.0.1"
       server.ipaddresses = [ Ipaddress.new(address: "24") ]
       server.save
       server.reload.ipaddress.should be_nil
