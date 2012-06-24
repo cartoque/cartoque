@@ -12,7 +12,7 @@ class OperatingSystem
   denormalize :name, to: :servers
   #associations
   has_ancestry cache_depth: true
-  has_many :servers
+  has_many :servers, dependent: :nullify
 
   validates_presence_of :name
 
