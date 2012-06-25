@@ -4,31 +4,9 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require jquery
-//= require jquery-ui
-//= require jquery_ujs
-//= require jquery.tokeninput/jquery.tokeninput
-//= require jquery/jquery.chosen
-//= require jquery/jquery.bind-with-delay
-//= require jquery/jquery.observer
-//= require jquery/jquery.inline-labels
-//= require jquery/jquery.elastic
-//= require jquery/jquery.reject.min
-//= require bootstrap-dropdown
-//= require raphael/raphael-min
-//= require raphael/g.raphael-min
-//= require raphael/g.pie-min
-//= require jquery/jquery.facebox
-//= require jquery/jquery.placeholder
-//= require backup_jobs
-//= require contacts
-//= require mailing_lists
-//= require puppet
-//= require roles
-//= require upgrades
-//= require users
-//
-//not for now: //= require_tree .
+//= require frameworks
+//= require cartoque
+//= require_tree .
 
 //TODO: move everything below to separate javascript files
 

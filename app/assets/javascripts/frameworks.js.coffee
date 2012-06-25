@@ -1,0 +1,16 @@
+//= require jquery
+//= require jquery-ui
+//= require jquery_ujs
+//= require jquery.tokeninput/jquery.tokeninput
+//= require jquery/jquery.chosen
+//= require jquery/jquery.bind-with-delay
+//= require jquery/jquery.observer
+//= require jquery/jquery.inline-labels
+//= require jquery/jquery.elastic
+//= require jquery/jquery.reject.min
+//= require bootstrap-dropdown
+//= require raphael/raphael-min
+//= require raphael/g.raphael-min
+//= require raphael/g.pie-min
+//= require jquery/jquery.facebox
+//= require jquery/jquery.placeholder
