@@ -1,0 +1,48 @@
+--- 
+title: API Endpoints for Operating Systems
+---
+
+API Endpoints for Operating Systems
+===================================
+
+<%= link_to "&#171; Back to the list of API endpoints", "/api/endpoints.html" %>
+
+<a name="get_operating_systems"></a>
+
+Get a list of all operating_systems
+------------------------------
+
+    GET /operating_systems.json
+
+Example with curl:
+
+    curl -H "X-Api-Token: abcde123456" http://my-cartoque-server/operating_systems.json
+
+Expected response:
+
+<% json_block do %>
+{"operating_systems":[{"id":"4abc33","name":"Debian 5","codename":"Lenny"}]}
+<% end %>
+
+Parameters: none.
+
+
+
+<a name="get_operating_system"></a>
+
+Show a specific server
+----------------------
+
+    GET /operating_systems/:id.json
+
+Example with curl:
+
+    curl -sLH "X-Api-Token: abcde123456" http://my-cartoque-server/operating_systems/4abc33.json
+
+Expected response:
+
+<% json_block do %>
+{"operating_system":{"id":"4abc33","name":"Debian 5","codename":"Lenny"}}
+<% end %>
+
+Parameters: none.
