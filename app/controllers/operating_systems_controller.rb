@@ -1,4 +1,7 @@
 class OperatingSystemsController < InheritedResources::Base
+  respond_to :html, :js
+  respond_to :json, only: [:index, :show]
+
   layout "admin"
 
   def index
