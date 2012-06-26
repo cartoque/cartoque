@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cartoque - API Endpoints for Databases</title>
+    <title>Cartoque - API Endpoints for Operating Systems</title>
     <link rel="stylesheet" type="text/css" media="all" href="../../stylesheets/reset.css" />
     <link rel="stylesheet" type="text/css" media="all" href="../../stylesheets/text.css" />
     <link rel="stylesheet" type="text/css" media="all" href="../../stylesheets/960.css" />
@@ -56,8 +56,8 @@
           
           <ul>
             <li><a href="applications.html">Applications</a></li>
-            <li><span class="active" title="You're here.">Databases</span></li>
-            <li><a href="operating_systems.html">Operating Systems</a></li>
+            <li><a href="databases.html">Databases</a></li>
+            <li><span class="active" title="You're here.">Operating Systems</span></li>
             <li><a href="servers.html">Servers</a></li>
             <li><a href="tomcats.html">Tomcats</a></li>
           </ul>
@@ -71,123 +71,59 @@
       </div>
       <div class="grid_13">
         <div id="content">
-          <h1>API Endpoints for Databases</h1>
+          <h1>API Endpoints for Operating Systems</h1>
 
 <p><a href="../endpoints.html">&#171; Back to the list of API endpoints</a></p>
 
-<p><a name="get_databases"></a></p>
+<p><a name="get_operating_systems"></a></p>
 
-<h2>Get a list of all databases</h2>
+<h2>Get a list of all operating_systems</h2>
 
-<pre><code>GET /databases.json
+<pre><code>GET /operating_systems.json
 </code></pre>
 
 <p>Example with curl:</p>
 
-<pre><code>curl -sLH &quot;X-Api-Token: abcde123456&quot; http://my-cartoque-database/databases.json
+<pre><code>curl -H &quot;X-Api-Token: abcde123456&quot; http://my-cartoque-server/operating_systems.json
 </code></pre>
 
 <p>Expected response:</p>
 
 <pre><code data-language="javascript">{
-  "databases": [
+  "operating_systems": [
     {
-      "id": "ab433",
-      "name": "database-01",
-      "type": "postgres",
-      "server_names": [
-        "server-db-01",
-        "server-db-02"
-      ],
-      "instances": [
-        {
-          "id": "bc123",
-          "name": "pg90",
-          "listen_address": "192.168.0.23",
-          "listen_port": 5432,
-          "host_alias": "sgbd.local",
-          "version": "9.0.4"
-        },
-        {
-          "...": "..."
-        }
-      ]
-    },
-    {
-      "id": "ab434",
-      "name": "database-02",
-      "...": "..."
+      "id": "4abc33",
+      "name": "Debian 5",
+      "codename": "Lenny"
     }
   ]
 }</code></pre>
 
-<p>Parameters:</p>
+<p>Parameters: none.</p>
 
-<ul>
-<li><code>by_name=[term]</code> : filters on databases which name includes [term]</li>
-<li><code>by_type=&lt;oracle|postgres&gt;</code> : filters on database type</li>
-</ul>
+<p><a name="get_operating_system"></a></p>
 
-<p><a name="get_database"></a></p>
+<h2>Show a specific server</h2>
 
-<h2>Show a specific database</h2>
-
-<pre><code>GET /databases/:id.json
+<pre><code>GET /operating_systems/:id.json
 </code></pre>
 
 <p>Example with curl:</p>
 
-<pre><code>curl -sLH &quot;X-Api-Token: abcde123456&quot; http://my-cartoque-database/databases/ab433.json
+<pre><code>curl -sLH &quot;X-Api-Token: abcde123456&quot; http://my-cartoque-server/operating_systems/4abc33.json
 </code></pre>
 
 <p>Expected response:</p>
 
 <pre><code data-language="javascript">{
-  "database": {
-    "id": "ab433",
-    "name": "database-01",
-    "type": "postgres",
-    "server_names": [
-      "server-db-01",
-      "server-db-02"
-    ],
-    "servers": [
-      {
-        "id": "ab533",
-        "name": "server-db-01"
-      },
-      {
-        "id": "ab534",
-        "name": "server-db-02"
-      }
-    ],
-    "instances": [
-      {
-        "id": "bc123",
-        "name": "pg90",
-        "listen_address": "192.168.0.23",
-        "listen_port": 5432,
-        "host_alias": "sgbd.local",
-        "version": "9.0.4",
-        "config": {
-          "max_connections": 2000,
-          "shared_mem": "20M"
-        },
-        "databases": {
-          "project1": 54123,
-          "project2": 10000
-        }
-      },
-      {
-        "...": "..."
-      }
-    ]
+  "operating_system": {
+    "id": "4abc33",
+    "name": "Debian 5",
+    "codename": "Lenny"
   }
 }</code></pre>
 
 <p>Parameters: none.</p>
-
-<p>NB: the &quot;databases&quot; item in an instance is a hash containing databases names (key) and its size in bytes (value).</p>
 
         </div>
       </div>
