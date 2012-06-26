@@ -1,7 +1,8 @@
 class DatabasesController < ResourcesController
   before_filter :select_view_mode
 
-  respond_to :html, :js, :json
+  respond_to :html, :js
+  respond_to :json, only: [:index, :show]
 
   has_scope :by_name
   has_scope :by_type

@@ -1,7 +1,8 @@
 class ApplicationsController < ResourcesController
   include SortHelpers
 
-  respond_to :html, :js, :xml, :json
+  respond_to :html, :js, :xml
+  respond_to :json, only: [:index, :show]
 
   helper_method :sort_column, :sort_direction
 

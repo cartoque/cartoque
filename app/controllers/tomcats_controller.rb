@@ -1,7 +1,8 @@
 require 'csv'
 
 class TomcatsController < ResourcesController
-  respond_to :html, :js, :csv, :json
+  respond_to :html, :js, :csv
+  respond_to :json, only: [:index, :show]
 
   has_scope :by_name
   has_scope :by_dns

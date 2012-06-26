@@ -1,7 +1,8 @@
 require 'csv'
 
 class ServersController < ResourcesController
-  respond_to :html, :js, :xml, :csv, :json
+  respond_to :html, :js, :xml, :csv
+  respond_to :json, only: [:index, :show]
 
   has_scope :by_location
   has_scope :by_maintainer
