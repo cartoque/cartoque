@@ -5,7 +5,6 @@ class OperatingSystemsController < InheritedResources::Base
   layout "admin"
 
   def index
-    binding.pry
     if "#{params[:format]}" == "json"
       @operating_systems = OperatingSystem.all.order_by(:name.asc)
     else
