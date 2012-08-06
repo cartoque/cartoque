@@ -8,7 +8,7 @@
     <th><%= t(:database_short) %></th>
   </tr>
   <% @tomcats.sort_by do |t|
-       [ t.dns, t.server_name.split("-").last.to_i, t.name.split("_").last.to_i ]
+       [ t.dns, t.server_name.to_s.split("-").last.to_i, t.name.to_s.split("_").last.to_i ]
      end.group_by(&:dns).each do |dns,tomcats|%>
   <tr>
     <% tomcat = tomcats.first %>
