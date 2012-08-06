@@ -22,7 +22,7 @@ module TomcatsHelper
   end
 
   def tomcat_java_versions(tomcats)
-    tomcats.map(&:java_version).sort.uniq.join("<br/>").html_safe
+    tomcats.map(&:java_version).map(&:to_s).sort.uniq.join("<br/>").html_safe
   end
 
   def tomcat_jvm_params(tomcats)
