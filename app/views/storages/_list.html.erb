@@ -15,7 +15,7 @@
   <% @storages.sort_by{|s| [s.constructor, s.server.try(:name).try(:downcase)]}.each do |storage| %>
     <tr>
       <td class="top">
-        <strong><%= link_to storage.server.name, storage.server %></strong>
+        <strong><%= link_to storage.server.try(:name), storage.server %></strong>
         <%= action_links do %>
           <%= link_to_edit edit_storage_path(storage) %>
           <%= link_to_delete storage %>
