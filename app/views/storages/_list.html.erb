@@ -12,7 +12,7 @@
       <%= pretty_size(device.free) %> <%= t(:storage_left) %> (<%= "%0.0f%" % device.percent_free %>)
     </td>
   </tr>
-  <% @storages.sort_by{|s| [s.constructor, s.server.name.downcase]}.each do |storage| %>
+  <% @storages.sort_by{|s| [s.constructor, s.server.try(:name).try(:downcase)]}.each do |storage| %>
     <tr>
       <td class="top">
         <strong><%= link_to storage.server.name, storage.server %></strong>
