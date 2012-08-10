@@ -21,6 +21,7 @@
           <%= render partial: 'instance', collection: @application.sorted_application_instances.compact %>
         <% end %>
 
+        <!--
         <%= details_box :contacts, style: "width:36%" do %>
           <% Role.all.each do |role| %>
             <% contacts = @application.contacts_with_role(role) %>
@@ -33,6 +34,7 @@
             </ol>
           <% end %>
         <% end %>
+        -->
       </div>
     </div>
   </div>
