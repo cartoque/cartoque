@@ -12,10 +12,10 @@ class Application
   has_many :application_instances, autosave: true, dependent: :destroy
   has_many :relationships, as: :item, dependent: :destroy
   #slug
-  slug :name do |doc|
-    doc.name.downcase.gsub(/[^a-z0-9_-]/,"-")
-            .gsub(/--+/, "-")
-            .gsub(/^-|-$/,"")
+  slug :name do |name|
+    name.downcase.gsub(/[^a-z0-9_-]/,"-")
+        .gsub(/--+/, "-")
+        .gsub(/^-|-$/,"")
   end
   #denormalized fields
   denormalize :name, to: :application_instances
@@ -83,7 +83,7 @@ class Application
 
   class << self
     def find(*args)
-      find_by_slug(*args) || super
+      where(slug: args.first).first || super
     end
 
     def search(term)

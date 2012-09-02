@@ -26,13 +26,12 @@ gem 'draper'
 gem 'deface', '= 0.7.2'
 gem 'rabl', '>= 0.5.3'
 # Mongo / data manipulation
-gem 'mongoid'
-gem 'bson_ext'
-gem 'mongoid-ancestry'
+gem 'mongoid', '~> 3.0.5'
+gem 'mongoid-ancestry', '~> 0.3.0'
 gem 'mongoid_rails_migrations'
 #TODO: use the gem instead of our version in lib/ when fixes are merged in master
 #gem 'mongoid_denormalize'
-gem 'mongoid_slug'
+gem 'mongoid_slug', :git => 'https://github.com/digitalplaywright/mongoid-slug.git'
 # Styles
 gem 'bootstrap-sass'
 gem 'font-awesome-sass-rails'
@@ -62,7 +61,8 @@ group :test do
   gem 'guard-rspec'
   gem 'spork', '> 0.9.0.rc'
   gem 'guard-spork'
-  gem 'libnotify'
+  gem 'growl' if RUBY_PLATFORM.match /darwin/
+  gem 'libnotify' if RUBY_PLATFORM.match /linux/
   gem 'listen'
   # the cover_me gem is not compatible with rbx and jruby
   # but only need this on one environment...

@@ -69,10 +69,10 @@ Spork.prefork do
       DatabaseCleaner.clean
     end
 
-    # some patches to draper's rspec integration
-    # otherwise link_to's in decorator don't work in specs,
-    # return "undefined method `host' for nil:NilClass"
-    require 'draper/rspec_better_integration'
+    # a tiny patch to database_cleaner for moped adapter
+    # it doesn't clean collections with 'system' in its name,
+    # while it should only exclude collections beginning with 'system'
+    require 'database_cleaner/moped_truncation_patch'
 
     # factory girl invocation methods
     config.include FactoryGirl::Syntax::Methods

@@ -78,8 +78,8 @@ class Server
   has_many :server_extensions, dependent: :destroy, autosave: true
   has_many :tomcats, dependent: :destroy
   
-  slug  :name do |doc|
-    Server.identifier_for(doc.name)
+  slug :name do |name|
+    Server.identifier_for(name)
   end
 
   before_save :update_site!
@@ -133,7 +133,7 @@ class Server
 
   class << self
     def find(*args)
-      find_by_slug(args.first) || super(*args)
+      where(slug: args.first).first || super
     end
 
     def find_or_generate(name)
@@ -237,6 +237,10 @@ class Server
 
   def known_processor?
     processor_physical_count.to_i > 0 && processor_frequency_GHz > 0
+  end
+
+  def self.find_by_slug(slug)
+    where(_slugs: slug).first
   end
 
   private

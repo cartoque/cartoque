@@ -48,20 +48,20 @@ describe Server do
     end
   end
 
-  describe "#slug" do
+  describe "#to_param (slug)" do
     it "automaticallys generate a slug" do
       m = Server.create(name: "blah")
-      m.slug.should eq "blah"
+      m.to_param.should eq "blah"
       m = Server.create(name: "( bizarr# n@me )")
-      m.slug.should eq "bizarr-n-me"
+      m.to_param.should eq "bizarr-n-me"
     end
 
     pending "prevents from having 2 servers with the same identifier" do
       m1 = Server.create(name: "srv1")
       m2 = Server.new(name: "(srv1)")
       m2.should_not be_valid
-      m2.slug.should eq m1.slug
-      m2.errors.keys.should include(:slug)
+      m2.to_param.should eq m1.to_param
+      m2.errors.keys.should include(:_slugs)
     end
   end
 
@@ -74,12 +74,12 @@ describe Server do
     end
 
     it "works with identifiers too" do
-      Server.find(server.slug).should eq server
+      Server.find(server.to_param).should eq server
     end
 
     it "raises an exception if no existing record with this identifier" do
       lambda { Server.find(0) }.should raise_error Mongoid::Errors::DocumentNotFound
-      lambda { Server.find("non-existent") }.should raise_error BSON::InvalidObjectId
+      lambda { Server.find("non-existent") }.should raise_error Mongoid::Errors::DocumentNotFound #new with mongoid 3
     end
   end
 
@@ -158,7 +158,7 @@ describe Server do
       it "finds server by its slug if no name corresponds" do
         server.update_attribute(:name, "rake.server")
         server.name.should eq "rake.server"
-        server.slug.should eq "rake-server"
+        server.to_param.should eq "rake-server"
         server = Server.find_or_generate("rake-server")
         server.should eq server
         server.just_created.should be_false
