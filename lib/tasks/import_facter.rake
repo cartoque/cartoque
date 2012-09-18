@@ -10,7 +10,7 @@ namespace :import do
       server = Server.find_or_generate(server_name)
       puts "Successfully created Server: #{server.name}" if server.just_created
       #facts
-      facts = YAML.load_file(file)
+      facts = YAML.load_file(file) rescue nil
       next unless facts
       #update version facts in server
       %w(rubyversion facterversion puppetversion).each do |key|
