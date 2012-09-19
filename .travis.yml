@@ -6,4 +6,5 @@ branches:
     - master
     - stable
 env: RAILS_ENV=test
+services: mongodb
 script: "bundle exec rspec spec"
