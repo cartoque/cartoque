@@ -26,7 +26,7 @@ gem 'draper'
 gem 'deface', '= 0.7.2'
 gem 'rabl', '>= 0.5.3'
 # Mongo / data manipulation
-gem 'mongoid'
+gem 'mongoid', '~> 2.4.9'
 gem 'bson_ext'
 gem 'mongoid-ancestry'
 gem 'mongoid_rails_migrations'
