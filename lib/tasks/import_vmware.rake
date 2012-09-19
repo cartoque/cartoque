@@ -8,7 +8,7 @@ namespace :import do
         ip_address = server_name
         resolved_name = %x(getent hosts #{server_name}).split[1].to_s.split(".").first
         server_name = resolved_name if resolved_name.present?
-        if old_server = Server.find_by_name(ip_address)
+        if old_server = Server.where(name: ip_address).first
           old_server.update_attribute(:name, server_name)
         end
       end
