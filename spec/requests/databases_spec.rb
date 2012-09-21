@@ -21,9 +21,22 @@ describe "Databases" do
     end
   end
 
-  describe "GET /databases/new" do
+  describe "GET /databases/new & POST /databases" do
+    before do
+      FactoryGirl.create(:server)
+    end
+
     it "creates a new database" do
       visit new_database_path
+      page.status_code.should == 200
+      fill_in "database_name", with: "vm-oracle-01"
+      select "oracle", from:  "database_type"
+      select "", from: "database_server_ids"
+      select "server-01", from: "database_server_ids"
+      click_button "Create"
+      current_path.should == databases_path
+      page.should have_content "vm-oracle-01"
+      page.should have_content "server-01"
     end
   end
 

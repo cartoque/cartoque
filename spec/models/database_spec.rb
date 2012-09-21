@@ -35,6 +35,21 @@ describe Database do
     pg.size.should == 15
   end
 
+  describe "#server_ids=" do
+    it "should update servers correctly" do
+      db = Database.create!(name: "pg-cluster", type: "postgres")
+      srv = FactoryGirl.create(:server)
+      vm  = FactoryGirl.create(:virtual)
+      db.server_ids = [srv.id.to_s]
+      db.save!
+      db.reload.servers.should == [srv]
+      db.server_ids = [vm.id.to_s]
+      db.save!
+      db.reload.servers.should == [vm]
+      srv.database_id.should be_blank
+    end
+  end
+
   describe "#distribution" do
     before do
       srv = FactoryGirl.create(:server)

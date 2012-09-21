@@ -6,7 +6,7 @@ class Database
 
   field :name, type: String
   field :type, type: String
-  has_many :servers
+  has_many :servers, autosave: true #mandatory with forms
   has_many :database_instances, dependent: :destroy
 
   validates_presence_of :name
@@ -17,12 +17,7 @@ class Database
 
   #TODO: see why Mongoid doesn't generate that for us
   def server_ids=(ids)
-    actual_ids = self.servers.map(&:_id).map(&:to_s)
-    new_ids = ids.map(&:to_s)
-    #deletions
-    self.servers -= Server.where(:_id.in => actual_ids - new_ids).to_a
-    #additions
-    self.servers << Server.where(:_id.in => new_ids - actual_ids).to_a
+    self.servers = Server.where(:_id.in => ids)
   end
 
   #TODO: see why Mongoid doesn't generate that for us
