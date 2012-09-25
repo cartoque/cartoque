@@ -29,7 +29,7 @@ namespace :import do
       next if Database.where(name: db_name, type: db_type).first
       server = Server.where(name: db_name).first
       next unless server
-      next if server.database_id.present?
+      next if server.database.present?
       Database.create(name: db_name, type: db_type, servers: [server])
     end
     #import database files
