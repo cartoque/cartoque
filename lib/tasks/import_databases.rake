@@ -21,6 +21,15 @@ end
 desc "Imports databases from data/(oracle|postgres)/* files"
 namespace :import do
   task :databases => :environment do
+    #create database services if server exist
+    (Dir.glob("data/postgres/*") + Dir.glob("data/oracle/*")).each do |filename|
+      db_type, db_name = filename.scan(%r[data/(oracle|postgres)/(.*).txt]).first
+      next if Database.where(name: db_name, type: db_type).first
+      server = Server.where(name: db_name).first
+      next unless server
+      Database.create(name: db_name, type: db_type, servers: [server])
+    end
+    #import database files
     Database.all.each do |db|
       files = db.servers.map(&:name).map do |server_name|
         File.expand_path("data/#{db.type}/#{server_name.downcase}.txt", Rails.root)
