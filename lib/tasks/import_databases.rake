@@ -24,7 +24,8 @@ namespace :import do
     #create database services if server exist
     (Dir.glob("data/postgres/*") + Dir.glob("data/oracle/*")).each do |filename|
       db_type, db_name = filename.scan(%r[data/(oracle|postgres)/(.*).txt]).first
-      next unless File.size(filename) > 0
+      next unless File.size(filename) > 0  #empty file
+      next unless File.size(filename) > 10 #file with potential data in
       next if Database.where(name: db_name, type: db_type).first
       server = Server.where(name: db_name).first
       next unless server
