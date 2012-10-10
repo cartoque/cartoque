@@ -7,6 +7,7 @@
 </td>
 <td class="database-instance center">
   <abbr title="<%= database_instance.host_alias %>"><%= database_instance.name %></abbr>
+  <%= content_tag(:p, database_instance.version, class: 'info') if database_instance.version.present? %>
 </td>
 <td>
   <% if database_instance.present? %>
