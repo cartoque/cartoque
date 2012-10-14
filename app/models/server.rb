@@ -75,8 +75,8 @@ class Server
   alize :operating_system, :name
   alize :maintainer, :name, :email, :phone
   
-  slug :name do |name|
-    Server.identifier_for(name)
+  slug :name do |server|
+    Server.identifier_for(server.name)
   end
 
   before_save :update_site!

@@ -30,7 +30,7 @@ gem 'mongoid', '~> 3.0.5'
 gem 'mongoid-ancestry'
 gem 'mongoid_rails_migrations'
 gem 'mongoid_alize' #denormalizartion
-gem 'mongoid_slug', :git => 'https://github.com/digitalplaywright/mongoid-slug.git'
+gem 'mongoid_slug', '~> 1.0.0'
 # Styles
 gem 'bootstrap-sass'
 gem 'font-awesome-sass-rails'

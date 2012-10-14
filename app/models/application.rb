@@ -12,10 +12,12 @@ class Application
   has_many :application_instances, autosave: true, dependent: :destroy
   has_many :relationships, as: :item, dependent: :destroy
   #slug
-  slug :name do |name|
-    name.downcase.gsub(/[^a-z0-9_-]/,"-")
-        .gsub(/--+/, "-")
-        .gsub(/^-|-$/,"")
+  slug :name do |application|
+    application.name
+               .downcase
+               .gsub(/[^a-z0-9_-]/,"-")
+               .gsub(/--+/, "-")
+               .gsub(/^-|-$/,"")
   end
 
   validates_presence_of :name
