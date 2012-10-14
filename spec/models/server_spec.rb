@@ -259,13 +259,13 @@ describe Server do
       rack2 = PhysicalRack.create!(name: "Rack-02")
       srv.physical_rack_full_name.should be_blank
 
-      srv.update_attribute(:physical_rack_id, rack2.id)
+      srv.update_attributes(physical_rack_id: rack2.id)
       srv.reload.physical_rack_full_name.should == "Rack-02"
 
-      srv.update_attribute(:physical_rack_id, rack.id)
+      srv.update_attributes(physical_rack_id: rack.id)
       srv.reload.physical_rack_full_name.should == "Room-A - Rack-01"
 
-      rack.reload.update_attribute(:name, "RCK01")
+      rack.reload.update_attributes(name: "RCK01")
       srv.reload.physical_rack_full_name.should == "Room-A - RCK01"
 
       rack.destroy
@@ -277,10 +277,10 @@ describe Server do
       sys = OperatingSystem.create!(name: "Linux")
       srv.operating_system_name.should be_blank
 
-      srv.update_attribute(:operating_system_id, sys.id)
+      srv.update_attributes(operating_system_id: sys.id)
       srv.reload.operating_system_name.should == "Linux"
 
-      sys.reload.update_attribute(:name, "GNU/Linux")
+      sys.reload.update_attributes(name: "GNU/Linux")
       srv.reload.operating_system_name.should == "GNU/Linux"
 
       sys.destroy

@@ -1,7 +1,7 @@
 class Server
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Denormalize
+  include Mongoid::Alize
   include Mongoid::Slug
   include Acts::Ipaddress
 
@@ -47,13 +47,6 @@ class Server
   field :processor_cores_per_cpu, type: Integer, default: 1
   field :memory_GB, type: Float, default: 0
   field :extended_attributes, type: Hash, default: {}
-  #denormalized fields
-  denormalize :full_name, from: :physical_rack
-  denormalize :name, from: :operating_system
-  denormalize :name, from: :maintainer
-  denormalize :email, from: :maintainer
-  denormalize :phone, from: :maintainer
-  denormalize :name, to: [:tomcats, :cronjobs]
   #associations
   belongs_to :operating_system
   belongs_to :physical_rack
@@ -77,6 +70,10 @@ class Server
   has_many :ipaddresses, foreign_key: 'server_id', dependent: :destroy, autosave: true
   has_many :server_extensions, dependent: :destroy, autosave: true
   has_many :tomcats, dependent: :destroy
+  #denormalized fields
+  alize :physical_rack, :full_name
+  alize :operating_system, :name
+  alize :maintainer, :name, :email, :phone
   
   slug :name do |name|
     Server.identifier_for(name)
@@ -241,6 +238,26 @@ class Server
 
   def self.find_by_slug(slug)
     where(_slugs: slug).first
+  end
+
+  def physical_rack_full_name
+    physical_rack_fields.try(:fetch, 'full_name') if physical_rack_id.present?
+  end
+
+  def operating_system_name
+    operating_system_fields.try(:fetch, 'name') if operating_system_id.present?
+  end
+
+  def maintainer_name
+    maintainer_fields.try(:fetch, 'name') if maintainer_id.present?
+  end
+
+  def maintainer_email
+    maintainer_fields.try(:fetch, 'email') if maintainer_id.present?
+  end
+
+  def maintainer_phone
+    maintainer_fields.try(:fetch, 'phone') if maintainer_id.present?
   end
 
   private

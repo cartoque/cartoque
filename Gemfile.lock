@@ -131,6 +131,8 @@ GEM
       tzinfo (~> 0.3.22)
     mongoid-ancestry (0.3.0)
       mongoid (~> 3.0.3)
+    mongoid_alize (0.4.0)
+      mongoid (>= 2.4)
     mongoid_rails_migrations (0.0.14)
       activesupport (>= 3.0.0)
       bundler (>= 1.0.0)
@@ -267,6 +269,7 @@ DEPENDENCIES
   lograge
   mongoid (~> 3.0.5)
   mongoid-ancestry (~> 0.3.0)
+  mongoid_alize
   mongoid_rails_migrations
   mongoid_slug!
   nokogiri

@@ -29,8 +29,7 @@ gem 'rabl', '>= 0.5.3'
 gem 'mongoid', '~> 3.0.5'
 gem 'mongoid-ancestry', '~> 0.3.0'
 gem 'mongoid_rails_migrations'
-#TODO: use the gem instead of our version in lib/ when fixes are merged in master
-#gem 'mongoid_denormalize'
+gem 'mongoid_alize' #denormalizartion
 gem 'mongoid_slug', :git => 'https://github.com/digitalplaywright/mongoid-slug.git'
 # Styles
 gem 'bootstrap-sass'

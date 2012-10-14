@@ -1,6 +1,6 @@
 class PhysicalRack
   include Mongoid::Document
-  include Mongoid::Denormalize
+  include Mongoid::Alize
 
   field :name, type: String
   field :site_name, type: String
@@ -9,8 +9,7 @@ class PhysicalRack
   belongs_to :site
   has_many :servers, dependent: :nullify
   #denormalized fields
-  denormalize :name, from: :site
-  denormalize :full_name, to: :servers
+  alize :site, :name
 
   before_destroy :nullify_denormalized_fields
 
@@ -24,6 +23,10 @@ class PhysicalRack
 
   def stock?
     status == STATUS_STOCK
+  end
+
+  def site_name
+    site_fields.try(:fetch, 'name') if site_id.present?
   end
 
   protected

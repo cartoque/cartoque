@@ -1,6 +1,6 @@
 class ApplicationInstance
   include Mongoid::Document
-  include Mongoid::Denormalize
+  include Mongoid::Alize
   include Mongoid::Timestamps
 
   #standard fields
@@ -11,7 +11,7 @@ class ApplicationInstance
   belongs_to :application
   has_and_belongs_to_many :servers
   #denormalized fields
-  denormalize :name, from: :application
+  alize :application, :name
 
   accepts_nested_attributes_for :application_urls, reject_if: lambda{|a| a[:url].blank? },
                                                    allow_destroy: true
@@ -27,4 +27,8 @@ class ApplicationInstance
     "#{application_name} (#{name})"
   end
   alias :to_s :full_name
+
+  def application_name
+    application_fields.try(:fetch, 'name') if application_id.present?
+  end
 end

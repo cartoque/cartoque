@@ -2,6 +2,7 @@ class Contactable
   include Mongoid::Document
   include Mongoid::Timestamps
   #include Mongoid::MultiParameterAttributes
+  include Mongoid::Alize
 
   field :comment,   type: String
   field :image_url, type: String,   default: -> { self.class == Contact ? "ceo.png" : "building.png" }

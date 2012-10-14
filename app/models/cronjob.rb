@@ -1,7 +1,7 @@
 class Cronjob
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Denormalize
+  include Mongoid::Alize
 
   #standard fields
   field :user, type: String
@@ -12,8 +12,8 @@ class Cronjob
   #associations
   belongs_to :server
   has_and_belongs_to_many :tomcats
-  #denormalized 
-  denormalize :name, from: :server
+  #denormalized
+  alize :server, :name
 
   before_save :cache_associations_fields
 
@@ -55,6 +55,10 @@ class Cronjob
     cron.user = elems.shift
     cron.command = elems.join(" ")
     cron
+  end
+
+  def server_name
+    server_fields.try(:fetch, 'name') if server_id.present?
   end
 
   private
