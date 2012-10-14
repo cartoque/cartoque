@@ -11,6 +11,10 @@ describe Role do
     Role.new(name: "Blah").should_not be_valid
   end
 
+  it "doesn't alter position if provided" do
+    Role.new(name: "Blah", position: 37).position.should == 37
+  end
+
   it "is sorted by position asc by default" do
     Role.create!(name: "Two", position: 2)
     Role.create!(name: "One", position: 1)
