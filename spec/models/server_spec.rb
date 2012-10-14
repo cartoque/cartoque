@@ -48,20 +48,20 @@ describe Server do
     end
   end
 
-  describe "#slug" do
+  describe "#to_param (slug)" do
     it "automaticallys generate a slug" do
       m = Server.create(name: "blah")
-      m.slug.should eq "blah"
+      m.to_param.should eq "blah"
       m = Server.create(name: "( bizarr# n@me )")
-      m.slug.should eq "bizarr-n-me"
+      m.to_param.should eq "bizarr-n-me"
     end
 
     pending "prevents from having 2 servers with the same identifier" do
       m1 = Server.create(name: "srv1")
       m2 = Server.new(name: "(srv1)")
       m2.should_not be_valid
-      m2.slug.should eq m1.slug
-      m2.errors.keys.should include(:slug)
+      m2.to_param.should eq m1.to_param
+      m2.errors.keys.should include(:_slugs)
     end
   end
 
@@ -74,12 +74,12 @@ describe Server do
     end
 
     it "works with identifiers too" do
-      Server.find(server.slug).should eq server
+      Server.find(server.to_param).should eq server
     end
 
     it "raises an exception if no existing record with this identifier" do
       lambda { Server.find(0) }.should raise_error Mongoid::Errors::DocumentNotFound
-      lambda { Server.find("non-existent") }.should raise_error BSON::InvalidObjectId
+      lambda { Server.find("non-existent") }.should raise_error Mongoid::Errors::DocumentNotFound #new with mongoid 3
     end
   end
 
@@ -158,7 +158,7 @@ describe Server do
       it "finds server by its slug if no name corresponds" do
         server.update_attribute(:name, "rake.server")
         server.name.should eq "rake.server"
-        server.slug.should eq "rake-server"
+        server.to_param.should eq "rake-server"
         server = Server.find_or_generate("rake-server")
         server.should eq server
         server.just_created.should be_false
@@ -259,13 +259,13 @@ describe Server do
       rack2 = PhysicalRack.create!(name: "Rack-02")
       srv.physical_rack_full_name.should be_blank
 
-      srv.update_attribute(:physical_rack_id, rack2.id)
+      srv.update_attributes(physical_rack_id: rack2.id)
       srv.reload.physical_rack_full_name.should == "Rack-02"
 
-      srv.update_attribute(:physical_rack_id, rack.id)
+      srv.update_attributes(physical_rack_id: rack.id)
       srv.reload.physical_rack_full_name.should == "Room-A - Rack-01"
 
-      rack.reload.update_attribute(:name, "RCK01")
+      rack.reload.update_attributes(name: "RCK01")
       srv.reload.physical_rack_full_name.should == "Room-A - RCK01"
 
       rack.destroy
@@ -277,10 +277,10 @@ describe Server do
       sys = OperatingSystem.create!(name: "Linux")
       srv.operating_system_name.should be_blank
 
-      srv.update_attribute(:operating_system_id, sys.id)
+      srv.update_attributes(operating_system_id: sys.id)
       srv.reload.operating_system_name.should == "Linux"
 
-      sys.reload.update_attribute(:name, "GNU/Linux")
+      sys.reload.update_attributes(name: "GNU/Linux")
       srv.reload.operating_system_name.should == "GNU/Linux"
 
       sys.destroy

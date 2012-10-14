@@ -1,9 +1,3 @@
-# Require our own version of Mongoid::Denormalize since there are a few bugs on actual stable release 0.3.0
-# This version includes :
-#   * a patch for nullifying denormalize_to fields when destroying reference object
-#   * a patch for using fresh values from database when updating _id of association
-require 'mongoid_denormalize'
-
 # See: http://blog.noizeramp.com/2010/12/21/friendly-composite-keys-in-mongoid/
 # String#identify is used when the `key` macro is defined in a model
 

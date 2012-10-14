@@ -14,5 +14,6 @@ data/*
 extra
 output
 vendor/plugins/*
+vendor/bundle/
 **.rbc
 */**/.*.swp

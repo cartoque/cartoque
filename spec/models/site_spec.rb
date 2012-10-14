@@ -22,6 +22,7 @@ describe Site do
     rack = PhysicalRack.create!(name: "rack-one", site: site)
     srv =  Server.create!(name: "srv", physical_rack: rack)
     rack.site_name.should == "room-1"
+    rack.reload
 
     site.name = "room-one"
     site.save

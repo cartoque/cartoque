@@ -44,7 +44,7 @@ describe ApplicationsController do
   end
 
   it "accesss an application through its identifier" do
-    get :show, id: @application.slug, format: :xml
+    get :show, id: @application.to_param, format: :xml
     response.body.should include "<_id>#{@application.id}</_id>"
   end
 

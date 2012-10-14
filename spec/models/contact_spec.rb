@@ -26,10 +26,10 @@ describe Contact do
 
   it "shortens long email addresses" do
     c = Contact.create!(last_name: "Doe")
-    EmailInfo.create!(value: "john.doe@example.com", entity: c)
+    c.email_infos << EmailInfo.create(value: "john.doe@example.com")
     c.reload.short_email.should == "john.doe@example.com"
     c.contact_infos.first.destroy
-    EmailInfo.create!(value: "john.doe@very.long-subdomain.example.com", entity: c)
+    c.email_infos << EmailInfo.create(value: "john.doe@very.long-subdomain.example.com")
     c.reload.short_email.should == "john.doe@...example.com"
   end
 
@@ -37,8 +37,8 @@ describe Contact do
     c = Contact.create(first_name: "John", last_name: "Doe")
     c.should be_persisted
     c.should have(0).contact_infos
-    EmailInfo.create(value: "blah@example.com", entity: c)
-    EmailInfo.create(value: "555-123456", entity: c)
+    c.email_infos << EmailInfo.create(value: "blah@example.com")
+    c.email_infos << EmailInfo.create(value: "555-123456")
     c.reload.should have(2).contact_infos
   end
 

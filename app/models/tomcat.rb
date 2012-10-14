@@ -1,7 +1,7 @@
 class Tomcat
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Denormalize
+  include Mongoid::Alize
 
   #standard fields
   field :name, type: String
@@ -23,11 +23,15 @@ class Tomcat
   belongs_to :server #todo: inverse assoc
   has_and_belongs_to_many :cronjobs, autosave: true
   #denormalized
-  denormalize :name, from: :server
+  alize :server, :name
 
   #scopes
   scope :by_name, proc { |term| where(name: Regexp.mask(term)) }
   scope :by_dns, proc { |term| where(dns: Regexp.mask(term)) }
   scope :by_java_version, proc { |term| where(java_version: Regexp.mask(term)) }
   scope :by_server_name, proc { |term| where(server_name: Regexp.mask(term)) }
+
+  def server_name
+    server_fields.try(:fetch, 'name') if server_id.present?
+  end
 end
