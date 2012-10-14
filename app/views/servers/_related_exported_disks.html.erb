@@ -6,7 +6,7 @@
       <%= pluralize(@server.exported_disks.count, t(:mount)) %>
     </div>
     <ul class="hidden">
-      <% Server.where(id: @server.exported_disks.map(&:client_id).uniq).order("name").each do |server| %>
+      <% Server.where(id: @server.exported_disks.map(&:client_id).uniq).order_by(:name.asc).each do |server| %>
         <li><%= link_to(server,server) %></li>
       <% end %>
     </ul>
