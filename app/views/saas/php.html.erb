@@ -51,12 +51,11 @@ end
     <td class="center"><%= env[:php_version] %></td>
     <td class="center"><%= pretty_size(env[:size]).sub("bytes","b") %></td>
     <td>
-      <ul class="details">
       <%= mysqldbs.select{|m| m[:name].starts_with?(env[:name])}.group_by do |db|
             db[:server]
           end.map do |server,dbs|
-            "<li>#{link_to_server_if_exists server}: #{dbs.map{|db| "#{db[:name]} (#{pretty_size(db[:size]).sub("bytes","b")})"}.join(", ")}</li>"
-          end.join("<br/>").html_safe %>
+            "<p>#{link_to_server_if_exists server}: #{dbs.map{|db| "#{db[:name]} (#{pretty_size(db[:size]).sub("bytes","b")})"}.join(", ")}</p>"
+          end.join.html_safe %>
       </ul>
     </td>
   </tr>
