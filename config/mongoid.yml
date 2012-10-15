@@ -20,6 +20,6 @@ production:
       hosts:
         - <%= ENV['MONGOID_HOST'] || 'localhost' %>:<%= ENV['MONGOID_PORT'] || '27017' %>
       # - slave.local:27017
-      username: <%= ENV['MONGOID_USERNAME'] %>
-      password: <%= ENV['MONGOID_PASSWORD'] %>
+      #username: <%= ENV['MONGOID_USERNAME'] %>
+      #password: <%= ENV['MONGOID_PASSWORD'] %>
       logger: false
