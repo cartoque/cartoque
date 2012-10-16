@@ -5,8 +5,8 @@ namespace :db do
       #exclude cronjobs for now, too slow
       next if klass == Cronjob
       klass.all.each do |item|
-        item.denormalize_from_all
-        item.save if item.changed?
+        item.force_denormalization = true
+        item.save
       end
     end
   end
