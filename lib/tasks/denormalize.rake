@@ -8,7 +8,7 @@ namespace :db do
         denormalize_item(item)
       end
       puts if ENV['DEBUG'].present?
-    end if false
+    end
     #complex ones
     puts "Denormalizing ApplicationInstance's (#{Application.count} Applications)" if ENV['DEBUG'].present?
     Application.all.each do |item|
