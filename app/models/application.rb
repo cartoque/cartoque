@@ -83,7 +83,7 @@ class Application
 
   class << self
     def find(*args)
-      where(slug: args.first).first || super
+      where(ci_identifier: args.first).first || where(slug: args.first).first || super
     end
 
     def search(term)

@@ -86,4 +86,25 @@ describe Application do
       map[role.id.to_s].should == [ rel ]
     end
   end
+
+  describe ".find" do
+    let!(:app) { Application.create!(name: "Red girl", ci_identifier: "rdg") }
+
+    it "accepts passing the slug" do
+      Application.find(app.slug).should == app
+    end
+
+    it "accepts passing the ci_identifier" do
+      Application.find("rdg").should == app
+    end
+
+    it "prioritize the ci_identifier over the slug" do
+      app2 = Application.create!(name: "Reddie", ci_identifier: app.slug)
+      Application.find(app.slug).should == app2
+    end
+
+    it "works with id" do
+      Application.find(app.id.to_s).should == app
+    end
+  end
 end
