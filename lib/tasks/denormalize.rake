@@ -22,6 +22,25 @@ namespace :db do
     debug "\n#{errors.count} errors:\n#{errors.join("\n")}\n"
   end
 
+  task :force_denormalize => :environment do
+    errors = []
+    denormalized_associations.each do |klass, associations|
+      debug "Denormalizing #{klass}\n"
+      klass.all.each do |item|
+        begin
+          item.force_denormalization = true
+          item.save
+          debug "."
+        rescue
+          errors << "#{item}"
+          debug "F"
+        end
+      end
+      debug "\n"
+    end
+    debug "\n#{errors.count} errors:\n#{errors.join("\n")}\n"
+  end
+
   def debug(str)
     print str if ENV['DEBUG'].present?
   end
