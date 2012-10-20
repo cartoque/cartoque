@@ -8,7 +8,6 @@ namespace :db do
         debug "Denormalizing #{klass}##{method}\n"
         klass.all.each do |item|
           begin
-            puts item.to_s
             item.send(method)
             item.save
             debug "."
