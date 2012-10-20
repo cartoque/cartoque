@@ -1,29 +1,40 @@
 namespace :db do
   desc "Verify all denormalizations and repair any inconsistencies"
   task :denormalize => :environment do
-    #standard models
-    [PhysicalRack, Server, Tomcat].each do |klass|
-      puts "Denormalizing #{klass}'s (#{klass.count})" if ENV['DEBUG'].present?
-      klass.all.each do |item|
-        denormalize_item(item)
+    errors = []
+    denormalized_associations.each do |klass, associations|
+      associations.each do |association|
+        method = "denormalize_from_#{association}"
+        debug "Denormalizing #{klass}##{method}\n"
+        klass.all.each do |item|
+          begin
+            puts item.to_s
+            item.send(method)
+            item.save
+            debug "."
+          rescue
+            errors << "#{item} (denormalize_from_#{association})"
+            debug "F"
+          end
+        end
+        debug "\n"
       end
-      puts if ENV['DEBUG'].present?
     end
-    #complex ones
-    puts "Denormalizing ApplicationInstance's (#{Application.count} Applications)" if ENV['DEBUG'].present?
-    Application.all.each do |item|
-      instance = item.application_instances.first
-      denormalize_item(instance) unless instance.nil?
-    end
+    debug "\n#{errors.count} errors:\n#{errors.join("\n")}\n"
   end
 
-  def denormalize_item(item)
-    begin
-      print "." if ENV['DEBUG'].present?
-      item.force_denormalization = true
-      item.save
-    rescue
-      puts "\nproblem with #{item}"
-    end
+  def debug(str)
+    print str if ENV['DEBUG'].present?
+  end
+
+  def denormalized_associations
+    {
+      ApplicationInstance => %w(application),
+      Cronjob             => %w(server),
+      PhysicalRack        => %w(site),
+      Server              => %w(physical_rack maintainer operating_system),
+      Tomcat              => %w(server)
+    }
   end
 end
+
