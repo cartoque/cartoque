@@ -4,7 +4,7 @@ namespace :db do
     errors = []
     denormalized_associations.each do |klass, associations|
       associations.each do |association|
-        method = "denormalize_from_#{association}"
+        method = "denormalize_#{association}"
         debug "Denormalizing #{klass}##{method}\n"
         klass.all.each do |item|
           begin
@@ -12,7 +12,7 @@ namespace :db do
             item.save
             debug "."
           rescue
-            errors << "#{item} (denormalize_from_#{association})"
+            errors << "#{item} (#{method})"
             debug "F"
           end
         end
@@ -28,11 +28,11 @@ namespace :db do
 
   def denormalized_associations
     {
-      ApplicationInstance => %w(application),
-      Cronjob             => %w(server),
-      PhysicalRack        => %w(site),
-      Server              => %w(physical_rack maintainer operating_system),
-      Tomcat              => %w(server)
+      ApplicationInstance => %w(from_application),
+      Cronjob             => %w(from_server),
+      PhysicalRack        => %w(from_site),
+      Server              => %w(from_physical_rack from_maintainer from_operating_system),
+      Tomcat              => %w(from_server)
     }
   end
 end
