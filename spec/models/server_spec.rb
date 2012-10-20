@@ -88,7 +88,9 @@ describe Server do
     let!(:site2) { Site.create!(name: "us-east") }
     let!(:rack1) { PhysicalRack.create!(name: "rack-1-eu", site_id: site1.id.to_s) }
     let!(:rack2) { PhysicalRack.create!(name: "rack-2-us", site_id: site2.id.to_s) }
-    let!(:maint) { Company.create!(name: "Computer shop", is_maintainer: true) }
+    let!(:maint) { Company.create!(name: "Computer shop", is_maintainer: true,
+                                   email_infos: [EmailInfo.new(value: "blah@example.net")],
+                                   phone_infos: [PhoneInfo.new(value: "555-123456")]) }
     let!(:os)    { OperatingSystem.create!(name: "Linux") }
     let!(:s1)    { Server.create!(name: "srv-app-01", physical_rack_id: rack1.id.to_s,
                                        maintainer_id: maint.id.to_s,
@@ -144,6 +146,14 @@ describe Server do
       s5 = Server.create!(name: "switch-01", network_device: true)
       s6 = Server.create!(name: "fw-01", network_device: false)
       Server.real_servers.to_a.should =~ [s1, s2, s3, s4, s6]
+    end
+
+    it "denormalizes phone_info_value" do
+      s1.maintainer_phone.should == "555-123456"
+    end
+
+    it "denormalizes email_info_value" do
+      s1.maintainer_email.should == "blah@example.net"
     end
 
     describe "#find_or_generate" do

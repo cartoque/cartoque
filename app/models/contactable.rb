@@ -27,8 +27,16 @@ class Contactable
     phone_infos.first
   end
 
+  def phone_value
+    phone.value if phone.present?
+  end
+
   def email
     email_infos.first
+  end
+
+  def email_value
+    email.value if email.present?
   end
 
   def short_email

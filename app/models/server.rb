@@ -73,7 +73,7 @@ class Server
   #denormalized fields
   alize :physical_rack, :full_name
   alize :operating_system, :name
-  alize :maintainer, :name, :email, :phone
+  alize :maintainer, :name, :email_value, :phone_value
   
   slug :name do |server|
     Server.identifier_for(server.name)
@@ -253,11 +253,11 @@ class Server
   end
 
   def maintainer_email
-    maintainer_fields.try(:fetch, 'email') if maintainer_id.present?
+    maintainer_fields.try(:fetch, 'email_value') if maintainer_id.present?
   end
 
   def maintainer_phone
-    maintainer_fields.try(:fetch, 'phone') if maintainer_id.present?
+    maintainer_fields.try(:fetch, 'phone_value') if maintainer_id.present?
   end
 
   private
