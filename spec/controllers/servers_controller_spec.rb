@@ -50,6 +50,12 @@ describe ServersController do
       assert_redirected_to server_path(assigns(:server))
     end
 
+    it "accepts multi parameter attributes for dates" do
+      post :create, server: {"name" => "new-server", "delivered_on(3i)"=>"10", "delivered_on(2i)"=>"12", "delivered_on(1i)"=>"2008" }
+      assert_response :redirect
+      Server.last.delivered_on.should == Date.new(2008, 12, 10)
+    end
+
     it "shows server" do
       get :show, id: server.id.to_s
       assert_response :success

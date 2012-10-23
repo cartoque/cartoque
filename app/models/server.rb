@@ -1,6 +1,7 @@
 class Server
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::MultiParameterAttributes
   include Mongoid::Alize
   include Mongoid::Slug
   include Acts::Ipaddress
