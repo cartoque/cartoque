@@ -9,6 +9,7 @@
 //= require jquery/jquery.elastic
 //= require jquery/jquery.reject.min
 //= require bootstrap-dropdown
+//= require bootstrap-modal
 //= require raphael/raphael-min
 //= require raphael/g.raphael-min
 //= require raphael/g.pie-min

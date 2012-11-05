@@ -15,6 +15,7 @@ class User
   field :current_sign_in_ip,    type: String
   field :last_sign_in_ip,       type: String
   belongs_to :preferred_datacenter, class_name: 'Datacenter'
+  has_and_belongs_to_many :visible_datacenters,  class_name: 'Datacenter', autosave: true
 
   # Some default modules are not included: :registerable, :recoverable, :validatable, :rememberable
   # Others available are: :encryptable, :confirmable, :lockable, :timeoutable

@@ -341,6 +341,7 @@ en:
   datacenters: "Datacenters"
   new_datacenter: "New datacenter"
   edit_a_datacenter: "Edit a datacenter"
+  change_visible_datacenters: "Change visible datacenters"
   validate: "Validate"
   validated_by: "Validated by %{person}"
   word_no: "no"
@@ -371,3 +372,4 @@ en:
   upgrade_exclusions: "Upgrade exceptions"
   new_upgrade_exclusion: "New upgrade exception"
   settings_updated: "Settings updated"
+  unknown_error: "Unknown error"

@@ -62,4 +62,12 @@ describe User do
       @user.reload.settings["a"].should eq "c"
     end
   end
+
+  describe "#visible_datacenters" do
+    it "accepts datacenters" do
+      datacenter = FactoryGirl.create(:datacenter)
+      @user.update_attribute(:visible_datacenter_ids, [datacenter.id.to_s])
+      @user.reload.visible_datacenters.should eq [datacenter]
+    end
+  end
 end

@@ -22,6 +22,7 @@ Cartoque::Application.routes.draw do
   resources :cronjobs, only: [:index]
   resources :settings, only: :index do
    collection { put 'update_all', as: 'update_all' }
+   collection { get 'edit_visibility'; put 'update_visibility' }
   end
   resources :saas, only: :show
   resources :users, except: :show do

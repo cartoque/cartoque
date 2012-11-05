@@ -1,10 +1,12 @@
 <div id="top-menu" class="hide-when-print">
   <ul class="menu-items contextual">
   <% if user_signed_in? %>
+    <li class="visibility-context"><%= link_to content_tag(:i, nil, class: "icon-eye-open"), edit_visibility_settings_path(back_url: url_for),
+                                               remote: true, class: "img" %></li>
     <li class="connected-as"><%= link_to current_user.name, edit_user_path(current_user) %></li>
-    <li><%= link_to content_tag(:i, nil, class: "icon-signout"), destroy_user_session_path,
-                    method: :delete, data: { confirm: t(:text_are_you_sure) },
-                    class: "img", title: t(:disconnection) %></li>
+    <li class="disconnect"><%= link_to content_tag(:i, nil, class: "icon-signout"), destroy_user_session_path,
+                                       method: :delete, data: { confirm: t(:text_are_you_sure) },
+                                       class: "img", title: t(:disconnection) %></li>
   <% end %>
   </ul>
   <ul class="menu-items">

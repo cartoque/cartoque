@@ -1,0 +1,20 @@
+<h3><%= t(:change_visible_datacenters) %></h3>
+
+<%= form_tag update_visibility_settings_path(back_url: params[:back_url]), id: "edit-visibility", method: :put do %>
+  <table class=table>
+    <tbody>
+    <% Datacenter.all.each do |datacenter| %>
+      <tr>
+        <td>
+          <label>
+            <%= check_box_tag "visible_datacenter_ids[]", datacenter.id, current_user.visible_datacenters.include?(datacenter) %>
+            <%= datacenter.name %>
+          </label>
+        </td>
+<!--        <td class="right info">3 applications</td> -->
+<!--        <td class="right info">43 servers</td> -->
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

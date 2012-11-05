@@ -498,6 +498,7 @@ fr:
   datacenters: "Centres-Serveurs"
   new_datacenter: "Nouveau Centre-Serveur"
   edit_a_datacenter: "Edition d'un Centre-Serveur"
+  change_visible_datacenters: "Modifier les Centre-Serveurs visibles"
   validate: "Valider"
   validated_by: "Validé par %{person}"
   word_no: "non"
@@ -528,3 +529,4 @@ fr:
   upgrade_exclusions: "Exceptions de mises à jour"
   new_upgrade_exclusion: "Nouvelle exception de mise à jour"
   settings_updated: "Paramètres mis à jour"
+  unknown_error: "Erreur inconnue"

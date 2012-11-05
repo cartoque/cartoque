@@ -17,4 +17,19 @@ class SettingsController < ApplicationController
       render "index"
     end
   end
+
+  def edit_visibility
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update_visibility
+    ids = params[:visible_datacenter_ids] || []
+    if current_user.update_attributes(visible_datacenter_ids: ids)
+      redirect_to params[:back_url], notice: t(:settings_updated)
+    else
+      redirect_to params[:back_url], error: t(:unknown_error)
+    end
+  end
 end

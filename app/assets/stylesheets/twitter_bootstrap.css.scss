@@ -35,7 +35,7 @@ $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth 
 //@import "bootstrap/type";
 //@import "bootstrap/code";
 //@import "bootstrap/forms";
-//@import "bootstrap/tables";
+@import "bootstrap/tables";
 
 // Components: common
 //@import "bootstrap/sprites"; //=>REPLACED by font-awesome webfont below
@@ -57,7 +57,7 @@ $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth 
 //@import "bootstrap/pager";
 
 // Components: Popovers
-//@import "bootstrap/modals";
+@import "bootstrap/modals";
 //@import "bootstrap/tooltip";
 //@import "bootstrap/popovers";
 
@@ -96,3 +96,7 @@ $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth 
 .row .row { margin-left: -$gridGutterWidth; }
 .container { width:$gridRowWidth; }
 .navbar-inner { min-height:auto; padding:0; background-color:transparent; background-image:none; @include box-shadow(0 0 0 transparent); border:0; }
+.modal-backdrop, .modal-backdrop.fade.in { opacity:0.4; }
+.modal-header { padding:5px 10px; }
+.modal-body { padding:10px; }
+.modal-footer { padding:6px 8px; }
