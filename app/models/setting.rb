@@ -11,7 +11,7 @@ class Setting
 
   class << self
     def instance
-      @@instance ||= (first || create!)
+      Thread.current[:setting_instance] ||= (first || create!)
     end
 
     def safe_cas_server

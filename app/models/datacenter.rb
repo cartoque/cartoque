@@ -8,10 +8,12 @@ class Datacenter
   validates_uniqueness_of :name
 
   class << self
-    attr_accessor :default
+    def default=(datacenter)
+      Thread.current[:default_datacenter] = datacenter
+    end
 
     def default
-      @default || first || create(name: "Datacenter")
+      Thread.current[:default_datacenter] || first || create(name: "Datacenter")
     end
   end
 end
