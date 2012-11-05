@@ -71,19 +71,6 @@ describe "Authentication" do
     end
   end
 
-  it "sets the default datacenter for the next actions" do
-    Datacenter.delete_all && Datacenter.default=(nil)
-    Datacenter.create!(name: "Datacenter")
-    d = Datacenter.create!(name: "Equinix")
-    u = FactoryGirl.create(:user, preferred_datacenter: d)
-    u.preferred_datacenter.name.should == "Equinix"
-    Datacenter.default.name.should == "Datacenter"
-
-    get servers_path(format: "csv").to_s, {}, "HTTP_X_API_TOKEN" => u.authentication_token
-    response.status.should == 200
-    Datacenter.default.name.should == "Equinix"
-  end
-
   describe "redirection after sign in" do
     let!(:user) { FactoryGirl.create(:user, email: "john@example.net", password: "foobar") }
 
