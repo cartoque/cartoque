@@ -12,7 +12,7 @@ class SettingsController < ApplicationController
       attrs["site_announcement_updated_at"] = Time.now
     end
     if Setting.update_attributes(attrs)
-      redirect_to settings_path, notice: "Paramètres mis à jour"
+      redirect_to settings_path, notice: t(:settings_updated)
     else
       render "index"
     end
