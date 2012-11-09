@@ -1,14 +1,3 @@
-# A sample Guardfile
-# More info at https://github.com/guard/guard#readme
-
-###guard 'livereload' do
-###  watch(%r{app/.+\.(erb|haml)})
-###  watch(%r{app/helpers/.+\.rb})
-###  watch(%r{app/controllers/.+\.rb})
-###  watch(%r{public/.+\.(css|js|html)})
-###  watch(%r{config/locales/.+\.yml})
-###end
-
 guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' }, :wait => 120 do
   watch('config/application.rb')
   watch('config/environment.rb')
@@ -18,11 +7,6 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
 end
 
 guard 'rspec', :cli => "--drb" do
-  watch(%r{^spec/.+_spec\.rb$})
-  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
-  watch('spec/spec_helper.rb')  { "spec" }
-
-  # Rails example
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
   watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}_spec.rb" }
