@@ -63,7 +63,10 @@ group :test do
   gem 'guard-spork'
   gem 'growl' if RUBY_PLATFORM.match /darwin/
   gem 'libnotify' if RUBY_PLATFORM.match /linux/
+  # listen to file modifications
   gem 'listen'
+  gem 'rb-fsevent' if RUBY_PLATFORM.match /darwin/
+  gem 'rb-inotify' if RUBY_PLATFORM.match /linux/
   # the cover_me gem is not compatible with rbx and jruby
   # but only need this on one environment...
   gem 'cover_me', :platforms => :mri_19
