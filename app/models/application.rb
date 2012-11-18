@@ -3,6 +3,7 @@ class Application
   include Mongoid::Alize
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include Acts::ConfigurationItem
     
   #standard fields
   field :name, type: String

@@ -25,6 +25,14 @@ class User
   validates_presence_of :name
   validates_uniqueness_of :name
 
+  def self.current=(user)
+    Thread.current[:current_user] = user
+  end
+
+  def self.current
+    Thread.current[:current_user]
+  end
+
   def set_setting(key, value)
     h = settings.dup
     h.update(key => value)

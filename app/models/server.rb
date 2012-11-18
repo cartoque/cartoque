@@ -5,6 +5,7 @@ class Server
   include Mongoid::Alize
   include Mongoid::Slug
   include Acts::Ipaddress
+  include Acts::ConfigurationItem
 
   #some constants for status codes
   STATUS_ACTIVE = 1
@@ -93,7 +94,6 @@ class Server
                                 allow_destroy: true
 
   attr_accessor :just_created
-
 
   scope :active, where(status: STATUS_ACTIVE)
   scope :inactive, where(status: STATUS_INACTIVE)

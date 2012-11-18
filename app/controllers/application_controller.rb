@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :set_format
   before_filter :set_locale
+  around_filter :scope_current_user
 
   protect_from_forgery
 
@@ -46,6 +47,13 @@ class ApplicationController < ActionController::Base
   # keeps good format accross request for API calls
   def set_format
     request.format = :json if params[:api_token].present? && params[:format].blank?
+  end
+
+  def scope_current_user
+    User.current = current_user
+    yield
+  ensure
+    User.current = nil
   end
 
   def extract_locale_from_accept_language_header
