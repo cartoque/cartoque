@@ -96,6 +96,7 @@ $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth 
 .row .row { margin-left: -$gridGutterWidth; }
 .container { width:$gridRowWidth; }
 .navbar-inner { min-height:auto; padding:0; background-color:transparent; background-image:none; @include box-shadow(0 0 0 transparent); border:0; }
+.modal.fade.in { top:300px /* real is 50px because .modal has a margin-top of -250px */; }
 .modal-backdrop, .modal-backdrop.fade.in { opacity:0.4; }
 .modal-header { padding:5px 10px; }
 .modal-body { padding:10px; }
