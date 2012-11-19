@@ -1,5 +1,8 @@
 <% title "Puppet - #{t(:servers)}" %>
 
+<% count = @to_puppetize.count + @puppetized_count %>
+<% if count != 0 %>
+
 <script type="text/javascript">
   $(function() {
     Cartoque.highlightNotPuppetServers("<%= params[:by_server] %>");
@@ -10,7 +13,7 @@
 
 <div id="to-puppetize">
   <div class="contextual puppet_rate">
-    <%= t(:puppet_deployment_rate) %>: <%= 100 * @puppetized_count / (@to_puppetize.count + @puppetized_count) %>%
+    <%= t(:puppet_deployment_rate) %>: <%= 100 * @puppetized_count / count %>%
   </div>
   <h2><%= t(:to_puppetize) %> (<%= @to_puppetize.count %>)</h2>
   <% if @to_puppetize.present? %>
@@ -43,3 +46,5 @@
 </table>
 
 </div>
+
+<% end %>
