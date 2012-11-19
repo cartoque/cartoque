@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   # Save user from seeing exceptions when trying to retrieve an undefined Mongoid object
   rescue_from Mongoid::Errors::DocumentNotFound, Moped::Errors::InvalidObjectId, with: :render_404
   def render_404(exception = nil)
-    logger.info "Rendering 404 with exception: #{exception.message}" if exception
+    logger.debug "Rendering 404 with exception: #{exception.message}" if exception
     respond_to do |format|
       format.html { render text: %(<div class="center not_found">These are not the droids you're looking for</div>),
                            status: :not_found, layout: true }
