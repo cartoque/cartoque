@@ -7,21 +7,21 @@ class NotAMongoidClass2; def self.has_and_belongs_to_many; end; end
 #fake model with correct prerequisites
 class CIModel
   include Mongoid::Document
-  include Acts::ConfigurationItem
+  include ConfigurationItem
 end
 
-describe Acts::ConfigurationItem do
+describe ConfigurationItem do
   describe 'missing pre-requisite' do
     it 'raises if the class does not respond to has_and_belongs_to_many' do
       expect do
-        NotAMongoidClass1.send(:include, Acts::ConfigurationItem)
-      end.to raise_error Acts::ConfigurationItem::MissingPrerequisite, /has_and_belongs/
+        NotAMongoidClass1.send(:include, ConfigurationItem)
+      end.to raise_error ConfigurationItem::MissingPrerequisite, /has_and_belongs/
     end
 
     it 'raises if the class does not respond to has_many' do
       expect do
-        NotAMongoidClass2.send(:include, Acts::ConfigurationItem)
-      end.to raise_error Acts::ConfigurationItem::MissingPrerequisite, /default_scope/
+        NotAMongoidClass2.send(:include, ConfigurationItem)
+      end.to raise_error ConfigurationItem::MissingPrerequisite, /default_scope/
     end
   end
 

@@ -5,7 +5,7 @@ class Server
   include Mongoid::Alize
   include Mongoid::Slug
   include Acts::Ipaddress
-  include Acts::ConfigurationItem
+  include ConfigurationItem
 
   #some constants for status codes
   STATUS_ACTIVE = 1
