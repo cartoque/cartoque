@@ -18,7 +18,7 @@ module TomcatsHelper
   end
 
   def tomcat_names(tomcats)
-    tomcats.map(&:name).sort.uniq.join("<br/>").html_safe
+    tomcats.map(&:name).map(&:to_s).sort.uniq.join("<br/>").html_safe
   end
 
   def tomcat_java_versions(tomcats)
