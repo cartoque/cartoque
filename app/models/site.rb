@@ -1,6 +1,7 @@
 class Site
   include Mongoid::Document
   include Mongoid::Alize
+  include ConfigurationItem
 
   #standard fields
   field :name, type: String

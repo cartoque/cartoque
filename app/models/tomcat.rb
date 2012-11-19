@@ -2,6 +2,7 @@ class Tomcat
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Alize
+  include ConfigurationItem
 
   #standard fields
   field :name, type: String

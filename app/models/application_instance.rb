@@ -2,6 +2,7 @@ class ApplicationInstance
   include Mongoid::Document
   include Mongoid::Alize
   include Mongoid::Timestamps
+  include ConfigurationItem
 
   #standard fields
   field :name, type: String

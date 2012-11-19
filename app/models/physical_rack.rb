@@ -1,6 +1,7 @@
 class PhysicalRack
   include Mongoid::Document
   include Mongoid::Alize
+  include ConfigurationItem
 
   field :name, type: String
   field :site_name, type: String

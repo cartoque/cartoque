@@ -1,6 +1,7 @@
 class DatabaseInstance
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ConfigurationItem
 
   field :name, type: String
   field :listen_address, type: String
