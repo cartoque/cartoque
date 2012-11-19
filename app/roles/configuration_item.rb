@@ -16,7 +16,8 @@ module ConfigurationItem
     default_scope lambda {
       if User.current.present?
         scoped.or({ :datacenter_ids.in => User.current.visible_datacenter_ids },
-                  { :datacenter_ids.with_size => 0 })
+                  { :datacenter_ids.with_size => 0 },
+                  { :datacenter_ids => nil })
       else
         scoped
       end

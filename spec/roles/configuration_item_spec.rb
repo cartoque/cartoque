@@ -79,12 +79,14 @@ describe ConfigurationItem do
     end
 
     it 'always finds servers that have no datacenter information if user is present' do
-      @server3 = FactoryGirl.create(:server, name: "server3")
+      @server3 = FactoryGirl.create(:server, name: "server3") #datacenter_ids = [] by default
+      @server4 = FactoryGirl.create(:server, name: "server4")
+      @server4.unset(:datacenter_ids)
       User.current = @bob
-      Server.all.to_a.should =~ [@server3]
+      Server.all.to_a.should =~ [@server3, @server4]
       @bob.visible_datacenters = [@datacenter1]
       @bob.save
-      Server.all.to_a.should =~ [@server1, @server3]
+      Server.all.to_a.should =~ [@server1, @server3, @server4]
     end
 
   end
