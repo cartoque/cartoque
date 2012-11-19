@@ -3,6 +3,7 @@ require 'd3_utils'
 class Database
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ConfigurationItem
 
   field :name, type: String
   field :type, type: String

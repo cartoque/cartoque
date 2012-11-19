@@ -1,6 +1,7 @@
 class Storage
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ConfigurationItem
 
   field :constructor, type: String
   field :details, type: String

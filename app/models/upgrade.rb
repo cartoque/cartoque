@@ -1,6 +1,7 @@
 class Upgrade
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ConfigurationItem
 
   field :packages_list, type: Array
   field :strategy, type: String

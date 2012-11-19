@@ -1,6 +1,7 @@
 class BackupJob
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ConfigurationItem
 
   field :hierarchy, type: String
   field :client_type, type: String

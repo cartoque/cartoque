@@ -1,6 +1,7 @@
 class License
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ConfigurationItem
 
   field :editor, type: String
   field :key, type: String
