@@ -6,7 +6,8 @@ namespace :cleanup do
       server_name = file.split("/").last.gsub(/\.yml$/,"")
       server = Server.find_or_generate(server_name)
       #facts
-      facts = YAML.load_file(file)
+      facts = YAML.load_file(file) rescue nil
+      next unless facts
       #collect IPs found by puppet
       addresses = facts.keys.grep(/^ipaddress_/).map do |key|
         facts[key]
