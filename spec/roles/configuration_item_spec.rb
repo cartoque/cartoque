@@ -90,4 +90,38 @@ describe ConfigurationItem do
     end
 
   end
+
+  describe 'automatic datacenter_ids' do
+    before do
+      Server.where(name: "pouik").destroy_all
+    end
+
+    after do
+      #force cleanup so it doesn't pollute other tests
+      User.current = nil
+    end
+
+    it 'does not fill datacenter_ids when blank but no User.current' do
+      User.current = nil
+      s = Server.create!(name: "pouik")
+      s.reload.datacenters.should == []
+    end
+
+    it 'fills datacenter_ids when blank and User.current has any' do
+      datacenter = FactoryGirl.create(:datacenter)
+      bob = FactoryGirl.create(:bob, preferred_datacenter: datacenter)
+      User.current = bob
+      s = Server.create!(name: "pouik")
+      s.reload.datacenters.should == [datacenter]
+    end
+
+    it 'does not replace datacenter_ids when not blank' do
+      datacenter1 = FactoryGirl.create(:datacenter)
+      datacenter2 = FactoryGirl.create(:datacenter, name: "Vegas")
+      bob = FactoryGirl.create(:bob, preferred_datacenter: datacenter1)
+      User.current = bob
+      s = Server.create!(name: "pouik", datacenters: [datacenter2])
+      s.reload.datacenters.should == [datacenter2]
+    end
+  end
 end
