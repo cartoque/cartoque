@@ -59,7 +59,7 @@ group :test do
   gem 'factory_girl_rails', '~> 3.0'
   gem 'database_cleaner'
   gem 'guard-rspec'
-  gem 'spork', '> 0.9.0.rc'
+  gem 'spork'
   gem 'guard-spork'
   gem 'growl' if RUBY_PLATFORM.match /darwin/
   gem 'libnotify' if RUBY_PLATFORM.match /linux/
