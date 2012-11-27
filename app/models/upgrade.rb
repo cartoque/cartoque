@@ -23,6 +23,10 @@ class Upgrade
 
   validates_presence_of :server
 
+  def to_s
+    server.name
+  end
+
   def update_counters!
     self.packages_list ||= []
     packages_by_status = self.packages_list.group_by do |package|

@@ -14,6 +14,10 @@ describe Upgrade do
     Upgrade.new(server: FactoryGirl.create(:virtual)).should be_valid
   end
 
+  it "delegates #to_s to server" do
+    Upgrade.new(server: FactoryGirl.create(:virtual, name: "server-37")).to_s.should == "server-37"
+  end
+
   it "stores #packages_list as a Hash" do
     obj = [ {"name" => "libc6"}, {"name" => "kernel"}]
     upgrade.packages_list = obj
