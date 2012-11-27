@@ -1,10 +1,11 @@
 jQuery ->
-  $('#modal-validate').on 'click', ->
-    $form = $('#modal form')
+  $('.modal .validate').on 'click', ->
+    $modal = $(this).closest('.modal')
+    $form  = $modal.find('form')
     if $form.length > 0
       $form.first().submit()
     else
-      $('#modal').modal('hide')
+      $modal.modal('hide')
 
   #display 'loading...' before some data-remote=true links
   $('#top-menu [data-remote="true"]').on 'click', ->

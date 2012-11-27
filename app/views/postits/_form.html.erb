@@ -1,0 +1,7 @@
+<h3><%= t(:postit) %> <%= @commentable %></h3>
+<%= form_for @postit do |f| %>
+  <%= hidden_field_tag :commentable_type, @commentable.class %>
+  <%= hidden_field_tag :commentable_id, @commentable.id %>
+  <%= hidden_field_tag :back_url, params[:back_url] %>
+  <%= f.text_area :content %>
+<% end %>

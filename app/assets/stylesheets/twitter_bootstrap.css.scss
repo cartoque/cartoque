@@ -58,8 +58,8 @@ $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth 
 
 // Components: Popovers
 @import "bootstrap/modals";
-//@import "bootstrap/tooltip";
-//@import "bootstrap/popovers";
+@import "bootstrap/tooltip";
+@import "bootstrap/popovers";
 
 // Components: Misc
 //@import "bootstrap/thumbnails";

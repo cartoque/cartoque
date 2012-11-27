@@ -11,6 +11,9 @@ module ConfigurationItem
     # stores the datacenter(s) for this specific collection 
     has_and_belongs_to_many :datacenters, autosave: true
 
+    # optionnally have a postit on each CI
+    embeds_one :postit, as: :commentable
+
     # scopes all queries to current user if present
     # see ApplicationController#scope_current_user around filter
     default_scope lambda {
