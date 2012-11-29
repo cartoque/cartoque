@@ -23,6 +23,11 @@ class PostitsController < ApplicationController
     end
   end
 
+  def destroy
+    @commentable.postit.destroy
+    redirect_to params[:back_url] and return
+  end
+
   protected
   def find_commentable
     if params[:commentable_type] && params[:commentable_id]

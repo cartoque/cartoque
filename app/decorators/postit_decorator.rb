@@ -29,4 +29,11 @@ class PostitDecorator < Draper::Base
   #     h.content_tag :span, attributes["created_at"].strftime("%a %m/%d/%y"),
   #                   :class => 'timestamp'
   #   end
+  def remote_delete_link
+    params = { commentable_type: model.commentable.class.to_s,
+               commentable_id: model.commentable.id,
+               back_url: h.params[:back_url] }
+    h.link_to h.image_tag("delete.png", size: "16x16", class: "action"), h.postit_path(model, params),
+              method: :delete
+  end
 end

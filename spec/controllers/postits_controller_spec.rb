@@ -61,5 +61,11 @@ describe PostitsController do
   end
 
   describe "#destroy" do
+    it "deletes a postit and redirect back" do
+      delete :destroy, id: postit.id, format: "js", commentable_type: "Application", commentable_id: app.id.to_s,
+                       back_url: '/settings'
+      response.should redirect_to '/settings'
+      app.reload.postit.should be_blank
+    end
   end
 end
