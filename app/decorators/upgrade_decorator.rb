@@ -6,11 +6,12 @@ class UpgradeDecorator < ResourceDecorator
     if model.postit.present?
       h.link_to h.image_tag("note.png", size: "16x16", class: "action"),
                 h.edit_postit_path(model.postit.id, params),
-                class: "has-postit", data: { content: model.postit.content },
+                class: "has-postit postit-link", data: { content: model.postit.content },
                 remote: true
     else
       h.link_to h.image_tag("note_add.png", size: "16x16", class: "action showhover"),
                 h.new_postit_path(params),
+                class: "postit-link",
                 remote: true
     end
   end
