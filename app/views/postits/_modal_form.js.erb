@@ -2,10 +2,9 @@ $('.has-postit').popover('hide')
 $('#postit .postit-body').html("<%= j render 'form' %>")
 $('#postit .postit-header').html('')
 $('#postit .postit-body h3').appendTo('#postit .postit-header')
+$('#postit .delete-postit').remove()
 <% if @postit.persisted? %>
   $("<div class=delete-postit><%= j PostitDecorator.decorate(@postit).remote_delete_link %></div>").appendTo('#postit .postit-footer')
-<% else %>
-  $('#postit .delete-postit').remove()
 <% end %>
 $('#postit').modal('show')
 $('#postit textarea').focus()
