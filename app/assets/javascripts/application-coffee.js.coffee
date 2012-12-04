@@ -8,7 +8,7 @@ jQuery ->
       $modal.modal('hide')
 
   #display 'loading...' before some data-remote=true links
-  $('#top-menu [data-remote="true"], .postit-link [data-remote="true"]').on 'click', ->
+  $('#top-menu [data-remote="true"], .postit-link[data-remote="true"]').on 'click', ->
     $('#loading').fadeIn(150)
   #and hide it..
   $('.modal').on 'shown', ->
