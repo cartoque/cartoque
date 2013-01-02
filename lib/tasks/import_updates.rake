@@ -50,6 +50,7 @@ namespace :import do
         upgrade.upgraded_status = false
         upgrade.upgrader = nil
       end
+      upgrade.updated_at = Time.now
       upgrade.save
     end
   end
