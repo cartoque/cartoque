@@ -137,7 +137,7 @@ GEM
       bundler (>= 1.0.0)
       rails (>= 3.2.0)
       railties (>= 3.2.0)
-    mongoid_slug (1.0.0)
+    mongoid_slug (2.0.1)
       mongoid (~> 3.0)
       stringex (~> 1.4)
     moped (1.2.7)
@@ -280,7 +280,7 @@ DEPENDENCIES
   mongoid-ancestry
   mongoid_alize
   mongoid_rails_migrations
-  mongoid_slug (~> 1.0.0)
+  mongoid_slug (> 2.0.0)
   nokogiri
   omniauth (>= 1.0.0)
   omniauth-cas (>= 0.0.6)

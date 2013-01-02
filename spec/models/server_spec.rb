@@ -81,6 +81,13 @@ describe Server do
       lambda { Server.find(0) }.should raise_error Mongoid::Errors::DocumentNotFound
       lambda { Server.find("non-existent") }.should raise_error Mongoid::Errors::DocumentNotFound #new with mongoid 3
     end
+
+    it "doesn't care if a server was previously named with identifier" do
+      old_server = FactoryGirl.create(:server, name: "www")
+      old_server.update_attribute(:name, "www-old")
+      new_server = FactoryGirl.create(:server, name: "www")
+      Server.find("www").should == new_server
+    end
   end
 
   describe "scopes" do
