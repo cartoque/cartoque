@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 # Core framework
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.11'
 gem 'rake'
 
 # Rails 3's asset pipeline
