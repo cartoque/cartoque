@@ -85,7 +85,7 @@ the repository, it installs like any Rails 3 web app :</p>
 <pre><code>cd /path/to/cartoque
 gem install bundler
 bundle install
-rake db:migrate cartoque:seed
+rake secret:replace db:migrate cartoque:seed
 </code></pre>
 
 <p>Start the server, open your browser in the correct URL, and you're ready to go !</p>
