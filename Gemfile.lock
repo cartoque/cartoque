@@ -1,20 +1,20 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    adsf (1.0.1)
+    adsf (1.1.1)
       rack (>= 1.0.0)
-    cri (2.0.2)
-    json (1.6.4)
-    mime-types (1.17.2)
-    nanoc (3.2.3)
-      nanoc3 (>= 3.2.3)
-    nanoc3 (3.2.3)
-      cri (~> 2.0)
-    nokogiri (1.5.0)
-    rack (1.4.0)
-    rake (0.8.7)
+    colored (1.2)
+    cri (2.3.0)
+      colored (>= 1.2)
+    json (1.7.6)
+    mime-types (1.19)
+    nanoc (3.4.3)
+      cri (~> 2.2)
+    nokogiri (1.5.6)
+    rack (1.4.4)
+    rake (10.0.3)
     redcarpet (1.17.2)
-    systemu (2.4.2)
+    systemu (2.5.2)
 
 PLATFORMS
   ruby
