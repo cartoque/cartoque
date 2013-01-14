@@ -52,6 +52,8 @@ describe Server do
     it "outputs name if name is alphanum" do
       m = Server.create(name: "blah")
       m.to_param.should eq "blah"
+      m = Server.create(name: "Test-3")
+      m.to_param.should eq "Test-3"
     end
 
     it "outpus mongodb's id if not" do

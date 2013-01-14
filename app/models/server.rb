@@ -179,7 +179,7 @@ class Server
   end
 
   def to_param
-    if name.match /^[0-9a-z-]*$/
+    if name.match /^[0-9a-z-]*$/i
       name
     else
       id.to_s
