@@ -3,7 +3,6 @@ class Server
   include Mongoid::Timestamps
   include Mongoid::MultiParameterAttributes
   include Mongoid::Alize
-  include Mongoid::Slug
   include Acts::Ipaddress
   include ConfigurationItem
 
@@ -77,10 +76,6 @@ class Server
   alize :operating_system, :name
   alize :maintainer, :name, :email_value, :phone_value
   
-  slug :name do |server|
-    Server.identifier_for(server.name)
-  end
-
   before_save :update_site!
 
   accepts_nested_attributes_for :ipaddresses,
@@ -131,7 +126,7 @@ class Server
 
   class << self
     def find(*args)
-      where(slug: args.first).first || super
+      where(name: args.first).first || super
     end
 
     def find_or_generate(name)
@@ -139,7 +134,7 @@ class Server
       Setting.dns_domains.strip.split(/\n|,/).each do |domain|
         servername.gsub!(".#{domain.strip}".gsub(/^\.\./, "."), "")
       end
-      server = where(name: servername).first || find_by_slug(servername)
+      server = where(name: servername).first
       if server.blank?
         server = create(name: servername)
         server.just_created = true
@@ -181,6 +176,14 @@ class Server
 
   def to_s
     name
+  end
+
+  def to_param
+    if name.match /^[0-9a-z-]*$/
+      name
+    else
+      id.to_s
+    end
   end
 
   #TODO: make it better!
@@ -235,10 +238,6 @@ class Server
 
   def known_processor?
     processor_physical_count.to_i > 0 && processor_frequency_GHz > 0
-  end
-
-  def self.find_by_slug(slug)
-    where(_slugs: slug).first
   end
 
   def physical_rack_full_name

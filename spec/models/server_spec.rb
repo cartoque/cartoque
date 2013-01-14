@@ -48,20 +48,15 @@ describe Server do
     end
   end
 
-  describe "#to_param (slug)" do
-    it "automaticallys generate a slug" do
+  describe "#to_param" do
+    it "outputs name if name is alphanum" do
       m = Server.create(name: "blah")
       m.to_param.should eq "blah"
-      m = Server.create(name: "( bizarr# n@me )")
-      m.to_param.should eq "bizarr-n-me"
     end
 
-    pending "prevents from having 2 servers with the same identifier" do
-      m1 = Server.create(name: "srv1")
-      m2 = Server.new(name: "(srv1)")
-      m2.should_not be_valid
-      m2.to_param.should eq m1.to_param
-      m2.errors.keys.should include(:_slugs)
+    it "outpus mongodb's id if not" do
+      m = Server.create(name: "( bizarr# n@me )")
+      m.to_param.should eq m.id.to_s
     end
   end
 
@@ -170,15 +165,6 @@ describe Server do
         srv = Server.find_or_generate("rake-server")
         srv.should eq server
         srv.just_created.should be_false
-      end
-
-      it "finds server by its slug if no name corresponds" do
-        server.update_attribute(:name, "rake.server")
-        server.name.should eq "rake.server"
-        server.to_param.should eq "rake-server"
-        server = Server.find_or_generate("rake-server")
-        server.should eq server
-        server.just_created.should be_false
       end
 
       it "generates a new server if no match with name and identifier" do
