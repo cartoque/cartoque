@@ -48,6 +48,7 @@ en:
   nb_fc: "Nb FC"
   nb_iscsi: "Nb iSCSI"
   serial_number: "Serial number"
+  support_code: "Support code"
   operating_system: "Operating system"
   operating_systems: "Operating systems"
   new_operating_system: "New operating system"

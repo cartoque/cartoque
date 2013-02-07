@@ -13,6 +13,7 @@ class Server
   #standard fields
   field :name, type: String
   field :serial_number, type: String
+  field :support_code, type: String
   field :virtual, type: Boolean, default: false
   field :description, type: String
   field :model, type: String

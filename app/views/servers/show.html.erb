@@ -60,13 +60,15 @@
       <span class=label><%= t(:maintenance) %></span>
       <table class="details">
         <tr>
-          <th style="width:40%"><%= t(:contract_type) %></th>
+          <th style="width:35%"><%= t(:contract_type) %></th>
           <th><%= t(:serial_number) %></th>
+          <th><%= t(:support_code) %></th>
           <th><%= t(:maintainer) %></th>
         </tr>
         <tr>
           <td><%= @server.maintenance_contract %></td>
           <td><%= @server.serial_number %></td>
+          <td><%= @server.support_code %></td>
           <td><%= link_to_if @server.maintainer.present?, @server.maintainer, @server.maintainer %></td>
         </tr>
       </table>

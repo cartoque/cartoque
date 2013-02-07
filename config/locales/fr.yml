@@ -204,6 +204,7 @@ fr:
   nb_fc: "Nb. FC"
   nb_iscsi: "Nb. iSCSI"
   serial_number: "N° de série"
+  support_code: "Code support"
   operating_system: "Système"
   operating_systems: "Systèmes d'exploitation"
   new_operating_system: "Nouveau système d'exploitation"
