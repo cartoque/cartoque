@@ -26,11 +26,17 @@ namespace :import do
       db_type, db_name = filename.scan(%r[data/(oracle|postgres)/(.*).txt]).first
       next unless File.size(filename) > 0  #empty file
       next unless File.size(filename) > 10 #file with potential data in
-      next if Database.where(name: db_name, type: db_type).first
+      db = Database.where(name: db_name, type: db_type).first
+      next if db.present? && db.servers.present?
       server = Server.where(name: db_name).first
       next unless server
       next if server.database.present?
-      Database.create(name: db_name, type: db_type, servers: [server])
+      if db.present?
+        Database.create(name: db_name, type: db_type, servers: [server])
+      else
+        db.servers = [server]
+        db.save
+      end
     end
     #import database files
     Database.all.each do |db|
