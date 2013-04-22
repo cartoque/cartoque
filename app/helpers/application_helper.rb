@@ -192,7 +192,7 @@ module ApplicationHelper
     return @current_announcement if defined?(@current_announcement)
     hide_time = current_user.settings["announcement_hide_time"]
     if hide_time
-      if Setting.site_announcement_updated_at > hide_time
+      if Setting.site_announcement_updated_at && Setting.site_announcement_updated_at > hide_time
         @current_announcement = Setting.site_announcement_message
       else
         @current_announcement = nil
