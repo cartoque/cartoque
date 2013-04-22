@@ -1,0 +1,22 @@
+<tr id="upgrade-<%= upgrade.id.to_s %>" class="has-opaques<%= " grey" if upgrade.count_total == 0 || upgrade.upgraded_status %>">
+  <td>
+    <div class=contextual><%= upgrade.postit_or_link %></div>
+    <%= link_to upgrade.server.try(:name), upgrade.server %>
+  </td>
+  <td class="center"><%= upgrade.strategy %></td>
+  <td class="center"><%= link_to upgrade.pretty_rebootable?,
+                                  upgrade_path(upgrade, upgrade: {rebootable: !upgrade.rebootable?}),
+                                  method: :put, remote: true %></td>
+  <td class="center"><%= upgrade.count_total %></td>
+  <td>
+    <%= format_packages_list(upgrade.packages_list) %>
+    <% if upgrade.count_normal > 0 %>
+      <%= link_to_javascript "#{t(:more)} (#{upgrade.count_normal})", '$(this).parent().find(".package_normal").toggle(); $(this).hide()', class: 'more' %>
+    <% end %>
+    <% if upgrade.count_total > 0 %>
+      <span class="upgraded" id="upgraded-<%= upgrade.id %>"><%= validated_by(upgrade.upgrader) if upgrade.upgraded_status? %></span>
+      <%= button_tag t(:validate), id: "upgrade-#{upgrade.id}", class: "validate",
+                                    data: { id: upgrade.id.to_s } unless upgrade.upgraded_status? %>
+    <% end %>
+  </td>
+</tr>

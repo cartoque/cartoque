@@ -46,9 +46,21 @@ describe "Upgrades" do
       current_path.should == upgrades_path
       page.body.should match /server-01.*server-02/m #count desc, server1=>2, server2=>1
     end
+  end
 
+  describe "PUT validate" do
     it "validates an upgrade" do
       put validate_upgrade_path(upgrade1, format: :js)
+    end
+  end
+
+  describe "PUT update" do
+    it "changes the rebootable flag" do
+      upgrade1.rebootable.should eq true
+      put upgrade_path(upgrade1, upgrade: { rebootable: "0" }, format: :js)
+      upgrade1.reload.rebootable.should eq false
+      put upgrade_path(upgrade1, upgrade: { rebootable: "1" }, format: :js)
+      upgrade1.reload.rebootable.should eq true
     end
   end
 end

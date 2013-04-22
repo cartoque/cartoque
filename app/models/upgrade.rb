@@ -11,6 +11,7 @@ class Upgrade
   field :count_normal, type: Integer, default: 0
   field :upgraded_status, type: Boolean
   field :server_name, type: String
+  field :rebootable, type: Boolean, default: true
   belongs_to :server
   belongs_to :upgrader, class_name: 'User'
 

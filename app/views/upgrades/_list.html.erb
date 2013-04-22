@@ -1,27 +1,10 @@
 <tr class="fix-on-scroll">
   <%= sortable_th 'server_name', t(:name), style: "width:14em" %>
   <th><%= t(:type) %></th>
+  <th><%= t(:rebootable) %></th>
   <%= sortable_th 'count_total', t(:count), style: "width:2em" %>
   <th><%= t(:packages_list) %></th>
 </tr>
 <% for upgrade in @upgrades %>
-  <tr class="has-opaques<%= " grey" if upgrade.count_total == 0 || upgrade.upgraded_status %>">
-    <td>
-      <div class=contextual><%= upgrade.postit_or_link %></div>
-      <%= link_to upgrade.server.try(:name), upgrade.server %>
-    </td>
-    <td class="center"><%= upgrade.strategy %></td>
-    <td class="center"><%= upgrade.count_total %></td>
-    <td>
-      <%= format_packages_list(upgrade.packages_list) %>
-      <% if upgrade.count_normal > 0 %>
-        <%= link_to_javascript "#{t(:more)} (#{upgrade.count_normal})", '$(this).parent().find(".package_normal").toggle(); $(this).hide()', class: 'more' %>
-      <% end %>
-      <% if upgrade.count_total > 0 %>
-        <span class="upgraded" id="upgraded-<%= upgrade.id %>"><%= validated_by(upgrade.upgrader) if upgrade.upgraded_status? %></span>
-        <%= button_tag t(:validate), id: "upgrade-#{upgrade.id}", class: "validate",
-                                     data: { id: upgrade.id.to_s } unless upgrade.upgraded_status? %>
-      <% end %>
-    </td>
-  </tr>
+  <%= render "upgrade", upgrade: upgrade %>
 <% end %>

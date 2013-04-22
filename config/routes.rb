@@ -8,7 +8,7 @@ Cartoque::Application.routes.draw do
     collection { post 'sort' }
   end
   resources :datacenters, except: :show
-  resources :upgrades, only: :index do
+  resources :upgrades, only: [:index, :update] do
     member { put 'validate' }
   end
   resources :companies do

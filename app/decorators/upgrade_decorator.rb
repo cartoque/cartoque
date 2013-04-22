@@ -15,4 +15,12 @@ class UpgradeDecorator < ResourceDecorator
                 remote: true
     end
   end
+
+  def pretty_rebootable?
+    if model.rebootable?
+      h.content_tag(:span, t(:word_yes), class: "rebootable yes")
+    else
+      h.content_tag(:span, t(:word_no), class: "rebootable no")
+    end
+  end
 end
