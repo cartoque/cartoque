@@ -414,6 +414,20 @@ a.create-server {
   &:active { position:relative; top:1px; }
 }
 
+/* pagination */
+.pagination {
+  text-align: center; padding: 0.3em; cursor: default;
+  a, span, em { padding: 0.2em 0.5em; }
+  .disabled { color: #aaaaaa; }
+  .current { font-style: normal; font-weight: bold; color: #ff0084; }
+  a { color: #0063dc; text-decoration: none; }
+  a:hover, a:focus { border-color: #003366; background: #0063dc; color: white; }
+  .page_info { color: #aaaaaa; padding-top: 0.8em; }
+  .previous_page, .next_page { border-width: 2px; }
+  .previous_page { margin-right: 1em; }
+  .next_page { margin-left: 1em; }
+}
+
 /* progress bars */
 table.progress {
   border-collapse:collapse; border-spacing:0; empty-cells:show; text-align:center; margin:2px 0 5px;

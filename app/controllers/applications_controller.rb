@@ -17,5 +17,6 @@ class ApplicationsController < ResourcesController
 
   def collection
     @applications ||= end_of_association_chain.search(params[:search]).order_by(mongo_sort_option)
+                                              .paginate(:page => params[:page], :per_page => WillPaginate.per_page)
   end
 end

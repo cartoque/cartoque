@@ -68,7 +68,13 @@ $(function() {
     //fallback for old browsers
     if (!('replaceState' in window.history)) return true
     //push our search to history
-    var filters = jQuery.param( jQuery.grep( $('#filters').serializeArray(), function(o){ return o.name != "utf8" && o.value != "" } ) )
+    var filters = jQuery.param(
+      jQuery.grep(
+        $('#filters').serializeArray(), function(o){
+          return o.name != "utf8" && o.name != "page" && o.value != ""
+        }
+      )
+    )
     var url = $("#filters").attr("action").split("?")[0] + "?" + filters
     history.replaceState(null, document.title, url);
   }

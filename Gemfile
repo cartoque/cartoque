@@ -32,6 +32,8 @@ gem 'mongoid-ancestry'
 gem 'mongoid_rails_migrations'
 gem 'mongoid_alize' #denormalizartion
 gem 'mongoid_slug', '> 2.0.0'
+# Pagination
+gem 'will_paginate_mongoid'
 # Styles
 gem 'bootstrap-sass'
 gem 'font-awesome-sass-rails'

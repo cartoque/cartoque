@@ -26,6 +26,7 @@ class ServersController < ResourcesController
         @servers = @servers.select{|m| m.maintained_until.present? } + @servers.select{|m| m.maintained_until.blank? }
       end
     end
+    @servers = @servers.paginate(page: params[:page], per_page: WillPaginate.per_page)
     @servers = decorate_resource_or_collection(@servers)
   end
 
