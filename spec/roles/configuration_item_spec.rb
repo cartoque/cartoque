@@ -123,5 +123,16 @@ describe ConfigurationItem do
       s = Server.create!(name: "pouik", datacenters: [datacenter2])
       s.reload.datacenters.should == [datacenter2]
     end
+
+    it 'does not fill datacenter_ids for existing objects' do
+      datacenter = FactoryGirl.create(:datacenter)
+      bob = FactoryGirl.create(:bob, preferred_datacenter: datacenter)
+      User.current = nil
+      s = Server.create!(name: "pouik")
+      s.reload.datacenters.should == []
+      User.current = bob
+      s.update_attribute(:name, "pouik2")
+      s.reload.datacenters.should == []
+    end
   end
 end

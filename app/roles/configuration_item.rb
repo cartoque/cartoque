@@ -29,7 +29,7 @@ module ConfigurationItem
     # adds current user's preferred datacenter in CI datacenters
     # if current user is there (won't apply in most scripts/jobs)
     before_save do |item|
-      if item.datacenter_ids.blank? && User.current && User.current.preferred_datacenter_id.present?
+      if item.new_record? && item.datacenter_ids.blank? && User.current && User.current.preferred_datacenter_id.present?
         item.datacenter_ids = [User.current.preferred_datacenter_id]
       end
       true #return true in any case, otherwise save does not run
