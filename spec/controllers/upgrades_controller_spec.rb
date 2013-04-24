@@ -3,8 +3,18 @@ require 'spec_helper'
 describe UpgradesController do
   login_user
 
-  let(:server1) { Server.create!(name: "server-01") }
-  let(:upgrade1) { Upgrade.create!(server: server1, packages_list: [{ name: "libc" }, { name: "apache2" }]) }
+  let!(:server1) { Server.create!(name: "server-01") }
+  let!(:upgrade1) { Upgrade.create!(server: server1, packages_list: [{ name: "libc" }, { name: "apache2" }]) }
+
+  describe "GET index", focus: true do
+    render_views
+
+    it "lists upgrades" do
+      get :index
+      response.should be_success
+      response.body.should include "apache2"
+    end
+  end
 
   describe "PUT validate" do
     it "validates an upgrade" do
