@@ -4,9 +4,7 @@
     <%= link_to upgrade.server.try(:name), upgrade.server %>
   </td>
   <td class="center"><%= upgrade.strategy %></td>
-  <td class="center"><%= link_to upgrade.pretty_rebootable?,
-                                  upgrade_path(upgrade, upgrade: {rebootable: !upgrade.rebootable?}),
-                                  method: :put, remote: true %></td>
+  <td class="center"><%= upgrade.toggle_rebootable_link %></td>
   <td class="center"><%= upgrade.count_total %></td>
   <td>
     <%= format_packages_list(upgrade.packages_list) %>
