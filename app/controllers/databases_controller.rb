@@ -22,6 +22,11 @@ class DatabasesController < ResourcesController
     update! { databases_url }
   end
 
+  def destroy_instance
+    resource.database_instances.find(params[:instance_id].to_s).destroy
+    redirect_to databases_path
+  end
+
   protected
   def collection
     @databases ||= decorate_resource_or_collection(end_of_association_chain.order_by(:name.asc))

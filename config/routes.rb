@@ -35,6 +35,7 @@ Cartoque::Application.routes.draw do
   resources :tomcats, only: [:index, :show]
   resources :databases do
     collection { get 'distribution' }
+    member { delete 'destroy_instance' }
   end
   resources :storages
   resources :servers do

@@ -181,9 +181,9 @@ module ApplicationHelper
     link_to image_tag("edit.png", size: "16x16", class: "action"), path
   end
 
-  def link_to_delete(resource)
+  def link_to_delete(resource, url = nil)
     confirmation = resource.respond_to?(:name) ? t(:text_confirm_delete, element: resource.name) : t(:text_are_you_sure)
-    link_to image_tag("delete.png", size: "16x16", class: "action"), resource,
+    link_to image_tag("delete.png", size: "16x16", class: "action"), url || resource,
             method: :delete, title: "Delete #{resource.class.name.parameterize} #{resource.to_param}",
             data: { confirm: confirmation }
   end

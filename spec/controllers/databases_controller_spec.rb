@@ -89,4 +89,14 @@ describe DatabasesController do
       Database.where(_id: database.id).count.should == 0
     end
   end
+
+  describe "DELETE :destroy_instance" do
+    it "destroys a specific database instance" do
+      instance = DatabaseInstance.create!(database: @database, name: "Instance", databases: {schema1: "blah"})
+      @database.reload.database_instances.count.should == 1
+      delete :destroy_instance, id: @database.id, instance_id: instance.id
+      assert_redirected_to databases_url
+      @database.reload.database_instances.count.should == 0
+    end
+  end
 end
