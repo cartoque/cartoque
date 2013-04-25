@@ -5,11 +5,15 @@
 <td class="database-port center">
   <%= database_instance.listen_port %>
 </td>
-<td class="database-instance center">
+<td class="database-instance center has-opaques">
   <abbr title="<%= database_instance.host_alias %>"><%= database_instance.name %></abbr>
   <%= content_tag(:p, database_instance.version, class: 'info') if database_instance.version.present? %>
-  <%= link_to_delete database_instance, destroy_instance_database_path(:id => database_instance.database,
-                                                                       :instance_id => database_instance) %>
+  <div class="opaque">
+    <%= action_links do %>
+      <%= link_to_delete database_instance, destroy_instance_database_path(:id => database_instance.database,
+                                                                           :instance_id => database_instance) %>
+    <% end %>
+  </div>
 </td>
 <td>
   <% if database_instance.present? %>
