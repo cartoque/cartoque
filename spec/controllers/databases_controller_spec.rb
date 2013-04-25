@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe DatabasesController do
   login_user
-
   
   # This should return the minimal set of attributes required to create a valid
   # Database. As you add validations to Database, be sure to
@@ -15,7 +14,7 @@ describe DatabasesController do
     @database = FactoryGirl.create(:database)
   end
 
-  describe "GET index" do
+  describe "GET :index" do
     it "assigns all databases as @databases" do
       db = Database.create! valid_attributes
       get :index
@@ -24,14 +23,18 @@ describe DatabasesController do
     end
   end
   
-  def test_show
-    get :show, id: @database
-    assert_template 'show'
+  describe "GET :show" do
+    it "uses the right template" do
+      get :show, id: @database
+      assert_template 'show'
+    end
   end
   
-  def test_new
-    get :new
-    assert_template 'new'
+  describe "GET :new" do
+    it "uses the right template" do
+      get :new
+      assert_template 'new'
+    end
   end
   
 ### TODO: understand why it fails
@@ -45,15 +48,19 @@ describe DatabasesController do
 ###    assert_template 'new'
 ###  end
 
-  def test_create_valid
-    Database.any_instance.stubs(:valid?).returns(true)
-    post :create, database: { name: "database", type: "postgres", server_ids: [] }
-    assert_redirected_to databases_url #database_url(assigns(:database))
+  describe "POST :create" do
+    it "works with valid data" do
+      Database.any_instance.stub(:valid?).and_return(true)
+      post :create, database: { name: "database", type: "postgres", server_ids: [] }
+      assert_redirected_to databases_url #database_url(assigns(:database))
+    end
   end
-  
-  def test_edit
-    get :edit, id: @database
-    assert_template 'edit'
+
+  describe "GET :edit" do
+    it "uses the right template" do
+      get :edit, id: @database
+      assert_template 'edit'
+    end
   end
   
 ### TODO: understand why it fails
@@ -66,16 +73,20 @@ describe DatabasesController do
 ###    assert_template 'edit'
 ###  end
 
-  def test_update_valid
-    Database.any_instance.stubs(:valid?).returns(true)
-    put :update, id: @database
-    assert_redirected_to databases_url #database_url(assigns(:database))
+  describe "PUT :update" do
+    it "works with valid data" do
+      Database.any_instance.stub(:valid?).and_return(true)
+      put :update, id: @database
+      assert_redirected_to databases_url #database_url(assigns(:database))
+    end
   end
-  
-  def test_destroy
-    database = Database.first
-    delete :destroy, id: database
-    assert_redirected_to databases_url
-    assert !Database.exists?(database.id)
+
+  describe "DELETE :destroy" do
+    it "destroys database" do
+      database = Database.first
+      delete :destroy, id: database
+      assert_redirected_to databases_url
+      Database.where(_id: database.id).count.should == 0
+    end
   end
 end
