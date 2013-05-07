@@ -1,4 +1,4 @@
-class PostitDecorator < Draper::Base
+class PostitDecorator < ResourceDecorator
   decorates :postit
 
   # Accessing Helpers

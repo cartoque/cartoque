@@ -16,7 +16,7 @@ class ResourcesController < InheritedResources::Base
   private
 
   def decorate_resource_or_collection(item_or_items)
-    constantize(resource_class.name + "Decorator").decorate(item_or_items)
+    item_or_items.decorate
   rescue NameError
     item_or_items
   end

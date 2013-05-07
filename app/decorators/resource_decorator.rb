@@ -1,6 +1,8 @@
 # Common pattern for decorating resources managed with InheritedResources
 # See: https://github.com/jcasimir/draper/issues/99 for more details
-class ResourceDecorator < Draper::Base
+class ResourceDecorator < Draper::Decorator
+  delegate_all
+
   # Lazy Helpers
   #   PRO: Call Rails helpers without the h. proxy
   #        example: number_to_currency(model.price)
