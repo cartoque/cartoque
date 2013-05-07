@@ -39,7 +39,7 @@ gem 'lograge'
 # Authentication
 gem 'omniauth', '>= 1.0.0'
 gem 'omniauth-cas', '>= 0.0.6'
-gem 'devise', '~> 2.0.0'
+gem 'devise'
 
 # Plugins/engines
 Dir.glob(File.expand_path("../vendor/plugins/*/Gemfile",__FILE__)).each do |gemfile|
