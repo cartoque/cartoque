@@ -113,7 +113,7 @@ GEM
       addressable
     listen (0.6.0)
     log_buddy (0.7.0)
-    lograge (0.1.0)
+    lograge (0.2.0)
       actionpack
       activesupport
     lumberjack (1.0.2)
