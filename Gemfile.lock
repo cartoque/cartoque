@@ -152,7 +152,7 @@ GEM
       omniauth (~> 1.1.0)
     origin (1.0.9)
     orm_adapter (0.4.0)
-    pdfkit (0.5.2)
+    pdfkit (0.5.3)
     polyglot (0.3.3)
     pry (0.9.10)
       coderay (~> 1.0.5)
@@ -288,7 +288,7 @@ DEPENDENCIES
   nokogiri
   omniauth (>= 1.0.0)
   omniauth-cas (>= 0.0.6)
-  pdfkit (= 0.5.2)
+  pdfkit (~> 0.5.3)
   pry
   quiet_assets
   rabl (>= 0.5.3)
