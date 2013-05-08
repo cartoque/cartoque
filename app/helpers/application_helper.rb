@@ -141,12 +141,12 @@ module ApplicationHelper
   end
 
   def link_to_servername(name)
-    link_to name, server_path(Server.identifier_for(name))
+    link_to name, server_path(Server.identifier_for(name)), class: "server"
   end
 
   def link_to_server_if_exists(name)
     s = Server.where(name: name).first
-    s ? link_to(name, s) : server_missing(name)
+    s ? link_to(name, s, class: "server") : server_missing(name)
   end
 
   def server_missing(name)
