@@ -1,5 +1,5 @@
 jQuery ->
-  $("#upgrades .validate").live("click", () ->
+  $("#upgrades .validate").on("click", () ->
     $(@).disabled = true
     $.ajax(
       type: "PUT"

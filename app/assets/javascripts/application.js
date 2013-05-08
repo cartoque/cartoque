@@ -24,7 +24,7 @@ $(function() {
 // application events
 $(function() {
   //table sorting
-  $(".items_list th a, .sort_by a").live("click", function(e) {
+  $(".items_list th a, .sort_by a").on("click", function(e) {
     $.getScript(this.href);
     //fallback for old browsers
     if (!('pushState' in window.history)) return true
@@ -36,7 +36,7 @@ $(function() {
   });
 
   //server 'virtual' toggling
-  $('#server_virtual').live('change', function(e) {
+  $('#server_virtual').on('change', function(e) {
     $('.hidden-if-virtual, .hidden-if-physical').toggleClass("virtual");
     if ($('input#server_virtual').attr('checked') == true) {
       $('#server-hardware-title').html("Ressources");
@@ -46,19 +46,19 @@ $(function() {
   });
 
   //more buttons
-  $('.more').live('click', function(e) {
+  $('.more').on('click', function(e) {
     $(this).parent().next().slideToggle(100);
     e.preventDefault();
   });
-  $('.more-next').live('click', function(e) {
+  $('.more-next').on('click', function(e) {
     $(this).next().slideToggle(100);
     e.preventDefault();
   });
-  $('.more-child').live('click', function(e) {
+  $('.more-child').on('click', function(e) {
     $(this).find('.hidden').slideToggle(100);
     e.preventDefault();
   });
-  $('.more-child a').live('click', function(e) {
+  $('.more-child a').on('click', function(e) {
     e.stopPropagation();
   });
 
@@ -103,7 +103,7 @@ $(function() {
 
 // treat radio buttons for server type as checkboxes
 $(function(){
-  $('.checkboxes-as-radio .radio-checkbox').live('change', function() {
+  $('.checkboxes-as-radio .radio-checkbox').on('change', function() {
     if ($(this).is(":checked")) {
       //remember the id of checked checkbox
       var id = $(this).attr("id");
@@ -178,9 +178,9 @@ $(window).load(function() {
 //top menu items
 $(function() {
   var otherOpen = false;
-  $('.has-submenu:not(.active)>a').live('click', openSubMenu);
-  $('.has-submenu:not(.active)>a').live('mouseenter', openSubMenuIfOtherOpen);
-  $('.has-submenu.active>a').live('click', closeAllSubMenus);
+  $('.has-submenu:not(.active)>a').on('click', openSubMenu);
+  $('.has-submenu:not(.active)>a').on('mouseenter', openSubMenuIfOtherOpen);
+  $('.has-submenu.active>a').on('click', closeAllSubMenus);
   function openSubMenu(event) {
     closeAllSubMenus();
     var button = $(this).parent().addClass('active');
