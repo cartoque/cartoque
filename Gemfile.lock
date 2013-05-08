@@ -142,7 +142,7 @@ GEM
       stringex (~> 1.4)
     moped (1.4.5)
     multi_json (1.7.3)
-    nokogiri (1.5.5)
+    nokogiri (1.5.9)
     omniauth (1.1.1)
       hashie (~> 1.2)
       rack
