@@ -1,5 +1,0 @@
-h1. Cartoque: a free & simple CMDB
-
-"!https://secure.travis-ci.org/jbbarth/cartoque.png!":http://travis-ci.org/jbbarth/cartoque "!https://gemnasium.com/jbbarth/cartoque.png!":https://gemnasium.com/jbbarth/cartoque
-
-See: "http://cartoque.org/":http://cartoque.org/
