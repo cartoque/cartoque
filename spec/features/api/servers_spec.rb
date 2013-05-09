@@ -6,11 +6,14 @@ describe "Servers API" do
   let(:application) { Application.create!(name: "app-01") }
   let(:app_instance) { ApplicationInstance.create!(name: "prod", application: application) }
 
+  before { page.set_headers("HTTP_X_API_TOKEN" => user.authentication_token) }
+  after { page.set_headers("HTTP_X_API_TOKEN" => nil) }
+
   describe "GET /servers.json" do
     it "gets all servers" do
-      get servers_path(format: "json").to_s, {}, "HTTP_X_API_TOKEN" => user.authentication_token
-      response.status.should == 200
-      res = JSON.parse(response.body) rescue nil
+      visit servers_path(format: "json")
+      page.status_code.should == 200
+      res = JSON.parse(page.body) rescue nil
       res.should_not be nil
       res.keys.should == ["servers"]
       res["servers"].should have(1).server
@@ -21,10 +24,9 @@ describe "Servers API" do
 
   describe "GET /servers/:id" do
     it "shows a specific server" do
-      get server_path(id: server.id.to_s, format: "json").to_s,
-          {}, "HTTP_X_API_TOKEN" => user.authentication_token
-      response.status.should == 200
-      res = JSON.parse(response.body) rescue nil
+      visit server_path(id: server.id.to_s, format: "json")
+      page.status_code.should == 200
+      res = JSON.parse(page.body) rescue nil
       res.should_not be nil
       res.keys.should == ["server"]
       srv = res["server"]

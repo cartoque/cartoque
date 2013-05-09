@@ -90,7 +90,7 @@ Spork.prefork do
     config.extend ControllerMacros, type: :controller
 
     # include warden helpers in integration specs
-    config.include Warden::Test::Helpers, type: :request
+    config.include Warden::Test::Helpers, type: :feature
   end
 end
 

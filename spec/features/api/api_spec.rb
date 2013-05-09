@@ -4,11 +4,14 @@ describe "General API" do
   let!(:user) { FactoryGirl.create(:user) }
   let!(:server) { Server.create!(name: "srv-01") }
 
+  before { page.set_headers("HTTP_X_API_TOKEN" => user.authentication_token) }
+  after { page.set_headers("HTTP_X_API_TOKEN" => nil) }
+
   it "forces format to json if api token + no format specified" do
-    get servers_path.to_s, {}, "HTTP_X_API_TOKEN" => user.authentication_token
-    response.status.should == 200
-    response.content_type.should == "application/json"
-    res = JSON.parse(response.body) rescue nil
+    visit servers_path
+    page.status_code.should == 200
+    page.response_headers['Content-Type'].should match %r(^application/json)
+    res = JSON.parse(page.body) rescue nil
     res.should_not be nil
   end
 end

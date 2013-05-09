@@ -6,11 +6,14 @@ describe "Databases API" do
   let!(:instance1) { DatabaseInstance.create!(name: "pg-cluster-01", database: database, databases: {"foo"=>123}) }
   let!(:instance2) { DatabaseInstance.create!(name: "pg-cluster-empty", database: database) }
 
+  before { page.set_headers("HTTP_X_API_TOKEN" => user.authentication_token) }
+  after { page.set_headers("HTTP_X_API_TOKEN" => nil) }
+
   describe "GET /databases.json" do
     it "gets all databases" do
-      get databases_path(format: "json").to_s, {}, "HTTP_X_API_TOKEN" => user.authentication_token
-      response.status.should == 200
-      res = JSON.parse(response.body) rescue nil
+      visit databases_path(format: "json")
+      page.status_code.should == 200
+      res = JSON.parse(page.body) rescue nil
       res.should_not be nil
       res.keys.should == ["databases"]
       res["databases"].should have(1).database
@@ -23,10 +26,9 @@ describe "Databases API" do
 
   describe "GET /databases/:id" do
     it "shows a specific database" do
-      get database_path(id: database.id.to_s, format: "json").to_s,
-          {}, "HTTP_X_API_TOKEN" => user.authentication_token
-      response.status.should == 200
-      res = JSON.parse(response.body) rescue nil
+      visit database_path(id: database.id.to_s, format: "json")
+      page.status_code.should == 200
+      res = JSON.parse(page.body) rescue nil
       res.should_not be nil
       res.keys.should == ["database"]
       db = res["database"]

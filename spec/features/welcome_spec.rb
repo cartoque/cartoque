@@ -9,14 +9,14 @@ describe "Welcome" do
   end
 
   it "includes a welcome message" do
-    get root_path
-    response.body.should include "Welcome to Cartoque"
+    visit root_path
+    page.body.should include "Welcome to Cartoque"
   end
 
   it "includes stats about applications" do
     Application.create!(name: "app-01")
     Application.create!(name: "app-02")
-    get root_path
-    response.body.should include "2 applications"
+    visit root_path
+    page.body.should include "2 applications"
   end
 end

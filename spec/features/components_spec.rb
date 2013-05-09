@@ -6,8 +6,8 @@ describe "Components" do
 
   describe "GET /components" do
     it "list all components" do
-      get components_path
-      response.status.should be(200)
+      visit components_path
+      page.status_code.should be(200)
     end
   end
 end

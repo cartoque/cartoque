@@ -11,7 +11,7 @@ describe ApplicationHelper do
     it "renders some links to external applications" do
       Setting.redmine_url = "http://redmine.org"
       text = links_for(FactoryGirl.create(:application))
-      text.should have_selector "a", class: "link-to-redmine", href: "http://redmine.org/projects/appli-01", content: "R"
+      text.should have_selector "a.link-to-redmine[href='http://redmine.org/projects/appli-01']", text: "R"
     end
   end
 

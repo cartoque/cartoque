@@ -82,17 +82,4 @@ describe "Roles" do
       Role.count.should == 0
     end
   end
-
-  describe "POST /roles/sort" do
-    it "sorts roles given an array of ordered role ids" do
-      Role.destroy_all
-      one = Role.create! valid_attributes.merge(name: "One")
-      two = Role.create! valid_attributes.merge(name: "Two")
-      Role.all.to_a.map(&:name).should == %w(One Two)
-      post sort_roles_path(role: [ two.to_param, one.to_param ])
-      response.status.should == 200
-      response.body.should be_blank
-      Role.all.to_a.map(&:name).should == %w(Two One)
-    end
-  end
 end

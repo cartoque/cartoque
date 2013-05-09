@@ -16,9 +16,9 @@ describe "Applications" do
 
   describe "GET /applications" do
     it "gets all applications ordered by name" do
-      get applications_path
-      response.status.should be 200
-      response.body.should include "app-01"
+      visit applications_path
+      page.status_code.should be 200
+      page.should have_content "app-01"
     end
 
     it "only sees applications in visible_datacenters or without datacenter" do
@@ -33,15 +33,15 @@ describe "Applications" do
 
   describe "GET /applications/:id" do
     it "shows an application page" do
-      get application_path(@app)
-      response.body.should have_selector "h2", content: "Application app-01"
+      visit application_path(@app)
+      page.should have_selector "h2", text: "app-01"
     end
   end
 
   describe "GET /applications/:id/edit" do
     it "shows an application form" do
-      get edit_application_path(@app)
-      response.body.should have_selector "form", id: "edit_application"
+      visit edit_application_path(@app)
+      page.should have_selector "form#edit_application_#{@app.id}"
     end
   end
 end

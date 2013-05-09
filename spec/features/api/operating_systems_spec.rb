@@ -4,11 +4,14 @@ describe "Operating Systems API" do
   let!(:user) { FactoryGirl.create(:user) }
   let!(:system) { OperatingSystem.create!(name: "Debian") }
 
+  before { page.set_headers("HTTP_X_API_TOKEN" => user.authentication_token) }
+  after { page.set_headers("HTTP_X_API_TOKEN" => nil) }
+
   describe "GET /operating_systems.json" do
     it "gets all operating_systems" do
-      get operating_systems_path(format: "json").to_s, {}, "HTTP_X_API_TOKEN" => user.authentication_token
-      response.status.should == 200
-      res = JSON.parse(response.body) rescue nil
+      visit operating_systems_path(format: "json")
+      page.status_code.should == 200
+      res = JSON.parse(page.body) rescue nil
       res.should_not be nil
       res.keys.should == ["operating_systems"]
       res["operating_systems"].should have(1).operating_system
@@ -19,10 +22,9 @@ describe "Operating Systems API" do
 
   describe "GET /operating_systems/:id" do
     it "shows a specific operating_system" do
-      get operating_system_path(id: system.id.to_s, format: "json").to_s,
-          {}, "HTTP_X_API_TOKEN" => user.authentication_token
-      response.status.should == 200
-      res = JSON.parse(response.body) rescue nil
+      visit operating_system_path(id: system.id.to_s, format: "json")
+      page.status_code.should == 200
+      res = JSON.parse(page.body) rescue nil
       res.should_not be nil
       res.keys.should == ["operating_system"]
       sys = res["operating_system"]

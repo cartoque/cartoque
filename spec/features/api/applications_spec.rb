@@ -5,11 +5,14 @@ describe "Applications API" do
   let!(:application) { Application.create!(name: "app-01") }
   let!(:app_instance) { ApplicationInstance.create!(name: "prod", application: application, authentication_method: "none") }
 
+  before { page.set_headers("HTTP_X_API_TOKEN" => user.authentication_token) }
+  after { page.set_headers("HTTP_X_API_TOKEN" => nil) }
+
   describe "GET /applications.json" do
     it "gets all applications" do
-      get applications_path(format: "json").to_s, {}, "HTTP_X_API_TOKEN" => user.authentication_token
-      response.status.should == 200
-      res = JSON.parse(response.body) rescue nil
+      visit applications_path(format: "json")
+      page.status_code.should == 200
+      res = JSON.parse(page.body) rescue nil
       res.should_not be nil
       res.keys.should == ["applications"]
       res["applications"].should have(1).application
@@ -21,10 +24,9 @@ describe "Applications API" do
 
   describe "GET /applications/:id.json" do
     it "shows a specific application" do
-      get application_path(id: application.id.to_s, format: "json").to_s,
-          {}, "HTTP_X_API_TOKEN" => user.authentication_token
-      response.status.should == 200
-      res = JSON.parse(response.body) rescue nil
+      visit application_path(id: application.id.to_s, format: "json")
+      page.status_code.should == 200
+      res = JSON.parse(page.body) rescue nil
       res.should_not be nil
       res.keys.should == ["application"]
       app = res["application"]

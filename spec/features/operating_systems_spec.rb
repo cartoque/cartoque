@@ -11,9 +11,9 @@ describe "OperatingSystems" do
 
   describe "GET /operating_systems" do
     it "gets all systems" do
-      get operating_systems_path
-      response.status.should be 200
-      response.body.should have_selector "a", text: "Debian 6.0 Squeeze", href: operating_system_path(@sys)
+      visit operating_systems_path
+      page.status_code.should be 200
+      page.body.should have_selector "a[href='#{edit_operating_system_path(@sys)}']", text: "Debian 6.0 Squeeze"
     end
   end
 
@@ -27,7 +27,7 @@ describe "OperatingSystems" do
       end
       click_button 'Apply modifications'
       current_path.should == operating_systems_path
-      page.should have_selector "a", text: "Debian GNU/Linux 6.0 Squeezee", href: operating_system_path(@sys)
+      page.body.should have_selector "a[href='#{edit_operating_system_path(@sys)}']", text: "Debian GNU/Linux 6.0 Squeeze"
     end
 
     it "changes OS parent gracefully" do
