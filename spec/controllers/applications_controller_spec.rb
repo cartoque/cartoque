@@ -86,13 +86,19 @@ describe ApplicationsController do
       Relationship.count.should eq relations_count
     end
 
+    # NB: inherited_resources now caches params in a request, so you cannot have a test
+    # with two different params hashes (didn't dug too deep into this for now)
     it "allows update with contacts" do
       put :update, id: app.id, application: { name: "Skynet", relationships_map: { role.id.to_s => "#{user1.id},#{user2.id}" } }
-
       app.reload.contacts_with_role(role).should =~ [user1, user2]
+    end
 
+    # NB: inherited_resources now caches params in a request, so you cannot have a test
+    # with two different params hashes (didn't dug too deep into this for now)
+    it "empties contacts" do
+      app.update_attributes(relationships_map: { role.id.to_s => "#{user1.id},#{user2.id}" })
+      app.reload.contacts_with_role(role).should_not be_blank
       put :update, id: app.id, application: { name: "webapp-01", relationships_map: { } }
-
       app.reload.contacts_with_role(role).should be_blank
     end
   end

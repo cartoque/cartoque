@@ -31,10 +31,20 @@ describe UpgradesController do
   describe "PUT update" do
     render_views
 
-    it "changes the rebootable flag" do
+    # NB: inherited_resources now caches params in a request, so you cannot have a test
+    # with two different params hashes (didn't dug too deep into this for now)
+    it "sets the rebootable flag to false" do
+      upgrade1.update_attribute(:rebootable, true)
       upgrade1.rebootable.should eq true
       put :update, id: upgrade1, upgrade: { rebootable: "0" }, format: :js
       upgrade1.reload.rebootable.should eq false
+    end
+
+    # NB: inherited_resources now caches params in a request, so you cannot have a test
+    # with two different params hashes (didn't dug too deep into this for now)
+    it "sets the rebootable flag to true" do
+      upgrade1.update_attribute(:rebootable, false)
+      upgrade1.rebootable.should eq false
       put :update, id: upgrade1, upgrade: { rebootable: "1" }, format: :js
       upgrade1.reload.rebootable.should eq true
     end
