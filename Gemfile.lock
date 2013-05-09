@@ -73,10 +73,10 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    factory_girl (3.6.1)
+    factory_girl (4.2.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (3.6.0)
-      factory_girl (~> 3.6.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
     ffi (1.8.1)
     font-awesome-sass-rails (3.0.2.2)
@@ -273,7 +273,7 @@ DEPENDENCIES
   deface (= 0.7.2)
   devise
   draper (~> 1.0)
-  factory_girl_rails (~> 3.0)
+  factory_girl_rails (~> 4.0)
   font-awesome-sass-rails
   growl
   guard-rspec
