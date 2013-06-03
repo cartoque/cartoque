@@ -6,7 +6,7 @@ gem 'rake'
 
 # Rails 3's asset pipeline
 gem 'json'
-gem 'sass-rails'
+gem 'sass-rails', '3.2.5'
 gem 'coffee-rails'
 gem 'uglifier'
 # JS Runtime
