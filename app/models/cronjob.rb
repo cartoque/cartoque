@@ -40,7 +40,7 @@ class Cronjob
     cron = Cronjob.new
     elems = line.strip.split(/\s+/)
     #handle commented lines
-    return cron if elems.first.blank? || elems.first.match(/^\s*[#a-z]/)
+    return cron if elems.first.blank? || elems.first.match(/^(#|mi?)$/)
     #handle definition_locations in first column
     if elems.first && elems.first.match(%r{^(/|crontab)})
       cron.definition_location = elems.shift
