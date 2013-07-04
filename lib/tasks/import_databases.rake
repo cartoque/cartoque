@@ -32,10 +32,10 @@ namespace :import do
       next unless server
       next if server.database.present?
       if db.present?
-        Database.create(name: db_name, type: db_type, servers: [server])
-      else
         db.servers = [server]
         db.save
+      else
+        Database.create(name: db_name, type: db_type, servers: [server])
       end
     end
     #import database files
