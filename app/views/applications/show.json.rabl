@@ -13,3 +13,7 @@ node(:application_instances) do |appli|
 end
 
 attributes :dokuwiki_pages
+
+#timestamps
+attributes :created_at
+attributes :updated_at

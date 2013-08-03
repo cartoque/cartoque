@@ -19,6 +19,8 @@ describe "Servers API" do
       res["servers"].should have(1).server
       srv = res["servers"].first
       srv["name"].should == "srv-01"
+      srv["created_at"].should be_present
+      srv["updated_at"].should be_present
     end
   end
 
@@ -31,6 +33,8 @@ describe "Servers API" do
       res.keys.should == ["server"]
       srv = res["server"]
       srv["name"].should == "srv-01"
+      srv["created_at"].should be_present
+      srv["updated_at"].should be_present
     end
   end
 end

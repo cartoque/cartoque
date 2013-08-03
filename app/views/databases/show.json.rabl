@@ -27,3 +27,7 @@ node(:instances) do |database|
     }
   end
 end
+
+#timestamps
+attributes :created_at
+attributes :updated_at

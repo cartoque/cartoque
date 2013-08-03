@@ -11,3 +11,7 @@ attributes :processor_system_count,
 
 #extended
 attributes :extended_attributes
+
+#timestamps
+attributes :created_at
+attributes :updated_at

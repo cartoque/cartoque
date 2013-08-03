@@ -21,6 +21,8 @@ describe "Databases API" do
       db["name"].should == "db-01"
       db["instances"].count.should == 1
       db["instances"].first["name"].should == "pg-cluster-01"
+      db["created_at"].should be_present
+      db["updated_at"].should be_present
     end
   end
 
@@ -33,6 +35,8 @@ describe "Databases API" do
       res.keys.should == ["database"]
       db = res["database"]
       db["name"].should == "db-01"
+      db["created_at"].should be_present
+      db["updated_at"].should be_present
     end
   end
 end

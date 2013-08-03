@@ -19,6 +19,8 @@ describe "Applications API" do
       app = res["applications"].first
       app["name"].should == "app-01"
       app.keys.should_not include "application_instances"
+      app["created_at"].should be_present
+      app["updated_at"].should be_present
     end
   end
 
@@ -32,6 +34,8 @@ describe "Applications API" do
       app = res["application"]
       app["name"].should == "app-01"
       #app.keys.should_not include "application_instances"
+      app["created_at"].should be_present
+      app["updated_at"].should be_present
     end
   end
 end
