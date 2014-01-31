@@ -18,12 +18,12 @@ class DatabaseInstanceImporter
   end
 end
 
-desc "Imports databases from data/(oracle|postgres)/* files"
+desc "Imports databases from data/(oracle|postgres|mysql)/* files"
 namespace :import do
   task :databases => :environment do
     #create database services if server exist
-    (Dir.glob("data/postgres/*") + Dir.glob("data/oracle/*")).each do |filename|
-      db_type, db_name = filename.scan(%r[data/(oracle|postgres)/(.*).txt]).first
+    (Dir.glob("data/postgres/*") + Dir.glob("data/mysql") +Dir.glob("data/oracle/*")).each do |filename|
+      db_type, db_name = filename.scan(%r[data/(oracle|postgres|mysql)/(.*).txt]).first
       next unless File.size(filename) > 0  #empty file
       next unless File.size(filename) > 10 #file with potential data in
       db = Database.where(name: db_name, type: db_type).first
@@ -51,7 +51,7 @@ namespace :import do
       #NB: in a DatabaseInstance, listen ip+listen port+name is unique
       #add non existing reports / update existing
       reports.each do |report|
-        dbi = db.database_instances.find_or_create_by(name: report["pg_cluster"] || report["ora_instance"],
+        dbi = db.database_instances.find_or_create_by(name: report["pg_cluster"] || report["my_cluster"] || report["ora_instance"],
                                                       listen_address: report["ip"],
                                                       listen_port: report["port"].to_i)
         dbi.host_alias = report["host"]
