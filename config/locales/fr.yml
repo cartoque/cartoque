@@ -509,6 +509,8 @@ fr:
   oracle_items: "Schémas"
   postgres_instance: "PgCluster"
   postgres_items: "Bases"
+  mysql_instance: "Instance"
+  mysql_items: "Bases|Schémas"
   select: "Sélectionner..."
   generate_a_mailing_list: "Générer une liste de diffusion"
   mailing_list: "Liste de diffusion"

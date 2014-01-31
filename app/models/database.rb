@@ -11,7 +11,7 @@ class Database
   has_many :database_instances, dependent: :destroy
 
   validates_presence_of :name
-  validates_inclusion_of :type, in: %w(postgres oracle)
+  validates_inclusion_of :type, in: %w(postgres oracle mysql)
 
   scope :by_name, proc { |term| where(name: Regexp.mask(term)) }
   scope :by_type, proc { |term| where(type: term) }
@@ -40,7 +40,7 @@ class Database
   end
 
   def self.hash_distribution(dbs = Database.includes(:servers))
-    map = {"oracle" => {}, "postgres" => {}}
+    map = {"oracle" => {}, "postgres" => {}, "mysql" => {}}
     dbs.each do |db|
       dbmap = {}
       db.database_instances.each do |db_instance|

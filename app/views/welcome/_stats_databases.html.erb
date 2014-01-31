@@ -24,4 +24,15 @@
       </ul>
     </td>
   </tr>
+  <tr>
+    <td><%= link_to "Mysql", databases_path(by_type: "mysql") %></td>
+    <td>
+      <% databases = Database.where(type: "mysql") %>
+      <%= pluralize(databases.map(&:server_ids).flatten.uniq.count, t(:server).downcase) %>
+      <ul class="details">
+        <li><%= pluralize databases.map(&:database_instances).map(&:count).sum, t(:mysql_instance).downcase %></li>
+        <li><%= pretty_size(databases.map(&:size).sum) %></li>
+      </ul>
+    </td>
+  </tr>
 </table>
