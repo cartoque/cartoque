@@ -76,7 +76,7 @@ en:
   rack_stock: "Stock"
   name: "Name"
   database_type: "Database type"
-  delivered_on: "Delivered on"
+  delivered_on: "Maintained from"
   maintained_until: "Maintained until"
   server_ids: "Servers"
   identifier: "Identifier"

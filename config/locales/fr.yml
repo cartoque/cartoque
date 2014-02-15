@@ -232,7 +232,7 @@ fr:
   rack_stock: "Stock"
   name: "Nom"
   database_type: "Type"
-  delivered_on: "Mise en service"
+  delivered_on: "Début de maintenance"
   maintained_until: "Fin de maintenance"
   server_ids: "Serveurs"
   identifier: "Identifiant Redmine"
