@@ -66,7 +66,7 @@ describe Database do
       distrib = Database.d3_distribution
       #top key
       distrib.keys.should =~ %w(name children)
-      distrib["children"].should have_exactly(2).items
+      distrib["children"].should have_exactly(3).items
       #grouped by server type
       distrib["children"].inject([]){|memo,h| memo << h["name"]}.should =~ %w(postgres oracle)
       #grouped by clusters
