@@ -5,7 +5,7 @@
     <tbody>
       <%= tabular_errors @database %>
       <%= f.input :name, required: true, wrapper_class: "th" %>
-      <%= f.input :type, collection: %w(postgres oracle),
+      <%= f.input :type, collection: %w(postgres mysql oracle),
                   required: true, include_blank: false %>
       <%= f.association :servers, collection: Server.order_by([:name.asc]), as: :multiselect %>
     </tbody>

@@ -9,6 +9,10 @@ class Server
   def oracle_file
     Rails.root.join("spec/data/oracle/#{name.downcase}.txt").to_s
   end
+
+  def mysql_file
+    Rails.root.join("spec/data/mysql/#{name.downcase}.txt").to_s	  
+  end
 end
 
 describe Database do
@@ -66,9 +70,9 @@ describe Database do
       distrib = Database.d3_distribution
       #top key
       distrib.keys.should =~ %w(name children)
-      distrib["children"].should have_exactly(2).items
+      distrib["children"].should have_exactly(3).items
       #grouped by server type
-      distrib["children"].inject([]){|memo,h| memo << h["name"]}.should =~ %w(postgres oracle)
+      distrib["children"].inject([]){|memo,h| memo << h["name"]}.should =~ %w(postgres oracle mysql)
       #grouped by clusters
       pg = distrib["children"].detect{|h| h["name"] == "postgres"}["children"]
       pg.should have_exactly(1).item

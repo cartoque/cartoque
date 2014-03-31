@@ -22,7 +22,7 @@ desc "Imports databases from data/(oracle|postgres|mysql)/* files"
 namespace :import do
   task :databases => :environment do
     #create database services if server exist
-    (Dir.glob("data/postgres/*") + Dir.glob("data/mysql") +Dir.glob("data/oracle/*")).each do |filename|
+    (Dir.glob("data/postgres/*") + Dir.glob("data/mysql/*") + Dir.glob("data/oracle/*")).each do |filename|
       db_type, db_name = filename.scan(%r[data/(oracle|postgres|mysql)/(.*).txt]).first
       next unless File.size(filename) > 0  #empty file
       next unless File.size(filename) > 10 #file with potential data in

@@ -48,6 +48,8 @@ class DatabaseDecorator < ResourceDecorator
   def table_column_names
     if model.type == "postgres"
       %w(ip port postgres_instance postgres_items size_in_GB)
+    elsif model.type == "mysql"
+      %w(ip port mysql_instance mysql_items size_in_GB)
     elsif model.type == "oracle"
       %w(ip port oracle_instance oracle_items size_in_GB)
     end

@@ -1,4 +1,5 @@
 <% postgres_databases = @databases.select{|db| db.type == 'postgres'} %>
+<% mysql_databases = @databases.select{|db| db.type == 'mysql'} %>
 <% oracle_databases   = @databases.select{|db| db.type == 'oracle'} %>
 
   <% unless postgres_databases.empty? %>
@@ -22,6 +23,40 @@
         <%= database.pretty_nodes %>
       </td>
       <td rowspan="<%= height %>" class="multirow center">PostgreSQL</td>
+      <% if databases_view_mode.in? %w(normal detailed) %>
+        <% if database.database_instances.any? %>
+          <%= render partial: 'database_instance', collection: database.database_instances.sort_by{|dbi| [dbi.listen_port, dbi.name]} %>
+        <% else %>
+          <td colspan="4" class="center"><%= t(:information_not_available) %></td>
+        <% end %>
+      <% else %>
+        <%= render partial: 'database_parameters', collection: database.database_instances.sort_by{|dbi| [dbi.listen_port, dbi.name]},
+                                                   as: 'database_instance' %>
+      <% end %>
+    </tr>
+   <% end %>
+
+  <% unless mysql_databases.empty? %>
+  <tr class="fix-on-scroll">
+    <th><%= t(:server) %></th>
+    <th><%= t(:type) %></th>
+    <%= mysql_databases.first.table_headers(databases_view_mode) %>
+  </tr>
+  <% end %>
+  <% for database in mysql_databases %>
+    <% height = database.database_instances.size %>
+    <% height = 1 if height == 0 %>
+    <tr>
+      <td rowspan="<%= height %>" class="multirow has-opaques">
+        <div class="contextual opaque">
+          <%= action_links do %>
+            <%= link_to_edit edit_database_path(database) %>
+            <%= link_to_delete database %>
+          <% end %>
+        </div>
+        <%= database.pretty_nodes %>
+      </td>
+      <td rowspan="<%= height %>" class="multirow center">Mysql</td>
       <% if databases_view_mode.in? %w(normal detailed) %>
         <% if database.database_instances.any? %>
           <%= render partial: 'database_instance', collection: database.database_instances.sort_by{|dbi| [dbi.listen_port, dbi.name]} %>
