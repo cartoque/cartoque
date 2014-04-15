@@ -12,6 +12,11 @@ attributes :processor_system_count,
 #extended
 attributes :extended_attributes
 
+#operating system
+child(:operating_system) do
+  attributes :id, :name, :codename
+end
+
 #timestamps
 attributes :created_at
 attributes :updated_at
