@@ -13,7 +13,7 @@ attributes :processor_system_count,
 attributes :extended_attributes
 
 #operating system
-child(:operating_system) do
+child(:operating_system, :if => lambda{|s| s.operating_system.present?}) do
   attributes :id, :name, :codename
 end
 
