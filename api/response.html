@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Cartoque - Response format and conventions</title>
-    <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/reset.css">
-    <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/text.css">
-    <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/960.css">
-    <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/app.css">
-    <link rel="stylesheet" type="text/css" media="all" href="../stylesheets/rainbow/github.css">
-    <!-- this css file is in /images/ since it references images in the same directory and I want to be able to upgrade it... -->
-    <link rel="stylesheet" type="text/css" media="all" href="../images/fancybox/jquery.fancybox-1.3.4.css">
-    <script type="text/javascript" src="../javascripts/jquery-1.4.3.min.js"></script>
-    <script type="text/javascript" src="../javascripts/rainbow-custom.min.js"></script>
-    <script type="text/javascript" src="../javascripts/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
-    <script type="text/javascript" src="../javascripts/fancybox/jquery.easing-1.3.pack.js"></script>
-    <script type="text/javascript" src="../javascripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-    <script type="text/javascript" src="../javascripts/cartoque.js"></script>
-    <meta http-equiv="cache-control" content="max-age=10, must-revalidate">
-    <meta charset="utf-8">
-    <meta name="generator" content="nanoc 3.2.3">
-  </head>
-  <body>
+<title>Cartoque - Response format and conventions</title>
+<link rel="stylesheet" type="text/css" media="all" href="../stylesheets/reset.css">
+<link rel="stylesheet" type="text/css" media="all" href="../stylesheets/text.css">
+<link rel="stylesheet" type="text/css" media="all" href="../stylesheets/960.css">
+<link rel="stylesheet" type="text/css" media="all" href="../stylesheets/app.css">
+<link rel="stylesheet" type="text/css" media="all" href="../stylesheets/rainbow/github.css">
+<!-- this css file is in /images/ since it references images in the same directory and I want to be able to upgrade it... --><link rel="stylesheet" type="text/css" media="all" href="../images/fancybox/jquery.fancybox-1.3.4.css">
+<script type="text/javascript" src="../javascripts/jquery-1.4.3.min.js"></script><script type="text/javascript" src="../javascripts/rainbow-custom.min.js"></script><script type="text/javascript" src="../javascripts/fancybox/jquery.mousewheel-3.0.4.pack.js"></script><script type="text/javascript" src="../javascripts/fancybox/jquery.easing-1.3.pack.js"></script><script type="text/javascript" src="../javascripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script><script type="text/javascript" src="../javascripts/cartoque.js"></script><meta http-equiv="cache-control" content="max-age=10, must-revalidate">
+<meta charset="utf-8">
+<meta name="generator" content="nanoc 3.2.3">
+</head>
+<body>
     <a href="http://github.com/jbbarth/cartoque">
-      <img style="position: absolute; top: 0; right: 0; border: 0;" src="../images/github-ribbon.png" alt="Fork me on GitHub">
-    </a>
+      <img style="position: absolute; top: 0; right: 0; border: 0;" src="../images/github-ribbon.png" alt="Fork me on GitHub"></a>
     <div class="container_16">
       <span class="sitetitle">Cartoque</span>
       <span class="sitesubtitle">A free &amp; simple CMDB for your datacenter</span>
@@ -32,32 +24,32 @@
       <div class="grid_3">
         <div id="sidebar">
   <ul>
-    <li class="title"><a href="../">Overview</a></li>
+<li class="title"><a href="../">Overview</a></li>
     <li class="title">
       User guide
       <ul>
-        <li><a href="../guide/install.html">Installation</a></li>
+<li><a href="../guide/install.html">Installation</a></li>
         <li><a href="../guide/populate.html">Populate the CMDB</a></li>
         <li><a href="../guide/contribute.html">Contribute</a></li>
       </ul>
-    </li>
+</li>
     <li class="title">
       Developer corner
       <ul>
-        <li><a href="../dev/guidelines.html">Guidelines</a></li>
+<li><a href="../dev/guidelines.html">Guidelines</a></li>
       </ul>
-    </li>
+</li>
     <li class="title">
       REST API
       <ul>
-        <li><a href="authentication.html">Authentication</a></li>
+<li><a href="authentication.html">Authentication</a></li>
         <li><span class="active" title="You're here.">Response</span></li>
         <li>
           <a href="endpoints.html">List of endpoints</a>
           
         </li>
       </ul>
-    </li>
+</li>
   </ul>
 </div>
 
@@ -86,7 +78,6 @@
 <li>
 <strong>xml</strong> : same as <strong>csv</strong>, most likely to be removed in the next release since the world now has <strong>json</strong> :)</li>
 </ul>
-
 <h2>HTTP Response code</h2>
 
 <p>We'll use the same HTTP status code as everywhere. Here's a list of the subset we'll use, found in the great <a href="https://stripe.com/docs/api">Stripe's API</a> :</p>
@@ -105,7 +96,6 @@
 <li>
 <em>500, 502, 503, 504</em> Server errors - something went wrong on Cartoque's side.</li>
 </ul>
-
 <h2>Namespacing conventions</h2>
 
 <p>About namespacing objects, we follow the same conventions as <a href="http://railstips.org/blog/archives/2011/12/01/creating-an-api/">Gaug.es, documented here</a>, if I quote John Nunemaker:</p>
