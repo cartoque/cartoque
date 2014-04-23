@@ -22,6 +22,31 @@ describe DatabasesController do
       assigns(:databases).should include db
     end
   end
+
+  describe "GET :index json" do
+    render_views
+
+    it "send back a list of databases" do
+      get :index, format: "json"
+      json = JSON.parse(response.body)
+      json["databases"][0]["name"].should == "database-01"
+    end
+
+    it "doesn't include servers by default, but server_names" do
+      get :index, format: "json"
+      json = JSON.parse(response.body)
+      json["databases"][0]["server_names"].should == ["server-01"]
+      json["databases"][0]["servers"].should be_blank
+    end
+
+    it "includes servers if requested" do
+      get :index, include: "servers", format: "json"
+      json = JSON.parse(response.body)
+      json["databases"][0]["server_names"].should == ["server-01"]
+      json["databases"][0]["servers"].should_not be_blank
+      json["databases"][0]["servers"][0]["name"] == "server-01"
+    end
+  end
   
   describe "GET :show" do
     it "uses the right template" do

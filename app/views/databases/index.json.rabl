@@ -6,6 +6,12 @@ node(:server_names) do |database|
   database.servers.map(&:name)
 end
 
+if params[:include] && params[:include].include?("servers")
+  child :servers do
+    extends "servers/show"
+  end
+end
+
 node(:instances) do |database|
   database.database_instances.select do |inst|
     inst.databases.present?
