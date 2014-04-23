@@ -1,8 +1,9 @@
 class RenameBackupExceptionToExclusion < Mongoid::Migration
   def self.up
-    if Mongoid.database.collections.map(&:name).include? 'backup_exceptions'
-      Mongoid.database.drop_collection('exclusions')
-      Mongoid.database.rename_collection('backup_exceptions', 'exclusions')
+    database = Mongoid.default_session
+    if database.collections.map(&:name).include? 'backup_exceptions'
+      database.drop_collection('exclusions')
+      database.rename_collection('backup_exceptions', 'exclusions')
       Exclusion.update_all(_type: 'BackupExclusion')
     end
   end
