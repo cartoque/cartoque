@@ -76,6 +76,8 @@ namespace :import do
           puts "Unable to parse memory for #{server.name}: memorysize=#{facts["memorysize"]}, memoryreal=#{facts["memoryreal"]}" if ENV['DEBUG'].present?
         end
       end
+      #store facts
+      server.extended_attributes["facts"] = facts
       #save server
       server.save if server.changed?
       #dns domains
