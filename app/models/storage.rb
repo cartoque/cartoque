@@ -13,7 +13,7 @@ class Storage
   scope :by_constructor, proc { |constructor| where(constructor: constructor) }
 
   def self.supported_types
-    %w(IBM NetApp Equalogic)
+    %w(IBM NetApp Equalogic NSS)
   end
 
   def to_s
@@ -34,6 +34,8 @@ class Storage
                   Storcs::Parsers::DfNas.new(server.name, file).device
                 when "Equalogic"
                   Storcs::Parsers::Equalogic.new(server.name, file).device
+                when "NSS"
+                  Storcs::Parsers::Nss.new(server.name, file).device
                 end
     rescue Errno::ENOENT
       @device = "Not file found .#{file.gsub(Rails.root.to_s,"")}"
