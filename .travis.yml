@@ -9,4 +9,4 @@ branches:
     - stable
 env: RAILS_ENV=test
 services: mongodb
-script: "bundle exec rake"
+script: "bundle exec rake secret:replace && bundle exec rake"
