@@ -8,6 +8,10 @@ namespace :secret do
     pattern  = /(\.secret_token *= *')\w+(')/
     secret   = SecureRandom.hex(64)
     filepath = "#{Rails.root}/config/initializers/secret_token.rb"
+    default_filepath = "#{filepath}.default"
+
+    copy_file(default_filepath, filepath, preserve = true)
+
     content  = File.read(filepath)
     
     unless pattern
