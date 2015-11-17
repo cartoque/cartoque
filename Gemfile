@@ -5,7 +5,7 @@ gem 'rails', '3.2.13'
 gem 'rake'
 
 # Rails 3's asset pipeline
-gem 'json'
+gem 'json', '~> 1.8.2'
 gem 'sass-rails', '3.2.5'
 gem 'coffee-rails'
 gem 'uglifier'
@@ -56,6 +56,7 @@ end
 
 # Tests
 group :test do
+  gem 'test-unit'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
   gem 'guard-rspec'
@@ -69,7 +70,7 @@ group :test do
   gem 'rb-inotify' if RUBY_PLATFORM.match /linux/
   # the cover_me gem is not compatible with rbx and jruby
   # but only need this on one environment...
-  gem 'cover_me', :platforms => :mri_19
+  # gem 'cover_me', :platforms => :mri_19
   gem 'rspec'
   gem 'rspec-rails'
   gem 'capybara'

@@ -18,3 +18,4 @@ vendor/plugins/*
 vendor/bundle/
 **.rbc
 */**/.*.swp
+config/initializers/secret_token.rb
