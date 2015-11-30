@@ -2,6 +2,8 @@
 class SettingsController < ApplicationController
   layout 'admin'
 
+  respond_to :json, only: [:index]
+
   def index
   end
 

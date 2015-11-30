@@ -41,6 +41,8 @@ gem 'omniauth', '>= 1.0.0'
 gem 'omniauth-cas', '>= 0.0.6'
 gem 'devise'
 
+gem 'thin'
+
 # Plugins/engines
 Dir.glob(File.expand_path("../vendor/plugins/*/Gemfile",__FILE__)).each do |gemfile|
   instance_eval File.read(gemfile)

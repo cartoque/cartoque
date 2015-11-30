@@ -19,7 +19,7 @@ if defined?(Bundler)
 end
 
 module Cartoque
-  VERSION = '0.3.0'
+  VERSION = '0.3.1'
 
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
