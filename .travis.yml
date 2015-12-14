@@ -1,5 +1,7 @@
 rvm:
-  - 1.9.3
+  - 2.0
+  - 2.1
+  - 2.2.3
 bundler_args: ""
 branches:
   only:
@@ -7,4 +9,4 @@ branches:
     - stable
 env: RAILS_ENV=test
 services: mongodb
-script: "bundle exec rspec spec"
+script: "bundle exec rake secret:replace && bundle exec rake"

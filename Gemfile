@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
 # Core framework
-gem 'rails', '3.2.13'
+gem 'rails', '~> 3.2.13'
 gem 'rake'
 
 # Rails 3's asset pipeline
-gem 'json'
+gem 'json', '~> 1.8.2'
 gem 'sass-rails', '3.2.5'
 gem 'coffee-rails'
 gem 'uglifier'
@@ -41,6 +41,8 @@ gem 'omniauth', '>= 1.0.0'
 gem 'omniauth-cas', '>= 0.0.6'
 gem 'devise'
 
+gem 'thin'
+
 # Plugins/engines
 Dir.glob(File.expand_path("../vendor/plugins/*/Gemfile",__FILE__)).each do |gemfile|
   instance_eval File.read(gemfile)
@@ -56,6 +58,7 @@ end
 
 # Tests
 group :test do
+  gem 'test-unit'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
   gem 'guard-rspec'
@@ -69,7 +72,7 @@ group :test do
   gem 'rb-inotify' if RUBY_PLATFORM.match /linux/
   # the cover_me gem is not compatible with rbx and jruby
   # but only need this on one environment...
-  gem 'cover_me', :platforms => :mri_19
+  # gem 'cover_me', :platforms => :mri_19
   gem 'rspec'
   gem 'rspec-rails'
   gem 'capybara'

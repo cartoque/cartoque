@@ -1,6 +1,6 @@
 collection @servers, root: :servers, object_root: false
 
-attributes :id, :name
+attributes :id, :name, :ipaddress, :operating_system_name, :arch, :virtual?
 node(:hypervisor_name) { |server| server.hypervisor.try(:name) }
 
 # hardware details
@@ -15,3 +15,4 @@ attributes :extended_attributes
 #timestamps
 attributes :created_at
 attributes :updated_at
+
