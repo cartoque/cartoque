@@ -29,7 +29,7 @@
   </tr>
   <% instances.each do |instance| %>
   <tr>
-    <td><%= link_to instance.name, "http://#{instance.name}.projet.appli.i2/" %></td>
+    <td><%= link_to instance.name, instance.url %></td>
     <td class="center"><%= instance.admin %></td>
     <td class="center"><%= instance.version %></td>
     <% if show_plugins %><td class="center"><%= instance.plugins.join("<br/>").html_safe %></td><% end %>
